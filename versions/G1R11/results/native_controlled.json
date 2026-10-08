@@ -1,0 +1,63 @@
+[
+  {
+    "test": "native_kinematic_indicator",
+    "max_absolute_difference": 4.440892098500626e-16,
+    "top_60_ranking_identical": true,
+    "scope": "NATIVE_VBA_INDICATOR_VS_PYTHON"
+  },
+  {
+    "test": "policy_input_changed_events_disabled",
+    "result": "ERROR 5:INPUT_MISMATCH policy_changed",
+    "user_changed_value_preserved": true
+  },
+  {
+    "test": "normal",
+    "result": "PASS;elements=999;hits=0;status=completed;phase=reference_total;complete=True",
+    "scope": "NATIVE_CONTROL_FLOW_WITH_TEST_ONLY_MOCK_EVALUATE_AND_BAND_NOT_PHYSICAL_SOLVE"
+  },
+  {
+    "test": "known_candidate",
+    "result": "PASS;elements=728;hits=1;status=staged_candidate_rejected;phase=reference_total;complete=True",
+    "scope": "NATIVE_CONTROL_FLOW_WITH_TEST_ONLY_MOCK_EVALUATE_AND_BAND_NOT_PHYSICAL_SOLVE"
+  },
+  {
+    "test": "cancel",
+    "result": "ERROR 18:ANALYSIS_CANCELLED;hits=1",
+    "scope": "NATIVE_CONTROL_FLOW_WITH_TEST_ONLY_MOCK_EVALUATE_AND_BAND_NOT_PHYSICAL_SOLVE"
+  },
+  {
+    "test": "oom",
+    "result": "ERROR 7:OUT_OF_MEMORY;hits=1",
+    "scope": "NATIVE_CONTROL_FLOW_WITH_TEST_ONLY_MOCK_EVALUATE_AND_BAND_NOT_PHYSICAL_SOLVE"
+  },
+  {
+    "test": "subscript",
+    "result": "ERROR 9:SUBSCRIPT;hits=1",
+    "scope": "NATIVE_CONTROL_FLOW_WITH_TEST_ONLY_MOCK_EVALUATE_AND_BAND_NOT_PHYSICAL_SOLVE"
+  },
+  {
+    "test": "unknown",
+    "result": "ERROR 5:UNKNOWN_FAILURE;hits=1",
+    "scope": "NATIVE_CONTROL_FLOW_WITH_TEST_ONLY_MOCK_EVALUATE_AND_BAND_NOT_PHYSICAL_SOLVE"
+  },
+  {
+    "test": "audit",
+    "result": "ERROR 5:PHYSICAL_AUDIT_FAILED;hits=1",
+    "scope": "NATIVE_CONTROL_FLOW_WITH_TEST_ONLY_MOCK_EVALUATE_AND_BAND_NOT_PHYSICAL_SOLVE"
+  },
+  {
+    "test": "resource",
+    "result": "ERROR 5:HSD_STABLE_UNAVAILABLE_MEMORY;hits=1",
+    "scope": "NATIVE_CONTROL_FLOW_WITH_TEST_ONLY_MOCK_EVALUATE_AND_BAND_NOT_PHYSICAL_SOLVE"
+  },
+  {
+    "test": "resource_final",
+    "result": "ERROR 5:HSD_STABLE_UNAVAILABLE_MEMORY;hits=1",
+    "scope": "NATIVE_CONTROL_FLOW_WITH_TEST_ONLY_MOCK_EVALUATE_AND_BAND_NOT_PHYSICAL_SOLVE"
+  },
+  {
+    "test": "known_refine",
+    "result": "PASS;elements=999;hits=1;status=completed;phase=reference_total;complete=True",
+    "scope": "NATIVE_CONTROL_FLOW_WITH_TEST_ONLY_MOCK_EVALUATE_AND_BAND_NOT_PHYSICAL_SOLVE"
+  }
+]

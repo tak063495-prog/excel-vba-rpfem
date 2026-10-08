@@ -1,0 +1,7 @@
+﻿issue,problem,modules,fix,evidence
+G11-01,直接細分化が従来の良いメッシュ経路を飛ばす,RPX_Adapt;RPX_Refine,従来再配置とforceLegacy分割後に追加1回,native_geometry.json;static_invariants.json;native_brackets.json
+G11-02,1536要素まで成長し求解費用が増加,RPX_Adapt,"追加予算min(1000,TARGET)、CYCLESと既存採否を維持",native_controlled.json;native_geometry.json
+G11-03,多層の下界探索で大きなFsの不要試行,RPX_Fs,監査済み同一モデル上界を試行位置の目安に使用。実符号を確認,python_bracket_pretest.json;native_brackets.json
+G11-04,改善策が単層や前段メッシュの求解を変える,RPX_Fs,使用材料2種類以上。staged前段800要素以下と剛体は対象外,native_brackets.json;native_small_roots.json;single_material_exact_match.json
+G11-05,追加段階で停止対象を通常復帰に混同する恐れ,RPX_Adapt;RPX_Fs,既知失敗のみ復元、致命的例外再送出、メモリ識別子保護,native_controlled.json;native_brackets.json
+G11-06,新設定の実行中変更・反映漏れ,設定シート;既存RPX_Guard,入力監視範囲内に追加。保存後再読込み照合,native_settings_guard.json;Release_Verification.json

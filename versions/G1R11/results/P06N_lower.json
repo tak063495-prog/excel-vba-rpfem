@@ -1,0 +1,9 @@
+{
+  "test": "P06N_lower",
+  "fs": 0.655,
+  "mode": "lower",
+  "q": 4,
+  "result": "SOLVED;value=1.01388979063567;audit=1.40083500355104E-11;iterations=38;elements=1000;q=4",
+  "seconds": 1394.2163820000133,
+  "scope": "NATIVE_FIXED_FS_ON_NATIVE_REFINED_MESH_NOT_FULL_ADAPTATION"
+}

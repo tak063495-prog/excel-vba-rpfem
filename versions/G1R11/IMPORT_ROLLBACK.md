@@ -1,0 +1,27 @@
+# 使用・反映・復元
+
+通常は同梱の完成済み `RPFEM_20261007_G1R11_P06N_Staged_1000.xlsm` を開き、従来と同じ解析操作を行ってください。P06Nの入力と設定は反映済みです。原本は保存したまま、別ファイルで解析します。
+
+## 手動反映
+
+1. source_identity.jsonで指定したG1R10原本のコピーをExcelで開きます。別の旧版にはこの差分だけを適用しないでください。
+2. VBEの標準モジュールRPX_Adapt、RPX_Refine、RPX_Fsをエクスポートして退避し、同名3モジュールをimport_cp932/のファイルで置き換えます。UTF-8のsrc/を直接VBEへ取り込むことは避け、CP932・CRLFの配布ファイルを使います。
+3. 設定シートでA48=適応メッシュ方式、B48=LEGACY_THEN_REFINE、D48=ADAPT_MESH_POLICYにします。新しい空き行49にA49=追加細分化の要素上限、B49=1000、D49=ADAPT_REFINE_CAP、行50にA50=Fs試行範囲の選び方、B50=AUDITED_UPPER_LIMIT、D50=FS_BRACKET_POLICYを入れます。49/50が既に使われていたら、A4:D100内の空き行を使い、既存入力を上書きしません。
+4. TARGET、ADAPT、CYCLES、GAP、QUADRATURE、FS_TOL、材料・形状は元の値を維持します。TEST_INJECTIONは0です。
+5. コンパイル、保存、閉じて再読込みを行い、設定を確認します。過去の解析結果は新実行の結果として使いません。
+
+ThisWorkbookやSheetのイベントコードは変更していません。新規標準モジュールとしてインポートする文書モジュールはありません。tests/のProbe、代替Evaluateや失敗注入コードを運用ブックへ取り込まないでください。
+
+## 復元
+
+- 従来メッシュと従来探索へ戻すには、設定B48とB50をともにLEGACYにします。これはG1R9相当のメッシュ経路への切替えであり、G1R10の直接細分化の既定設定とは異なります。
+- G1R10のコードと設定へ完全に戻すには、保全したG1R10原本の別コピーを使います。手動なら変更した3モジュールをrollback_cp932/から戻し、B48をROBUST_REFINEへ戻し、追加した49/50の設定を削除してコンパイルします。
+- 原本、ユーザーが保存した解析結果、異なる版のブックは上書きしません。今回の作業ではマクロセキュリティ・VBA信頼設定・レジストリを変更していません。
+
+## Python・Excel検証の依存関係
+
+Pythonライブラリの実行時バージョンはrequirements-validation.txtに記載しています。native_*試験にはWindows、Microsoft Excel、pywin32と、この環境に既に存在するVBAプロジェクトアクセスが必要です。
+
+スクリプトは配置先をRとして使いますが、試験原本はsource_identity.jsonのG1R10パス、従来781要素の抽出はinspect_book.pyのG1R9パスを読みます。native_geometry.pyは旧G1R10検証フォルダーのkinematic_scores.npzとnative_original_legacy.binも参照します。環境を移す場合は、それぞれ同じSHA-256の原本・証拠を配置するか参照先を変更してください。監査を移動先で再実行する場合、native_small_roots.jsonのprefixも移動先results/へ合わせます。原本の同一性チェックは残します。
+
+Excelの試験は原本から作ったtests/内のコピーで実行し、成果物へ試験用コードを保存しません。XLSMをスプレッドシートライターで再構築したり、vbaProject.binを差し替えたりする手順は使っていません。

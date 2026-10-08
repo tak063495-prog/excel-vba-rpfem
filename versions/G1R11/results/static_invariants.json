@@ -1,0 +1,12 @@
+{
+  "changed_modules": [
+    "RPX_Adapt.bas",
+    "RPX_Fs.bas",
+    "RPX_Refine.bas"
+  ],
+  "legacy_band_and_weight_sources_unchanged": true,
+  "physical_assembly_Davis_audit_NT_HSD_LDL_order_precision_kernel_sources_unchanged": true,
+  "Fs_trial_classification_secant_termination_target_tolerances_unchanged": true,
+  "strict_cp932_crlf_roundtrip": "PASS",
+  "source_sha_intact": true
+}

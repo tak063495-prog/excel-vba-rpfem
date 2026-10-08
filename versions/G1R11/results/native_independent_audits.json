@@ -1,0 +1,247 @@
+[
+  {
+    "test": "P06N_lower",
+    "physical_audit": {
+      "pass": true,
+      "errors": {
+        "yield": 7.607859008670195e-14,
+        "equilibrium": 1.4008350035510375e-11,
+        "internal_traction": 1.2989609388114332e-13,
+        "boundary_traction": 7.014246030906084e-14
+      },
+      "load": 1.013889790635672,
+      "value": 1.013889790635672
+    },
+    "scope": "FIXED_POINT_NOT_FULL_FS_ROOT",
+    "unit_load_50digit": {
+      "case": "P06N",
+      "mode": "lower",
+      "fs": 0.655,
+      "elements": 1000,
+      "decimal_precision": 50,
+      "independent_trig_digits": 65,
+      "raw_errors": {
+        "load_one": 0.0,
+        "yield": 1.5007270176574801e-12,
+        "equilibrium": 2.7634783350549696e-10,
+        "internal_traction": 2.5617438933117764e-12,
+        "boundary_traction": 1.3836308631746665e-12
+      },
+      "max_locations": {
+        "load_one": "load",
+        "yield": [
+          98,
+          1
+        ],
+        "equilibrium": [
+          239,
+          0,
+          0
+        ],
+        "internal_traction": [
+          432,
+          444,
+          0,
+          0
+        ],
+        "boundary_traction": [
+          2,
+          362,
+          0,
+          0
+        ]
+      },
+      "area": 302.5,
+      "numerical_audit_pass": true,
+      "meaning": "Numerical audit of stored binary64 field, not rigorous real interval proof.",
+      "load_factor": 1.0,
+      "stress_scale": 20.0,
+      "accepted": true
+    }
+  },
+  {
+    "test": "P06N_upper",
+    "physical_audit": {
+      "pass": true,
+      "errors": {
+        "flow": 7.89303852325235e-14,
+        "jump": 0.0,
+        "bonded_interface": 6.28427290500362e-12,
+        "boundary": 1.6490947114648483e-11,
+        "work": 4.971856260027607e-11,
+        "objective": 1.5543122344752192e-15
+      },
+      "dissipation": 0.9792940748919996,
+      "work": [
+        0.0,
+        0.9999999999502814
+      ],
+      "value": 0.9792940748919996
+    },
+    "scope": "FIXED_POINT_NOT_FULL_FS_ROOT"
+  },
+  {
+    "test": "C5_small_LEGACY_lower",
+    "fs": 1.56479461074022,
+    "physical_audit": {
+      "pass": true,
+      "errors": {
+        "yield": 0.0,
+        "equilibrium": 2.7481202255780788e-09,
+        "internal_traction": 4.1564995889586953e-10,
+        "boundary_traction": 3.5573077816764e-10
+      },
+      "load": 1.0000083404717146,
+      "value": 1.0000083404717146
+    },
+    "scope": "NATIVE_SMALL_ROOT_PHYSICAL_AUDIT_NOT_P06_ROOT",
+    "unit_load_50digit": {
+      "case": "C5_small",
+      "mode": "lower",
+      "fs": 1.56479461074022,
+      "elements": 20,
+      "decimal_precision": 50,
+      "independent_trig_digits": 65,
+      "raw_errors": {
+        "load_one": 0.0,
+        "yield": 0.0,
+        "equilibrium": 1.3740489106482445e-08,
+        "internal_traction": 2.0782319097046736e-09,
+        "boundary_traction": 1.7786390055271663e-09
+      },
+      "max_locations": {
+        "load_one": "load",
+        "yield": [
+          0,
+          0
+        ],
+        "equilibrium": [
+          14,
+          1,
+          1
+        ],
+        "internal_traction": [
+          3,
+          18,
+          2,
+          1
+        ],
+        "boundary_traction": [
+          3,
+          8,
+          2,
+          0
+        ]
+      },
+      "area": 1650.0,
+      "numerical_audit_pass": true,
+      "meaning": "Numerical audit of stored binary64 field, not rigorous real interval proof.",
+      "load_factor": 1.0,
+      "stress_scale": 5.0,
+      "accepted": true
+    }
+  },
+  {
+    "test": "C5_small_LEGACY_upper",
+    "fs": 2.16424040585209,
+    "physical_audit": {
+      "pass": true,
+      "errors": {
+        "flow": 0.0,
+        "jump": 0.0,
+        "boundary": 1.018403315144784e-09,
+        "work": 3.8889684805809566e-08,
+        "objective": 2.220446049250313e-16
+      },
+      "dissipation": 0.9999893223501655,
+      "work": [
+        0.0,
+        0.9999999611103152
+      ],
+      "value": 0.9999893223501655
+    },
+    "scope": "NATIVE_SMALL_ROOT_PHYSICAL_AUDIT_NOT_P06_ROOT"
+  },
+  {
+    "test": "C5_small_AUDITED_UPPER_LIMIT_lower",
+    "fs": 1.56479461074022,
+    "physical_audit": {
+      "pass": true,
+      "errors": {
+        "yield": 0.0,
+        "equilibrium": 2.7481202255780788e-09,
+        "internal_traction": 4.1564995889586953e-10,
+        "boundary_traction": 3.5573077816764e-10
+      },
+      "load": 1.0000083404717146,
+      "value": 1.0000083404717146
+    },
+    "scope": "NATIVE_SMALL_ROOT_PHYSICAL_AUDIT_NOT_P06_ROOT",
+    "unit_load_50digit": {
+      "case": "C5_small",
+      "mode": "lower",
+      "fs": 1.56479461074022,
+      "elements": 20,
+      "decimal_precision": 50,
+      "independent_trig_digits": 65,
+      "raw_errors": {
+        "load_one": 0.0,
+        "yield": 0.0,
+        "equilibrium": 1.3740489106482445e-08,
+        "internal_traction": 2.0782319097046736e-09,
+        "boundary_traction": 1.7786390055271663e-09
+      },
+      "max_locations": {
+        "load_one": "load",
+        "yield": [
+          0,
+          0
+        ],
+        "equilibrium": [
+          14,
+          1,
+          1
+        ],
+        "internal_traction": [
+          3,
+          18,
+          2,
+          1
+        ],
+        "boundary_traction": [
+          3,
+          8,
+          2,
+          0
+        ]
+      },
+      "area": 1650.0,
+      "numerical_audit_pass": true,
+      "meaning": "Numerical audit of stored binary64 field, not rigorous real interval proof.",
+      "load_factor": 1.0,
+      "stress_scale": 5.0,
+      "accepted": true
+    }
+  },
+  {
+    "test": "C5_small_AUDITED_UPPER_LIMIT_upper",
+    "fs": 2.16424040585209,
+    "physical_audit": {
+      "pass": true,
+      "errors": {
+        "flow": 0.0,
+        "jump": 0.0,
+        "boundary": 1.018403315144784e-09,
+        "work": 3.8889684805809566e-08,
+        "objective": 2.220446049250313e-16
+      },
+      "dissipation": 0.9999893223501655,
+      "work": [
+        0.0,
+        0.9999999611103152
+      ],
+      "value": 0.9999893223501655
+    },
+    "scope": "NATIVE_SMALL_ROOT_PHYSICAL_AUDIT_NOT_P06_ROOT"
+  }
+]

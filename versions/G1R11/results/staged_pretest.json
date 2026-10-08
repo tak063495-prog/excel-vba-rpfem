@@ -1,0 +1,556 @@
+[
+  {
+    "mesh": "legacy781_q4",
+    "elements": 781,
+    "fs": 0.826330730099349,
+    "mode": "upper",
+    "q": 4,
+    "status": "Solved",
+    "seconds": 1.155268399976194,
+    "accepted_witness": true,
+    "value": 0.9956363066846413,
+    "physical_audit": {
+      "pass": true,
+      "errors": {
+        "flow": 9.189128083705047e-11,
+        "jump": 3.9004304688474364e-11,
+        "bonded_interface": 0.0,
+        "boundary": 0.0,
+        "work": 2.6645352591003757e-15,
+        "objective": 4.218847493575595e-15
+      },
+      "dissipation": 0.9956363066846371,
+      "work": [
+        0.0,
+        0.9999999999999973
+      ],
+      "value": 0.9956363066846371
+    },
+    "eq": 2.498001805406602e-16,
+    "cone": 1.6925688762220196e-10,
+    "rawmax": 9.189128083705047e-11,
+    "scope": "AUDITED_SIDE_WITNESS_NOT_EXACT_OPTIMUM_OR_ROOT"
+  },
+  {
+    "mesh": "staged_994",
+    "elements": 994,
+    "fs": 0.655,
+    "mode": "lower",
+    "q": 4,
+    "status": "AlmostSolved",
+    "seconds": 0.7070575000252575,
+    "accepted_witness": true,
+    "value": 1.0,
+    "physical_audit": {
+      "pass": true,
+      "errors": {
+        "yield": 0.0,
+        "equilibrium": 3.26405569239796e-14,
+        "internal_traction": 6.772360450213455e-15,
+        "boundary_traction": 5.551115123125783e-17
+      },
+      "load": 1.0,
+      "value": 1.0
+    },
+    "eq": 4.829470157119431e-15,
+    "cone": 0.0,
+    "rawmax": 6.52811138479592e-13,
+    "scope": "AUDITED_SIDE_WITNESS_NOT_EXACT_OPTIMUM_OR_ROOT",
+    "precision": {
+      "case": "P06N",
+      "mode": "lower",
+      "fs": 0.655,
+      "elements": 994,
+      "decimal_precision": 50,
+      "independent_trig_digits": 65,
+      "raw_errors": {
+        "load_one": 0.0,
+        "yield": 0.0,
+        "equilibrium": 6.021008663587564e-13,
+        "internal_traction": 1.3623404903498437e-13,
+        "boundary_traction": 1.2073620861103775e-15
+      },
+      "max_locations": {
+        "load_one": "load",
+        "yield": [
+          0,
+          0
+        ],
+        "equilibrium": [
+          112,
+          0,
+          1
+        ],
+        "internal_traction": [
+          368,
+          396,
+          0,
+          1
+        ],
+        "boundary_traction": [
+          3,
+          368,
+          1,
+          1
+        ]
+      },
+      "area": 302.5,
+      "numerical_audit_pass": true,
+      "meaning": "Numerical audit of stored binary64 field, not rigorous real interval proof.",
+      "load_factor": 1.0,
+      "stress_scale": 20.0,
+      "accepted": true
+    }
+  },
+  {
+    "mesh": "staged_994",
+    "elements": 994,
+    "fs": 0.66,
+    "mode": "lower",
+    "q": 4,
+    "status": "NumericalError",
+    "seconds": 0.8936696000164375,
+    "accepted_witness": true,
+    "value": 1.0,
+    "physical_audit": {
+      "pass": true,
+      "errors": {
+        "yield": 0.0,
+        "equilibrium": 5.5223381423274986e-11,
+        "internal_traction": 3.4215685840166543e-13,
+        "boundary_traction": 5.551115123125783e-17
+      },
+      "load": 1.0,
+      "value": 1.0
+    },
+    "eq": 3.277378368693462e-13,
+    "cone": 0.0,
+    "rawmax": 1.1044676284654997e-09,
+    "scope": "AUDITED_SIDE_WITNESS_NOT_EXACT_OPTIMUM_OR_ROOT",
+    "precision": {
+      "case": "P06N",
+      "mode": "lower",
+      "fs": 0.66,
+      "elements": 994,
+      "decimal_precision": 50,
+      "independent_trig_digits": 65,
+      "raw_errors": {
+        "load_one": 0.0,
+        "yield": 0.0,
+        "equilibrium": 1.1048962615588277e-09,
+        "internal_traction": 6.842869616173371e-12,
+        "boundary_traction": 1.710609953758712e-15
+      },
+      "max_locations": {
+        "load_one": "load",
+        "yield": [
+          0,
+          0
+        ],
+        "equilibrium": [
+          115,
+          1,
+          0
+        ],
+        "internal_traction": [
+          454,
+          455,
+          0,
+          0
+        ],
+        "boundary_traction": [
+          3,
+          368,
+          1,
+          1
+        ]
+      },
+      "area": 302.5,
+      "numerical_audit_pass": true,
+      "meaning": "Numerical audit of stored binary64 field, not rigorous real interval proof.",
+      "load_factor": 1.0,
+      "stress_scale": 20.0,
+      "accepted": true
+    }
+  },
+  {
+    "mesh": "staged_994",
+    "elements": 994,
+    "fs": 0.77,
+    "mode": "upper",
+    "q": 8,
+    "status": "Solved",
+    "seconds": 2.1724998999852687,
+    "accepted_witness": true,
+    "value": 0.9793273389228545,
+    "physical_audit": {
+      "pass": true,
+      "errors": {
+        "flow": 9.860814264350455e-11,
+        "jump": 2.231630326301835e-11,
+        "bonded_interface": 0.0,
+        "boundary": 0.0,
+        "work": 8.43769498715119e-15,
+        "objective": 3.552713678800501e-15
+      },
+      "dissipation": 0.9793273389228581,
+      "work": [
+        0.0,
+        1.0000000000000084
+      ],
+      "value": 0.9793273389228581
+    },
+    "eq": 2.0539125955565396e-15,
+    "cone": 1.7665127441225333e-10,
+    "rawmax": 9.860814264350455e-11,
+    "scope": "AUDITED_SIDE_WITNESS_NOT_EXACT_OPTIMUM_OR_ROOT"
+  },
+  {
+    "mesh": "staged_1000",
+    "elements": 1000,
+    "fs": 0.655,
+    "mode": "lower",
+    "q": 4,
+    "status": "AlmostSolved",
+    "seconds": 0.7038289000047371,
+    "accepted_witness": true,
+    "value": 1.0,
+    "physical_audit": {
+      "pass": true,
+      "errors": {
+        "yield": 0.0,
+        "equilibrium": 3.375077994860476e-14,
+        "internal_traction": 6.8833827526759706e-15,
+        "boundary_traction": 5.551115123125783e-17
+      },
+      "load": 1.0,
+      "value": 1.0
+    },
+    "eq": 4.829470157119431e-15,
+    "cone": 0.0,
+    "rawmax": 6.750155989720952e-13,
+    "scope": "AUDITED_SIDE_WITNESS_NOT_EXACT_OPTIMUM_OR_ROOT",
+    "precision": {
+      "case": "P06N",
+      "mode": "lower",
+      "fs": 0.655,
+      "elements": 1000,
+      "decimal_precision": 50,
+      "independent_trig_digits": 65,
+      "raw_errors": {
+        "load_one": 0.0,
+        "yield": 0.0,
+        "equilibrium": 7.111864817377659e-13,
+        "internal_traction": 1.3660883681897827e-13,
+        "boundary_traction": 1.2951245345752392e-15
+      },
+      "max_locations": {
+        "load_one": "load",
+        "yield": [
+          0,
+          0
+        ],
+        "equilibrium": [
+          311,
+          0,
+          1
+        ],
+        "internal_traction": [
+          368,
+          396,
+          0,
+          1
+        ],
+        "boundary_traction": [
+          3,
+          368,
+          2,
+          0
+        ]
+      },
+      "area": 302.5,
+      "numerical_audit_pass": true,
+      "meaning": "Numerical audit of stored binary64 field, not rigorous real interval proof.",
+      "load_factor": 1.0,
+      "stress_scale": 20.0,
+      "accepted": true
+    }
+  },
+  {
+    "mesh": "staged_1000",
+    "elements": 1000,
+    "fs": 0.66,
+    "mode": "lower",
+    "q": 4,
+    "status": "NumericalError",
+    "seconds": 0.8666586000472307,
+    "accepted_witness": true,
+    "value": 1.0,
+    "physical_audit": {
+      "pass": true,
+      "errors": {
+        "yield": 0.0,
+        "equilibrium": 3.387867764104158e-11,
+        "internal_traction": 2.097488849273077e-13,
+        "boundary_traction": 5.551115123125783e-17
+      },
+      "load": 1.0,
+      "value": 1.0
+    },
+    "eq": 2.0106138975961585e-13,
+    "cone": 0.0,
+    "rawmax": 6.775735528208315e-10,
+    "scope": "AUDITED_SIDE_WITNESS_NOT_EXACT_OPTIMUM_OR_ROOT",
+    "precision": {
+      "case": "P06N",
+      "mode": "lower",
+      "fs": 0.66,
+      "elements": 1000,
+      "decimal_precision": 50,
+      "independent_trig_digits": 65,
+      "raw_errors": {
+        "load_one": 0.0,
+        "yield": 0.0,
+        "equilibrium": 6.775011928287816e-10,
+        "internal_traction": 4.195401493544921e-12,
+        "boundary_traction": 1.1540677618808917e-15
+      },
+      "max_locations": {
+        "load_one": "load",
+        "yield": [
+          0,
+          0
+        ],
+        "equilibrium": [
+          115,
+          1,
+          0
+        ],
+        "internal_traction": [
+          454,
+          455,
+          0,
+          0
+        ],
+        "boundary_traction": [
+          3,
+          368,
+          1,
+          1
+        ]
+      },
+      "area": 302.5,
+      "numerical_audit_pass": true,
+      "meaning": "Numerical audit of stored binary64 field, not rigorous real interval proof.",
+      "load_factor": 1.0,
+      "stress_scale": 20.0,
+      "accepted": true
+    }
+  },
+  {
+    "mesh": "staged_1000",
+    "elements": 1000,
+    "fs": 0.77,
+    "mode": "upper",
+    "q": 8,
+    "status": "AlmostSolved",
+    "seconds": 2.178172399988398,
+    "accepted_witness": true,
+    "value": 0.9792942053636593,
+    "physical_audit": {
+      "pass": true,
+      "errors": {
+        "flow": 4.494111813650588e-10,
+        "jump": 1.0147830339792692e-10,
+        "bonded_interface": 0.0,
+        "boundary": 0.0,
+        "work": 1.7763568394002505e-15,
+        "objective": 2.55351295663786e-15
+      },
+      "dissipation": 0.9792942053636567,
+      "work": [
+        0.0,
+        1.0000000000000018
+      ],
+      "value": 0.9792942053636567
+    },
+    "eq": 2.7755575615628914e-17,
+    "cone": 8.050963723175527e-10,
+    "rawmax": 4.494111813650588e-10,
+    "scope": "AUDITED_SIDE_WITNESS_NOT_EXACT_OPTIMUM_OR_ROOT"
+  },
+  {
+    "mesh": "staged_1050",
+    "elements": 1050,
+    "fs": 0.655,
+    "mode": "lower",
+    "q": 4,
+    "status": "AlmostSolved",
+    "seconds": 0.8612192999571562,
+    "accepted_witness": true,
+    "value": 1.0,
+    "physical_audit": {
+      "pass": true,
+      "errors": {
+        "yield": 0.0,
+        "equilibrium": 4.831690603168681e-13,
+        "internal_traction": 6.8833827526759706e-15,
+        "boundary_traction": 5.551115123125783e-17
+      },
+      "load": 1.0,
+      "value": 1.0
+    },
+    "eq": 4.85722573273506e-15,
+    "cone": 0.0,
+    "rawmax": 9.663381206337363e-12,
+    "scope": "AUDITED_SIDE_WITNESS_NOT_EXACT_OPTIMUM_OR_ROOT",
+    "precision": {
+      "case": "P06N",
+      "mode": "lower",
+      "fs": 0.655,
+      "elements": 1050,
+      "decimal_precision": 50,
+      "independent_trig_digits": 65,
+      "raw_errors": {
+        "load_one": 0.0,
+        "yield": 0.0,
+        "equilibrium": 9.790142487516037e-12,
+        "internal_traction": 1.3700721264532143e-13,
+        "boundary_traction": 1.452227080737448e-15
+      },
+      "max_locations": {
+        "load_one": "load",
+        "yield": [
+          0,
+          0
+        ],
+        "equilibrium": [
+          121,
+          1,
+          0
+        ],
+        "internal_traction": [
+          368,
+          396,
+          0,
+          1
+        ],
+        "boundary_traction": [
+          3,
+          368,
+          0,
+          0
+        ]
+      },
+      "area": 302.5,
+      "numerical_audit_pass": true,
+      "meaning": "Numerical audit of stored binary64 field, not rigorous real interval proof.",
+      "load_factor": 1.0,
+      "stress_scale": 20.0,
+      "accepted": true
+    }
+  },
+  {
+    "mesh": "staged_1050",
+    "elements": 1050,
+    "fs": 0.66,
+    "mode": "lower",
+    "q": 4,
+    "status": "AlmostSolved",
+    "seconds": 0.9526887000538409,
+    "accepted_witness": true,
+    "value": 1.0,
+    "physical_audit": {
+      "pass": true,
+      "errors": {
+        "yield": 0.0,
+        "equilibrium": 4.604316927725449e-12,
+        "internal_traction": 2.833844270355712e-14,
+        "boundary_traction": 5.551115123125783e-17
+      },
+      "load": 1.0,
+      "value": 1.0
+    },
+    "eq": 2.708944180085382e-14,
+    "cone": 0.0,
+    "rawmax": 9.208633855450898e-11,
+    "scope": "AUDITED_SIDE_WITNESS_NOT_EXACT_OPTIMUM_OR_ROOT",
+    "precision": {
+      "case": "P06N",
+      "mode": "lower",
+      "fs": 0.66,
+      "elements": 1050,
+      "decimal_precision": 50,
+      "independent_trig_digits": 65,
+      "raw_errors": {
+        "load_one": 0.0,
+        "yield": 0.0,
+        "equilibrium": 9.177277079546133e-11,
+        "internal_traction": 5.668391775512882e-13,
+        "boundary_traction": 1.3940933621072624e-15
+      },
+      "max_locations": {
+        "load_one": "load",
+        "yield": [
+          0,
+          0
+        ],
+        "equilibrium": [
+          121,
+          1,
+          0
+        ],
+        "internal_traction": [
+          454,
+          458,
+          0,
+          0
+        ],
+        "boundary_traction": [
+          3,
+          368,
+          2,
+          0
+        ]
+      },
+      "area": 302.5,
+      "numerical_audit_pass": true,
+      "meaning": "Numerical audit of stored binary64 field, not rigorous real interval proof.",
+      "load_factor": 1.0,
+      "stress_scale": 20.0,
+      "accepted": true
+    }
+  },
+  {
+    "mesh": "staged_1050",
+    "elements": 1050,
+    "fs": 0.77,
+    "mode": "upper",
+    "q": 8,
+    "status": "Solved",
+    "seconds": 2.3812987999990582,
+    "accepted_witness": true,
+    "value": 0.9755423197669935,
+    "physical_audit": {
+      "pass": true,
+      "errors": {
+        "flow": 2.078763827739749e-10,
+        "jump": 7.81251955513089e-12,
+        "bonded_interface": 0.0,
+        "boundary": 0.0,
+        "work": 1.1546319456101628e-14,
+        "objective": 3.3306690738754696e-15
+      },
+      "dissipation": 0.9755423197669968,
+      "work": [
+        0.0,
+        1.0000000000000115
+      ],
+      "value": 0.9755423197669968
+    },
+    "eq": 1.915134717478395e-15,
+    "cone": 4.519407070802117e-10,
+    "rawmax": 2.078763827739749e-10,
+    "scope": "AUDITED_SIDE_WITNESS_NOT_EXACT_OPTIMUM_OR_ROOT"
+  }
+]

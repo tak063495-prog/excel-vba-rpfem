@@ -1,0 +1,14 @@
+{
+  "baseline_reference_32_files": "PASS",
+  "original_workbooks": [
+    {
+      "path": "C:\\Users\\link_\\Desktop\\RPFEM_G1R10_Mesh_20261007\\RPFEM_20261007_G1R10_P06N_Robust_Mesh.xlsm",
+      "sha256": "98002b027f1d8b38a758423998b409d32798e00fd0aeb073e3bcae3c3cc01f8d"
+    },
+    {
+      "path": "C:/Users/link_/Desktop/RPFEM_G1R9_Speedup_20261006/RPFEM_20261006_G1R9_P06N_DD_Fast_Verified.xlsm",
+      "sha256": "3f6a405ae05bd65dfa35bd3bf6413b6d43f51dc8298eabb16897d1a9e91ed1f0"
+    }
+  ],
+  "original_workbooks_intact": true
+}

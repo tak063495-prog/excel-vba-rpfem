@@ -1,0 +1,9 @@
+{
+  "test": "P06N_upper",
+  "fs": 0.77,
+  "mode": "upper",
+  "q": 8,
+  "result": "SOLVED;value=0.979294074891999;audit=4.97167862434367E-11;iterations=55;elements=1000;q=8",
+  "seconds": 465.1582852000138,
+  "scope": "NATIVE_FIXED_FS_ON_NATIVE_REFINED_MESH_NOT_FULL_ADAPTATION"
+}

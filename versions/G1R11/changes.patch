@@ -1,0 +1,311 @@
+--- original/RPX_Refine.bas
++++ src/RPX_Refine.bas
+@@ -2,12 +2,12 @@
+ Option Explicit
+ ' Conforming subdivision, preserving every old triangle and material interface.
+ ' The old P2 fields restrict to P2 fields on the subtriangles.
+-Public Sub RPX_RefineMesh(ByRef indicator() As Double, ByVal fraction As Double)
++Public Sub RPX_RefineMesh(ByRef indicator() As Double, ByVal fraction As Double, Optional ByVal forceLegacy As Boolean = False)
+     Dim marks As Object, key As Variant, rec As Variant, rank() As Long, i As Long, j As Long
+     Dim count As Long, e As Long, k As Long, a As Long, b As Long, center As Long, oldRE As Long
+     Dim oldTri() As Long, poly(0 To 5) As Long, np As Long, hit As Boolean, nodes As Long
+     Dim red As Boolean, mids(0 To 2) As Long, marked As Long, a0 As Long, b0 As Long, c0 As Long, ab As Long, ca As Long
+-    red = RPX_RobustMeshPolicy()
++    red = RPX_RobustMeshPolicy() And Not forceLegacy
+     If fraction <= 0# Or fraction > 1# Then err.Raise 5, , "REFINE_FRACTION_OUT_OF_RANGE"
+     RProgramKind = "": oldRE = re: oldTri = RTri
+     RefineRank indicator, rank
+@@ -105,7 +105,7 @@
+     policy = UCase$(Trim$(CStr(RPX_Setting("ADAPT_MESH_POLICY", "LEGACY"))))
+     Select Case policy
+         Case "LEGACY"
+-        Case "ROBUST_REFINE": RPX_RobustMeshPolicy = (RR = 0)
++        Case "ROBUST_REFINE", "LEGACY_THEN_REFINE": RPX_RobustMeshPolicy = (RR = 0)
+         Case Else: err.Raise 5, "RPX_Refine", "INVALID_ADAPT_MESH_POLICY"
+     End Select
+ End Function
+--- original/RPX_Adapt.bas
++++ src/RPX_Adapt.bas
+@@ -366,7 +366,7 @@
+         Next i
+         On Error GoTo LowerFailedHandler
+         If adaptHintLowerValid Then
+-            lower = RPX_FsEndpoint("lower", adaptHintLower, AdaptFsHintRatio)
++            lower = RPX_FsEndpoint("lower", adaptHintLower, AdaptFsHintRatio, upper)
+         Else
+             ' P3-A: only coordinates from the just-audited upper on this mesh.
+             lower = RPX_FsEndpoint("lower", 0#, AdaptFsHintRatio, upper)
+@@ -842,12 +842,12 @@
+     TryBuildPilotBand = True
+ End Function
+ 
+-Private Function TryShearRefine(ByRef baseline As RPX_MeshState, ByVal maxElements As Long) As Boolean
++Private Function TryShearRefine(ByRef baseline As RPX_MeshState, ByVal maxElements As Long, Optional ByVal forceLegacy As Boolean = False) As Boolean
+     Dim fraction As Double, score() As Double, w() As Double, vel() As Double
+     Dim e As Long, total As Double, Failed As Long
+     Dim failureText As String, failureSource As String, failureLine As Long
+     Dim robustRefine As Boolean
+-    robustRefine = RPX_RobustMeshPolicy()
++    robustRefine = RPX_RobustMeshPolicy() And Not forceLegacy
+     fraction = AdaptBandRefineFraction
+     If maxElements <= baseline.elements Then Exit Function
+     Do While fraction >= 0.01
+@@ -872,7 +872,12 @@
+         meshStage = "refine"
+         On Error Resume Next
+         err.Clear
+-        RPX_RefineAttempt score, fraction
++        If forceLegacy Then
++            RPX_TestHook "refine"
++            RPX_RefineMesh score, fraction, True
++        Else
++            RPX_RefineAttempt score, fraction
++        End If
+         Failed = err.number: failureText = err.description: failureSource = err.source: failureLine = Erl
+         On Error GoTo 0
+         If Failed = 18 Or (Failed = 0 And XCancel) Then err.Raise 18, , "ANALYSIS_CANCELLED"
+@@ -1219,8 +1224,13 @@
+     Dim pilotReason As String, route As String, fallbackReason As String
+     Dim tmpVel() As Double
+     Dim profile As RPX_ProblemProfile
+-    Dim robustRefine As Boolean, robustExhausted As Boolean
+-    robustRefine = RPX_RobustMeshPolicy()
++    Dim robustRefine As Boolean, robustExhausted As Boolean, stagedRefine As Boolean, stagedCap As Long
++    stagedRefine = (UCase$(Trim$(CStr(RPX_Setting("ADAPT_MESH_POLICY", "LEGACY")))) = "LEGACY_THEN_REFINE" And RR = 0)
++    robustRefine = RPX_RobustMeshPolicy() And Not stagedRefine
++    If stagedRefine Then
++        stagedCap = CLng(RPX_Setting("ADAPT_REFINE_CAP", 1000))
++        If stagedCap < 16 Or stagedCap > 50000 Then err.Raise 5, "RPX_Adapt", "INVALID_ADAPT_REFINE_CAP"
++    End If
+     Set RAdaptHistory = New Collection
+     RBestUpper.value = 1E+300: RBestLower.value = -1E+300
+     RBestPair.pairGap = 1E+300
+@@ -1243,7 +1253,7 @@
+     mesh0Ready = False
+     snapReady = False
+     RPX_FsBracketReset
+-    RPX_DiagEvent "adapt_mesh_policy", "requested=" & RPX_Setting("ADAPT_MESH_POLICY", "LEGACY") & ";effective_red_green=" & robustRefine & ";budget=" & DTarget
++    RPX_DiagEvent "adapt_mesh_policy", "requested=" & RPX_Setting("ADAPT_MESH_POLICY", "LEGACY") & ";effective_red_green=" & robustRefine & ";staged=" & stagedRefine & ";staged_cap=" & stagedCap & ";budget=" & DTarget
+     RPX_DiagEvent "adapt_engine", "engine=20260926_p2s_f01_f07;ver=20260926_0945;start_ratio=" & AdaptStartRatio & ";start_target=" & startTarget & ";final_target=" & adaptFinalTarget & ";band_cap=" & AdaptBandElementCap
+     DTarget = startTarget
+     Call RPX_GenerateMesh
+@@ -1363,15 +1373,15 @@
+         RPX_DiagEvent "adapt_action", "action=band_refine;max_elements=" & maxElements & ";fraction=" & AdaptBandRefineFraction
+         On Error GoTo ShearRefineFailed
+         RPX_DiagBegin dpMesh
+-        If TryShearRefine(baseline, maxElements) Then
++        If TryShearRefine(baseline, maxElements, stagedRefine) Then
+             RPX_DiagEnd dpMesh
+             If route = "pilot" And Not pilotFallbackUsed Then
+                 On Error GoTo PilotFailed
+             Else
+                 On Error GoTo 0
+             End If
+-            If robustRefine Then On Error GoTo ShearRefineFailed
+-            If robustRefine Then meshStage = "evaluate"
++            If robustRefine Or stagedRefine Then On Error GoTo ShearRefineFailed
++            If robustRefine Or stagedRefine Then meshStage = "evaluate"
+             Call Evaluate(mode, "band_refine")
+             If Not AcceptCandidate(baseline, RCurrent) Then
+                 RPX_DiagEvent "adapt_rollback", "action=band_refine;new_gap=" & RCurrent.pairGap
+@@ -1380,6 +1390,27 @@
+             End If
+         Else
+             RPX_DiagEnd dpMesh
++            On Error GoTo 0
++        End If
++    End If
++    If stagedRefine And cycles > 0 And currentPairValid And RCurrent.pairGap > targetGap Then
++        CloneState baseline, RCurrent
++        maxElements = stagedCap: If maxElements > adaptFinalTarget Then maxElements = adaptFinalTarget
++        If maxElements > baseline.elements Then
++            RPX_DiagEvent "adapt_action", "action=legacy_then_red_green;baseline_elements=" & baseline.elements & ";max_elements=" & maxElements
++            On Error GoTo StagedRefineFailed
++            RPX_DiagBegin dpMesh
++            If TryShearRefine(baseline, maxElements) Then
++                RPX_DiagEnd dpMesh: meshStage = "evaluate"
++                Call Evaluate(mode, "staged_refine")
++                If Not AcceptCandidate(baseline, RCurrent) Then
++                    RPX_DiagEvent "adapt_rollback", "action=staged_refine;candidate_gap=" & RCurrent.pairGap
++                    RPX_RestoreState baseline: CloneState RCurrent, baseline
++                End If
++                RPX_DiagEvent "adapt_staged_end", "elements=" & re & ";lower=" & RCurrent.pairLower & ";upper=" & RCurrent.pairUpper & ";best_lower=" & RBestLower.value & ";best_upper=" & RBestUpper.value
++            Else
++                RPX_DiagEnd dpMesh
++            End If
+             On Error GoTo 0
+         End If
+     End If
+@@ -1429,7 +1460,7 @@
+ FinalCandidateFailed:
+     savedErrNo = err.number: savedErrText = err.description: savedErrSource = err.source
+     On Error GoTo 0
+-    If robustRefine And InStr(1, savedErrText, "HSD_STABLE_UNAVAILABLE_MEMORY", vbBinaryCompare) = 1 Then err.Raise savedErrNo, savedErrSource, savedErrText
++    If (robustRefine Or stagedRefine) And InStr(1, savedErrText, "HSD_STABLE_UNAVAILABLE_MEMORY", vbBinaryCompare) = 1 Then err.Raise savedErrNo, savedErrSource, savedErrText
+     If Not RPX_Recoverable(savedErrNo, savedErrText, "fs_trial", False) Then err.Raise savedErrNo, savedErrSource, savedErrText
+     If RBestLower.elements <= 0 Or RBestUpper.elements <= 0 Then err.Raise savedErrNo, savedErrSource, savedErrText
+     currentPairValid = True
+@@ -1458,7 +1489,7 @@
+ ShearRefineFailed:
+     savedErrNo = err.number: savedErrText = err.description: savedErrSource = err.source: savedErrLine = Erl
+     On Error GoTo 0
+-    If robustRefine And InStr(1, savedErrText, "HSD_STABLE_UNAVAILABLE_MEMORY", vbBinaryCompare) = 1 Then err.Raise savedErrNo, savedErrSource, savedErrText
++    If (robustRefine Or stagedRefine) And InStr(1, savedErrText, "HSD_STABLE_UNAVAILABLE_MEMORY", vbBinaryCompare) = 1 Then err.Raise savedErrNo, savedErrSource, savedErrText
+     RPX_ErrorEvidence savedErrNo, savedErrSource, savedErrText, savedErrLine, meshStage
+     If Not RPX_Recoverable(savedErrNo, savedErrText, meshStage, currentPairValid Or mesh0Ready) Then err.Raise savedErrNo, savedErrSource, savedErrText
+     On Error GoTo RefineRestoreFailed
+@@ -1481,6 +1512,18 @@
+     RPX_RestoreState baseline
+     CloneState RCurrent, baseline
+     adaptStatus = "refine_failed"
++    GoTo AfterCycles
++StagedRefineFailed:
++    savedErrNo = err.number: savedErrText = err.description: savedErrSource = err.source: savedErrLine = Erl
++    On Error GoTo 0
++    RPX_ErrorEvidence savedErrNo, savedErrSource, savedErrText, savedErrLine, meshStage
++    If InStr(1, savedErrText, "HSD_STABLE_UNAVAILABLE_MEMORY", vbBinaryCompare) = 1 Then err.Raise savedErrNo, savedErrSource, savedErrText
++    If Not RPX_Recoverable(savedErrNo, savedErrText, meshStage, True) Then err.Raise savedErrNo, savedErrSource, savedErrText
++    On Error GoTo RefineRestoreFailed
++    RPX_DiagEnd dpMesh
++    RPX_RestoreState baseline: CloneState RCurrent, baseline
++    currentPairValid = True: adaptStatus = "staged_candidate_rejected"
++    RPX_DiagEvent "adapt_staged_rejected", "old_witnesses_kept=1;number=" & savedErrNo & ";message=" & savedErrText
+     GoTo AfterCycles
+ RefineRestoreFailed:
+     savedErrNo = err.number: savedErrText = err.description: savedErrSource = err.source: savedErrLine = Erl
+@@ -1513,7 +1556,7 @@
+ CycleRemeshFailed:
+     savedErrNo = err.number: savedErrText = err.description: savedErrSource = err.source: savedErrLine = Erl
+     On Error GoTo 0
+-    If robustRefine And InStr(1, savedErrText, "HSD_STABLE_UNAVAILABLE_MEMORY", vbBinaryCompare) = 1 Then err.Raise savedErrNo, savedErrSource, savedErrText
++    If (robustRefine Or stagedRefine) And InStr(1, savedErrText, "HSD_STABLE_UNAVAILABLE_MEMORY", vbBinaryCompare) = 1 Then err.Raise savedErrNo, savedErrSource, savedErrText
+     RPX_ErrorEvidence savedErrNo, savedErrSource, savedErrText, savedErrLine, meshStage
+     If Not RPX_Recoverable(savedErrNo, savedErrText, meshStage, currentPairValid Or mesh0Ready) Then err.Raise savedErrNo, savedErrSource, savedErrText
+     minArea = -1#
+--- original/RPX_Fs.bas
++++ src/RPX_Fs.bas
+@@ -289,6 +289,25 @@
+     If upperBracket.statusB <> "OPTIMAL" Or RPX_AuditRejected Or RFsSearchIncomplete Then reason = "upper_uncertified": Exit Function
+     UpperSeedUsable = True
+ End Function
++Private Function UpperLimitUsable(ByVal upperLimit As Double, ByVal meshKey As String) As Boolean
++    Dim policy As String, reason As String, usedMaterials As Object, e As Long
++    policy = UCase$(Trim$(CStr(RPX_Setting("FS_BRACKET_POLICY", "LEGACY"))))
++    If policy = "LEGACY" Then Exit Function
++    If policy <> "AUDITED_UPPER_LIMIT" Then err.Raise 5, "RPX_Fs", "INVALID_FS_BRACKET_POLICY"
++    If RR > 0 Or Not RFsActive Or upperLimit <= 0# Or upperLimit > 10000# Then Exit Function
++    If Not RPX_SchurFinite(upperLimit) Then Exit Function
++    ' Preserve the legacy stages (including their exact fields used for remeshing).
++    If UCase$(Trim$(CStr(RPX_Setting("ADAPT_MESH_POLICY", "LEGACY")))) = "LEGACY_THEN_REFINE" And re <= 800 Then Exit Function
++    Set usedMaterials = RPX_Row()
++    For e = 0 To re - 1
++        If RRigidId(e) < 0 Then usedMaterials(CStr(RMatId(e))) = True
++    Next e
++    If usedMaterials.count < 2 Then Exit Function
++    If Not BracketUsable(upperBracket, "upper", 0.999999, meshKey, True, reason) Then Exit Function
++    If upperBracket.b <> upperLimit Or upperBracket.statusA <> "OPTIMAL" Or upperBracket.statusB <> "OPTIMAL" Then Exit Function
++    If RPX_AuditRejected Or RFsSearchIncomplete Or Not FsArrayReady(upperFieldB) Then Exit Function
++    UpperLimitUsable = True
++End Function
+ Public Function RPX_FsEndpoint(ByVal mode As String, Optional ByVal hint As Double = 0#, Optional ByVal hintRatio As Double = 0.1, Optional ByVal upperSeed As Double = 0#) As Double
+     Dim a As Double, b As Double, fa As Double, fb As Double, x As Double, fx As Double, target As Double, i As Long
+     Dim width As Double, factor As Double, valueScale As Double
+@@ -304,6 +323,8 @@
+     Dim seedSource As String, seedReason As String, seedWidth As Double, seedAttempted As Boolean
+     Dim seedA As Double, seedB As Double, seedFa As String, seedFb As String
+     Dim seedCalls As Long, expansionCount As Long, callsBefore As Long
++    Dim limitActive As Boolean, upperLimit As Double, legacyB As Double, nextB As Double
++    Dim limitTrial As FsTrialPoint
+     RPX_AssertInputs "fs_endpoint"
+     If XCancel Then err.Raise 18, , "ANALYSIS_CANCELLED"
+     If RFsTolerance <= 0# Then RFsTolerance = 0.0001
+@@ -329,6 +350,10 @@
+         RPX_FsEndpoint = factor: Exit Function
+     End If
+     meshKey = FsMeshKey()
++    If mode = "lower" Then
++        limitActive = UpperLimitUsable(upperSeed, meshKey)
++        If limitActive Then upperLimit = upperSeed
++    End If
+     seedSource = "legacy"
+     reused = False: reason = ""
+     If mode = "lower" Then
+@@ -480,8 +505,25 @@
+             Else
+                 a = 1#: b = 2#
+             End If
++            legacyB = b
++            If limitActive Then
++                If b > upperLimit Then b = upperLimit
++                If a >= b Then a = b / 2#
++            End If
+             fa = FsValue(a, mode, target): fieldA = xx: objectiveA = XObjective: statusA = XStatus
+-            fb = FsValue(b, mode, target): fieldB = xx: objectiveB = XObjective: statusB = XStatus
++            If limitActive And b = upperLimit Then
++                If TryFsTrialPoint(b, mode, target, limitTrial) Then
++                    fb = limitTrial.residual
++                Else
++                    If InStr(1, limitTrial.errorText, "HSD_STABLE_UNAVAILABLE_MEMORY", vbBinaryCompare) = 1 Then err.Raise limitTrial.errorNumber, limitTrial.errorSource, limitTrial.errorText
++                    limitActive = False: b = legacyB
++                    RPX_DiagEvent "fs_upper_limit_fallback", "reason=numerical_unknown;mode=lower;legacy_b=" & b
++                    fb = FsValue(b, mode, target)
++                End If
++            Else
++                fb = FsValue(b, mode, target)
++            End If
++            fieldB = xx: objectiveB = XObjective: statusB = XStatus
+         End If
+     End If
+     Do While fa < 0#
+@@ -492,11 +534,34 @@
+     Loop
+     Do While fb > 0#
+         expansionCount = expansionCount + 1
+-        a = b: fa = fb: fieldA = fieldB: objectiveA = objectiveB: statusA = statusB: b = b * 2#
+-        If b > 10000# Then err.Raise 5, , "FS_UPPER_BRACKET_NOT_FOUND"
+-        fb = FsValue(b, mode, target): fieldB = xx: objectiveB = XObjective: statusB = XStatus
++        a = b: fa = fb: fieldA = fieldB: objectiveA = objectiveB: statusA = statusB
++        nextB = b * 2#
++        If limitActive Then
++            If b >= upperLimit Then
++                limitActive = False
++                RPX_DiagEvent "fs_upper_limit_fallback", "reason=actual_lower_sign_positive;mode=lower;at=" & b
++            ElseIf nextB > upperLimit Then
++                nextB = upperLimit
++            End If
++        End If
++        If nextB > 10000# Then err.Raise 5, , "FS_UPPER_BRACKET_NOT_FOUND"
++        If limitActive And nextB = upperLimit Then
++            If TryFsTrialPoint(nextB, mode, target, limitTrial) Then
++                fb = limitTrial.residual
++            Else
++                If InStr(1, limitTrial.errorText, "HSD_STABLE_UNAVAILABLE_MEMORY", vbBinaryCompare) = 1 Then err.Raise limitTrial.errorNumber, limitTrial.errorSource, limitTrial.errorText
++                limitActive = False: nextB = b * 2#
++                If nextB > 10000# Then err.Raise 5, , "FS_UPPER_BRACKET_NOT_FOUND"
++                RPX_DiagEvent "fs_upper_limit_fallback", "reason=numerical_unknown;mode=lower;legacy_b=" & nextB
++                fb = FsValue(nextB, mode, target)
++            End If
++        Else
++            fb = FsValue(nextB, mode, target)
++        End If
++        b = nextB: fieldB = xx: objectiveB = XObjective: statusB = XStatus
+     Loop
+     If mode = "lower" Then
++        RPX_DiagEvent "fs_upper_limit", "active=" & limitActive & ";hint=" & upperLimit & ";actual_lower_sign_checks=1"
+         detail = "lower_hint_source=" & seedSource & ";trial_a=" & seedA & ";trial_b=" & seedB
+         detail = detail & ";fa=" & seedFa & ";fb=" & seedFb & ";trial_solve_count=" & seedCalls
+         detail = detail & ";expansion_count=" & expansionCount & ";fallback_reason=" & seedReason
+@@ -566,7 +631,12 @@
+     RFsActive = True: RFsCalls = 0: RFsSearchIncomplete = False: RFsLargestRootBracket = 0#: RFsSearchNote = "": Call RPX_TotalReferenceLoads
+     RUpperFs = RPX_FsEndpoint("upper"): ReDim RUpperField(0 To 12 * re + 3 * RR - 1)
+     For i = 0 To UBound(RUpperField): RUpperField(i) = xx(i): Next i
+-    RLowerFs = RPX_FsEndpoint("lower"): ReDim RLowerField(0 To UBound(xx))
++    If UpperLimitUsable(RUpperFs, FsMeshKey()) Then
++        RLowerFs = RPX_FsEndpoint("lower", 0#, 0.1, RUpperFs)
++    Else
++        RLowerFs = RPX_FsEndpoint("lower")
++    End If
++    ReDim RLowerField(0 To UBound(xx))
+     For i = 0 To UBound(RLowerField): RLowerField(i) = xx(i): Next i
+     If RLowerFs > RUpperFs Then err.Raise 5, , "FS_BOUNDS_REVERSED"
+     RFsActive = False: Exit Sub

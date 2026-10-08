@@ -1,0 +1,77 @@
+[
+  {
+    "test": "legacy_prefix",
+    "result": "PASS;lower=0.659964416047164;upper=0.770000803709379;cap_eligible=False;calls=11;max_trial=2;a=0.659964416047164;b=0.659999468656785;fa=5.29179870465413E-05;fb=-1.94933873931546E-07",
+    "scope": "NATIVE_BRACKET_CONTROL_WITH_MOCK_VALUE_AND_AUDITS_NOT_PHYSICAL_SOLVE"
+  },
+  {
+    "test": "normal",
+    "result": "PASS;lower=0.659972568850344;upper=0.770000803709379;cap_eligible=True;calls=10;max_trial=0.770000803709379;a=0.659972568850344;b=0.660009254081841;fa=4.05640754641556E-05;fb=-1.50211395277822E-05",
+    "scope": "NATIVE_BRACKET_CONTROL_WITH_MOCK_VALUE_AND_AUDITS_NOT_PHYSICAL_SOLVE"
+  },
+  {
+    "test": "numeric",
+    "result": "PASS;lower=0.659977630428238;upper=0.770000803709379;cap_eligible=True;calls=13;max_trial=2;a=0.659977630428238;b=0.660038791641954;fa=3.28944393430675E-05;fb=-5.97717607583315E-05",
+    "scope": "NATIVE_BRACKET_CONTROL_WITH_MOCK_VALUE_AND_AUDITS_NOT_PHYSICAL_SOLVE"
+  },
+  {
+    "test": "positive_sign",
+    "result": "PASS;lower=0.899920273661643;upper=0.770000803709379;cap_eligible=True;calls=11;max_trial=1.54000160741876;a=0.899920273661643;b=0.899999199622653;fa=8.75926683618911E-05;fb=-1.10691045662747E-07",
+    "scope": "NATIVE_BRACKET_CONTROL_WITH_MOCK_VALUE_AND_AUDITS_NOT_PHYSICAL_SOLVE"
+  },
+  {
+    "test": "quadrature",
+    "result": "PASS;lower=0.659964416047164;upper=0.770000803709379;cap_eligible=False;calls=11;max_trial=2;a=0.659964416047164;b=0.659999468656785;fa=5.29179870465413E-05;fb=-1.94933873931546E-07",
+    "scope": "NATIVE_BRACKET_CONTROL_WITH_MOCK_VALUE_AND_AUDITS_NOT_PHYSICAL_SOLVE"
+  },
+  {
+    "test": "model",
+    "result": "PASS;lower=0.659964416047164;upper=0.770000803709379;cap_eligible=False;calls=11;max_trial=2;a=0.659964416047164;b=0.659999468656785;fa=5.29179870465413E-05;fb=-1.94933873931546E-07",
+    "scope": "NATIVE_BRACKET_CONTROL_WITH_MOCK_VALUE_AND_AUDITS_NOT_PHYSICAL_SOLVE"
+  },
+  {
+    "test": "wrong_endpoint",
+    "result": "PASS;lower=0.659964416047164;upper=0.780000803709379;cap_eligible=False;calls=11;max_trial=2;a=0.659964416047164;b=0.659999468656785;fa=5.29179870465413E-05;fb=-1.94933873931546E-07",
+    "scope": "NATIVE_BRACKET_CONTROL_WITH_MOCK_VALUE_AND_AUDITS_NOT_PHYSICAL_SOLVE"
+  },
+  {
+    "test": "uncertified",
+    "result": "PASS;lower=0.659964416047164;upper=0.770000803709379;cap_eligible=False;calls=11;max_trial=2;a=0.659964416047164;b=0.659999468656785;fa=5.29179870465413E-05;fb=-1.94933873931546E-07",
+    "scope": "NATIVE_BRACKET_CONTROL_WITH_MOCK_VALUE_AND_AUDITS_NOT_PHYSICAL_SOLVE"
+  },
+  {
+    "test": "oom",
+    "result": "ERROR 7:OUT_OF_MEMORY;calls=2",
+    "scope": "NATIVE_BRACKET_CONTROL_WITH_MOCK_VALUE_AND_AUDITS_NOT_PHYSICAL_SOLVE"
+  },
+  {
+    "test": "subscript",
+    "result": "ERROR 9:SUBSCRIPT;calls=2",
+    "scope": "NATIVE_BRACKET_CONTROL_WITH_MOCK_VALUE_AND_AUDITS_NOT_PHYSICAL_SOLVE"
+  },
+  {
+    "test": "unknown",
+    "result": "ERROR 5:UNKNOWN_ERROR;calls=2",
+    "scope": "NATIVE_BRACKET_CONTROL_WITH_MOCK_VALUE_AND_AUDITS_NOT_PHYSICAL_SOLVE"
+  },
+  {
+    "test": "audit",
+    "result": "ERROR 5:PHYSICAL_AUDIT_FAILED;calls=2",
+    "scope": "NATIVE_BRACKET_CONTROL_WITH_MOCK_VALUE_AND_AUDITS_NOT_PHYSICAL_SOLVE"
+  },
+  {
+    "test": "resource",
+    "result": "ERROR 5:HSD_STABLE_UNAVAILABLE_MEMORY;calls=2",
+    "scope": "NATIVE_BRACKET_CONTROL_WITH_MOCK_VALUE_AND_AUDITS_NOT_PHYSICAL_SOLVE"
+  },
+  {
+    "test": "cancel",
+    "result": "ERROR 18:ANALYSIS_CANCELLED;calls=2",
+    "scope": "NATIVE_BRACKET_CONTROL_WITH_MOCK_VALUE_AND_AUDITS_NOT_PHYSICAL_SOLVE"
+  },
+  {
+    "test": "legacy_scheduler",
+    "result": "PASS;lower=0.659964416047164;upper=0.770000803709379;cap_eligible=False;calls=11;max_trial=2;a=0.659964416047164;b=0.659999468656785;fa=5.29179870465413E-05;fb=-1.94933873931546E-07",
+    "scope": "MOCK_CALLBACK"
+  }
+]

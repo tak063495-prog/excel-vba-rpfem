@@ -1,0 +1,4 @@
+* text=auto
+# Preserve release evidence, CP932/CRLF import modules and binary artifacts exactly.
+versions/G1R11/** -text
+downloads/** -text

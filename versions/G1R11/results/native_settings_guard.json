@@ -1,0 +1,23 @@
+[
+  {
+    "test": "ADAPT_MESH_POLICY",
+    "result": "ERROR 5:INPUT_MISMATCH g1r11_setting_changed",
+    "events_disabled": true,
+    "user_changed_value_preserved": true,
+    "scope": "NATIVE_INPUT_GUARD_ON_PRODUCTION_COPY"
+  },
+  {
+    "test": "ADAPT_REFINE_CAP",
+    "result": "ERROR 5:INPUT_MISMATCH g1r11_setting_changed",
+    "events_disabled": true,
+    "user_changed_value_preserved": true,
+    "scope": "NATIVE_INPUT_GUARD_ON_PRODUCTION_COPY"
+  },
+  {
+    "test": "FS_BRACKET_POLICY",
+    "result": "ERROR 5:INPUT_MISMATCH g1r11_setting_changed",
+    "events_disabled": true,
+    "user_changed_value_preserved": true,
+    "scope": "NATIVE_INPUT_GUARD_ON_PRODUCTION_COPY"
+  }
+]

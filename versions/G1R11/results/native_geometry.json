@@ -1,0 +1,8 @@
+{
+  "native_compile": "PASS",
+  "native_refinement": "PASS;elements=1000;nodes=542;fraction=8.06658130601793E-02",
+  "legacy_phase": "PASS;elements=1164;nodes=624;fraction=7.68245838668374E-02",
+  "legacy_geometry_matches_G1R9_bytes": true,
+  "native_python_exact_coordinate_triangles_materials": "PASS",
+  "native_runtime_mesh_order_used_for_fixed_solves": true
+}

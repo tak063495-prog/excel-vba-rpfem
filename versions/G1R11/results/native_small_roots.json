@@ -1,0 +1,16 @@
+[
+  {
+    "policy": "LEGACY",
+    "result": "PASS;lower=1.56479461074022;upper=2.16424040585209;lower_calls=19;upper_calls=39;elements=20;audit=2.74812042523262E-09",
+    "prefix": "C:\\Users\\link_\\Desktop\\RPFEM_G1R11_Staged_20261007\\results\\C5_final_LEGACY",
+    "seconds": 13.767968300031498,
+    "scope": "ACTUAL_NATIVE_FS_ROOTS_C5_PHI_PSI45_SMALL_SLOPE_NOT_P06_FULL_RUN"
+  },
+  {
+    "policy": "AUDITED_UPPER_LIMIT",
+    "result": "PASS;lower=1.56479461074022;upper=2.16424040585209;lower_calls=19;upper_calls=39;elements=20;audit=2.74812042523262E-09",
+    "prefix": "C:\\Users\\link_\\Desktop\\RPFEM_G1R11_Staged_20261007\\results\\C5_final_AUDITED_UPPER_LIMIT",
+    "seconds": 13.65593489992898,
+    "scope": "ACTUAL_NATIVE_FS_ROOTS_C5_PHI_PSI45_SMALL_SLOPE_NOT_P06_FULL_RUN"
+  }
+]

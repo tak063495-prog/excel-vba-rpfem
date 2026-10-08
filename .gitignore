@@ -38,3 +38,8 @@
 #*.[pP][oO][tT][mM]
 #*.[pP][pP][sS]
 #*.[pP][pP][sS][mM]
+
+# Python validation scratch files
+__pycache__/
+*.pyc
+.venv/
