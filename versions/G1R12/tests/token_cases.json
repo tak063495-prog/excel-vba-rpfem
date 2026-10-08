@@ -1,0 +1,142 @@
+[
+  [
+    5,
+    "CONIC_STEP_STALLED",
+    true
+  ],
+  [
+    5,
+    "CONIC_NOT_CONVERGED",
+    true
+  ],
+  [
+    5,
+    "NEWTON_FACTORIZATION_FAILED",
+    true
+  ],
+  [
+    5,
+    "NT_NONINTERIOR_POINT",
+    true
+  ],
+  [
+    5,
+    "NT_CORRECTOR_SINGULAR",
+    true
+  ],
+  [
+    5,
+    "NEWTON_FACTORIZATION_FAILED pivot=-1",
+    true
+  ],
+  [
+    5,
+    "NEWTON_FACTORIZATION_FAILED pivot=0",
+    true
+  ],
+  [
+    5,
+    "NEWTON_FACTORIZATION_FAILED pivot=123",
+    true
+  ],
+  [
+    5,
+    "NEWTON_FACTORIZATION_FAILED pivot=2147483647",
+    true
+  ],
+  [
+    5,
+    "NEWTON_FACTORIZATION_FAILED pivot=-2147483648",
+    true
+  ],
+  [
+    5,
+    "NEWTON_FACTORIZATION_FAILED pivot=",
+    false
+  ],
+  [
+    5,
+    "NEWTON_FACTORIZATION_FAILED pivot=2147483648",
+    false
+  ],
+  [
+    5,
+    "NEWTON_FACTORIZATION_FAILED pivot=-2147483649",
+    false
+  ],
+  [
+    5,
+    "NEWTON_FACTORIZATION_FAILED pivot=foo",
+    false
+  ],
+  [
+    5,
+    "NEWTON_FACTORIZATION_FAILED pivot=123 extra",
+    false
+  ],
+  [
+    5,
+    "NEWTON_FACTORIZATION_FAILED_SUFFIX pivot=123",
+    false
+  ],
+  [
+    5,
+    "prefix NEWTON_FACTORIZATION_FAILED pivot=123",
+    false
+  ],
+  [
+    5,
+    "NEWTON_FACTORIZATION_FAILED pivot=+123",
+    false
+  ],
+  [
+    5,
+    "NEWTON_FACTORIZATION_FAILED pivot=1.5",
+    false
+  ],
+  [
+    5,
+    "NEWTON_FACTORIZATION_FAILED pivot=1\n",
+    false
+  ],
+  [
+    5,
+    "UNKNOWN",
+    false
+  ],
+  [
+    5,
+    "RAW_YIELD_AUDIT_FAILED",
+    false
+  ],
+  [
+    5,
+    "NT_NONINTERIOR_POINT extra",
+    false
+  ],
+  [
+    7,
+    "NEWTON_FACTORIZATION_FAILED pivot=123",
+    false
+  ],
+  [
+    9,
+    "NEWTON_FACTORIZATION_FAILED pivot=123",
+    false
+  ],
+  [
+    18,
+    "NEWTON_FACTORIZATION_FAILED pivot=123",
+    false
+  ],
+  [
+    6,
+    "NEWTON_FACTORIZATION_FAILED pivot=123",
+    false
+  ],
+  [
+    1004,
+    "NEWTON_FACTORIZATION_FAILED pivot=123",
+    false
+  ]
+]

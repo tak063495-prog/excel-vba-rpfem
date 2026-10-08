@@ -1,0 +1,3 @@
+﻿issue,verdict,modules,fix,evidence
+1,妥当,RPX_Control;RPX_Output,メッシュ表と図の前に上界witnessを復元;厳密所有者検査;下界は別所有者,results/native_G1R11.json;results/native_G1R12.json;results/native_bearing.json
+2,妥当,RPX_Robust,pivot付き実エラー形式のみ追加;詳細保持;既存救済・停止条件維持,results/native_G1R11.json;results/native_G1R12.json;results/independent_audits.json

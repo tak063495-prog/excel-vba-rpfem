@@ -1,0 +1,75 @@
+' TEST ONLY: append to RPX_Adapt in isolated test copies. No physical certification.
+Private Sub IssueFan(ByVal count As Long, ByVal cx As Double)
+    Dim i As Long, angle As Double
+    rn = count + 1: re = count
+    ReDim RXY(0 To rn - 1, 0 To 1): ReDim RTri(0 To re - 1, 0 To 2)
+    ReDim RMatId(0 To re - 1): ReDim RRigidId(0 To re - 1)
+    ReDim RBody0(0 To re - 1, 0 To 1): ReDim RBody1(0 To re - 1, 0 To 1)
+    RXY(0, 0) = cx: RXY(0, 1) = 1.5
+    For i = 1 To count
+        angle = 8# * Atn(1#) * (i - 1) / count
+        RXY(i, 0) = cx + 0.25 * Cos(angle): RXY(i, 1) = 1.5 + 0.25 * Sin(angle)
+    Next i
+    For i = 0 To re - 1
+        RTri(i, 0) = 0: RTri(i, 1) = i + 1: RTri(i, 2) = (i + 1) Mod count + 1
+        RRigidId(i) = -1: RBody0(i, 1) = -18.82
+    Next i
+    Set RConstraints = RPX_Row(): Set RBoundary = RPX_Row()
+    RPX_LoadPhase = "raw": Call RPX_Topology
+End Sub
+Public Function IssueOutput(ByVal scenario As String) As String
+    Dim upper() As Double, lower() As Double, eta() As Double, i As Long, b As Long
+    On Error GoTo Failed
+    XCancel = False: RPX_InternalWrite = False: Call RPX_InputEnd: Call RPX_ReadInputs
+    RPX_SlopeDefinition 16: RSubdivisions = 2: RStressScale = 5#: RPX_AllowDraw = True
+    Call RPX_CertBeginRun
+    IssueFan 601, 1.5
+    ReDim upper(0 To 12 * re - 1): ReDim eta(0 To re - 1)
+    For i = 0 To UBound(upper): upper(i) = 700# + i: Next i
+    RUpperField = upper
+    If Not SaveState(RBestUpper, upper, eta, 0.71, 0.6, 0.71, "A") Then err.Raise 5, , "TEST_SAVE_UPPER"
+    b = 1000: If scenario = "same_count" Or scenario = "same_owner" Then b = 601
+    IssueFan b, 2.5
+    ReDim lower(0 To 18 * re): ReDim eta(0 To re - 1)
+    For i = 0 To UBound(lower): lower(i) = 20000# + i: Next i
+    If Not SaveState(RBestLower, lower, eta, 0.65, 0.65, 0.72, "B") Then err.Raise 5, , "TEST_SAVE_LOWER"
+    CloneState RBestPair, RBestLower
+    If scenario = "same_owner" Then CloneState RBestPair, RBestUpper
+    RPX_RestoreWitnessState RBestPair
+    ' Matches retained endpoints after final numerical rejection.
+    RestoreFinalBounds "Fs"
+    If scenario = "retained" Then RFsSearchIncomplete = True: RFsSearchNote = "TEST_FINAL_NUMERICAL_REJECTION"
+    Call RPX_PrepareUpperOutput(True)
+    Call RPX_WriteMesh: Call RPX_Draw
+    Call RPX_WriteFields(True)
+    RPX_ResultCurrent = True: Call RPX_DrawVelocity
+    If re <> RBestUpper.elements Or RPX_ExactModel() <> RBestUpper.originalModel Then err.Raise 5, , "TEST_FINAL_OWNER"
+    If RPX_Sheet("節点データ").Range("B2").Value2 <> 1.5 Then err.Raise 5, , "TEST_UPPER_COORDINATES"
+    If RPX_Sheet("節点データ").Range("G2").Value2 <> 2.5 Then err.Raise 5, , "TEST_LOWER_COORDINATES"
+    If RPX_Sheet("要素データ").Range("H2").Value2 <> 700# Then err.Raise 5, , "TEST_UPPER_FIELD"
+    If RPX_Sheet("要素データ").Range("AH2").Value2 <> 100000# Then err.Raise 5, , "TEST_LOWER_FIELD"
+    If RPX_Sheet("図").Range("A1").Value2 <> "メッシュ：601要素 / 602節点" Then err.Raise 5, , "TEST_GRAPH_OWNER"
+    IssueOutput = "PASS;upper=601;lower=" & b & ";final_model_exact=True;scenario=" & scenario
+    Exit Function
+Failed:
+    IssueOutput = "ERROR " & err.number & ":" & err.description
+    RPX_InternalWrite = False
+End Function
+Public Function IssueOutputGuard(ByVal mutation As String) As String
+    On Error GoTo Failed
+    Call RPX_PrepareUpperOutput(True)
+    Select Case mutation
+        Case "model": RXY(0, 0) = RXY(0, 0) + 0.000000000001
+        Case "field": RUpperField(0) = RUpperField(0) + 1#
+        Case "shape": ReDim Preserve RUpperField(0 To UBound(RUpperField) - 1)
+        Case "q": RSubdivisions = RSubdivisions + 1
+        Case "factor": RStrengthFactor = RStrengthFactor + 0.000000000001
+        Case "incomplete": RBestUpper.complete = False
+        Case "epoch": RBestUpper.inputEpoch = RBestUpper.inputEpoch + 1
+    End Select
+    RPX_AssertUpperOutput True
+    IssueOutputGuard = "UNEXPECTED_SUCCESS": Exit Function
+Failed:
+    IssueOutputGuard = "ERROR " & err.number & ":" & err.description
+    RBestUpper.complete = True: RBestUpper.inputEpoch = RPX_InputEpoch
+End Function

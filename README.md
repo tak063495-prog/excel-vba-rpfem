@@ -19,9 +19,25 @@ Excel VBAによる2次元RPFEM解析のソース、XLSM、検証資料です。
 3. 「P06N 実行案内」「材料データ」「設定」を確認し、「要素定義」の**「要素作成②」→「図を表示」→「解析」**を使います。「解析」は入力からメッシュを再生成するため、要素作成は形状の事前確認用です。
 4. 「解析結果」の下界・上界・区間幅・解析政策と、ログ末尾の判定を確認します。`PARTIAL_CERTIFIED`は目標未達を含みます。詳しい操作は[使い方](docs/USAGE_JA.md)を参照してください。
 
-**G1R11の全P06N解析時間、GAP 1%到達、25ケース全回帰は未確認です。図の矢印は規準化された速度機構であり、変位量ではありません。**
+**G1R12の全P06N解析時間、GAP 1%到達、25ケース全回帰は未確認です。図の矢印は規準化された速度機構であり、変位量ではありません。**
 
-## G1R11 — P06N設定済み改訂版
+## G1R12 — Issues #1 / #2 修正版（最新版）
+
+2026年10月9日。2件の指摘を実コードとExcelの反例で確認し、修正しました。適応解析の最良上界メッシュと速度場を出力前に一致させ、`NEWTON_FACTORIZATION_FAILED pivot=…`の実エラー形式で同一問題のHSD救済を1回行います。構成則・物理監査・数値カーネル・許容誤差・G1R11の高速化政策を維持しています。
+
+- [P06N設定済みXLSMをダウンロード](https://github.com/tak063495-prog/excel-vba-rpfem/raw/refs/heads/main/versions/G1R12/RPFEM_20261009_G1R12_P06N_IssueFix.xlsm)
+- [ソース・差分・検証資料ZIPをダウンロード](https://github.com/tak063495-prog/excel-vba-rpfem/raw/refs/heads/main/downloads/RPFEM_G1R12_IssueFix_20261009.zip)
+- [修正・検証報告](versions/G1R12/REPORT.md) / [VBAソース](versions/G1R12/src/)
+- [手動反映・G1R11へ戻す手順](versions/G1R12/IMPORT_ROLLBACK.md)
+- [試験手順](versions/G1R12/TEST_PROCEDURES.md) / [試験結果](versions/G1R12/TEST_RESULTS.csv) / [差分](versions/G1R12/changes.patch)
+- [Issue対応表](versions/G1R12/ISSUE_FIX_MAP.csv) / [25ケース台帳（NOT_RUN）](versions/G1R12/excel_acceptance_g1r12.csv)
+- [配布ファイルのSHA-256](downloads/SHA256SUMS.txt)
+
+旧版の601/1000要素の配列エラー、同数・別座標の誤対応、詳細エラー時の救済スキップを実Excelで再現しました。修正版の出力・停止条件・実HSD救済を検証し、小規模C=5・φ=ψ=45のFs根と通常場は旧版と完全一致しました。保存場7件をPythonで独立監査し、小規模の支持力通常・適応経路、完成XLSMの保存後コンパイル・全46モジュール照合も実施しました。人工的な所有者・失敗注入の試験は物理求解と区別しています。
+
+**全P06N・GAP1%・25ケース全回帰・全支持力/剛体回帰は未実施です。** G1R11の公開成果物は保全しています。
+
+## G1R11 — 前版（保全）
 
 2026年10月8日に登録した版です。従来の再配置・細分化を先に行い、その後の追加細分化を最大1000要素・1回に制限します。追加段階の多層モデルでは監査済み上界を下界Fs探索の試行位置の目安に使い、符号を実求解します。構成則・Davis変換・監査・許容誤差・G1R9のDD高速化を維持しています。
 

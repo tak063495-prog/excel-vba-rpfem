@@ -1,0 +1,10 @@
+{
+  "scope": "production copy, native integration/compile/save/reopen; full P06N not run",
+  "pass": true,
+  "compile": "PASS",
+  "reopen_compile": "PASS",
+  "sources_matched": 46,
+  "input_values_unchanged": true,
+  "test_probes_absent": true,
+  "sha256": "fe02ff61687cff8e0f0fc775867c8a244a83f758a3c5b9a9f80b6a2ab0389520"
+}

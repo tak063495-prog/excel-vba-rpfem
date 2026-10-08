@@ -1,0 +1,8 @@
+{
+  "scope": "Python simulation + source assertions; not Excel/physical acceptance",
+  "tests": 3,
+  "failures": 0,
+  "errors": 0,
+  "grammar_vectors": 28,
+  "pass": true
+}

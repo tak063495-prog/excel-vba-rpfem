@@ -1,0 +1,243 @@
+{
+  "pass": true,
+  "scope": "independent Python raw-equation audits of native fields; not full P06N/25 cases",
+  "results": [
+    {
+      "test": "G1R11_root_lower",
+      "fs": 1.56479461074022,
+      "physical_audit": {
+        "pass": true,
+        "errors": {
+          "yield": 0.0,
+          "equilibrium": 2.748121114376758e-09,
+          "internal_traction": 4.156495148066597e-10,
+          "boundary_traction": 3.5573077816764e-10
+        },
+        "load": 1.0000083404716993,
+        "value": 1.0000083404716993
+      },
+      "unit_load_50digit": {
+        "case": "C5_small",
+        "mode": "lower",
+        "fs": 1.56479461074022,
+        "elements": 20,
+        "decimal_precision": 50,
+        "independent_trig_digits": 65,
+        "raw_errors": {
+          "load_one": 0.0,
+          "yield": 0.0,
+          "equilibrium": 1.3740491254751121e-08,
+          "internal_traction": 2.078229472980174e-09,
+          "boundary_traction": 1.7786390055271663e-09
+        },
+        "max_locations": {
+          "load_one": "load",
+          "yield": [
+            0,
+            0
+          ],
+          "equilibrium": [
+            14,
+            1,
+            1
+          ],
+          "internal_traction": [
+            3,
+            18,
+            2,
+            1
+          ],
+          "boundary_traction": [
+            3,
+            8,
+            2,
+            0
+          ]
+        },
+        "area": 1650.0,
+        "numerical_audit_pass": true,
+        "meaning": "Numerical audit of stored binary64 field, not rigorous real interval proof.",
+        "load_factor": 1.0,
+        "stress_scale": 5.0,
+        "accepted": true
+      }
+    },
+    {
+      "test": "G1R11_root_upper",
+      "fs": 2.16424040585254,
+      "physical_audit": {
+        "pass": true,
+        "errors": {
+          "flow": 0.0,
+          "jump": 0.0,
+          "boundary": 1.01840489076038e-09,
+          "work": 3.888740596202922e-08,
+          "objective": 1.1102230246251565e-16
+        },
+        "dissipation": 0.9999893223520332,
+        "work": [
+          0.0,
+          0.999999961112594
+        ],
+        "value": 0.9999893223520332
+      }
+    },
+    {
+      "test": "G1R11_normal_fixed_upper_Fs3",
+      "physical_audit": {
+        "pass": true,
+        "errors": {
+          "flow": 0.0,
+          "jump": 0.0,
+          "boundary": 5.864770721615058e-11,
+          "work": 1.832419227465465e-08,
+          "objective": 2.7755575615628914e-17
+        },
+        "dissipation": 0.16734077203899272,
+        "work": [
+          0.0,
+          0.9999999816758077
+        ],
+        "value": 0.16734077203899272
+      }
+    },
+    {
+      "test": "G1R12_root_lower",
+      "fs": 1.56479461074022,
+      "physical_audit": {
+        "pass": true,
+        "errors": {
+          "yield": 0.0,
+          "equilibrium": 2.748121114376758e-09,
+          "internal_traction": 4.156495148066597e-10,
+          "boundary_traction": 3.5573077816764e-10
+        },
+        "load": 1.0000083404716993,
+        "value": 1.0000083404716993
+      },
+      "unit_load_50digit": {
+        "case": "C5_small",
+        "mode": "lower",
+        "fs": 1.56479461074022,
+        "elements": 20,
+        "decimal_precision": 50,
+        "independent_trig_digits": 65,
+        "raw_errors": {
+          "load_one": 0.0,
+          "yield": 0.0,
+          "equilibrium": 1.3740491254751121e-08,
+          "internal_traction": 2.078229472980174e-09,
+          "boundary_traction": 1.7786390055271663e-09
+        },
+        "max_locations": {
+          "load_one": "load",
+          "yield": [
+            0,
+            0
+          ],
+          "equilibrium": [
+            14,
+            1,
+            1
+          ],
+          "internal_traction": [
+            3,
+            18,
+            2,
+            1
+          ],
+          "boundary_traction": [
+            3,
+            8,
+            2,
+            0
+          ]
+        },
+        "area": 1650.0,
+        "numerical_audit_pass": true,
+        "meaning": "Numerical audit of stored binary64 field, not rigorous real interval proof.",
+        "load_factor": 1.0,
+        "stress_scale": 5.0,
+        "accepted": true
+      }
+    },
+    {
+      "test": "G1R12_root_upper",
+      "fs": 2.16424040585254,
+      "physical_audit": {
+        "pass": true,
+        "errors": {
+          "flow": 0.0,
+          "jump": 0.0,
+          "boundary": 1.01840489076038e-09,
+          "work": 3.888740596202922e-08,
+          "objective": 1.1102230246251565e-16
+        },
+        "dissipation": 0.9999893223520332,
+        "work": [
+          0.0,
+          0.999999961112594
+        ],
+        "value": 0.9999893223520332
+      }
+    },
+    {
+      "test": "G1R12_normal_fixed_upper_Fs3",
+      "physical_audit": {
+        "pass": true,
+        "errors": {
+          "flow": 0.0,
+          "jump": 0.0,
+          "boundary": 5.864770721615058e-11,
+          "work": 1.832419227465465e-08,
+          "objective": 2.7755575615628914e-17
+        },
+        "dissipation": 0.16734077203899272,
+        "work": [
+          0.0,
+          0.9999999816758077
+        ],
+        "value": 0.16734077203899272
+      }
+    },
+    {
+      "test": "G1R12_factor_fixed_upper_Fs3",
+      "physical_audit": {
+        "pass": true,
+        "errors": {
+          "flow": 3.3681919312733334e-13,
+          "jump": 4.84289655542274e-13,
+          "boundary": 1.2635369427689655e-12,
+          "work": 1.518957404300636e-09,
+          "objective": 0.0
+        },
+        "dissipation": 0.16734075576943452,
+        "work": [
+          0.0,
+          0.9999999984810426
+        ],
+        "value": 0.16734075576943452
+      }
+    }
+  ],
+  "old_new_comparisons": {
+    "roots_lower.bin": {
+      "bytes_identical": true,
+      "max_field_delta": 0.0
+    },
+    "roots_upper.bin": {
+      "bytes_identical": true,
+      "max_field_delta": 0.0
+    },
+    "roots_mesh.bin": {
+      "bytes_identical": true
+    },
+    "normal.bin": {
+      "bytes_identical": true,
+      "max_field_delta": 0.0
+    },
+    "normal_mesh.bin": {
+      "bytes_identical": true
+    }
+  }
+}

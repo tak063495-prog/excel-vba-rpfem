@@ -1,0 +1,16 @@
+{
+  "scope": "small native nonadaptive/adaptive bearing workflow; not full bearing/rigid regression",
+  "nonadaptive": "PASS multiplier=3.49999983792619,3.50000019144299 pressure=1.99999991896309",
+  "adaptive": {
+    "status": "解析完了",
+    "multipliers": [
+      3.499999837926188,
+      3.500000191442987
+    ],
+    "pressures": [
+      1.999999918963094,
+      2.0000000957214934
+    ]
+  },
+  "pass": true
+}

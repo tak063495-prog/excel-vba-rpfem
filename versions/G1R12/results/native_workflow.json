@@ -1,0 +1,34 @@
+{
+  "pass": true,
+  "results": [
+    {
+      "version": "G1R11",
+      "scope": "actual RPX_Run adaptive, C5 phi=psi=45, TARGET16/CYCLES0/q2",
+      "elapsed_seconds": 21.25383810000494,
+      "status": "上下界を取得（目標区間幅またはFs探索許容差は未達）",
+      "bounds": [
+        1.5646753072232527,
+        2.1642393339713144
+      ],
+      "elements": [
+        20.0,
+        20.0
+      ]
+    },
+    {
+      "version": "G1R12",
+      "scope": "actual RPX_Run adaptive, C5 phi=psi=45, TARGET16/CYCLES0/q2",
+      "elapsed_seconds": 20.63478219998069,
+      "status": "上下界を取得（目標区間幅またはFs探索許容差は未達）",
+      "bounds": [
+        1.5646753072232527,
+        2.1642393339713144
+      ],
+      "elements": [
+        20.0,
+        20.0
+      ]
+    }
+  ],
+  "bounds_and_upper_tables_identical": true
+}

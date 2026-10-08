@@ -1,0 +1,204 @@
+{
+  "version": "G1R12",
+  "exports": "results/run_064257_G1R12",
+  "scope": "native Excel, synthetic output ownership + actual small conic solver; not P06N/full25",
+  "compile": "PASS",
+  "output": {
+    "different_count": "PASS;upper=601;lower=1000;final_model_exact=True;scenario=different_count",
+    "same_count": "PASS;upper=601;lower=601;final_model_exact=True;scenario=same_count",
+    "same_owner": "PASS;upper=601;lower=601;final_model_exact=True;scenario=same_owner",
+    "retained": "PASS;upper=601;lower=1000;final_model_exact=True;scenario=retained"
+  },
+  "guards": {
+    "model": "ERROR 5:UPPER_OUTPUT_MODEL_MISMATCH",
+    "field": "ERROR 5:UPPER_OUTPUT_FIELD_MISMATCH",
+    "shape": "ERROR 5:UPPER_OUTPUT_FIELD_SHAPE",
+    "q": "ERROR 5:UPPER_OUTPUT_CONTEXT_MISMATCH",
+    "factor": "ERROR 5:UPPER_OUTPUT_CONTEXT_MISMATCH",
+    "incomplete": "ERROR 5:UPPER_OUTPUT_OWNER_INCOMPLETE",
+    "epoch": "ERROR 5:UPPER_OUTPUT_INPUT_MISMATCH"
+  },
+  "tokens": [
+    {
+      "number": 5,
+      "text": "CONIC_STEP_STALLED",
+      "expected": true,
+      "actual": true
+    },
+    {
+      "number": 5,
+      "text": "CONIC_NOT_CONVERGED",
+      "expected": true,
+      "actual": true
+    },
+    {
+      "number": 5,
+      "text": "NEWTON_FACTORIZATION_FAILED",
+      "expected": true,
+      "actual": true
+    },
+    {
+      "number": 5,
+      "text": "NT_NONINTERIOR_POINT",
+      "expected": true,
+      "actual": true
+    },
+    {
+      "number": 5,
+      "text": "NT_CORRECTOR_SINGULAR",
+      "expected": true,
+      "actual": true
+    },
+    {
+      "number": 5,
+      "text": "NEWTON_FACTORIZATION_FAILED pivot=-1",
+      "expected": true,
+      "actual": true
+    },
+    {
+      "number": 5,
+      "text": "NEWTON_FACTORIZATION_FAILED pivot=0",
+      "expected": true,
+      "actual": true
+    },
+    {
+      "number": 5,
+      "text": "NEWTON_FACTORIZATION_FAILED pivot=123",
+      "expected": true,
+      "actual": true
+    },
+    {
+      "number": 5,
+      "text": "NEWTON_FACTORIZATION_FAILED pivot=2147483647",
+      "expected": true,
+      "actual": true
+    },
+    {
+      "number": 5,
+      "text": "NEWTON_FACTORIZATION_FAILED pivot=-2147483648",
+      "expected": true,
+      "actual": true
+    },
+    {
+      "number": 5,
+      "text": "NEWTON_FACTORIZATION_FAILED pivot=",
+      "expected": false,
+      "actual": false
+    },
+    {
+      "number": 5,
+      "text": "NEWTON_FACTORIZATION_FAILED pivot=2147483648",
+      "expected": false,
+      "actual": false
+    },
+    {
+      "number": 5,
+      "text": "NEWTON_FACTORIZATION_FAILED pivot=-2147483649",
+      "expected": false,
+      "actual": false
+    },
+    {
+      "number": 5,
+      "text": "NEWTON_FACTORIZATION_FAILED pivot=foo",
+      "expected": false,
+      "actual": false
+    },
+    {
+      "number": 5,
+      "text": "NEWTON_FACTORIZATION_FAILED pivot=123 extra",
+      "expected": false,
+      "actual": false
+    },
+    {
+      "number": 5,
+      "text": "NEWTON_FACTORIZATION_FAILED_SUFFIX pivot=123",
+      "expected": false,
+      "actual": false
+    },
+    {
+      "number": 5,
+      "text": "prefix NEWTON_FACTORIZATION_FAILED pivot=123",
+      "expected": false,
+      "actual": false
+    },
+    {
+      "number": 5,
+      "text": "NEWTON_FACTORIZATION_FAILED pivot=+123",
+      "expected": false,
+      "actual": false
+    },
+    {
+      "number": 5,
+      "text": "NEWTON_FACTORIZATION_FAILED pivot=1.5",
+      "expected": false,
+      "actual": false
+    },
+    {
+      "number": 5,
+      "text": "NEWTON_FACTORIZATION_FAILED pivot=1\n",
+      "expected": false,
+      "actual": false
+    },
+    {
+      "number": 5,
+      "text": "UNKNOWN",
+      "expected": false,
+      "actual": false
+    },
+    {
+      "number": 5,
+      "text": "RAW_YIELD_AUDIT_FAILED",
+      "expected": false,
+      "actual": false
+    },
+    {
+      "number": 5,
+      "text": "NT_NONINTERIOR_POINT extra",
+      "expected": false,
+      "actual": false
+    },
+    {
+      "number": 7,
+      "text": "NEWTON_FACTORIZATION_FAILED pivot=123",
+      "expected": false,
+      "actual": false
+    },
+    {
+      "number": 9,
+      "text": "NEWTON_FACTORIZATION_FAILED pivot=123",
+      "expected": false,
+      "actual": false
+    },
+    {
+      "number": 18,
+      "text": "NEWTON_FACTORIZATION_FAILED pivot=123",
+      "expected": false,
+      "actual": false
+    },
+    {
+      "number": 6,
+      "text": "NEWTON_FACTORIZATION_FAILED pivot=123",
+      "expected": false,
+      "actual": false
+    },
+    {
+      "number": 1004,
+      "text": "NEWTON_FACTORIZATION_FAILED pivot=123",
+      "expected": false,
+      "actual": false
+    }
+  ],
+  "solver": {
+    "normal": "PASS;value=0.167340772038993;audit=1.83241921636323E-08;engine=LEGACY;rescues=0;hsd_calls=0;status=OPTIMAL",
+    "factor": "PASS;value=0.167340755769434;audit=1.51895740430064E-09;engine=HSD_RESCUE;rescues=1;hsd_calls=1;status=OPTIMAL",
+    "memory": "ERROR 7:OUT_OF_MEMORY;engine=LEGACY;rescues=0;hsd_calls=0",
+    "subscript": "ERROR 9:SUBSCRIPT;engine=LEGACY;rescues=0;hsd_calls=0",
+    "cancel": "ERROR 18:ANALYSIS_CANCELLED;engine=LEGACY;rescues=0;hsd_calls=0",
+    "unknown": "ERROR 5:UNKNOWN_FAILURE;engine=LEGACY;rescues=0;hsd_calls=0",
+    "audit": "ERROR 5:RAW_YIELD_AUDIT_FAILED;engine=LEGACY;rescues=0;hsd_calls=0",
+    "model": "ERROR 5:ROBUST_MODEL_MISMATCH;engine=LEGACY;rescues=0;hsd_calls=0",
+    "hsd_failure": "ERROR 7:HSD_TEST_MEMORY;engine=HSD_RESCUE;rescues=1;hsd_calls=1"
+  },
+  "roots": "PASS;lower=1.56479461074022;upper=2.16424040585254;lower_calls=19;upper_calls=39;elements=20;audit=2.74812112953035E-09",
+  "pass": true
+}

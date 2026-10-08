@@ -1,8 +1,14 @@
-# 注意事項と不具合時の確認 — G1R11
+# 注意事項と不具合時の確認 — G1R12
 
 [README](../README.md) / [使い方](USAGE_JA.md) / [解析の原理](PRINCIPLES_JA.md)
 
-## 1. 現在確認できている範囲
+## G1R12での修正と確認
+
+Issue #1の上界メッシュ・速度場の不一致、Issue #2のpivot付き因子分解失敗でHSD救済へ入らない問題を修正しました。旧版での反例を実Excelで再現し、修正版の出力・厳密所有者検査・実HSD救済・停止条件を確認しています。小規模C5のFs根・通常場・メッシュは旧版と完全一致し、場7件の独立原式監査、小規模支持力の通常・適応経路、保存後再コンパイルも合格しました。[G1R12報告](../versions/G1R12/REPORT.md)
+
+G1R12の全P06N、GAP1%、25ケース、全支持力・剛体回帰はNOT_RUNです。下記の1000要素固定点などはG1R11時点の証拠で、G1R12で全てを再実行したという意味ではありません。[G1R12試験結果](../versions/G1R12/TEST_RESULTS.csv)と[25ケース台帳](../versions/G1R12/excel_acceptance_g1r12.csv)を参照してください。
+
+## 1. G1R11時点で確認した範囲（保全した前版の証拠）
 
 |項目|G1R11での状態|
 |---|---|
@@ -128,6 +134,8 @@ GAPとFS_TOLは別です。精度を満たしたように見せるためにGAP�
 
 配布版の設定B48とB50をともにLEGACYへ変更すると、追加赤緑細分化と新しい下界試行制御を止めます。メッシュの土台は従来経路になります。G1R10の直接細分化設定への完全な復元とは区別します。
 
-コードごとG1R10へ戻す場合は、保全原本の別コピーかrollback_cp932/の3モジュールを使い、B48=ROBUST_REFINE、追加した設定の整理、コンパイルを行います。[正確な反映・復元手順](../versions/G1R11/IMPORT_ROLLBACK.md)
+G1R12のIssue修正を戻す場合はG1R11原本の別コピー、または`versions/G1R12/rollback_cp932/`の`RPX_Control`・`RPX_Output`・`RPX_Robust`を使います。[G1R12からG1R11への復元](../versions/G1R12/IMPORT_ROLLBACK.md)
+
+さらにG1R10まで戻す場合は前版の保全原本、または`versions/G1R11/rollback_cp932/`の別の3モジュールを使い、B48=ROBUST_REFINE、追加した設定の整理、コンパイルを行います。G1R12のrollbackとは対象が異なります。[G1R11からG1R10への復元](../versions/G1R11/IMPORT_ROLLBACK.md)
 
 今回の2026年10月9日のGitHub更新は説明資料の追加です。配布XLSM・ZIP、VBAソース、過去の試験証拠・SHA-256は変更していません。

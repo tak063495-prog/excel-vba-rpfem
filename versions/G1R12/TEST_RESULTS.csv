@@ -1,0 +1,17 @@
+﻿test,scope,status,description,evidence
+PY_PRETEST,Python simulation/static,PASS,3 assertions; 28 grammar vectors,results/python_pretest.json
+NATIVE_OLD_REPRO,Excel synthetic owner test,PASS,旧版のError9・同数座標不一致・救済0回を再現,results/native_G1R11.json
+NATIVE_OUTPUT,Excel synthetic owner test,PASS,4 owner variants,results/native_G1R12.json
+NATIVE_OUTPUT_GUARDS,Excel failure injection,PASS,7 owner/model/context guards,results/native_G1R12.json
+NATIVE_TOKENS,Excel grammar test,PASS,28 vectors + cancel/audit flags,results/native_G1R12.json
+NATIVE_FACTOR_RESCUE,Excel real small solver + FactorSystem failure injection,PASS,HSD_RESCUE exactly once; OPTIMAL; audit,results/native_G1R12.json
+NATIVE_STOP_GUARDS,Excel failure injection,PASS,memory/subscript/cancel/unknown/audit/model/HSD memory propagate,results/native_G1R12.json
+NATIVE_ROOTS,Excel physical root regression,PASS,C5 phi=psi45; Fs/fields/mesh/calls identical,results/native_G1R11.json;results/native_G1R12.json
+PY_NATIVE_AUDIT,Python independent physical audit,PASS,7 native fields; lower 50digit audits,results/independent_audits.json
+NATIVE_WORKFLOW,Excel actual adaptive RPX_Run,PASS,small C5; equal bounds/table; GAP target still unmet,results/native_workflow.json
+NATIVE_BEARING,Excel actual bearing workflow,PASS,nonadaptive/adaptive small bearing multiplier3.5/pressure2,results/native_bearing.json
+NATIVE_PRODUCTION,Excel compile/save/reopen/source check,PASS,46 modules; no test probes; inputs unchanged,results/production_workbook.json
+PROTECTION,SHA256/static,PASS,G1R11 artifacts + 32 protected P2S files unchanged,results/protected_originals.json;results/baseline_after.json
+P06N_FULL,Excel full adaptive,NOT_RUN,全P06N・GAP1%・時間短縮率未確認,TEST_PROCEDURES.md
+FULL25,Excel full regression,NOT_RUN,25 cases excluding pore pressure; no inferred PASS,excel_acceptance_g1r12.csv
+RIGID_FULL,Excel full regression,NOT_RUN,剛体・支持力全回帰未実施,TEST_PROCEDURES.md
