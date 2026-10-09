@@ -1,0 +1,29 @@
+{
+  "status": "PASS",
+  "scope": "targeted actual failed mesh and exact final Fs; preparation uses reconstructed intermediate factors",
+  "excel_pid": 10156,
+  "prepare": "READY 548 997 336ACC0EDB59F33F",
+  "control": [
+    "PASS",
+    "0.99999977408946",
+    "0.999999998886135",
+    "1.11386466716823E-09",
+    "ZERO_COST_FEASIBLE_POINT",
+    "3.68827282381213E-12",
+    "flow=0;;jump=0;;boundary_velocity=5.22879218647057E-20;index_a=395;index_b=0;index_c=-1;reference_work=1.11386466716823E-09;index_a=-1;index_b=-1;index_c=-1;objective_difference=0;;"
+  ],
+  "native_result": [
+    "0",
+    "OPTIMAL",
+    "50"
+  ],
+  "final_audit": [
+    "True",
+    "0.999999999734781",
+    "2.65218846884352E-10",
+    "OPTIMAL_POINT",
+    ""
+  ],
+  "seconds": 437.85296079993714,
+  "finished_utc": "2026-10-09T19:15:23.477023+00:00"
+}

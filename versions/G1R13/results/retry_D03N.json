@@ -1,0 +1,251 @@
+{
+  "case": "D03N",
+  "status": "FS_AVAILABLE_PARTIAL",
+  "started_utc": "2026-10-09T19:44:55.270660+00:00",
+  "source_sha256": "fe02ff61687cff8e0f0fc775867c8a244a83f758a3c5b9a9f80b6a2ab0389520",
+  "fs_obtained": true,
+  "target_met": false,
+  "input_sha256": "f3697c56685aeb86cea502a91db1adddfe9be68f9aaa0004770e42f954e0405d",
+  "scope_notes": [
+    "G1R12 production TARGET1536/adapt3/q8; not catalogue M0/M1/M2 mesh convergence",
+    "E/nu not variables of rigid-plastic formulation; D04/D09 cannot test elastic sensitivity",
+    "N denotes Davis equivalent associated formulation, not direct nonassociated elastoplastic FEM"
+  ],
+  "excel_pid": 7524,
+  "native_definition_check": [
+    "6",
+    "1",
+    "6",
+    "1400",
+    "DAVIS_EQUIVALENT"
+  ],
+  "actual_settings": {
+    "MODE": "Fs",
+    "TARGET": 1536.0,
+    "GRAVITY": "固定",
+    "ADAPT": 1.0,
+    "CYCLES": 3.0,
+    "GAP": 0.01,
+    "REFINE": 0.2,
+    "QUADRATURE": 8.0,
+    "FS_TOL": 0.0001,
+    "BEARING_FACES": null,
+    "BEARING_RIGIDS": null,
+    "UPPER_PILOT": 0.0,
+    "UPPER_PILOT_RIGID": 0.0,
+    "LOWER_FS_SEED": "UPPER_TRIAL",
+    "LOWER_SEED_WIDTH": 0.02,
+    "LOWER_MODEL_CACHE": 1.0,
+    "LOWER_KKT_BACKEND": "AUTO",
+    "SCHUR_ALLOW_RIGID": 0.0,
+    "SCHUR_MAX_BYTES": 268435456.0,
+    "TEST_INJECTION": 0.0,
+    "KKT_CAPTURE": 0.0,
+    "SCHUR_TRACE_LEVEL": 0.0,
+    "SCHUR_REPLAY_POLICY": "CONSISTENT",
+    "SCHUR_STRUCTURE_CACHE": 1.0,
+    "SCHUR_RECOVERY_MODE": "REUSE_U",
+    "SCHUR_REFINEMENT": "FIXED3",
+    "SCHUR_GENERIC_START_ITERS": 0.0,
+    "DIRECT_FINAL_AFTER_PILOT": 0.0,
+    "DIAGNOSTIC_MODE": 1.0,
+    "HSD_CAPTURE": 0.0,
+    "HSD_LINEAR_BACKEND": "AUTO_PIVOT",
+    "HSD_LINEAR_CAPTURE": 0.0,
+    "HSD_LINEAR_CAPTURE_MAX": 8.0,
+    "HSD_STABLE_MAX_BYTES": 1073741824.0,
+    "HSD_LINEAR_TRACE": 0.0,
+    "C0_AUTO": 0.0,
+    "ANALYSIS_POLICY": "DAVIS_EQUIVALENT",
+    "RAW_LOWER_AUDIT": 1.0,
+    "C0_UPPER_ADAPT": 0.0,
+    "HSD_SOLVE_SECONDS": 3600.0,
+    "C0_DIRECT_UPPER": 1.0,
+    "HSD_PROJECTIVE_NORMALIZATION": 1.0,
+    "HSD_ORIGINAL_OPERATOR": 0.0,
+    "ADAPT_MESH_POLICY": "LEGACY_THEN_REFINE",
+    "ADAPT_REFINE_CAP": 1000.0,
+    "FS_BRACKET_POLICY": "AUDITED_UPPER_LIMIT"
+  },
+  "run_started_utc": "2026-10-09T19:44:58.770916+00:00",
+  "solve_seconds": 9324.924221199937,
+  "sheet_status": "上下界を取得（目標区間幅またはFs探索許容差は未達）",
+  "lower_fs": 1.117950896644241,
+  "upper_fs": 1.2094374254289846,
+  "relative_gap": 0.07861733077980539,
+  "element_counts": [
+    997.0,
+    997.0
+  ],
+  "summary_fields": [
+    "0",
+    "",
+    "",
+    "True",
+    "True",
+    "1.09100153999453E-04",
+    "ADAPT_GAP_TARGET_NOT_MET",
+    "C:\\Users\\link_\\Desktop\\RPFEM_G1R13_D03N_D07A_20261010\\native_retry\\D03N\\RPFEM_logs\\20261010_044458_7524_analysis.tsv",
+    "8",
+    "8",
+    "reference_total",
+    "reference_total",
+    "False",
+    "False",
+    "False",
+    "False"
+  ],
+  "error_number": 0,
+  "error": "",
+  "result_current": true,
+  "root_search_incomplete": true,
+  "root_width": 0.000109100153999453,
+  "diagnostic_path": "C:\\Users\\link_\\Desktop\\RPFEM_G1R13_D03N_D07A_20261010\\native_retry\\D03N\\RPFEM_logs\\20261010_044458_7524_analysis.tsv",
+  "witness_q": [
+    8,
+    8
+  ],
+  "witness_phase": [
+    "reference_total",
+    "reference_total"
+  ],
+  "fs_values_present": true,
+  "independent_audit": {
+    "pass": true,
+    "scope": "independent raw-equation/geometry/weight/material audits of native witnesses",
+    "results": [
+      {
+        "side": "lower",
+        "metadata": {
+          "nodes": 548,
+          "elements": 997,
+          "q": 8,
+          "factor": 1.117950896644241,
+          "fs": 1.117950896644241,
+          "objective": 1.0,
+          "native_audit": 3.664326282508401e-09,
+          "scale": 1.0
+        },
+        "physical_audit": {
+          "pass": true,
+          "errors": {
+            "yield": 6.4601590771334e-10,
+            "equilibrium": 3.664323955376858e-09,
+            "internal_traction": 1.7547480047366848e-10,
+            "boundary_traction": 2.325004886645311e-10
+          },
+          "load": 1.0,
+          "value": 1.0
+        },
+        "precision_audit": null,
+        "raw_lower_errors": {
+          "yield": 6.4601590771334e-10,
+          "equilibrium": 3.664323955376858e-09,
+          "internal_traction": 1.7547480047366848e-10,
+          "boundary_traction": 2.325004886645311e-10
+        },
+        "raw_lower_pass": true,
+        "endpoint_direction_pass": true,
+        "material_areas": [
+          1400.0
+        ],
+        "weight": 28000.000000000004,
+        "pass": true
+      },
+      {
+        "side": "upper",
+        "metadata": {
+          "nodes": 548,
+          "elements": 997,
+          "q": 8,
+          "factor": 1.2094374254289846,
+          "fs": 1.2094374254289846,
+          "objective": 0.0,
+          "native_audit": 1.1138646671682295e-09,
+          "scale": 1.0
+        },
+        "physical_audit": {
+          "pass": true,
+          "errors": {
+            "flow": 0.0,
+            "jump": 0.0,
+            "boundary": 5.228792186470575e-20,
+            "work": 3.936736554521758e-07,
+            "objective": 0.0
+          },
+          "dissipation": 0.0,
+          "work": [
+            0.0,
+            1.0000003936736555
+          ],
+          "value": 0.0,
+          "ordinary_double_pass": false,
+          "acceptance_basis": "50-digit independent physical audit; unchanged 1e-7"
+        },
+        "precision_audit": {
+          "case": "D03N",
+          "mode": "upper",
+          "fs": 1.2094374254289846,
+          "elements": 997,
+          "decimal_precision": 50,
+          "independent_trig_digits": 65,
+          "raw_errors": {
+            "flow": 0.0,
+            "jump_whole_edge": 0.0,
+            "boundary_velocity": 5.228792186470575e-20,
+            "reference_work": 6.633199168692195e-11
+          },
+          "max_locations": {
+            "flow": [
+              0,
+              0
+            ],
+            "jump_whole_edge": [
+              119,
+              318,
+              -1
+            ],
+            "boundary_velocity": [
+              17,
+              18,
+              1,
+              0
+            ],
+            "reference_work": "work"
+          },
+          "area": 1400.0,
+          "numerical_audit_pass": true,
+          "meaning": "Numerical audit of stored binary64 field, not rigorous real interval proof.",
+          "dissipation": 0.0,
+          "fixed_work": 0.0,
+          "reference_work": 0.9999999999336681,
+          "abs_work": 589831854.2398869,
+          "collapse_condition": true,
+          "accepted": true
+        },
+        "raw_lower_errors": {},
+        "raw_lower_pass": true,
+        "endpoint_direction_pass": true,
+        "material_areas": [
+          1400.0
+        ],
+        "weight": 28000.000000000004,
+        "pass": true
+      }
+    ]
+  },
+  "native_worker_status": "SOLVED_AWAITING_AUDIT",
+  "global_incomplete_note": "ADAPT_GAP_TARGET_NOT_MET",
+  "target_unmet_reasons": [
+    "GAP_TARGET_NOT_MET",
+    "LOWER_ROOT_NOT_VALID",
+    "UPPER_ROOT_NOT_VALID"
+  ],
+  "root_tolerance_contract": "width <= FS_TOL * max(1, bracket midpoint); per-owner native root validity and completion flags",
+  "grading_basis": "RPX_Fs.bas:572-573,613; RPX_Guard.bas:372-381; independent raw field audit",
+  "grading_revision": 1,
+  "workbook_sha256": "07e7774551a82bbc0507962a86a51e46cd1be23d083119c2ed1784af1199e145",
+  "workbook": "native_retry\\D03N\\RPFEM_20261010_G1R13_D03N_Full1536_Q8.xlsm",
+  "seconds": 9329.912416100036,
+  "finished_utc": "2026-10-09T22:20:25.394321+00:00"
+}

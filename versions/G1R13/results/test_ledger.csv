@@ -1,0 +1,14 @@
+﻿test,kind,status,evidence
+source_preservation,STATIC,PASS,results/source_regression.json
+work_oracle,PYTHON,PASS,results/work_oracle.json
+load_step_11_controls,EXCEL_EXECUTION,PASS,controls/load_step_results.json
+fs_7_failures,EXCEL_EXECUTION,PASS,fs_controls/result.json
+coarse_mesh_25,EXCEL_MESH_ONLY,PASS,mesh25_retry/result.json
+reference_12_fields,PYTHON_REAUDIT,PASS,results/reference_fields.json
+D03N_single_point,EXCEL_EXECUTION,PASS,single_point/D03N/status.json
+D03N_full,EXCEL_EXECUTION,FS_AVAILABLE_PARTIAL,native_retry/D03N/status.json
+D07A_full,EXCEL_EXECUTION,FS_AVAILABLE_PARTIAL,native_retry/D07A/status.json
+work_normalization_15_controls,EXCEL_EXECUTION,PASS,work_controls/result.json
+D01A_full_attempt,EXCEL_EXECUTION,INTERRUPTED_RPC,cases/D01A/status.json
+25_full_G1R13,EXCEL_EXECUTION,NOT_RUN,Only 2 repaired cases rerun fully
+delivery_compile_encoding,EXCEL_COMPILE,PASS,results/delivery_native_integrity.json

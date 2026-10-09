@@ -1,0 +1,135 @@
+{
+  "scope": "actual native exported fields; independent 50-digit audit plus exact stored-geometry/body-work integral",
+  "original": {
+    "work": 0.999999775136992,
+    "audit": {
+      "case": "D03N",
+      "mode": "upper",
+      "fs": 1.2094374254289846,
+      "elements": 997,
+      "decimal_precision": 50,
+      "independent_trig_digits": 65,
+      "raw_errors": {
+        "flow": 0.0,
+        "jump_whole_edge": 0.0,
+        "boundary_velocity": 5.228791005231306e-20,
+        "reference_work": 2.2486300795435514e-07
+      },
+      "max_locations": {
+        "flow": [
+          0,
+          0
+        ],
+        "jump_whole_edge": [
+          119,
+          318,
+          -1
+        ],
+        "boundary_velocity": [
+          17,
+          18,
+          1,
+          0
+        ],
+        "reference_work": "work"
+      },
+      "area": 1400.0,
+      "numerical_audit_pass": false,
+      "meaning": "Numerical audit of stored binary64 field, not rigorous real interval proof.",
+      "dissipation": 0.0,
+      "fixed_work": 0.0,
+      "reference_work": 0.999999775136992,
+      "abs_work": 589831720.990654,
+      "collapse_condition": true,
+      "accepted": false
+    }
+  },
+  "original_normalized": {
+    "work": 0.9999999999336681,
+    "audit": {
+      "case": "D03N",
+      "mode": "upper",
+      "fs": 1.2094374254289846,
+      "elements": 997,
+      "decimal_precision": 50,
+      "independent_trig_digits": 65,
+      "raw_errors": {
+        "flow": 0.0,
+        "jump_whole_edge": 0.0,
+        "boundary_velocity": 5.228792186470575e-20,
+        "reference_work": 6.633199168692195e-11
+      },
+      "max_locations": {
+        "flow": [
+          0,
+          0
+        ],
+        "jump_whole_edge": [
+          119,
+          318,
+          -1
+        ],
+        "boundary_velocity": [
+          17,
+          18,
+          1,
+          0
+        ],
+        "reference_work": "work"
+      },
+      "area": 1400.0,
+      "numerical_audit_pass": true,
+      "meaning": "Numerical audit of stored binary64 field, not rigorous real interval proof.",
+      "dissipation": 0.0,
+      "fixed_work": 0.0,
+      "reference_work": 0.9999999999336681,
+      "abs_work": 589831854.2398869,
+      "collapse_condition": true,
+      "accepted": true
+    }
+  },
+  "solved": {
+    "work": 1.000000000782314,
+    "audit": {
+      "case": "D03N",
+      "mode": "upper",
+      "fs": 1.2094374254289846,
+      "elements": 997,
+      "decimal_precision": 50,
+      "independent_trig_digits": 65,
+      "raw_errors": {
+        "flow": 0.0,
+        "jump_whole_edge": 0.0,
+        "boundary_velocity": 3.741606931360804e-20,
+        "reference_work": 7.823139782215636e-10
+      },
+      "max_locations": {
+        "flow": [
+          0,
+          0
+        ],
+        "jump_whole_edge": [
+          119,
+          318,
+          -1
+        ],
+        "boundary_velocity": [
+          28,
+          29,
+          0,
+          0
+        ],
+        "reference_work": "work"
+      },
+      "area": 1400.0,
+      "numerical_audit_pass": true,
+      "meaning": "Numerical audit of stored binary64 field, not rigorous real interval proof.",
+      "dissipation": 0.0,
+      "fixed_work": 0.0,
+      "reference_work": 1.000000000782314,
+      "abs_work": 589831983.6216912,
+      "collapse_condition": true,
+      "accepted": true
+    }
+  }
+}

@@ -1,0 +1,247 @@
+{
+  "case": "D07A",
+  "status": "FS_AVAILABLE_PARTIAL",
+  "started_utc": "2026-10-09T19:19:46.784906+00:00",
+  "source_sha256": "fe02ff61687cff8e0f0fc775867c8a244a83f758a3c5b9a9f80b6a2ab0389520",
+  "fs_obtained": true,
+  "target_met": false,
+  "input_sha256": "0d3692d33369ea14aa1e4af77c3cc073b6cf17728108491bd2de15663fd3ab19",
+  "scope_notes": [
+    "G1R12 production TARGET1536/adapt3/q8; not catalogue M0/M1/M2 mesh convergence",
+    "E/nu not variables of rigid-plastic formulation; D04/D09 cannot test elastic sensitivity",
+    "N denotes Davis equivalent associated formulation, not direct nonassociated elastoplastic FEM"
+  ],
+  "excel_pid": 38112,
+  "native_definition_check": [
+    "8",
+    "1",
+    "8",
+    "158",
+    "ASSOCIATED"
+  ],
+  "actual_settings": {
+    "MODE": "Fs",
+    "TARGET": 1536.0,
+    "GRAVITY": "固定",
+    "ADAPT": 1.0,
+    "CYCLES": 3.0,
+    "GAP": 0.01,
+    "REFINE": 0.2,
+    "QUADRATURE": 8.0,
+    "FS_TOL": 0.0001,
+    "BEARING_FACES": null,
+    "BEARING_RIGIDS": null,
+    "UPPER_PILOT": 0.0,
+    "UPPER_PILOT_RIGID": 0.0,
+    "LOWER_FS_SEED": "UPPER_TRIAL",
+    "LOWER_SEED_WIDTH": 0.02,
+    "LOWER_MODEL_CACHE": 1.0,
+    "LOWER_KKT_BACKEND": "AUTO",
+    "SCHUR_ALLOW_RIGID": 0.0,
+    "SCHUR_MAX_BYTES": 268435456.0,
+    "TEST_INJECTION": 0.0,
+    "KKT_CAPTURE": 0.0,
+    "SCHUR_TRACE_LEVEL": 0.0,
+    "SCHUR_REPLAY_POLICY": "CONSISTENT",
+    "SCHUR_STRUCTURE_CACHE": 1.0,
+    "SCHUR_RECOVERY_MODE": "REUSE_U",
+    "SCHUR_REFINEMENT": "FIXED3",
+    "SCHUR_GENERIC_START_ITERS": 0.0,
+    "DIRECT_FINAL_AFTER_PILOT": 0.0,
+    "DIAGNOSTIC_MODE": 1.0,
+    "HSD_CAPTURE": 0.0,
+    "HSD_LINEAR_BACKEND": "AUTO_PIVOT",
+    "HSD_LINEAR_CAPTURE": 0.0,
+    "HSD_LINEAR_CAPTURE_MAX": 8.0,
+    "HSD_STABLE_MAX_BYTES": 1073741824.0,
+    "HSD_LINEAR_TRACE": 0.0,
+    "C0_AUTO": 0.0,
+    "ANALYSIS_POLICY": "ASSOCIATED",
+    "RAW_LOWER_AUDIT": 1.0,
+    "C0_UPPER_ADAPT": 0.0,
+    "HSD_SOLVE_SECONDS": 3600.0,
+    "C0_DIRECT_UPPER": 1.0,
+    "HSD_PROJECTIVE_NORMALIZATION": 1.0,
+    "HSD_ORIGINAL_OPERATOR": 0.0,
+    "ADAPT_MESH_POLICY": "LEGACY_THEN_REFINE",
+    "ADAPT_REFINE_CAP": 1000.0,
+    "FS_BRACKET_POLICY": "AUDITED_UPPER_LIMIT"
+  },
+  "run_started_utc": "2026-10-09T19:19:49.752839+00:00",
+  "solve_seconds": 1503.8414883000078,
+  "sheet_status": "上下界を取得（目標区間幅またはFs探索許容差は未達）",
+  "lower_fs": 1.2651420914772866,
+  "upper_fs": 1.277577204587988,
+  "relative_gap": 0.009780956262017701,
+  "element_counts": [
+    999.0,
+    557.0
+  ],
+  "summary_fields": [
+    "0",
+    "",
+    "",
+    "True",
+    "True",
+    "4.94910153174866E-03",
+    "",
+    "C:\\Users\\link_\\Desktop\\RPFEM_G1R13_D03N_D07A_20261010\\native_retry\\D07A\\RPFEM_logs\\20261010_041949_38112_analysis.tsv",
+    "8",
+    "4",
+    "reference_total",
+    "reference_total",
+    "True",
+    "True",
+    "False",
+    "False"
+  ],
+  "error_number": 0,
+  "error": "",
+  "result_current": true,
+  "root_search_incomplete": true,
+  "root_width": 0.00494910153174866,
+  "diagnostic_path": "C:\\Users\\link_\\Desktop\\RPFEM_G1R13_D03N_D07A_20261010\\native_retry\\D07A\\RPFEM_logs\\20261010_041949_38112_analysis.tsv",
+  "witness_q": [
+    8,
+    4
+  ],
+  "witness_phase": [
+    "reference_total",
+    "reference_total"
+  ],
+  "fs_values_present": true,
+  "independent_audit": {
+    "pass": true,
+    "scope": "independent raw-equation/geometry/weight/material audits of native witnesses",
+    "results": [
+      {
+        "side": "lower",
+        "metadata": {
+          "nodes": 540,
+          "elements": 999,
+          "q": 8,
+          "factor": 1.2651420914772866,
+          "fs": 1.2651420914772866,
+          "objective": 1.0001905902840325,
+          "native_audit": 1.6019607307349304e-09,
+          "scale": 10.0
+        },
+        "physical_audit": {
+          "pass": true,
+          "errors": {
+            "yield": 0.0,
+            "equilibrium": 1.6019612303352915e-09,
+            "internal_traction": 2.1984924991613752e-10,
+            "boundary_traction": 5.559996907322784e-12
+          },
+          "load": 1.0001905902840325,
+          "value": 1.0001905902840325
+        },
+        "precision_audit": null,
+        "raw_lower_errors": {
+          "yield": 0.0,
+          "equilibrium": 1.6019612303352915e-08,
+          "internal_traction": 2.1984924991613752e-09,
+          "boundary_traction": 5.559996907322784e-11
+        },
+        "raw_lower_pass": true,
+        "endpoint_direction_pass": true,
+        "material_areas": [
+          158.0
+        ],
+        "weight": 3159.9999999999955,
+        "pass": true
+      },
+      {
+        "side": "upper",
+        "metadata": {
+          "nodes": 316,
+          "elements": 557,
+          "q": 4,
+          "factor": 1.277577204587988,
+          "fs": 1.277577204587988,
+          "objective": 0.9996426937689363,
+          "native_audit": 7.846046035098198e-11,
+          "scale": 10.0
+        },
+        "physical_audit": {
+          "pass": true,
+          "errors": {
+            "flow": 0.0,
+            "jump": 0.0,
+            "boundary": 3.0994670159452384e-11,
+            "work": 7.845968319486474e-11,
+            "objective": 3.3306690738754696e-16
+          },
+          "dissipation": 0.9996426937689367,
+          "work": [
+            0.0,
+            0.9999999999215403
+          ],
+          "value": 0.9996426937689367
+        },
+        "precision_audit": {
+          "case": "D07A",
+          "mode": "upper",
+          "fs": 1.277577204587988,
+          "elements": 557,
+          "decimal_precision": 50,
+          "independent_trig_digits": 65,
+          "raw_errors": {
+            "flow": 0.0,
+            "jump_whole_edge": 0.0,
+            "boundary_velocity": 3.0994670159452384e-11,
+            "reference_work": 7.84599488059978e-11
+          },
+          "max_locations": {
+            "flow": [
+              0,
+              0
+            ],
+            "jump_whole_edge": [
+              104,
+              122,
+              -1
+            ],
+            "boundary_velocity": [
+              18,
+              19,
+              0,
+              0
+            ],
+            "reference_work": "work"
+          },
+          "area": 158.0,
+          "numerical_audit_pass": true,
+          "meaning": "Numerical audit of stored binary64 field, not rigorous real interval proof.",
+          "dissipation": 0.9996426937689378,
+          "fixed_work": 0.0,
+          "reference_work": 0.9999999999215401,
+          "abs_work": 1.1642959700454978,
+          "collapse_condition": true,
+          "accepted": true
+        },
+        "raw_lower_errors": {},
+        "raw_lower_pass": true,
+        "endpoint_direction_pass": true,
+        "material_areas": [
+          158.0
+        ],
+        "weight": 3160.0000000000005,
+        "pass": true
+      }
+    ]
+  },
+  "native_worker_status": "SOLVED_AWAITING_AUDIT",
+  "global_incomplete_note": "",
+  "target_unmet_reasons": [
+    "NATIVE_GLOBAL_INCOMPLETE"
+  ],
+  "root_tolerance_contract": "width <= FS_TOL * max(1, bracket midpoint); per-owner native root validity and completion flags",
+  "grading_basis": "RPX_Fs.bas:572-573,613; RPX_Guard.bas:372-381; independent raw field audit",
+  "grading_revision": 1,
+  "workbook_sha256": "74a541d9ec9ed282c851cda398304a8cd5a3af2deebc5657b2db3c30b3f2415d",
+  "workbook": "native_retry\\D07A\\RPFEM_20261010_G1R13_D07A_Full1536_Q8.xlsm",
+  "seconds": 1508.3525269000093,
+  "finished_utc": "2026-10-09T19:44:55.173978+00:00"
+}

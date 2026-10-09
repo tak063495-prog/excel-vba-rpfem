@@ -1,0 +1,22 @@
+[
+  {
+    "id": "59",
+    "event": "upper_work_normalize",
+    "detail": "proof=ZERO_COST_FEASIBLE_POINT;W=0.99999977408946;eq=3.68827282381213E-12;cone=0;physical_audit=pending"
+  },
+  {
+    "id": "59",
+    "event": "hsd_candidate_audit",
+    "detail": "id=1;kind=ZERO_COST_FEASIBLE_POINT;accepted=True;field_normalization=tau;audit=flow=0;;jump=0;;boundary_velocity=5.22879218647057E-20;index_a=395;index_b=0;index_c=-1;reference_work=1.11386466716823E-09;index_a=-1;index_b=-1;index_c=-1;objective_difference=0;;"
+  },
+  {
+    "id": "59",
+    "event": "hsd_commit",
+    "detail": "id=1;kind=ZERO_COST_FEASIBLE_POINT;status=OPTIMAL;solve_epoch=59;physical_gate=True"
+  },
+  {
+    "id": "59",
+    "event": "solve_end",
+    "detail": "status=OPTIMAL;wall_seconds=388.757478400017;last_iteration_index=50;objective=0;primal=2.98023223876953E-08;dual=0;gap=0;message="
+  }
+]

@@ -1,0 +1,432 @@
+{
+  "pass": true,
+  "scope": "stored binary64 fields, independent 50-digit physical integration/flow/edge audit; not rigorous interval proof",
+  "results": [
+    {
+      "case": "D03N",
+      "kind": "original_rejected",
+      "audit": {
+        "case": "D03N",
+        "mode": "upper",
+        "fs": 1.2094374254289846,
+        "elements": 997,
+        "decimal_precision": 50,
+        "independent_trig_digits": 65,
+        "raw_errors": {
+          "flow": 0.0,
+          "jump_whole_edge": 0.0,
+          "boundary_velocity": 5.228791005231306e-20,
+          "reference_work": 2.2486300795435514e-07
+        },
+        "max_locations": {
+          "flow": [
+            0,
+            0
+          ],
+          "jump_whole_edge": [
+            119,
+            318,
+            -1
+          ],
+          "boundary_velocity": [
+            17,
+            18,
+            1,
+            0
+          ],
+          "reference_work": "work"
+        },
+        "area": 1400.0,
+        "numerical_audit_pass": false,
+        "meaning": "Numerical audit of stored binary64 field, not rigorous real interval proof.",
+        "dissipation": 0.0,
+        "fixed_work": 0.0,
+        "reference_work": 0.999999775136992,
+        "abs_work": 589831720.990654,
+        "collapse_condition": true,
+        "accepted": false
+      },
+      "expected_reject": true
+    },
+    {
+      "case": "D03N",
+      "kind": "original_normalized",
+      "audit": {
+        "case": "D03N",
+        "mode": "upper",
+        "fs": 1.2094374254289846,
+        "elements": 997,
+        "decimal_precision": 50,
+        "independent_trig_digits": 65,
+        "raw_errors": {
+          "flow": 0.0,
+          "jump_whole_edge": 0.0,
+          "boundary_velocity": 5.228792186470575e-20,
+          "reference_work": 6.633199168692195e-11
+        },
+        "max_locations": {
+          "flow": [
+            0,
+            0
+          ],
+          "jump_whole_edge": [
+            119,
+            318,
+            -1
+          ],
+          "boundary_velocity": [
+            17,
+            18,
+            1,
+            0
+          ],
+          "reference_work": "work"
+        },
+        "area": 1400.0,
+        "numerical_audit_pass": true,
+        "meaning": "Numerical audit of stored binary64 field, not rigorous real interval proof.",
+        "dissipation": 0.0,
+        "fixed_work": 0.0,
+        "reference_work": 0.9999999999336681,
+        "abs_work": 589831854.2398869,
+        "collapse_condition": true,
+        "accepted": true
+      }
+    },
+    {
+      "case": "D03N",
+      "kind": "solved",
+      "audit": {
+        "case": "D03N",
+        "mode": "upper",
+        "fs": 1.2094374254289846,
+        "elements": 997,
+        "decimal_precision": 50,
+        "independent_trig_digits": 65,
+        "raw_errors": {
+          "flow": 0.0,
+          "jump_whole_edge": 0.0,
+          "boundary_velocity": 3.741606931360804e-20,
+          "reference_work": 7.823139782215636e-10
+        },
+        "max_locations": {
+          "flow": [
+            0,
+            0
+          ],
+          "jump_whole_edge": [
+            119,
+            318,
+            -1
+          ],
+          "boundary_velocity": [
+            28,
+            29,
+            0,
+            0
+          ],
+          "reference_work": "work"
+        },
+        "area": 1400.0,
+        "numerical_audit_pass": true,
+        "meaning": "Numerical audit of stored binary64 field, not rigorous real interval proof.",
+        "dissipation": 0.0,
+        "fixed_work": 0.0,
+        "reference_work": 1.000000000782314,
+        "abs_work": 589831983.6216912,
+        "collapse_condition": true,
+        "accepted": true
+      }
+    },
+    {
+      "case": "D07A",
+      "kind": "lower_final",
+      "metadata": {
+        "nodes": 540,
+        "elements": 999,
+        "q": 8,
+        "factor": 1.2651420914772866,
+        "fs": 1.2651420914772866,
+        "objective": 1.0001905902840325,
+        "native_audit": 1.6019607307349304e-09,
+        "scale": 10.0
+      },
+      "audit": {
+        "case": "D07A",
+        "mode": "lower",
+        "fs": 1.2651420914772866,
+        "elements": 999,
+        "decimal_precision": 50,
+        "independent_trig_digits": 65,
+        "raw_errors": {
+          "load_one": 0.0001905902840324547,
+          "yield": 0.0,
+          "equilibrium": 1.6019607576046968e-08,
+          "internal_traction": 2.1984924991613752e-09,
+          "boundary_traction": 5.559996907322784e-11
+        },
+        "max_locations": {
+          "load_one": "load",
+          "yield": [
+            0,
+            0
+          ],
+          "equilibrium": [
+            643,
+            2,
+            0
+          ],
+          "internal_traction": [
+            510,
+            511,
+            2,
+            1
+          ],
+          "boundary_traction": [
+            53,
+            392,
+            1,
+            1
+          ]
+        },
+        "area": 158.0,
+        "numerical_audit_pass": false,
+        "meaning": "Numerical audit of stored binary64 field, not rigorous real interval proof.",
+        "load_factor": 1.0001905902840325,
+        "stress_scale": 10.0,
+        "accepted": false
+      },
+      "bound_contract": "lambda_max endpoint: lambda >= 1 - 1e-8; raw physical errors <= 1e-7",
+      "bound_contract_pass": true,
+      "ordinary_double_audit": {
+        "pass": true,
+        "errors": {
+          "yield": 0.0,
+          "equilibrium": 1.6019612303352915e-09,
+          "internal_traction": 2.1984924991613752e-10,
+          "boundary_traction": 5.559996907322784e-12
+        },
+        "load": 1.0001905902840325,
+        "value": 1.0001905902840325
+      }
+    },
+    {
+      "case": "D07A",
+      "kind": "upper_final",
+      "metadata": {
+        "nodes": 316,
+        "elements": 557,
+        "q": 4,
+        "factor": 1.277577204587988,
+        "fs": 1.277577204587988,
+        "objective": 0.9996426937689363,
+        "native_audit": 7.846046035098198e-11,
+        "scale": 10.0
+      },
+      "audit": {
+        "case": "D07A",
+        "mode": "upper",
+        "fs": 1.277577204587988,
+        "elements": 557,
+        "decimal_precision": 50,
+        "independent_trig_digits": 65,
+        "raw_errors": {
+          "flow": 0.0,
+          "jump_whole_edge": 0.0,
+          "boundary_velocity": 3.0994670159452384e-11,
+          "reference_work": 7.84599488059978e-11
+        },
+        "max_locations": {
+          "flow": [
+            0,
+            0
+          ],
+          "jump_whole_edge": [
+            104,
+            122,
+            -1
+          ],
+          "boundary_velocity": [
+            18,
+            19,
+            0,
+            0
+          ],
+          "reference_work": "work"
+        },
+        "area": 158.0,
+        "numerical_audit_pass": true,
+        "meaning": "Numerical audit of stored binary64 field, not rigorous real interval proof.",
+        "dissipation": 0.9996426937689378,
+        "fixed_work": 0.0,
+        "reference_work": 0.9999999999215401,
+        "abs_work": 1.1642959700454978,
+        "collapse_condition": true,
+        "accepted": true
+      },
+      "bound_contract": "upper collapse / reference work",
+      "bound_contract_pass": true,
+      "ordinary_double_audit": {
+        "pass": true,
+        "errors": {
+          "flow": 0.0,
+          "jump": 0.0,
+          "boundary": 3.0994670159452384e-11,
+          "work": 7.845968319486474e-11,
+          "objective": 3.3306690738754696e-16
+        },
+        "dissipation": 0.9996426937689367,
+        "work": [
+          0.0,
+          0.9999999999215403
+        ],
+        "value": 0.9996426937689367
+      }
+    },
+    {
+      "case": "D03N",
+      "kind": "lower_final",
+      "metadata": {
+        "nodes": 548,
+        "elements": 997,
+        "q": 8,
+        "factor": 1.117950896644241,
+        "fs": 1.117950896644241,
+        "objective": 1.0,
+        "native_audit": 3.664326282508401e-09,
+        "scale": 1.0
+      },
+      "audit": {
+        "case": "D03N",
+        "mode": "lower",
+        "fs": 1.117950896644241,
+        "elements": 997,
+        "decimal_precision": 50,
+        "independent_trig_digits": 65,
+        "raw_errors": {
+          "load_one": 0.0,
+          "yield": 6.460159077133399e-10,
+          "equilibrium": 3.664327436212786e-09,
+          "internal_traction": 1.7547480047366845e-10,
+          "boundary_traction": 2.3250048866453113e-10
+        },
+        "max_locations": {
+          "load_one": "load",
+          "yield": [
+            986,
+            3
+          ],
+          "equilibrium": [
+            986,
+            1,
+            0
+          ],
+          "internal_traction": [
+            3,
+            477,
+            0,
+            0
+          ],
+          "boundary_traction": [
+            4,
+            386,
+            2,
+            0
+          ]
+        },
+        "area": 1400.0,
+        "numerical_audit_pass": true,
+        "meaning": "Numerical audit of stored binary64 field, not rigorous real interval proof.",
+        "load_factor": 1.0,
+        "stress_scale": 1.0,
+        "accepted": true
+      },
+      "bound_contract": "lambda_max endpoint: lambda >= 1 - 1e-8; raw physical errors <= 1e-7",
+      "bound_contract_pass": true,
+      "ordinary_double_audit": {
+        "pass": true,
+        "errors": {
+          "yield": 6.4601590771334e-10,
+          "equilibrium": 3.664323955376858e-09,
+          "internal_traction": 1.7547480047366848e-10,
+          "boundary_traction": 2.325004886645311e-10
+        },
+        "load": 1.0,
+        "value": 1.0
+      }
+    },
+    {
+      "case": "D03N",
+      "kind": "upper_final",
+      "metadata": {
+        "nodes": 548,
+        "elements": 997,
+        "q": 8,
+        "factor": 1.2094374254289846,
+        "fs": 1.2094374254289846,
+        "objective": 0.0,
+        "native_audit": 1.1138646671682295e-09,
+        "scale": 1.0
+      },
+      "audit": {
+        "case": "D03N",
+        "mode": "upper",
+        "fs": 1.2094374254289846,
+        "elements": 997,
+        "decimal_precision": 50,
+        "independent_trig_digits": 65,
+        "raw_errors": {
+          "flow": 0.0,
+          "jump_whole_edge": 0.0,
+          "boundary_velocity": 5.228792186470575e-20,
+          "reference_work": 6.633199168692195e-11
+        },
+        "max_locations": {
+          "flow": [
+            0,
+            0
+          ],
+          "jump_whole_edge": [
+            119,
+            318,
+            -1
+          ],
+          "boundary_velocity": [
+            17,
+            18,
+            1,
+            0
+          ],
+          "reference_work": "work"
+        },
+        "area": 1400.0,
+        "numerical_audit_pass": true,
+        "meaning": "Numerical audit of stored binary64 field, not rigorous real interval proof.",
+        "dissipation": 0.0,
+        "fixed_work": 0.0,
+        "reference_work": 0.9999999999336681,
+        "abs_work": 589831854.2398869,
+        "collapse_condition": true,
+        "accepted": true
+      },
+      "bound_contract": "upper collapse / reference work",
+      "bound_contract_pass": true,
+      "ordinary_double_audit": {
+        "pass": false,
+        "errors": {
+          "flow": 0.0,
+          "jump": 0.0,
+          "boundary": 5.228792186470575e-20,
+          "work": 3.936736554521758e-07,
+          "objective": 0.0
+        },
+        "dissipation": 0.0,
+        "work": [
+          0.0,
+          1.0000003936736555
+        ],
+        "value": 0.0
+      }
+    }
+  ]
+}

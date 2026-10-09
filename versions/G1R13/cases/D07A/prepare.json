@@ -1,0 +1,14 @@
+{
+  "compile": "PASS",
+  "precision": "PASS TwoSum; TwoProd; cancellation; division; large scale; zero; coef cache; muladd",
+  "source_module_matches": 48,
+  "definition": [
+    "8",
+    "1",
+    "8",
+    "158",
+    "ASSOCIATED"
+  ],
+  "original_sha256": "3a1828d9e87a67ef8317950b6883e8824f5c40e55d327dd84c9629eead7ff76f",
+  "book_sha256": "abba4c25684537ab3a74a17017cc1facc7e7eefb928f16dfa4dcf23273e97e3b"
+}

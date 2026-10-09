@@ -1,0 +1,12 @@
+{
+  "changed": [
+    "RPX_Audit.bas",
+    "RPX_Fs.bas",
+    "RPX_HSDCandidate.bas",
+    "RPX_LoadStepMesh.bas",
+    "RPX_Mesh.bas",
+    "RPX_WorkPrecision.bas"
+  ],
+  "source_modules": 48,
+  "import_encoding": "CP932 strict lossless / CRLF"
+}

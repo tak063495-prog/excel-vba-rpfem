@@ -1,0 +1,132 @@
+# triangulation 0/318 15063.24
+# triangulation 256/318 15063.37
+# upper F=1 15063.61
+# upper elements 0/554 15063.64
+# upper elements 256/554 15065.37
+# upper elements 512/554 15067.08
+# upper edges 0/871 15067.39
+# upper edges 512/871 15069.32
+# compile arrays 15070.69
+# ordering 6877 15072.9
+# ordering 0/6877 15074.99
+# ordering complete 15083.18
+# symbolic factorization 15083.41
+# symbolic complete 255485 15083.49
+# HSD 0 residual=5.9E+00 gap=1.1E+04 15083.62
+# HSD 1 residual=3.6E+00 gap=6.8E+03 15085.75
+# HSD 2 residual=2.1E+00 gap=4.1E+03 15087.87
+# HSD 3 residual=5.5E-01 gap=1.1E+03 15090.01
+# HSD 4 residual=2.3E-01 gap=6.2E+02 15092.12
+# HSD 5 residual=9.2E-02 gap=5.4E+02 15094.23
+# HSD 6 residual=6.2E-02 gap=4.3E+03 15096.39
+# HSD 7 residual=6.2E-02 gap=2.1E+05 15098.51
+# HSD 8 residual=6.2E-02 gap=1.1E+07 15100.63
+# HSD 9 residual=6.2E-02 gap=5.3E+08 15102.95
+# HSD 10 residual=6.2E-02 gap=2.7E+10 15105.29
+# upper F=2 15107.74
+# HSD 0 residual=8.3E+00 gap=1.1E+04 15107.85
+# HSD 1 residual=4.9E+00 gap=6.6E+03 15109.94
+# HSD 2 residual=2.3E+00 gap=3.1E+03 15112.06
+# HSD 3 residual=1.4E+00 gap=2.0E+03 15114.2
+# HSD 4 residual=1.0E+00 gap=1.5E+03 15116.33
+# HSD 5 residual=8.5E-01 gap=1.3E+03 15118.66
+# HSD 6 residual=6.0E-01 gap=9.6E+02 15120.96
+# HSD 7 residual=2.4E-01 gap=3.9E+02 15123.25
+# HSD 8 residual=6.1E-02 gap=9.9E+01 15125.37
+# HSD 9 residual=3.8E-03 gap=6.2E+00 15127.41
+# HSD 10 residual=7.6E-05 gap=1.2E-01 15129.53
+# HSD 11 residual=1.5E-06 gap=2.5E-03 15131.63
+# HSD 12 residual=3.0E-08 gap=4.9E-05 15133.78
+# HSD 13 residual=6.0E-10 gap=9.8E-07 15135.92
+# HSD 14 residual=2.5E-10 gap=4.5E-07 15138.01
+# HSD 15 residual=1.1E-11 gap=4.9E-08 15140.09
+# upper F=1.50000025000013 15142.44
+# HSD 0 residual=7.0E+00 gap=1.1E+04 15142.55
+# HSD 1 residual=4.3E+00 gap=6.8E+03 15144.69
+# HSD 2 residual=2.3E+00 gap=3.8E+03 15146.84
+# HSD 3 residual=7.6E-01 gap=1.3E+03 15148.99
+# HSD 4 residual=4.5E-01 gap=9.2E+02 15151.14
+# HSD 5 residual=3.5E-01 gap=8.4E+02 15153.28
+# HSD 6 residual=3.2E-01 gap=8.2E+02 15155.58
+# HSD 7 residual=2.7E-01 gap=7.8E+02 15157.95
+# HSD 8 residual=2.4E-01 gap=7.1E+02 15160.52
+# HSD 9 residual=1.5E-01 gap=4.7E+02 15163.14
+# HSD 10 residual=7.2E-02 gap=2.4E+02 15165.65
+# HSD 11 residual=2.7E-02 gap=9.0E+01 15168.08
+# HSD 12 residual=5.2E-03 gap=1.7E+01 15170.16
+# HSD 13 residual=1.1E-03 gap=3.5E+00 15172.3
+# HSD 14 residual=2.1E-04 gap=7.1E-01 15174.42
+# HSD 15 residual=1.8E-05 gap=5.9E-02 15176.51
+# HSD 16 residual=4.3E-07 gap=1.5E-03 15178.6
+# HSD 17 residual=8.7E-09 gap=2.9E-05 15180.73
+# HSD 18 residual=4.0E-09 gap=1.5E-05 15182.83
+# HSD 19 residual=1.8E-09 gap=7.5E-06 15184.98
+# HSD 20 residual=6.8E-11 gap=9.0E-07 15187.11
+# HSD 21 residual=1.5E-11 gap=1.0E-07 15189.25
+# HSD 22 residual=2.2E-12 gap=1.3E-08 15191.38
+# upper F=1.25000025000019 15193.74
+# HSD 0 residual=6.4E+00 gap=1.1E+04 15193.85
+# HSD 1 residual=3.9E+00 gap=6.9E+03 15195.98
+# HSD 2 residual=2.3E+00 gap=4.0E+03 15198.08
+# HSD 3 residual=5.4E-01 gap=1.0E+03 15200.16
+# HSD 4 residual=2.4E-01 gap=6.0E+02 15202.28
+# HSD 5 residual=1.7E-01 gap=7.0E+02 15204.43
+# HSD 6 residual=1.4E-01 gap=1.2E+03 15206.53
+# HSD 7 residual=1.3E-01 gap=3.4E+03 15208.58
+# HSD 8 residual=1.3E-01 gap=4.2E+04 15210.92
+# HSD 9 residual=1.3E-01 gap=2.1E+06 15213.43
+# HSD 10 residual=1.3E-01 gap=1.1E+08 15216.21
+# HSD 11 residual=1.3E-01 gap=5.3E+09 15219.09
+# HSD 12 residual=1.3E-01 gap=1.0E+10 15221.9
+# HSD 13 residual=1.3E-01 gap=2.1E+10 15224.76
+# HSD 14 residual=1.3E-01 gap=4.3E+10 15227.61
+# HSD 15 residual=1.2E-01 gap=8.5E+10 15230.42
+# upper F=1.37500031250019 15233.37
+# HSD 0 residual=6.7E+00 gap=1.1E+04 15233.48
+# HSD 1 residual=4.1E+00 gap=6.9E+03 15235.61
+# HSD 2 residual=2.3E+00 gap=3.9E+03 15237.74
+# HSD 3 residual=6.6E-01 gap=1.2E+03 15239.89
+# HSD 4 residual=3.4E-01 gap=7.6E+02 15241.99
+# HSD 5 residual=2.4E-01 gap=7.3E+02 15244.12
+# HSD 6 residual=2.2E-01 gap=8.1E+02 15246.23
+# HSD 7 residual=1.9E-01 gap=8.9E+02 15248.58
+# HSD 8 residual=1.7E-01 gap=9.7E+02 15251.23
+# HSD 9 residual=1.6E-01 gap=9.7E+02 15253.74
+# HSD 10 residual=1.2E-01 gap=8.4E+02 15256.31
+# HSD 11 residual=6.0E-02 gap=4.6E+02 15258.88
+# HSD 12 residual=2.7E-02 gap=2.1E+02 15261.46
+# HSD 13 residual=8.2E-03 gap=6.6E+01 15263.76
+# HSD 14 residual=1.4E-03 gap=1.1E+01 15265.94
+# HSD 15 residual=2.9E-04 gap=2.3E+00 15268.06
+# HSD 16 residual=2.1E-05 gap=1.7E-01 15270.22
+# HSD 17 residual=4.4E-07 gap=3.5E-03 15272.32
+# HSD 18 residual=8.7E-09 gap=7.0E-05 15274.45
+# HSD 19 residual=4.0E-09 gap=3.6E-05 15276.58
+# HSD 20 residual=1.6E-10 gap=4.6E-06 15278.71
+# HSD 21 residual=3.3E-11 gap=6.0E-07 15280.86
+# HSD 22 residual=5.1E-12 gap=7.8E-08 15283.04
+# HSD 23 residual=1.8E-12 gap=1.0E-08 15285.17
+# upper F=1.31250031250022 15287.53
+# HSD 0 residual=6.6E+00 gap=1.1E+04 15287.65
+# HSD 1 residual=4.0E+00 gap=6.9E+03 15289.79
+# HSD 2 residual=2.3E+00 gap=4.0E+03 15291.93
+# HSD 3 residual=6.0E-01 gap=1.1E+03 15294.07
+# HSD 4 residual=2.9E-01 gap=6.9E+02 15296.21
+# HSD 5 residual=2.1E-01 gap=7.1E+02 15298.34
+# HSD 6 residual=1.8E-01 gap=9.0E+02 15300.46
+# HSD 7 residual=1.6E-01 gap=1.3E+03 15302.6
+# HSD 8 residual=1.5E-01 gap=1.6E+03 15304.95
+# HSD 9 residual=1.4E-01 gap=2.9E+03 15307.3
+# HSD 10 residual=1.4E-01 gap=4.1E+03 15309.65
+# HSD 11 residual=1.4E-01 gap=9.9E+03 15312.01
+# HSD 12 residual=1.3E-01 gap=1.9E+04 15314.57
+# HSD 13 residual=1.4E-01 gap=4.2E+04 15317.13
+# HSD 14 residual=1.4E-01 gap=3.9E+05 15319.69
+# HSD 15 residual=1.4E-01 gap=1.6E+07 15322.51
+# HSD 16 residual=1.4E-01 gap=7.9E+08 15325.35
+# HSD 17 residual=1.4E-01 gap=3.9E+10 15328.1
+# HSD 18 residual=1.3E-01 gap=7.6E+10 15330.92
+# upper F=1.34375032812521 15333.94
+# HSD 0 residual=6.6E+00 gap=1.1E+04 15334.05
+# HSD 1 residual=4.0E+00 gap=6.9E+03 15336.15
+# HSD 2 residual=2.3E+00 gap=4.0E+03 15338.26

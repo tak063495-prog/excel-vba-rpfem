@@ -1,0 +1,14 @@
+{
+  "compile": "PASS",
+  "precision": "PASS TwoSum; TwoProd; cancellation; division; large scale; zero; coef cache; muladd",
+  "source_module_matches": 48,
+  "definition": [
+    "6",
+    "1",
+    "6",
+    "1400",
+    "DAVIS_EQUIVALENT"
+  ],
+  "original_sha256": "f5f1555306675b7b72c6cc242029abcb1cdc539e0492bfe88ec4d6232fd75605",
+  "book_sha256": "e19550cd3e4bb31df4ddb4eeede772f1dbc5120b65bef789604f66ffbbfeccda"
+}

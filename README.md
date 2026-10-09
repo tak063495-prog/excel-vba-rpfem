@@ -14,14 +14,37 @@ Excel VBAによる2次元RPFEM解析のソース、XLSM、検証資料です。
 
 ### 最初の実行
 
-1. 下記のP06N設定済みXLSMをダウンロードし、ローカルの作業フォルダーへ別名で保存します。
+1. 下記のD03NまたはD07A設定済みXLSMをダウンロードし、ローカルの作業フォルダーへ別名で保存します。
 2. 入手元・ハッシュを確認し、組織の規則に従ってそのファイルのマクロを実行できる状態にします。通常の解析にPythonやVBAプロジェクトアクセスの許可は不要です。
-3. 「P06N 実行案内」「材料データ」「設定」を確認し、「要素定義」の**「要素作成②」→「図を表示」→「解析」**を使います。「解析」は入力からメッシュを再生成するため、要素作成は形状の事前確認用です。
+3. 「実行案内」「材料データ」「設定」を確認し、「要素定義」の**「要素作成②」→「図を表示」→「解析」**を使います。「解析」は入力からメッシュを再生成するため、要素作成は形状の事前確認用です。
 4. 「解析結果」の下界・上界・区間幅・解析政策と、ログ末尾の判定を確認します。`PARTIAL_CERTIFIED`は目標未達を含みます。詳しい操作は[使い方](docs/USAGE_JA.md)を参照してください。
 
-**間隙水圧を除く25ケースすべてを実Excelで実行しました。監査済みFs区間は23/25、GAP 1%と根探索目標の達成は11/25です。最終Fs未取得はD03N・D07Aです。 [実行結果・制約](validation/G1R12_native25_20261009/REPORT.md)を確認してください。 図の矢印は規準化された速度機構であり、変位量ではありません。**
+**最新版G1R13ではD03N・D07Aとも監査済みFsを取得したが、精度目標は未達。G1R12時点の25ケース結果は23/25取得・11/25目標達成として保全している。[今回の修復・制限](versions/G1R13/REPORT.md)と[過去25ケース結果](validation/G1R12_native25_20261009/REPORT.md)を区別する。図の矢印は規準化された速度機構であり、変位量ではない。**
 
-## G1R12 — Issues #1 / #2 修正版（最新版）
+## G1R13 — D03N・D07A修復版（最新版）
+
+2026年10月10日。D03Nの参照仕事の桁落ちと候補の正規化、D07Aの荷重段差節点の2三角形fanを修復した。構成則、荷重、Davis変換、数値核・監査許容値、cold-start政策を維持した。
+
+|ケース|下界Fs|上界Fs|GAP|精度区分|
+|---|---:|---:|---:|---|
+|D03N（Davis等価）|1.11795089664|1.20943742543|7.861733%|FS_AVAILABLE_PARTIAL|
+|D07A（関連流れ則）|1.26514209148|1.27757720459|0.978096%|FS_AVAILABLE_PARTIAL|
+
+**両ケースとも実ExcelでFsを取得し、保存した上下界場を独立Pythonで監査した部分結果。D03NはGAP目標1%と既存の根有効性条件、D07Aは採用上界の根幅が未達である。精度目標達成とは扱わない。**
+
+両XLSMに同じ修正版VBAが入っており、どちらもD03N・D07Aの両ケースに対応する。違いは入力済みの形状・材料・境界条件・荷重・解析方針と保存結果。ケースを切り替える場合はこれらを一式変更し、通常の「解析」から再実行する。D03NはDAVIS_EQUIVALENT、D07AはASSOCIATED。
+
+- [D03N設定済みXLSMをダウンロード](https://github.com/tak063495-prog/excel-vba-rpfem/raw/refs/heads/main/versions/G1R13/delivery/RPFEM_20261010_G1R13_D03N_Verified.xlsm)
+- [D07A設定済みXLSMをダウンロード](https://github.com/tak063495-prog/excel-vba-rpfem/raw/refs/heads/main/versions/G1R13/delivery/RPFEM_20261010_G1R13_D07A_Verified.xlsm)
+- [ソース・差分・検証資料ZIPをダウンロード](https://github.com/tak063495-prog/excel-vba-rpfem/raw/refs/heads/main/downloads/RPFEM_G1R13_D03N_D07A_Checked.zip)
+- [修復・検証報告](versions/G1R13/REPORT.md) / [VBAソース](versions/G1R13/src/vba/) / [統合差分](versions/G1R13/changes.diff)
+- [インポート・復旧手順](versions/G1R13/IMPORT_ROLLBACK_JA.md) / [問題と修正の対応](versions/G1R13/ISSUE_TO_FIX_JA.md)
+- [試験台帳](versions/G1R13/results/test_ledger.csv) / [保存場の独立監査](versions/G1R13/results/portable_audit.json)
+- [配布ファイルのSHA-256](downloads/SHA256SUMS.txt)
+
+今回G1R13で全解析したのはD03N・D07Aの2ケース。25ケースの粗メッシュ比較ではD07A以外24ケースのモデルが8バイトDouble値まで一致した。仕事修復15条件、荷重段差11条件、実Fs経路7失敗注入、既存12保存場の再監査を実施した。25ケース全部のG1R13全解析回帰や全解析の速度向上率は確認していない。旧G1R12の23/25という結果と今回の2ケースを、同一版25/25の合格へ合算しない。
+
+## G1R12 — Issues #1 / #2 修正版（前版・保全）
 
 2026年10月9日。2件の指摘を実コードとExcelの反例で確認し、修正しました。適応解析の最良上界メッシュと速度場を出力前に一致させ、`NEWTON_FACTORIZATION_FAILED pivot=…`の実エラー形式で同一問題のHSD救済を1回行います。構成則・物理監査・数値カーネル・許容誤差・G1R11の高速化政策を維持しています。
 

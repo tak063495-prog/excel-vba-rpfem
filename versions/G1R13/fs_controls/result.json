@@ -1,0 +1,56 @@
+{
+  "compile": "PASS",
+  "controlled_failure_injection": "actual production TryFsValue / fs_value hook; no numerical solver execution",
+  "cases": [
+    [
+      "UNKNOWN",
+      "NUMERICAL_UNKNOWN",
+      "",
+      "1",
+      "123"
+    ],
+    [
+      "ERROR",
+      "7",
+      "RPX_TestInjection",
+      "HSD_DD_PRODUCT_UNDERFLOW",
+      "1"
+    ],
+    [
+      "ERROR",
+      "9",
+      "RPX_TestInjection",
+      "HSD_DD_PRODUCT_UNDERFLOW",
+      "1"
+    ],
+    [
+      "ERROR",
+      "18",
+      "VBAProject",
+      "ANALYSIS_CANCELLED",
+      "1"
+    ],
+    [
+      "ERROR",
+      "5",
+      "RPX_TestInjection",
+      "UPPER_PHYSICAL_AUDIT_FAILED injected",
+      "1"
+    ],
+    [
+      "ERROR",
+      "5",
+      "RPX_TestInjection",
+      "UNKNOWN_ERROR",
+      "1"
+    ],
+    [
+      "ERROR",
+      "5",
+      "RPX_TestInjection",
+      "HSD_DD_PRODUCT_UNDERFLOW extra",
+      "1"
+    ]
+  ],
+  "pass": true
+}

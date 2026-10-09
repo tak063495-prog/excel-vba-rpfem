@@ -1,0 +1,40 @@
+{
+  "pass": true,
+  "checks": [
+    {
+      "case": "D07A",
+      "delivery": "delivery\\RPFEM_20261010_G1R13_D07A_Verified.xlsm",
+      "sha256": "64f28ee1417c5df551c4a3ea1945644958a841b9442de01215a2841e0d159382",
+      "compile": "PASS",
+      "all_48_standard_sources_match": true,
+      "unchanged_original_modules": 52,
+      "existing_cls_modules_unchanged": 10,
+      "test_modules_removed": true,
+      "project_codepage": 932,
+      "import_lossless_crlf": true,
+      "saved_fs_values": [
+        1.2651420914772866,
+        1.277577204587988
+      ],
+      "inputs_settings_preserved": true
+    },
+    {
+      "case": "D03N",
+      "delivery": "delivery\\RPFEM_20261010_G1R13_D03N_Verified.xlsm",
+      "sha256": "3ad1a85843305fb41f29caaef3b7e14acf700dbfb0726249247fd15c263aee8c",
+      "compile": "PASS",
+      "all_48_standard_sources_match": true,
+      "unchanged_original_modules": 52,
+      "existing_cls_modules_unchanged": 10,
+      "test_modules_removed": true,
+      "project_codepage": 932,
+      "import_lossless_crlf": true,
+      "saved_fs_values": [
+        1.117950896644241,
+        1.2094374254289846
+      ],
+      "inputs_settings_preserved": true
+    }
+  ],
+  "original_sha256": "fe02ff61687cff8e0f0fc775867c8a244a83f758a3c5b9a9f80b6a2ab0389520"
+}
