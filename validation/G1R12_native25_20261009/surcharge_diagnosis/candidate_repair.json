@@ -1,0 +1,60 @@
+{
+  "scope": "Python candidate only; baseline 25 native results unchanged",
+  "changed_triangles": [
+    528,
+    529
+  ],
+  "original_elements": 553,
+  "repaired_elements": 557,
+  "fs": 1.0,
+  "boundary_loads_unchanged": true,
+  "materials_unchanged": true,
+  "original": {
+    "status": "AlmostSolved",
+    "iterations": 6,
+    "load": -3.092437872837565e-12,
+    "physical_audit": {
+      "pass": true,
+      "errors": {
+        "yield": 0.0,
+        "equilibrium": 1.6930901125533637e-15,
+        "internal_traction": 1.6228234667727479e-13,
+        "boundary_traction": 1.627431899568704e-13
+      },
+      "load": -3.092437872837565e-12,
+      "value": -3.092437872837565e-12
+    },
+    "fixed_load": null,
+    "affine_reduction_variables": [
+      9955,
+      9955
+    ],
+    "scope": "feasible witness at fixed Fs, not a completed Fs root search"
+  },
+  "centroid_fan": {
+    "status": "NumericalError",
+    "iterations": 9,
+    "load": 1.0,
+    "physical_audit": {
+      "pass": true,
+      "errors": {
+        "yield": 0.0,
+        "equilibrium": 1.6082246645510168e-11,
+        "internal_traction": 3.3245628472400313e-12,
+        "boundary_traction": 5.551115123125783e-17
+      },
+      "load": 1.0,
+      "value": 1.0
+    },
+    "fixed_load": 1.0,
+    "affine_reduction_variables": [
+      10027,
+      8333
+    ],
+    "scope": "feasible witness at fixed Fs, not a completed Fs root search",
+    "optimization_converged": false,
+    "feasibility_witness_pass": true
+  },
+  "candidate_test_pass": true,
+  "candidate_test_scope": "Physical feasibility restored at Fs1/load1. Clarabel NumericalError is recorded; no optimization convergence or full Fs root PASS is claimed."
+}

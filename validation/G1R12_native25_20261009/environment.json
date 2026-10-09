@@ -1,0 +1,30 @@
+{
+  "python": "3.12.13 (main, Aug  7 2026, 02:26:41) [MSC v.1944 64 bit (AMD64)]",
+  "executable": "C:\\Users\\link_\\Downloads\\RPFEM_C0_UpperMesh_Codex_Plan\\.venv\\Scripts\\python.exe",
+  "platform": "Windows-11-10.0.26300-SP0",
+  "libraries": {
+    "numpy": "2.5.3",
+    "scipy": "1.18.1",
+    "clarabel": "0.11.1",
+    "mpmath": "1.4.1",
+    "pywin32": "312",
+    "matplotlib": "3.11.2",
+    "oletools": "0.60.2"
+  },
+  "hardware": {
+    "physical_cores": 12,
+    "logical_processors": 24,
+    "installed_memory_GiB": 128
+  },
+  "native_excel": {
+    "version": "16.0",
+    "bits": 64
+  },
+  "batch_parallelism": {
+    "initial_workers": 4,
+    "separate_P06A_worker": 1,
+    "continuation_workers": 8,
+    "maximum_native_processes": 13
+  },
+  "no_macro_security_or_registry_changes": true
+}

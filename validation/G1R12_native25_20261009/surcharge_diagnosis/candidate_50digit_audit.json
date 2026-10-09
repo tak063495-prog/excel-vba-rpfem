@@ -1,0 +1,45 @@
+{
+  "case": "D07A",
+  "mode": "lower",
+  "fs": 1.0,
+  "elements": 557,
+  "decimal_precision": 50,
+  "independent_trig_digits": 65,
+  "raw_errors": {
+    "load_one": 0.0,
+    "yield": 0.0,
+    "equilibrium": 1.6081858449810814e-10,
+    "internal_traction": 3.324551951284646e-11,
+    "boundary_traction": 9.334238928790047e-16
+  },
+  "max_locations": {
+    "load_one": "load",
+    "yield": [
+      0,
+      0
+    ],
+    "equilibrium": [
+      45,
+      0,
+      0
+    ],
+    "internal_traction": [
+      44,
+      242,
+      0,
+      0
+    ],
+    "boundary_traction": [
+      3,
+      40,
+      2,
+      1
+    ]
+  },
+  "area": 158.0,
+  "numerical_audit_pass": true,
+  "meaning": "Numerical audit of stored binary64 field, not rigorous real interval proof.",
+  "load_factor": 1.0,
+  "stress_scale": 10.0,
+  "accepted": true
+}

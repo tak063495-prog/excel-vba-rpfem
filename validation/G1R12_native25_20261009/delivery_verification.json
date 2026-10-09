@@ -1,0 +1,21 @@
+{
+  "pass": true,
+  "all25_actual_native_evidence": true,
+  "native_workbooks": 25,
+  "all25_input_hashes_match_native_records": true,
+  "invalid_scheduler_files_excluded": true,
+  "all_zip_payload_manifest_hashes_pass": true,
+  "production_sha256": "fe02ff61687cff8e0f0fc775867c8a244a83f758a3c5b9a9f80b6a2ab0389520",
+  "packages": [
+    {
+      "name": "RPFEM_G1R12_Native25_Evidence_20261009.zip",
+      "bytes": 28796628,
+      "sha256": "6d88747fb768d60b9be0558793bdfb1826e7150615b572f633009ba4b62411cd"
+    },
+    {
+      "name": "RPFEM_G1R12_Native25_Workbooks_20261009.zip",
+      "bytes": 47611121,
+      "sha256": "c94d2434f0622aba3494fefdcda0b8134d5c2fce375da44580d2e18d412155d6"
+    }
+  ]
+}

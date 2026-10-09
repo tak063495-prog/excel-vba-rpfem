@@ -1,0 +1,7 @@
+{
+  "compile": "PASS",
+  "production_modules_unchanged": 46,
+  "only_added_module": "BatchEvidence",
+  "scope": "read-only evidence export; no solver modification",
+  "sha256": "4c469f87c1874097f324e7b5a6ad3088e09d1f0e1784b64d4e53cd0d102c18e7"
+}

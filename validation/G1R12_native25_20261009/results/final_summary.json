@@ -1,0 +1,5253 @@
+{
+  "completed_utc": "2026-10-09T09:19:40.275863+00:00",
+  "all25_native_executed": true,
+  "fs_obtained": 23,
+  "target_met": 11,
+  "counts": {
+    "FS_AVAILABLE_PARTIAL": 12,
+    "FAILED": 2,
+    "PASS_TARGET": 11
+  },
+  "production_sha256": "fe02ff61687cff8e0f0fc775867c8a244a83f758a3c5b9a9f80b6a2ab0389520",
+  "results": [
+    {
+      "case": "D01A",
+      "status": "FS_AVAILABLE_PARTIAL",
+      "started_utc": "2026-10-08T22:06:10.941582+00:00",
+      "source_sha256": "fe02ff61687cff8e0f0fc775867c8a244a83f758a3c5b9a9f80b6a2ab0389520",
+      "fs_obtained": true,
+      "target_met": false,
+      "input_sha256": "429a13625fc4bfa75e6f95e7f4bf02872ee305762da58b755d2cd8fb68d63155",
+      "scope_notes": [
+        "G1R12 production TARGET1536/adapt3/q8; not catalogue M0/M1/M2 mesh convergence",
+        "E/nu not variables of rigid-plastic formulation; D04/D09 cannot test elastic sensitivity",
+        "N denotes Davis equivalent associated formulation, not direct nonassociated elastoplastic FEM"
+      ],
+      "excel_pid": 41508,
+      "native_definition_check": [
+        "6",
+        "1",
+        "6",
+        "158",
+        "ASSOCIATED"
+      ],
+      "actual_settings": {
+        "MODE": "Fs",
+        "TARGET": 1536.0,
+        "GRAVITY": "固定",
+        "ADAPT": 1.0,
+        "CYCLES": 3.0,
+        "GAP": 0.01,
+        "REFINE": 0.2,
+        "QUADRATURE": 8.0,
+        "FS_TOL": 0.0001,
+        "BEARING_FACES": null,
+        "BEARING_RIGIDS": null,
+        "UPPER_PILOT": 0.0,
+        "UPPER_PILOT_RIGID": 0.0,
+        "LOWER_FS_SEED": "UPPER_TRIAL",
+        "LOWER_SEED_WIDTH": 0.02,
+        "LOWER_MODEL_CACHE": 1.0,
+        "LOWER_KKT_BACKEND": "AUTO",
+        "SCHUR_ALLOW_RIGID": 0.0,
+        "SCHUR_MAX_BYTES": 268435456.0,
+        "TEST_INJECTION": 0.0,
+        "KKT_CAPTURE": 0.0,
+        "SCHUR_TRACE_LEVEL": 0.0,
+        "SCHUR_REPLAY_POLICY": "CONSISTENT",
+        "SCHUR_STRUCTURE_CACHE": 1.0,
+        "SCHUR_RECOVERY_MODE": "REUSE_U",
+        "SCHUR_REFINEMENT": "FIXED3",
+        "SCHUR_GENERIC_START_ITERS": 0.0,
+        "DIRECT_FINAL_AFTER_PILOT": 0.0,
+        "DIAGNOSTIC_MODE": 1.0,
+        "HSD_CAPTURE": 0.0,
+        "HSD_LINEAR_BACKEND": "AUTO_PIVOT",
+        "HSD_LINEAR_CAPTURE": 0.0,
+        "HSD_LINEAR_CAPTURE_MAX": 8.0,
+        "HSD_STABLE_MAX_BYTES": 1073741824.0,
+        "HSD_LINEAR_TRACE": 0.0,
+        "C0_AUTO": 0.0,
+        "ANALYSIS_POLICY": "ASSOCIATED",
+        "RAW_LOWER_AUDIT": 1.0,
+        "C0_UPPER_ADAPT": 0.0,
+        "HSD_SOLVE_SECONDS": 3600.0,
+        "C0_DIRECT_UPPER": 1.0,
+        "HSD_PROJECTIVE_NORMALIZATION": 1.0,
+        "HSD_ORIGINAL_OPERATOR": 0.0,
+        "ADAPT_MESH_POLICY": "LEGACY_THEN_REFINE",
+        "ADAPT_REFINE_CAP": 1000.0,
+        "FS_BRACKET_POLICY": "AUDITED_UPPER_LIMIT"
+      },
+      "run_started_utc": "2026-10-08T22:06:20.570629+00:00",
+      "solve_seconds": 9842.073495099903,
+      "sheet_status": "上下界を取得（目標区間幅またはFs探索許容差は未達）",
+      "lower_fs": 0.5773027538987512,
+      "upper_fs": 0.6148576846248616,
+      "relative_gap": 0.06300314875843205,
+      "element_counts": [
+        997.0,
+        997.0
+      ],
+      "summary_fields": [
+        "0",
+        "",
+        "",
+        "True",
+        "True",
+        "6.56129106904046E-05",
+        "ADAPT_GAP_TARGET_NOT_MET",
+        "C:\\Users\\link_\\Desktop\\RPFEM_G1R12_Native25_20261009\\cases\\D01A\\RPFEM_logs\\20261009_070620_41508_analysis.tsv",
+        "8",
+        "8",
+        "reference_total",
+        "reference_total",
+        "False",
+        "False",
+        "False",
+        "False"
+      ],
+      "error_number": 0,
+      "error": "",
+      "result_current": true,
+      "root_search_incomplete": true,
+      "root_width": 6.56129106904046e-05,
+      "diagnostic_path": "C:\\Users\\link_\\Desktop\\RPFEM_G1R12_Native25_20261009\\cases\\D01A\\RPFEM_logs\\20261009_070620_41508_analysis.tsv",
+      "witness_q": [
+        8,
+        8
+      ],
+      "witness_phase": [
+        "reference_total",
+        "reference_total"
+      ],
+      "fs_values_present": true,
+      "independent_audit": {
+        "pass": true,
+        "scope": "independent raw-equation/geometry/weight/material audits of native witnesses",
+        "results": [
+          {
+            "side": "lower",
+            "metadata": {
+              "nodes": 552,
+              "elements": 997,
+              "q": 8,
+              "factor": 0.5773027538987512,
+              "fs": 0.5773027538987512,
+              "objective": 1.0,
+              "native_audit": 1.8092189871254938e-08,
+              "scale": 1.0
+            },
+            "physical_audit": {
+              "pass": true,
+              "errors": {
+                "yield": 6.503948261484573e-10,
+                "equilibrium": 1.8092189080221033e-08,
+                "internal_traction": 1.4987030425152524e-10,
+                "boundary_traction": 2.924842024591505e-10
+              },
+              "load": 1.0,
+              "value": 1.0
+            },
+            "raw_lower_errors": {
+              "yield": 6.503948261484573e-10,
+              "equilibrium": 1.8092189080221033e-08,
+              "internal_traction": 1.4987030425152524e-10,
+              "boundary_traction": 2.924842024591505e-10
+            },
+            "raw_lower_pass": true,
+            "endpoint_direction_pass": true,
+            "material_areas": [
+              158.0
+            ],
+            "weight": 3159.9999999999977,
+            "pass": true
+          },
+          {
+            "side": "upper",
+            "metadata": {
+              "nodes": 552,
+              "elements": 997,
+              "q": 8,
+              "factor": 0.6148576846248616,
+              "fs": 0.6148576846248616,
+              "objective": 0.0,
+              "native_audit": 3.026306494291475e-08,
+              "scale": 1.0
+            },
+            "physical_audit": {
+              "pass": true,
+              "errors": {
+                "flow": 0.0,
+                "jump": 0.0,
+                "boundary": 9.862348667741676e-18,
+                "work": 1.5183374557636853e-09,
+                "objective": 0.0
+              },
+              "dissipation": 0.0,
+              "work": [
+                0.0,
+                0.9999999984816625
+              ],
+              "value": 0.0
+            },
+            "raw_lower_errors": {},
+            "raw_lower_pass": true,
+            "endpoint_direction_pass": true,
+            "material_areas": [
+              158.0
+            ],
+            "weight": 3159.9999999999977,
+            "pass": true
+          }
+        ]
+      },
+      "workbook_sha256": "b1f9bfe80e07658505b1453ea1e9b86231b91275bd4f5c5782dda555404c81b1",
+      "workbook": "cases\\D01A\\G1R12_D01A_Full1536_Q8.xlsm",
+      "seconds": 9853.483388299937,
+      "finished_utc": "2026-10-09T00:50:24.662173+00:00",
+      "native_worker_status": "FS_AVAILABLE_PARTIAL",
+      "global_incomplete_note": "ADAPT_GAP_TARGET_NOT_MET",
+      "target_unmet_reasons": [
+        "GAP_TARGET_NOT_MET",
+        "LOWER_ROOT_NOT_VALID",
+        "UPPER_ROOT_NOT_VALID"
+      ],
+      "root_tolerance_contract": "width <= FS_TOL * max(1, bracket midpoint); per-owner native root validity and completion flags",
+      "grading_basis": "RPX_Fs.bas:572-573,613; RPX_Guard.bas:372-381; independent raw field audit",
+      "grading_revision": 1,
+      "native_run_started": true,
+      "evidence_root": ".",
+      "saved_output_pass": true,
+      "native_evidence_folder": "C:\\Users\\link_\\Desktop\\RPFEM_G1R12_Native25_20261009\\cases\\D01A",
+      "accepted_witness_q": [
+        8,
+        8
+      ],
+      "accepted_element_counts": [
+        997.0,
+        997.0
+      ]
+    },
+    {
+      "case": "D02A",
+      "status": "FS_AVAILABLE_PARTIAL",
+      "started_utc": "2026-10-08T23:10:56.576942+00:00",
+      "source_sha256": "fe02ff61687cff8e0f0fc775867c8a244a83f758a3c5b9a9f80b6a2ab0389520",
+      "fs_obtained": true,
+      "target_met": false,
+      "input_sha256": "4f78a13857dfdc6d5c91844dbd0ff44aca13c6925124f3bb813f455d6a23f8ec",
+      "scope_notes": [
+        "G1R12 production TARGET1536/adapt3/q8; not catalogue M0/M1/M2 mesh convergence",
+        "E/nu not variables of rigid-plastic formulation; D04/D09 cannot test elastic sensitivity",
+        "N denotes Davis equivalent associated formulation, not direct nonassociated elastoplastic FEM"
+      ],
+      "excel_pid": 9288,
+      "native_definition_check": [
+        "6",
+        "1",
+        "6",
+        "1400",
+        "ASSOCIATED"
+      ],
+      "actual_settings": {
+        "MODE": "Fs",
+        "TARGET": 1536.0,
+        "GRAVITY": "固定",
+        "ADAPT": 1.0,
+        "CYCLES": 3.0,
+        "GAP": 0.01,
+        "REFINE": 0.2,
+        "QUADRATURE": 8.0,
+        "FS_TOL": 0.0001,
+        "BEARING_FACES": null,
+        "BEARING_RIGIDS": null,
+        "UPPER_PILOT": 0.0,
+        "UPPER_PILOT_RIGID": 0.0,
+        "LOWER_FS_SEED": "UPPER_TRIAL",
+        "LOWER_SEED_WIDTH": 0.02,
+        "LOWER_MODEL_CACHE": 1.0,
+        "LOWER_KKT_BACKEND": "AUTO",
+        "SCHUR_ALLOW_RIGID": 0.0,
+        "SCHUR_MAX_BYTES": 268435456.0,
+        "TEST_INJECTION": 0.0,
+        "KKT_CAPTURE": 0.0,
+        "SCHUR_TRACE_LEVEL": 0.0,
+        "SCHUR_REPLAY_POLICY": "CONSISTENT",
+        "SCHUR_STRUCTURE_CACHE": 1.0,
+        "SCHUR_RECOVERY_MODE": "REUSE_U",
+        "SCHUR_REFINEMENT": "FIXED3",
+        "SCHUR_GENERIC_START_ITERS": 0.0,
+        "DIRECT_FINAL_AFTER_PILOT": 0.0,
+        "DIAGNOSTIC_MODE": 1.0,
+        "HSD_CAPTURE": 0.0,
+        "HSD_LINEAR_BACKEND": "AUTO_PIVOT",
+        "HSD_LINEAR_CAPTURE": 0.0,
+        "HSD_LINEAR_CAPTURE_MAX": 8.0,
+        "HSD_STABLE_MAX_BYTES": 1073741824.0,
+        "HSD_LINEAR_TRACE": 0.0,
+        "C0_AUTO": 0.0,
+        "ANALYSIS_POLICY": "ASSOCIATED",
+        "RAW_LOWER_AUDIT": 1.0,
+        "C0_UPPER_ADAPT": 0.0,
+        "HSD_SOLVE_SECONDS": 3600.0,
+        "C0_DIRECT_UPPER": 1.0,
+        "HSD_PROJECTIVE_NORMALIZATION": 1.0,
+        "HSD_ORIGINAL_OPERATOR": 0.0,
+        "ADAPT_MESH_POLICY": "LEGACY_THEN_REFINE",
+        "ADAPT_REFINE_CAP": 1000.0,
+        "FS_BRACKET_POLICY": "AUDITED_UPPER_LIMIT"
+      },
+      "run_started_utc": "2026-10-08T23:11:11.881879+00:00",
+      "solve_seconds": 10062.822084199986,
+      "sheet_status": "上下界を取得（目標区間幅またはFs探索許容差は未達）",
+      "lower_fs": 1.4999997500001463,
+      "upper_fs": 1.5693421156330865,
+      "relative_gap": 0.04518386590255837,
+      "element_counts": [
+        554.0,
+        997.0
+      ],
+      "summary_fields": [
+        "0",
+        "",
+        "",
+        "True",
+        "True",
+        "7.81249609374224E-03",
+        "ADAPT_GAP_TARGET_NOT_MET",
+        "C:\\Users\\link_\\Desktop\\RPFEM_G1R12_Native25_20261009\\queued_continuation\\cases\\D02A\\RPFEM_logs\\20261009_081112_9288_analysis.tsv",
+        "4",
+        "8",
+        "reference_total",
+        "reference_total",
+        "False",
+        "False",
+        "False",
+        "False"
+      ],
+      "error_number": 0,
+      "error": "",
+      "result_current": true,
+      "root_search_incomplete": true,
+      "root_width": 0.00781249609374224,
+      "diagnostic_path": "C:\\Users\\link_\\Desktop\\RPFEM_G1R12_Native25_20261009\\queued_continuation\\cases\\D02A\\RPFEM_logs\\20261009_081112_9288_analysis.tsv",
+      "witness_q": [
+        4,
+        8
+      ],
+      "witness_phase": [
+        "reference_total",
+        "reference_total"
+      ],
+      "fs_values_present": true,
+      "independent_audit": {
+        "pass": true,
+        "scope": "independent raw-equation/geometry/weight/material audits of native witnesses",
+        "results": [
+          {
+            "side": "lower",
+            "metadata": {
+              "nodes": 318,
+              "elements": 554,
+              "q": 4,
+              "factor": 1.4999997500001463,
+              "fs": 1.4999997500001463,
+              "objective": 1.0,
+              "native_audit": 1.0289141843221328e-08,
+              "scale": 1.0
+            },
+            "physical_audit": {
+              "pass": true,
+              "errors": {
+                "yield": 3.651542891480931e-09,
+                "equilibrium": 1.0289141982866568e-08,
+                "internal_traction": 6.540914452496786e-10,
+                "boundary_traction": 1.3076288299423686e-09
+              },
+              "load": 1.0,
+              "value": 1.0
+            },
+            "raw_lower_errors": {
+              "yield": 3.651542891480931e-09,
+              "equilibrium": 1.0289141982866568e-08,
+              "internal_traction": 6.540914452496786e-10,
+              "boundary_traction": 1.3076288299423686e-09
+            },
+            "raw_lower_pass": true,
+            "endpoint_direction_pass": true,
+            "material_areas": [
+              1400.0
+            ],
+            "weight": 28000.000000000036,
+            "pass": true
+          },
+          {
+            "side": "upper",
+            "metadata": {
+              "nodes": 548,
+              "elements": 997,
+              "q": 8,
+              "factor": 1.5693421156330865,
+              "fs": 1.5693421156330865,
+              "objective": 0.0,
+              "native_audit": 1.6730235197215393e-08,
+              "scale": 1.0
+            },
+            "physical_audit": {
+              "pass": true,
+              "errors": {
+                "flow": 0.0,
+                "jump": 0.0,
+                "boundary": 9.312131568821209e-21,
+                "work": 7.3752559615059e-10,
+                "objective": 0.0
+              },
+              "dissipation": 0.0,
+              "work": [
+                0.0,
+                0.9999999992624744
+              ],
+              "value": 0.0
+            },
+            "raw_lower_errors": {},
+            "raw_lower_pass": true,
+            "endpoint_direction_pass": true,
+            "material_areas": [
+              1400.0
+            ],
+            "weight": 28000.000000000004,
+            "pass": true
+          }
+        ]
+      },
+      "workbook_sha256": "c1f592190ccd7f33bdd25623c8275564555c9db2c1c8656d352cbca8e924de5e",
+      "workbook": "cases\\D02A\\G1R12_D02A_Full1536_Q8.xlsm",
+      "seconds": 10079.724758900004,
+      "finished_utc": "2026-10-09T01:58:56.558055+00:00",
+      "native_worker_status": "FS_AVAILABLE_PARTIAL",
+      "global_incomplete_note": "ADAPT_GAP_TARGET_NOT_MET",
+      "target_unmet_reasons": [
+        "GAP_TARGET_NOT_MET",
+        "LOWER_ROOT_NOT_VALID",
+        "UPPER_ROOT_NOT_VALID"
+      ],
+      "root_tolerance_contract": "width <= FS_TOL * max(1, bracket midpoint); per-owner native root validity and completion flags",
+      "grading_basis": "RPX_Fs.bas:572-573,613; RPX_Guard.bas:372-381; independent raw field audit",
+      "grading_revision": 1,
+      "native_run_started": true,
+      "evidence_root": "queued_continuation",
+      "saved_output_pass": true,
+      "native_evidence_folder": "C:\\Users\\link_\\Desktop\\RPFEM_G1R12_Native25_20261009\\queued_continuation\\cases\\D02A",
+      "accepted_witness_q": [
+        4,
+        8
+      ],
+      "accepted_element_counts": [
+        554.0,
+        997.0
+      ]
+    },
+    {
+      "case": "D03N",
+      "status": "FAILED",
+      "started_utc": "2026-10-08T23:10:56.590089+00:00",
+      "source_sha256": "fe02ff61687cff8e0f0fc775867c8a244a83f758a3c5b9a9f80b6a2ab0389520",
+      "fs_obtained": false,
+      "target_met": false,
+      "input_sha256": "f3697c56685aeb86cea502a91db1adddfe9be68f9aaa0004770e42f954e0405d",
+      "scope_notes": [
+        "G1R12 production TARGET1536/adapt3/q8; not catalogue M0/M1/M2 mesh convergence",
+        "E/nu not variables of rigid-plastic formulation; D04/D09 cannot test elastic sensitivity",
+        "N denotes Davis equivalent associated formulation, not direct nonassociated elastoplastic FEM"
+      ],
+      "excel_pid": 23396,
+      "native_definition_check": [
+        "6",
+        "1",
+        "6",
+        "1400",
+        "DAVIS_EQUIVALENT"
+      ],
+      "actual_settings": {
+        "MODE": "Fs",
+        "TARGET": 1536.0,
+        "GRAVITY": "固定",
+        "ADAPT": 1.0,
+        "CYCLES": 3.0,
+        "GAP": 0.01,
+        "REFINE": 0.2,
+        "QUADRATURE": 8.0,
+        "FS_TOL": 0.0001,
+        "BEARING_FACES": null,
+        "BEARING_RIGIDS": null,
+        "UPPER_PILOT": 0.0,
+        "UPPER_PILOT_RIGID": 0.0,
+        "LOWER_FS_SEED": "UPPER_TRIAL",
+        "LOWER_SEED_WIDTH": 0.02,
+        "LOWER_MODEL_CACHE": 1.0,
+        "LOWER_KKT_BACKEND": "AUTO",
+        "SCHUR_ALLOW_RIGID": 0.0,
+        "SCHUR_MAX_BYTES": 268435456.0,
+        "TEST_INJECTION": 0.0,
+        "KKT_CAPTURE": 0.0,
+        "SCHUR_TRACE_LEVEL": 0.0,
+        "SCHUR_REPLAY_POLICY": "CONSISTENT",
+        "SCHUR_STRUCTURE_CACHE": 1.0,
+        "SCHUR_RECOVERY_MODE": "REUSE_U",
+        "SCHUR_REFINEMENT": "FIXED3",
+        "SCHUR_GENERIC_START_ITERS": 0.0,
+        "DIRECT_FINAL_AFTER_PILOT": 0.0,
+        "DIAGNOSTIC_MODE": 1.0,
+        "HSD_CAPTURE": 0.0,
+        "HSD_LINEAR_BACKEND": "AUTO_PIVOT",
+        "HSD_LINEAR_CAPTURE": 0.0,
+        "HSD_LINEAR_CAPTURE_MAX": 8.0,
+        "HSD_STABLE_MAX_BYTES": 1073741824.0,
+        "HSD_LINEAR_TRACE": 0.0,
+        "C0_AUTO": 0.0,
+        "ANALYSIS_POLICY": "DAVIS_EQUIVALENT",
+        "RAW_LOWER_AUDIT": 1.0,
+        "C0_UPPER_ADAPT": 0.0,
+        "HSD_SOLVE_SECONDS": 3600.0,
+        "C0_DIRECT_UPPER": 1.0,
+        "HSD_PROJECTIVE_NORMALIZATION": 1.0,
+        "HSD_ORIGINAL_OPERATOR": 0.0,
+        "ADAPT_MESH_POLICY": "LEGACY_THEN_REFINE",
+        "ADAPT_REFINE_CAP": 1000.0,
+        "FS_BRACKET_POLICY": "AUDITED_UPPER_LIMIT"
+      },
+      "run_started_utc": "2026-10-08T23:11:12.923856+00:00",
+      "solve_seconds": 7292.871627600049,
+      "sheet_status": "解析未完了：HSD_DD_PRODUCT_UNDERFLOW",
+      "lower_fs": null,
+      "upper_fs": null,
+      "relative_gap": null,
+      "element_counts": [
+        null,
+        null
+      ],
+      "summary_fields": [
+        "5",
+        "HSD_DD_PRODUCT_UNDERFLOW",
+        "VBAProject",
+        "False",
+        "False",
+        "0",
+        "",
+        "C:\\Users\\link_\\Desktop\\RPFEM_G1R12_Native25_20261009\\queued_continuation\\cases\\D03N\\RPFEM_logs\\20261009_081113_23396_analysis.tsv",
+        "4",
+        "4",
+        "reference_total",
+        "reference_total",
+        "False",
+        "False",
+        "False",
+        "False"
+      ],
+      "error_number": 5,
+      "error": "HSD_DD_PRODUCT_UNDERFLOW",
+      "result_current": false,
+      "root_search_incomplete": false,
+      "root_width": 0.0,
+      "diagnostic_path": "C:\\Users\\link_\\Desktop\\RPFEM_G1R12_Native25_20261009\\queued_continuation\\cases\\D03N\\RPFEM_logs\\20261009_081113_23396_analysis.tsv",
+      "witness_q": [
+        4,
+        4
+      ],
+      "witness_phase": [
+        "reference_total",
+        "reference_total"
+      ],
+      "fs_values_present": false,
+      "workbook_sha256": "f5f1555306675b7b72c6cc242029abcb1cdc539e0492bfe88ec4d6232fd75605",
+      "workbook": "cases\\D03N\\G1R12_D03N_Full1536_Q8.xlsm",
+      "seconds": 7310.045860799961,
+      "finished_utc": "2026-10-09T01:12:46.822219+00:00",
+      "native_worker_status": "FAILED",
+      "native_run_started": true,
+      "evidence_root": "queued_continuation",
+      "native_evidence_folder": "C:\\Users\\link_\\Desktop\\RPFEM_G1R12_Native25_20261009\\queued_continuation\\cases\\D03N",
+      "accepted_witness_q": null,
+      "accepted_element_counts": null
+    },
+    {
+      "case": "D04A",
+      "status": "PASS_TARGET",
+      "started_utc": "2026-10-08T23:10:56.598624+00:00",
+      "source_sha256": "fe02ff61687cff8e0f0fc775867c8a244a83f758a3c5b9a9f80b6a2ab0389520",
+      "fs_obtained": true,
+      "target_met": true,
+      "input_sha256": "cd96b0a153f926f7e6c7bb35e86ec30e636038b6866b7132dcc7b546b7aa3476",
+      "scope_notes": [
+        "G1R12 production TARGET1536/adapt3/q8; not catalogue M0/M1/M2 mesh convergence",
+        "E/nu not variables of rigid-plastic formulation; D04/D09 cannot test elastic sensitivity",
+        "N denotes Davis equivalent associated formulation, not direct nonassociated elastoplastic FEM"
+      ],
+      "excel_pid": 30820,
+      "native_definition_check": [
+        "6",
+        "1",
+        "6",
+        "158",
+        "ASSOCIATED"
+      ],
+      "actual_settings": {
+        "MODE": "Fs",
+        "TARGET": 1536.0,
+        "GRAVITY": "固定",
+        "ADAPT": 1.0,
+        "CYCLES": 3.0,
+        "GAP": 0.01,
+        "REFINE": 0.2,
+        "QUADRATURE": 8.0,
+        "FS_TOL": 0.0001,
+        "BEARING_FACES": null,
+        "BEARING_RIGIDS": null,
+        "UPPER_PILOT": 0.0,
+        "UPPER_PILOT_RIGID": 0.0,
+        "LOWER_FS_SEED": "UPPER_TRIAL",
+        "LOWER_SEED_WIDTH": 0.02,
+        "LOWER_MODEL_CACHE": 1.0,
+        "LOWER_KKT_BACKEND": "AUTO",
+        "SCHUR_ALLOW_RIGID": 0.0,
+        "SCHUR_MAX_BYTES": 268435456.0,
+        "TEST_INJECTION": 0.0,
+        "KKT_CAPTURE": 0.0,
+        "SCHUR_TRACE_LEVEL": 0.0,
+        "SCHUR_REPLAY_POLICY": "CONSISTENT",
+        "SCHUR_STRUCTURE_CACHE": 1.0,
+        "SCHUR_RECOVERY_MODE": "REUSE_U",
+        "SCHUR_REFINEMENT": "FIXED3",
+        "SCHUR_GENERIC_START_ITERS": 0.0,
+        "DIRECT_FINAL_AFTER_PILOT": 0.0,
+        "DIAGNOSTIC_MODE": 1.0,
+        "HSD_CAPTURE": 0.0,
+        "HSD_LINEAR_BACKEND": "AUTO_PIVOT",
+        "HSD_LINEAR_CAPTURE": 0.0,
+        "HSD_LINEAR_CAPTURE_MAX": 8.0,
+        "HSD_STABLE_MAX_BYTES": 1073741824.0,
+        "HSD_LINEAR_TRACE": 0.0,
+        "C0_AUTO": 0.0,
+        "ANALYSIS_POLICY": "ASSOCIATED",
+        "RAW_LOWER_AUDIT": 1.0,
+        "C0_UPPER_ADAPT": 0.0,
+        "HSD_SOLVE_SECONDS": 3600.0,
+        "C0_DIRECT_UPPER": 1.0,
+        "HSD_PROJECTIVE_NORMALIZATION": 1.0,
+        "HSD_ORIGINAL_OPERATOR": 0.0,
+        "ADAPT_MESH_POLICY": "LEGACY_THEN_REFINE",
+        "ADAPT_REFINE_CAP": 1000.0,
+        "FS_BRACKET_POLICY": "AUDITED_UPPER_LIMIT"
+      },
+      "run_started_utc": "2026-10-08T23:11:13.508661+00:00",
+      "solve_seconds": 2070.847874099971,
+      "sheet_status": "解析完了",
+      "lower_fs": 1.3016569748403444,
+      "upper_fs": 1.3110550654525948,
+      "relative_gap": 0.007194126614272169,
+      "element_counts": [
+        1000.0,
+        1000.0
+      ],
+      "summary_fields": [
+        "0",
+        "",
+        "",
+        "True",
+        "False",
+        "1.04880210027858E-04",
+        "",
+        "C:\\Users\\link_\\Desktop\\RPFEM_G1R12_Native25_20261009\\queued_continuation\\cases\\D04A\\RPFEM_logs\\20261009_081113_30820_analysis.tsv",
+        "8",
+        "8",
+        "reference_total",
+        "reference_total",
+        "True",
+        "True",
+        "False",
+        "False"
+      ],
+      "error_number": 0,
+      "error": "",
+      "result_current": true,
+      "root_search_incomplete": false,
+      "root_width": 0.000104880210027858,
+      "diagnostic_path": "C:\\Users\\link_\\Desktop\\RPFEM_G1R12_Native25_20261009\\queued_continuation\\cases\\D04A\\RPFEM_logs\\20261009_081113_30820_analysis.tsv",
+      "witness_q": [
+        8,
+        8
+      ],
+      "witness_phase": [
+        "reference_total",
+        "reference_total"
+      ],
+      "fs_values_present": true,
+      "independent_audit": {
+        "pass": true,
+        "scope": "independent raw-equation/geometry/weight/material audits of native witnesses",
+        "results": [
+          {
+            "side": "lower",
+            "metadata": {
+              "nodes": 539,
+              "elements": 1000,
+              "q": 8,
+              "factor": 1.3016569748403444,
+              "fs": 1.3016569748403444,
+              "objective": 1.000171091072684,
+              "native_audit": 8.15026761011306e-09,
+              "scale": 10.0
+            },
+            "physical_audit": {
+              "pass": true,
+              "errors": {
+                "yield": 0.0,
+                "equilibrium": 8.150266239681514e-09,
+                "boundary_traction": 5.891061870515727e-13,
+                "internal_traction": 4.6147186072431623e-10
+              },
+              "load": 1.000171091072684,
+              "value": 1.000171091072684
+            },
+            "raw_lower_errors": {
+              "yield": 0.0,
+              "equilibrium": 8.150266239681514e-08,
+              "boundary_traction": 5.891061870515727e-12,
+              "internal_traction": 4.614718607243162e-09
+            },
+            "raw_lower_pass": true,
+            "endpoint_direction_pass": true,
+            "material_areas": [
+              158.0
+            ],
+            "weight": 3160.000000000001,
+            "pass": true
+          },
+          {
+            "side": "upper",
+            "metadata": {
+              "nodes": 539,
+              "elements": 1000,
+              "q": 8,
+              "factor": 1.3110550654525948,
+              "fs": 1.3110550654525948,
+              "objective": 0.9998613550274227,
+              "native_audit": 3.6873837316875324e-10,
+              "scale": 10.0
+            },
+            "physical_audit": {
+              "pass": true,
+              "errors": {
+                "flow": 0.0,
+                "boundary": 1.8055420184654542e-11,
+                "jump": 0.0,
+                "work": 3.6873770703493847e-10,
+                "objective": 5.551115123125783e-16
+              },
+              "dissipation": 0.9998613550274232,
+              "work": [
+                0.0,
+                0.9999999996312623
+              ],
+              "value": 0.9998613550274232
+            },
+            "raw_lower_errors": {},
+            "raw_lower_pass": true,
+            "endpoint_direction_pass": true,
+            "material_areas": [
+              158.0
+            ],
+            "weight": 3160.000000000001,
+            "pass": true
+          }
+        ]
+      },
+      "workbook_sha256": "d7f984aa80773e46de8e210479065b780f5d10c9498e898df97be54eebd0daea",
+      "workbook": "cases\\D04A\\G1R12_D04A_Full1536_Q8.xlsm",
+      "seconds": 2089.8654807999264,
+      "finished_utc": "2026-10-08T23:45:46.509132+00:00",
+      "native_worker_status": "FS_AVAILABLE_PARTIAL",
+      "global_incomplete_note": "",
+      "target_unmet_reasons": [],
+      "root_tolerance_contract": "width <= FS_TOL * max(1, bracket midpoint); per-owner native root validity and completion flags",
+      "grading_basis": "RPX_Fs.bas:572-573,613; RPX_Guard.bas:372-381; independent raw field audit",
+      "grading_revision": 1,
+      "native_run_started": true,
+      "evidence_root": "queued_continuation",
+      "saved_output_pass": true,
+      "native_evidence_folder": "C:\\Users\\link_\\Desktop\\RPFEM_G1R12_Native25_20261009\\queued_continuation\\cases\\D04A",
+      "accepted_witness_q": [
+        8,
+        8
+      ],
+      "accepted_element_counts": [
+        1000.0,
+        1000.0
+      ]
+    },
+    {
+      "case": "D05A",
+      "status": "PASS_TARGET",
+      "started_utc": "2026-10-08T23:10:56.617862+00:00",
+      "source_sha256": "fe02ff61687cff8e0f0fc775867c8a244a83f758a3c5b9a9f80b6a2ab0389520",
+      "fs_obtained": true,
+      "target_met": true,
+      "input_sha256": "369503b4f1c981370a7eba0464ba4ed260d2d2d9d2e29d08e472c15d0bdbfc48",
+      "scope_notes": [
+        "G1R12 production TARGET1536/adapt3/q8; not catalogue M0/M1/M2 mesh convergence",
+        "E/nu not variables of rigid-plastic formulation; D04/D09 cannot test elastic sensitivity",
+        "N denotes Davis equivalent associated formulation, not direct nonassociated elastoplastic FEM"
+      ],
+      "excel_pid": 19532,
+      "native_definition_check": [
+        "6",
+        "1",
+        "6",
+        "158000000",
+        "ASSOCIATED"
+      ],
+      "actual_settings": {
+        "MODE": "Fs",
+        "TARGET": 1536.0,
+        "GRAVITY": "固定",
+        "ADAPT": 1.0,
+        "CYCLES": 3.0,
+        "GAP": 0.01,
+        "REFINE": 0.2,
+        "QUADRATURE": 8.0,
+        "FS_TOL": 0.0001,
+        "BEARING_FACES": null,
+        "BEARING_RIGIDS": null,
+        "UPPER_PILOT": 0.0,
+        "UPPER_PILOT_RIGID": 0.0,
+        "LOWER_FS_SEED": "UPPER_TRIAL",
+        "LOWER_SEED_WIDTH": 0.02,
+        "LOWER_MODEL_CACHE": 1.0,
+        "LOWER_KKT_BACKEND": "AUTO",
+        "SCHUR_ALLOW_RIGID": 0.0,
+        "SCHUR_MAX_BYTES": 268435456.0,
+        "TEST_INJECTION": 0.0,
+        "KKT_CAPTURE": 0.0,
+        "SCHUR_TRACE_LEVEL": 0.0,
+        "SCHUR_REPLAY_POLICY": "CONSISTENT",
+        "SCHUR_STRUCTURE_CACHE": 1.0,
+        "SCHUR_RECOVERY_MODE": "REUSE_U",
+        "SCHUR_REFINEMENT": "FIXED3",
+        "SCHUR_GENERIC_START_ITERS": 0.0,
+        "DIRECT_FINAL_AFTER_PILOT": 0.0,
+        "DIAGNOSTIC_MODE": 1.0,
+        "HSD_CAPTURE": 0.0,
+        "HSD_LINEAR_BACKEND": "AUTO_PIVOT",
+        "HSD_LINEAR_CAPTURE": 0.0,
+        "HSD_LINEAR_CAPTURE_MAX": 8.0,
+        "HSD_STABLE_MAX_BYTES": 1073741824.0,
+        "HSD_LINEAR_TRACE": 0.0,
+        "C0_AUTO": 0.0,
+        "ANALYSIS_POLICY": "ASSOCIATED",
+        "RAW_LOWER_AUDIT": 1.0,
+        "C0_UPPER_ADAPT": 0.0,
+        "HSD_SOLVE_SECONDS": 3600.0,
+        "C0_DIRECT_UPPER": 1.0,
+        "HSD_PROJECTIVE_NORMALIZATION": 1.0,
+        "HSD_ORIGINAL_OPERATOR": 0.0,
+        "ADAPT_MESH_POLICY": "LEGACY_THEN_REFINE",
+        "ADAPT_REFINE_CAP": 1000.0,
+        "FS_BRACKET_POLICY": "AUDITED_UPPER_LIMIT"
+      },
+      "run_started_utc": "2026-10-08T23:11:14.194870+00:00",
+      "solve_seconds": 2516.993704100023,
+      "sheet_status": "解析完了",
+      "lower_fs": 1.3015184815788732,
+      "upper_fs": 1.3109054656496246,
+      "relative_gap": 0.007186417105623329,
+      "element_counts": [
+        998.0,
+        998.0
+      ],
+      "summary_fields": [
+        "0",
+        "",
+        "",
+        "True",
+        "False",
+        "1.04868242522205E-04",
+        "",
+        "C:\\Users\\link_\\Desktop\\RPFEM_G1R12_Native25_20261009\\queued_continuation\\cases\\D05A\\RPFEM_logs\\20261009_081114_19532_analysis.tsv",
+        "8",
+        "8",
+        "reference_total",
+        "reference_total",
+        "True",
+        "True",
+        "False",
+        "False"
+      ],
+      "error_number": 0,
+      "error": "",
+      "result_current": true,
+      "root_search_incomplete": false,
+      "root_width": 0.000104868242522205,
+      "diagnostic_path": "C:\\Users\\link_\\Desktop\\RPFEM_G1R12_Native25_20261009\\queued_continuation\\cases\\D05A\\RPFEM_logs\\20261009_081114_19532_analysis.tsv",
+      "witness_q": [
+        8,
+        8
+      ],
+      "witness_phase": [
+        "reference_total",
+        "reference_total"
+      ],
+      "fs_values_present": true,
+      "independent_audit": {
+        "pass": true,
+        "scope": "independent raw-equation/geometry/weight/material audits of native witnesses",
+        "results": [
+          {
+            "side": "lower",
+            "metadata": {
+              "nodes": 538,
+              "elements": 998,
+              "q": 8,
+              "factor": 1.3015184815788732,
+              "fs": 1.3015184815788732,
+              "objective": 1.0001708069007318,
+              "native_audit": 1.8034936322131045e-09,
+              "scale": 10.0
+            },
+            "physical_audit": {
+              "pass": true,
+              "errors": {
+                "yield": 0.0,
+                "equilibrium": 1.0790486559830725e-11,
+                "boundary_traction": 7.716882688413307e-12,
+                "internal_traction": 1.8034936322131045e-09
+              },
+              "load": 1.0001708069007318,
+              "value": 1.0001708069007318
+            },
+            "raw_lower_errors": {
+              "yield": 0.0,
+              "equilibrium": 1.0790486559830725e-10,
+              "boundary_traction": 7.716882688413307e-11,
+              "internal_traction": 1.8034936322131045e-08
+            },
+            "raw_lower_pass": true,
+            "endpoint_direction_pass": true,
+            "material_areas": [
+              158000000.0
+            ],
+            "weight": 3159999.9999999995,
+            "pass": true
+          },
+          {
+            "side": "upper",
+            "metadata": {
+              "nodes": 538,
+              "elements": 998,
+              "q": 8,
+              "factor": 1.3109054656496246,
+              "fs": 1.3109054656496246,
+              "objective": 0.9998350678953258,
+              "native_audit": 5.739481623301401e-08,
+              "scale": 10.0
+            },
+            "physical_audit": {
+              "pass": true,
+              "errors": {
+                "flow": 0.0,
+                "boundary": 3.092796626954301e-13,
+                "jump": 0.0,
+                "work": 5.739481623301401e-08,
+                "objective": 2.220446049250313e-16
+              },
+              "dissipation": 0.9998350678953256,
+              "work": [
+                0.0,
+                0.9999999426051838
+              ],
+              "value": 0.9998350678953256
+            },
+            "raw_lower_errors": {},
+            "raw_lower_pass": true,
+            "endpoint_direction_pass": true,
+            "material_areas": [
+              158000000.0
+            ],
+            "weight": 3159999.9999999995,
+            "pass": true
+          }
+        ]
+      },
+      "workbook_sha256": "707afc46400b84e6dc504bc988f97f66950b0d14fdf07fe4dade9a0c36b8660e",
+      "workbook": "cases\\D05A\\G1R12_D05A_Full1536_Q8.xlsm",
+      "seconds": 2536.529896199936,
+      "finished_utc": "2026-10-08T23:53:13.199356+00:00",
+      "native_worker_status": "FS_AVAILABLE_PARTIAL",
+      "global_incomplete_note": "",
+      "target_unmet_reasons": [],
+      "root_tolerance_contract": "width <= FS_TOL * max(1, bracket midpoint); per-owner native root validity and completion flags",
+      "grading_basis": "RPX_Fs.bas:572-573,613; RPX_Guard.bas:372-381; independent raw field audit",
+      "grading_revision": 1,
+      "native_run_started": true,
+      "evidence_root": "queued_continuation",
+      "saved_output_pass": true,
+      "native_evidence_folder": "C:\\Users\\link_\\Desktop\\RPFEM_G1R12_Native25_20261009\\queued_continuation\\cases\\D05A",
+      "accepted_witness_q": [
+        8,
+        8
+      ],
+      "accepted_element_counts": [
+        998.0,
+        998.0
+      ]
+    },
+    {
+      "case": "D06A",
+      "status": "PASS_TARGET",
+      "started_utc": "2026-10-08T23:10:56.623868+00:00",
+      "source_sha256": "fe02ff61687cff8e0f0fc775867c8a244a83f758a3c5b9a9f80b6a2ab0389520",
+      "fs_obtained": true,
+      "target_met": true,
+      "input_sha256": "11592848ddb599982497d83b522342b00abe62a934b302e6cfe7913bfd3b8cfe",
+      "scope_notes": [
+        "G1R12 production TARGET1536/adapt3/q8; not catalogue M0/M1/M2 mesh convergence",
+        "E/nu not variables of rigid-plastic formulation; D04/D09 cannot test elastic sensitivity",
+        "N denotes Davis equivalent associated formulation, not direct nonassociated elastoplastic FEM"
+      ],
+      "excel_pid": 39736,
+      "native_definition_check": [
+        "6",
+        "1",
+        "6",
+        "158",
+        "ASSOCIATED"
+      ],
+      "actual_settings": {
+        "MODE": "Fs",
+        "TARGET": 1536.0,
+        "GRAVITY": "固定",
+        "ADAPT": 1.0,
+        "CYCLES": 3.0,
+        "GAP": 0.01,
+        "REFINE": 0.2,
+        "QUADRATURE": 8.0,
+        "FS_TOL": 0.0001,
+        "BEARING_FACES": null,
+        "BEARING_RIGIDS": null,
+        "UPPER_PILOT": 0.0,
+        "UPPER_PILOT_RIGID": 0.0,
+        "LOWER_FS_SEED": "UPPER_TRIAL",
+        "LOWER_SEED_WIDTH": 0.02,
+        "LOWER_MODEL_CACHE": 1.0,
+        "LOWER_KKT_BACKEND": "AUTO",
+        "SCHUR_ALLOW_RIGID": 0.0,
+        "SCHUR_MAX_BYTES": 268435456.0,
+        "TEST_INJECTION": 0.0,
+        "KKT_CAPTURE": 0.0,
+        "SCHUR_TRACE_LEVEL": 0.0,
+        "SCHUR_REPLAY_POLICY": "CONSISTENT",
+        "SCHUR_STRUCTURE_CACHE": 1.0,
+        "SCHUR_RECOVERY_MODE": "REUSE_U",
+        "SCHUR_REFINEMENT": "FIXED3",
+        "SCHUR_GENERIC_START_ITERS": 0.0,
+        "DIRECT_FINAL_AFTER_PILOT": 0.0,
+        "DIAGNOSTIC_MODE": 1.0,
+        "HSD_CAPTURE": 0.0,
+        "HSD_LINEAR_BACKEND": "AUTO_PIVOT",
+        "HSD_LINEAR_CAPTURE": 0.0,
+        "HSD_LINEAR_CAPTURE_MAX": 8.0,
+        "HSD_STABLE_MAX_BYTES": 1073741824.0,
+        "HSD_LINEAR_TRACE": 0.0,
+        "C0_AUTO": 0.0,
+        "ANALYSIS_POLICY": "ASSOCIATED",
+        "RAW_LOWER_AUDIT": 1.0,
+        "C0_UPPER_ADAPT": 0.0,
+        "HSD_SOLVE_SECONDS": 3600.0,
+        "C0_DIRECT_UPPER": 1.0,
+        "HSD_PROJECTIVE_NORMALIZATION": 1.0,
+        "HSD_ORIGINAL_OPERATOR": 0.0,
+        "ADAPT_MESH_POLICY": "LEGACY_THEN_REFINE",
+        "ADAPT_REFINE_CAP": 1000.0,
+        "FS_BRACKET_POLICY": "AUDITED_UPPER_LIMIT"
+      },
+      "run_started_utc": "2026-10-08T23:11:14.298827+00:00",
+      "solve_seconds": 2026.1977103000972,
+      "sheet_status": "解析完了",
+      "lower_fs": 1.301656974841376,
+      "upper_fs": 1.3110550654525315,
+      "relative_gap": 0.0071941266134313685,
+      "element_counts": [
+        1000.0,
+        1000.0
+      ],
+      "summary_fields": [
+        "0",
+        "",
+        "",
+        "True",
+        "False",
+        "1.04880210027858E-04",
+        "",
+        "C:\\Users\\link_\\Desktop\\RPFEM_G1R12_Native25_20261009\\queued_continuation\\cases\\D06A\\RPFEM_logs\\20261009_081114_39736_analysis.tsv",
+        "8",
+        "8",
+        "reference_total",
+        "reference_total",
+        "True",
+        "True",
+        "False",
+        "False"
+      ],
+      "error_number": 0,
+      "error": "",
+      "result_current": true,
+      "root_search_incomplete": false,
+      "root_width": 0.000104880210027858,
+      "diagnostic_path": "C:\\Users\\link_\\Desktop\\RPFEM_G1R12_Native25_20261009\\queued_continuation\\cases\\D06A\\RPFEM_logs\\20261009_081114_39736_analysis.tsv",
+      "witness_q": [
+        8,
+        8
+      ],
+      "witness_phase": [
+        "reference_total",
+        "reference_total"
+      ],
+      "fs_values_present": true,
+      "independent_audit": {
+        "pass": true,
+        "scope": "independent raw-equation/geometry/weight/material audits of native witnesses",
+        "results": [
+          {
+            "side": "lower",
+            "metadata": {
+              "nodes": 539,
+              "elements": 1000,
+              "q": 8,
+              "factor": 1.301656974841376,
+              "fs": 1.301656974841376,
+              "objective": 1.0001710910727366,
+              "native_audit": 8.150299563719487e-09,
+              "scale": 10.0
+            },
+            "physical_audit": {
+              "pass": true,
+              "errors": {
+                "yield": 0.0,
+                "equilibrium": 8.150294661390944e-09,
+                "boundary_traction": 5.891065482283715e-13,
+                "internal_traction": 4.614714166351064e-10
+              },
+              "load": 1.0001710910727366,
+              "value": 1.0001710910727366
+            },
+            "raw_lower_errors": {
+              "yield": 0.0,
+              "equilibrium": 8.150294661390944e-08,
+              "boundary_traction": 5.891065482283715e-12,
+              "internal_traction": 4.614714166351064e-09
+            },
+            "raw_lower_pass": true,
+            "endpoint_direction_pass": true,
+            "material_areas": [
+              158.00000000000006
+            ],
+            "weight": 3160.0000000000005,
+            "pass": true
+          },
+          {
+            "side": "upper",
+            "metadata": {
+              "nodes": 539,
+              "elements": 1000,
+              "q": 8,
+              "factor": 1.3110550654525315,
+              "fs": 1.3110550654525315,
+              "objective": 0.9998613550283136,
+              "native_audit": 3.68691743801719e-10,
+              "scale": 10.0
+            },
+            "physical_audit": {
+              "pass": true,
+              "errors": {
+                "flow": 0.0,
+                "boundary": 1.805540085238222e-11,
+                "jump": 0.0,
+                "work": 3.686916327794165e-10,
+                "objective": 4.440892098500626e-16
+              },
+              "dissipation": 0.9998613550283141,
+              "work": [
+                0.0,
+                0.9999999996313084
+              ],
+              "value": 0.9998613550283141
+            },
+            "raw_lower_errors": {},
+            "raw_lower_pass": true,
+            "endpoint_direction_pass": true,
+            "material_areas": [
+              158.00000000000006
+            ],
+            "weight": 3160.0000000000005,
+            "pass": true
+          }
+        ]
+      },
+      "workbook_sha256": "19beaffe1ba570d8ff5966dac59556235649ed9402d44914cbf44ce19fd18ecb",
+      "workbook": "cases\\D06A\\G1R12_D06A_Full1536_Q8.xlsm",
+      "seconds": 2046.2227111000102,
+      "finished_utc": "2026-10-08T23:45:02.889802+00:00",
+      "native_worker_status": "FS_AVAILABLE_PARTIAL",
+      "global_incomplete_note": "",
+      "target_unmet_reasons": [],
+      "root_tolerance_contract": "width <= FS_TOL * max(1, bracket midpoint); per-owner native root validity and completion flags",
+      "grading_basis": "RPX_Fs.bas:572-573,613; RPX_Guard.bas:372-381; independent raw field audit",
+      "grading_revision": 1,
+      "native_run_started": true,
+      "evidence_root": "queued_continuation",
+      "saved_output_pass": true,
+      "native_evidence_folder": "C:\\Users\\link_\\Desktop\\RPFEM_G1R12_Native25_20261009\\queued_continuation\\cases\\D06A",
+      "accepted_witness_q": [
+        8,
+        8
+      ],
+      "accepted_element_counts": [
+        1000.0,
+        1000.0
+      ]
+    },
+    {
+      "case": "D07A",
+      "status": "FAILED",
+      "started_utc": "2026-10-08T23:10:56.631949+00:00",
+      "source_sha256": "fe02ff61687cff8e0f0fc775867c8a244a83f758a3c5b9a9f80b6a2ab0389520",
+      "fs_obtained": false,
+      "target_met": false,
+      "input_sha256": "0d3692d33369ea14aa1e4af77c3cc073b6cf17728108491bd2de15663fd3ab19",
+      "scope_notes": [
+        "G1R12 production TARGET1536/adapt3/q8; not catalogue M0/M1/M2 mesh convergence",
+        "E/nu not variables of rigid-plastic formulation; D04/D09 cannot test elastic sensitivity",
+        "N denotes Davis equivalent associated formulation, not direct nonassociated elastoplastic FEM"
+      ],
+      "excel_pid": 29148,
+      "native_definition_check": [
+        "8",
+        "1",
+        "8",
+        "158",
+        "ASSOCIATED"
+      ],
+      "actual_settings": {
+        "MODE": "Fs",
+        "TARGET": 1536.0,
+        "GRAVITY": "固定",
+        "ADAPT": 1.0,
+        "CYCLES": 3.0,
+        "GAP": 0.01,
+        "REFINE": 0.2,
+        "QUADRATURE": 8.0,
+        "FS_TOL": 0.0001,
+        "BEARING_FACES": null,
+        "BEARING_RIGIDS": null,
+        "UPPER_PILOT": 0.0,
+        "UPPER_PILOT_RIGID": 0.0,
+        "LOWER_FS_SEED": "UPPER_TRIAL",
+        "LOWER_SEED_WIDTH": 0.02,
+        "LOWER_MODEL_CACHE": 1.0,
+        "LOWER_KKT_BACKEND": "AUTO",
+        "SCHUR_ALLOW_RIGID": 0.0,
+        "SCHUR_MAX_BYTES": 268435456.0,
+        "TEST_INJECTION": 0.0,
+        "KKT_CAPTURE": 0.0,
+        "SCHUR_TRACE_LEVEL": 0.0,
+        "SCHUR_REPLAY_POLICY": "CONSISTENT",
+        "SCHUR_STRUCTURE_CACHE": 1.0,
+        "SCHUR_RECOVERY_MODE": "REUSE_U",
+        "SCHUR_REFINEMENT": "FIXED3",
+        "SCHUR_GENERIC_START_ITERS": 0.0,
+        "DIRECT_FINAL_AFTER_PILOT": 0.0,
+        "DIAGNOSTIC_MODE": 1.0,
+        "HSD_CAPTURE": 0.0,
+        "HSD_LINEAR_BACKEND": "AUTO_PIVOT",
+        "HSD_LINEAR_CAPTURE": 0.0,
+        "HSD_LINEAR_CAPTURE_MAX": 8.0,
+        "HSD_STABLE_MAX_BYTES": 1073741824.0,
+        "HSD_LINEAR_TRACE": 0.0,
+        "C0_AUTO": 0.0,
+        "ANALYSIS_POLICY": "ASSOCIATED",
+        "RAW_LOWER_AUDIT": 1.0,
+        "C0_UPPER_ADAPT": 0.0,
+        "HSD_SOLVE_SECONDS": 3600.0,
+        "C0_DIRECT_UPPER": 1.0,
+        "HSD_PROJECTIVE_NORMALIZATION": 1.0,
+        "HSD_ORIGINAL_OPERATOR": 0.0,
+        "ADAPT_MESH_POLICY": "LEGACY_THEN_REFINE",
+        "ADAPT_REFINE_CAP": 1000.0,
+        "FS_BRACKET_POLICY": "AUDITED_UPPER_LIMIT"
+      },
+      "run_started_utc": "2026-10-08T23:11:14.450803+00:00",
+      "solve_seconds": 392.87645440001506,
+      "sheet_status": "解析未完了：FS_LOWER_BRACKET_NOT_FOUND",
+      "lower_fs": null,
+      "upper_fs": null,
+      "relative_gap": null,
+      "element_counts": [
+        null,
+        null
+      ],
+      "summary_fields": [
+        "5",
+        "FS_LOWER_BRACKET_NOT_FOUND",
+        "VBAProject",
+        "False",
+        "False",
+        "4.65994140674897E-03",
+        "",
+        "C:\\Users\\link_\\Desktop\\RPFEM_G1R12_Native25_20261009\\queued_continuation\\cases\\D07A\\RPFEM_logs\\20261009_081115_29148_analysis.tsv",
+        "0",
+        "0",
+        "",
+        "",
+        "False",
+        "False",
+        "False",
+        "False"
+      ],
+      "error_number": 5,
+      "error": "FS_LOWER_BRACKET_NOT_FOUND",
+      "result_current": false,
+      "root_search_incomplete": false,
+      "root_width": 0.00465994140674897,
+      "diagnostic_path": "C:\\Users\\link_\\Desktop\\RPFEM_G1R12_Native25_20261009\\queued_continuation\\cases\\D07A\\RPFEM_logs\\20261009_081115_29148_analysis.tsv",
+      "witness_q": [
+        0,
+        0
+      ],
+      "witness_phase": [
+        "",
+        ""
+      ],
+      "fs_values_present": false,
+      "workbook_sha256": "3a1828d9e87a67ef8317950b6883e8824f5c40e55d327dd84c9629eead7ff76f",
+      "workbook": "cases\\D07A\\G1R12_D07A_Full1536_Q8.xlsm",
+      "seconds": 411.7003511999501,
+      "finished_utc": "2026-10-08T23:17:48.340895+00:00",
+      "native_worker_status": "FAILED",
+      "native_run_started": true,
+      "evidence_root": "queued_continuation",
+      "native_evidence_folder": "C:\\Users\\link_\\Desktop\\RPFEM_G1R12_Native25_20261009\\queued_continuation\\cases\\D07A",
+      "accepted_witness_q": null,
+      "accepted_element_counts": null
+    },
+    {
+      "case": "D09A",
+      "status": "PASS_TARGET",
+      "started_utc": "2026-10-08T23:10:56.641460+00:00",
+      "source_sha256": "fe02ff61687cff8e0f0fc775867c8a244a83f758a3c5b9a9f80b6a2ab0389520",
+      "fs_obtained": true,
+      "target_met": true,
+      "input_sha256": "c5dd52c692732ff787667f59163ed218f2267acb090f56fed74a5578153e2296",
+      "scope_notes": [
+        "G1R12 production TARGET1536/adapt3/q8; not catalogue M0/M1/M2 mesh convergence",
+        "E/nu not variables of rigid-plastic formulation; D04/D09 cannot test elastic sensitivity",
+        "N denotes Davis equivalent associated formulation, not direct nonassociated elastoplastic FEM"
+      ],
+      "excel_pid": 22144,
+      "native_definition_check": [
+        "6",
+        "1",
+        "6",
+        "158",
+        "ASSOCIATED"
+      ],
+      "actual_settings": {
+        "MODE": "Fs",
+        "TARGET": 1536.0,
+        "GRAVITY": "固定",
+        "ADAPT": 1.0,
+        "CYCLES": 3.0,
+        "GAP": 0.01,
+        "REFINE": 0.2,
+        "QUADRATURE": 8.0,
+        "FS_TOL": 0.0001,
+        "BEARING_FACES": null,
+        "BEARING_RIGIDS": null,
+        "UPPER_PILOT": 0.0,
+        "UPPER_PILOT_RIGID": 0.0,
+        "LOWER_FS_SEED": "UPPER_TRIAL",
+        "LOWER_SEED_WIDTH": 0.02,
+        "LOWER_MODEL_CACHE": 1.0,
+        "LOWER_KKT_BACKEND": "AUTO",
+        "SCHUR_ALLOW_RIGID": 0.0,
+        "SCHUR_MAX_BYTES": 268435456.0,
+        "TEST_INJECTION": 0.0,
+        "KKT_CAPTURE": 0.0,
+        "SCHUR_TRACE_LEVEL": 0.0,
+        "SCHUR_REPLAY_POLICY": "CONSISTENT",
+        "SCHUR_STRUCTURE_CACHE": 1.0,
+        "SCHUR_RECOVERY_MODE": "REUSE_U",
+        "SCHUR_REFINEMENT": "FIXED3",
+        "SCHUR_GENERIC_START_ITERS": 0.0,
+        "DIRECT_FINAL_AFTER_PILOT": 0.0,
+        "DIAGNOSTIC_MODE": 1.0,
+        "HSD_CAPTURE": 0.0,
+        "HSD_LINEAR_BACKEND": "AUTO_PIVOT",
+        "HSD_LINEAR_CAPTURE": 0.0,
+        "HSD_LINEAR_CAPTURE_MAX": 8.0,
+        "HSD_STABLE_MAX_BYTES": 1073741824.0,
+        "HSD_LINEAR_TRACE": 0.0,
+        "C0_AUTO": 0.0,
+        "ANALYSIS_POLICY": "ASSOCIATED",
+        "RAW_LOWER_AUDIT": 1.0,
+        "C0_UPPER_ADAPT": 0.0,
+        "HSD_SOLVE_SECONDS": 3600.0,
+        "C0_DIRECT_UPPER": 1.0,
+        "HSD_PROJECTIVE_NORMALIZATION": 1.0,
+        "HSD_ORIGINAL_OPERATOR": 0.0,
+        "ADAPT_MESH_POLICY": "LEGACY_THEN_REFINE",
+        "ADAPT_REFINE_CAP": 1000.0,
+        "FS_BRACKET_POLICY": "AUDITED_UPPER_LIMIT"
+      },
+      "run_started_utc": "2026-10-08T23:11:14.578257+00:00",
+      "solve_seconds": 2069.5372802999336,
+      "sheet_status": "解析完了",
+      "lower_fs": 1.3016569748403444,
+      "upper_fs": 1.3110550654525948,
+      "relative_gap": 0.007194126614272169,
+      "element_counts": [
+        1000.0,
+        1000.0
+      ],
+      "summary_fields": [
+        "0",
+        "",
+        "",
+        "True",
+        "False",
+        "1.04880210027858E-04",
+        "",
+        "C:\\Users\\link_\\Desktop\\RPFEM_G1R12_Native25_20261009\\queued_continuation\\cases\\D09A\\RPFEM_logs\\20261009_081115_22144_analysis.tsv",
+        "8",
+        "8",
+        "reference_total",
+        "reference_total",
+        "True",
+        "True",
+        "False",
+        "False"
+      ],
+      "error_number": 0,
+      "error": "",
+      "result_current": true,
+      "root_search_incomplete": false,
+      "root_width": 0.000104880210027858,
+      "diagnostic_path": "C:\\Users\\link_\\Desktop\\RPFEM_G1R12_Native25_20261009\\queued_continuation\\cases\\D09A\\RPFEM_logs\\20261009_081115_22144_analysis.tsv",
+      "witness_q": [
+        8,
+        8
+      ],
+      "witness_phase": [
+        "reference_total",
+        "reference_total"
+      ],
+      "fs_values_present": true,
+      "independent_audit": {
+        "pass": true,
+        "scope": "independent raw-equation/geometry/weight/material audits of native witnesses",
+        "results": [
+          {
+            "side": "lower",
+            "metadata": {
+              "nodes": 539,
+              "elements": 1000,
+              "q": 8,
+              "factor": 1.3016569748403444,
+              "fs": 1.3016569748403444,
+              "objective": 1.000171091072684,
+              "native_audit": 8.15026761011306e-09,
+              "scale": 10.0
+            },
+            "physical_audit": {
+              "pass": true,
+              "errors": {
+                "yield": 0.0,
+                "equilibrium": 8.150266239681514e-09,
+                "boundary_traction": 5.891061870515727e-13,
+                "internal_traction": 4.6147186072431623e-10
+              },
+              "load": 1.000171091072684,
+              "value": 1.000171091072684
+            },
+            "raw_lower_errors": {
+              "yield": 0.0,
+              "equilibrium": 8.150266239681514e-08,
+              "boundary_traction": 5.891061870515727e-12,
+              "internal_traction": 4.614718607243162e-09
+            },
+            "raw_lower_pass": true,
+            "endpoint_direction_pass": true,
+            "material_areas": [
+              158.0
+            ],
+            "weight": 3160.000000000001,
+            "pass": true
+          },
+          {
+            "side": "upper",
+            "metadata": {
+              "nodes": 539,
+              "elements": 1000,
+              "q": 8,
+              "factor": 1.3110550654525948,
+              "fs": 1.3110550654525948,
+              "objective": 0.9998613550274227,
+              "native_audit": 3.6873837316875324e-10,
+              "scale": 10.0
+            },
+            "physical_audit": {
+              "pass": true,
+              "errors": {
+                "flow": 0.0,
+                "boundary": 1.8055420184654542e-11,
+                "jump": 0.0,
+                "work": 3.6873770703493847e-10,
+                "objective": 5.551115123125783e-16
+              },
+              "dissipation": 0.9998613550274232,
+              "work": [
+                0.0,
+                0.9999999996312623
+              ],
+              "value": 0.9998613550274232
+            },
+            "raw_lower_errors": {},
+            "raw_lower_pass": true,
+            "endpoint_direction_pass": true,
+            "material_areas": [
+              158.0
+            ],
+            "weight": 3160.000000000001,
+            "pass": true
+          }
+        ]
+      },
+      "workbook_sha256": "775535da77d47635a4397b6ed925c161c6e48f70abe4a1440c4fa0878d115486",
+      "workbook": "cases\\D09A\\G1R12_D09A_Full1536_Q8.xlsm",
+      "seconds": 2089.5530240000226,
+      "finished_utc": "2026-10-08T23:45:46.238911+00:00",
+      "native_worker_status": "FS_AVAILABLE_PARTIAL",
+      "global_incomplete_note": "",
+      "target_unmet_reasons": [],
+      "root_tolerance_contract": "width <= FS_TOL * max(1, bracket midpoint); per-owner native root validity and completion flags",
+      "grading_basis": "RPX_Fs.bas:572-573,613; RPX_Guard.bas:372-381; independent raw field audit",
+      "grading_revision": 1,
+      "native_run_started": true,
+      "evidence_root": "queued_continuation",
+      "saved_output_pass": true,
+      "native_evidence_folder": "C:\\Users\\link_\\Desktop\\RPFEM_G1R12_Native25_20261009\\queued_continuation\\cases\\D09A",
+      "accepted_witness_q": [
+        8,
+        8
+      ],
+      "accepted_element_counts": [
+        1000.0,
+        1000.0
+      ]
+    },
+    {
+      "case": "P01A",
+      "status": "FS_AVAILABLE_PARTIAL",
+      "started_utc": "2026-10-08T23:17:48.435394+00:00",
+      "source_sha256": "fe02ff61687cff8e0f0fc775867c8a244a83f758a3c5b9a9f80b6a2ab0389520",
+      "fs_obtained": true,
+      "target_met": false,
+      "input_sha256": "b698f15b159fc04f076223342b958a5b58cfe5f09ef33e0f412ea2947d454552",
+      "scope_notes": [
+        "G1R12 production TARGET1536/adapt3/q8; not catalogue M0/M1/M2 mesh convergence",
+        "E/nu not variables of rigid-plastic formulation; D04/D09 cannot test elastic sensitivity",
+        "N denotes Davis equivalent associated formulation, not direct nonassociated elastoplastic FEM"
+      ],
+      "excel_pid": 37532,
+      "native_definition_check": [
+        "6",
+        "1",
+        "6",
+        "158",
+        "ASSOCIATED"
+      ],
+      "actual_settings": {
+        "MODE": "Fs",
+        "TARGET": 1536.0,
+        "GRAVITY": "固定",
+        "ADAPT": 1.0,
+        "CYCLES": 3.0,
+        "GAP": 0.01,
+        "REFINE": 0.2,
+        "QUADRATURE": 8.0,
+        "FS_TOL": 0.0001,
+        "BEARING_FACES": null,
+        "BEARING_RIGIDS": null,
+        "UPPER_PILOT": 0.0,
+        "UPPER_PILOT_RIGID": 0.0,
+        "LOWER_FS_SEED": "UPPER_TRIAL",
+        "LOWER_SEED_WIDTH": 0.02,
+        "LOWER_MODEL_CACHE": 1.0,
+        "LOWER_KKT_BACKEND": "AUTO",
+        "SCHUR_ALLOW_RIGID": 0.0,
+        "SCHUR_MAX_BYTES": 268435456.0,
+        "TEST_INJECTION": 0.0,
+        "KKT_CAPTURE": 0.0,
+        "SCHUR_TRACE_LEVEL": 0.0,
+        "SCHUR_REPLAY_POLICY": "CONSISTENT",
+        "SCHUR_STRUCTURE_CACHE": 1.0,
+        "SCHUR_RECOVERY_MODE": "REUSE_U",
+        "SCHUR_REFINEMENT": "FIXED3",
+        "SCHUR_GENERIC_START_ITERS": 0.0,
+        "DIRECT_FINAL_AFTER_PILOT": 0.0,
+        "DIAGNOSTIC_MODE": 1.0,
+        "HSD_CAPTURE": 0.0,
+        "HSD_LINEAR_BACKEND": "AUTO_PIVOT",
+        "HSD_LINEAR_CAPTURE": 0.0,
+        "HSD_LINEAR_CAPTURE_MAX": 8.0,
+        "HSD_STABLE_MAX_BYTES": 1073741824.0,
+        "HSD_LINEAR_TRACE": 0.0,
+        "C0_AUTO": 0.0,
+        "ANALYSIS_POLICY": "ASSOCIATED",
+        "RAW_LOWER_AUDIT": 1.0,
+        "C0_UPPER_ADAPT": 0.0,
+        "HSD_SOLVE_SECONDS": 3600.0,
+        "C0_DIRECT_UPPER": 1.0,
+        "HSD_PROJECTIVE_NORMALIZATION": 1.0,
+        "HSD_ORIGINAL_OPERATOR": 0.0,
+        "ADAPT_MESH_POLICY": "LEGACY_THEN_REFINE",
+        "ADAPT_REFINE_CAP": 1000.0,
+        "FS_BRACKET_POLICY": "AUDITED_UPPER_LIMIT"
+      },
+      "run_started_utc": "2026-10-08T23:17:53.168027+00:00",
+      "solve_seconds": 1559.9990744000534,
+      "sheet_status": "上下界を取得（目標区間幅またはFs探索許容差は未達）",
+      "lower_fs": 0.670003704164139,
+      "upper_fs": 0.6799341966897774,
+      "relative_gap": 0.014712517545224487,
+      "element_counts": [
+        997.0,
+        997.0
+      ],
+      "summary_fields": [
+        "0",
+        "",
+        "",
+        "True",
+        "True",
+        "8.000000000008E-05",
+        "ADAPT_GAP_TARGET_NOT_MET",
+        "C:\\Users\\link_\\Desktop\\RPFEM_G1R12_Native25_20261009\\queued_continuation\\cases\\P01A\\RPFEM_logs\\20261009_081753_37532_analysis.tsv",
+        "8",
+        "8",
+        "reference_total",
+        "reference_total",
+        "True",
+        "True",
+        "False",
+        "False"
+      ],
+      "error_number": 0,
+      "error": "",
+      "result_current": true,
+      "root_search_incomplete": true,
+      "root_width": 8.000000000008e-05,
+      "diagnostic_path": "C:\\Users\\link_\\Desktop\\RPFEM_G1R12_Native25_20261009\\queued_continuation\\cases\\P01A\\RPFEM_logs\\20261009_081753_37532_analysis.tsv",
+      "witness_q": [
+        8,
+        8
+      ],
+      "witness_phase": [
+        "reference_total",
+        "reference_total"
+      ],
+      "fs_values_present": true,
+      "independent_audit": {
+        "pass": true,
+        "scope": "independent raw-equation/geometry/weight/material audits of native witnesses",
+        "results": [
+          {
+            "side": "lower",
+            "metadata": {
+              "nodes": 537,
+              "elements": 997,
+              "q": 8,
+              "factor": 0.670003704164139,
+              "fs": 0.670003704164139,
+              "objective": 1.0001616122532424,
+              "native_audit": 4.954671724982651e-10,
+              "scale": 10.0
+            },
+            "physical_audit": {
+              "pass": true,
+              "errors": {
+                "yield": 0.0,
+                "equilibrium": 4.954721077865543e-10,
+                "boundary_traction": 2.0687097937911462e-12,
+                "internal_traction": 7.773515164899436e-11
+              },
+              "load": 1.0001616122532424,
+              "value": 1.0001616122532424
+            },
+            "raw_lower_errors": {
+              "yield": 0.0,
+              "equilibrium": 4.954721077865543e-09,
+              "boundary_traction": 2.068709793791146e-11,
+              "internal_traction": 7.773515164899436e-10
+            },
+            "raw_lower_pass": true,
+            "endpoint_direction_pass": true,
+            "material_areas": [
+              158.0
+            ],
+            "weight": 3160.000000000002,
+            "pass": true
+          },
+          {
+            "side": "upper",
+            "metadata": {
+              "nodes": 537,
+              "elements": 997,
+              "q": 8,
+              "factor": 0.6799341966897774,
+              "fs": 0.6799341966897774,
+              "objective": 0.9998907591325621,
+              "native_audit": 5.922184964646249e-11,
+              "scale": 10.0
+            },
+            "physical_audit": {
+              "pass": true,
+              "errors": {
+                "flow": 0.0,
+                "boundary": 6.02666704018896e-12,
+                "jump": 0.0,
+                "work": 5.922140555725264e-11,
+                "objective": 6.661338147750939e-16
+              },
+              "dissipation": 0.9998907591325628,
+              "work": [
+                0.0,
+                0.9999999999407786
+              ],
+              "value": 0.9998907591325628
+            },
+            "raw_lower_errors": {},
+            "raw_lower_pass": true,
+            "endpoint_direction_pass": true,
+            "material_areas": [
+              158.0
+            ],
+            "weight": 3160.000000000002,
+            "pass": true
+          }
+        ]
+      },
+      "workbook_sha256": "0e758d2db0dba461f394185cb75e156829374225ec2b0246aeab38749f2254a8",
+      "workbook": "cases\\P01A\\G1R12_P01A_Full1536_Q8.xlsm",
+      "seconds": 1566.918557900004,
+      "finished_utc": "2026-10-08T23:43:55.385437+00:00",
+      "native_worker_status": "FS_AVAILABLE_PARTIAL",
+      "global_incomplete_note": "ADAPT_GAP_TARGET_NOT_MET",
+      "target_unmet_reasons": [
+        "GAP_TARGET_NOT_MET"
+      ],
+      "root_tolerance_contract": "width <= FS_TOL * max(1, bracket midpoint); per-owner native root validity and completion flags",
+      "grading_basis": "RPX_Fs.bas:572-573,613; RPX_Guard.bas:372-381; independent raw field audit",
+      "grading_revision": 1,
+      "native_run_started": true,
+      "evidence_root": "queued_continuation",
+      "saved_output_pass": true,
+      "native_evidence_folder": "C:\\Users\\link_\\Desktop\\RPFEM_G1R12_Native25_20261009\\queued_continuation\\cases\\P01A",
+      "accepted_witness_q": [
+        8,
+        8
+      ],
+      "accepted_element_counts": [
+        997.0,
+        997.0
+      ]
+    },
+    {
+      "case": "P01N",
+      "status": "FS_AVAILABLE_PARTIAL",
+      "started_utc": "2026-10-08T23:43:55.505227+00:00",
+      "source_sha256": "fe02ff61687cff8e0f0fc775867c8a244a83f758a3c5b9a9f80b6a2ab0389520",
+      "fs_obtained": true,
+      "target_met": false,
+      "input_sha256": "ef915bfc0f71a1ac1407b596878e271d94687617962211bac3be2357f7743ac3",
+      "scope_notes": [
+        "G1R12 production TARGET1536/adapt3/q8; not catalogue M0/M1/M2 mesh convergence",
+        "E/nu not variables of rigid-plastic formulation; D04/D09 cannot test elastic sensitivity",
+        "N denotes Davis equivalent associated formulation, not direct nonassociated elastoplastic FEM"
+      ],
+      "excel_pid": 11156,
+      "native_definition_check": [
+        "6",
+        "1",
+        "6",
+        "158",
+        "DAVIS_EQUIVALENT"
+      ],
+      "actual_settings": {
+        "MODE": "Fs",
+        "TARGET": 1536.0,
+        "GRAVITY": "固定",
+        "ADAPT": 1.0,
+        "CYCLES": 3.0,
+        "GAP": 0.01,
+        "REFINE": 0.2,
+        "QUADRATURE": 8.0,
+        "FS_TOL": 0.0001,
+        "BEARING_FACES": null,
+        "BEARING_RIGIDS": null,
+        "UPPER_PILOT": 0.0,
+        "UPPER_PILOT_RIGID": 0.0,
+        "LOWER_FS_SEED": "UPPER_TRIAL",
+        "LOWER_SEED_WIDTH": 0.02,
+        "LOWER_MODEL_CACHE": 1.0,
+        "LOWER_KKT_BACKEND": "AUTO",
+        "SCHUR_ALLOW_RIGID": 0.0,
+        "SCHUR_MAX_BYTES": 268435456.0,
+        "TEST_INJECTION": 0.0,
+        "KKT_CAPTURE": 0.0,
+        "SCHUR_TRACE_LEVEL": 0.0,
+        "SCHUR_REPLAY_POLICY": "CONSISTENT",
+        "SCHUR_STRUCTURE_CACHE": 1.0,
+        "SCHUR_RECOVERY_MODE": "REUSE_U",
+        "SCHUR_REFINEMENT": "FIXED3",
+        "SCHUR_GENERIC_START_ITERS": 0.0,
+        "DIRECT_FINAL_AFTER_PILOT": 0.0,
+        "DIAGNOSTIC_MODE": 1.0,
+        "HSD_CAPTURE": 0.0,
+        "HSD_LINEAR_BACKEND": "AUTO_PIVOT",
+        "HSD_LINEAR_CAPTURE": 0.0,
+        "HSD_LINEAR_CAPTURE_MAX": 8.0,
+        "HSD_STABLE_MAX_BYTES": 1073741824.0,
+        "HSD_LINEAR_TRACE": 0.0,
+        "C0_AUTO": 0.0,
+        "ANALYSIS_POLICY": "DAVIS_EQUIVALENT",
+        "RAW_LOWER_AUDIT": 1.0,
+        "C0_UPPER_ADAPT": 0.0,
+        "HSD_SOLVE_SECONDS": 3600.0,
+        "C0_DIRECT_UPPER": 1.0,
+        "HSD_PROJECTIVE_NORMALIZATION": 1.0,
+        "HSD_ORIGINAL_OPERATOR": 0.0,
+        "ADAPT_MESH_POLICY": "LEGACY_THEN_REFINE",
+        "ADAPT_REFINE_CAP": 1000.0,
+        "FS_BRACKET_POLICY": "AUDITED_UPPER_LIMIT"
+      },
+      "run_started_utc": "2026-10-08T23:43:59.858192+00:00",
+      "solve_seconds": 1529.58847279998,
+      "sheet_status": "上下界を取得（目標区間幅またはFs探索許容差は未達）",
+      "lower_fs": 0.6642932758545593,
+      "upper_fs": 0.6741943852536502,
+      "relative_gap": 0.014794472428521527,
+      "element_counts": [
+        995.0,
+        995.0
+      ],
+      "summary_fields": [
+        "0",
+        "",
+        "",
+        "True",
+        "True",
+        "8.000000000008E-05",
+        "ADAPT_GAP_TARGET_NOT_MET",
+        "C:\\Users\\link_\\Desktop\\RPFEM_G1R12_Native25_20261009\\queued_continuation\\cases\\P01N\\RPFEM_logs\\20261009_084400_11156_analysis.tsv",
+        "8",
+        "8",
+        "reference_total",
+        "reference_total",
+        "True",
+        "True",
+        "False",
+        "False"
+      ],
+      "error_number": 0,
+      "error": "",
+      "result_current": true,
+      "root_search_incomplete": true,
+      "root_width": 8.000000000008e-05,
+      "diagnostic_path": "C:\\Users\\link_\\Desktop\\RPFEM_G1R12_Native25_20261009\\queued_continuation\\cases\\P01N\\RPFEM_logs\\20261009_084400_11156_analysis.tsv",
+      "witness_q": [
+        8,
+        8
+      ],
+      "witness_phase": [
+        "reference_total",
+        "reference_total"
+      ],
+      "fs_values_present": true,
+      "independent_audit": {
+        "pass": true,
+        "scope": "independent raw-equation/geometry/weight/material audits of native witnesses",
+        "results": [
+          {
+            "side": "lower",
+            "metadata": {
+              "nodes": 536,
+              "elements": 995,
+              "q": 8,
+              "factor": 0.6642932758545593,
+              "fs": 0.6642932758545593,
+              "objective": 1.0001604303735447,
+              "native_audit": 3.2422404136478455e-09,
+              "scale": 10.0
+            },
+            "physical_audit": {
+              "pass": true,
+              "errors": {
+                "yield": 0.0,
+                "equilibrium": 3.2422264872877804e-09,
+                "boundary_traction": 3.172410634748829e-12,
+                "internal_traction": 1.0610090583895726e-10
+              },
+              "load": 1.0001604303735447,
+              "value": 1.0001604303735447
+            },
+            "raw_lower_errors": {
+              "yield": 0.0,
+              "equilibrium": 3.2422264872877804e-08,
+              "boundary_traction": 3.172410634748829e-11,
+              "internal_traction": 1.0610090583895726e-09
+            },
+            "raw_lower_pass": true,
+            "endpoint_direction_pass": true,
+            "material_areas": [
+              158.0
+            ],
+            "weight": 3160.0000000000014,
+            "pass": true
+          },
+          {
+            "side": "upper",
+            "metadata": {
+              "nodes": 536,
+              "elements": 995,
+              "q": 8,
+              "factor": 0.6741943852536502,
+              "fs": 0.6741943852536502,
+              "objective": 0.9998911158214373,
+              "native_audit": 9.662537436838647e-11,
+              "scale": 10.0
+            },
+            "physical_audit": {
+              "pass": true,
+              "errors": {
+                "flow": 0.0,
+                "boundary": 1.1913414995214512e-11,
+                "jump": 0.0,
+                "work": 9.662481925687416e-11,
+                "objective": 6.661338147750939e-16
+              },
+              "dissipation": 0.9998911158214366,
+              "work": [
+                0.0,
+                0.9999999999033752
+              ],
+              "value": 0.9998911158214366
+            },
+            "raw_lower_errors": {},
+            "raw_lower_pass": true,
+            "endpoint_direction_pass": true,
+            "material_areas": [
+              158.0
+            ],
+            "weight": 3160.0000000000014,
+            "pass": true
+          }
+        ]
+      },
+      "workbook_sha256": "67bb84df95a276ea65d7aed19d424635113f90fb5581b808aa7b839f896ce5d5",
+      "workbook": "cases\\P01N\\G1R12_P01N_Full1536_Q8.xlsm",
+      "seconds": 1535.398457400035,
+      "finished_utc": "2026-10-09T00:09:30.945902+00:00",
+      "native_worker_status": "FS_AVAILABLE_PARTIAL",
+      "global_incomplete_note": "ADAPT_GAP_TARGET_NOT_MET",
+      "target_unmet_reasons": [
+        "GAP_TARGET_NOT_MET"
+      ],
+      "root_tolerance_contract": "width <= FS_TOL * max(1, bracket midpoint); per-owner native root validity and completion flags",
+      "grading_basis": "RPX_Fs.bas:572-573,613; RPX_Guard.bas:372-381; independent raw field audit",
+      "grading_revision": 1,
+      "native_run_started": true,
+      "evidence_root": "queued_continuation",
+      "saved_output_pass": true,
+      "native_evidence_folder": "C:\\Users\\link_\\Desktop\\RPFEM_G1R12_Native25_20261009\\queued_continuation\\cases\\P01N",
+      "accepted_witness_q": [
+        8,
+        8
+      ],
+      "accepted_element_counts": [
+        995.0,
+        995.0
+      ]
+    },
+    {
+      "case": "P02A",
+      "status": "PASS_TARGET",
+      "started_utc": "2026-10-08T23:45:03.011124+00:00",
+      "source_sha256": "fe02ff61687cff8e0f0fc775867c8a244a83f758a3c5b9a9f80b6a2ab0389520",
+      "fs_obtained": true,
+      "target_met": true,
+      "input_sha256": "f8b0eef34f26ddd856067ff4a7dad851bf9a3785725a575907797d7d45895530",
+      "scope_notes": [
+        "G1R12 production TARGET1536/adapt3/q8; not catalogue M0/M1/M2 mesh convergence",
+        "E/nu not variables of rigid-plastic formulation; D04/D09 cannot test elastic sensitivity",
+        "N denotes Davis equivalent associated formulation, not direct nonassociated elastoplastic FEM"
+      ],
+      "excel_pid": 39292,
+      "native_definition_check": [
+        "6",
+        "1",
+        "6",
+        "158",
+        "ASSOCIATED"
+      ],
+      "actual_settings": {
+        "MODE": "Fs",
+        "TARGET": 1536.0,
+        "GRAVITY": "固定",
+        "ADAPT": 1.0,
+        "CYCLES": 3.0,
+        "GAP": 0.01,
+        "REFINE": 0.2,
+        "QUADRATURE": 8.0,
+        "FS_TOL": 0.0001,
+        "BEARING_FACES": null,
+        "BEARING_RIGIDS": null,
+        "UPPER_PILOT": 0.0,
+        "UPPER_PILOT_RIGID": 0.0,
+        "LOWER_FS_SEED": "UPPER_TRIAL",
+        "LOWER_SEED_WIDTH": 0.02,
+        "LOWER_MODEL_CACHE": 1.0,
+        "LOWER_KKT_BACKEND": "AUTO",
+        "SCHUR_ALLOW_RIGID": 0.0,
+        "SCHUR_MAX_BYTES": 268435456.0,
+        "TEST_INJECTION": 0.0,
+        "KKT_CAPTURE": 0.0,
+        "SCHUR_TRACE_LEVEL": 0.0,
+        "SCHUR_REPLAY_POLICY": "CONSISTENT",
+        "SCHUR_STRUCTURE_CACHE": 1.0,
+        "SCHUR_RECOVERY_MODE": "REUSE_U",
+        "SCHUR_REFINEMENT": "FIXED3",
+        "SCHUR_GENERIC_START_ITERS": 0.0,
+        "DIRECT_FINAL_AFTER_PILOT": 0.0,
+        "DIAGNOSTIC_MODE": 1.0,
+        "HSD_CAPTURE": 0.0,
+        "HSD_LINEAR_BACKEND": "AUTO_PIVOT",
+        "HSD_LINEAR_CAPTURE": 0.0,
+        "HSD_LINEAR_CAPTURE_MAX": 8.0,
+        "HSD_STABLE_MAX_BYTES": 1073741824.0,
+        "HSD_LINEAR_TRACE": 0.0,
+        "C0_AUTO": 0.0,
+        "ANALYSIS_POLICY": "ASSOCIATED",
+        "RAW_LOWER_AUDIT": 1.0,
+        "C0_UPPER_ADAPT": 0.0,
+        "HSD_SOLVE_SECONDS": 3600.0,
+        "C0_DIRECT_UPPER": 1.0,
+        "HSD_PROJECTIVE_NORMALIZATION": 1.0,
+        "HSD_ORIGINAL_OPERATOR": 0.0,
+        "ADAPT_MESH_POLICY": "LEGACY_THEN_REFINE",
+        "ADAPT_REFINE_CAP": 1000.0,
+        "FS_BRACKET_POLICY": "AUDITED_UPPER_LIMIT"
+      },
+      "run_started_utc": "2026-10-08T23:45:07.733858+00:00",
+      "solve_seconds": 1917.6066869000206,
+      "sheet_status": "解析完了",
+      "lower_fs": 1.3016569748403444,
+      "upper_fs": 1.3110550654525948,
+      "relative_gap": 0.007194126614272169,
+      "element_counts": [
+        1000.0,
+        1000.0
+      ],
+      "summary_fields": [
+        "0",
+        "",
+        "",
+        "True",
+        "False",
+        "1.04880210027858E-04",
+        "",
+        "C:\\Users\\link_\\Desktop\\RPFEM_G1R12_Native25_20261009\\queued_continuation\\cases\\P02A\\RPFEM_logs\\20261009_084508_39292_analysis.tsv",
+        "8",
+        "8",
+        "reference_total",
+        "reference_total",
+        "True",
+        "True",
+        "False",
+        "False"
+      ],
+      "error_number": 0,
+      "error": "",
+      "result_current": true,
+      "root_search_incomplete": false,
+      "root_width": 0.000104880210027858,
+      "diagnostic_path": "C:\\Users\\link_\\Desktop\\RPFEM_G1R12_Native25_20261009\\queued_continuation\\cases\\P02A\\RPFEM_logs\\20261009_084508_39292_analysis.tsv",
+      "witness_q": [
+        8,
+        8
+      ],
+      "witness_phase": [
+        "reference_total",
+        "reference_total"
+      ],
+      "fs_values_present": true,
+      "independent_audit": {
+        "pass": true,
+        "scope": "independent raw-equation/geometry/weight/material audits of native witnesses",
+        "results": [
+          {
+            "side": "lower",
+            "metadata": {
+              "nodes": 539,
+              "elements": 1000,
+              "q": 8,
+              "factor": 1.3016569748403444,
+              "fs": 1.3016569748403444,
+              "objective": 1.000171091072684,
+              "native_audit": 8.15026761011306e-09,
+              "scale": 10.0
+            },
+            "physical_audit": {
+              "pass": true,
+              "errors": {
+                "yield": 0.0,
+                "equilibrium": 8.150266239681514e-09,
+                "boundary_traction": 5.891061870515727e-13,
+                "internal_traction": 4.6147186072431623e-10
+              },
+              "load": 1.000171091072684,
+              "value": 1.000171091072684
+            },
+            "raw_lower_errors": {
+              "yield": 0.0,
+              "equilibrium": 8.150266239681514e-08,
+              "boundary_traction": 5.891061870515727e-12,
+              "internal_traction": 4.614718607243162e-09
+            },
+            "raw_lower_pass": true,
+            "endpoint_direction_pass": true,
+            "material_areas": [
+              158.0
+            ],
+            "weight": 3160.000000000001,
+            "pass": true
+          },
+          {
+            "side": "upper",
+            "metadata": {
+              "nodes": 539,
+              "elements": 1000,
+              "q": 8,
+              "factor": 1.3110550654525948,
+              "fs": 1.3110550654525948,
+              "objective": 0.9998613550274227,
+              "native_audit": 3.6873837316875324e-10,
+              "scale": 10.0
+            },
+            "physical_audit": {
+              "pass": true,
+              "errors": {
+                "flow": 0.0,
+                "boundary": 1.8055420184654542e-11,
+                "jump": 0.0,
+                "work": 3.6873770703493847e-10,
+                "objective": 5.551115123125783e-16
+              },
+              "dissipation": 0.9998613550274232,
+              "work": [
+                0.0,
+                0.9999999996312623
+              ],
+              "value": 0.9998613550274232
+            },
+            "raw_lower_errors": {},
+            "raw_lower_pass": true,
+            "endpoint_direction_pass": true,
+            "material_areas": [
+              158.0
+            ],
+            "weight": 3160.000000000001,
+            "pass": true
+          }
+        ]
+      },
+      "workbook_sha256": "3eba9962d3ea2561ecda2954c3ff2a7769106adcb2dfb1cab2b2917dd05a73b7",
+      "workbook": "cases\\P02A\\G1R12_P02A_Full1536_Q8.xlsm",
+      "seconds": 1923.7994275999954,
+      "finished_utc": "2026-10-09T00:17:06.862113+00:00",
+      "native_worker_status": "FS_AVAILABLE_PARTIAL",
+      "global_incomplete_note": "",
+      "target_unmet_reasons": [],
+      "root_tolerance_contract": "width <= FS_TOL * max(1, bracket midpoint); per-owner native root validity and completion flags",
+      "grading_basis": "RPX_Fs.bas:572-573,613; RPX_Guard.bas:372-381; independent raw field audit",
+      "grading_revision": 1,
+      "native_run_started": true,
+      "evidence_root": "queued_continuation",
+      "saved_output_pass": true,
+      "native_evidence_folder": "C:\\Users\\link_\\Desktop\\RPFEM_G1R12_Native25_20261009\\queued_continuation\\cases\\P02A",
+      "accepted_witness_q": [
+        8,
+        8
+      ],
+      "accepted_element_counts": [
+        1000.0,
+        1000.0
+      ]
+    },
+    {
+      "case": "P02N",
+      "status": "PASS_TARGET",
+      "started_utc": "2026-10-08T23:45:46.621920+00:00",
+      "source_sha256": "fe02ff61687cff8e0f0fc775867c8a244a83f758a3c5b9a9f80b6a2ab0389520",
+      "fs_obtained": true,
+      "target_met": true,
+      "input_sha256": "d3bef38205815d248fc6b447cc461e2e20418d0756a8d9b60e99a54b22fcef9d",
+      "scope_notes": [
+        "G1R12 production TARGET1536/adapt3/q8; not catalogue M0/M1/M2 mesh convergence",
+        "E/nu not variables of rigid-plastic formulation; D04/D09 cannot test elastic sensitivity",
+        "N denotes Davis equivalent associated formulation, not direct nonassociated elastoplastic FEM"
+      ],
+      "excel_pid": 22412,
+      "native_definition_check": [
+        "6",
+        "1",
+        "6",
+        "158",
+        "DAVIS_EQUIVALENT"
+      ],
+      "actual_settings": {
+        "MODE": "Fs",
+        "TARGET": 1536.0,
+        "GRAVITY": "固定",
+        "ADAPT": 1.0,
+        "CYCLES": 3.0,
+        "GAP": 0.01,
+        "REFINE": 0.2,
+        "QUADRATURE": 8.0,
+        "FS_TOL": 0.0001,
+        "BEARING_FACES": null,
+        "BEARING_RIGIDS": null,
+        "UPPER_PILOT": 0.0,
+        "UPPER_PILOT_RIGID": 0.0,
+        "LOWER_FS_SEED": "UPPER_TRIAL",
+        "LOWER_SEED_WIDTH": 0.02,
+        "LOWER_MODEL_CACHE": 1.0,
+        "LOWER_KKT_BACKEND": "AUTO",
+        "SCHUR_ALLOW_RIGID": 0.0,
+        "SCHUR_MAX_BYTES": 268435456.0,
+        "TEST_INJECTION": 0.0,
+        "KKT_CAPTURE": 0.0,
+        "SCHUR_TRACE_LEVEL": 0.0,
+        "SCHUR_REPLAY_POLICY": "CONSISTENT",
+        "SCHUR_STRUCTURE_CACHE": 1.0,
+        "SCHUR_RECOVERY_MODE": "REUSE_U",
+        "SCHUR_REFINEMENT": "FIXED3",
+        "SCHUR_GENERIC_START_ITERS": 0.0,
+        "DIRECT_FINAL_AFTER_PILOT": 0.0,
+        "DIAGNOSTIC_MODE": 1.0,
+        "HSD_CAPTURE": 0.0,
+        "HSD_LINEAR_BACKEND": "AUTO_PIVOT",
+        "HSD_LINEAR_CAPTURE": 0.0,
+        "HSD_LINEAR_CAPTURE_MAX": 8.0,
+        "HSD_STABLE_MAX_BYTES": 1073741824.0,
+        "HSD_LINEAR_TRACE": 0.0,
+        "C0_AUTO": 0.0,
+        "ANALYSIS_POLICY": "DAVIS_EQUIVALENT",
+        "RAW_LOWER_AUDIT": 1.0,
+        "C0_UPPER_ADAPT": 0.0,
+        "HSD_SOLVE_SECONDS": 3600.0,
+        "C0_DIRECT_UPPER": 1.0,
+        "HSD_PROJECTIVE_NORMALIZATION": 1.0,
+        "HSD_ORIGINAL_OPERATOR": 0.0,
+        "ADAPT_MESH_POLICY": "LEGACY_THEN_REFINE",
+        "ADAPT_REFINE_CAP": 1000.0,
+        "FS_BRACKET_POLICY": "AUDITED_UPPER_LIMIT"
+      },
+      "run_started_utc": "2026-10-08T23:45:52.457498+00:00",
+      "solve_seconds": 1821.834826300037,
+      "sheet_status": "解析完了",
+      "lower_fs": 1.215929091721389,
+      "upper_fs": 1.224966156938399,
+      "relative_gap": 0.007404713677878573,
+      "element_counts": [
+        1000.0,
+        1000.0
+      ],
+      "summary_fields": [
+        "0",
+        "",
+        "",
+        "True",
+        "False",
+        "9.79933728202376E-05",
+        "",
+        "C:\\Users\\link_\\Desktop\\RPFEM_G1R12_Native25_20261009\\queued_continuation\\cases\\P02N\\RPFEM_logs\\20261009_084552_22412_analysis.tsv",
+        "8",
+        "8",
+        "reference_total",
+        "reference_total",
+        "True",
+        "True",
+        "False",
+        "False"
+      ],
+      "error_number": 0,
+      "error": "",
+      "result_current": true,
+      "root_search_incomplete": false,
+      "root_width": 9.79933728202376e-05,
+      "diagnostic_path": "C:\\Users\\link_\\Desktop\\RPFEM_G1R12_Native25_20261009\\queued_continuation\\cases\\P02N\\RPFEM_logs\\20261009_084552_22412_analysis.tsv",
+      "witness_q": [
+        8,
+        8
+      ],
+      "witness_phase": [
+        "reference_total",
+        "reference_total"
+      ],
+      "fs_values_present": true,
+      "independent_audit": {
+        "pass": true,
+        "scope": "independent raw-equation/geometry/weight/material audits of native witnesses",
+        "results": [
+          {
+            "side": "lower",
+            "metadata": {
+              "nodes": 539,
+              "elements": 1000,
+              "q": 8,
+              "factor": 1.215929091721389,
+              "fs": 1.215929091721389,
+              "objective": 1.0000012336587123,
+              "native_audit": 8.550495179948658e-09,
+              "scale": 10.0
+            },
+            "physical_audit": {
+              "pass": true,
+              "errors": {
+                "yield": 0.0,
+                "equilibrium": 8.550517183181228e-09,
+                "boundary_traction": 1.35386105226532e-12,
+                "internal_traction": 3.287330407886202e-10
+              },
+              "load": 1.0000012336587123,
+              "value": 1.0000012336587123
+            },
+            "raw_lower_errors": {
+              "yield": 0.0,
+              "equilibrium": 8.550517183181228e-08,
+              "boundary_traction": 1.3538610522653199e-11,
+              "internal_traction": 3.287330407886202e-09
+            },
+            "raw_lower_pass": true,
+            "endpoint_direction_pass": true,
+            "material_areas": [
+              158.0
+            ],
+            "weight": 3160.0000000000005,
+            "pass": true
+          },
+          {
+            "side": "upper",
+            "metadata": {
+              "nodes": 539,
+              "elements": 1000,
+              "q": 8,
+              "factor": 1.224966156938399,
+              "fs": 1.224966156938399,
+              "objective": 0.9998838340347526,
+              "native_audit": 3.196503062241618e-10,
+              "scale": 10.0
+            },
+            "physical_audit": {
+              "pass": true,
+              "errors": {
+                "flow": 0.0,
+                "boundary": 3.610427970202506e-12,
+                "jump": 0.0,
+                "work": 3.196505282687667e-10,
+                "objective": 2.220446049250313e-16
+              },
+              "dissipation": 0.9998838340347523,
+              "work": [
+                0.0,
+                0.9999999996803495
+              ],
+              "value": 0.9998838340347523
+            },
+            "raw_lower_errors": {},
+            "raw_lower_pass": true,
+            "endpoint_direction_pass": true,
+            "material_areas": [
+              158.0
+            ],
+            "weight": 3160.0000000000005,
+            "pass": true
+          }
+        ]
+      },
+      "workbook_sha256": "3cb688d56901450fe4adf13c3e1cb9c01d85fd61c2c9625b79029f39c2a9ae3c",
+      "workbook": "cases\\P02N\\G1R12_P02N_Full1536_Q8.xlsm",
+      "seconds": 1829.2439817000413,
+      "finished_utc": "2026-10-09T00:16:15.915899+00:00",
+      "native_worker_status": "PASS_TARGET",
+      "global_incomplete_note": "",
+      "target_unmet_reasons": [],
+      "root_tolerance_contract": "width <= FS_TOL * max(1, bracket midpoint); per-owner native root validity and completion flags",
+      "grading_basis": "RPX_Fs.bas:572-573,613; RPX_Guard.bas:372-381; independent raw field audit",
+      "grading_revision": 1,
+      "native_run_started": true,
+      "evidence_root": "queued_continuation",
+      "saved_output_pass": true,
+      "native_evidence_folder": "C:\\Users\\link_\\Desktop\\RPFEM_G1R12_Native25_20261009\\queued_continuation\\cases\\P02N",
+      "accepted_witness_q": [
+        8,
+        8
+      ],
+      "accepted_element_counts": [
+        1000.0,
+        1000.0
+      ]
+    },
+    {
+      "case": "P03A",
+      "status": "FS_AVAILABLE_PARTIAL",
+      "started_utc": "2026-10-08T23:45:48.553489+00:00",
+      "source_sha256": "fe02ff61687cff8e0f0fc775867c8a244a83f758a3c5b9a9f80b6a2ab0389520",
+      "fs_obtained": true,
+      "target_met": false,
+      "input_sha256": "5a0d1200dc8d3f7517c4da5696a242250154a63fdba0d6b9b12ae6eabb5bcc64",
+      "scope_notes": [
+        "G1R12 production TARGET1536/adapt3/q8; not catalogue M0/M1/M2 mesh convergence",
+        "E/nu not variables of rigid-plastic formulation; D04/D09 cannot test elastic sensitivity",
+        "N denotes Davis equivalent associated formulation, not direct nonassociated elastoplastic FEM"
+      ],
+      "excel_pid": 3700,
+      "native_definition_check": [
+        "6",
+        "1",
+        "6",
+        "158",
+        "ASSOCIATED"
+      ],
+      "actual_settings": {
+        "MODE": "Fs",
+        "TARGET": 1536.0,
+        "GRAVITY": "固定",
+        "ADAPT": 1.0,
+        "CYCLES": 3.0,
+        "GAP": 0.01,
+        "REFINE": 0.2,
+        "QUADRATURE": 8.0,
+        "FS_TOL": 0.0001,
+        "BEARING_FACES": null,
+        "BEARING_RIGIDS": null,
+        "UPPER_PILOT": 0.0,
+        "UPPER_PILOT_RIGID": 0.0,
+        "LOWER_FS_SEED": "UPPER_TRIAL",
+        "LOWER_SEED_WIDTH": 0.02,
+        "LOWER_MODEL_CACHE": 1.0,
+        "LOWER_KKT_BACKEND": "AUTO",
+        "SCHUR_ALLOW_RIGID": 0.0,
+        "SCHUR_MAX_BYTES": 268435456.0,
+        "TEST_INJECTION": 0.0,
+        "KKT_CAPTURE": 0.0,
+        "SCHUR_TRACE_LEVEL": 0.0,
+        "SCHUR_REPLAY_POLICY": "CONSISTENT",
+        "SCHUR_STRUCTURE_CACHE": 1.0,
+        "SCHUR_RECOVERY_MODE": "REUSE_U",
+        "SCHUR_REFINEMENT": "FIXED3",
+        "SCHUR_GENERIC_START_ITERS": 0.0,
+        "DIRECT_FINAL_AFTER_PILOT": 0.0,
+        "DIAGNOSTIC_MODE": 1.0,
+        "HSD_CAPTURE": 0.0,
+        "HSD_LINEAR_BACKEND": "AUTO_PIVOT",
+        "HSD_LINEAR_CAPTURE": 0.0,
+        "HSD_LINEAR_CAPTURE_MAX": 8.0,
+        "HSD_STABLE_MAX_BYTES": 1073741824.0,
+        "HSD_LINEAR_TRACE": 0.0,
+        "C0_AUTO": 0.0,
+        "ANALYSIS_POLICY": "ASSOCIATED",
+        "RAW_LOWER_AUDIT": 1.0,
+        "C0_UPPER_ADAPT": 0.0,
+        "HSD_SOLVE_SECONDS": 3600.0,
+        "C0_DIRECT_UPPER": 1.0,
+        "HSD_PROJECTIVE_NORMALIZATION": 1.0,
+        "HSD_ORIGINAL_OPERATOR": 0.0,
+        "ADAPT_MESH_POLICY": "LEGACY_THEN_REFINE",
+        "ADAPT_REFINE_CAP": 1000.0,
+        "FS_BRACKET_POLICY": "AUDITED_UPPER_LIMIT"
+      },
+      "run_started_utc": "2026-10-08T23:45:53.456235+00:00",
+      "solve_seconds": 1481.8417321000015,
+      "sheet_status": "上下界を取得（目標区間幅またはFs探索許容差は未達）",
+      "lower_fs": 1.1553169284451044,
+      "upper_fs": 1.1741222483654132,
+      "relative_gap": 0.01614579174894554,
+      "element_counts": [
+        998.0,
+        998.0
+      ],
+      "summary_fields": [
+        "0",
+        "",
+        "",
+        "True",
+        "True",
+        "9.39260228283167E-05",
+        "ADAPT_GAP_TARGET_NOT_MET",
+        "C:\\Users\\link_\\Desktop\\RPFEM_G1R12_Native25_20261009\\queued_continuation\\cases\\P03A\\RPFEM_logs\\20261009_084553_3700_analysis.tsv",
+        "8",
+        "8",
+        "reference_total",
+        "reference_total",
+        "True",
+        "True",
+        "False",
+        "False"
+      ],
+      "error_number": 0,
+      "error": "",
+      "result_current": true,
+      "root_search_incomplete": true,
+      "root_width": 9.39260228283167e-05,
+      "diagnostic_path": "C:\\Users\\link_\\Desktop\\RPFEM_G1R12_Native25_20261009\\queued_continuation\\cases\\P03A\\RPFEM_logs\\20261009_084553_3700_analysis.tsv",
+      "witness_q": [
+        8,
+        8
+      ],
+      "witness_phase": [
+        "reference_total",
+        "reference_total"
+      ],
+      "fs_values_present": true,
+      "independent_audit": {
+        "pass": true,
+        "scope": "independent raw-equation/geometry/weight/material audits of native witnesses",
+        "results": [
+          {
+            "side": "lower",
+            "metadata": {
+              "nodes": 539,
+              "elements": 998,
+              "q": 8,
+              "factor": 1.1553169284451044,
+              "fs": 1.1553169284451044,
+              "objective": 1.0000966206993236,
+              "native_audit": 1.4948489854396717e-09,
+              "scale": 20.0
+            },
+            "physical_audit": {
+              "pass": true,
+              "errors": {
+                "yield": 0.0,
+                "equilibrium": 1.4948493345934288e-09,
+                "boundary_traction": 1.7314539198774893e-11,
+                "internal_traction": 2.6774316097544215e-10
+              },
+              "load": 1.0000966206993236,
+              "value": 1.0000966206993236
+            },
+            "raw_lower_errors": {
+              "yield": 0.0,
+              "equilibrium": 2.989698669186858e-08,
+              "boundary_traction": 3.4629078397549786e-10,
+              "internal_traction": 5.354863219508843e-09
+            },
+            "raw_lower_pass": true,
+            "endpoint_direction_pass": true,
+            "material_areas": [
+              158.0
+            ],
+            "weight": 3159.999999999999,
+            "pass": true
+          },
+          {
+            "side": "upper",
+            "metadata": {
+              "nodes": 539,
+              "elements": 998,
+              "q": 8,
+              "factor": 1.1741222483654132,
+              "fs": 1.1741222483654132,
+              "objective": 0.9999303521703349,
+              "native_audit": 1.6291321782922654e-10,
+              "scale": 20.0
+            },
+            "physical_audit": {
+              "pass": true,
+              "errors": {
+                "flow": 0.0,
+                "boundary": 1.6291321782922654e-10,
+                "jump": 0.0,
+                "work": 7.363998300036201e-12,
+                "objective": 1.1102230246251565e-16
+              },
+              "dissipation": 0.9999303521703348,
+              "work": [
+                0.0,
+                0.999999999992636
+              ],
+              "value": 0.9999303521703348
+            },
+            "raw_lower_errors": {},
+            "raw_lower_pass": true,
+            "endpoint_direction_pass": true,
+            "material_areas": [
+              158.0
+            ],
+            "weight": 3159.999999999999,
+            "pass": true
+          }
+        ]
+      },
+      "workbook_sha256": "8cb5bb8864663c428eb014556d776f8d79b5639eaf1a725090bfc3089d73eb5e",
+      "workbook": "cases\\P03A\\G1R12_P03A_Full1536_Q8.xlsm",
+      "seconds": 1488.2621314000571,
+      "finished_utc": "2026-10-09T00:10:36.855067+00:00",
+      "native_worker_status": "FS_AVAILABLE_PARTIAL",
+      "global_incomplete_note": "ADAPT_GAP_TARGET_NOT_MET",
+      "target_unmet_reasons": [
+        "GAP_TARGET_NOT_MET"
+      ],
+      "root_tolerance_contract": "width <= FS_TOL * max(1, bracket midpoint); per-owner native root validity and completion flags",
+      "grading_basis": "RPX_Fs.bas:572-573,613; RPX_Guard.bas:372-381; independent raw field audit",
+      "grading_revision": 1,
+      "native_run_started": true,
+      "evidence_root": "queued_continuation",
+      "saved_output_pass": true,
+      "native_evidence_folder": "C:\\Users\\link_\\Desktop\\RPFEM_G1R12_Native25_20261009\\queued_continuation\\cases\\P03A",
+      "accepted_witness_q": [
+        8,
+        8
+      ],
+      "accepted_element_counts": [
+        998.0,
+        998.0
+      ]
+    },
+    {
+      "case": "P03N",
+      "status": "FS_AVAILABLE_PARTIAL",
+      "started_utc": "2026-10-08T23:53:13.333148+00:00",
+      "source_sha256": "fe02ff61687cff8e0f0fc775867c8a244a83f758a3c5b9a9f80b6a2ab0389520",
+      "fs_obtained": true,
+      "target_met": false,
+      "input_sha256": "57ad39000582ff1190efc6bdbea14e946b50c63ff372e2b90a124b114ad9c043",
+      "scope_notes": [
+        "G1R12 production TARGET1536/adapt3/q8; not catalogue M0/M1/M2 mesh convergence",
+        "E/nu not variables of rigid-plastic formulation; D04/D09 cannot test elastic sensitivity",
+        "N denotes Davis equivalent associated formulation, not direct nonassociated elastoplastic FEM"
+      ],
+      "excel_pid": 7672,
+      "native_definition_check": [
+        "6",
+        "1",
+        "6",
+        "158",
+        "DAVIS_EQUIVALENT"
+      ],
+      "actual_settings": {
+        "MODE": "Fs",
+        "TARGET": 1536.0,
+        "GRAVITY": "固定",
+        "ADAPT": 1.0,
+        "CYCLES": 3.0,
+        "GAP": 0.01,
+        "REFINE": 0.2,
+        "QUADRATURE": 8.0,
+        "FS_TOL": 0.0001,
+        "BEARING_FACES": null,
+        "BEARING_RIGIDS": null,
+        "UPPER_PILOT": 0.0,
+        "UPPER_PILOT_RIGID": 0.0,
+        "LOWER_FS_SEED": "UPPER_TRIAL",
+        "LOWER_SEED_WIDTH": 0.02,
+        "LOWER_MODEL_CACHE": 1.0,
+        "LOWER_KKT_BACKEND": "AUTO",
+        "SCHUR_ALLOW_RIGID": 0.0,
+        "SCHUR_MAX_BYTES": 268435456.0,
+        "TEST_INJECTION": 0.0,
+        "KKT_CAPTURE": 0.0,
+        "SCHUR_TRACE_LEVEL": 0.0,
+        "SCHUR_REPLAY_POLICY": "CONSISTENT",
+        "SCHUR_STRUCTURE_CACHE": 1.0,
+        "SCHUR_RECOVERY_MODE": "REUSE_U",
+        "SCHUR_REFINEMENT": "FIXED3",
+        "SCHUR_GENERIC_START_ITERS": 0.0,
+        "DIRECT_FINAL_AFTER_PILOT": 0.0,
+        "DIAGNOSTIC_MODE": 1.0,
+        "HSD_CAPTURE": 0.0,
+        "HSD_LINEAR_BACKEND": "AUTO_PIVOT",
+        "HSD_LINEAR_CAPTURE": 0.0,
+        "HSD_LINEAR_CAPTURE_MAX": 8.0,
+        "HSD_STABLE_MAX_BYTES": 1073741824.0,
+        "HSD_LINEAR_TRACE": 0.0,
+        "C0_AUTO": 0.0,
+        "ANALYSIS_POLICY": "DAVIS_EQUIVALENT",
+        "RAW_LOWER_AUDIT": 1.0,
+        "C0_UPPER_ADAPT": 0.0,
+        "HSD_SOLVE_SECONDS": 3600.0,
+        "C0_DIRECT_UPPER": 1.0,
+        "HSD_PROJECTIVE_NORMALIZATION": 1.0,
+        "HSD_ORIGINAL_OPERATOR": 0.0,
+        "ADAPT_MESH_POLICY": "LEGACY_THEN_REFINE",
+        "ADAPT_REFINE_CAP": 1000.0,
+        "FS_BRACKET_POLICY": "AUDITED_UPPER_LIMIT"
+      },
+      "run_started_utc": "2026-10-08T23:53:17.589785+00:00",
+      "solve_seconds": 1450.0414279999677,
+      "sheet_status": "上下界を取得（目標区間幅またはFs探索許容差は未達）",
+      "lower_fs": 1.1520001000286129,
+      "upper_fs": 1.1708578238454124,
+      "relative_gap": 0.016236657113620535,
+      "element_counts": [
+        998.0,
+        998.0
+      ],
+      "summary_fields": [
+        "0",
+        "",
+        "",
+        "True",
+        "True",
+        "9.3664879312616E-05",
+        "ADAPT_GAP_TARGET_NOT_MET",
+        "C:\\Users\\link_\\Desktop\\RPFEM_G1R12_Native25_20261009\\queued_continuation\\cases\\P03N\\RPFEM_logs\\20261009_085317_7672_analysis.tsv",
+        "8",
+        "8",
+        "reference_total",
+        "reference_total",
+        "True",
+        "True",
+        "False",
+        "False"
+      ],
+      "error_number": 0,
+      "error": "",
+      "result_current": true,
+      "root_search_incomplete": true,
+      "root_width": 9.3664879312616e-05,
+      "diagnostic_path": "C:\\Users\\link_\\Desktop\\RPFEM_G1R12_Native25_20261009\\queued_continuation\\cases\\P03N\\RPFEM_logs\\20261009_085317_7672_analysis.tsv",
+      "witness_q": [
+        8,
+        8
+      ],
+      "witness_phase": [
+        "reference_total",
+        "reference_total"
+      ],
+      "fs_values_present": true,
+      "independent_audit": {
+        "pass": true,
+        "scope": "independent raw-equation/geometry/weight/material audits of native witnesses",
+        "results": [
+          {
+            "side": "lower",
+            "metadata": {
+              "nodes": 539,
+              "elements": 998,
+              "q": 8,
+              "factor": 1.1520001000286129,
+              "fs": 1.1520001000286129,
+              "objective": 1.000096098048719,
+              "native_audit": 1.4948859905282505e-09,
+              "scale": 20.0
+            },
+            "physical_audit": {
+              "pass": true,
+              "errors": {
+                "yield": 0.0,
+                "equilibrium": 1.4948861939978464e-09,
+                "boundary_traction": 1.729890723714911e-11,
+                "internal_traction": 2.686544320340545e-10
+              },
+              "load": 1.000096098048719,
+              "value": 1.000096098048719
+            },
+            "raw_lower_errors": {
+              "yield": 0.0,
+              "equilibrium": 2.989772387995693e-08,
+              "boundary_traction": 3.4597814474298225e-10,
+              "internal_traction": 5.37308864068109e-09
+            },
+            "raw_lower_pass": true,
+            "endpoint_direction_pass": true,
+            "material_areas": [
+              158.0
+            ],
+            "weight": 3160.0,
+            "pass": true
+          },
+          {
+            "side": "upper",
+            "metadata": {
+              "nodes": 539,
+              "elements": 998,
+              "q": 8,
+              "factor": 1.1708578238454124,
+              "fs": 1.1708578238454124,
+              "objective": 0.9999306398963902,
+              "native_audit": 1.603290685936984e-10,
+              "scale": 20.0
+            },
+            "physical_audit": {
+              "pass": true,
+              "errors": {
+                "flow": 0.0,
+                "boundary": 1.603290685936984e-10,
+                "jump": 0.0,
+                "work": 6.987410650083348e-12,
+                "objective": 1.4432899320127035e-15
+              },
+              "dissipation": 0.9999306398963916,
+              "work": [
+                0.0,
+                0.9999999999930126
+              ],
+              "value": 0.9999306398963916
+            },
+            "raw_lower_errors": {},
+            "raw_lower_pass": true,
+            "endpoint_direction_pass": true,
+            "material_areas": [
+              158.0
+            ],
+            "weight": 3160.0,
+            "pass": true
+          }
+        ]
+      },
+      "workbook_sha256": "ca06a216681c76b3cad78aeded5ee93fb594111a753e7988b1be34eced55722d",
+      "workbook": "cases\\P03N\\G1R12_P03N_Full1536_Q8.xlsm",
+      "seconds": 1455.7690705999266,
+      "finished_utc": "2026-10-09T00:17:29.137031+00:00",
+      "native_worker_status": "FS_AVAILABLE_PARTIAL",
+      "global_incomplete_note": "ADAPT_GAP_TARGET_NOT_MET",
+      "target_unmet_reasons": [
+        "GAP_TARGET_NOT_MET"
+      ],
+      "root_tolerance_contract": "width <= FS_TOL * max(1, bracket midpoint); per-owner native root validity and completion flags",
+      "grading_basis": "RPX_Fs.bas:572-573,613; RPX_Guard.bas:372-381; independent raw field audit",
+      "grading_revision": 1,
+      "native_run_started": true,
+      "evidence_root": "queued_continuation",
+      "saved_output_pass": true,
+      "native_evidence_folder": "C:\\Users\\link_\\Desktop\\RPFEM_G1R12_Native25_20261009\\queued_continuation\\cases\\P03N",
+      "accepted_witness_q": [
+        8,
+        8
+      ],
+      "accepted_element_counts": [
+        998.0,
+        998.0
+      ]
+    },
+    {
+      "case": "P04A",
+      "status": "PASS_TARGET",
+      "started_utc": "2026-10-09T00:09:33.304208+00:00",
+      "source_sha256": "fe02ff61687cff8e0f0fc775867c8a244a83f758a3c5b9a9f80b6a2ab0389520",
+      "fs_obtained": true,
+      "target_met": true,
+      "input_sha256": "16ce21aa4d6fbbe0ca40e7770cedd93f24b1352fb7898629ac82010a53ca9772",
+      "scope_notes": [
+        "G1R12 production TARGET1536/adapt3/q8; not catalogue M0/M1/M2 mesh convergence",
+        "E/nu not variables of rigid-plastic formulation; D04/D09 cannot test elastic sensitivity",
+        "N denotes Davis equivalent associated formulation, not direct nonassociated elastoplastic FEM"
+      ],
+      "excel_pid": 26776,
+      "native_definition_check": [
+        "6",
+        "1",
+        "6",
+        "158",
+        "ASSOCIATED"
+      ],
+      "actual_settings": {
+        "MODE": "Fs",
+        "TARGET": 1536.0,
+        "GRAVITY": "固定",
+        "ADAPT": 1.0,
+        "CYCLES": 3.0,
+        "GAP": 0.01,
+        "REFINE": 0.2,
+        "QUADRATURE": 8.0,
+        "FS_TOL": 0.0001,
+        "BEARING_FACES": null,
+        "BEARING_RIGIDS": null,
+        "UPPER_PILOT": 0.0,
+        "UPPER_PILOT_RIGID": 0.0,
+        "LOWER_FS_SEED": "UPPER_TRIAL",
+        "LOWER_SEED_WIDTH": 0.02,
+        "LOWER_MODEL_CACHE": 1.0,
+        "LOWER_KKT_BACKEND": "AUTO",
+        "SCHUR_ALLOW_RIGID": 0.0,
+        "SCHUR_MAX_BYTES": 268435456.0,
+        "TEST_INJECTION": 0.0,
+        "KKT_CAPTURE": 0.0,
+        "SCHUR_TRACE_LEVEL": 0.0,
+        "SCHUR_REPLAY_POLICY": "CONSISTENT",
+        "SCHUR_STRUCTURE_CACHE": 1.0,
+        "SCHUR_RECOVERY_MODE": "REUSE_U",
+        "SCHUR_REFINEMENT": "FIXED3",
+        "SCHUR_GENERIC_START_ITERS": 0.0,
+        "DIRECT_FINAL_AFTER_PILOT": 0.0,
+        "DIAGNOSTIC_MODE": 1.0,
+        "HSD_CAPTURE": 0.0,
+        "HSD_LINEAR_BACKEND": "AUTO_PIVOT",
+        "HSD_LINEAR_CAPTURE": 0.0,
+        "HSD_LINEAR_CAPTURE_MAX": 8.0,
+        "HSD_STABLE_MAX_BYTES": 1073741824.0,
+        "HSD_LINEAR_TRACE": 0.0,
+        "C0_AUTO": 0.0,
+        "ANALYSIS_POLICY": "ASSOCIATED",
+        "RAW_LOWER_AUDIT": 1.0,
+        "C0_UPPER_ADAPT": 0.0,
+        "HSD_SOLVE_SECONDS": 3600.0,
+        "C0_DIRECT_UPPER": 1.0,
+        "HSD_PROJECTIVE_NORMALIZATION": 1.0,
+        "HSD_ORIGINAL_OPERATOR": 0.0,
+        "ADAPT_MESH_POLICY": "LEGACY_THEN_REFINE",
+        "ADAPT_REFINE_CAP": 1000.0,
+        "FS_BRACKET_POLICY": "AUDITED_UPPER_LIMIT"
+      },
+      "run_started_utc": "2026-10-09T00:09:37.110755+00:00",
+      "solve_seconds": 1802.6294461999787,
+      "sheet_status": "解析完了",
+      "lower_fs": 2.2503402432794615,
+      "upper_fs": 2.264818318989914,
+      "relative_gap": 0.00641309735230016,
+      "element_counts": [
+        995.0,
+        995.0
+      ],
+      "summary_fields": [
+        "0",
+        "",
+        "",
+        "True",
+        "False",
+        "1.81178218390698E-04",
+        "",
+        "C:\\Users\\link_\\Desktop\\RPFEM_G1R12_Native25_20261009\\queued_continuation\\cases\\P04A\\RPFEM_logs\\20261009_090937_26776_analysis.tsv",
+        "8",
+        "8",
+        "reference_total",
+        "reference_total",
+        "True",
+        "True",
+        "False",
+        "False"
+      ],
+      "error_number": 0,
+      "error": "",
+      "result_current": true,
+      "root_search_incomplete": false,
+      "root_width": 0.000181178218390698,
+      "diagnostic_path": "C:\\Users\\link_\\Desktop\\RPFEM_G1R12_Native25_20261009\\queued_continuation\\cases\\P04A\\RPFEM_logs\\20261009_090937_26776_analysis.tsv",
+      "witness_q": [
+        8,
+        8
+      ],
+      "witness_phase": [
+        "reference_total",
+        "reference_total"
+      ],
+      "fs_values_present": true,
+      "independent_audit": {
+        "pass": true,
+        "scope": "independent raw-equation/geometry/weight/material audits of native witnesses",
+        "results": [
+          {
+            "side": "lower",
+            "metadata": {
+              "nodes": 536,
+              "elements": 995,
+              "q": 8,
+              "factor": 2.2503402432794615,
+              "fs": 2.2503402432794615,
+              "objective": 1.0001545510901866,
+              "native_audit": 3.485518376879085e-09,
+              "scale": 20.0
+            },
+            "physical_audit": {
+              "pass": true,
+              "errors": {
+                "yield": 0.0,
+                "equilibrium": 3.4855198172145663e-09,
+                "boundary_traction": 1.4301627977213905e-12,
+                "internal_traction": 1.4869212527912623e-09
+              },
+              "load": 1.0001545510901866,
+              "value": 1.0001545510901866
+            },
+            "raw_lower_errors": {
+              "yield": 0.0,
+              "equilibrium": 6.971039634429133e-08,
+              "boundary_traction": 2.860325595442781e-11,
+              "internal_traction": 2.9738425055825246e-08
+            },
+            "raw_lower_pass": true,
+            "endpoint_direction_pass": true,
+            "material_areas": [
+              158.00000000000003
+            ],
+            "weight": 3160.000000000001,
+            "pass": true
+          },
+          {
+            "side": "upper",
+            "metadata": {
+              "nodes": 536,
+              "elements": 995,
+              "q": 8,
+              "factor": 2.264818318989914,
+              "fs": 2.264818318989914,
+              "objective": 0.9998997188004495,
+              "native_audit": 1.2146017525083153e-10,
+              "scale": 20.0
+            },
+            "physical_audit": {
+              "pass": true,
+              "errors": {
+                "flow": 0.0,
+                "boundary": 2.4688729373781322e-11,
+                "jump": 0.0,
+                "work": 1.2146095240694876e-10,
+                "objective": 1.1102230246251565e-15
+              },
+              "dissipation": 0.9998997188004506,
+              "work": [
+                0.0,
+                0.999999999878539
+              ],
+              "value": 0.9998997188004506
+            },
+            "raw_lower_errors": {},
+            "raw_lower_pass": true,
+            "endpoint_direction_pass": true,
+            "material_areas": [
+              158.00000000000003
+            ],
+            "weight": 3160.000000000001,
+            "pass": true
+          }
+        ]
+      },
+      "workbook_sha256": "b32654e9af7965cb20956ab8eeb0fcb5aa0a76deaa6a26bb66afca323fb15db5",
+      "workbook": "cases\\P04A\\G1R12_P04A_Full1536_Q8.xlsm",
+      "seconds": 1807.9505855999887,
+      "finished_utc": "2026-10-09T00:39:41.299402+00:00",
+      "native_worker_status": "FS_AVAILABLE_PARTIAL",
+      "global_incomplete_note": "",
+      "target_unmet_reasons": [],
+      "root_tolerance_contract": "width <= FS_TOL * max(1, bracket midpoint); per-owner native root validity and completion flags",
+      "grading_basis": "RPX_Fs.bas:572-573,613; RPX_Guard.bas:372-381; independent raw field audit",
+      "grading_revision": 1,
+      "native_run_started": true,
+      "evidence_root": "queued_continuation",
+      "saved_output_pass": true,
+      "native_evidence_folder": "C:\\Users\\link_\\Desktop\\RPFEM_G1R12_Native25_20261009\\queued_continuation\\cases\\P04A",
+      "accepted_witness_q": [
+        8,
+        8
+      ],
+      "accepted_element_counts": [
+        995.0,
+        995.0
+      ]
+    },
+    {
+      "case": "P04N",
+      "status": "PASS_TARGET",
+      "started_utc": "2026-10-09T00:10:36.978692+00:00",
+      "source_sha256": "fe02ff61687cff8e0f0fc775867c8a244a83f758a3c5b9a9f80b6a2ab0389520",
+      "fs_obtained": true,
+      "target_met": true,
+      "input_sha256": "3cdd0904793fe73f0e5b05c4b4984a4786ad4a5618bc2e516973fbdf34d355e8",
+      "scope_notes": [
+        "G1R12 production TARGET1536/adapt3/q8; not catalogue M0/M1/M2 mesh convergence",
+        "E/nu not variables of rigid-plastic formulation; D04/D09 cannot test elastic sensitivity",
+        "N denotes Davis equivalent associated formulation, not direct nonassociated elastoplastic FEM"
+      ],
+      "excel_pid": 30628,
+      "native_definition_check": [
+        "6",
+        "1",
+        "6",
+        "158",
+        "DAVIS_EQUIVALENT"
+      ],
+      "actual_settings": {
+        "MODE": "Fs",
+        "TARGET": 1536.0,
+        "GRAVITY": "固定",
+        "ADAPT": 1.0,
+        "CYCLES": 3.0,
+        "GAP": 0.01,
+        "REFINE": 0.2,
+        "QUADRATURE": 8.0,
+        "FS_TOL": 0.0001,
+        "BEARING_FACES": null,
+        "BEARING_RIGIDS": null,
+        "UPPER_PILOT": 0.0,
+        "UPPER_PILOT_RIGID": 0.0,
+        "LOWER_FS_SEED": "UPPER_TRIAL",
+        "LOWER_SEED_WIDTH": 0.02,
+        "LOWER_MODEL_CACHE": 1.0,
+        "LOWER_KKT_BACKEND": "AUTO",
+        "SCHUR_ALLOW_RIGID": 0.0,
+        "SCHUR_MAX_BYTES": 268435456.0,
+        "TEST_INJECTION": 0.0,
+        "KKT_CAPTURE": 0.0,
+        "SCHUR_TRACE_LEVEL": 0.0,
+        "SCHUR_REPLAY_POLICY": "CONSISTENT",
+        "SCHUR_STRUCTURE_CACHE": 1.0,
+        "SCHUR_RECOVERY_MODE": "REUSE_U",
+        "SCHUR_REFINEMENT": "FIXED3",
+        "SCHUR_GENERIC_START_ITERS": 0.0,
+        "DIRECT_FINAL_AFTER_PILOT": 0.0,
+        "DIAGNOSTIC_MODE": 1.0,
+        "HSD_CAPTURE": 0.0,
+        "HSD_LINEAR_BACKEND": "AUTO_PIVOT",
+        "HSD_LINEAR_CAPTURE": 0.0,
+        "HSD_LINEAR_CAPTURE_MAX": 8.0,
+        "HSD_STABLE_MAX_BYTES": 1073741824.0,
+        "HSD_LINEAR_TRACE": 0.0,
+        "C0_AUTO": 0.0,
+        "ANALYSIS_POLICY": "DAVIS_EQUIVALENT",
+        "RAW_LOWER_AUDIT": 1.0,
+        "C0_UPPER_ADAPT": 0.0,
+        "HSD_SOLVE_SECONDS": 3600.0,
+        "C0_DIRECT_UPPER": 1.0,
+        "HSD_PROJECTIVE_NORMALIZATION": 1.0,
+        "HSD_ORIGINAL_OPERATOR": 0.0,
+        "ADAPT_MESH_POLICY": "LEGACY_THEN_REFINE",
+        "ADAPT_REFINE_CAP": 1000.0,
+        "FS_BRACKET_POLICY": "AUDITED_UPPER_LIMIT"
+      },
+      "run_started_utc": "2026-10-09T00:10:41.293050+00:00",
+      "solve_seconds": 1674.985409499961,
+      "sheet_status": "解析完了",
+      "lower_fs": 2.138029172910192,
+      "upper_fs": 2.1539417859693817,
+      "relative_gap": 0.007415060918000153,
+      "element_counts": [
+        999.0,
+        999.0
+      ],
+      "summary_fields": [
+        "0",
+        "",
+        "",
+        "True",
+        "False",
+        "1.72308450539838E-04",
+        "",
+        "C:\\Users\\link_\\Desktop\\RPFEM_G1R12_Native25_20261009\\queued_continuation\\cases\\P04N\\RPFEM_logs\\20261009_091041_30628_analysis.tsv",
+        "8",
+        "8",
+        "reference_total",
+        "reference_total",
+        "True",
+        "True",
+        "False",
+        "False"
+      ],
+      "error_number": 0,
+      "error": "",
+      "result_current": true,
+      "root_search_incomplete": false,
+      "root_width": 0.000172308450539838,
+      "diagnostic_path": "C:\\Users\\link_\\Desktop\\RPFEM_G1R12_Native25_20261009\\queued_continuation\\cases\\P04N\\RPFEM_logs\\20261009_091041_30628_analysis.tsv",
+      "witness_q": [
+        8,
+        8
+      ],
+      "witness_phase": [
+        "reference_total",
+        "reference_total"
+      ],
+      "fs_values_present": true,
+      "independent_audit": {
+        "pass": true,
+        "scope": "independent raw-equation/geometry/weight/material audits of native witnesses",
+        "results": [
+          {
+            "side": "lower",
+            "metadata": {
+              "nodes": 538,
+              "elements": 999,
+              "q": 8,
+              "factor": 2.138029172910192,
+              "fs": 2.138029172910192,
+              "objective": 1.0001403443388144,
+              "native_audit": 2.261163206326855e-09,
+              "scale": 20.0
+            },
+            "physical_audit": {
+              "pass": true,
+              "errors": {
+                "yield": 0.0,
+                "equilibrium": 2.2611610361877865e-09,
+                "boundary_traction": 2.7797983670558036e-12,
+                "internal_traction": 1.1576961611581282e-10
+              },
+              "load": 1.0001403443388144,
+              "value": 1.0001403443388144
+            },
+            "raw_lower_errors": {
+              "yield": 0.0,
+              "equilibrium": 4.522322072375573e-08,
+              "boundary_traction": 5.5595967341116074e-11,
+              "internal_traction": 2.3153923223162565e-09
+            },
+            "raw_lower_pass": true,
+            "endpoint_direction_pass": true,
+            "material_areas": [
+              158.0
+            ],
+            "weight": 3159.9999999999995,
+            "pass": true
+          },
+          {
+            "side": "upper",
+            "metadata": {
+              "nodes": 538,
+              "elements": 999,
+              "q": 8,
+              "factor": 2.1539417859693817,
+              "fs": 2.1539417859693817,
+              "objective": 0.9998983231804197,
+              "native_audit": 8.261191730696282e-11,
+              "scale": 20.0
+            },
+            "physical_audit": {
+              "pass": true,
+              "errors": {
+                "flow": 0.0,
+                "boundary": 6.94789999166857e-12,
+                "jump": 0.0,
+                "work": 8.26116952623579e-11,
+                "objective": 0.0
+              },
+              "dissipation": 0.9998983231804197,
+              "work": [
+                0.0,
+                0.9999999999173883
+              ],
+              "value": 0.9998983231804197
+            },
+            "raw_lower_errors": {},
+            "raw_lower_pass": true,
+            "endpoint_direction_pass": true,
+            "material_areas": [
+              158.0
+            ],
+            "weight": 3159.9999999999995,
+            "pass": true
+          }
+        ]
+      },
+      "workbook_sha256": "c99b6c9c55cc3eadf9948b91a84812d30edc2f8bf40ed68e889683c8ce4f9f69",
+      "workbook": "cases\\P04N\\G1R12_P04N_Full1536_Q8.xlsm",
+      "seconds": 1680.7986589000793,
+      "finished_utc": "2026-10-09T00:38:37.823445+00:00",
+      "native_worker_status": "FS_AVAILABLE_PARTIAL",
+      "global_incomplete_note": "",
+      "target_unmet_reasons": [],
+      "root_tolerance_contract": "width <= FS_TOL * max(1, bracket midpoint); per-owner native root validity and completion flags",
+      "grading_basis": "RPX_Fs.bas:572-573,613; RPX_Guard.bas:372-381; independent raw field audit",
+      "grading_revision": 1,
+      "native_run_started": true,
+      "evidence_root": "queued_continuation",
+      "saved_output_pass": true,
+      "native_evidence_folder": "C:\\Users\\link_\\Desktop\\RPFEM_G1R12_Native25_20261009\\queued_continuation\\cases\\P04N",
+      "accepted_witness_q": [
+        8,
+        8
+      ],
+      "accepted_element_counts": [
+        999.0,
+        999.0
+      ]
+    },
+    {
+      "case": "P05A",
+      "status": "FS_AVAILABLE_PARTIAL",
+      "started_utc": "2026-10-09T00:16:18.385515+00:00",
+      "source_sha256": "fe02ff61687cff8e0f0fc775867c8a244a83f758a3c5b9a9f80b6a2ab0389520",
+      "fs_obtained": true,
+      "target_met": false,
+      "input_sha256": "b7a842fe6eeca5851e7d323cf87bb3f4967fa869bbd992b2841276d605de3791",
+      "scope_notes": [
+        "G1R12 production TARGET1536/adapt3/q8; not catalogue M0/M1/M2 mesh convergence",
+        "E/nu not variables of rigid-plastic formulation; D04/D09 cannot test elastic sensitivity",
+        "N denotes Davis equivalent associated formulation, not direct nonassociated elastoplastic FEM"
+      ],
+      "excel_pid": 5072,
+      "native_definition_check": [
+        "9",
+        "3",
+        "9",
+        "475",
+        "ASSOCIATED"
+      ],
+      "actual_settings": {
+        "MODE": "Fs",
+        "TARGET": 1536.0,
+        "GRAVITY": "固定",
+        "ADAPT": 1.0,
+        "CYCLES": 3.0,
+        "GAP": 0.01,
+        "REFINE": 0.2,
+        "QUADRATURE": 8.0,
+        "FS_TOL": 0.0001,
+        "BEARING_FACES": null,
+        "BEARING_RIGIDS": null,
+        "UPPER_PILOT": 0.0,
+        "UPPER_PILOT_RIGID": 0.0,
+        "LOWER_FS_SEED": "UPPER_TRIAL",
+        "LOWER_SEED_WIDTH": 0.02,
+        "LOWER_MODEL_CACHE": 1.0,
+        "LOWER_KKT_BACKEND": "AUTO",
+        "SCHUR_ALLOW_RIGID": 0.0,
+        "SCHUR_MAX_BYTES": 268435456.0,
+        "TEST_INJECTION": 0.0,
+        "KKT_CAPTURE": 0.0,
+        "SCHUR_TRACE_LEVEL": 0.0,
+        "SCHUR_REPLAY_POLICY": "CONSISTENT",
+        "SCHUR_STRUCTURE_CACHE": 1.0,
+        "SCHUR_RECOVERY_MODE": "REUSE_U",
+        "SCHUR_REFINEMENT": "FIXED3",
+        "SCHUR_GENERIC_START_ITERS": 0.0,
+        "DIRECT_FINAL_AFTER_PILOT": 0.0,
+        "DIAGNOSTIC_MODE": 1.0,
+        "HSD_CAPTURE": 0.0,
+        "HSD_LINEAR_BACKEND": "AUTO_PIVOT",
+        "HSD_LINEAR_CAPTURE": 0.0,
+        "HSD_LINEAR_CAPTURE_MAX": 8.0,
+        "HSD_STABLE_MAX_BYTES": 1073741824.0,
+        "HSD_LINEAR_TRACE": 0.0,
+        "C0_AUTO": 0.0,
+        "ANALYSIS_POLICY": "ASSOCIATED",
+        "RAW_LOWER_AUDIT": 1.0,
+        "C0_UPPER_ADAPT": 0.0,
+        "HSD_SOLVE_SECONDS": 3600.0,
+        "C0_DIRECT_UPPER": 1.0,
+        "HSD_PROJECTIVE_NORMALIZATION": 1.0,
+        "HSD_ORIGINAL_OPERATOR": 0.0,
+        "ADAPT_MESH_POLICY": "LEGACY_THEN_REFINE",
+        "ADAPT_REFINE_CAP": 1000.0,
+        "FS_BRACKET_POLICY": "AUDITED_UPPER_LIMIT"
+      },
+      "run_started_utc": "2026-10-09T00:16:22.740869+00:00",
+      "solve_seconds": 1488.9603898000205,
+      "sheet_status": "上下界を取得（目標区間幅またはFs探索許容差は未達）",
+      "lower_fs": 1.4650728061474296,
+      "upper_fs": 1.4896715015368427,
+      "relative_gap": 0.016650303936919568,
+      "element_counts": [
+        551.0,
+        551.0
+      ],
+      "summary_fields": [
+        "0",
+        "",
+        "",
+        "True",
+        "True",
+        "1.18976805100868E-04",
+        "ADAPT_GAP_TARGET_NOT_MET",
+        "C:\\Users\\link_\\Desktop\\RPFEM_G1R12_Native25_20261009\\queued_continuation\\cases\\P05A\\RPFEM_logs\\20261009_091622_5072_analysis.tsv",
+        "8",
+        "8",
+        "reference_total",
+        "reference_total",
+        "True",
+        "True",
+        "False",
+        "False"
+      ],
+      "error_number": 0,
+      "error": "",
+      "result_current": true,
+      "root_search_incomplete": true,
+      "root_width": 0.000118976805100868,
+      "diagnostic_path": "C:\\Users\\link_\\Desktop\\RPFEM_G1R12_Native25_20261009\\queued_continuation\\cases\\P05A\\RPFEM_logs\\20261009_091622_5072_analysis.tsv",
+      "witness_q": [
+        8,
+        8
+      ],
+      "witness_phase": [
+        "reference_total",
+        "reference_total"
+      ],
+      "fs_values_present": true,
+      "independent_audit": {
+        "pass": true,
+        "scope": "independent raw-equation/geometry/weight/material audits of native witnesses",
+        "results": [
+          {
+            "side": "lower",
+            "metadata": {
+              "nodes": 318,
+              "elements": 551,
+              "q": 8,
+              "factor": 1.4650728061474296,
+              "fs": 1.4650728061474296,
+              "objective": 1.0002742462672527,
+              "native_audit": 8.615149704738201e-10,
+              "scale": 16.8
+            },
+            "physical_audit": {
+              "pass": true,
+              "errors": {
+                "yield": 0.0,
+                "equilibrium": 3.055469210977435e-10,
+                "internal_traction": 8.615150814961225e-10,
+                "boundary_traction": 4.3238701712970185e-12
+              },
+              "load": 1.0002742462672527,
+              "value": 1.0002742462672527
+            },
+            "raw_lower_errors": {
+              "yield": 0.0,
+              "equilibrium": 5.133188274442091e-09,
+              "internal_traction": 1.447345336913486e-08,
+              "boundary_traction": 7.264101887778991e-11
+            },
+            "raw_lower_pass": true,
+            "endpoint_direction_pass": true,
+            "material_areas": [
+              100.0,
+              150.0,
+              225.0
+            ],
+            "weight": 9449.999999999998,
+            "pass": true
+          },
+          {
+            "side": "upper",
+            "metadata": {
+              "nodes": 318,
+              "elements": 551,
+              "q": 8,
+              "factor": 1.4896715015368427,
+              "fs": 1.4896715015368427,
+              "objective": 0.9999954013257453,
+              "native_audit": 6.6963898384675424e-09,
+              "scale": 16.8
+            },
+            "physical_audit": {
+              "pass": true,
+              "errors": {
+                "flow": 0.0,
+                "jump": 0.0,
+                "boundary": 3.172921995388667e-11,
+                "bonded_interface": 6.6963898384675424e-09,
+                "work": 1.3912626606327194e-10,
+                "objective": 2.220446049250313e-16
+              },
+              "dissipation": 0.9999954013257455,
+              "work": [
+                0.0,
+                0.9999999998608737
+              ],
+              "value": 0.9999954013257455
+            },
+            "raw_lower_errors": {},
+            "raw_lower_pass": true,
+            "endpoint_direction_pass": true,
+            "material_areas": [
+              100.0,
+              150.0,
+              225.0
+            ],
+            "weight": 9449.999999999998,
+            "pass": true
+          }
+        ]
+      },
+      "workbook_sha256": "41f21221a27403ba4f287a74c7f0010012bf7248333bec58e6e0c53092edfbb0",
+      "workbook": "cases\\P05A\\G1R12_P05A_Full1536_Q8.xlsm",
+      "seconds": 1494.4717338000191,
+      "finished_utc": "2026-10-09T00:41:12.899143+00:00",
+      "native_worker_status": "FS_AVAILABLE_PARTIAL",
+      "global_incomplete_note": "ADAPT_GAP_TARGET_NOT_MET",
+      "target_unmet_reasons": [
+        "GAP_TARGET_NOT_MET"
+      ],
+      "root_tolerance_contract": "width <= FS_TOL * max(1, bracket midpoint); per-owner native root validity and completion flags",
+      "grading_basis": "RPX_Fs.bas:572-573,613; RPX_Guard.bas:372-381; independent raw field audit",
+      "grading_revision": 1,
+      "native_run_started": true,
+      "evidence_root": "queued_continuation",
+      "saved_output_pass": true,
+      "native_evidence_folder": "C:\\Users\\link_\\Desktop\\RPFEM_G1R12_Native25_20261009\\queued_continuation\\cases\\P05A",
+      "accepted_witness_q": [
+        8,
+        8
+      ],
+      "accepted_element_counts": [
+        551.0,
+        551.0
+      ]
+    },
+    {
+      "case": "P05N",
+      "status": "FS_AVAILABLE_PARTIAL",
+      "started_utc": "2026-10-09T00:17:09.252682+00:00",
+      "source_sha256": "fe02ff61687cff8e0f0fc775867c8a244a83f758a3c5b9a9f80b6a2ab0389520",
+      "fs_obtained": true,
+      "target_met": false,
+      "input_sha256": "96928cc282bfe3ff73f52a7499984ba6a557c2fd46f3f1daf6a630c423a047bc",
+      "scope_notes": [
+        "G1R12 production TARGET1536/adapt3/q8; not catalogue M0/M1/M2 mesh convergence",
+        "E/nu not variables of rigid-plastic formulation; D04/D09 cannot test elastic sensitivity",
+        "N denotes Davis equivalent associated formulation, not direct nonassociated elastoplastic FEM"
+      ],
+      "excel_pid": 41240,
+      "native_definition_check": [
+        "9",
+        "3",
+        "9",
+        "475",
+        "DAVIS_EQUIVALENT"
+      ],
+      "actual_settings": {
+        "MODE": "Fs",
+        "TARGET": 1536.0,
+        "GRAVITY": "固定",
+        "ADAPT": 1.0,
+        "CYCLES": 3.0,
+        "GAP": 0.01,
+        "REFINE": 0.2,
+        "QUADRATURE": 8.0,
+        "FS_TOL": 0.0001,
+        "BEARING_FACES": null,
+        "BEARING_RIGIDS": null,
+        "UPPER_PILOT": 0.0,
+        "UPPER_PILOT_RIGID": 0.0,
+        "LOWER_FS_SEED": "UPPER_TRIAL",
+        "LOWER_SEED_WIDTH": 0.02,
+        "LOWER_MODEL_CACHE": 1.0,
+        "LOWER_KKT_BACKEND": "AUTO",
+        "SCHUR_ALLOW_RIGID": 0.0,
+        "SCHUR_MAX_BYTES": 268435456.0,
+        "TEST_INJECTION": 0.0,
+        "KKT_CAPTURE": 0.0,
+        "SCHUR_TRACE_LEVEL": 0.0,
+        "SCHUR_REPLAY_POLICY": "CONSISTENT",
+        "SCHUR_STRUCTURE_CACHE": 1.0,
+        "SCHUR_RECOVERY_MODE": "REUSE_U",
+        "SCHUR_REFINEMENT": "FIXED3",
+        "SCHUR_GENERIC_START_ITERS": 0.0,
+        "DIRECT_FINAL_AFTER_PILOT": 0.0,
+        "DIAGNOSTIC_MODE": 1.0,
+        "HSD_CAPTURE": 0.0,
+        "HSD_LINEAR_BACKEND": "AUTO_PIVOT",
+        "HSD_LINEAR_CAPTURE": 0.0,
+        "HSD_LINEAR_CAPTURE_MAX": 8.0,
+        "HSD_STABLE_MAX_BYTES": 1073741824.0,
+        "HSD_LINEAR_TRACE": 0.0,
+        "C0_AUTO": 0.0,
+        "ANALYSIS_POLICY": "DAVIS_EQUIVALENT",
+        "RAW_LOWER_AUDIT": 1.0,
+        "C0_UPPER_ADAPT": 0.0,
+        "HSD_SOLVE_SECONDS": 3600.0,
+        "C0_DIRECT_UPPER": 1.0,
+        "HSD_PROJECTIVE_NORMALIZATION": 1.0,
+        "HSD_ORIGINAL_OPERATOR": 0.0,
+        "ADAPT_MESH_POLICY": "LEGACY_THEN_REFINE",
+        "ADAPT_REFINE_CAP": 1000.0,
+        "FS_BRACKET_POLICY": "AUDITED_UPPER_LIMIT"
+      },
+      "run_started_utc": "2026-10-09T00:17:13.437106+00:00",
+      "solve_seconds": 3019.028580500046,
+      "sheet_status": "上下界を取得（目標区間幅またはFs探索許容差は未達）",
+      "lower_fs": 1.4590373977014948,
+      "upper_fs": 1.4760732287084188,
+      "relative_gap": 0.011608305904136557,
+      "element_counts": [
+        997.0,
+        997.0
+      ],
+      "summary_fields": [
+        "0",
+        "",
+        "",
+        "True",
+        "True",
+        "1.17895541219104E-04",
+        "ADAPT_GAP_TARGET_NOT_MET",
+        "C:\\Users\\link_\\Desktop\\RPFEM_G1R12_Native25_20261009\\queued_continuation\\cases\\P05N\\RPFEM_logs\\20261009_091713_41240_analysis.tsv",
+        "8",
+        "8",
+        "reference_total",
+        "reference_total",
+        "True",
+        "True",
+        "False",
+        "False"
+      ],
+      "error_number": 0,
+      "error": "",
+      "result_current": true,
+      "root_search_incomplete": true,
+      "root_width": 0.000117895541219104,
+      "diagnostic_path": "C:\\Users\\link_\\Desktop\\RPFEM_G1R12_Native25_20261009\\queued_continuation\\cases\\P05N\\RPFEM_logs\\20261009_091713_41240_analysis.tsv",
+      "witness_q": [
+        8,
+        8
+      ],
+      "witness_phase": [
+        "reference_total",
+        "reference_total"
+      ],
+      "fs_values_present": true,
+      "independent_audit": {
+        "pass": true,
+        "scope": "independent raw-equation/geometry/weight/material audits of native witnesses",
+        "results": [
+          {
+            "side": "lower",
+            "metadata": {
+              "nodes": 543,
+              "elements": 997,
+              "q": 8,
+              "factor": 1.4590373977014948,
+              "fs": 1.4590373977014948,
+              "objective": 1.0002665492170992,
+              "native_audit": 1.3029058334068817e-09,
+              "scale": 16.8
+            },
+            "physical_audit": {
+              "pass": true,
+              "errors": {
+                "yield": 0.0,
+                "equilibrium": 1.3029048950841116e-09,
+                "internal_traction": 8.66874572125198e-10,
+                "boundary_traction": 2.1894820293495386e-12
+              },
+              "load": 1.0002665492170992,
+              "value": 1.0002665492170992
+            },
+            "raw_lower_errors": {
+              "yield": 0.0,
+              "equilibrium": 2.1888802237413076e-08,
+              "internal_traction": 1.4563492811703328e-08,
+              "boundary_traction": 3.678329809307225e-11
+            },
+            "raw_lower_pass": true,
+            "endpoint_direction_pass": true,
+            "material_areas": [
+              100.0,
+              150.0,
+              225.0
+            ],
+            "weight": 9449.999999999996,
+            "pass": true
+          },
+          {
+            "side": "upper",
+            "metadata": {
+              "nodes": 543,
+              "elements": 997,
+              "q": 8,
+              "factor": 1.4760732287084188,
+              "fs": 1.4760732287084188,
+              "objective": 0.9999947009058604,
+              "native_audit": 1.2859619584393764e-08,
+              "scale": 16.8
+            },
+            "physical_audit": {
+              "pass": true,
+              "errors": {
+                "flow": 0.0,
+                "jump": 0.0,
+                "boundary": 3.302613266904697e-10,
+                "bonded_interface": 1.2859619584393764e-08,
+                "work": 1.9902302028640406e-11,
+                "objective": 2.220446049250313e-16
+              },
+              "dissipation": 0.9999947009058606,
+              "work": [
+                0.0,
+                0.9999999999800977
+              ],
+              "value": 0.9999947009058606
+            },
+            "raw_lower_errors": {},
+            "raw_lower_pass": true,
+            "endpoint_direction_pass": true,
+            "material_areas": [
+              100.0,
+              150.0,
+              225.0
+            ],
+            "weight": 9449.999999999996,
+            "pass": true
+          }
+        ]
+      },
+      "workbook_sha256": "00b760a1d1b52d41eb7efcfc0154a0435de4218a8b7bef614c55ed3f91e00574",
+      "workbook": "cases\\P05N\\G1R12_P05N_Full1536_Q8.xlsm",
+      "seconds": 3024.620920800022,
+      "finished_utc": "2026-10-09T01:07:33.953071+00:00",
+      "native_worker_status": "FS_AVAILABLE_PARTIAL",
+      "global_incomplete_note": "ADAPT_GAP_TARGET_NOT_MET",
+      "target_unmet_reasons": [
+        "GAP_TARGET_NOT_MET"
+      ],
+      "root_tolerance_contract": "width <= FS_TOL * max(1, bracket midpoint); per-owner native root validity and completion flags",
+      "grading_basis": "RPX_Fs.bas:572-573,613; RPX_Guard.bas:372-381; independent raw field audit",
+      "grading_revision": 1,
+      "native_run_started": true,
+      "evidence_root": "queued_continuation",
+      "saved_output_pass": true,
+      "native_evidence_folder": "C:\\Users\\link_\\Desktop\\RPFEM_G1R12_Native25_20261009\\queued_continuation\\cases\\P05N",
+      "accepted_witness_q": [
+        8,
+        8
+      ],
+      "accepted_element_counts": [
+        997.0,
+        997.0
+      ]
+    },
+    {
+      "case": "P06A",
+      "status": "FS_AVAILABLE_PARTIAL",
+      "started_utc": "2026-10-08T22:07:38.252998+00:00",
+      "source_sha256": "fe02ff61687cff8e0f0fc775867c8a244a83f758a3c5b9a9f80b6a2ab0389520",
+      "fs_obtained": true,
+      "target_met": false,
+      "input_sha256": "7ba1d27d7f1d4bee57972dd9e87881a3efa59f8765808631c87916e3bf3ee9d1",
+      "scope_notes": [
+        "G1R12 production TARGET1536/adapt3/q8; not catalogue M0/M1/M2 mesh convergence",
+        "E/nu not variables of rigid-plastic formulation; D04/D09 cannot test elastic sensitivity",
+        "N denotes Davis equivalent associated formulation, not direct nonassociated elastoplastic FEM"
+      ],
+      "excel_pid": 14992,
+      "native_definition_check": [
+        "12",
+        "3",
+        "9",
+        "302.5",
+        "ASSOCIATED"
+      ],
+      "actual_settings": {
+        "MODE": "Fs",
+        "TARGET": 1536.0,
+        "GRAVITY": "固定",
+        "ADAPT": 1.0,
+        "CYCLES": 3.0,
+        "GAP": 0.01,
+        "REFINE": 0.2,
+        "QUADRATURE": 8.0,
+        "FS_TOL": 0.0001,
+        "BEARING_FACES": null,
+        "BEARING_RIGIDS": null,
+        "UPPER_PILOT": 0.0,
+        "UPPER_PILOT_RIGID": 0.0,
+        "LOWER_FS_SEED": "UPPER_TRIAL",
+        "LOWER_SEED_WIDTH": 0.02,
+        "LOWER_MODEL_CACHE": 1.0,
+        "LOWER_KKT_BACKEND": "AUTO",
+        "SCHUR_ALLOW_RIGID": 0.0,
+        "SCHUR_MAX_BYTES": 268435456.0,
+        "TEST_INJECTION": 0.0,
+        "KKT_CAPTURE": 0.0,
+        "SCHUR_TRACE_LEVEL": 0.0,
+        "SCHUR_REPLAY_POLICY": "CONSISTENT",
+        "SCHUR_STRUCTURE_CACHE": 1.0,
+        "SCHUR_RECOVERY_MODE": "REUSE_U",
+        "SCHUR_REFINEMENT": "FIXED3",
+        "SCHUR_GENERIC_START_ITERS": 0.0,
+        "DIRECT_FINAL_AFTER_PILOT": 0.0,
+        "DIAGNOSTIC_MODE": 1.0,
+        "HSD_CAPTURE": 0.0,
+        "HSD_LINEAR_BACKEND": "AUTO_PIVOT",
+        "HSD_LINEAR_CAPTURE": 0.0,
+        "HSD_LINEAR_CAPTURE_MAX": 8.0,
+        "HSD_STABLE_MAX_BYTES": 1073741824.0,
+        "HSD_LINEAR_TRACE": 0.0,
+        "C0_AUTO": 0.0,
+        "ANALYSIS_POLICY": "ASSOCIATED",
+        "RAW_LOWER_AUDIT": 1.0,
+        "C0_UPPER_ADAPT": 0.0,
+        "HSD_SOLVE_SECONDS": 3600.0,
+        "C0_DIRECT_UPPER": 1.0,
+        "HSD_PROJECTIVE_NORMALIZATION": 1.0,
+        "HSD_ORIGINAL_OPERATOR": 0.0,
+        "ADAPT_MESH_POLICY": "LEGACY_THEN_REFINE",
+        "ADAPT_REFINE_CAP": 1000.0,
+        "FS_BRACKET_POLICY": "AUDITED_UPPER_LIMIT"
+      },
+      "run_started_utc": "2026-10-08T22:07:42.155235+00:00",
+      "solve_seconds": 37863.224580299924,
+      "sheet_status": "上下界を取得（目標区間幅またはFs探索許容差は未達）",
+      "lower_fs": 0.8308348297491515,
+      "upper_fs": 0.9192082232087936,
+      "relative_gap": 0.10099567928945781,
+      "element_counts": [
+        1000.0,
+        1000.0
+      ],
+      "summary_fields": [
+        "0",
+        "",
+        "",
+        "True",
+        "True",
+        "5.1890355200368E-05",
+        "ADAPT_GAP_TARGET_NOT_MET",
+        "C:\\Users\\link_\\Desktop\\RPFEM_G1R12_Native25_20261009\\cases\\P06A\\RPFEM_logs\\20261009_070742_14992_analysis.tsv",
+        "8",
+        "8",
+        "reference_total",
+        "reference_total",
+        "True",
+        "True",
+        "False",
+        "False"
+      ],
+      "error_number": 0,
+      "error": "",
+      "result_current": true,
+      "root_search_incomplete": true,
+      "root_width": 5.1890355200368e-05,
+      "diagnostic_path": "C:\\Users\\link_\\Desktop\\RPFEM_G1R12_Native25_20261009\\cases\\P06A\\RPFEM_logs\\20261009_070742_14992_analysis.tsv",
+      "witness_q": [
+        8,
+        8
+      ],
+      "witness_phase": [
+        "reference_total",
+        "reference_total"
+      ],
+      "fs_values_present": true,
+      "independent_audit": {
+        "pass": true,
+        "scope": "independent raw-equation/geometry/weight/material audits of native witnesses",
+        "results": [
+          {
+            "side": "lower",
+            "metadata": {
+              "nodes": 542,
+              "elements": 1000,
+              "q": 8,
+              "factor": 0.8308348297491515,
+              "fs": 0.8308348297491515,
+              "objective": 1.000063600949701,
+              "native_audit": 1.5034057332385942e-11,
+              "scale": 20.0
+            },
+            "physical_audit": {
+              "pass": true,
+              "errors": {
+                "yield": 1.3574431785870878e-13,
+                "equilibrium": 1.5063505998114124e-11,
+                "internal_traction": 1.393746229538806e-13,
+                "boundary_traction": 7.401494731583974e-14
+              },
+              "load": 1.000063600949701,
+              "value": 1.000063600949701
+            },
+            "raw_lower_errors": {
+              "yield": 2.7148863571741757e-12,
+              "equilibrium": 3.012701199622825e-10,
+              "internal_traction": 2.7874924590776118e-12,
+              "boundary_traction": 1.4802989463167948e-12
+            },
+            "raw_lower_pass": true,
+            "endpoint_direction_pass": true,
+            "material_areas": [
+              83.74999999999999,
+              11.600000000000003,
+              207.15
+            ],
+            "weight": 5747.5,
+            "pass": true
+          },
+          {
+            "side": "upper",
+            "metadata": {
+              "nodes": 542,
+              "elements": 1000,
+              "q": 8,
+              "factor": 0.9192082232087936,
+              "fs": 0.9192082232087936,
+              "objective": 0.9999597518548816,
+              "native_audit": 4.0216496799416745e-11,
+              "scale": 20.0
+            },
+            "physical_audit": {
+              "pass": true,
+              "errors": {
+                "flow": 2.4687543325506823e-13,
+                "jump": 1.362536691976427e-13,
+                "bonded_interface": 5.07097759815711e-12,
+                "boundary": 1.0708841533565066e-11,
+                "work": 4.021849520086107e-11,
+                "objective": 1.1102230246251565e-16
+              },
+              "dissipation": 0.9999597518548815,
+              "work": [
+                0.0,
+                0.9999999999597815
+              ],
+              "value": 0.9999597518548815
+            },
+            "raw_lower_errors": {},
+            "raw_lower_pass": true,
+            "endpoint_direction_pass": true,
+            "material_areas": [
+              83.74999999999999,
+              11.600000000000003,
+              207.15
+            ],
+            "weight": 5747.5,
+            "pass": true
+          }
+        ]
+      },
+      "workbook_sha256": "e09d08a7afbd01e2fb9b6036141a65297d142821d736651147b9ddf20c9cd308",
+      "workbook": "cases\\P06A\\G1R12_P06A_Full1536_Q8.xlsm",
+      "seconds": 37869.49960670003,
+      "finished_utc": "2026-10-09T08:38:48.675850+00:00",
+      "native_worker_status": "FS_AVAILABLE_PARTIAL",
+      "global_incomplete_note": "ADAPT_GAP_TARGET_NOT_MET",
+      "target_unmet_reasons": [
+        "GAP_TARGET_NOT_MET"
+      ],
+      "root_tolerance_contract": "width <= FS_TOL * max(1, bracket midpoint); per-owner native root validity and completion flags",
+      "grading_basis": "RPX_Fs.bas:572-573,613; RPX_Guard.bas:372-381; independent raw field audit",
+      "grading_revision": 1,
+      "native_run_started": true,
+      "evidence_root": ".",
+      "saved_output_pass": true,
+      "native_evidence_folder": "C:\\Users\\link_\\Desktop\\RPFEM_G1R12_Native25_20261009\\cases\\P06A",
+      "accepted_witness_q": [
+        8,
+        8
+      ],
+      "accepted_element_counts": [
+        1000.0,
+        1000.0
+      ]
+    },
+    {
+      "case": "P06N",
+      "status": "FS_AVAILABLE_PARTIAL",
+      "started_utc": "2026-10-08T22:06:10.929101+00:00",
+      "source_sha256": "fe02ff61687cff8e0f0fc775867c8a244a83f758a3c5b9a9f80b6a2ab0389520",
+      "fs_obtained": true,
+      "target_met": false,
+      "input_sha256": "25f865f0e776f231feb5437eebaefbdbf59b6c3e0f8297174c4c6aa6abeff392",
+      "scope_notes": [
+        "G1R12 production TARGET1536/adapt3/q8; not catalogue M0/M1/M2 mesh convergence",
+        "E/nu not variables of rigid-plastic formulation; D04/D09 cannot test elastic sensitivity",
+        "N denotes Davis equivalent associated formulation, not direct nonassociated elastoplastic FEM"
+      ],
+      "excel_pid": 38712,
+      "native_definition_check": [
+        "12",
+        "3",
+        "9",
+        "302.5",
+        "DAVIS_EQUIVALENT"
+      ],
+      "actual_settings": {
+        "MODE": "Fs",
+        "TARGET": 1536.0,
+        "GRAVITY": "固定",
+        "ADAPT": 1.0,
+        "CYCLES": 3.0,
+        "GAP": 0.01,
+        "REFINE": 0.2,
+        "QUADRATURE": 8.0,
+        "FS_TOL": 0.0001,
+        "BEARING_FACES": null,
+        "BEARING_RIGIDS": null,
+        "UPPER_PILOT": 0.0,
+        "UPPER_PILOT_RIGID": 0.0,
+        "LOWER_FS_SEED": "UPPER_TRIAL",
+        "LOWER_SEED_WIDTH": 0.02,
+        "LOWER_MODEL_CACHE": 1.0,
+        "LOWER_KKT_BACKEND": "AUTO",
+        "SCHUR_ALLOW_RIGID": 0.0,
+        "SCHUR_MAX_BYTES": 268435456.0,
+        "TEST_INJECTION": 0.0,
+        "KKT_CAPTURE": 0.0,
+        "SCHUR_TRACE_LEVEL": 0.0,
+        "SCHUR_REPLAY_POLICY": "CONSISTENT",
+        "SCHUR_STRUCTURE_CACHE": 1.0,
+        "SCHUR_RECOVERY_MODE": "REUSE_U",
+        "SCHUR_REFINEMENT": "FIXED3",
+        "SCHUR_GENERIC_START_ITERS": 0.0,
+        "DIRECT_FINAL_AFTER_PILOT": 0.0,
+        "DIAGNOSTIC_MODE": 1.0,
+        "HSD_CAPTURE": 0.0,
+        "HSD_LINEAR_BACKEND": "AUTO_PIVOT",
+        "HSD_LINEAR_CAPTURE": 0.0,
+        "HSD_LINEAR_CAPTURE_MAX": 8.0,
+        "HSD_STABLE_MAX_BYTES": 1073741824.0,
+        "HSD_LINEAR_TRACE": 0.0,
+        "C0_AUTO": 0.0,
+        "ANALYSIS_POLICY": "DAVIS_EQUIVALENT",
+        "RAW_LOWER_AUDIT": 1.0,
+        "C0_UPPER_ADAPT": 0.0,
+        "HSD_SOLVE_SECONDS": 3600.0,
+        "C0_DIRECT_UPPER": 1.0,
+        "HSD_PROJECTIVE_NORMALIZATION": 1.0,
+        "HSD_ORIGINAL_OPERATOR": 0.0,
+        "ADAPT_MESH_POLICY": "LEGACY_THEN_REFINE",
+        "ADAPT_REFINE_CAP": 1000.0,
+        "FS_BRACKET_POLICY": "AUDITED_UPPER_LIMIT"
+      },
+      "run_started_utc": "2026-10-08T22:06:18.985768+00:00",
+      "solve_seconds": 40259.70930670004,
+      "sheet_status": "上下界を取得（目標区間幅またはFs探索許容差は未達）",
+      "lower_fs": 0.6601496846373138,
+      "upper_fs": 0.7600706548270073,
+      "relative_gap": 0.14071192675269203,
+      "element_counts": [
+        1000.0,
+        1000.0
+      ],
+      "summary_fields": [
+        "0",
+        "",
+        "",
+        "True",
+        "True",
+        "4.87356065349553E-05",
+        "ADAPT_GAP_TARGET_NOT_MET",
+        "C:\\Users\\link_\\Desktop\\RPFEM_G1R12_Native25_20261009\\cases\\P06N\\RPFEM_logs\\20261009_070619_38712_analysis.tsv",
+        "8",
+        "8",
+        "reference_total",
+        "reference_total",
+        "True",
+        "True",
+        "False",
+        "False"
+      ],
+      "error_number": 0,
+      "error": "",
+      "result_current": true,
+      "root_search_incomplete": true,
+      "root_width": 4.87356065349553e-05,
+      "diagnostic_path": "C:\\Users\\link_\\Desktop\\RPFEM_G1R12_Native25_20261009\\cases\\P06N\\RPFEM_logs\\20261009_070619_38712_analysis.tsv",
+      "witness_q": [
+        8,
+        8
+      ],
+      "witness_phase": [
+        "reference_total",
+        "reference_total"
+      ],
+      "fs_values_present": true,
+      "independent_audit": {
+        "pass": true,
+        "scope": "independent raw-equation/geometry/weight/material audits of native witnesses",
+        "results": [
+          {
+            "side": "lower",
+            "metadata": {
+              "nodes": 542,
+              "elements": 1000,
+              "q": 8,
+              "factor": 0.6601496846373138,
+              "fs": 0.6601496846373138,
+              "objective": 1.0000552426969798,
+              "native_audit": 9.365373060399307e-12,
+              "scale": 20.0
+            },
+            "physical_audit": {
+              "pass": true,
+              "errors": {
+                "yield": 1.122611927054367e-14,
+                "equilibrium": 9.36495325731812e-12,
+                "internal_traction": 1.156852391659413e-13,
+                "boundary_traction": 1.9761969838327786e-14
+              },
+              "load": 1.0000552426969798,
+              "value": 1.0000552426969798
+            },
+            "raw_lower_errors": {
+              "yield": 2.245223854108734e-13,
+              "equilibrium": 1.872990651463624e-10,
+              "internal_traction": 2.3137047833188262e-12,
+              "boundary_traction": 3.9523939676655573e-13
+            },
+            "raw_lower_pass": true,
+            "endpoint_direction_pass": true,
+            "material_areas": [
+              83.75,
+              11.600000000000005,
+              207.15
+            ],
+            "weight": 5747.499999999999,
+            "pass": true
+          },
+          {
+            "side": "upper",
+            "metadata": {
+              "nodes": 542,
+              "elements": 1000,
+              "q": 8,
+              "factor": 0.7600706548270073,
+              "fs": 0.7600706548270073,
+              "objective": 0.999987387737291,
+              "native_audit": 1.2869150189942502e-11,
+              "scale": 20.0
+            },
+            "physical_audit": {
+              "pass": true,
+              "errors": {
+                "flow": 0.0,
+                "jump": 0.0,
+                "bonded_interface": 1.6277260626259767e-12,
+                "boundary": 4.773738640949956e-12,
+                "work": 1.2865819520868627e-11,
+                "objective": 4.440892098500626e-16
+              },
+              "dissipation": 0.9999873877372906,
+              "work": [
+                0.0,
+                0.9999999999871342
+              ],
+              "value": 0.9999873877372906
+            },
+            "raw_lower_errors": {},
+            "raw_lower_pass": true,
+            "endpoint_direction_pass": true,
+            "material_areas": [
+              83.75,
+              11.600000000000005,
+              207.15
+            ],
+            "weight": 5747.499999999999,
+            "pass": true
+          }
+        ]
+      },
+      "workbook_sha256": "a6ad852de3beb14fdd6ce06c087839a033ab93e76ae1659e690eba5324db74ec",
+      "workbook": "cases\\P06N\\G1R12_P06N_Full1536_Q8.xlsm",
+      "seconds": 40269.44797109999,
+      "finished_utc": "2026-10-09T09:17:21.348417+00:00",
+      "native_worker_status": "FS_AVAILABLE_PARTIAL",
+      "global_incomplete_note": "ADAPT_GAP_TARGET_NOT_MET",
+      "target_unmet_reasons": [
+        "GAP_TARGET_NOT_MET"
+      ],
+      "root_tolerance_contract": "width <= FS_TOL * max(1, bracket midpoint); per-owner native root validity and completion flags",
+      "grading_basis": "RPX_Fs.bas:572-573,613; RPX_Guard.bas:372-381; independent raw field audit",
+      "grading_revision": 1,
+      "native_run_started": true,
+      "evidence_root": ".",
+      "saved_output_pass": true,
+      "native_evidence_folder": "C:\\Users\\link_\\Desktop\\RPFEM_G1R12_Native25_20261009\\cases\\P06N",
+      "accepted_witness_q": [
+        8,
+        8
+      ],
+      "accepted_element_counts": [
+        1000.0,
+        1000.0
+      ]
+    },
+    {
+      "case": "P07A",
+      "status": "PASS_TARGET",
+      "started_utc": "2026-10-09T00:17:31.561643+00:00",
+      "source_sha256": "fe02ff61687cff8e0f0fc775867c8a244a83f758a3c5b9a9f80b6a2ab0389520",
+      "fs_obtained": true,
+      "target_met": true,
+      "input_sha256": "2e2a2a5ff941cc7ca4de3ec27e79fd328d3f0b149f95a439e992177636eb0dd6",
+      "scope_notes": [
+        "G1R12 production TARGET1536/adapt3/q8; not catalogue M0/M1/M2 mesh convergence",
+        "E/nu not variables of rigid-plastic formulation; D04/D09 cannot test elastic sensitivity",
+        "N denotes Davis equivalent associated formulation, not direct nonassociated elastoplastic FEM"
+      ],
+      "excel_pid": 14412,
+      "native_definition_check": [
+        "4",
+        "1",
+        "4",
+        "220",
+        "ASSOCIATED"
+      ],
+      "actual_settings": {
+        "MODE": "Fs",
+        "TARGET": 1536.0,
+        "GRAVITY": "固定",
+        "ADAPT": 1.0,
+        "CYCLES": 3.0,
+        "GAP": 0.01,
+        "REFINE": 0.2,
+        "QUADRATURE": 8.0,
+        "FS_TOL": 0.0001,
+        "BEARING_FACES": null,
+        "BEARING_RIGIDS": null,
+        "UPPER_PILOT": 0.0,
+        "UPPER_PILOT_RIGID": 0.0,
+        "LOWER_FS_SEED": "UPPER_TRIAL",
+        "LOWER_SEED_WIDTH": 0.02,
+        "LOWER_MODEL_CACHE": 1.0,
+        "LOWER_KKT_BACKEND": "AUTO",
+        "SCHUR_ALLOW_RIGID": 0.0,
+        "SCHUR_MAX_BYTES": 268435456.0,
+        "TEST_INJECTION": 0.0,
+        "KKT_CAPTURE": 0.0,
+        "SCHUR_TRACE_LEVEL": 0.0,
+        "SCHUR_REPLAY_POLICY": "CONSISTENT",
+        "SCHUR_STRUCTURE_CACHE": 1.0,
+        "SCHUR_RECOVERY_MODE": "REUSE_U",
+        "SCHUR_REFINEMENT": "FIXED3",
+        "SCHUR_GENERIC_START_ITERS": 0.0,
+        "DIRECT_FINAL_AFTER_PILOT": 0.0,
+        "DIAGNOSTIC_MODE": 1.0,
+        "HSD_CAPTURE": 0.0,
+        "HSD_LINEAR_BACKEND": "AUTO_PIVOT",
+        "HSD_LINEAR_CAPTURE": 0.0,
+        "HSD_LINEAR_CAPTURE_MAX": 8.0,
+        "HSD_STABLE_MAX_BYTES": 1073741824.0,
+        "HSD_LINEAR_TRACE": 0.0,
+        "C0_AUTO": 0.0,
+        "ANALYSIS_POLICY": "ASSOCIATED",
+        "RAW_LOWER_AUDIT": 1.0,
+        "C0_UPPER_ADAPT": 0.0,
+        "HSD_SOLVE_SECONDS": 3600.0,
+        "C0_DIRECT_UPPER": 1.0,
+        "HSD_PROJECTIVE_NORMALIZATION": 1.0,
+        "HSD_ORIGINAL_OPERATOR": 0.0,
+        "ADAPT_MESH_POLICY": "LEGACY_THEN_REFINE",
+        "ADAPT_REFINE_CAP": 1000.0,
+        "FS_BRACKET_POLICY": "AUDITED_UPPER_LIMIT"
+      },
+      "run_started_utc": "2026-10-09T00:17:35.623239+00:00",
+      "solve_seconds": 2972.579823600012,
+      "sheet_status": "解析完了",
+      "lower_fs": 1.374825370666586,
+      "upper_fs": 1.3882584616508422,
+      "relative_gap": 0.009723259806409623,
+      "element_counts": [
+        1000.0,
+        1000.0
+      ],
+      "summary_fields": [
+        "0",
+        "",
+        "",
+        "True",
+        "False",
+        "1.1105623468266E-04",
+        "",
+        "C:\\Users\\link_\\Desktop\\RPFEM_G1R12_Native25_20261009\\queued_continuation\\cases\\P07A\\RPFEM_logs\\20261009_091735_14412_analysis.tsv",
+        "8",
+        "8",
+        "reference_total",
+        "reference_total",
+        "True",
+        "True",
+        "False",
+        "False"
+      ],
+      "error_number": 0,
+      "error": "",
+      "result_current": true,
+      "root_search_incomplete": false,
+      "root_width": 0.00011105623468266,
+      "diagnostic_path": "C:\\Users\\link_\\Desktop\\RPFEM_G1R12_Native25_20261009\\queued_continuation\\cases\\P07A\\RPFEM_logs\\20261009_091735_14412_analysis.tsv",
+      "witness_q": [
+        8,
+        8
+      ],
+      "witness_phase": [
+        "reference_total",
+        "reference_total"
+      ],
+      "fs_values_present": true,
+      "independent_audit": {
+        "pass": true,
+        "scope": "independent raw-equation/geometry/weight/material audits of native witnesses",
+        "results": [
+          {
+            "side": "lower",
+            "metadata": {
+              "nodes": 551,
+              "elements": 1000,
+              "q": 8,
+              "factor": 1.374825370666586,
+              "fs": 1.374825370666586,
+              "objective": 1.0002235549317071,
+              "native_audit": 1.2751171767771963e-09,
+              "scale": 10.0
+            },
+            "physical_audit": {
+              "pass": true,
+              "errors": {
+                "yield": 0.0,
+                "equilibrium": 1.2751151245993242e-09,
+                "internal_traction": 2.873861149055301e-10,
+                "boundary_traction": 2.3117618930257322e-12
+              },
+              "load": 1.0002235549317071,
+              "value": 1.0002235549317071
+            },
+            "raw_lower_errors": {
+              "yield": 0.0,
+              "equilibrium": 1.2751151245993242e-08,
+              "internal_traction": 2.8738611490553012e-09,
+              "boundary_traction": 2.3117618930257322e-11
+            },
+            "raw_lower_pass": true,
+            "endpoint_direction_pass": true,
+            "material_areas": [
+              220.0
+            ],
+            "weight": 4400.0,
+            "pass": true
+          },
+          {
+            "side": "upper",
+            "metadata": {
+              "nodes": 551,
+              "elements": 1000,
+              "q": 8,
+              "factor": 1.3882584616508422,
+              "fs": 1.3882584616508422,
+              "objective": 0.9997831484625598,
+              "native_audit": 7.908171179985621e-09,
+              "scale": 10.0
+            },
+            "physical_audit": {
+              "pass": true,
+              "errors": {
+                "flow": 0.0,
+                "jump": 0.0,
+                "boundary": 7.908171179985621e-09,
+                "work": 1.7792656237247684e-11,
+                "objective": 2.220446049250313e-16
+              },
+              "dissipation": 0.9997831484625596,
+              "work": [
+                0.0,
+                0.9999999999822073
+              ],
+              "value": 0.9997831484625596
+            },
+            "raw_lower_errors": {},
+            "raw_lower_pass": true,
+            "endpoint_direction_pass": true,
+            "material_areas": [
+              220.0
+            ],
+            "weight": 4400.0,
+            "pass": true
+          }
+        ]
+      },
+      "workbook_sha256": "0b8fe2472c816b40bdd7b29230e555d5757c6319c53a213328694c7b4cddaa31",
+      "workbook": "cases\\P07A\\G1R12_P07A_Full1536_Q8.xlsm",
+      "seconds": 2978.078948499984,
+      "finished_utc": "2026-10-09T01:07:09.711707+00:00",
+      "native_worker_status": "FS_AVAILABLE_PARTIAL",
+      "global_incomplete_note": "",
+      "target_unmet_reasons": [],
+      "root_tolerance_contract": "width <= FS_TOL * max(1, bracket midpoint); per-owner native root validity and completion flags",
+      "grading_basis": "RPX_Fs.bas:572-573,613; RPX_Guard.bas:372-381; independent raw field audit",
+      "grading_revision": 1,
+      "native_run_started": true,
+      "evidence_root": "queued_continuation",
+      "saved_output_pass": true,
+      "native_evidence_folder": "C:\\Users\\link_\\Desktop\\RPFEM_G1R12_Native25_20261009\\queued_continuation\\cases\\P07A",
+      "accepted_witness_q": [
+        8,
+        8
+      ],
+      "accepted_element_counts": [
+        1000.0,
+        1000.0
+      ]
+    },
+    {
+      "case": "P07N",
+      "status": "FS_AVAILABLE_PARTIAL",
+      "started_utc": "2026-10-09T00:38:40.282936+00:00",
+      "source_sha256": "fe02ff61687cff8e0f0fc775867c8a244a83f758a3c5b9a9f80b6a2ab0389520",
+      "fs_obtained": true,
+      "target_met": false,
+      "input_sha256": "e8338c00e272ac1a75b47ea5259da571645ff4a71b6d33bc933d6e03bf743fd2",
+      "scope_notes": [
+        "G1R12 production TARGET1536/adapt3/q8; not catalogue M0/M1/M2 mesh convergence",
+        "E/nu not variables of rigid-plastic formulation; D04/D09 cannot test elastic sensitivity",
+        "N denotes Davis equivalent associated formulation, not direct nonassociated elastoplastic FEM"
+      ],
+      "excel_pid": 6312,
+      "native_definition_check": [
+        "4",
+        "1",
+        "4",
+        "220",
+        "DAVIS_EQUIVALENT"
+      ],
+      "actual_settings": {
+        "MODE": "Fs",
+        "TARGET": 1536.0,
+        "GRAVITY": "固定",
+        "ADAPT": 1.0,
+        "CYCLES": 3.0,
+        "GAP": 0.01,
+        "REFINE": 0.2,
+        "QUADRATURE": 8.0,
+        "FS_TOL": 0.0001,
+        "BEARING_FACES": null,
+        "BEARING_RIGIDS": null,
+        "UPPER_PILOT": 0.0,
+        "UPPER_PILOT_RIGID": 0.0,
+        "LOWER_FS_SEED": "UPPER_TRIAL",
+        "LOWER_SEED_WIDTH": 0.02,
+        "LOWER_MODEL_CACHE": 1.0,
+        "LOWER_KKT_BACKEND": "AUTO",
+        "SCHUR_ALLOW_RIGID": 0.0,
+        "SCHUR_MAX_BYTES": 268435456.0,
+        "TEST_INJECTION": 0.0,
+        "KKT_CAPTURE": 0.0,
+        "SCHUR_TRACE_LEVEL": 0.0,
+        "SCHUR_REPLAY_POLICY": "CONSISTENT",
+        "SCHUR_STRUCTURE_CACHE": 1.0,
+        "SCHUR_RECOVERY_MODE": "REUSE_U",
+        "SCHUR_REFINEMENT": "FIXED3",
+        "SCHUR_GENERIC_START_ITERS": 0.0,
+        "DIRECT_FINAL_AFTER_PILOT": 0.0,
+        "DIAGNOSTIC_MODE": 1.0,
+        "HSD_CAPTURE": 0.0,
+        "HSD_LINEAR_BACKEND": "AUTO_PIVOT",
+        "HSD_LINEAR_CAPTURE": 0.0,
+        "HSD_LINEAR_CAPTURE_MAX": 8.0,
+        "HSD_STABLE_MAX_BYTES": 1073741824.0,
+        "HSD_LINEAR_TRACE": 0.0,
+        "C0_AUTO": 0.0,
+        "ANALYSIS_POLICY": "DAVIS_EQUIVALENT",
+        "RAW_LOWER_AUDIT": 1.0,
+        "C0_UPPER_ADAPT": 0.0,
+        "HSD_SOLVE_SECONDS": 3600.0,
+        "C0_DIRECT_UPPER": 1.0,
+        "HSD_PROJECTIVE_NORMALIZATION": 1.0,
+        "HSD_ORIGINAL_OPERATOR": 0.0,
+        "ADAPT_MESH_POLICY": "LEGACY_THEN_REFINE",
+        "ADAPT_REFINE_CAP": 1000.0,
+        "FS_BRACKET_POLICY": "AUDITED_UPPER_LIMIT"
+      },
+      "run_started_utc": "2026-10-09T00:38:44.551532+00:00",
+      "solve_seconds": 3922.86217149999,
+      "sheet_status": "上下界を取得（目標区間幅またはFs探索許容差は未達）",
+      "lower_fs": 1.3257680282493587,
+      "upper_fs": 1.3397480948715283,
+      "relative_gap": 0.010489575734249374,
+      "element_counts": [
+        998.0,
+        998.0
+      ],
+      "summary_fields": [
+        "0",
+        "",
+        "",
+        "True",
+        "True",
+        "1.07175560567274E-04",
+        "ADAPT_GAP_TARGET_NOT_MET",
+        "C:\\Users\\link_\\Desktop\\RPFEM_G1R12_Native25_20261009\\queued_continuation\\cases\\P07N\\RPFEM_logs\\20261009_093844_6312_analysis.tsv",
+        "8",
+        "8",
+        "reference_total",
+        "reference_total",
+        "True",
+        "True",
+        "False",
+        "False"
+      ],
+      "error_number": 0,
+      "error": "",
+      "result_current": true,
+      "root_search_incomplete": true,
+      "root_width": 0.000107175560567274,
+      "diagnostic_path": "C:\\Users\\link_\\Desktop\\RPFEM_G1R12_Native25_20261009\\queued_continuation\\cases\\P07N\\RPFEM_logs\\20261009_093844_6312_analysis.tsv",
+      "witness_q": [
+        8,
+        8
+      ],
+      "witness_phase": [
+        "reference_total",
+        "reference_total"
+      ],
+      "fs_values_present": true,
+      "independent_audit": {
+        "pass": true,
+        "scope": "independent raw-equation/geometry/weight/material audits of native witnesses",
+        "results": [
+          {
+            "side": "lower",
+            "metadata": {
+              "nodes": 550,
+              "elements": 998,
+              "q": 8,
+              "factor": 1.3257680282493587,
+              "fs": 1.3257680282493587,
+              "objective": 1.0002094240240456,
+              "native_audit": 1.257162998702377e-09,
+              "scale": 10.0
+            },
+            "physical_audit": {
+              "pass": true,
+              "errors": {
+                "yield": 0.0,
+                "equilibrium": 1.2571739205213817e-09,
+                "internal_traction": 5.917366596719376e-10,
+                "boundary_traction": 3.5921334797823313e-12
+              },
+              "load": 1.0002094240240456,
+              "value": 1.0002094240240456
+            },
+            "raw_lower_errors": {
+              "yield": 0.0,
+              "equilibrium": 1.2571739205213817e-08,
+              "internal_traction": 5.917366596719376e-09,
+              "boundary_traction": 3.592133479782331e-11
+            },
+            "raw_lower_pass": true,
+            "endpoint_direction_pass": true,
+            "material_areas": [
+              220.0
+            ],
+            "weight": 4400.000000000002,
+            "pass": true
+          },
+          {
+            "side": "upper",
+            "metadata": {
+              "nodes": 550,
+              "elements": 998,
+              "q": 8,
+              "factor": 1.3397480948715283,
+              "fs": 1.3397480948715283,
+              "objective": 0.9998009801622023,
+              "native_audit": 4.6396179772991526e-09,
+              "scale": 10.0
+            },
+            "physical_audit": {
+              "pass": true,
+              "errors": {
+                "flow": 0.0,
+                "jump": 0.0,
+                "boundary": 4.6396179772991526e-09,
+                "work": 3.6173575246323253e-10,
+                "objective": 3.3306690738754696e-16
+              },
+              "dissipation": 0.9998009801622026,
+              "work": [
+                0.0,
+                0.9999999996382642
+              ],
+              "value": 0.9998009801622026
+            },
+            "raw_lower_errors": {},
+            "raw_lower_pass": true,
+            "endpoint_direction_pass": true,
+            "material_areas": [
+              220.0
+            ],
+            "weight": 4400.000000000002,
+            "pass": true
+          }
+        ]
+      },
+      "workbook_sha256": "9207441f25a07d63307d0cddb84b7137584bf928cf66445af33c81d91b0a3128",
+      "workbook": "cases\\P07N\\G1R12_P07N_Full1536_Q8.xlsm",
+      "seconds": 3928.543096800102,
+      "finished_utc": "2026-10-09T01:44:08.924826+00:00",
+      "native_worker_status": "FS_AVAILABLE_PARTIAL",
+      "global_incomplete_note": "ADAPT_GAP_TARGET_NOT_MET",
+      "target_unmet_reasons": [
+        "GAP_TARGET_NOT_MET"
+      ],
+      "root_tolerance_contract": "width <= FS_TOL * max(1, bracket midpoint); per-owner native root validity and completion flags",
+      "grading_basis": "RPX_Fs.bas:572-573,613; RPX_Guard.bas:372-381; independent raw field audit",
+      "grading_revision": 1,
+      "native_run_started": true,
+      "evidence_root": "queued_continuation",
+      "saved_output_pass": true,
+      "native_evidence_folder": "C:\\Users\\link_\\Desktop\\RPFEM_G1R12_Native25_20261009\\queued_continuation\\cases\\P07N",
+      "accepted_witness_q": [
+        8,
+        8
+      ],
+      "accepted_element_counts": [
+        998.0,
+        998.0
+      ]
+    },
+    {
+      "case": "P08A",
+      "status": "PASS_TARGET",
+      "started_utc": "2026-10-08T22:06:10.939103+00:00",
+      "source_sha256": "fe02ff61687cff8e0f0fc775867c8a244a83f758a3c5b9a9f80b6a2ab0389520",
+      "fs_obtained": true,
+      "target_met": true,
+      "input_sha256": "e6bf246f05b92dedd7133b7fc6c98b72a012a4bcf01c389c029dde585ca9d50e",
+      "scope_notes": [
+        "G1R12 production TARGET1536/adapt3/q8; not catalogue M0/M1/M2 mesh convergence",
+        "E/nu not variables of rigid-plastic formulation; D04/D09 cannot test elastic sensitivity",
+        "N denotes Davis equivalent associated formulation, not direct nonassociated elastoplastic FEM"
+      ],
+      "excel_pid": 29192,
+      "native_definition_check": [
+        "7",
+        "2",
+        "7",
+        "900",
+        "ASSOCIATED"
+      ],
+      "actual_settings": {
+        "MODE": "Fs",
+        "TARGET": 1536.0,
+        "GRAVITY": "固定",
+        "ADAPT": 1.0,
+        "CYCLES": 3.0,
+        "GAP": 0.01,
+        "REFINE": 0.2,
+        "QUADRATURE": 8.0,
+        "FS_TOL": 0.0001,
+        "BEARING_FACES": null,
+        "BEARING_RIGIDS": null,
+        "UPPER_PILOT": 0.0,
+        "UPPER_PILOT_RIGID": 0.0,
+        "LOWER_FS_SEED": "UPPER_TRIAL",
+        "LOWER_SEED_WIDTH": 0.02,
+        "LOWER_MODEL_CACHE": 1.0,
+        "LOWER_KKT_BACKEND": "AUTO",
+        "SCHUR_ALLOW_RIGID": 0.0,
+        "SCHUR_MAX_BYTES": 268435456.0,
+        "TEST_INJECTION": 0.0,
+        "KKT_CAPTURE": 0.0,
+        "SCHUR_TRACE_LEVEL": 0.0,
+        "SCHUR_REPLAY_POLICY": "CONSISTENT",
+        "SCHUR_STRUCTURE_CACHE": 1.0,
+        "SCHUR_RECOVERY_MODE": "REUSE_U",
+        "SCHUR_REFINEMENT": "FIXED3",
+        "SCHUR_GENERIC_START_ITERS": 0.0,
+        "DIRECT_FINAL_AFTER_PILOT": 0.0,
+        "DIAGNOSTIC_MODE": 1.0,
+        "HSD_CAPTURE": 0.0,
+        "HSD_LINEAR_BACKEND": "AUTO_PIVOT",
+        "HSD_LINEAR_CAPTURE": 0.0,
+        "HSD_LINEAR_CAPTURE_MAX": 8.0,
+        "HSD_STABLE_MAX_BYTES": 1073741824.0,
+        "HSD_LINEAR_TRACE": 0.0,
+        "C0_AUTO": 0.0,
+        "ANALYSIS_POLICY": "ASSOCIATED",
+        "RAW_LOWER_AUDIT": 1.0,
+        "C0_UPPER_ADAPT": 0.0,
+        "HSD_SOLVE_SECONDS": 3600.0,
+        "C0_DIRECT_UPPER": 1.0,
+        "HSD_PROJECTIVE_NORMALIZATION": 1.0,
+        "HSD_ORIGINAL_OPERATOR": 0.0,
+        "ADAPT_MESH_POLICY": "LEGACY_THEN_REFINE",
+        "ADAPT_REFINE_CAP": 1000.0,
+        "FS_BRACKET_POLICY": "AUDITED_UPPER_LIMIT"
+      },
+      "run_started_utc": "2026-10-08T22:06:20.223535+00:00",
+      "solve_seconds": 7225.63393510005,
+      "sheet_status": "解析完了",
+      "lower_fs": 1.4428188996601232,
+      "upper_fs": 1.4547220085889507,
+      "relative_gap": 0.008216007508256594,
+      "element_counts": [
+        998.0,
+        998.0
+      ],
+      "summary_fields": [
+        "0",
+        "",
+        "",
+        "True",
+        "False",
+        "0",
+        "",
+        "C:\\Users\\link_\\Desktop\\RPFEM_G1R12_Native25_20261009\\cases\\P08A\\RPFEM_logs\\20261009_070620_29192_analysis.tsv",
+        "8",
+        "8",
+        "reference_total",
+        "reference_total",
+        "True",
+        "True",
+        "False",
+        "False"
+      ],
+      "error_number": 0,
+      "error": "",
+      "result_current": true,
+      "root_search_incomplete": false,
+      "root_width": 0.0,
+      "diagnostic_path": "C:\\Users\\link_\\Desktop\\RPFEM_G1R12_Native25_20261009\\cases\\P08A\\RPFEM_logs\\20261009_070620_29192_analysis.tsv",
+      "witness_q": [
+        8,
+        8
+      ],
+      "witness_phase": [
+        "reference_total",
+        "reference_total"
+      ],
+      "fs_values_present": true,
+      "independent_audit": {
+        "pass": true,
+        "scope": "independent raw-equation/geometry/weight/material audits of native witnesses",
+        "results": [
+          {
+            "side": "lower",
+            "metadata": {
+              "nodes": 550,
+              "elements": 998,
+              "q": 8,
+              "factor": 1.4428188996601232,
+              "fs": 1.4428188996601232,
+              "objective": 1.000001,
+              "native_audit": 2.252365411152188e-10,
+              "scale": 50.0
+            },
+            "physical_audit": {
+              "pass": true,
+              "errors": {
+                "yield": 0.0,
+                "equilibrium": 2.252231179333819e-10,
+                "internal_traction": 1.6212275966154266e-10,
+                "boundary_traction": 1.0010579130830307e-11
+              },
+              "load": 1.000001,
+              "value": 1.000001
+            },
+            "raw_lower_errors": {
+              "yield": 0.0,
+              "equilibrium": 1.1261155896669095e-08,
+              "internal_traction": 8.106137983077133e-09,
+              "boundary_traction": 5.005289565415153e-10
+            },
+            "raw_lower_pass": true,
+            "endpoint_direction_pass": true,
+            "material_areas": [
+              300.0,
+              600.0
+            ],
+            "weight": 18000.0,
+            "pass": true
+          },
+          {
+            "side": "upper",
+            "metadata": {
+              "nodes": 550,
+              "elements": 998,
+              "q": 8,
+              "factor": 1.4547220085889507,
+              "fs": 1.4547220085889507,
+              "objective": 0.9999990000000121,
+              "native_audit": 2.7904737548434255e-11,
+              "scale": 50.0
+            },
+            "physical_audit": {
+              "pass": true,
+              "errors": {
+                "flow": 1.861860537774627e-11,
+                "jump_normal": 2.6830302621857743e-11,
+                "bonded_interface": 2.7904737548434255e-11,
+                "boundary": 1.9582847186510406e-12,
+                "work": 1.5731749236636006e-11,
+                "objective": 5.551115123125783e-16
+              },
+              "value": 0.9999990000000126,
+              "work": 0.9999999999842683,
+              "quadrature": 8
+            },
+            "raw_lower_errors": {},
+            "raw_lower_pass": true,
+            "endpoint_direction_pass": true,
+            "material_areas": [
+              300.0,
+              600.0
+            ],
+            "weight": 18000.0,
+            "pass": true
+          }
+        ]
+      },
+      "workbook_sha256": "8af11560444bfa75e8d4312ed2139705b4075a5c5153205b44e45e2275ccb55a",
+      "workbook": "cases\\P08A\\G1R12_P08A_Full1536_Q8.xlsm",
+      "seconds": 7238.383380100015,
+      "finished_utc": "2026-10-09T00:06:49.488659+00:00",
+      "native_worker_status": "PASS_TARGET",
+      "global_incomplete_note": "",
+      "target_unmet_reasons": [],
+      "root_tolerance_contract": "width <= FS_TOL * max(1, bracket midpoint); per-owner native root validity and completion flags",
+      "grading_basis": "RPX_Fs.bas:572-573,613; RPX_Guard.bas:372-381; independent raw field audit",
+      "grading_revision": 1,
+      "native_run_started": true,
+      "evidence_root": ".",
+      "saved_output_pass": true,
+      "native_evidence_folder": "C:\\Users\\link_\\Desktop\\RPFEM_G1R12_Native25_20261009\\cases\\P08A",
+      "accepted_witness_q": [
+        8,
+        8
+      ],
+      "accepted_element_counts": [
+        998.0,
+        998.0
+      ]
+    },
+    {
+      "case": "P09A",
+      "status": "PASS_TARGET",
+      "started_utc": "2026-10-08T22:06:10.943964+00:00",
+      "source_sha256": "fe02ff61687cff8e0f0fc775867c8a244a83f758a3c5b9a9f80b6a2ab0389520",
+      "fs_obtained": true,
+      "target_met": true,
+      "input_sha256": "80e4316de07faa952de2cb470330986086324be8123914795f4a376e2cb5d7d1",
+      "scope_notes": [
+        "G1R12 production TARGET1536/adapt3/q8; not catalogue M0/M1/M2 mesh convergence",
+        "E/nu not variables of rigid-plastic formulation; D04/D09 cannot test elastic sensitivity",
+        "N denotes Davis equivalent associated formulation, not direct nonassociated elastoplastic FEM"
+      ],
+      "excel_pid": 23856,
+      "native_definition_check": [
+        "7",
+        "2",
+        "7",
+        "900",
+        "ASSOCIATED"
+      ],
+      "actual_settings": {
+        "MODE": "Fs",
+        "TARGET": 1536.0,
+        "GRAVITY": "固定",
+        "ADAPT": 1.0,
+        "CYCLES": 3.0,
+        "GAP": 0.01,
+        "REFINE": 0.2,
+        "QUADRATURE": 8.0,
+        "FS_TOL": 0.0001,
+        "BEARING_FACES": null,
+        "BEARING_RIGIDS": null,
+        "UPPER_PILOT": 0.0,
+        "UPPER_PILOT_RIGID": 0.0,
+        "LOWER_FS_SEED": "UPPER_TRIAL",
+        "LOWER_SEED_WIDTH": 0.02,
+        "LOWER_MODEL_CACHE": 1.0,
+        "LOWER_KKT_BACKEND": "AUTO",
+        "SCHUR_ALLOW_RIGID": 0.0,
+        "SCHUR_MAX_BYTES": 268435456.0,
+        "TEST_INJECTION": 0.0,
+        "KKT_CAPTURE": 0.0,
+        "SCHUR_TRACE_LEVEL": 0.0,
+        "SCHUR_REPLAY_POLICY": "CONSISTENT",
+        "SCHUR_STRUCTURE_CACHE": 1.0,
+        "SCHUR_RECOVERY_MODE": "REUSE_U",
+        "SCHUR_REFINEMENT": "FIXED3",
+        "SCHUR_GENERIC_START_ITERS": 0.0,
+        "DIRECT_FINAL_AFTER_PILOT": 0.0,
+        "DIAGNOSTIC_MODE": 1.0,
+        "HSD_CAPTURE": 0.0,
+        "HSD_LINEAR_BACKEND": "AUTO_PIVOT",
+        "HSD_LINEAR_CAPTURE": 0.0,
+        "HSD_LINEAR_CAPTURE_MAX": 8.0,
+        "HSD_STABLE_MAX_BYTES": 1073741824.0,
+        "HSD_LINEAR_TRACE": 0.0,
+        "C0_AUTO": 0.0,
+        "ANALYSIS_POLICY": "ASSOCIATED",
+        "RAW_LOWER_AUDIT": 1.0,
+        "C0_UPPER_ADAPT": 0.0,
+        "HSD_SOLVE_SECONDS": 3600.0,
+        "C0_DIRECT_UPPER": 1.0,
+        "HSD_PROJECTIVE_NORMALIZATION": 1.0,
+        "HSD_ORIGINAL_OPERATOR": 0.0,
+        "ADAPT_MESH_POLICY": "LEGACY_THEN_REFINE",
+        "ADAPT_REFINE_CAP": 1000.0,
+        "FS_BRACKET_POLICY": "AUDITED_UPPER_LIMIT"
+      },
+      "run_started_utc": "2026-10-08T22:06:20.689962+00:00",
+      "solve_seconds": 6179.915203999961,
+      "sheet_status": "解析完了",
+      "lower_fs": 0.9645406357821467,
+      "upper_fs": 0.9726280400324325,
+      "relative_gap": 0.008349716110173128,
+      "element_counts": [
+        998.0,
+        998.0
+      ],
+      "summary_fields": [
+        "0",
+        "",
+        "",
+        "True",
+        "False",
+        "0",
+        "",
+        "C:\\Users\\link_\\Desktop\\RPFEM_G1R12_Native25_20261009\\cases\\P09A\\RPFEM_logs\\20261009_070620_23856_analysis.tsv",
+        "8",
+        "8",
+        "reference_total",
+        "reference_total",
+        "True",
+        "True",
+        "False",
+        "False"
+      ],
+      "error_number": 0,
+      "error": "",
+      "result_current": true,
+      "root_search_incomplete": false,
+      "root_width": 0.0,
+      "diagnostic_path": "C:\\Users\\link_\\Desktop\\RPFEM_G1R12_Native25_20261009\\cases\\P09A\\RPFEM_logs\\20261009_070620_23856_analysis.tsv",
+      "witness_q": [
+        8,
+        8
+      ],
+      "witness_phase": [
+        "reference_total",
+        "reference_total"
+      ],
+      "fs_values_present": true,
+      "independent_audit": {
+        "pass": true,
+        "scope": "independent raw-equation/geometry/weight/material audits of native witnesses",
+        "results": [
+          {
+            "side": "lower",
+            "metadata": {
+              "nodes": 551,
+              "elements": 998,
+              "q": 8,
+              "factor": 0.9645406357821467,
+              "fs": 0.9645406357821467,
+              "objective": 1.000001,
+              "native_audit": 5.156528537497707e-10,
+              "scale": 50.0
+            },
+            "physical_audit": {
+              "pass": true,
+              "errors": {
+                "yield": 0.0,
+                "equilibrium": 2.1081997259031482e-10,
+                "internal_traction": 5.156532978389805e-10,
+                "boundary_traction": 4.985510310099718e-12
+              },
+              "load": 1.000001,
+              "value": 1.000001
+            },
+            "raw_lower_errors": {
+              "yield": 0.0,
+              "equilibrium": 1.0540998629515741e-08,
+              "internal_traction": 2.5782664891949025e-08,
+              "boundary_traction": 2.4927551550498587e-10
+            },
+            "raw_lower_pass": true,
+            "endpoint_direction_pass": true,
+            "material_areas": [
+              300.0,
+              600.0
+            ],
+            "weight": 18000.000000000007,
+            "pass": true
+          },
+          {
+            "side": "upper",
+            "metadata": {
+              "nodes": 551,
+              "elements": 998,
+              "q": 8,
+              "factor": 0.9726280400324325,
+              "fs": 0.9726280400324325,
+              "objective": 0.9999990000000197,
+              "native_audit": 7.87597039689728e-11,
+              "scale": 50.0
+            },
+            "physical_audit": {
+              "pass": true,
+              "errors": {
+                "flow": 7.875970396932431e-11,
+                "jump_normal": 2.89757043289021e-11,
+                "bonded_interface": 1.2615151978589978e-11,
+                "boundary": 3.794707975468356e-12,
+                "work": 9.920064769630699e-12,
+                "objective": 1.1213252548714081e-14
+              },
+              "value": 0.9999990000000085,
+              "work": 0.9999999999900799,
+              "quadrature": 8
+            },
+            "raw_lower_errors": {},
+            "raw_lower_pass": true,
+            "endpoint_direction_pass": true,
+            "material_areas": [
+              300.0,
+              600.0
+            ],
+            "weight": 18000.000000000007,
+            "pass": true
+          }
+        ]
+      },
+      "workbook_sha256": "3f29fbef423981ecfd28bd5e06ff535ff26edc145b041efde4d015c7e5a8cd45",
+      "workbook": "cases\\P09A\\G1R12_P09A_Full1536_Q8.xlsm",
+      "seconds": 6193.181968099903,
+      "finished_utc": "2026-10-08T23:49:24.267966+00:00",
+      "native_worker_status": "PASS_TARGET",
+      "global_incomplete_note": "",
+      "target_unmet_reasons": [],
+      "root_tolerance_contract": "width <= FS_TOL * max(1, bracket midpoint); per-owner native root validity and completion flags",
+      "grading_basis": "RPX_Fs.bas:572-573,613; RPX_Guard.bas:372-381; independent raw field audit",
+      "grading_revision": 1,
+      "native_run_started": true,
+      "evidence_root": ".",
+      "saved_output_pass": true,
+      "native_evidence_folder": "C:\\Users\\link_\\Desktop\\RPFEM_G1R12_Native25_20261009\\cases\\P09A",
+      "accepted_witness_q": [
+        8,
+        8
+      ],
+      "accepted_element_counts": [
+        998.0,
+        998.0
+      ]
+    },
+    {
+      "case": "P10A",
+      "status": "FS_AVAILABLE_PARTIAL",
+      "started_utc": "2026-10-08T23:10:56.556756+00:00",
+      "source_sha256": "fe02ff61687cff8e0f0fc775867c8a244a83f758a3c5b9a9f80b6a2ab0389520",
+      "fs_obtained": true,
+      "target_met": false,
+      "input_sha256": "43f14c77ed27dfac48a2686df8a82892dad2dd8d687607b96b21218efd3f66bc",
+      "scope_notes": [
+        "G1R12 production TARGET1536/adapt3/q8; not catalogue M0/M1/M2 mesh convergence",
+        "E/nu not variables of rigid-plastic formulation; D04/D09 cannot test elastic sensitivity",
+        "N denotes Davis equivalent associated formulation, not direct nonassociated elastoplastic FEM"
+      ],
+      "excel_pid": 26396,
+      "native_definition_check": [
+        "7",
+        "2",
+        "7",
+        "900",
+        "ASSOCIATED"
+      ],
+      "actual_settings": {
+        "MODE": "Fs",
+        "TARGET": 1536.0,
+        "GRAVITY": "固定",
+        "ADAPT": 1.0,
+        "CYCLES": 3.0,
+        "GAP": 0.01,
+        "REFINE": 0.2,
+        "QUADRATURE": 8.0,
+        "FS_TOL": 0.0001,
+        "BEARING_FACES": null,
+        "BEARING_RIGIDS": null,
+        "UPPER_PILOT": 0.0,
+        "UPPER_PILOT_RIGID": 0.0,
+        "LOWER_FS_SEED": "UPPER_TRIAL",
+        "LOWER_SEED_WIDTH": 0.02,
+        "LOWER_MODEL_CACHE": 1.0,
+        "LOWER_KKT_BACKEND": "AUTO",
+        "SCHUR_ALLOW_RIGID": 0.0,
+        "SCHUR_MAX_BYTES": 268435456.0,
+        "TEST_INJECTION": 0.0,
+        "KKT_CAPTURE": 0.0,
+        "SCHUR_TRACE_LEVEL": 0.0,
+        "SCHUR_REPLAY_POLICY": "CONSISTENT",
+        "SCHUR_STRUCTURE_CACHE": 1.0,
+        "SCHUR_RECOVERY_MODE": "REUSE_U",
+        "SCHUR_REFINEMENT": "FIXED3",
+        "SCHUR_GENERIC_START_ITERS": 0.0,
+        "DIRECT_FINAL_AFTER_PILOT": 0.0,
+        "DIAGNOSTIC_MODE": 1.0,
+        "HSD_CAPTURE": 0.0,
+        "HSD_LINEAR_BACKEND": "AUTO_PIVOT",
+        "HSD_LINEAR_CAPTURE": 0.0,
+        "HSD_LINEAR_CAPTURE_MAX": 8.0,
+        "HSD_STABLE_MAX_BYTES": 1073741824.0,
+        "HSD_LINEAR_TRACE": 0.0,
+        "C0_AUTO": 0.0,
+        "ANALYSIS_POLICY": "ASSOCIATED",
+        "RAW_LOWER_AUDIT": 1.0,
+        "C0_UPPER_ADAPT": 0.0,
+        "HSD_SOLVE_SECONDS": 3600.0,
+        "C0_DIRECT_UPPER": 1.0,
+        "HSD_PROJECTIVE_NORMALIZATION": 1.0,
+        "HSD_ORIGINAL_OPERATOR": 0.0,
+        "ADAPT_MESH_POLICY": "LEGACY_THEN_REFINE",
+        "ADAPT_REFINE_CAP": 1000.0,
+        "FS_BRACKET_POLICY": "AUDITED_UPPER_LIMIT"
+      },
+      "run_started_utc": "2026-10-08T23:11:11.123324+00:00",
+      "solve_seconds": 5569.226945300004,
+      "sheet_status": "上下界を取得（目標区間幅またはFs探索許容差は未達）",
+      "lower_fs": 1.997662491461876,
+      "upper_fs": 2.035737755934112,
+      "relative_gap": 0.018879983208618,
+      "element_counts": [
+        1000.0,
+        1000.0
+      ],
+      "summary_fields": [
+        "0",
+        "",
+        "",
+        "True",
+        "True",
+        "0",
+        "ADAPT_GAP_TARGET_NOT_MET",
+        "C:\\Users\\link_\\Desktop\\RPFEM_G1R12_Native25_20261009\\queued_continuation\\cases\\P10A\\RPFEM_logs\\20261009_081111_26396_analysis.tsv",
+        "8",
+        "8",
+        "reference_total",
+        "reference_total",
+        "True",
+        "True",
+        "False",
+        "False"
+      ],
+      "error_number": 0,
+      "error": "",
+      "result_current": true,
+      "root_search_incomplete": true,
+      "root_width": 0.0,
+      "diagnostic_path": "C:\\Users\\link_\\Desktop\\RPFEM_G1R12_Native25_20261009\\queued_continuation\\cases\\P10A\\RPFEM_logs\\20261009_081111_26396_analysis.tsv",
+      "witness_q": [
+        8,
+        8
+      ],
+      "witness_phase": [
+        "reference_total",
+        "reference_total"
+      ],
+      "fs_values_present": true,
+      "independent_audit": {
+        "pass": true,
+        "scope": "independent raw-equation/geometry/weight/material audits of native witnesses",
+        "results": [
+          {
+            "side": "lower",
+            "metadata": {
+              "nodes": 548,
+              "elements": 1000,
+              "q": 8,
+              "factor": 1.997662491461876,
+              "fs": 1.997662491461876,
+              "objective": 1.000001,
+              "native_audit": 9.295333479439252e-11,
+              "scale": 75.0
+            },
+            "physical_audit": {
+              "pass": true,
+              "errors": {
+                "yield": 0.0,
+                "equilibrium": 9.295345049231685e-11,
+                "internal_traction": 8.281297869672244e-11,
+                "boundary_traction": 1.2204557326251344e-11
+              },
+              "load": 1.000001,
+              "value": 1.000001
+            },
+            "raw_lower_errors": {
+              "yield": 0.0,
+              "equilibrium": 6.9715087869237635e-09,
+              "internal_traction": 6.210973402254183e-09,
+              "boundary_traction": 9.153417994688508e-10
+            },
+            "raw_lower_pass": true,
+            "endpoint_direction_pass": true,
+            "material_areas": [
+              300.0,
+              600.0
+            ],
+            "weight": 17999.999999999993,
+            "pass": true
+          },
+          {
+            "side": "upper",
+            "metadata": {
+              "nodes": 548,
+              "elements": 1000,
+              "q": 8,
+              "factor": 2.035737755934112,
+              "fs": 2.035737755934112,
+              "objective": 0.9999989999999847,
+              "native_audit": 4.232693248042989e-11,
+              "scale": 75.0
+            },
+            "physical_audit": {
+              "pass": true,
+              "errors": {
+                "flow": 4.232693248042989e-11,
+                "jump_normal": 1.137640665231977e-11,
+                "bonded_interface": 1.1898625910087174e-12,
+                "boundary": 7.754064672757998e-12,
+                "work": 4.923506047305182e-12,
+                "objective": 9.547918011776346e-15
+              },
+              "value": 0.9999989999999942,
+              "work": 0.9999999999950765,
+              "quadrature": 8
+            },
+            "raw_lower_errors": {},
+            "raw_lower_pass": true,
+            "endpoint_direction_pass": true,
+            "material_areas": [
+              300.0,
+              600.0
+            ],
+            "weight": 17999.999999999993,
+            "pass": true
+          }
+        ]
+      },
+      "workbook_sha256": "c989a0923ee5e495f3230619bb6bad31780f8f0d825907d3bedfb22e5e0ff554",
+      "workbook": "cases\\P10A\\G1R12_P10A_Full1536_Q8.xlsm",
+      "seconds": 5587.041484299931,
+      "finished_utc": "2026-10-09T00:44:03.737894+00:00",
+      "native_worker_status": "FS_AVAILABLE_PARTIAL",
+      "global_incomplete_note": "ADAPT_GAP_TARGET_NOT_MET",
+      "target_unmet_reasons": [
+        "GAP_TARGET_NOT_MET"
+      ],
+      "root_tolerance_contract": "width <= FS_TOL * max(1, bracket midpoint); per-owner native root validity and completion flags",
+      "grading_basis": "RPX_Fs.bas:572-573,613; RPX_Guard.bas:372-381; independent raw field audit",
+      "grading_revision": 1,
+      "native_run_started": true,
+      "evidence_root": "queued_continuation",
+      "saved_output_pass": true,
+      "native_evidence_folder": "C:\\Users\\link_\\Desktop\\RPFEM_G1R12_Native25_20261009\\queued_continuation\\cases\\P10A",
+      "accepted_witness_q": [
+        8,
+        8
+      ],
+      "accepted_element_counts": [
+        1000.0,
+        1000.0
+      ]
+    }
+  ]
+}

@@ -1,0 +1,446 @@
+{
+  "scope": "native logs + static contract review, not a solved root proof",
+  "guard": {
+    "line": 223,
+    "code": "If stored.statusA <> \"OPTIMAL\" Or stored.statusB <> \"OPTIMAL\" Then Exit Function"
+  },
+  "cases": [
+    {
+      "case": "D01A",
+      "status": "FS_AVAILABLE_PARTIAL",
+      "fs_obtained": true,
+      "root_flags": [
+        "False",
+        "False",
+        "False",
+        "False"
+      ],
+      "target_unmet_reasons": [
+        "GAP_TARGET_NOT_MET",
+        "LOWER_ROOT_NOT_VALID",
+        "UPPER_ROOT_NOT_VALID"
+      ],
+      "solve_status_counts": {
+        "OPTIMAL": 33,
+        "INFEASIBLE": 16,
+        "UNBOUNDED": 13
+      },
+      "reported_final_brackets": [
+        {
+          "timestamp": "2026-10-09 07:14:39",
+          "elapsed_s": "498.908861",
+          "solve_id": "10",
+          "candidate": "coarse_0",
+          "mode": "upper",
+          "strength_factor": "0.667968916015734",
+          "event": "p4_final_bracket",
+          "private_bytes": "428662784",
+          "process_peak_commit_bytes": "506114048",
+          "working_set_bytes": "507584512",
+          "detail": "mode=upper;a=0.667968916015734;b=0.671875164062606;fa=1;fb=-0.999999;target=0.999999;quadrature=4;root_width=3.90624804687112E-03"
+        },
+        {
+          "timestamp": "2026-10-09 07:22:59",
+          "elapsed_s": "998.818209",
+          "solve_id": "20",
+          "candidate": "coarse_0",
+          "mode": "lower",
+          "strength_factor": "0.57421863476577",
+          "event": "p4_final_bracket",
+          "private_bytes": "693039104",
+          "process_peak_commit_bytes": "1024696320",
+          "working_set_bytes": "760647680",
+          "detail": "mode=lower;a=0.57421863476577;b=0.578124882812644;fa=1;fb=-1.00000099999961;target=1.000001;quadrature=4;root_width=3.90624804687445E-03"
+        },
+        {
+          "timestamp": "2026-10-09 07:23:00",
+          "elapsed_s": "999.867012",
+          "solve_id": "20",
+          "candidate": "adapt_1_band",
+          "mode": "lower",
+          "strength_factor": "0.57421863476577",
+          "event": "p4_final_bracket",
+          "private_bytes": "687038464",
+          "process_peak_commit_bytes": "1024696320",
+          "working_set_bytes": "754655232",
+          "detail": "mode=upper;a=0.667968916015734;b=0.671875164062606;fa=1;fb=-0.999999;target=0.999999;quadrature=4;root_width=3.90624804687112E-03"
+        },
+        {
+          "timestamp": "2026-10-09 07:23:00",
+          "elapsed_s": "999.942516",
+          "solve_id": "20",
+          "candidate": "adapt_1_band",
+          "mode": "lower",
+          "strength_factor": "0.57421863476577",
+          "event": "p4_final_bracket",
+          "private_bytes": "687104000",
+          "process_peak_commit_bytes": "1024696320",
+          "working_set_bytes": "754720768",
+          "detail": "mode=lower;a=0.57421863476577;b=0.578124882812644;fa=1;fb=-1.00000099999961;target=1.000001;quadrature=4;root_width=3.90624804687445E-03"
+        },
+        {
+          "timestamp": "2026-10-09 07:30:24",
+          "elapsed_s": "1443.094795",
+          "solve_id": "27",
+          "candidate": "band_refine",
+          "mode": "upper",
+          "strength_factor": "0.66767598417982",
+          "event": "p4_final_bracket",
+          "private_bytes": "487440384",
+          "process_peak_commit_bytes": "1024696320",
+          "working_set_bytes": "554897408",
+          "detail": "mode=upper;a=0.66767598417982;b=0.67187519765638;fa=1;fb=-0.999999;target=0.999999;quadrature=4;root_width=4.1992134765606E-03"
+        },
+        {
+          "timestamp": "2026-10-09 07:41:57",
+          "elapsed_s": "2136.918767",
+          "solve_id": "34",
+          "candidate": "band_refine",
+          "mode": "lower",
+          "strength_factor": "0.577807467138854",
+          "event": "p4_final_bracket",
+          "private_bytes": "803028992",
+          "process_peak_commit_bytes": "1213669376",
+          "working_set_bytes": "870129664",
+          "detail": "mode=lower;a=0.57421860605486;b=0.577807467138854;fa=1;fb=-1.00000099999995;target=1.000001;quadrature=4;root_width=3.58886108399381E-03"
+        },
+        {
+          "timestamp": "2026-10-09 07:59:41",
+          "elapsed_s": "3201.004801",
+          "solve_id": "41",
+          "candidate": "staged_refine",
+          "mode": "upper",
+          "strength_factor": "0.617285360942536",
+          "event": "p4_final_bracket",
+          "private_bytes": "592072704",
+          "process_peak_commit_bytes": "1213669376",
+          "working_set_bytes": "659132416",
+          "detail": "mode=upper;a=0.613086134658348;b=0.617285360942536;fa=1;fb=-0.999999;target=0.999999;quadrature=4;root_width=4.19922628418756E-03"
+        },
+        {
+          "timestamp": "2026-10-09 08:19:28",
+          "elapsed_s": "4387.228839",
+          "solve_id": "48",
+          "candidate": "staged_refine",
+          "mode": "lower",
+          "strength_factor": "0.577807438248516",
+          "event": "p4_final_bracket",
+          "private_bytes": "1046179840",
+          "process_peak_commit_bytes": "1669349376",
+          "working_set_bytes": "1111318528",
+          "detail": "mode=lower;a=0.574218577343968;b=0.577807438248516;fa=1;fb=-1.00000099999975;target=1.000001;quadrature=4;root_width=3.58886090454857E-03"
+        },
+        {
+          "timestamp": "2026-10-09 08:59:14",
+          "elapsed_s": "6773.311434",
+          "solve_id": "56",
+          "candidate": "final",
+          "mode": "upper",
+          "strength_factor": "0.614857684624862",
+          "event": "p4_final_bracket",
+          "private_bytes": "683577344",
+          "process_peak_commit_bytes": "1669349376",
+          "working_set_bytes": "748609536",
+          "detail": "mode=upper;a=0.614792071714171;b=0.614857684624862;fa=1;fb=-0.999999;target=0.999999;quadrature=8;root_width=6.56129106904046E-05"
+        },
+        {
+          "timestamp": "2026-10-09 09:50:20",
+          "elapsed_s": "9838.965691",
+          "solve_id": "62",
+          "candidate": "final",
+          "mode": "lower",
+          "strength_factor": "0.577302753898751",
+          "event": "p4_final_bracket",
+          "private_bytes": "1075519488",
+          "process_peak_commit_bytes": "1669349376",
+          "working_set_bytes": "1139204096",
+          "detail": "mode=lower;a=0.577302753898751;b=0.577358829962537;fa=1;fb=-1.00000099999991;target=1.000001;quadrature=8;root_width=5.60760637854374E-05"
+        }
+      ],
+      "stored_owner_endpoint_statuses_exported": false
+    },
+    {
+      "case": "D02A",
+      "status": "FS_AVAILABLE_PARTIAL",
+      "fs_obtained": true,
+      "root_flags": [
+        "False",
+        "False",
+        "False",
+        "False"
+      ],
+      "target_unmet_reasons": [
+        "GAP_TARGET_NOT_MET",
+        "LOWER_ROOT_NOT_VALID",
+        "UPPER_ROOT_NOT_VALID"
+      ],
+      "solve_status_counts": {
+        "INFEASIBLE": 14,
+        "OPTIMAL": 44,
+        "UNBOUNDED": 6
+      },
+      "reported_final_brackets": [
+        {
+          "timestamp": "2026-10-09 08:18:46",
+          "elapsed_s": "454.179297",
+          "solve_id": "9",
+          "candidate": "coarse_0",
+          "mode": "upper",
+          "strength_factor": "1.64843783203137",
+          "event": "p4_final_bracket",
+          "private_bytes": "398667776",
+          "process_peak_commit_bytes": "467329024",
+          "working_set_bytes": "495927296",
+          "detail": "mode=upper;a=1.64843783203137;b=1.65625032812512;fa=1;fb=-0.999999;target=0.999999;quadrature=4;root_width=7.81249609374224E-03"
+        },
+        {
+          "timestamp": "2026-10-09 08:37:27",
+          "elapsed_s": "1574.885423",
+          "solve_id": "19",
+          "candidate": "coarse_0",
+          "mode": "lower",
+          "strength_factor": "1.50390598828142",
+          "event": "p4_final_bracket",
+          "private_bytes": "662511616",
+          "process_peak_commit_bytes": "996237312",
+          "working_set_bytes": "748863488",
+          "detail": "mode=lower;a=1.49999975000015;b=1.50390598828142;fa=1;fb=-1.00000099999865;target=1.000001;quadrature=4;root_width=3.90623828127756E-03"
+        },
+        {
+          "timestamp": "2026-10-09 08:37:28",
+          "elapsed_s": "1576.199006",
+          "solve_id": "19",
+          "candidate": "adapt_1_band",
+          "mode": "lower",
+          "strength_factor": "1.50390598828142",
+          "event": "p4_final_bracket",
+          "private_bytes": "665202688",
+          "process_peak_commit_bytes": "996237312",
+          "working_set_bytes": "751792128",
+          "detail": "mode=upper;a=1.64843783203137;b=1.65625032812512;fa=1;fb=-0.999999;target=0.999999;quadrature=4;root_width=7.81249609374224E-03"
+        },
+        {
+          "timestamp": "2026-10-09 08:37:28",
+          "elapsed_s": "1576.288422",
+          "solve_id": "19",
+          "candidate": "adapt_1_band",
+          "mode": "lower",
+          "strength_factor": "1.50390598828142",
+          "event": "p4_final_bracket",
+          "private_bytes": "665829376",
+          "process_peak_commit_bytes": "996237312",
+          "working_set_bytes": "752418816",
+          "detail": "mode=lower;a=1.49999975000015;b=1.50390598828142;fa=1;fb=-1.00000099999865;target=1.000001;quadrature=4;root_width=3.90623828127756E-03"
+        },
+        {
+          "timestamp": "2026-10-09 08:47:20",
+          "elapsed_s": "2168.038487",
+          "solve_id": "27",
+          "candidate": "band_refine",
+          "mode": "upper",
+          "strength_factor": "1.64072308481464",
+          "event": "p4_final_bracket",
+          "private_bytes": "456785920",
+          "process_peak_commit_bytes": "996237312",
+          "working_set_bytes": "543264768",
+          "detail": "mode=upper;a=1.63554730253925;b=1.64072308481464;fa=1;fb=-0.999999;target=0.999999;quadrature=4;root_width=5.17578227538706E-03"
+        },
+        {
+          "timestamp": "2026-10-09 09:06:52",
+          "elapsed_s": "3339.881177",
+          "solve_id": "35",
+          "candidate": "band_refine",
+          "mode": "lower",
+          "strength_factor": "1.50468716484401",
+          "event": "p4_final_bracket",
+          "private_bytes": "772268032",
+          "process_peak_commit_bytes": "1186070528",
+          "working_set_bytes": "858656768",
+          "detail": "mode=lower;a=1.49999967500024;b=1.50468716484401;fa=1;fb=-1.00000099999927;target=1.000001;quadrature=4;root_width=4.68748984376721E-03"
+        },
+        {
+          "timestamp": "2026-10-09 09:22:45",
+          "elapsed_s": "4293.083951",
+          "solve_id": "43",
+          "candidate": "staged_refine",
+          "mode": "upper",
+          "strength_factor": "1.57406881203931",
+          "event": "p4_final_bracket",
+          "private_bytes": "560971776",
+          "process_peak_commit_bytes": "1186070528",
+          "working_set_bytes": "647376896",
+          "detail": "mode=upper;a=1.568941547272;b=1.57406881203931;fa=1;fb=-0.999999;target=0.999999;quadrature=4;root_width=5.12726476730663E-03"
+        },
+        {
+          "timestamp": "2026-10-09 09:59:43",
+          "elapsed_s": "6511.205796",
+          "solve_id": "51",
+          "candidate": "staged_refine",
+          "mode": "lower",
+          "strength_factor": "1.50468708960973",
+          "event": "p4_final_bracket",
+          "private_bytes": "1029648384",
+          "process_peak_commit_bytes": "1633058816",
+          "working_set_bytes": "1113358336",
+          "detail": "mode=lower;a=1.49999960000034;b=1.50468708960973;fa=1;fb=-1.00000099999962;target=1.000001;quadrature=4;root_width=4.68748960939447E-03"
+        },
+        {
+          "timestamp": "2026-10-09 10:28:45",
+          "elapsed_s": "8253.484651",
+          "solve_id": "59",
+          "candidate": "final",
+          "mode": "upper",
+          "strength_factor": "1.56934211563309",
+          "event": "p4_final_bracket",
+          "private_bytes": "648192000",
+          "process_peak_commit_bytes": "1633058816",
+          "working_set_bytes": "731906048",
+          "detail": "mode=upper;a=1.56926200196087;b=1.56934211563309;fa=1;fb=-0.999999;target=0.999999;quadrature=8;root_width=8.01136722163864E-05"
+        },
+        {
+          "timestamp": "2026-10-09 10:58:52",
+          "elapsed_s": "10060.131820",
+          "solve_id": "64",
+          "candidate": "final",
+          "mode": "lower",
+          "strength_factor": "1.50014608368442",
+          "event": "p4_final_bracket",
+          "private_bytes": "1026064384",
+          "process_peak_commit_bytes": "1633058816",
+          "working_set_bytes": "1108471808",
+          "detail": "mode=lower;a=1.49999960000034;b=1.50014608368442;fa=1;fb=-1.00000099999985;target=1.000001;quadrature=8;root_width=1.46483684084098E-04"
+        }
+      ],
+      "stored_owner_endpoint_statuses_exported": false
+    },
+    {
+      "case": "D03N",
+      "status": "FAILED",
+      "fs_obtained": false,
+      "root_flags": [
+        "False",
+        "False",
+        "False",
+        "False"
+      ],
+      "target_unmet_reasons": [],
+      "solve_status_counts": {
+        "INFEASIBLE": 15,
+        "OPTIMAL": 34,
+        "UNBOUNDED": 9,
+        "NUMERICAL_FAILURE": 1
+      },
+      "reported_final_brackets": [
+        {
+          "timestamp": "2026-10-09 08:21:12",
+          "elapsed_s": "599.363185",
+          "solve_id": "10",
+          "candidate": "coarse_0",
+          "mode": "upper",
+          "strength_factor": "1.31640657031273",
+          "event": "p4_final_bracket",
+          "private_bytes": "400158720",
+          "process_peak_commit_bytes": "465227776",
+          "working_set_bytes": "500862976",
+          "detail": "mode=upper;a=1.31250031250022;b=1.31640657031273;fa=1;fb=-0.999999;target=0.999999;quadrature=4;root_width=3.90625781250775E-03"
+        },
+        {
+          "timestamp": "2026-10-09 08:36:02",
+          "elapsed_s": "1489.486835",
+          "solve_id": "20",
+          "candidate": "coarse_0",
+          "mode": "lower",
+          "strength_factor": "1.12109355859405",
+          "event": "p4_final_bracket",
+          "private_bytes": "662904832",
+          "process_peak_commit_bytes": "997748736",
+          "working_set_bytes": "752939008",
+          "detail": "mode=lower;a=1.11718730859406;b=1.12109355859405;fa=1;fb=-1.00000099999925;target=1.000001;quadrature=4;root_width=3.90624999998668E-03"
+        },
+        {
+          "timestamp": "2026-10-09 08:36:04",
+          "elapsed_s": "1490.906703",
+          "solve_id": "20",
+          "candidate": "adapt_1_band",
+          "mode": "lower",
+          "strength_factor": "1.12109355859405",
+          "event": "p4_final_bracket",
+          "private_bytes": "665640960",
+          "process_peak_commit_bytes": "997748736",
+          "working_set_bytes": "755675136",
+          "detail": "mode=upper;a=1.31250031250022;b=1.31640657031273;fa=1;fb=-0.999999;target=0.999999;quadrature=4;root_width=3.90625781250775E-03"
+        },
+        {
+          "timestamp": "2026-10-09 08:36:04",
+          "elapsed_s": "1491.040977",
+          "solve_id": "20",
+          "candidate": "adapt_1_band",
+          "mode": "lower",
+          "strength_factor": "1.12109355859405",
+          "event": "p4_final_bracket",
+          "private_bytes": "665886720",
+          "process_peak_commit_bytes": "997748736",
+          "working_set_bytes": "755920896",
+          "detail": "mode=lower;a=1.11718730859406;b=1.12109355859405;fa=1;fb=-1.00000099999925;target=1.000001;quadrature=4;root_width=3.90624999998668E-03"
+        },
+        {
+          "timestamp": "2026-10-09 08:46:21",
+          "elapsed_s": "2107.916514",
+          "solve_id": "28",
+          "candidate": "band_refine",
+          "mode": "upper",
+          "strength_factor": "1.29583780404082",
+          "event": "p4_final_bracket",
+          "private_bytes": "457670656",
+          "process_peak_commit_bytes": "997748736",
+          "working_set_bytes": "547500032",
+          "detail": "mode=upper;a=1.29583780404082;b=1.29995157045927;fa=1;fb=-0.999999;target=0.999999;quadrature=4;root_width=4.11376641845362E-03"
+        },
+        {
+          "timestamp": "2026-10-09 09:01:55",
+          "elapsed_s": "3042.515653",
+          "solve_id": "36",
+          "candidate": "band_refine",
+          "mode": "lower",
+          "strength_factor": "1.12067845609168",
+          "event": "p4_final_bracket",
+          "private_bytes": "772194304",
+          "process_peak_commit_bytes": "1187115008",
+          "working_set_bytes": "861929472",
+          "detail": "mode=lower;a=1.11718725273473;b=1.12067845609168;fa=1;fb=-1.00000099999995;target=1.000001;quadrature=4;root_width=3.49120335695075E-03"
+        },
+        {
+          "timestamp": "2026-10-09 09:19:12",
+          "elapsed_s": "4079.441704",
+          "solve_id": "44",
+          "candidate": "staged_refine",
+          "mode": "upper",
+          "strength_factor": "1.20651760820545",
+          "event": "p4_final_bracket",
+          "private_bytes": "560340992",
+          "process_peak_commit_bytes": "1187115008",
+          "working_set_bytes": "650194944",
+          "detail": "mode=upper;a=1.20651760820545;b=1.21057996092548;fa=1;fb=-0.999999;target=0.999999;quadrature=4;root_width=4.06235272003497E-03"
+        },
+        {
+          "timestamp": "2026-10-09 09:47:02",
+          "elapsed_s": "5748.947373",
+          "solve_id": "52",
+          "candidate": "staged_refine",
+          "mode": "lower",
+          "strength_factor": "1.12067840005783",
+          "event": "p4_final_bracket",
+          "private_bytes": "1030328320",
+          "process_peak_commit_bytes": "1633411072",
+          "working_set_bytes": "1117097984",
+          "detail": "mode=lower;a=1.11718719687544;b=1.12067840005783;fa=1;fb=-1.00000099999914;target=1.000001;quadrature=4;root_width=3.49120318238616E-03"
+        }
+      ],
+      "stored_owner_endpoint_statuses_exported": false
+    }
+  ],
+  "vba_unchanged": true,
+  "finding": "Pure-c0 equations are homogeneous in stress/load. Brackets can use native UNBOUNDED or INFEASIBLE certificates; the actual-root validity gate only accepts OPTIMAL endpoints.",
+  "causality_limit": "Exact statuses and certificates of the saved best owner were not exported. Do not attribute every invalid root flag solely to this guard or certify a root by approximate log matching.",
+  "required_repair_validation": "Store typed endpoint proof and exact model/q/load/Fs ownership. Verify both directional certificates and width before accepting a root; do not substitute OPTIMAL strings."
+}

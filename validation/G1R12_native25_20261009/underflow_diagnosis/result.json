@@ -1,0 +1,892 @@
+{
+  "case": "D03N",
+  "native_failure_confirmed": true,
+  "native_failure_replayed": false,
+  "source_unchanged": true,
+  "source_sha256": "1ced0a3645007e6fc6235aea7ff9832a4e14ebad33536be12e3af845a35559f2",
+  "actual_operands_available": false,
+  "guard_sites": [
+    {
+      "line": 58,
+      "code": "If p = 0# And a.hi <> 0# And b.hi <> 0# Then err.Raise 5, , \"HSD_DD_PRODUCT_UNDERFLOW\""
+    },
+    {
+      "line": 76,
+      "code": "If p = 0# And a.hi <> 0# And b.hi <> 0# Then err.Raise 5, , \"HSD_DD_PRODUCT_UNDERFLOW\""
+    },
+    {
+      "line": 89,
+      "code": "If p = 0# And a.hi <> 0# And b.hi <> 0# Then err.Raise 5, , \"HSD_DD_PRODUCT_UNDERFLOW\""
+    },
+    {
+      "line": 104,
+      "code": "If p = 0# And a.hi <> 0# And b.hi <> 0# Then err.Raise 5, , \"HSD_DD_PRODUCT_UNDERFLOW\""
+    },
+    {
+      "line": 136,
+      "code": "If p = 0# And a.hi <> 0# And b.hi <> 0# Then err.Raise 5, , \"HSD_DD_PRODUCT_UNDERFLOW\""
+    },
+    {
+      "line": 207,
+      "code": "If p = 0# And a.hi <> 0# And b.hi <> 0# Then err.Raise 5, , \"HSD_DD_PRODUCT_UNDERFLOW\""
+    }
+  ],
+  "native_log": "C:\\Users\\link_\\Desktop\\RPFEM_G1R12_Native25_20261009\\queued_continuation\\cases\\D03N\\RPFEM_logs\\20261009_081113_23396_analysis.tsv",
+  "failure_rows": [
+    [
+      "2026-10-09 10:12:45",
+      "7292.535218",
+      "59",
+      "final",
+      "upper",
+      "1.20943742542898",
+      "error_origin",
+      "652476416",
+      "1633411072",
+      "739381248",
+      "number=5;source=VBAProject;line=0;stage=optimize;message=HSD_DD_PRODUCT_UNDERFLOW"
+    ],
+    [
+      "2026-10-09 10:12:45",
+      "7292.535480",
+      "59",
+      "final",
+      "upper",
+      "1.20943742542898",
+      "error_origin",
+      "652480512",
+      "1633411072",
+      "739385344",
+      "number=5;source=VBAProject;line=0;stage=bound;message=HSD_DD_PRODUCT_UNDERFLOW"
+    ],
+    [
+      "2026-10-09 10:12:45",
+      "7292.554238",
+      "59",
+      "final",
+      "upper",
+      "1.20943742542898",
+      "solve_end",
+      "652517376",
+      "1633411072",
+      "739422208",
+      "status=NUMERICAL_FAILURE;wall_seconds=441.973617200041;last_iteration_index=51;objective=0;primal=4.2632564145606E-14;dual=1.70530196358063E-13;gap=0;message=HSD_DD_PRODUCT_UNDERFLOW"
+    ],
+    [
+      "2026-10-09 10:12:45",
+      "7292.569637",
+      "59",
+      "final",
+      "upper",
+      "1.20943742542898",
+      "error_origin",
+      "652521472",
+      "1633411072",
+      "739426304",
+      "number=5;source=VBAProject;line=0;stage=fs_trial;message=HSD_DD_PRODUCT_UNDERFLOW"
+    ],
+    [
+      "2026-10-09 10:12:45",
+      "7292.569986",
+      "59",
+      "final",
+      "upper",
+      "1.20943742542898",
+      "error_origin",
+      "652525568",
+      "1633411072",
+      "739430400",
+      "number=5;source=VBAProject;line=0;stage=evaluate;message=HSD_DD_PRODUCT_UNDERFLOW"
+    ],
+    [
+      "2026-10-09 10:12:45",
+      "7292.570609",
+      "59",
+      "final",
+      "upper",
+      "1.20943742542898",
+      "error_origin",
+      "652533760",
+      "1633411072",
+      "739438592",
+      "number=5;source=VBAProject;line=0;stage=control_analysis;message=HSD_DD_PRODUCT_UNDERFLOW"
+    ],
+    [
+      "2026-10-09 10:12:45",
+      "7292.571812",
+      "59",
+      "final",
+      "upper",
+      "1.20943742542898",
+      "run_end",
+      "652574720",
+      "1633411072",
+      "739479552",
+      "status=NUMERICAL_FAILURE;solve_count=59;sampled_peak_private_bytes=1631350784;logging_seconds_before_run_end=2.70489859988447;message=HSD_DD_PRODUCT_UNDERFLOW"
+    ]
+  ],
+  "last_context": [
+    [
+      "2026-10-09 10:12:06",
+      "7252.859353",
+      "59",
+      "final",
+      "upper",
+      "1.20943742542898",
+      "hsd_candidate_rejected",
+      "656392192",
+      "1633411072",
+      "743038976",
+      "id=1;iteration=50;restored=True;reason=UPPER_PHYSICAL_AUDIT_FAILED 1.86894819176331E-07"
+    ],
+    [
+      "2026-10-09 10:12:06",
+      "7253.140482",
+      "59",
+      "final",
+      "upper",
+      "1.20943742542898",
+      "phase_begin",
+      "661037056",
+      "1633411072",
+      "747675648",
+      "phase=kkt_update"
+    ],
+    [
+      "2026-10-09 10:12:06",
+      "7253.285688",
+      "59",
+      "final",
+      "upper",
+      "1.20943742542898",
+      "phase_end",
+      "661037056",
+      "1633411072",
+      "747675648",
+      "phase=kkt_update;seconds=0.145121900015511"
+    ],
+    [
+      "2026-10-09 10:12:06",
+      "7253.285768",
+      "59",
+      "final",
+      "upper",
+      "1.20943742542898",
+      "phase_begin",
+      "661037056",
+      "1633411072",
+      "747675648",
+      "phase=numeric_ldl"
+    ],
+    [
+      "2026-10-09 10:12:06",
+      "7253.336993",
+      "59",
+      "final",
+      "upper",
+      "1.20943742542898",
+      "capacity",
+      "661037056",
+      "1633411072",
+      "747675648",
+      "stage=dd_kkt;estimated_additional_bytes=2132896;available_budget_bytes=69662140620.8;process_limit_bytes=89272268800;process_memory_available=True"
+    ],
+    [
+      "2026-10-09 10:12:13",
+      "7259.923516",
+      "59",
+      "final",
+      "upper",
+      "1.20943742542898",
+      "capacity",
+      "654925824",
+      "1633411072",
+      "741777408",
+      "stage=dd_ldl_factor;estimated_additional_bytes=7901920;available_budget_bytes=69652004864;process_limit_bytes=89272268800;process_memory_available=True"
+    ],
+    [
+      "2026-10-09 10:12:25",
+      "7272.066060",
+      "59",
+      "final",
+      "upper",
+      "1.20943742542898",
+      "hsd_dd_ldl",
+      "652492800",
+      "1633411072",
+      "739356672",
+      "iteration=50;nnz=469483;factor_bytes=10034816;accepted=True"
+    ],
+    [
+      "2026-10-09 10:12:25",
+      "7272.066156",
+      "59",
+      "final",
+      "upper",
+      "1.20943742542898",
+      "phase_end",
+      "652517376",
+      "1633411072",
+      "739381248",
+      "phase=numeric_ldl;seconds=18.7803451999789"
+    ],
+    [
+      "2026-10-09 10:12:29",
+      "7275.661277",
+      "59",
+      "final",
+      "upper",
+      "1.20943742542898",
+      "hsd_border_quality",
+      "652107776",
+      "1633411072",
+      "738975744",
+      "iteration=50;pivot=False;dd_residual=4.02982859952118E-14;denominator=-2.67852188094453E-16;Dscale=2.67852188094453E-16;Dratio=1"
+    ],
+    [
+      "2026-10-09 10:12:31",
+      "7278.143040",
+      "59",
+      "final",
+      "upper",
+      "1.20943742542898",
+      "hsd_border_quality",
+      "652877824",
+      "1633411072",
+      "739733504",
+      "iteration=50;pivot=False;dd_residual=4.24225478020332E-14;denominator=-2.67852188094453E-16;Dscale=2.67852188094453E-16;Dratio=1"
+    ],
+    [
+      "2026-10-09 10:12:32",
+      "7278.790356",
+      "59",
+      "final",
+      "upper",
+      "1.20943742542898",
+      "hsd_candidate",
+      "653824000",
+      "1633411072",
+      "740667392",
+      "id=2;kind=OPTIMAL_POINT;iteration=51;tau=8.45579412606391E-04;kappa=4.49329233227384E-23;normalization=8.45579412606391E-04;pc=0;dc=0;certificate_error=0;primal=4.2632564145606E-14;dual=1.70530196358063E-13;status=RUNNING"
+    ],
+    [
+      "2026-10-09 10:12:32",
+      "7278.790469",
+      "59",
+      "final",
+      "upper",
+      "1.20943742542898",
+      "capacity",
+      "653852672",
+      "1633411072",
+      "740696064",
+      "stage=hsd_candidate;estimated_additional_bytes=895584;available_budget_bytes=69649717862.4;process_limit_bytes=89272268800;process_memory_available=True"
+    ],
+    [
+      "2026-10-09 10:12:32",
+      "7278.892231",
+      "59",
+      "final",
+      "upper",
+      "1.20943742542898",
+      "hsd_raw_equality",
+      "656183296",
+      "1633411072",
+      "742871040",
+      "id=2;max=2.61418893156663E-07;row=228;row_norm=626.700213083091;role=unknown"
+    ],
+    [
+      "2026-10-09 10:12:32",
+      "7278.932184",
+      "59",
+      "final",
+      "upper",
+      "1.20943742542898",
+      "audit",
+      "656187392",
+      "1633411072",
+      "742871040",
+      "mode=upper;status=CANDIDATE_REJECTED;category=flow;max_raw=0;threshold=0.0000001;category_pass=True;location=;field_strength=1.20943742542898;in_solve=True;normalization=legacy_unchanged"
+    ],
+    [
+      "2026-10-09 10:12:32",
+      "7278.932262",
+      "59",
+      "final",
+      "upper",
+      "1.20943742542898",
+      "audit",
+      "656252928",
+      "1633411072",
+      "742936576",
+      "mode=upper;status=CANDIDATE_REJECTED;category=jump;max_raw=0;threshold=0.0000001;category_pass=True;location=;field_strength=1.20943742542898;in_solve=True;normalization=legacy_unchanged"
+    ],
+    [
+      "2026-10-09 10:12:32",
+      "7278.932313",
+      "59",
+      "final",
+      "upper",
+      "1.20943742542898",
+      "audit",
+      "656289792",
+      "1633411072",
+      "742973440",
+      "mode=upper;status=CANDIDATE_REJECTED;category=boundary_velocity;max_raw=6.97937480077413E-21;threshold=0.0000001;category_pass=True;location=index_a=215;index_b=0;index_c=-1;field_strength=1.20943742542898;in_solve=True;normalization=legacy_unchanged"
+    ],
+    [
+      "2026-10-09 10:12:32",
+      "7278.932360",
+      "59",
+      "final",
+      "upper",
+      "1.20943742542898",
+      "audit",
+      "656293888",
+      "1633411072",
+      "742977536",
+      "mode=upper;status=CANDIDATE_REJECTED;category=reference_work;max_raw=5.28104496799742E-07;threshold=0.0000001;category_pass=False;location=index_a=-1;index_b=-1;index_c=-1;field_strength=1.20943742542898;in_solve=True;normalization=legacy_unchanged"
+    ],
+    [
+      "2026-10-09 10:12:32",
+      "7278.932409",
+      "59",
+      "final",
+      "upper",
+      "1.20943742542898",
+      "audit",
+      "656306176",
+      "1633411072",
+      "743002112",
+      "mode=upper;status=CANDIDATE_REJECTED;category=objective_difference;max_raw=0;threshold=0.000002;category_pass=True;location=;field_strength=1.20943742542898;in_solve=True;normalization=legacy_unchanged"
+    ],
+    [
+      "2026-10-09 10:12:32",
+      "7278.932457",
+      "59",
+      "final",
+      "upper",
+      "1.20943742542898",
+      "hsd_candidate_audit",
+      "656306176",
+      "1633411072",
+      "743002112",
+      "id=2;kind=OPTIMAL_POINT;accepted=False;field_normalization=tau;audit=flow=0;;jump=0;;boundary_velocity=6.97937480077413E-21;index_a=215;index_b=0;index_c=-1;reference_work=5.28104496799742E-07;index_a=-1;index_b=-1;index_c=-1;objective_difference=0;;"
+    ],
+    [
+      "2026-10-09 10:12:32",
+      "7278.988779",
+      "59",
+      "final",
+      "upper",
+      "1.20943742542898",
+      "hsd_candidate_rejected",
+      "656306176",
+      "1633411072",
+      "743157760",
+      "id=2;iteration=51;restored=True;reason=UPPER_PHYSICAL_AUDIT_FAILED 5.28104496799742E-07"
+    ],
+    [
+      "2026-10-09 10:12:32",
+      "7279.273452",
+      "59",
+      "final",
+      "upper",
+      "1.20943742542898",
+      "phase_begin",
+      "656343040",
+      "1633411072",
+      "743194624",
+      "phase=kkt_update"
+    ],
+    [
+      "2026-10-09 10:12:32",
+      "7279.402804",
+      "59",
+      "final",
+      "upper",
+      "1.20943742542898",
+      "phase_end",
+      "656343040",
+      "1633411072",
+      "743194624",
+      "phase=kkt_update;seconds=0.129267400014214"
+    ],
+    [
+      "2026-10-09 10:12:32",
+      "7279.402876",
+      "59",
+      "final",
+      "upper",
+      "1.20943742542898",
+      "phase_begin",
+      "656343040",
+      "1633411072",
+      "743194624",
+      "phase=numeric_ldl"
+    ],
+    [
+      "2026-10-09 10:12:32",
+      "7279.453242",
+      "59",
+      "final",
+      "upper",
+      "1.20943742542898",
+      "capacity",
+      "656343040",
+      "1633411072",
+      "743194624",
+      "stage=dd_kkt;estimated_additional_bytes=2132896;available_budget_bytes=69653570355.2;process_limit_bytes=89272268800;process_memory_available=True"
+    ],
+    [
+      "2026-10-09 10:12:39",
+      "7285.908528",
+      "59",
+      "final",
+      "upper",
+      "1.20943742542898",
+      "capacity",
+      "654839808",
+      "1633411072",
+      "741691392",
+      "stage=dd_ldl_factor;estimated_additional_bytes=7901920;available_budget_bytes=69634459648;process_limit_bytes=89272268800;process_memory_available=True"
+    ],
+    [
+      "2026-10-09 10:12:45",
+      "7292.534925",
+      "59",
+      "final",
+      "upper",
+      "1.20943742542898",
+      "phase_end",
+      "652464128",
+      "1633411072",
+      "739368960",
+      "phase=numeric_ldl;seconds=13.1319972999627"
+    ],
+    [
+      "2026-10-09 10:12:45",
+      "7292.535218",
+      "59",
+      "final",
+      "upper",
+      "1.20943742542898",
+      "error_origin",
+      "652476416",
+      "1633411072",
+      "739381248",
+      "number=5;source=VBAProject;line=0;stage=optimize;message=HSD_DD_PRODUCT_UNDERFLOW"
+    ],
+    [
+      "2026-10-09 10:12:45",
+      "7292.535480",
+      "59",
+      "final",
+      "upper",
+      "1.20943742542898",
+      "error_origin",
+      "652480512",
+      "1633411072",
+      "739385344",
+      "number=5;source=VBAProject;line=0;stage=bound;message=HSD_DD_PRODUCT_UNDERFLOW"
+    ],
+    [
+      "2026-10-09 10:12:45",
+      "7292.535940",
+      "59",
+      "final",
+      "upper",
+      "1.20943742542898",
+      "solve_phase",
+      "652500992",
+      "1633411072",
+      "739405824",
+      "phase=assembly;seconds=0.117133700056002;calls=1"
+    ],
+    [
+      "2026-10-09 10:12:45",
+      "7292.535969",
+      "59",
+      "final",
+      "upper",
+      "1.20943742542898",
+      "solve_phase",
+      "652500992",
+      "1633411072",
+      "739405824",
+      "phase=kkt_update;seconds=7.03985679976176;calls=52"
+    ],
+    [
+      "2026-10-09 10:12:45",
+      "7292.535996",
+      "59",
+      "final",
+      "upper",
+      "1.20943742542898",
+      "solve_phase",
+      "652500992",
+      "1633411072",
+      "739405824",
+      "phase=numeric_ldl;seconds=73.037845799583;calls=53"
+    ],
+    [
+      "2026-10-09 10:12:45",
+      "7292.536022",
+      "59",
+      "final",
+      "upper",
+      "1.20943742542898",
+      "solve_phase",
+      "652500992",
+      "1633411072",
+      "739405824",
+      "phase=linear_solve_and_refinement;seconds=18.2255369998747;calls=354"
+    ],
+    [
+      "2026-10-09 10:12:45",
+      "7292.536050",
+      "59",
+      "final",
+      "upper",
+      "1.20943742542898",
+      "solve_phase",
+      "652505088",
+      "1633411072",
+      "739409920",
+      "phase=nt_scaling;seconds=6.59250629972667;calls=52"
+    ],
+    [
+      "2026-10-09 10:12:45",
+      "7292.536075",
+      "59",
+      "final",
+      "upper",
+      "1.20943742542898",
+      "solve_phase",
+      "652505088",
+      "1633411072",
+      "739409920",
+      "phase=physical_audit;seconds=7.85110000288114E-02;calls=2"
+    ],
+    [
+      "2026-10-09 10:12:45",
+      "7292.536104",
+      "59",
+      "final",
+      "upper",
+      "1.20943742542898",
+      "solve_phase",
+      "652509184",
+      "1633411072",
+      "739414016",
+      "phase=step_limit;seconds=0.887586400378495;calls=102"
+    ],
+    [
+      "2026-10-09 10:12:45",
+      "7292.536131",
+      "59",
+      "final",
+      "upper",
+      "1.20943742542898",
+      "solve_phase",
+      "652513280",
+      "1633411072",
+      "739418112",
+      "phase=residuals;seconds=2.53868080000393;calls=52"
+    ],
+    [
+      "2026-10-09 10:12:45",
+      "7292.536156",
+      "59",
+      "final",
+      "upper",
+      "1.20943742542898",
+      "solve_phase",
+      "652513280",
+      "1633411072",
+      "739418112",
+      "phase=corrector;seconds=0.509155899868347;calls=51"
+    ],
+    [
+      "2026-10-09 10:12:45",
+      "7292.536181",
+      "59",
+      "final",
+      "upper",
+      "1.20943742542898",
+      "solve_phase",
+      "652513280",
+      "1633411072",
+      "739418112",
+      "phase=gproduct;seconds=0.826092800241895;calls=52"
+    ],
+    [
+      "2026-10-09 10:12:45",
+      "7292.536206",
+      "59",
+      "final",
+      "upper",
+      "1.20943742542898",
+      "solve_phase",
+      "652513280",
+      "1633411072",
+      "739418112",
+      "phase=gtadd;seconds=5.81796820065938;calls=207"
+    ],
+    [
+      "2026-10-09 10:12:45",
+      "7292.536229",
+      "59",
+      "final",
+      "upper",
+      "1.20943742542898",
+      "inner_stats",
+      "652513280",
+      "1633411072",
+      "739418112",
+      "step_limit_calls=102;step_limit_alpha1=12;step_limit_bisections=0;interior_calls=294;interior_cones=6654203"
+    ],
+    [
+      "2026-10-09 10:12:45",
+      "7292.554238",
+      "59",
+      "final",
+      "upper",
+      "1.20943742542898",
+      "solve_end",
+      "652517376",
+      "1633411072",
+      "739422208",
+      "status=NUMERICAL_FAILURE;wall_seconds=441.973617200041;last_iteration_index=51;objective=0;primal=4.2632564145606E-14;dual=1.70530196358063E-13;gap=0;message=HSD_DD_PRODUCT_UNDERFLOW"
+    ],
+    [
+      "2026-10-09 10:12:45",
+      "7292.569637",
+      "59",
+      "final",
+      "upper",
+      "1.20943742542898",
+      "error_origin",
+      "652521472",
+      "1633411072",
+      "739426304",
+      "number=5;source=VBAProject;line=0;stage=fs_trial;message=HSD_DD_PRODUCT_UNDERFLOW"
+    ],
+    [
+      "2026-10-09 10:12:45",
+      "7292.569986",
+      "59",
+      "final",
+      "upper",
+      "1.20943742542898",
+      "error_origin",
+      "652525568",
+      "1633411072",
+      "739430400",
+      "number=5;source=VBAProject;line=0;stage=evaluate;message=HSD_DD_PRODUCT_UNDERFLOW"
+    ],
+    [
+      "2026-10-09 10:12:45",
+      "7292.570609",
+      "59",
+      "final",
+      "upper",
+      "1.20943742542898",
+      "error_origin",
+      "652533760",
+      "1633411072",
+      "739438592",
+      "number=5;source=VBAProject;line=0;stage=control_analysis;message=HSD_DD_PRODUCT_UNDERFLOW"
+    ],
+    [
+      "2026-10-09 10:12:45",
+      "7292.571812",
+      "59",
+      "final",
+      "upper",
+      "1.20943742542898",
+      "run_end",
+      "652574720",
+      "1633411072",
+      "739479552",
+      "status=NUMERICAL_FAILURE;solve_count=59;sampled_peak_private_bytes=1631350784;logging_seconds_before_run_end=2.70489859988447;message=HSD_DD_PRODUCT_UNDERFLOW"
+    ]
+  ],
+  "experiments": [
+    {
+      "name": "ordinary_product",
+      "pairs_hex": [
+        [
+          "0x1.0000000000000p+1",
+          "0x1.8000000000000p+1"
+        ]
+      ],
+      "native_guard_would_trigger": false,
+      "exact_sign": 1,
+      "correctly_rounded_hex": "0x1.8000000000000p+2",
+      "ordinary_dot_hex": "0x1.8000000000000p+2",
+      "shared_exponent_dot_hex": "0x1.8000000000000p+2",
+      "ordinary_matches": true,
+      "shared_exponent_matches": true
+    },
+    {
+      "name": "real_zero",
+      "pairs_hex": [
+        [
+          "0x0.0p+0",
+          "0x1.0000000000000p-538"
+        ]
+      ],
+      "native_guard_would_trigger": false,
+      "exact_sign": 0,
+      "correctly_rounded_hex": "0x0.0p+0",
+      "ordinary_dot_hex": "0x0.0p+0",
+      "shared_exponent_dot_hex": "0x0.0p+0",
+      "ordinary_matches": true,
+      "shared_exponent_matches": true
+    },
+    {
+      "name": "positive_product_underflow",
+      "pairs_hex": [
+        [
+          "0x1.0000000000000p-538",
+          "0x1.0000000000000p-538"
+        ]
+      ],
+      "native_guard_would_trigger": true,
+      "exact_sign": 1,
+      "correctly_rounded_hex": "0x0.0p+0",
+      "ordinary_dot_hex": "0x0.0p+0",
+      "shared_exponent_dot_hex": "0x0.0p+0",
+      "ordinary_matches": true,
+      "shared_exponent_matches": true
+    },
+    {
+      "name": "negative_product_underflow",
+      "pairs_hex": [
+        [
+          "-0x1.0000000000000p-538",
+          "0x1.0000000000000p-538"
+        ]
+      ],
+      "native_guard_would_trigger": true,
+      "exact_sign": -1,
+      "correctly_rounded_hex": "-0x0.0p+0",
+      "ordinary_dot_hex": "0x0.0p+0",
+      "shared_exponent_dot_hex": "-0x0.0p+0",
+      "ordinary_matches": true,
+      "shared_exponent_matches": true
+    },
+    {
+      "name": "four_tiny_products_form_subnormal",
+      "pairs_hex": [
+        [
+          "0x1.0000000000000p-538",
+          "0x1.0000000000000p-538"
+        ],
+        [
+          "0x1.0000000000000p-538",
+          "0x1.0000000000000p-538"
+        ],
+        [
+          "0x1.0000000000000p-538",
+          "0x1.0000000000000p-538"
+        ],
+        [
+          "0x1.0000000000000p-538",
+          "0x1.0000000000000p-538"
+        ]
+      ],
+      "native_guard_would_trigger": true,
+      "exact_sign": 1,
+      "correctly_rounded_hex": "0x0.0000000000001p-1022",
+      "ordinary_dot_hex": "0x0.0p+0",
+      "shared_exponent_dot_hex": "0x0.0000000000001p-1022",
+      "ordinary_matches": false,
+      "shared_exponent_matches": true
+    },
+    {
+      "name": "cancel_large_keep_subnormal",
+      "pairs_hex": [
+        [
+          "0x1.0000000000000p+0",
+          "0x1.0000000000000p+0"
+        ],
+        [
+          "-0x1.0000000000000p+0",
+          "0x1.0000000000000p+0"
+        ],
+        [
+          "0x1.0000000000000p-538",
+          "0x1.0000000000000p-538"
+        ],
+        [
+          "0x1.0000000000000p-538",
+          "0x1.0000000000000p-538"
+        ],
+        [
+          "0x1.0000000000000p-538",
+          "0x1.0000000000000p-538"
+        ],
+        [
+          "0x1.0000000000000p-538",
+          "0x1.0000000000000p-538"
+        ]
+      ],
+      "native_guard_would_trigger": true,
+      "exact_sign": 1,
+      "correctly_rounded_hex": "0x0.0000000000001p-1022",
+      "ordinary_dot_hex": "0x0.0p+0",
+      "shared_exponent_dot_hex": "0x0.0p+0",
+      "ordinary_matches": false,
+      "shared_exponent_matches": false
+    },
+    {
+      "name": "cancel_large_keep_normal",
+      "pairs_hex": [
+        [
+          "0x1.4e718d7d7625ap+664",
+          "0x1.249ad2594c37dp+332"
+        ],
+        [
+          "-0x1.4e718d7d7625ap+664",
+          "0x1.249ad2594c37dp+332"
+        ],
+        [
+          "0x1.bff2ee48e0530p-333",
+          "0x1.0000000000000p+0"
+        ]
+      ],
+      "native_guard_would_trigger": false,
+      "exact_sign": 1,
+      "correctly_rounded_hex": "0x1.bff2ee48e0530p-333",
+      "ordinary_dot_hex": "0x1.bff2ee48e0530p-333",
+      "shared_exponent_dot_hex": "0x0.0p+0",
+      "ordinary_matches": true,
+      "shared_exponent_matches": false
+    },
+    {
+      "name": "mixed_scale_finite",
+      "pairs_hex": [
+        [
+          "0x1.485ce9e7a065fp+963",
+          "0x1.8f2b061aea072p-964"
+        ],
+        [
+          "0x1.8f2b061aea072p-964",
+          "0x1.485ce9e7a065fp+963"
+        ]
+      ],
+      "native_guard_would_trigger": false,
+      "exact_sign": 1,
+      "correctly_rounded_hex": "0x1.0000000000001p+1",
+      "ordinary_dot_hex": "0x1.0000000000001p+1",
+      "shared_exponent_dot_hex": "0x1.0000000000001p+1",
+      "ordinary_matches": true,
+      "shared_exponent_matches": true
+    }
+  ],
+  "experiment_assertions_pass": true,
+  "vba_repair_implemented": false,
+  "native_case_pass": false
+}

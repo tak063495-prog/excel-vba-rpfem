@@ -1,0 +1,125 @@
+{
+  "scope": "native coarse target538 from actual adapt_engine log; equality-only lower load=1 feasibility, independent of material strength",
+  "native_target": 538,
+  "stress_scale": 10.0,
+  "source_materials": [
+    [
+      10.0,
+      25.0,
+      25.0,
+      20.0
+    ]
+  ],
+  "nodes": 314,
+  "elements": 553,
+  "surcharge_resultant": -120.0,
+  "endpoints": [
+    {
+      "point": [
+        2,
+        10
+      ],
+      "node": 6,
+      "triangles": [
+        528,
+        529
+      ],
+      "fan_size": 2,
+      "triangle_coordinates": [
+        [
+          [
+            2.75,
+            10.0
+          ],
+          [
+            2.0,
+            10.0
+          ],
+          [
+            2.058861328248528,
+            9.271736308289508
+          ]
+        ],
+        [
+          [
+            2.0,
+            10.0
+          ],
+          [
+            1.3333333333333333,
+            10.0
+          ],
+          [
+            2.058861328248528,
+            9.271736308289508
+          ]
+        ]
+      ]
+    },
+    {
+      "point": [
+        8,
+        10
+      ],
+      "node": 7,
+      "triangles": [
+        519,
+        520,
+        542
+      ],
+      "fan_size": 3,
+      "triangle_coordinates": [
+        [
+          [
+            8.0,
+            10.0
+          ],
+          [
+            7.823673047344406,
+            9.271736308289508
+          ],
+          [
+            8.647217578643817,
+            9.271736308289508
+          ]
+        ],
+        [
+          [
+            8.666666666666666,
+            10.0
+          ],
+          [
+            8.0,
+            10.0
+          ],
+          [
+            8.647217578643817,
+            9.271736308289508
+          ]
+        ],
+        [
+          [
+            8.0,
+            10.0
+          ],
+          [
+            7.25,
+            10.0
+          ],
+          [
+            7.823673047344406,
+            9.271736308289508
+          ]
+        ]
+      ]
+    }
+  ],
+  "linear_certificate": {
+    "status": "PrimalInfeasible",
+    "iterations": 5,
+    "normalized_A_transpose_z_inf": 8.826273045769994e-14,
+    "normalized_b_dot_z": -1.0,
+    "numerical_infeasibility_certificate": true
+  },
+  "interpretation": "If equality constraints alone exclude load=1, changing HSD tolerances or material strength cannot repair this mesh/traction representation."
+}

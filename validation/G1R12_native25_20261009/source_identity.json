@@ -1,0 +1,258 @@
+{
+  "path": "C:\\Users\\link_\\Downloads\\excel-vba-rpfem_G1R11_20261008\\versions\\G1R12\\RPFEM_20261009_G1R12_P06N_IssueFix.xlsm",
+  "sha256": "fe02ff61687cff8e0f0fc775867c8a244a83f758a3c5b9a9f80b6a2ab0389520",
+  "repo_commit": "48a839654fd72d045f5d4e85cdf238dd217816b5",
+  "catalog_sha256": "eb546113fce9dedc0a0af5f6fef193a86c3288634553a8edeb1e98461ca99cab",
+  "cases": [
+    {
+      "case": "P01A",
+      "points": 6,
+      "regions": 1,
+      "boundary_faces": 6,
+      "area": 158.0,
+      "weight": 3160.0,
+      "json_md_match": true,
+      "sha256": "b698f15b159fc04f076223342b958a5b58cfe5f09ef33e0f412ea2947d454552"
+    },
+    {
+      "case": "P01N",
+      "points": 6,
+      "regions": 1,
+      "boundary_faces": 6,
+      "area": 158.0,
+      "weight": 3160.0,
+      "json_md_match": true,
+      "sha256": "ef915bfc0f71a1ac1407b596878e271d94687617962211bac3be2357f7743ac3"
+    },
+    {
+      "case": "P02A",
+      "points": 6,
+      "regions": 1,
+      "boundary_faces": 6,
+      "area": 158.0,
+      "weight": 3160.0,
+      "json_md_match": true,
+      "sha256": "f8b0eef34f26ddd856067ff4a7dad851bf9a3785725a575907797d7d45895530"
+    },
+    {
+      "case": "P02N",
+      "points": 6,
+      "regions": 1,
+      "boundary_faces": 6,
+      "area": 158.0,
+      "weight": 3160.0,
+      "json_md_match": true,
+      "sha256": "d3bef38205815d248fc6b447cc461e2e20418d0756a8d9b60e99a54b22fcef9d"
+    },
+    {
+      "case": "P03A",
+      "points": 6,
+      "regions": 1,
+      "boundary_faces": 6,
+      "area": 158.0,
+      "weight": 3160.0,
+      "json_md_match": true,
+      "sha256": "5a0d1200dc8d3f7517c4da5696a242250154a63fdba0d6b9b12ae6eabb5bcc64"
+    },
+    {
+      "case": "P03N",
+      "points": 6,
+      "regions": 1,
+      "boundary_faces": 6,
+      "area": 158.0,
+      "weight": 3160.0,
+      "json_md_match": true,
+      "sha256": "57ad39000582ff1190efc6bdbea14e946b50c63ff372e2b90a124b114ad9c043"
+    },
+    {
+      "case": "P04A",
+      "points": 6,
+      "regions": 1,
+      "boundary_faces": 6,
+      "area": 158.0,
+      "weight": 3160.0,
+      "json_md_match": true,
+      "sha256": "16ce21aa4d6fbbe0ca40e7770cedd93f24b1352fb7898629ac82010a53ca9772"
+    },
+    {
+      "case": "P04N",
+      "points": 6,
+      "regions": 1,
+      "boundary_faces": 6,
+      "area": 158.0,
+      "weight": 3160.0,
+      "json_md_match": true,
+      "sha256": "3cdd0904793fe73f0e5b05c4b4984a4786ad4a5618bc2e516973fbdf34d355e8"
+    },
+    {
+      "case": "P05A",
+      "points": 9,
+      "regions": 3,
+      "boundary_faces": 9,
+      "area": 475.0,
+      "weight": 9450.0,
+      "json_md_match": true,
+      "sha256": "b7a842fe6eeca5851e7d323cf87bb3f4967fa869bbd992b2841276d605de3791"
+    },
+    {
+      "case": "P05N",
+      "points": 9,
+      "regions": 3,
+      "boundary_faces": 9,
+      "area": 475.0,
+      "weight": 9450.0,
+      "json_md_match": true,
+      "sha256": "96928cc282bfe3ff73f52a7499984ba6a557c2fd46f3f1daf6a630c423a047bc"
+    },
+    {
+      "case": "P06A",
+      "points": 12,
+      "regions": 3,
+      "boundary_faces": 9,
+      "area": 302.5,
+      "weight": 5747.5,
+      "json_md_match": true,
+      "sha256": "7ba1d27d7f1d4bee57972dd9e87881a3efa59f8765808631c87916e3bf3ee9d1"
+    },
+    {
+      "case": "P06N",
+      "points": 12,
+      "regions": 3,
+      "boundary_faces": 9,
+      "area": 302.5,
+      "weight": 5747.5,
+      "json_md_match": true,
+      "sha256": "25f865f0e776f231feb5437eebaefbdbf59b6c3e0f8297174c4c6aa6abeff392"
+    },
+    {
+      "case": "P07A",
+      "points": 4,
+      "regions": 1,
+      "boundary_faces": 4,
+      "area": 220.0,
+      "weight": 4400.0,
+      "json_md_match": true,
+      "sha256": "2e2a2a5ff941cc7ca4de3ec27e79fd328d3f0b149f95a439e992177636eb0dd6"
+    },
+    {
+      "case": "P07N",
+      "points": 4,
+      "regions": 1,
+      "boundary_faces": 4,
+      "area": 220.0,
+      "weight": 4400.0,
+      "json_md_match": true,
+      "sha256": "e8338c00e272ac1a75b47ea5259da571645ff4a71b6d33bc933d6e03bf743fd2"
+    },
+    {
+      "case": "P08A",
+      "points": 7,
+      "regions": 2,
+      "boundary_faces": 7,
+      "area": 900.0,
+      "weight": 18000.0,
+      "json_md_match": true,
+      "sha256": "e6bf246f05b92dedd7133b7fc6c98b72a012a4bcf01c389c029dde585ca9d50e"
+    },
+    {
+      "case": "P09A",
+      "points": 7,
+      "regions": 2,
+      "boundary_faces": 7,
+      "area": 900.0,
+      "weight": 18000.0,
+      "json_md_match": true,
+      "sha256": "80e4316de07faa952de2cb470330986086324be8123914795f4a376e2cb5d7d1"
+    },
+    {
+      "case": "P10A",
+      "points": 7,
+      "regions": 2,
+      "boundary_faces": 7,
+      "area": 900.0,
+      "weight": 18000.0,
+      "json_md_match": true,
+      "sha256": "43f14c77ed27dfac48a2686df8a82892dad2dd8d687607b96b21218efd3f66bc"
+    },
+    {
+      "case": "D01A",
+      "points": 6,
+      "regions": 1,
+      "boundary_faces": 6,
+      "area": 158.0,
+      "weight": 3160.0,
+      "json_md_match": true,
+      "sha256": "429a13625fc4bfa75e6f95e7f4bf02872ee305762da58b755d2cd8fb68d63155"
+    },
+    {
+      "case": "D02A",
+      "points": 6,
+      "regions": 1,
+      "boundary_faces": 6,
+      "area": 1400.0,
+      "weight": 28000.0,
+      "json_md_match": true,
+      "sha256": "4f78a13857dfdc6d5c91844dbd0ff44aca13c6925124f3bb813f455d6a23f8ec"
+    },
+    {
+      "case": "D03N",
+      "points": 6,
+      "regions": 1,
+      "boundary_faces": 6,
+      "area": 1400.0,
+      "weight": 28000.0,
+      "json_md_match": true,
+      "sha256": "f3697c56685aeb86cea502a91db1adddfe9be68f9aaa0004770e42f954e0405d"
+    },
+    {
+      "case": "D04A",
+      "points": 6,
+      "regions": 1,
+      "boundary_faces": 6,
+      "area": 158.0,
+      "weight": 3160.0,
+      "json_md_match": true,
+      "sha256": "cd96b0a153f926f7e6c7bb35e86ec30e636038b6866b7132dcc7b546b7aa3476"
+    },
+    {
+      "case": "D05A",
+      "points": 6,
+      "regions": 1,
+      "boundary_faces": 6,
+      "area": 158000000.0,
+      "weight": 3160000.0,
+      "json_md_match": true,
+      "sha256": "369503b4f1c981370a7eba0464ba4ed260d2d2d9d2e29d08e472c15d0bdbfc48"
+    },
+    {
+      "case": "D06A",
+      "points": 6,
+      "regions": 1,
+      "boundary_faces": 6,
+      "area": 158.0,
+      "weight": 3160.0,
+      "json_md_match": true,
+      "sha256": "11592848ddb599982497d83b522342b00abe62a934b302e6cfe7913bfd3b8cfe"
+    },
+    {
+      "case": "D07A",
+      "points": 8,
+      "regions": 1,
+      "boundary_faces": 8,
+      "area": 158.0,
+      "weight": 3160.0,
+      "json_md_match": true,
+      "sha256": "0d3692d33369ea14aa1e4af77c3cc073b6cf17728108491bd2de15663fd3ab19"
+    },
+    {
+      "case": "D09A",
+      "points": 6,
+      "regions": 1,
+      "boundary_faces": 6,
+      "area": 158.0,
+      "weight": 3160.0,
+      "json_md_match": true,
+      "sha256": "c5dd52c692732ff787667f59163ed218f2267acb090f56fed74a5578153e2296"
+    }
+  ]
+}

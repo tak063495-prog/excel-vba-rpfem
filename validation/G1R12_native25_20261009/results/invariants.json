@@ -1,0 +1,75 @@
+{
+  "base_case": "P02A",
+  "base_interval": [
+    1.3016569748403444,
+    1.3110550654525948
+  ],
+  "results": [
+    {
+      "case": "D04A",
+      "diagnostic": "E/10 (inactive model parameter)",
+      "independent_native_runs": true,
+      "lower_fs": 1.3016569748403444,
+      "upper_fs": 1.3110550654525948,
+      "lower_relative_difference_from_P02A": 0.0,
+      "upper_relative_difference_from_P02A": 0.0,
+      "audited_intervals_overlap": true,
+      "native_adopted_elements": [
+        1000.0,
+        1000.0
+      ],
+      "scope": "comparison of actual audited intervals; adapted meshes may differ, not a claim of identical discretization",
+      "lower_payload_bytes_identical": true,
+      "upper_payload_bytes_identical": true,
+      "elastic_sensitivity_tested": false
+    },
+    {
+      "case": "D09A",
+      "diagnostic": "nu=.49 (inactive model parameter)",
+      "independent_native_runs": true,
+      "lower_fs": 1.3016569748403444,
+      "upper_fs": 1.3110550654525948,
+      "lower_relative_difference_from_P02A": 0.0,
+      "upper_relative_difference_from_P02A": 0.0,
+      "audited_intervals_overlap": true,
+      "native_adopted_elements": [
+        1000.0,
+        1000.0
+      ],
+      "scope": "comparison of actual audited intervals; adapted meshes may differ, not a claim of identical discretization",
+      "lower_payload_bytes_identical": true,
+      "upper_payload_bytes_identical": true,
+      "elastic_sensitivity_tested": false
+    },
+    {
+      "case": "D06A",
+      "diagnostic": "translation (+1000,+2000)",
+      "independent_native_runs": true,
+      "lower_fs": 1.301656974841376,
+      "upper_fs": 1.3110550654525315,
+      "lower_relative_difference_from_P02A": 7.92543085023018e-13,
+      "upper_relative_difference_from_P02A": -4.8268538882299224e-14,
+      "audited_intervals_overlap": true,
+      "native_adopted_elements": [
+        1000.0,
+        1000.0
+      ],
+      "scope": "comparison of actual audited intervals; adapted meshes may differ, not a claim of identical discretization"
+    },
+    {
+      "case": "D05A",
+      "diagnostic": "length x1000 / gamma divided by1000",
+      "independent_native_runs": true,
+      "lower_fs": 1.3015184815788732,
+      "upper_fs": 1.3109054656496246,
+      "lower_relative_difference_from_P02A": -0.00010639766401450146,
+      "upper_relative_difference_from_P02A": -0.00011410642230995165,
+      "audited_intervals_overlap": true,
+      "native_adopted_elements": [
+        998.0,
+        998.0
+      ],
+      "scope": "comparison of actual audited intervals; adapted meshes may differ, not a claim of identical discretization"
+    }
+  ]
+}

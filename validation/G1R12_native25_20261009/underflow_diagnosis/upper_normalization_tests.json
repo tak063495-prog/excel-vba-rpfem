@@ -1,0 +1,399 @@
+{
+  "pass": true,
+  "records": [
+    {
+      "case": "D01A",
+      "controlled_work_deviation": 1.86894819176331e-07,
+      "before": {
+        "pass": false,
+        "errors": {
+          "flow": 0.0,
+          "jump": 0.0,
+          "boundary": 9.862350525937923e-18,
+          "work": 1.8754496977635426e-07,
+          "objective": 0.0
+        },
+        "dissipation": 0.0,
+        "work": [
+          0.0,
+          1.0000001875449698
+        ],
+        "value": 0.0
+      },
+      "after": {
+        "pass": true,
+        "errors": {
+          "flow": 0.0,
+          "jump": 0.0,
+          "boundary": 9.862348676304039e-18,
+          "work": 9.38157285190755e-09,
+          "objective": 0.0
+        },
+        "dissipation": 0.0,
+        "work": [
+          0.0,
+          1.0000000093815729
+        ],
+        "value": 0.0
+      },
+      "feasible_field_recovered": true
+    },
+    {
+      "case": "D01A",
+      "controlled_work_deviation": -1.86894819176331e-07,
+      "before": {
+        "pass": false,
+        "errors": {
+          "flow": 0.0,
+          "jump": 0.0,
+          "boundary": 9.862346839494176e-18,
+          "work": 1.7089293180561071e-07,
+          "objective": 0.0
+        },
+        "dissipation": 0.0,
+        "work": [
+          0.0,
+          0.9999998291070682
+        ],
+        "value": 0.0
+      },
+      "after": {
+        "pass": true,
+        "errors": {
+          "flow": 0.0,
+          "jump": 0.0,
+          "boundary": 9.86234852489983e-18,
+          "work": 1.1152799572755612e-08,
+          "objective": 0.0
+        },
+        "dissipation": 0.0,
+        "work": [
+          0.0,
+          0.9999999888472004
+        ],
+        "value": 0.0
+      },
+      "feasible_field_recovered": true
+    },
+    {
+      "case": "D01A",
+      "controlled_work_deviation": 5.28104496799742e-07,
+      "before": {
+        "pass": false,
+        "errors": {
+          "flow": 0.0,
+          "jump": 0.0,
+          "boundary": 9.862353891066739e-18,
+          "work": 5.222090919687616e-07,
+          "objective": 0.0
+        },
+        "dissipation": 0.0,
+        "work": [
+          0.0,
+          1.000000522209092
+        ],
+        "value": 0.0
+      },
+      "after": {
+        "pass": true,
+        "errors": {
+          "flow": 0.0,
+          "jump": 0.0,
+          "boundary": 9.862348740858557e-18,
+          "work": 6.199179836130497e-09,
+          "objective": 0.0
+        },
+        "dissipation": 0.0,
+        "work": [
+          0.0,
+          1.0000000061991798
+        ],
+        "value": 0.0
+      },
+      "feasible_field_recovered": true
+    },
+    {
+      "case": "D01A",
+      "controlled_work_deviation": -5.28104496799742e-07,
+      "before": {
+        "pass": false,
+        "errors": {
+          "flow": 0.0,
+          "jump": 0.0,
+          "boundary": 9.86234347436536e-18,
+          "work": 5.307028843049011e-07,
+          "objective": 0.0
+        },
+        "dissipation": 0.0,
+        "work": [
+          0.0,
+          0.9999994692971157
+        ],
+        "value": 0.0
+      },
+      "after": {
+        "pass": true,
+        "errors": {
+          "flow": 0.0,
+          "jump": 0.0,
+          "boundary": 9.862348708342267e-18,
+          "work": 8.069278578659578e-09,
+          "objective": 0.0
+        },
+        "dissipation": 0.0,
+        "work": [
+          0.0,
+          1.0000000080692786
+        ],
+        "value": 0.0
+      },
+      "feasible_field_recovered": true
+    },
+    {
+      "case": "D01A",
+      "injection": "zero_work",
+      "rejected": true
+    },
+    {
+      "case": "D01A",
+      "injection": "negative_work",
+      "rejected": true
+    },
+    {
+      "case": "D01A",
+      "injection": "fixed_boundary_velocity",
+      "before": {
+        "pass": false,
+        "errors": {
+          "flow": 0.00844284274250523,
+          "jump": 0.0,
+          "boundary": 0.01,
+          "work": 1.5183374557636853e-09,
+          "objective": 0.0
+        },
+        "dissipation": 0.0,
+        "work": [
+          0.0,
+          0.9999999984816625
+        ],
+        "value": 0.0
+      },
+      "after": {
+        "pass": false,
+        "errors": {
+          "flow": 0.008442842755324365,
+          "jump": 0.0,
+          "boundary": 0.010000000015183376,
+          "work": 5.997662810841575e-09,
+          "objective": 0.0
+        },
+        "dissipation": 0.0,
+        "work": [
+          0.0,
+          1.0000000059976628
+        ],
+        "value": 0.0
+      },
+      "rejected": true
+    },
+    {
+      "case": "P02N",
+      "controlled_work_deviation": 1.86894819176331e-07,
+      "before": {
+        "pass": false,
+        "errors": {
+          "flow": 0.0,
+          "boundary": 3.6104286461268637e-12,
+          "jump": 0.0,
+          "work": 1.8689481895428628e-07,
+          "objective": 1.8719272398826092e-07
+        },
+        "dissipation": 0.9998840212274765,
+        "work": [
+          0.0,
+          1.000000186894819
+        ],
+        "value": 0.9998840212274765
+      },
+      "after": {
+        "pass": true,
+        "errors": {
+          "flow": 0.0,
+          "boundary": 3.6104279713565817e-12,
+          "jump": 0.0,
+          "work": 1.5543122344752192e-15,
+          "objective": 6.661338147750939e-16
+        },
+        "dissipation": 0.9998838343543677,
+        "work": [
+          0.0,
+          1.0000000000000016
+        ],
+        "value": 0.9998838343543677
+      },
+      "feasible_field_recovered": true
+    },
+    {
+      "case": "P02N",
+      "controlled_work_deviation": -1.86894819176331e-07,
+      "before": {
+        "pass": false,
+        "errors": {
+          "flow": 0.0,
+          "boundary": 3.610427296586298e-12,
+          "jump": 0.0,
+          "work": 1.8689481862121937e-07,
+          "objective": 1.865534909883948e-07
+        },
+        "dissipation": 0.9998836474812616,
+        "work": [
+          0.0,
+          0.9999998131051814
+        ],
+        "value": 0.9998836474812616
+      },
+      "after": {
+        "pass": true,
+        "errors": {
+          "flow": 0.0,
+          "boundary": 3.610427971356579e-12,
+          "jump": 0.0,
+          "work": 6.661338147750939e-16,
+          "objective": 1.887379141862766e-15
+        },
+        "dissipation": 0.9998838343543676,
+        "work": [
+          0.0,
+          1.0000000000000007
+        ],
+        "value": 0.9998838343543676
+      },
+      "feasible_field_recovered": true
+    },
+    {
+      "case": "P02N",
+      "controlled_work_deviation": 5.28104496799742e-07,
+      "before": {
+        "pass": false,
+        "errors": {
+          "flow": 0.0,
+          "boundary": 3.6104298780398285e-12,
+          "jump": 0.0,
+          "work": 5.281044972438309e-07,
+          "objective": 5.283627685370718e-07
+        },
+        "dissipation": 0.9998843623975211,
+        "work": [
+          0.0,
+          1.0000005281044972
+        ],
+        "value": 0.9998843623975211
+      },
+      "after": {
+        "pass": true,
+        "errors": {
+          "flow": 0.0,
+          "boundary": 3.61042797135658e-12,
+          "jump": 0.0,
+          "work": 8.881784197001252e-16,
+          "objective": 3.774758283725532e-15
+        },
+        "dissipation": 0.9998838343543677,
+        "work": [
+          0.0,
+          1.0000000000000009
+        ],
+        "value": 0.9998838343543677
+      },
+      "feasible_field_recovered": true
+    },
+    {
+      "case": "P02N",
+      "controlled_work_deviation": -5.28104496799742e-07,
+      "before": {
+        "pass": false,
+        "errors": {
+          "flow": 0.0,
+          "boundary": 3.610426064673334e-12,
+          "jump": 0.0,
+          "work": 5.281044967997417e-07,
+          "objective": 5.277235309852912e-07
+        },
+        "dissipation": 0.9998833063112216,
+        "work": [
+          0.0,
+          0.9999994718955032
+        ],
+        "value": 0.9998833063112216
+      },
+      "after": {
+        "pass": true,
+        "errors": {
+          "flow": 0.0,
+          "boundary": 3.6104279713565812e-12,
+          "jump": 0.0,
+          "work": 1.3322676295501878e-15,
+          "objective": 2.55351295663786e-15
+        },
+        "dissipation": 0.9998838343543682,
+        "work": [
+          0.0,
+          1.0000000000000013
+        ],
+        "value": 0.9998838343543682
+      },
+      "feasible_field_recovered": true
+    },
+    {
+      "case": "P02N",
+      "injection": "zero_work",
+      "rejected": true
+    },
+    {
+      "case": "P02N",
+      "injection": "negative_work",
+      "rejected": true
+    },
+    {
+      "case": "P02N",
+      "injection": "fixed_boundary_velocity",
+      "before": {
+        "pass": false,
+        "errors": {
+          "flow": 0.05006990102481064,
+          "boundary": 0.01,
+          "jump": 0.001308029643655343,
+          "work": 3.196505282687667e-10,
+          "objective": 1.1102230246251565e-16
+        },
+        "dissipation": 0.9998838340347525,
+        "work": [
+          0.0,
+          0.9999999996803495
+        ],
+        "value": 0.9998838340347525
+      },
+      "after": {
+        "pass": false,
+        "errors": {
+          "flow": 0.050069901040815504,
+          "boundary": 0.010000000003196506,
+          "jump": 0.0013080296440734554,
+          "work": 1.3322676295501878e-15,
+          "objective": 1.6653345369377348e-15
+        },
+        "dissipation": 0.9998838343543676,
+        "work": [
+          0.0,
+          1.0000000000000013
+        ],
+        "value": 0.9998838343543676
+      },
+      "rejected": true
+    }
+  ],
+  "actual_D03N_field_available": false,
+  "actual_D03N_replayed": false,
+  "vba_repair_implemented": false,
+  "scope": "physical feasible-witness normalization only; no OPTIMAL or native root proof"
+}

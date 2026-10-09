@@ -19,7 +19,7 @@ Excel VBAによる2次元RPFEM解析のソース、XLSM、検証資料です。
 3. 「P06N 実行案内」「材料データ」「設定」を確認し、「要素定義」の**「要素作成②」→「図を表示」→「解析」**を使います。「解析」は入力からメッシュを再生成するため、要素作成は形状の事前確認用です。
 4. 「解析結果」の下界・上界・区間幅・解析政策と、ログ末尾の判定を確認します。`PARTIAL_CERTIFIED`は目標未達を含みます。詳しい操作は[使い方](docs/USAGE_JA.md)を参照してください。
 
-**G1R12の全P06N解析時間、GAP 1%到達、25ケース全回帰は未確認です。図の矢印は規準化された速度機構であり、変位量ではありません。**
+**間隙水圧を除く25ケースすべてを実Excelで実行しました。監査済みFs区間は23/25、GAP 1%と根探索目標の達成は11/25です。最終Fs未取得はD03N・D07Aです。 [実行結果・制約](validation/G1R12_native25_20261009/REPORT.md)を確認してください。 図の矢印は規準化された速度機構であり、変位量ではありません。**
 
 ## G1R12 — Issues #1 / #2 修正版（最新版）
 
@@ -30,12 +30,23 @@ Excel VBAによる2次元RPFEM解析のソース、XLSM、検証資料です。
 - [修正・検証報告](versions/G1R12/REPORT.md) / [VBAソース](versions/G1R12/src/)
 - [手動反映・G1R11へ戻す手順](versions/G1R12/IMPORT_ROLLBACK.md)
 - [試験手順](versions/G1R12/TEST_PROCEDURES.md) / [試験結果](versions/G1R12/TEST_RESULTS.csv) / [差分](versions/G1R12/changes.patch)
-- [Issue対応表](versions/G1R12/ISSUE_FIX_MAP.csv) / [25ケース台帳（NOT_RUN）](versions/G1R12/excel_acceptance_g1r12.csv)
+- [Issue対応表](versions/G1R12/ISSUE_FIX_MAP.csv) / [25ケースの実行結果](validation/G1R12_native25_20261009/RESULTS.csv) / [Issue修正時点の台帳（保全）](versions/G1R12/excel_acceptance_g1r12.csv)
 - [配布ファイルのSHA-256](downloads/SHA256SUMS.txt)
 
 旧版の601/1000要素の配列エラー、同数・別座標の誤対応、詳細エラー時の救済スキップを実Excelで再現しました。修正版の出力・停止条件・実HSD救済を検証し、小規模C=5・φ=ψ=45のFs根と通常場は旧版と完全一致しました。保存場7件をPythonで独立監査し、小規模の支持力通常・適応経路、完成XLSMの保存後コンパイル・全46モジュール照合も実施しました。人工的な所有者・失敗注入の試験は物理求解と区別しています。
 
-**全P06N・GAP1%・25ケース全回帰・全支持力/剛体回帰は未実施です。** G1R11の公開成果物は保全しています。
+### 2026年10月9日の25ケース実行
+
+間隙水圧を除く25ケースすべてを実Excelで実行しました。監査済みFs区間は23/25、GAP 1%と根探索目標の達成は11/25です。最終Fs未取得はD03N・D07Aです。 取得Fsのうち12ケースは精度目標が未達です。全支持力・剛体回帰は今回の対象外です。
+
+- [25ケースの原ログ・監査・再現コードZIP](https://github.com/tak063495-prog/excel-vba-rpfem/raw/refs/heads/main/downloads/RPFEM_G1R12_Native25_Evidence_20261009.zip)
+- [結果XLSM ZIP①（D01A～P02N、12件）](https://github.com/tak063495-prog/excel-vba-rpfem/raw/refs/heads/main/downloads/RPFEM_G1R12_Native25_Workbooks_01_20261009.zip)
+- [結果XLSM ZIP②（P03A～P10A、13件）](https://github.com/tak063495-prog/excel-vba-rpfem/raw/refs/heads/main/downloads/RPFEM_G1R12_Native25_Workbooks_02_20261009.zip)
+
+XLSMは2つの独立したZIPです。それぞれ展開して使用でき、結合は不要です。ブック内容は検証済みの一括ZIPと同一です。
+- [報告書](validation/G1R12_native25_20261009/REPORT.md) / [結果CSV](validation/G1R12_native25_20261009/RESULTS.csv)
+
+製品VBAは同じG1R12で、試験用証拠モジュールを追加したコピーを使いました。D07Aの荷重端点メッシュ、D03NのDD積underflowについてPythonで原因・対策を検証しましたが、修復のVBA実装はまだ行っていません。G1R11/G1R12の既存公開XLSM・ZIPは保全しています。
 
 ## G1R11 — 前版（保全）
 

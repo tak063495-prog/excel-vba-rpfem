@@ -1,0 +1,27 @@
+{
+  "pass": true,
+  "preserved_commit": "48a839654fd72d045f5d4e85cdf238dd217816b5",
+  "artifacts": [
+    {
+      "path": "versions/G1R12/RPFEM_20261009_G1R12_P06N_IssueFix.xlsm",
+      "sha256": "fe02ff61687cff8e0f0fc775867c8a244a83f758a3c5b9a9f80b6a2ab0389520",
+      "matches_preserved_commit": true
+    },
+    {
+      "path": "downloads/RPFEM_G1R12_IssueFix_20261009.zip",
+      "sha256": "c84e02ce2f9823c354848428bf97329c1b7560984a900b59646fb9dac141dd75",
+      "matches_preserved_commit": true
+    },
+    {
+      "path": "versions/G1R11/RPFEM_20261007_G1R11_P06N_Staged_1000.xlsm",
+      "sha256": "5cb56fc51ceb21e24d3cea999a1535f91c6d983a51211873059c9c9494d454f9",
+      "matches_preserved_commit": true
+    }
+  ],
+  "historical_p2s_baseline_check": {
+    "baseline_intact": true,
+    "checked_files": 32,
+    "errors": [],
+    "scope": "verify_baseline.py executed after completion; its native Excel NOT_RUN flags belong to historical P2S, not the actual G1R12 native25 runs"
+  }
+}

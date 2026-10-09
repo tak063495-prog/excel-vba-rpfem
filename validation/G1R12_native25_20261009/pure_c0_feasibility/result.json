@@ -1,0 +1,80 @@
+{
+  "scope": "Python equivalent pure-c0 feasibility experiment; not an Excel root or 25-case PASS",
+  "native_witness_sha256": "0393ae3fd5dea4a8b455fa429c4a5b7b3964784ae212930c41b32ddb4a6b9c17",
+  "native_mesh_metadata": {
+    "nodes": 552,
+    "elements": 997,
+    "q": 8,
+    "factor": 0.5773027538987512,
+    "fs": 0.5773027538987512,
+    "objective": 1.0,
+    "native_audit": 1.8092189871254938e-08,
+    "scale": 1.0
+  },
+  "same_materials_geometry_loads": true,
+  "vba_unchanged": true,
+  "records": [
+    {
+      "tag": "maximize_load_at_lower",
+      "fs": 0.5773027538987512,
+      "fixed_load": null,
+      "status": "NumericalError",
+      "iterations": 21,
+      "seconds": 1.1077875000191852,
+      "variables": 17947,
+      "equality_rows": 15750,
+      "zero_stress_reduction_nodes": 232,
+      "solver_primal_residual": 1.6346022381281374e-09,
+      "solver_dual_residual": 3.6592893737782347e-09
+    },
+    {
+      "tag": "unit_load_at_lower",
+      "fs": 0.5773027538987512,
+      "fixed_load": 1.0,
+      "status": "AlmostSolved",
+      "iterations": 22,
+      "seconds": 1.0867738999659196,
+      "variables": 17947,
+      "equality_rows": 15751,
+      "zero_stress_reduction_nodes": 232,
+      "solver_primal_residual": 1.3982022706663028e-09,
+      "solver_dual_residual": 1.7640000824832563e-10,
+      "returned_load": 0.9999999980662965,
+      "normalized_physical_audit": {
+        "pass": true,
+        "errors": {
+          "yield": 1.899880049727902e-10,
+          "equilibrium": 2.452861025403763e-09,
+          "internal_traction": 4.0839001585669384e-11,
+          "boundary_traction": 6.703228123482463e-11
+        },
+        "load": 1.0,
+        "value": 1.0
+      },
+      "raw_physical_error": 2.452861025403763e-09,
+      "unit_witness_pass": true
+    },
+    {
+      "tag": "unit_load_at_upper",
+      "fs": 0.6148576846248616,
+      "fixed_load": 1.0,
+      "status": "PrimalInfeasible",
+      "iterations": 17,
+      "seconds": 0.9230807001003996,
+      "variables": 17947,
+      "equality_rows": 15751,
+      "zero_stress_reduction_nodes": 232,
+      "solver_primal_residual": 0.000898763688673214,
+      "solver_dual_residual": 6.259728409180333e-15,
+      "infeasibility_certificate": {
+        "normalized_rhs_dot": -1.0,
+        "stationarity_max": 3.596323239207777e-11,
+        "dual_cone_error": 0.0,
+        "numeric_pass": true
+      }
+    }
+  ],
+  "applicability": "verified scope: all cohesion zero, total reference loads; mixed-c P06 not validated and excluded from this proposed path",
+  "fixed_unit_feasibility_confirmed": true,
+  "outside_infeasibility_confirmed": true
+}

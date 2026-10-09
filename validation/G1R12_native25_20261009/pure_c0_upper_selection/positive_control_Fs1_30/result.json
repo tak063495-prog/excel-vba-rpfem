@@ -1,0 +1,150 @@
+{
+  "scope": "Python D03N physical-input experiment on a different native mesh; not native failure replay",
+  "mesh_source_case": "D02A",
+  "mesh_source_sha256": "57b7d8d5b8ce1f3f5f541a463a46072a2d7a3a3d97bd5d1779617a6b1d4ada95",
+  "mesh_metadata": {
+    "nodes": 548,
+    "elements": 997,
+    "q": 8,
+    "factor": 1.5693421156330865,
+    "fs": 1.5693421156330865,
+    "objective": 0.0,
+    "native_audit": 1.6730235197215393e-08,
+    "scale": 1.0
+  },
+  "physical_material_policy_case": "D03N",
+  "trial_fs": 1.3,
+  "trial_origin": "selected positive control",
+  "exact_native_failed_Fs_bits_available": false,
+  "actual_native_failed_mesh_available": false,
+  "vba_unchanged": true,
+  "records": [
+    {
+      "selection": "constant_zero_objective",
+      "status": "Solved",
+      "iterations": 19,
+      "seconds": 1.3037583999102935,
+      "selection_objective": 0.0,
+      "max_abs_velocity_before": 3032.5934745117593,
+      "max_abs_velocity_after": 3032.593474641596,
+      "original_physical_audit": {
+        "pass": true,
+        "errors": {
+          "flow": 0.0,
+          "jump": 3.298816703800665e-12,
+          "boundary": 7.467628578216071e-14,
+          "work": 4.2813752543224837e-11,
+          "objective": 0.0
+        },
+        "dissipation": 0.0,
+        "work": [
+          0.0,
+          0.9999999999571862
+        ],
+        "value": 0.0
+      },
+      "normalized_physical_audit": {
+        "pass": true,
+        "errors": {
+          "flow": 0.0,
+          "jump": 3.2988167039418997e-12,
+          "boundary": 7.467628578535788e-14,
+          "work": 1.0559464413972819e-10,
+          "objective": 0.0
+        },
+        "dissipation": 0.0,
+        "work": [
+          0.0,
+          0.9999999998944054
+        ],
+        "value": 0.0
+      },
+      "upper_feasible_witness_pass": true
+    },
+    {
+      "selection": "minimum_l2_qp",
+      "status": "AlmostSolved",
+      "iterations": 200,
+      "seconds": 6.720336900092661,
+      "selection_objective": 0.7796323059989336,
+      "max_abs_velocity_before": 0.09095179605375832,
+      "max_abs_velocity_after": 0.09095179603813633,
+      "original_physical_audit": {
+        "pass": true,
+        "errors": {
+          "flow": 1.1393649936643274e-08,
+          "jump": 1.0463698513549482e-08,
+          "boundary": 6.564423598372386e-10,
+          "work": 1.7176127187212842e-10,
+          "objective": 0.0
+        },
+        "dissipation": 0.0,
+        "work": [
+          0.0,
+          1.0000000001717613
+        ],
+        "value": 0.0
+      },
+      "normalized_physical_audit": {
+        "pass": true,
+        "errors": {
+          "flow": 1.1393649934686277e-08,
+          "jump": 1.0463698511752184e-08,
+          "boundary": 6.564423597244873e-10,
+          "work": 0.0,
+          "objective": 0.0
+        },
+        "dissipation": 0.0,
+        "work": [
+          0.0,
+          1.0
+        ],
+        "value": 0.0
+      },
+      "upper_feasible_witness_pass": true
+    },
+    {
+      "selection": "minimum_linf_socp",
+      "status": "AlmostSolved",
+      "iterations": 61,
+      "seconds": 3.067587700090371,
+      "selection_objective": 0.07664460724626959,
+      "max_abs_velocity_before": 0.0766446072416216,
+      "max_abs_velocity_after": 0.07664460657170227,
+      "original_physical_audit": {
+        "pass": true,
+        "errors": {
+          "flow": 1.6420368826492424e-09,
+          "jump": 1.988998666641126e-09,
+          "boundary": 2.0977242509958928e-10,
+          "work": 8.740593138156783e-09,
+          "objective": 0.0
+        },
+        "dissipation": 0.0,
+        "work": [
+          0.0,
+          1.0000000087405931
+        ],
+        "value": 0.0
+      },
+      "normalized_physical_audit": {
+        "pass": true,
+        "errors": {
+          "flow": 1.6420368682968663e-09,
+          "jump": 1.988998649256099e-09,
+          "boundary": 2.0977242326605388e-10,
+          "work": 3.4416913763379853e-15,
+          "objective": 0.0
+        },
+        "dissipation": 0.0,
+        "work": [
+          0.0,
+          0.9999999999999966
+        ],
+        "value": 0.0
+      },
+      "upper_feasible_witness_pass": true
+    }
+  ],
+  "minimum_linf_feasible_witness_confirmed": true
+}

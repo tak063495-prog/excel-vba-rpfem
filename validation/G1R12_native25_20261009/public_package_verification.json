@@ -1,0 +1,57 @@
+{
+  "pass": true,
+  "all25_cases_covered_once": true,
+  "native_workbooks_byte_identical_to_original_zip": true,
+  "independent_archives_no_join_required": true,
+  "original_full_zip": {
+    "name": "RPFEM_G1R12_Native25_Workbooks_20261009.zip",
+    "bytes": 47611121,
+    "sha256": "c94d2434f0622aba3494fefdcda0b8134d5c2fce375da44580d2e18d412155d6"
+  },
+  "public_packages": [
+    {
+      "name": "RPFEM_G1R12_Native25_Evidence_20261009.zip",
+      "bytes": 28796628,
+      "sha256": "6d88747fb768d60b9be0558793bdfb1826e7150615b572f633009ba4b62411cd"
+    },
+    {
+      "name": "RPFEM_G1R12_Native25_Workbooks_01_20261009.zip",
+      "bytes": 22764639,
+      "sha256": "1bbf3feec081502222edb12aaa9fb27f1d93e84a7a473b0707dedf12c39dbee3",
+      "cases": [
+        "D01A",
+        "D02A",
+        "D03N",
+        "D04A",
+        "D05A",
+        "D06A",
+        "D07A",
+        "D09A",
+        "P01A",
+        "P01N",
+        "P02A",
+        "P02N"
+      ]
+    },
+    {
+      "name": "RPFEM_G1R12_Native25_Workbooks_02_20261009.zip",
+      "bytes": 24855832,
+      "sha256": "a8a0c0e3abbdeedcd8a671290e7317bf41201d8d1922ebc30b6ce36355a5231c",
+      "cases": [
+        "P03A",
+        "P03N",
+        "P04A",
+        "P04N",
+        "P05A",
+        "P05N",
+        "P06A",
+        "P06N",
+        "P07A",
+        "P07N",
+        "P08A",
+        "P09A",
+        "P10A"
+      ]
+    }
+  ]
+}
