@@ -30,6 +30,20 @@
 
 浸透解析は静音スイッチ経由で正常終了（メッセージなし）。図：[docs/levee_coupled_kh0.png](docs/levee_coupled_kh0.png)、[docs/levee_coupled_kh015R.png](docs/levee_coupled_kh015R.png)、浸透なし [docs/seismic_uncoupled_kh015R.png](docs/seismic_uncoupled_kh015R.png)。
 
+## 連成ON＋地震＋メッシュ最適化ON（堤防例題、kh=0.15 右、目標600要素）
+修正後の配布堤防ブックの別名コピーで実行（浸透は静音スイッチで実行、メッセージなし）。
+
+| 項目 | 結果 |
+|---|---|
+| 完走 | 完走（adapt_status=completed、run_end status=OPTIMAL） |
+| Fs下界／上界 | **1.224448／1.234308** |
+| 上下界差 | 0.80%（目標1%以内） |
+| 最終要素数 | 596要素／330節点 |
+| 解析時間・求解回数 | 622秒・53回 |
+| 途中段打切り（adapt_band_failed） | なし（2周目は改善なしで通常どおり次段へ） |
+
+最適化OFF・目標300要素（1.2172／1.2695、差約4%）から差0.8%まで縮小。推定すべり面の当てはめ円は中心(25.71, 22.64)・R=16.55 m。図：[docs/levee_coupled_kh015R_adapt.png](docs/levee_coupled_kh015R_adapt.png)。ログ：[results/iso_L_levee_cpl_kh015R_adapt.log](results/iso_L_levee_cpl_kh015R_adapt.log)、[results/RPFEM_logs/20261011_211428_26004_analysis.tsv](results/RPFEM_logs/20261011_211428_26004_analysis.tsv)。
+
 ## メッシュ最適化ONでの kh=0／kh=0.15 比較（D07A、浸透なし、目標600要素、他設定同一）
 | 段階 | kh=0：経過秒／下界／上界 | kh=0.15右：経過秒／下界／上界 |
 |---|---|---|

@@ -29,7 +29,7 @@ Excel VBAによる2次元RPFEM解析のソース、XLSM、検証資料です。
 - **浸透入力**：`浸透入力`B3で「水位・水頭の条件から計算する／地下水面の位置を入力する（斜面に沿った流れ cos²θ）／地下水面の位置を入力する（静水圧）／地下水面に合うよう境界の水位を推定する」を選ぶ。H3に必要な入力を表示。連成スイッチはD4（G1R14のN19から移動、自動移行）。
 - 全回帰（kh=0・連成OFF）：D07A 1.26514209147729／1.27757720458799（1511秒）、D03N 1.11795089664424／1.20943742542898（9415秒）＝G1R14と全桁一致。
 - 最適化の途中段で下界の探索区間が見つからない場合も解析を止めず、直前の検証済みの上下界を保持して続行（下界探索は前段下界の15%で打切り。根拠は[検証報告](versions/G1R15/REPORT.md)）。
-- スモーク試験（D07A・浸透なし・200要素）：kh=0 1.2223／1.3640、kh=0.15谷側 0.9790／1.0986。堤防例題・連成ON：kh=0 1.6977／1.7972、kh=0.15 1.2172／1.2695。
+- スモーク試験（D07A・浸透なし・200要素）：kh=0 1.2223／1.3640、kh=0.15谷側 0.9790／1.0986。堤防例題・連成ON：kh=0 1.6977／1.7972、kh=0.15 1.2172／1.2695。堤防例題・連成ON＋kh=0.15右＋最適化ON：1.2244／1.2343（差0.80%、596要素、622秒）。
 - [ソース・差分・検証資料ZIPをダウンロード](https://github.com/tak063495-prog/excel-vba-rpfem/raw/refs/heads/main/downloads/RPFEM_G1R15_Seismic_20261011.zip) / [配布ファイルのSHA-256](downloads/SHA256SUMS.txt)
 - [D07A](versions/G1R15/delivery/RPFEM_20261011_G1R15_D07A_Seismic.xlsm) / [D03N](versions/G1R15/delivery/RPFEM_20261011_G1R15_D03N_Seismic.xlsm) / [堤防例題](versions/G1R15/examples/RPFEM_20261011_G1R15_Levee_Example.xlsm) / [VBAソース](versions/G1R15/src/vba/) / [差分](versions/G1R15/changes.diff) / [導入・復旧](versions/G1R15/IMPORT_ROLLBACK_JA.md)
 
