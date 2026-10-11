@@ -1,0 +1,9 @@
+﻿14:38:11 seismic module replaced
+14:38:13 SeepRunSilent: []
+14:38:13 mesh kh=0.15 vis=0 noSeis=0 noSeep=0
+14:38:14 run
+14:43:05 run done
+14:43:05 A1=上下界を取得（目標区間幅またはFs探索許容差は未達） lower=1.217197 upper=1.269468 H2=地震：kh=0.150 右(+x) →
+14:43:06 diagram shown
+14:43:07 png
+14:43:08 saved

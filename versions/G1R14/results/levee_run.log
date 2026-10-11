@@ -1,0 +1,15 @@
+﻿08:39:57 start C:\Users\link_\Desktop\G1R14_work_20261011_0753\RPFEM_20261011_0753_G1R14_Levee_Example.xlsm
+08:39:59 geometry: 8 points, 1 region, 8 faces (bottom fixed XY, sides fixed X, surfaces free)
+08:39:59 material 1: c=10 phi=25 gamma=19 (saturated) psi=25
+08:39:59 seepage input: k=1e-5 m/s; river side WL 12.0 (6 m above ground, foundation 8 m) (pt6->pt8->pt1); land slope/toe seepage face (pt3->pt5); right edge WL 8.0; coupling N19=1
+08:40:00 seepage: iterations=29 converged=True lastDelta=5.24815099822717E-07 inflow=1.75005325361544E-05 outflow=1.75005366150145E-05 elements=1549 FSsegments=41
+08:40:01 check: land/crest surface nodes with pressure head > 0: 0 (max 0 m)
+09:02:01 RPX_Run returned after 1321 s
+09:02:01 result A1: 解析完了
+09:02:01 FS lower=1.71041338116272 upper=1.71894561462502 elements=1000/1000
+09:02:04 diagram A4: 
+09:02:04 diagram A5: 
+09:02:04 diagram A6: 
+09:02:05 diagram exported: C:\Users\link_\Desktop\G1R14_work_20261011_0753\diagram_levee.png
+09:02:06 saved
+09:02:06 end

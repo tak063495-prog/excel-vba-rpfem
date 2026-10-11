@@ -1,0 +1,10 @@
+G1R14 配布XLSMのVBAとsrc/vbaの照合（python oletools VBA_Parser、2026-10-11）
+
+対象：delivery/RPFEM_20261011_G1R14_D03N_Seepage.xlsm、delivery/RPFEM_20261011_G1R14_D07A_Seepage.xlsm、examples/RPFEM_20261011_G1R14_Levee_Example.xlsm
+各ブック：標準モジュール48（G1R13の45＋RPX_Seep・RPX_SeepUI・RPX_Water）、src/vbaの全ファイルが存在。
+
+照合方法：Attribute行と行末空白を除き、大文字小文字を区別せずに行単位で比較。
+- 46モジュール：完全一致（大文字小文字の違いのみ。VBEが識別子の表記を統一するため）。
+- RPX_SeepUI：「〜」(U+301C)がCP932経由で「～」(U+FF5E)に（説明文字列2か所）、1e-12がVBEにより0.000000000001と表示（1か所）。
+- RPX_Water：1e-12の表示の違い（1か所）。
+いずれも動作は同じ。3ブックのVBAは互いに同一。
