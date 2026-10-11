@@ -341,6 +341,9 @@ Public Function RPX_Recoverable(ByVal number As Long, ByVal message As String, B
                     RPX_Recoverable = True
                 Case "PILOT_UPPER_INCOMPLETE", "PILOT_UPPER_NOT_OPTIMAL", "PILOT_UPPER_NOT_POSITIVE", "PILOT_PAIR_INCOMPLETE"
                     RPX_Recoverable = verifiedBase And stage <> "fs_trial"
+                Case "FS_LOWER_BRACKET_NOT_FOUND", "FS_UPPER_BRACKET_NOT_FOUND"
+                    ' G1R15: a refined candidate without a bracket falls back to the verified previous pair.
+                    RPX_Recoverable = verifiedBase And stage = "evaluate"
             End Select
         Case "band_recover"
             RPX_Recoverable = verifiedBase And token = "CONSTRAINED_EDGE_RECOVERY_FAILED"

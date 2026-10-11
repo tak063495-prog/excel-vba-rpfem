@@ -80,6 +80,7 @@ Private adaptHintUpperValid As Boolean
 Private adaptHintLowerValid As Boolean
 Private adaptFsCallsTotal As Long
 Private adaptStatus As String
+Private bandEvalFailedFlag As Boolean
 Private meshStage As String
 Private RBestPair As RPX_MeshState
 Private RCurrent As RPX_MeshState
@@ -1341,7 +1342,10 @@ AdaptCycles:
         End If
         If robustRefine Then On Error GoTo CycleRemeshFailed
         If robustRefine Then meshStage = "evaluate"
+        bandEvalFailedFlag = False
+        If Not robustRefine And Not (route = "pilot" And Not pilotFallbackUsed) Then On Error GoTo BandEvalFailed
         Call Evaluate(mode, "adapt_" & cycle & IIf(robustRefine, "_refine", "_band"))
+        If Not robustRefine And Not (route = "pilot" And Not pilotFallbackUsed) Then On Error GoTo 0
         If Not AcceptCandidate(baseline, RCurrent) Then
             RPX_DiagEvent "adapt_rollback", "cycle=" & cycle & ";action=band;new_gap=" & RCurrent.pairGap
             RPX_RestoreState baseline
@@ -1360,6 +1364,15 @@ AdaptCycles:
             If gain < AdaptMinGain Then Exit For
         End If
     Next cycle
+BandEvalAfter:
+    If bandEvalFailedFlag Then
+        ' G1R15: band candidate failed (e.g. no lower bracket); keep the verified baseline pair and continue.
+        bandEvalFailedFlag = False
+        On Error GoTo 0
+        RPX_RestoreState baseline
+        CloneState RCurrent, baseline
+        currentPairValid = True: adaptStatus = "band_failed_kept_baseline"
+    End If
     If RCurrent.pairGap > targetGap And Not (robustRefine And robustExhausted) Then
         CloneState baseline, RCurrent
         If robustRefine Then
@@ -1486,6 +1499,17 @@ PilotGiveUp:
     RBestUpper.value = 1E+300: RBestLower.value = -1E+300
     RBestPair.pairGap = 1E+300: RBestPair.elements = 0
     GoTo PilotRecover
+BandEvalFailed:
+    savedErrNo = err.number: savedErrText = err.description: savedErrSource = err.source: savedErrLine = Erl
+    If savedErrNo = 18 Or InStr(1, savedErrText, "HSD_STABLE_UNAVAILABLE_MEMORY", vbBinaryCompare) = 1 Or Not RPX_Recoverable(savedErrNo, savedErrText, "evaluate", True) Then
+        On Error GoTo 0
+        err.Raise savedErrNo, savedErrSource, savedErrText
+    End If
+    RPX_ErrorEvidence savedErrNo, savedErrSource, savedErrText, savedErrLine, "evaluate"
+    RPX_DiagEvent "adapt_band_failed", "cycle=" & cycle & ";number=" & savedErrNo & ";message=" & savedErrText & ";fallback=keep_baseline"
+    RPX_DiagFlush
+    bandEvalFailedFlag = True
+    Resume BandEvalAfter
 ShearRefineFailed:
     savedErrNo = err.number: savedErrText = err.description: savedErrSource = err.source: savedErrLine = Erl
     On Error GoTo 0

@@ -537,6 +537,9 @@ Public Function RPX_FsEndpoint(ByVal mode As String, Optional ByVal hint As Doub
         expansionCount = expansionCount + 1
         b = a: fb = fa: fieldB = fieldA: objectiveB = objectiveA: statusB = statusA: a = a / 2#
         If a < 0.000001 Then err.Raise 5, , "FS_LOWER_BRACKET_NOT_FOUND"
+        ' G1R15: stop runaway halving below 15% of the previous lower (or upper); lowest successful ratio in 457 logged searches was 22.5%. Caller keeps the previous verified pair.
+        If hint > 0# And a < 0.15 * hint Then err.Raise 5, , "FS_LOWER_BRACKET_NOT_FOUND floor=hint*0.15;a=" & a
+        If hint <= 0# And upperSeed > 0# And a < 0.15 * upperSeed Then err.Raise 5, , "FS_LOWER_BRACKET_NOT_FOUND floor=upper*0.15;a=" & a
         fa = FsValue(a, mode, target): fieldA = xx: objectiveA = XObjective: statusA = XStatus
     Loop
     Do While fb > 0#

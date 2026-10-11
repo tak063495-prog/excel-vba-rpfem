@@ -2,7 +2,7 @@
 $log="$Out\iso_$Tag.log"; function Log($m){ Add-Content $log ((Get-Date -f HH:mm:ss)+' '+$m) -Encoding UTF8 }
 function SetV($sh,$a,$v){ $r=$sh.Range($a); [void]$r.GetType().InvokeMember('Value2',[Reflection.BindingFlags]::SetProperty,$null,$r,@($v)) }
 function Sheet($wb,$n){ foreach($sh in $wb.Sheets){ if($sh.Name -eq $n){ return $sh } } }
-Get-Process EXCEL -ErrorAction SilentlyContinue | Stop-Process -Force
+if(Get-Process EXCEL -ErrorAction SilentlyContinue){ throw 'Excel is running (maybe mid-analysis). Close it yourself and retry; this script never kills Excel.' }
 $dst="$Out\iso_$Tag.xlsm"; Copy-Item $Src $dst -Force
 $xl=New-Object -ComObject Excel.Application; $xl.Visible=[bool]$Vis; $xl.DisplayAlerts=$false; $xl.AutomationSecurity=1
 try{
