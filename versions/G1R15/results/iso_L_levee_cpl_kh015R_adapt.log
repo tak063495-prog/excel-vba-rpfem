@@ -1,0 +1,8 @@
+﻿21:14:27 SeepRunSilent: []
+21:14:27 mesh kh=0.15 vis=0 noSeis=0 noSeep=0
+21:14:28 run
+21:24:50 run done
+21:24:50 A1=解析完了 lower=1.224448 upper=1.234308 H2=地震：kh=0.150 右(+x) →
+21:24:52 diagram shown
+21:24:52 png
+21:24:53 saved
