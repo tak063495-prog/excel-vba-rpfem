@@ -1,0 +1,5 @@
+﻿14:44:00 seismic module replaced
+14:44:01 no silent switch in this book
+14:44:01 mesh kh=0.25 vis=0 noSeis=0 noSeep=0
+14:44:02 run
+14:59:02 ERR "1" 個の引数を指定して "Run" を呼び出し中に例外が発生しました: "リモート プロシージャ コールに失敗しました。 (HRESULT からの例外:0x800706BE)"

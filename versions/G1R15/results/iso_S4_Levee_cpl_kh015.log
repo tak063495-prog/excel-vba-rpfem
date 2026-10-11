@@ -1,0 +1,7 @@
+﻿15:24:06 SeepRunSilent: []
+15:24:06 mesh kh=0.15 vis=0 noSeis=0 noSeep=0
+15:24:07 run
+15:28:59 run done
+15:28:59 A1=上下界を取得（目標区間幅またはFs探索許容差は未達） lower=1.217197 upper=1.269468 H2=地震：kh=0.150 右(+x) →
+15:29:00 diagram shown
+15:29:00 ERR Range クラスの CopyPicture プロパティを取得できません。

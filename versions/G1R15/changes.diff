@@ -1,0 +1,1526 @@
+diff -ruN versions/G1R14/src/vba/RPX_Control.bas versions/G1R15/src/vba/RPX_Control.bas
+--- versions/G1R14/src/vba/RPX_Control.bas	2026-10-11 07:52:19.758751734 +0900
++++ versions/G1R15/src/vba/RPX_Control.bas	2026-10-11 14:59:38.776656937 +0900
+@@ -386,6 +386,7 @@
+     ws.Range("A2").Value2 = "青：拘束、橙：面荷重。座標の縦横比は1:1。"
+     If RPX_ResultCurrent Then Call RPX_DrawVelocity
+     Call RPX_SeepOverlay
++    Call RPX_SeismicOverlay
+ End Sub
+ 
+ Public Sub RPX_WriteMesh()
+diff -ruN versions/G1R14/src/vba/RPX_Mesh.bas versions/G1R15/src/vba/RPX_Mesh.bas
+--- versions/G1R14/src/vba/RPX_Mesh.bas	2026-10-11 07:52:19.754751734 +0900
++++ versions/G1R15/src/vba/RPX_Mesh.bas	2026-10-11 14:59:38.776656937 +0900
+@@ -139,6 +139,7 @@
+             For k = 0 To 2: RTri(count, k) = RTri(e, k): Next k
+             RMatId(count) = DRegions(r).materialId: RRigidId(count) = DRegions(r).rigidId
+             If RGravityMode = "reference" Then RBody1(count, 1) = -RMaterials(RMatId(count)).gamma Else RBody0(count, 1) = -RMaterials(RMatId(count)).gamma
++            RPX_SeismicBody count
+             count = count + 1
+         End If
+     Next e
+diff -ruN versions/G1R14/src/vba/RPX_SeepUI.bas versions/G1R15/src/vba/RPX_SeepUI.bas
+--- versions/G1R14/src/vba/RPX_SeepUI.bas	2026-10-11 07:52:19.750751734 +0900
++++ versions/G1R15/src/vba/RPX_SeepUI.bas	2026-10-11 16:01:15.215487049 +0900
+@@ -1,13 +1,20 @@
+ Attribute VB_Name = "RPX_SeepUI"
+ Option Explicit
++' G1R15：自動試験用の静音スイッチ。RPX_SeepSilent=True の間はメッセージを表示せず記録する。
++Public RPX_SeepSilent As Boolean, RPX_SeepLastMsg As String
++
+ ' RPX_SeepUI : 浸透入力シート、既存の形状定義からの浸透解析、図シートへの重ね描き。
+ ' 依存：RPX_Seep（ソルバー）、既存の RPX_ReadInputs / RPX_GenerateMesh / RPX_Sheet / DRegions / REdges / RUpperField。
+ ' 既存コードへのフック：RPX_DrawCore の末尾で Call RPX_SeepOverlay（1行のみ）。
+ 
+ Private Const SEEP_SHEET As String = "浸透入力"
+ Private Const FIRST_ROW As Long = 7
+-Private Const LAST_ROW As Long = 1006
+-' 設定は N 列（値）。行番号は固定。
++Private Const LAST_ROW As Long = 206
++Private Const ADV_HEAD As Long = 208
++Private Const ADV_FIRST As Long = 209
++Private Const LAYOUT_MARK As String = "RPX_SEEP_LAYOUT_V2"
++Private Const PREVIEW_TAG As String = "RPX_SEEP_PREVIEW"
++' 設定の論理番号（旧配置ではN列の行番号。新配置では SettingCell で位置を変換）。
+ Private Const ROW_TARGET As Long = 7
+ Private Const ROW_KRMIN As Long = 8
+ Private Const ROW_BETA As Long = 9
+@@ -25,6 +32,8 @@
+ Private Const ROW_SLIPPCT As Long = 21
+ Private Const ROW_SLIPMAXFRAC As Long = 22
+ Private Const ROW_ARCFIT As Long = 23
++Private Const ROW_MODE As Long = 24
++Private Const ROW_INVMAX As Long = 25
+ Private slipPct As Double, slipMaxFrac As Double
+ Private lastOverlayError As String
+ Private overlayDiag As String
+@@ -58,6 +67,31 @@
+     valid As Boolean
+ End Type
+ 
++Private Sub SeepMsg(ByVal text As String, Optional ByVal style As Long = 0, Optional ByVal title As String = "")
++    RPX_SeepLastMsg = RPX_SeepLastMsg & text & vbLf
++    If RPX_SeepSilent Then
++        On Error Resume Next
++        RPX_SeepTrace "MSG: " & text
++    Else
++        If Len(title) > 0 Then MsgBox text, style, title Else MsgBox text, style
++    End If
++End Sub
++Public Sub RPX_SeepSetSilent(ByVal flag As Boolean)
++    RPX_SeepSilent = flag: If flag Then RPX_SeepLastMsg = ""
++End Sub
++Public Function RPX_SeepGetLastMsg() As String
++    RPX_SeepGetLastMsg = RPX_SeepLastMsg
++End Function
++' 浸透解析をメッセージなしで実行し、表示されるはずだったメッセージを返す（空なら正常）。
++Public Function RPX_SeepRunSilent() As String
++    RPX_SeepSilent = True: RPX_SeepLastMsg = ""
++    On Error Resume Next
++    RPX_SeepRun
++    If Err.Number <> 0 Then RPX_SeepLastMsg = RPX_SeepLastMsg & "ERR " & Err.Description
++    On Error GoTo 0
++    RPX_SeepSilent = False
++    RPX_SeepRunSilent = RPX_SeepLastMsg
++End Function
+ Private Sub Diag(ByVal text As String)
+     overlayDiag = overlayDiag & text & vbLf
+ End Sub
+@@ -94,87 +128,594 @@
+     s.Fill.ForeColor.RGB = RGB(36, 104, 130): s.Line.Visible = False: s.OnAction = macro
+ End Sub
+ 
+-Private Sub DefaultSetting(ByVal ws As Worksheet, ByVal r As Long, ByVal label As String, ByVal value As Variant, ByVal note As String)
+-    ws.Cells(r, 13).Value2 = label
+-    If Len(CStr(ws.Cells(r, 14).Value2)) = 0 Then ws.Cells(r, 14).Value2 = value
+-    ws.Cells(r, 15).Value2 = note
++Private Function SettingValue(ByVal ws As Worksheet, ByVal r As Long, ByVal fallback As Double) As Double
++    Dim v As Variant
++    Dim c As Range
++    SettingValue = fallback
++    Set c = SettingCell(ws, r)
++    If c Is Nothing Then Exit Function
++    v = c.Value2
++    If IsError(v) Then Exit Function
++    If IsNumeric(v) Then
++        If Len(CStr(v)) > 0 Then SettingValue = CDbl(v)
++    End If
++End Function
++
++Private Function OptionalSheet(ByVal name As String) As Worksheet
++    On Error Resume Next
++    Set OptionalSheet = ThisWorkbook.Worksheets(name)
++    On Error GoTo 0
++End Function
++
++' ---------------------------------------------------------------- layout v2
++' 上部：水の与え方（B3）・必要な入力（H3）、共通（γw B4／連成 D4／サクション F4）。
++' 表（7～206行）：A:C 透水係数、E:K 水理境界、M:N 地下水面、P:Q 観測点。D・L・O・R は入力チェックの結果欄。
++' 詳細設定：208行の見出しの下（A 項目、C 値、E 説明）。Z列（非表示）に版マーカーと選択肢。
++Private Function IsV2(ByVal ws As Worksheet) As Boolean
++    On Error Resume Next
++    IsV2 = (CStr(ws.Range("Z1").Value2) = LAYOUT_MARK)
++    Err.Clear
++End Function
++
++Private Function AdvIndex(ByVal r As Long) As Long
++    Select Case r
++        Case ROW_TARGET: AdvIndex = 0
++        Case ROW_KRMIN: AdvIndex = 1
++        Case ROW_BETA: AdvIndex = 2
++        Case ROW_RELAX: AdvIndex = 3
++        Case ROW_TOL: AdvIndex = 4
++        Case ROW_MAXIT: AdvIndex = 5
++        Case ROW_RIGIDK: AdvIndex = 6
++        Case ROW_INVMAX: AdvIndex = 7
++        Case ROW_DRAWFS: AdvIndex = 8
++        Case ROW_SLIPTHR: AdvIndex = 9
++        Case ROW_SLIPPCT: AdvIndex = 10
++        Case ROW_SLIPMAXFRAC: AdvIndex = 11
++        Case ROW_ARCFIT: AdvIndex = 12
++        Case ROW_DRAWSTRAIN: AdvIndex = 13
++        Case ROW_STRAINTHR: AdvIndex = 14
++        Case Else: AdvIndex = -1
++    End Select
++End Function
++
++Private Function SettingCell(ByVal ws As Worksheet, ByVal r As Long) As Range
++    Dim k As Long
++    If IsV2(ws) Then
++        Select Case r
++            Case ROW_GAMMAW: Set SettingCell = ws.Range("B4")
++            Case ROW_COUPLE: Set SettingCell = ws.Range("D4")
++            Case ROW_SUCTION: Set SettingCell = ws.Range("F4")
++            Case Else
++                k = AdvIndex(r)
++                If k >= 0 Then Set SettingCell = ws.Cells(ADV_FIRST + k, 3)
++        End Select
++    Else
++        Set SettingCell = ws.Cells(r, 14)
++    End If
++End Function
++
++Private Function ModeLabel(ByVal i As Long) As String
++    ModeLabel = Choose(i, "水位・水頭の条件から計算する", "地下水面の位置を入力する（斜面に沿った流れを考慮）", _
++                          "地下水面の位置を入力する（水は静止とみなす）", "地下水面に合うよう境界の水位を推定する")
++End Function
++
++' 内部モード：0 浸透FEM、1 地下水面＋cos2θ、2 静水圧、3 逆推定。未選択は -1。
++Public Function RPX_SeepMode(ByVal ws As Worksheet) As Long
++    Dim i As Long, s As String
++    RPX_SeepMode = -1
++    If IsV2(ws) Then
++        s = CStr(ws.Range("B3").Value2)
++        For i = 1 To 4
++            If StrComp(s, CStr(ws.Cells(3 + i, 26).Value2), vbBinaryCompare) = 0 Then RPX_SeepMode = i - 1: Exit Function
++        Next i
++    Else
++        RPX_SeepMode = CLng(SettingValue(ws, ROW_MODE, 0#))
++    End If
++End Function
++
++Private Sub AdvSetting(ByVal ws As Worksheet, ByVal r As Long, ByVal label As String, ByVal value As Variant, ByVal note As String, ByRef keep As Object)
++    Dim row As Long
++    row = ADV_FIRST + AdvIndex(r)
++    ws.Cells(row, 1).Value2 = label: ws.Cells(row, 5).Value2 = note
++    If keep.Exists(r) Then ws.Cells(row, 3).Value2 = keep(r) Else ws.Cells(row, 3).Value2 = value
++    ws.Cells(row, 3).Interior.Color = RGB(243, 248, 251)
++End Sub
++
++Private Function CountRows(ByRef v As Variant) As Long
++    Dim i As Long, j As Long
++    For i = UBound(v, 1) To 1 Step -1
++        For j = 1 To UBound(v, 2)
++            If Len(CStr(v(i, j))) > 0 Then CountRows = i: Exit Function
++        Next j
++    Next i
++End Function
++
++Private Sub GreyWhen(ByVal rng As Range, ByVal formula As String)
++    Dim fc As FormatCondition
++    Set fc = rng.FormatConditions.Add(Type:=xlExpression, Formula1:=formula)
++    fc.Interior.Color = RGB(217, 217, 217): fc.Font.Color = RGB(150, 150, 150)
+ End Sub
+ 
+-' 浸透入力シートを作成・書式設定する。既存の入力値は消さない。
++' 浸透入力シートを作成・書式設定する。旧配置（N列の設定・W:Xの表）は自動で新配置へ移す。入力値は消さない。
+ Public Sub RPX_SeepSetupSheet()
+-    Dim ws As Worksheet, i As Long, previous As Boolean
++    Dim ws As Worksheet, i As Long, previous As Boolean, keep As Object, perm As Variant, bnd As Variant, wt As Variant, obs As Variant
++    Dim modeIdx As Long, oldMode As Long, wasV2 As Boolean, migrated As Boolean, r As Variant, v As Variant, n As Long
+     previous = RPX_InternalWrite: RPX_InternalWrite = True
+     On Error GoTo Done
+     Set ws = RPX_Sheet(SEEP_SHEET)
++    Set keep = CreateObject("Scripting.Dictionary")
++    wasV2 = IsV2(ws)
++    ' ---- 既存値の退避
++    If wasV2 Then
++        perm = ws.Range("A7:C206").Value2: bnd = ws.Range("E7:K206").Value2
++        wt = ws.Range("M7:N206").Value2: obs = ws.Range("P7:Q206").Value2
++        modeIdx = RPX_SeepMode(ws) + 1
++        For Each r In Array(ROW_GAMMAW, ROW_COUPLE, ROW_SUCTION, ROW_TARGET, ROW_KRMIN, ROW_BETA, ROW_RELAX, ROW_TOL, ROW_MAXIT, ROW_RIGIDK, ROW_INVMAX, ROW_DRAWFS, ROW_SLIPTHR, ROW_SLIPPCT, ROW_SLIPMAXFRAC, ROW_ARCFIT, ROW_DRAWSTRAIN, ROW_STRAINTHR)
++            v = SettingCell(ws, CLng(r)).Value2
++            If Not IsError(v) Then
++                If Len(CStr(v)) > 0 Then keep(CLng(r)) = v
++            End If
++        Next r
++    Else
++        perm = ws.Range("A7:C1006").Value2: bnd = ws.Range("E7:K1006").Value2: wt = ws.Range("W7:X1006").Value2
++        If CountRows(perm) > 200 Or CountRows(bnd) > 200 Or CountRows(wt) > 200 Then Err.Raise 5, , "旧配置の表が200行を超えるため自動移行できません（207行目以降を整理してから実行してください）。"
++        If CStr(ws.Range("M6").Value2) = "項目" Then
++            migrated = True
++            For Each r In Array(ROW_GAMMAW, ROW_COUPLE, ROW_SUCTION, ROW_TARGET, ROW_KRMIN, ROW_BETA, ROW_RELAX, ROW_TOL, ROW_MAXIT, ROW_RIGIDK, ROW_INVMAX, ROW_DRAWFS, ROW_SLIPTHR, ROW_SLIPPCT, ROW_SLIPMAXFRAC, ROW_ARCFIT, ROW_DRAWSTRAIN, ROW_STRAINTHR)
++                v = ws.Cells(CLng(r), 14).Value2
++                If Not IsError(v) Then
++                    If Len(CStr(v)) > 0 Then keep(CLng(r)) = v
++                End If
++            Next r
++            v = ws.Cells(ROW_MODE, 14).Value2: oldMode = 0
++            If Not IsError(v) Then
++                If IsNumeric(v) And Len(CStr(v)) > 0 Then oldMode = CLng(v)
++            End If
++            If oldMode < 0 Or oldMode > 3 Then oldMode = 0
++            modeIdx = oldMode + 1
++        End If
++        perm = ws.Range("A7:C206").Value2: bnd = ws.Range("E7:K206").Value2
++        If oldMode = 3 Then
++            obs = ws.Range("W7:X206").Value2: wt = Empty
++        Else
++            wt = ws.Range("W7:X206").Value2: obs = Empty
++        End If
++    End If
++    If modeIdx < 1 Or modeIdx > 4 Then modeIdx = 1
++    ' ---- 書式の作り直し
+     For i = ws.Shapes.Count To 1 Step -1: ws.Shapes(i).Delete: Next i
++    On Error Resume Next
++    ws.Cells.FormatConditions.Delete
++    ws.Cells.Validation.Delete
++    Err.Clear
++    On Error GoTo Done
++    ws.Cells.Clear
++    ws.Columns.Hidden = False
+     ws.Cells.Font.Name = "Yu Gothic": ws.Cells.Font.Size = 11
+-    ws.Range("A1").Value2 = "浸透流解析　入力（定常・自由水面）": ws.Range("A1").Font.Size = 20: ws.Range("A1").Font.Bold = True
++    ws.Range("Z1").Value2 = LAYOUT_MARK
++    For i = 1 To 4: ws.Cells(3 + i, 26).Value2 = ModeLabel(i): Next i
++    ws.Range("Z3").Formula = "=IFERROR(MATCH($B$3,$Z$4:$Z$7,0),0)"
++    ws.Range("A1").Value2 = "浸透流解析・水圧の入力": ws.Range("A1").Font.Size = 20: ws.Range("A1").Font.Bold = True
+     ws.Rows(1).RowHeight = 34
+-    ws.Range("A3").Value2 = "メッシュは「要素定義」の点・領域から生成します（固定メッシュ）。境界は面条件と同じく、領域の定義順に開始点から終了点まで適用します。"
+-    ws.Range("A4").Value2 = "種別：水頭＝全水頭を固定／水位＝標高が値以下の節点を水頭固定（上は不透水）／水位+浸出面＝値以下を水頭固定・上は浸出面／浸出面／流量＝単位長さ当たり流入量[m3/s/m]（+流入）／不透水。未指定の境界は不透水。"
+-    ws.Range("A5").Value2 = "透水係数は「材料データ」の材料IDごと。剛体領域は設定の比率×最大透水係数で扱います。"
+-    ws.Range("A3:A5").WrapText = False
+-    SeepHeader ws, "A6", Array("材料ID", "kx [m/s]", "ky [m/s]")
+-    SeepHeader ws, "E6", Array("境界ID", "領域ID", "開始点", "終了点", "循環", "種別", "値 [m]または[m3/s/m]")
+-    SeepHeader ws, "M6", Array("項目", "値", "説明")
+-    DefaultSetting ws, ROW_TARGET, "目標要素数", 0, "0：設定シートのTARGETを使用"
+-    DefaultSetting ws, ROW_KRMIN, "krmin", 0.0001, "不飽和域の透水係数比の下限"
+-    DefaultSetting ws, ROW_BETA, "β [1/m]", 20, "kr=exp(β・圧力水頭)。大きいほど鋭いが収束しにくい"
+-    DefaultSetting ws, ROW_RELAX, "緩和係数", 0.5, "0〜1"
+-    DefaultSetting ws, ROW_TOL, "収束判定 [m]", 0.000001, "水頭変化の最大値"
+-    DefaultSetting ws, ROW_MAXIT, "最大反復回数", 300, ""
+-    DefaultSetting ws, ROW_GAMMAW, "γw [kN/m3]", 9.81, ""
+-    DefaultSetting ws, ROW_RIGIDK, "剛体の透水係数比", 0.000001, "剛体領域 k = 比率×最大k"
+-    DefaultSetting ws, ROW_DRAWFS, "自由水面を描画", 1, "1：図シートに描画"
+-    DefaultSetting ws, ROW_SLIPTHR, "すべり線しきい値", 0.5, "速度ジャンプ／参照値（N21の分位点）以上の辺を表示。0で非表示"
+-    DefaultSetting ws, ROW_DRAWSTRAIN, "ひずみ速度を描画", 0, "1：塑性せん断ひずみ速度の大きい要素を着色"
+-    DefaultSetting ws, ROW_STRAINTHR, "ひずみ速度しきい値", 0.2, "要素のひずみ速度×面積／最大値"
+-    DefaultSetting ws, ROW_COUPLE, "連成する", 0, "1：浸透結果の間隙水圧を極限解析へ（有効応力、γは湿潤/飽和の全重量）"
+-    DefaultSetting ws, ROW_SUCTION, "サクションを考慮", 0, "0：u<0は0（推奨）、1：負圧も使用"
+-    DefaultSetting ws, ROW_SLIPPCT, "すべり線 参照分位点", 0.95, "非ゼロ速度ジャンプの分位点（0.9〜0.95推奨）。最大値の特異点に左右されない"
+-    DefaultSetting ws, ROW_SLIPMAXFRAC, "すべり線 最大表示割合", 0.1, "表示する辺の上限（土の内部辺に対する割合、ジャンプ×辺長の大きい順）"
+-    DefaultSetting ws, ROW_ARCFIT, "円弧当てはめ", 1, "1：推定すべり面に円弧を当てはめて破線表示（中心・半径を図A5に表示）"
+-    With ws.Range("N19:N20").Validation
++    ws.Range("A3").Value2 = "水の与え方": ws.Range("A3").Font.Bold = True
++    ws.Range("B3:F3").Merge
++    ws.Range("B3").Value2 = ModeLabel(modeIdx)
++    With ws.Range("B3").Validation
++        .Delete: .Add xlValidateList, xlValidAlertStop, xlBetween, "=$Z$4:$Z$7"
++        .IgnoreBlank = False: .InCellDropdown = True
++    End With
++    ws.Range("B3:F3").Interior.Color = RGB(255, 242, 204): ws.Range("B3:F3").Font.Bold = True
++    ws.Range("G3").Value2 = "必要な入力"
++    ws.Range("AA3").Value2 = "一覧から水の与え方を選んでください"
++    ws.Range("AA4").Value2 = "透水係数（A:C）と水理境界（E:K）。境界の水頭・水位を数値で入力"
++    ws.Range("AA5").Value2 = "地下水面（M:N）の折れ線をxの増加順に2点以上。透水係数・境界は不要"
++    ws.Range("AA6").Value2 = "地下水面（M:N）の折れ線をxの増加順に2点以上。水圧は水面からの深さ×γw"
++    ws.Range("AA7").Value2 = "透水係数・水理境界（推定する値は ? または ?初期値）と観測点（P:Q）"
++    ws.Range("H3").Formula = "=IFERROR(INDEX($AA$4:$AA$7,MATCH($B$3,$Z$4:$Z$7,0)),$AA$3)"
++    ws.Range("H3").Font.Color = RGB(192, 0, 0)
++    ws.Range("A4").Value2 = "γw [kN/m3]": ws.Range("C4").Value2 = "連成する": ws.Range("E4").Value2 = "サクション"
++    ws.Range("B4").Value2 = 9.81: If keep.Exists(ROW_GAMMAW) Then ws.Range("B4").Value2 = keep(ROW_GAMMAW)
++    ws.Range("D4").Value2 = 0: If keep.Exists(ROW_COUPLE) Then ws.Range("D4").Value2 = keep(ROW_COUPLE)
++    ws.Range("F4").Value2 = 0: If keep.Exists(ROW_SUCTION) Then ws.Range("F4").Value2 = keep(ROW_SUCTION)
++    ws.Range("B4,D4,F4").Interior.Color = RGB(243, 248, 251)
++    With ws.Range("D4,F4").Validation
+         .Delete: .Add xlValidateList, xlValidAlertStop, xlBetween, "0,1"
+         .IgnoreBlank = True: .InCellDropdown = True
+     End With
+-    ws.Columns("A:C").ColumnWidth = 11: ws.Columns("D").ColumnWidth = 3
+-    ws.Columns("E:I").ColumnWidth = 9: ws.Columns("J").ColumnWidth = 14: ws.Columns("K").ColumnWidth = 16: ws.Columns("L").ColumnWidth = 3
+-    ws.Columns("M").ColumnWidth = 18: ws.Columns("N").ColumnWidth = 11: ws.Columns("O").ColumnWidth = 44
+-    ws.Range("A7:C1006,E7:K1006,N7:N23").Interior.Color = RGB(243, 248, 251)
+-    With ws.Range("I7:I1006").Validation
++    ws.Range("G4").Value2 = "連成 1：間隙水圧を極限解析へ（有効応力）／サクション 0：負圧は0（推奨）"
++    ws.Range("A5").Value2 = "灰色の表は選んだ水の与え方では使いません。「入力チェック」で問題のある行を赤く表示します。"
++    SeepHeader ws, "A6", Array("材料ID", "kx [m/s]", "ky [m/s]", "確認")
++    SeepHeader ws, "E6", Array("境界ID", "領域ID", "開始点", "終了点", "循環", "種別", "値 [m]または[m3/s/m]", "確認")
++    SeepHeader ws, "M6", Array("地下水面 x [m]", "地下水面 y [m]", "確認")
++    SeepHeader ws, "P6", Array("観測点 x [m]", "観測水位 y [m]", "確認")
++    ws.Range("A7:C206,E7:K206,M7:N206,P7:Q206").Interior.Color = RGB(243, 248, 251)
++    If Not IsEmpty(perm) Then ws.Range("A7").Resize(UBound(perm, 1), UBound(perm, 2)).Value2 = perm
++    If Not IsEmpty(bnd) Then ws.Range("E7").Resize(UBound(bnd, 1), UBound(bnd, 2)).Value2 = bnd
++    If Not IsEmpty(wt) Then ws.Range("M7").Resize(UBound(wt, 1), UBound(wt, 2)).Value2 = wt
++    If Not IsEmpty(obs) Then ws.Range("P7").Resize(UBound(obs, 1), UBound(obs, 2)).Value2 = obs
++    With ws.Range("I7:I206").Validation
+         .Delete: .Add xlValidateList, xlValidAlertStop, xlBetween, "0,1"
+         .IgnoreBlank = True: .InCellDropdown = True
+     End With
+-    With ws.Range("J7:J1006").Validation
++    With ws.Range("J7:J206").Validation
+         .Delete: .Add xlValidateList, xlValidAlertStop, xlBetween, "水頭,水位,水位+浸出面,浸出面,流量,不透水"
+         .IgnoreBlank = True: .InCellDropdown = True: .ShowError = True
+         .ErrorTitle = "入力を確認してください": .ErrorMessage = "一覧から選択してください。"
+     End With
+-    SeepButton ws, "浸透解析", "RPX_SeepRun", 560, 5, 100
+-    SeepButton ws, "図を表示", "RPX_SeepShowDiagram", 670, 5, 90
+-    SeepButton ws, "書式更新", "RPX_SeepSetupSheet", 770, 5, 90
++    GreyWhen ws.Range("A6:D206,E6:L206"), "=AND($B$3<>$Z$4,$B$3<>$Z$7)"
++    GreyWhen ws.Range("M6:O206"), "=AND($B$3<>$Z$5,$B$3<>$Z$6)"
++    GreyWhen ws.Range("P6:R206"), "=$B$3<>$Z$7"
++    ' ---- 詳細設定
++    ws.Range("A" & ADV_HEAD).Value2 = "詳細設定（通常は変更不要）"
++    With ws.Range("A" & ADV_HEAD & ":K" & ADV_HEAD)
++        .Font.Bold = True: .Font.Color = RGB(255, 255, 255): .Interior.Color = RGB(38, 67, 91)
++    End With
++    AdvSetting ws, ROW_TARGET, "目標要素数", 0, "0：設定シートのTARGETを使用", keep
++    AdvSetting ws, ROW_KRMIN, "krmin", 0.0001, "不飽和域の透水係数比の下限", keep
++    AdvSetting ws, ROW_BETA, "β [1/m]", 20, "kr=exp(β・圧力水頭)。大きいほど鋭いが収束しにくい", keep
++    AdvSetting ws, ROW_RELAX, "緩和係数", 0.5, "0～1", keep
++    AdvSetting ws, ROW_TOL, "収束判定 [m]", 0.000001, "水頭変化の最大値", keep
++    AdvSetting ws, ROW_MAXIT, "最大反復回数", 300, "", keep
++    AdvSetting ws, ROW_RIGIDK, "剛体の透水係数比", 0.000001, "剛体領域 k = 比率×最大k", keep
++    AdvSetting ws, ROW_INVMAX, "推定の計算回数上限", 40, "「境界の水位を推定」での浸透解析の最大回数（1回数秒）", keep
++    AdvSetting ws, ROW_DRAWFS, "自由水面を描画", 1, "1：図シートに描画", keep
++    AdvSetting ws, ROW_SLIPTHR, "すべり線しきい値", 0.5, "速度ジャンプ／参照値以上の辺を表示。0で非表示", keep
++    AdvSetting ws, ROW_SLIPPCT, "すべり線 参照分位点", 0.95, "非ゼロ速度ジャンプの分位点（0.9～0.95推奨）", keep
++    AdvSetting ws, ROW_SLIPMAXFRAC, "すべり線 最大表示割合", 0.1, "表示する辺の上限（土の内部辺に対する割合）", keep
++    AdvSetting ws, ROW_ARCFIT, "円弧当てはめ", 1, "1：推定すべり面に円弧を当てはめて破線表示", keep
++    AdvSetting ws, ROW_DRAWSTRAIN, "ひずみ速度を描画", 0, "1：塑性せん断ひずみ速度の大きい要素を着色", keep
++    AdvSetting ws, ROW_STRAINTHR, "ひずみ速度しきい値", 0.2, "要素のひずみ速度×面積／最大値", keep
++    ws.Columns("A:C").ColumnWidth = 11: ws.Columns("D").ColumnWidth = 22
++    ws.Columns("E:I").ColumnWidth = 9: ws.Columns("J").ColumnWidth = 14: ws.Columns("K").ColumnWidth = 16: ws.Columns("L").ColumnWidth = 22
++    ws.Columns("M:N").ColumnWidth = 12: ws.Columns("O").ColumnWidth = 22
++    ws.Columns("P:Q").ColumnWidth = 12: ws.Columns("R").ColumnWidth = 22
++    ws.Range("D7:D206,L7:L206,O7:O206,R7:R206").Font.Color = RGB(192, 0, 0)
++    ws.Columns("Z:AA").Hidden = True
++    ws.EnableCalculation = True: ws.Calculate
++    SeepButton ws, "浸透解析", "RPX_SeepRun", 560, 3, 90
++    SeepButton ws, "入力チェック", "RPX_SeepCheckInputs", 655, 3, 95
++    SeepButton ws, "プレビュー", "RPX_SeepPreview", 755, 3, 90
++    SeepButton ws, "図を表示", "RPX_SeepShowDiagram", 850, 3, 80
++    SeepButton ws, "書式更新", "RPX_SeepSetupSheet", 935, 3, 80
+ Done:
+     RPX_InternalWrite = previous
+-    If Err.Number <> 0 Then MsgBox "浸透入力シートの作成に失敗しました：" & Err.Description, vbExclamation
++    If Err.Number <> 0 Then
++        SeepMsg "浸透入力シートの作成に失敗しました：" & Err.Description, vbExclamation
++    ElseIf migrated Then
++        SeepMsg "浸透入力シートを新しい配置へ移行しました（透水係数・境界・地下水面/観測点・設定を引き継ぎ）。", vbInformation
++    End If
+ End Sub
+ 
+-Private Function SettingValue(ByVal ws As Worksheet, ByVal r As Long, ByVal fallback As Double) As Double
++' ---------------------------------------------------------------- input check
++Private Sub MarkRow(ByVal ws As Worksheet, ByVal r As Long, ByVal firstCol As Long, ByVal lastCol As Long, ByVal msgCol As Long, ByVal text As String, ByRef count As Long)
++    ws.Range(ws.Cells(r, firstCol), ws.Cells(r, lastCol)).Interior.Color = RGB(255, 199, 206)
++    If Len(CStr(ws.Cells(r, msgCol).Value2)) > 0 Then
++        ws.Cells(r, msgCol).Value2 = ws.Cells(r, msgCol).Value2 & "／" & text
++    Else
++        ws.Cells(r, msgCol).Value2 = text
++    End If
++    count = count + 1
++End Sub
++
++Private Function CellNum(ByVal ws As Worksheet, ByVal r As Long, ByVal c As Long, ByRef ok As Boolean) As Double
+     Dim v As Variant
+-    SettingValue = fallback
+-    v = ws.Cells(r, 14).Value2
++    ok = False: v = ws.Cells(r, c).Value2
+     If IsError(v) Then Exit Function
+-    If IsNumeric(v) Then
+-        If Len(CStr(v)) > 0 Then SettingValue = CDbl(v)
++    If Len(CStr(v)) = 0 Then Exit Function
++    If Not IsNumeric(v) Then Exit Function
++    CellNum = CDbl(v): ok = True
++End Function
++
++Private Function RowUsed(ByVal ws As Worksheet, ByVal r As Long, ByVal c0 As Long, ByVal c1 As Long) As Boolean
++    Dim c As Long
++    For c = c0 To c1
++        If Len(CStr(ws.Cells(r, c).Value2)) > 0 Then RowUsed = True: Exit Function
++    Next c
++End Function
++
++Private Function RegionHasPoint(ByVal region As Long, ByVal p As Long) As Boolean
++    Dim i As Long
++    For i = 0 To DRegions(region).pointCount - 1
++        If DRegions(region).points(i) = p Then RegionHasPoint = True: Exit Function
++    Next i
++End Function
++
++' 入力チェック（形状は RPX_ReadInputs 済みであること）。問題のある行を赤くし、件数を返す。
++Private Function ValidateInputs(ByVal ws As Worksheet, ByVal mode As Long, ByRef summary As String) As Long
++    Dim n As Long, r As Long, ok As Boolean, ok2 As Boolean, x As Double, y As Double, xPrev As Double, cnt As Long, unk As Long, heads As Long
++    Dim matMap As Object, pointMap As Object, regionMap As Object, xmin As Double, xmax As Double, i As Long, s As String, k As String
++    Dim region As Long, haveRegion As Boolean, xFirst As Double
++    ws.Range("A7:C206,E7:K206,M7:N206,P7:Q206").Interior.Color = RGB(243, 248, 251)
++    ws.Range("D7:D206,L7:L206,O7:O206,R7:R206").ClearContents
++    summary = ""
++    If mode < 0 Then
++        ws.Range("B3").Interior.Color = RGB(255, 199, 206)
++        summary = "水の与え方（B3）を一覧から選んでください。": ValidateInputs = 1: Exit Function
+     End If
++    ws.Range("B3:F3").Interior.Color = RGB(255, 242, 204)
++    xmin = DPXY(0, 0): xmax = xmin
++    For i = 1 To DPCount - 1
++        If DPXY(i, 0) < xmin Then xmin = DPXY(i, 0)
++        If DPXY(i, 0) > xmax Then xmax = DPXY(i, 0)
++    Next i
++    If mode = 0 Or mode = 3 Then
++        Set matMap = ColumnMap(RPX_Sheet("材料データ"), 5, 1004, 1)
++        Set pointMap = ColumnMap(RPX_Sheet("要素定義"), 7, 1006, 1)
++        Set regionMap = ColumnMap(RPX_Sheet("要素定義"), 7, 1006, 5)
++        For r = FIRST_ROW To LAST_ROW
++            If RowUsed(ws, r, 1, 3) Then
++                x = CellNum(ws, r, 1, ok)
++                If Not ok Then
++                    MarkRow ws, r, 1, 3, 4, "材料IDが空欄または数値でない", n
++                ElseIf Not matMap.Exists(CLng(x)) Then
++                    MarkRow ws, r, 1, 3, 4, "材料データにないID", n
++                End If
++                x = CellNum(ws, r, 2, ok)
++                If Not ok Then
++                    MarkRow ws, r, 1, 3, 4, "kxが未入力", n
++                ElseIf x <= 0# Then
++                    MarkRow ws, r, 1, 3, 4, "kxは正の値", n
++                End If
++                If Len(CStr(ws.Cells(r, 3).Value2)) > 0 Then
++                    y = CellNum(ws, r, 3, ok)
++                    If Not ok Or y <= 0# Then MarkRow ws, r, 1, 3, 4, "kyは正の値（空欄ならkx）", n
++                End If
++                cnt = cnt + 1
++            End If
++        Next r
++        If cnt = 0 Then summary = summary & "透水係数（A:C）が未入力。": n = n + 1
++        cnt = 0
++        For r = FIRST_ROW To LAST_ROW
++            If RowUsed(ws, r, 5, 11) Then
++                cnt = cnt + 1: haveRegion = False
++                If Len(CStr(ws.Cells(r, 5).Value2)) = 0 Then MarkRow ws, r, 5, 11, 12, "境界IDが空欄", n
++                x = CellNum(ws, r, 6, ok)
++                If Not ok Then
++                    MarkRow ws, r, 5, 11, 12, "領域IDが未入力", n
++                ElseIf Not regionMap.Exists(CLng(x)) Then
++                    MarkRow ws, r, 5, 11, 12, "要素定義にない領域ID", n
++                Else
++                    region = regionMap(CLng(x)): haveRegion = True
++                End If
++                For i = 7 To 8
++                    x = CellNum(ws, r, i, ok)
++                    If Not ok Then
++                        MarkRow ws, r, 5, 11, 12, IIf(i = 7, "開始点", "終了点") & "が未入力", n
++                    ElseIf Not pointMap.Exists(CLng(x)) Then
++                        MarkRow ws, r, 5, 11, 12, IIf(i = 7, "開始点", "終了点") & "が要素定義にない", n
++                    ElseIf haveRegion Then
++                        If Not RegionHasPoint(region, pointMap(CLng(x))) Then MarkRow ws, r, 5, 11, 12, IIf(i = 7, "開始点", "終了点") & "が領域の外周上にない（形状の外）", n
++                    End If
++                Next i
++                k = Trim$(CStr(ws.Cells(r, 10).Value2))
++                s = Trim$(CStr(ws.Cells(r, 11).Value2))
++                Select Case k
++                    Case "水頭", "水位", "水位+浸出面", "水位＋浸出面", "流量"
++                        If RPX_WTIsUnknown(s) Then
++                            If mode = 0 Then
++                                MarkRow ws, r, 5, 11, 12, "「?」は「境界の水位を推定」のときだけ", n
++                            ElseIf k = "流量" Then
++                                MarkRow ws, r, 5, 11, 12, "流量は推定できない", n
++                            Else
++                                unk = unk + 1: heads = heads + 1
++                            End If
++                        Else
++                            y = CellNum(ws, r, 11, ok)
++                            If Not ok Then MarkRow ws, r, 5, 11, 12, "値が未入力または数値でない", n
++                            If k <> "流量" Then heads = heads + 1
++                        End If
++                    Case "浸出面", "不透水"
++                    Case ""
++                        MarkRow ws, r, 5, 11, 12, "種別が未入力", n
++                    Case Else
++                        MarkRow ws, r, 5, 11, 12, "種別は一覧から選択", n
++                End Select
++            End If
++        Next r
++        If cnt = 0 Then summary = summary & "水理境界（E:K）が未入力。": n = n + 1
++        If cnt > 0 And heads = 0 Then summary = summary & "水頭・水位の境界が1つもない。": n = n + 1
++        If mode = 3 And unk = 0 Then summary = summary & "推定する境界の値に「?」がない。": n = n + 1
++    End If
++    If mode = 1 Or mode = 2 Then
++        cnt = 0
++        For r = FIRST_ROW To LAST_ROW
++            If RowUsed(ws, r, 13, 14) Then
++                x = CellNum(ws, r, 13, ok): y = CellNum(ws, r, 14, ok2)
++                If Not ok Or Not ok2 Then
++                    MarkRow ws, r, 13, 14, 15, "x・yの両方を数値で", n
++                Else
++                    If cnt > 0 And x <= xPrev Then MarkRow ws, r, 13, 14, 15, "xが増加していない", n
++                    If cnt = 0 Then xFirst = x
++                    xPrev = x: cnt = cnt + 1
++                End If
++            End If
++        Next r
++        If cnt < 2 Then
++            summary = summary & "地下水面（M:N）は2点以上必要。": n = n + 1
++        ElseIf xFirst > xmin + 0.000001 Or xPrev < xmax - 0.000001 Then
++            summary = summary & "（注意）地下水面が形状の左右端まで届いていない：端は水平に延長します。"
++        End If
++    End If
++    If mode = 3 Then
++        cnt = 0
++        For r = FIRST_ROW To LAST_ROW
++            If RowUsed(ws, r, 16, 17) Then
++                x = CellNum(ws, r, 16, ok): y = CellNum(ws, r, 17, ok2)
++                If Not ok Or Not ok2 Then
++                    MarkRow ws, r, 16, 17, 18, "x・yの両方を数値で", n
++                ElseIf x < xmin - 0.000001 Or x > xmax + 0.000001 Then
++                    MarkRow ws, r, 16, 17, 18, "形状の範囲外（x=" & xmin & "～" & xmax & "）", n
++                Else
++                    cnt = cnt + 1
++                End If
++            End If
++        Next r
++        If cnt = 0 Then
++            summary = summary & "観測点（P:Q）がない。": n = n + 1
++        ElseIf cnt < 2 * unk + 1 Then
++            summary = summary & "（注意）観測点" & cnt & "点は推定値" & unk & "個に対して少ない（" & 2 * unk + 1 & "点以上推奨）。"
++        End If
++    End If
++    ValidateInputs = n
+ End Function
+ 
+-Private Function OptionalSheet(ByVal name As String) As Worksheet
++Public Sub RPX_SeepCheckInputs()
++    Dim ws As Worksheet, previous As Boolean, n As Long, summary As String, failText As String
++    If RPX_Busy Then SeepMsg "解析またはメッシュ生成を実行中です。", vbExclamation: Exit Sub
++    Set ws = OptionalSheet(SEEP_SHEET)
++    If ws Is Nothing Then RPX_SeepSetupSheet: Exit Sub
++    If Not IsV2(ws) Then RPX_SeepSetupSheet
++    previous = RPX_InternalWrite: RPX_InternalWrite = True
++    On Error GoTo Failed
++    Call RPX_ReadInputs
++    n = ValidateInputs(ws, RPX_SeepMode(ws), summary)
++    GoTo Done
++Failed:
++    failText = Err.Description
++    Resume Done
++Done:
+     On Error Resume Next
+-    Set OptionalSheet = ThisWorkbook.Worksheets(name)
+-    On Error GoTo 0
++    RPX_InternalWrite = previous
++    If Len(failText) > 0 Then
++        SeepMsg "形状の読み込みに失敗しました：" & failText, vbExclamation
++    ElseIf n = 0 Then
++        SeepMsg "入力に問題は見つかりませんでした。" & IIf(Len(summary) > 0, vbLf & summary, ""), vbInformation
++    Else
++        SeepMsg "問題が " & n & " 件あります。赤い行と確認欄を見てください。" & IIf(Len(summary) > 0, vbLf & summary, ""), vbExclamation
++    End If
++End Sub
++
++' ---------------------------------------------------------------- preview
++Private Sub PreviewLine(ByVal ws As Worksheet, ByVal x1 As Double, ByVal y1 As Double, ByVal x2 As Double, ByVal y2 As Double, ByVal col As Long, ByVal w As Double, ByVal dash As Long)
++    Dim s As Shape
++    Set s = ws.Shapes.AddLine(CSng(x1), CSng(y1), CSng(x2), CSng(y2))
++    s.AlternativeText = PREVIEW_TAG: s.Line.ForeColor.RGB = col: s.Line.Weight = w
++    If dash > 0 Then s.Line.DashStyle = dash
++End Sub
++
++Private Sub PreviewText(ByVal ws As Worksheet, ByVal x As Double, ByVal y As Double, ByVal text As String, ByVal col As Long)
++    Dim s As Shape
++    Set s = ws.Shapes.AddTextbox(1, CSng(x), CSng(y), 160, 16)
++    s.AlternativeText = PREVIEW_TAG: s.Fill.Visible = False: s.Line.Visible = False
++    s.TextFrame2.TextRange.Text = text: s.TextFrame2.TextRange.Font.Size = 9: s.TextFrame2.TextRange.Font.Fill.ForeColor.RGB = col
++    s.TextFrame2.MarginLeft = 0: s.TextFrame2.MarginTop = 0
++End Sub
++
++Private Function KindColor(ByVal k As String, ByVal unknown As Boolean) As Long
++    If unknown Then KindColor = RGB(204, 0, 153): Exit Function
++    Select Case k
++        Case "水頭": KindColor = RGB(0, 70, 200)
++        Case "水位", "水位+浸出面", "水位＋浸出面": KindColor = RGB(0, 160, 220)
++        Case "浸出面": KindColor = RGB(0, 150, 60)
++        Case "流量": KindColor = RGB(230, 120, 0)
++        Case Else: KindColor = RGB(90, 90, 90)
++    End Select
+ End Function
+ 
++' 解析せずに、形状・水理境界・地下水面・観測点を図シートに描く。
++Public Sub RPX_SeepPreview()
++    Dim ws As Worksheet, fig As Worksheet, previous As Boolean, mode As Long, i As Long, j As Long, r As Long, n As Long, failText As String
++    Dim xmin As Double, xmax As Double, ymin As Double, ymax As Double, f As Double, pointMap As Object, regionMap As Object
++    Dim region As Long, sp As Long, ep As Long, a As Long, b As Long, stepCount As Long, found As Boolean, col As Long, k As String, s As String
++    Dim ok As Boolean, ok2 As Boolean, x As Double, y As Double, px As Double, py As Double, havePrev As Boolean, sh As Shape, summary As String, bad As Long
++    If RPX_Busy Then SeepMsg "解析またはメッシュ生成を実行中です。", vbExclamation: Exit Sub
++    Set ws = OptionalSheet(SEEP_SHEET)
++    If ws Is Nothing Then RPX_SeepSetupSheet: Exit Sub
++    If Not IsV2(ws) Then RPX_SeepSetupSheet
++    previous = RPX_InternalWrite: RPX_InternalWrite = True
++    On Error GoTo Failed
++    Call RPX_ReadInputs
++    mode = RPX_SeepMode(ws)
++    bad = ValidateInputs(ws, mode, summary)
++    Set fig = RPX_Sheet("図")
++    For i = fig.Shapes.Count To 1 Step -1
++        If fig.Shapes(i).AlternativeText = PREVIEW_TAG Then fig.Shapes(i).Delete
++    Next i
++    xmin = DPXY(0, 0): xmax = xmin: ymin = DPXY(0, 1): ymax = ymin
++    For i = 1 To DPCount - 1
++        If DPXY(i, 0) < xmin Then xmin = DPXY(i, 0)
++        If DPXY(i, 0) > xmax Then xmax = DPXY(i, 0)
++        If DPXY(i, 1) < ymin Then ymin = DPXY(i, 1)
++        If DPXY(i, 1) > ymax Then ymax = DPXY(i, 1)
++    Next i
++    If xmax <= xmin Or ymax <= ymin Then Err.Raise 5, , "形状の範囲が不正です。"
++    f = 780# / (xmax - xmin)
++    If f * (ymax - ymin) > 460# Then f = 460# / (ymax - ymin)
++    ' 形状
++    For region = 0 To DRCount - 1
++        n = DRegions(region).pointCount
++        For i = 0 To n - 1
++            a = DRegions(region).points(i): b = DRegions(region).points((i + 1) Mod n)
++            PreviewLine fig, PX(DPXY(a, 0), xmin, f), PY(DPXY(a, 1), ymax, f), PX(DPXY(b, 0), xmin, f), PY(DPXY(b, 1), ymax, f), RGB(128, 128, 128), 0.75, 0
++        Next i
++    Next region
++    ' 水理境界
++    If mode = 0 Or mode = 3 Then
++        Set pointMap = ColumnMap(RPX_Sheet("要素定義"), 7, 1006, 1)
++        Set regionMap = ColumnMap(RPX_Sheet("要素定義"), 7, 1006, 5)
++        For r = FIRST_ROW To LAST_ROW
++            If Len(CStr(ws.Cells(r, 5).Value2)) > 0 And CStr(ws.Cells(r, 12).Value2) = "" Then
++                region = regionMap(CLng(ws.Cells(r, 6).Value2)): sp = pointMap(CLng(ws.Cells(r, 7).Value2)): ep = pointMap(CLng(ws.Cells(r, 8).Value2))
++                k = Trim$(CStr(ws.Cells(r, 10).Value2)): s = Trim$(CStr(ws.Cells(r, 11).Value2))
++                col = KindColor(k, RPX_WTIsUnknown(s))
++                n = DRegions(region).pointCount: found = False
++                For i = 0 To n - 1
++                    If DRegions(region).points(i) = sp Then found = True: Exit For
++                Next i
++                If found Then
++                    For stepCount = 1 To n
++                        a = DRegions(region).points(i): b = DRegions(region).points((i + 1) Mod n)
++                        PreviewLine fig, PX(DPXY(a, 0), xmin, f), PY(DPXY(a, 1), ymax, f), PX(DPXY(b, 0), xmin, f), PY(DPXY(b, 1), ymax, f), col, 3.5, 0
++                        If stepCount = 1 Then PreviewText fig, PX(DPXY(a, 0), xmin, f) + 3, PY(DPXY(a, 1), ymax, f) - 14, ws.Cells(r, 5).Value2 & " " & k & IIf(Len(s) > 0, " " & s, ""), col
++                        If b = ep Then Exit For
++                        i = (i + 1) Mod n
++                    Next stepCount
++                    If k = "水位" Or k = "水位+浸出面" Or k = "水位＋浸出面" Then
++                        y = CellNum(ws, r, 11, ok)
++                        If ok Then PreviewLine fig, PX(DPXY(sp, 0), xmin, f), PY(y, ymax, f), PX(DPXY(ep, 0), xmin, f), PY(y, ymax, f), col, 1, 4
++                    End If
++                End If
++            End If
++        Next r
++    End If
++    ' 地下水面
++    If mode = 1 Or mode = 2 Then
++        havePrev = False
++        For r = FIRST_ROW To LAST_ROW
++            x = CellNum(ws, r, 13, ok): y = CellNum(ws, r, 14, ok2)
++            If ok And ok2 Then
++                If havePrev Then PreviewLine fig, PX(px, xmin, f), PY(py, ymax, f), PX(x, xmin, f), PY(y, ymax, f), RGB(0, 112, 192), 2.25, 4
++                px = x: py = y: havePrev = True
++            End If
++        Next r
++    End If
++    ' 観測点
++    If mode = 3 Then
++        For r = FIRST_ROW To LAST_ROW
++            x = CellNum(ws, r, 16, ok): y = CellNum(ws, r, 17, ok2)
++            If ok And ok2 Then
++                Set sh = fig.Shapes.AddShape(9, CSng(PX(x, xmin, f) - 4), CSng(PY(y, ymax, f) - 4), 8, 8)
++                sh.AlternativeText = PREVIEW_TAG: sh.Fill.ForeColor.RGB = RGB(220, 0, 0): sh.Line.Visible = False
++            End If
++        Next r
++    End If
++    PreviewText fig, 30, 30, "プレビュー（未解析）：" & ModeLabel(mode + 1) & IIf(bad > 0, "　入力の問題 " & bad & " 件", ""), RGB(0, 0, 0)
++    fig.Shapes(fig.Shapes.Count).Width = 600
++    GoTo Done
++Failed:
++    failText = Err.Description
++    Resume Done
++Done:
++    On Error Resume Next
++    RPX_InternalWrite = previous
++    If Len(failText) > 0 Then
++        SeepMsg "プレビューに失敗しました：" & failText, vbExclamation
++    Else
++        fig.Activate
++        If bad > 0 Then SeepMsg "入力の問題が " & bad & " 件あります（浸透入力の赤い行）。" & IIf(Len(summary) > 0, vbLf & summary, ""), vbExclamation
++    End If
++End Sub
++
+ ' ---------------------------------------------------------------- snapshot of limit-analysis mesh
+ Private Sub SaveState(ByRef st As SeepSnapshot)
+     st.valid = False
+@@ -266,11 +807,30 @@
+ End Sub
+ 
+ ' ---------------------------------------------------------------- run
++' RPX_SeepWT（逆解析）から呼ぶ入口。
++Public Sub RPX_SeepBuildModel(ByVal ws As Worksheet)
++    BuildSeepModel ws
++End Sub
++
++' 地下水位モード用：メッシュだけをコピーする。
++Private Sub CopyMeshOnly(ByVal ws As Worksheet)
++    Dim i As Long, e As Long, j As Long
++    SN = rn: SM = re: SNMat = RM + 1
++    ReDim SXY(0 To SN - 1, 0 To 1): ReDim STri(0 To SM - 1, 0 To 2): ReDim SMat(0 To SM - 1)
++    For i = 0 To SN - 1: SXY(i, 0) = RXY(i, 0): SXY(i, 1) = RXY(i, 1): Next i
++    For e = 0 To SM - 1
++        For j = 0 To 2: STri(e, j) = RTri(e, j): Next j
++        If RRigidId(e) >= 0 Then SMat(e) = RM Else SMat(e) = RMatId(e)
++    Next e
++    RPX_SeepDefaults
++    SGammaW = SettingValue(ws, ROW_GAMMAW, SGammaW)
++End Sub
++
+ Private Sub BuildSeepModel(ByVal ws As Worksheet)
+     Dim matWs As Worksheet, defWs As Worksheet, matMap As Object, pointMap As Object, regionMap As Object
+     Dim r As Long, i As Long, e As Long, id As Long, kind As Long, value As Double, kmax As Double, ratio As Double
+     Dim haveK() As Boolean, region As Long, sp As Long, ep As Long, px As Double, py As Double, node As Long, j As Long
+-    Dim pri() As Long, hasHead As Boolean, lengthE As Double, key As Variant
++    Dim pri() As Long, hasHead As Boolean, lengthE As Double, key As Variant, unk As Long
+     Set matWs = RPX_Sheet("材料データ"): Set defWs = RPX_Sheet("要素定義")
+     Set matMap = ColumnMap(matWs, 5, 1004, 1)
+     Set pointMap = ColumnMap(defWs, 7, 1006, 1)
+@@ -323,7 +883,13 @@
+             id = CLng(ws.Cells(r, 8).Value2): If Not pointMap.Exists(id) Then Err.Raise 5, , "浸透境界の終了点 " & id & " は未定義です。"
+             ep = pointMap(id)
+             kind = KindCode(CStr(ws.Cells(r, 10).Value2))
+-            value = 0#: If Len(CStr(ws.Cells(r, 11).Value2)) > 0 Then value = CDbl(ws.Cells(r, 11).Value2)
++            value = 0#
++            If RPX_WTIsUnknown(CStr(ws.Cells(r, 11).Value2)) Then
++                If Not SUnkReady Or unk >= SUnkCount Then Err.Raise 5, , "浸透境界 " & ws.Cells(r, 5).Value2 & " の値が未知数（?）です。水の与え方「地下水面に合うよう境界の水位を推定する」で実行してください。"
++                value = SUnkVal(unk): unk = unk + 1
++            ElseIf Len(CStr(ws.Cells(r, 11).Value2)) > 0 Then
++                value = CDbl(ws.Cells(r, 11).Value2)
++            End If
+             For i = 0 To RNEdge - 1
+                 If REdges(i).element(1) < 0 Then
+                     px = (RXY(REdges(i).a, 0) + RXY(REdges(i).b, 0)) / 2#: py = (RXY(REdges(i).a, 1) + RXY(REdges(i).b, 1)) / 2#
+@@ -366,10 +932,11 @@
+ 
+ ' 浸透解析ボタン：要素定義からメッシュ生成→境界割当→解析→浸透結果・図。極限解析の状態は復元する。
+ Public Sub RPX_SeepRun()
+-    Dim ws As Worksheet, st As SeepSnapshot, previousWrite As Boolean, target As Long, failText As String, started As Double
+-    If RPX_Busy Then MsgBox "解析またはメッシュ生成を実行中です。", vbExclamation: Exit Sub
++    Dim ws As Worksheet, st As SeepSnapshot, previousWrite As Boolean, target As Long, failText As String, started As Double, mode As Long
++    If RPX_Busy Then SeepMsg "解析またはメッシュ生成を実行中です。", vbExclamation: Exit Sub
+     Set ws = OptionalSheet(SEEP_SHEET)
+-    If ws Is Nothing Then RPX_SeepSetupSheet: MsgBox "浸透入力シートを作成しました。入力後にもう一度実行してください。", vbInformation: Exit Sub
++    If ws Is Nothing Then RPX_SeepSetupSheet: SeepMsg "浸透入力シートを作成しました。入力後にもう一度実行してください。", vbInformation: Exit Sub
++    If Not IsV2(ws) Then RPX_SeepSetupSheet
+     SaveState st
+     previousWrite = RPX_InternalWrite
+     RPX_Busy = True: RPX_InternalWrite = True: RPX_WaterSuspend = True: started = Timer
+@@ -377,13 +944,31 @@
+     On Error GoTo ErrHandler
+     Application.StatusBar = "浸透解析：メッシュ生成中…"
+     Call RPX_ReadInputs
++    mode = RPX_SeepMode(ws)
++    If ValidateInputs(ws, mode, failText) > 0 Then
++        failText = "入力に問題があります（浸透入力の赤い行・確認欄）。" & failText
++        GoTo Finish
++    End If
++    failText = ""
+     target = CLng(SettingValue(ws, ROW_TARGET, 0#))
+     If target > 0 Then DTarget = target
+     Call RPX_GenerateMesh
+-    BuildSeepModel ws
+-    Application.StatusBar = "浸透解析：反復計算中（" & SM & "要素）…"
+-    RPX_SeepSolve
+-    RPX_SeepWriteResults
++    SUnkReady = False: WTInvResult = ""
++    Select Case mode
++        Case 0
++            BuildSeepModel ws
++            Application.StatusBar = "浸透解析：反復計算中（" & SM & "要素）…"
++            RPX_SeepSolve
++            RPX_SeepWriteResults
++        Case 1, 2
++            CopyMeshOnly ws
++            RPX_WTReadTable ws, True, 13
++            RPX_WTField mode
++            RPX_SeepWriteResults
++        Case 3
++            RPX_WTInverse ws, CLng(SettingValue(ws, ROW_INVMAX, 40#))
++    End Select
++    RPX_WTWriteMode mode
+     GoTo Finish
+ ErrHandler:
+     failText = Err.Description
+@@ -391,17 +976,19 @@
+ Finish:
+     On Error Resume Next
+     RestoreState st
++    SUnkReady = False
+     RPX_WaterSuspend = False
+     RPX_Busy = False: RPX_InternalWrite = previousWrite
+     Application.StatusBar = False: Application.ScreenUpdating = True
+     On Error GoTo 0
+     If Len(failText) > 0 Then
+-        MsgBox "浸透解析に失敗しました：" & failText, vbExclamation
++        SeepMsg "浸透解析に失敗しました：" & failText, vbExclamation
+     Else
+         If RPX_WaterCouplingOn() Then RPX_Invalidate
+         RPX_SeepShowDiagram
++        If Len(WTInvResult) > 0 Then SeepMsg WTInvResult, vbInformation, "観測水位からの逆推定"
+         If Not SConverged Then
+-            MsgBox "浸透解析は最大反復回数で打ち切りました（最終変化量 " & Format(SLastDelta, "0.0E+00") & " m）。βを小さく、または緩和係数を小さくしてください。", vbExclamation
++            SeepMsg "浸透解析は最大反復回数で打ち切りました（最終変化量 " & Format(SLastDelta, "0.0E+00") & " m）。βを小さく、または緩和係数を小さくしてください。", vbExclamation
+         Else
+             Application.StatusBar = "浸透解析完了：" & SIterations & "回反復、" & Format(Timer - started, "0.0") & "秒"
+         End If
+diff -ruN versions/G1R14/src/vba/RPX_SeepWT.bas versions/G1R15/src/vba/RPX_SeepWT.bas
+--- versions/G1R14/src/vba/RPX_SeepWT.bas	1970-01-01 09:00:00.000000000 +0900
++++ versions/G1R15/src/vba/RPX_SeepWT.bas	2026-10-11 16:01:15.215487049 +0900
+@@ -0,0 +1,440 @@
++Attribute VB_Name = "RPX_SeepWT"
++Option Explicit
++' 地下水位（浸潤線）入力モードと、観測水位からの境界水頭の逆推定。
++'  モード1：水位線＋cos2θ補正　h = y_wt - (y_wt - y)×sin2θ　（u = γw×hw×cos2θ、等ポテンシャル線は水位線に直交）
++'  モード2：静水圧　h = y_wt
++'  モード3：浸透FEMの未知境界水頭（値セル "?" または "?初期値"、観測点は P:Q）を観測水位点に最小二乗で合わせる（減衰Gauss-Newton＝LM、差分ヤコビアン）
++' 結果は浸透結果シートへ同じ形式で書くため、RPX_Water の連成と図の自由水面描画はそのまま使える。
++' 透水係数の絶対値は水頭場に影響しない（比だけが効く）。
++
++Public WTN As Long, WTX() As Double, WTY() As Double
++Public SUnkCount As Long, SUnkVal() As Double, SUnkReady As Boolean
++Public WTInvResult As String
++
++Private Const WT_SHEET As String = "浸透入力"
++Private Const WT_FIRST As Long = 7
++Private Const WT_LAST As Long = 206
++
++Private wtTest As Boolean, wtTestNx As Long, wtTestNy As Long
++Private evalCount As Long
++
++' ---------------------------------------------------------------- table
++Public Function RPX_WTReadTable(ByVal ws As Worksheet, ByVal requireTwo As Boolean, ByVal colX As Long) As Long
++    Dim r As Long, vx As Variant, vy As Variant, i As Long, j As Long, t As Double
++    WTN = 0: ReDim WTX(0 To WT_LAST - WT_FIRST): ReDim WTY(0 To WT_LAST - WT_FIRST)
++    For r = WT_FIRST To WT_LAST
++        vx = ws.Cells(r, colX).Value2: vy = ws.Cells(r, colX + 1).Value2
++        If Not IsError(vx) And Not IsError(vy) Then
++            If Len(CStr(vx)) > 0 And Len(CStr(vy)) > 0 Then
++                If Not IsNumeric(vx) Or Not IsNumeric(vy) Then Err.Raise 5, , "浸透入力 " & r & "行目の x・y が数値ではありません。"
++                WTX(WTN) = CDbl(vx): WTY(WTN) = CDbl(vy): WTN = WTN + 1
++            End If
++        End If
++    Next r
++    For i = 1 To WTN - 1
++        j = i
++        Do While j > 0
++            If WTX(j - 1) <= WTX(j) Then Exit Do
++            t = WTX(j): WTX(j) = WTX(j - 1): WTX(j - 1) = t
++            t = WTY(j): WTY(j) = WTY(j - 1): WTY(j - 1) = t
++            j = j - 1
++        Loop
++    Next i
++    If requireTwo Then
++        If WTN < 2 Then Err.Raise 5, , "地下水面（M:N）に2点以上の (x, y) を入力してください。"
++        For i = 1 To WTN - 1
++            If WTX(i) - WTX(i - 1) <= 0.000000001 Then Err.Raise 5, , "地下水位表に同じxの点があります（x=" & WTX(i) & "）。"
++        Next i
++    ElseIf WTN < 1 Then
++        Err.Raise 5, , "観測点（P:Q）がありません。"
++    End If
++    RPX_WTReadTable = WTN
++End Function
++
++Private Function Sin2(ByVal i As Long) As Double
++    Dim dx As Double, dy As Double
++    dx = WTX(i + 1) - WTX(i): dy = WTY(i + 1) - WTY(i)
++    Sin2 = dy * dy / (dx * dx + dy * dy)
++End Function
++
++' 水位線の標高と sin2θ（区間ごとの勾配。両端より外は端の値で水平延長、θは端区間の値）
++Private Sub WTEval(ByVal x As Double, ByRef yw As Double, ByRef s2 As Double)
++    Dim i As Long, t As Double
++    If x <= WTX(0) Then yw = WTY(0): s2 = Sin2(0): Exit Sub
++    If x >= WTX(WTN - 1) Then yw = WTY(WTN - 1): s2 = Sin2(WTN - 2): Exit Sub
++    For i = 0 To WTN - 2
++        If x <= WTX(i + 1) Then
++            t = (x - WTX(i)) / (WTX(i + 1) - WTX(i))
++            yw = WTY(i) + t * (WTY(i + 1) - WTY(i)): s2 = Sin2(i): Exit Sub
++        End If
++    Next i
++    yw = WTY(WTN - 1): s2 = Sin2(WTN - 2)
++End Sub
++
++Public Function RPX_WTHead(ByVal x As Double, ByVal y As Double, ByVal mode As Long) As Double
++    Dim yw As Double, s2 As Double
++    WTEval x, yw, s2
++    If mode = 2 Then RPX_WTHead = yw Else RPX_WTHead = yw - (yw - y) * s2
++End Function
++
++' SXY/STri（RPX_SeepUI がコピー済み）に水頭場を作る。負圧（水位より上）はそのまま書き、u<0の扱いは連成側（N20）に従う。
++Public Sub RPX_WTField(ByVal mode As Long)
++    Dim i As Long
++    ReDim SHead(0 To SN - 1): ReDim SPres(0 To SN - 1): ReDim SFlux(0 To SN - 1): ReDim SActive(0 To SN - 1)
++    ReDim SBcType(0 To SN - 1): ReDim SBcVal(0 To SN - 1): ReDim SKr(0 To SM - 1)
++    If SGammaW <= 0# Then SGammaW = 9.81
++    For i = 0 To SN - 1
++        SHead(i) = RPX_WTHead(SXY(i, 0), SXY(i, 1), mode)
++        SPres(i) = SGammaW * (SHead(i) - SXY(i, 1))
++    Next i
++    For i = 0 To SM - 1: SKr(i) = 1#: Next i
++    SIterations = 0: SConverged = True: SLastDelta = 0#
++End Sub
++
++' ---------------------------------------------------------------- free surface elevation at x
++Public Function RPX_WTSurfaceY(ByRef seg() As Double, ByVal n As Long, ByVal x As Double, ByRef found As Boolean) As Double
++    Dim k As Long, lo As Double, hi As Double, y As Double, best As Double, have As Boolean, nd As Double, nearY As Double, d As Double
++    nd = 1E+300
++    For k = 0 To n - 1
++        lo = seg(k, 0): hi = seg(k, 2)
++        If lo > hi Then lo = seg(k, 2): hi = seg(k, 0)
++        If hi - lo > 0.000000000001 And x >= lo - 0.000000001 And x <= hi + 0.000000001 Then
++            y = seg(k, 1) + (seg(k, 3) - seg(k, 1)) * (x - seg(k, 0)) / (seg(k, 2) - seg(k, 0))
++            If Not have Or y > best Then best = y: have = True
++        End If
++        d = Abs(seg(k, 0) - x): If d < nd Then nd = d: nearY = seg(k, 1)
++        d = Abs(seg(k, 2) - x): If d < nd Then nd = d: nearY = seg(k, 3)
++    Next k
++    found = have
++    If have Then RPX_WTSurfaceY = best Else RPX_WTSurfaceY = nearY
++End Function
++
++' ---------------------------------------------------------------- unknown boundary values
++' 浸透境界の値セル（K列）が "?" または "?数値" の行を順に未知数とする。kindは水頭・水位・水位+浸出面のみ。
++Public Function RPX_WTScanUnknowns(ByVal ws As Worksheet, ByRef guess() As Double, ByRef labels() As String, ByRef hasGuess() As Boolean) As Long
++    Dim r As Long, s As String, n As Long, k As String
++    ReDim guess(0 To 9): ReDim labels(0 To 9): ReDim hasGuess(0 To 9)
++    For r = WT_FIRST To WT_LAST
++        If Len(CStr(ws.Cells(r, 5).Value2)) > 0 Then
++            s = Trim$(CStr(ws.Cells(r, 11).Value2))
++            If RPX_WTIsUnknown(s) Then
++                k = Trim$(CStr(ws.Cells(r, 10).Value2))
++                If k <> "水頭" And k <> "水位" And k <> "水位+浸出面" And k <> "水位＋浸出面" Then Err.Raise 5, , "未知数（?）は種別「水頭・水位・水位+浸出面」だけに指定できます（境界ID " & ws.Cells(r, 5).Value2 & "）。"
++                If n > 9 Then Err.Raise 5, , "未知数は10個までです。"
++                labels(n) = "境界ID " & ws.Cells(r, 5).Value2 & "（" & k & "）"
++                s = Mid$(s, 2)
++                If Len(s) > 0 And IsNumeric(s) Then guess(n) = CDbl(s): hasGuess(n) = True
++                n = n + 1
++            End If
++        End If
++    Next r
++    RPX_WTScanUnknowns = n
++End Function
++
++Public Function RPX_WTIsUnknown(ByVal s As String) As Boolean
++    s = Trim$(s)
++    If Len(s) = 0 Then Exit Function
++    RPX_WTIsUnknown = (Left$(s, 1) = "?" Or Left$(s, 1) = "？")
++End Function
++
++' ---------------------------------------------------------------- small dense algebra (n <= 10)
++Private Function SolveSmall(ByRef a() As Double, ByRef b() As Double, ByVal n As Long) As Boolean
++    Dim i As Long, j As Long, k As Long, p As Long, t As Double, f As Double
++    For k = 0 To n - 1
++        p = k
++        For i = k + 1 To n - 1
++            If Abs(a(i, k)) > Abs(a(p, k)) Then p = i
++        Next i
++        If Abs(a(p, k)) < 1E-300 Then Exit Function
++        If p <> k Then
++            For j = 0 To n - 1: t = a(k, j): a(k, j) = a(p, j): a(p, j) = t: Next j
++            t = b(k): b(k) = b(p): b(p) = t
++        End If
++        For i = k + 1 To n - 1
++            f = a(i, k) / a(k, k)
++            For j = k To n - 1: a(i, j) = a(i, j) - f * a(k, j): Next j
++            b(i) = b(i) - f * b(k)
++        Next i
++    Next k
++    For i = n - 1 To 0 Step -1
++        t = b(i)
++        For j = i + 1 To n - 1: t = t - a(i, j) * b(j): Next j
++        b(i) = t / a(i, i)
++    Next i
++    SolveSmall = True
++End Function
++
++' 対称行列の固有値（Jacobi法）から条件数
++Private Function SymCond(ByRef s() As Double, ByVal n As Long) As Double
++    Dim a() As Double, i As Long, j As Long, k As Long, p As Long, q As Long, sweep As Long
++    Dim off As Double, th As Double, c As Double, sv As Double, t As Double, aip As Double, aiq As Double, mx As Double, mn As Double
++    ReDim a(0 To n - 1, 0 To n - 1)
++    For i = 0 To n - 1
++        For j = 0 To n - 1: a(i, j) = s(i, j): Next j
++    Next i
++    For sweep = 1 To 50
++        off = 0#
++        For p = 0 To n - 2
++            For q = p + 1 To n - 1: off = off + a(p, q) * a(p, q): Next q
++        Next p
++        If off < 1E-30 Then Exit For
++        For p = 0 To n - 2
++            For q = p + 1 To n - 1
++                If Abs(a(p, q)) > 1E-300 Then
++                    th = (a(q, q) - a(p, p)) / (2# * a(p, q))
++                    t = Sgn(th) / (Abs(th) + Sqr(th * th + 1#)): If th = 0# Then t = 1#
++                    c = 1# / Sqr(t * t + 1#): sv = t * c
++                    For k = 0 To n - 1
++                        aip = a(k, p): aiq = a(k, q)
++                        a(k, p) = c * aip - sv * aiq: a(k, q) = sv * aip + c * aiq
++                    Next k
++                    For k = 0 To n - 1
++                        aip = a(p, k): aiq = a(q, k)
++                        a(p, k) = c * aip - sv * aiq: a(q, k) = sv * aip + c * aiq
++                    Next k
++                End If
++            Next q
++        Next p
++    Next sweep
++    mx = Abs(a(0, 0)): mn = mx
++    For i = 1 To n - 1
++        If Abs(a(i, i)) > mx Then mx = Abs(a(i, i))
++        If Abs(a(i, i)) < mn Then mn = Abs(a(i, i))
++    Next i
++    If mn <= 0# Then SymCond = 1E+300 Else SymCond = mx / mn
++End Function
++
++' ---------------------------------------------------------------- residuals
++Private Sub BuildTestDam(ByVal h1 As Double)
++    Dim nx As Long, ny As Long, i As Long, j As Long, e As Long, a As Long, b As Long, c As Long, d As Long
++    nx = wtTestNx: ny = wtTestNy
++    SN = (nx + 1) * (ny + 1): SM = 2 * nx * ny: SNMat = 1
++    ReDim SXY(0 To SN - 1, 0 To 1): ReDim STri(0 To SM - 1, 0 To 2): ReDim SMat(0 To SM - 1)
++    ReDim SKx(0 To 0): ReDim SKy(0 To 0): SKx(0) = 1#: SKy(0) = 1#
++    ReDim SBcType(0 To SN - 1): ReDim SBcVal(0 To SN - 1)
++    For j = 0 To ny
++        For i = 0 To nx: SXY(j * (nx + 1) + i, 0) = 20# * i / nx: SXY(j * (nx + 1) + i, 1) = 10# * j / ny: Next i
++    Next j
++    e = 0
++    For j = 0 To ny - 1
++        For i = 0 To nx - 1
++            a = j * (nx + 1) + i: b = a + 1: c = b + nx + 1: d = a + nx + 1
++            STri(e, 0) = a: STri(e, 1) = b: STri(e, 2) = c: e = e + 1
++            STri(e, 0) = a: STri(e, 1) = c: STri(e, 2) = d: e = e + 1
++        Next i
++    Next j
++    For j = 0 To ny
++        a = j * (nx + 1)
++        If SXY(a, 1) <= h1 + 0.000000001 Then SBcType(a) = 1: SBcVal(a) = h1
++        b = a + nx
++        If SXY(b, 1) <= 2# + 0.000000001 Then SBcType(b) = 1: SBcVal(b) = 2# Else SBcType(b) = 2
++    Next j
++    RPX_SeepDefaults
++End Sub
++
++' 1回の順解析。失敗（固定水頭なし等）は False。
++Private Function WTResiduals(ByVal ws As Worksheet, ByRef p() As Double, ByVal n As Long, ByRef obsX() As Double, ByRef obsY() As Double, ByVal m As Long, ByRef r() As Double, ByRef cost As Double) As Boolean
++    Dim i As Long, seg() As Double, ns As Long, found As Boolean
++    On Error GoTo Failed
++    evalCount = evalCount + 1
++    For i = 0 To n - 1: SUnkVal(i) = p(i): Next i
++    SUnkReady = True
++    If wtTest Then BuildTestDam p(0) Else RPX_SeepBuildModel ws
++    RPX_SeepSolve
++    ns = RPX_SeepFreeSurface(seg)
++    If ns < 1 Then Exit Function
++    cost = 0#
++    For i = 0 To m - 1
++        r(i) = RPX_WTSurfaceY(seg, ns, obsX(i), found) - obsY(i)
++        cost = cost + r(i) * r(i)
++    Next i
++    If Not wtTest Then Application.StatusBar = "逆解析：順解析 " & evalCount & " 回目、RMS=" & Format(Sqr(cost / m), "0.000") & " m"
++    DoEvents
++    WTResiduals = True
++    Exit Function
++Failed:
++    Err.Clear
++End Function
++
++' LM法。結果は p、戻り値は説明文。
++Private Function Invert(ByVal ws As Worksheet, ByRef p() As Double, ByVal n As Long, ByRef labels() As String, ByRef obsX() As Double, ByRef obsY() As Double, ByVal m As Long, _
++                        ByVal lo As Double, ByVal hi As Double, ByVal maxEval As Long, ByRef rms As Double, ByRef warnText As String) As Boolean
++    Dim r() As Double, rq() As Double, J() As Double, A() As Double, g() As Double, stp() As Double, q() As Double, lam As Double
++    Dim B() As Double, cost As Double, costQ As Double, i As Long, k As Long, l As Long, d As Double, cond As Double, colNorm As Double, smax As Double, iter As Long, ok As Boolean
++    ReDim r(0 To m - 1): ReDim rq(0 To m - 1): ReDim J(0 To m - 1, 0 To n - 1): ReDim A(0 To n - 1, 0 To n - 1)
++    ReDim g(0 To n - 1): ReDim stp(0 To n - 1): ReDim q(0 To n - 1)
++    evalCount = 0
++    If Not WTResiduals(ws, p, n, obsX, obsY, m, r, cost) Then Err.Raise 5, , "逆解析：初期値で浸透解析ができません（初期水頭を「?値」で指定してください）。"
++    lam = 0.001
++    Do While evalCount + n + 1 <= maxEval
++        iter = iter + 1
++        For k = 0 To n - 1
++            For i = 0 To n - 1: q(i) = p(i): Next i
++            d = 0.001 * Abs(p(k)): If d < 0.01 Then d = 0.01
++            If q(k) + d > hi Then d = -d
++            q(k) = q(k) + d
++            If Not WTResiduals(ws, q, n, obsX, obsY, m, rq, costQ) Then Err.Raise 5, , "逆解析：差分計算中に浸透解析が失敗しました。"
++            For i = 0 To m - 1: J(i, k) = (rq(i) - r(i)) / d: Next i
++        Next k
++        For k = 0 To n - 1
++            g(k) = 0#
++            For i = 0 To m - 1: g(k) = g(k) + J(i, k) * r(i): Next i
++            For l = 0 To n - 1
++                A(k, l) = 0#
++                For i = 0 To m - 1: A(k, l) = A(k, l) + J(i, k) * J(i, l): Next i
++            Next l
++        Next k
++        cond = SymCond(A, n)
++        ok = False
++        Do While evalCount < maxEval
++            ReDim B(0 To n - 1, 0 To n - 1)
++            For k = 0 To n - 1
++                For l = 0 To n - 1: B(k, l) = A(k, l): Next l
++                B(k, k) = A(k, k) * (1# + lam) + 1E-12
++                stp(k) = -g(k)
++            Next k
++            If Not SolveSmall(B, stp, n) Then
++                lam = lam * 10#
++                GoTo RetryLam
++            End If
++            smax = 0#
++            For k = 0 To n - 1
++                q(k) = p(k) + stp(k)
++                If q(k) < lo Then q(k) = lo
++                If q(k) > hi Then q(k) = hi
++                If Abs(q(k) - p(k)) > smax Then smax = Abs(q(k) - p(k))
++            Next k
++            If WTResiduals(ws, q, n, obsX, obsY, m, rq, costQ) Then
++                If costQ < cost Then
++                    For k = 0 To n - 1: p(k) = q(k): Next k
++                    For i = 0 To m - 1: r(i) = rq(i): Next i
++                    cost = costQ: lam = lam / 10#
++                    If lam < 0.0000001 Then lam = 0.0000001
++                    ok = True: Exit Do
++                End If
++            End If
++            lam = lam * 10#
++RetryLam:
++            If lam > 1E+10 Then Exit Do
++        Loop
++        If Not ok Or smax < 0.0001 Then Exit Do
++    Loop
++    rms = Sqr(cost / m)
++    warnText = ""
++    If m < 2 * n + 1 Then warnText = warnText & "観測点が少ない（" & m & "点／未知数" & n & "）。"
++    If cond > 100000000# Then warnText = warnText & "悪条件（J^TJの条件数 " & Format(cond, "0.0E+00") & "）：未知数どうしを区別できません。"
++    For k = 0 To n - 1
++        colNorm = 0#
++        For i = 0 To m - 1: colNorm = colNorm + J(i, k) * J(i, k): Next i
++        colNorm = Sqr(colNorm / m)
++        If colNorm < 0.01 Then warnText = warnText & labels(k) & "は感度が小さい（1 mの変化で水位RMS " & Format(colNorm * 100#, "0.00") & " cm）。"
++    Next k
++    If evalCount >= maxEval Then warnText = warnText & "順解析の上限回数（" & maxEval & "）に達しました。"
++    Invert = True
++End Function
++
++Private Function obsMax(ByRef v() As Double, ByVal m As Long) As Double
++    Dim i As Long
++    obsMax = v(0)
++    For i = 1 To m - 1
++        If v(i) > obsMax Then obsMax = v(i)
++    Next i
++End Function
++
++' ---------------------------------------------------------------- mode 3 entry (called by RPX_SeepRun after mesh generation)
++Public Sub RPX_WTInverse(ByVal ws As Worksheet, ByVal maxEval As Long)
++    Dim guess() As Double, labels() As String, hasGuess() As Boolean, n As Long, m As Long, i As Long, p() As Double
++    Dim obsX() As Double, obsY() As Double, lo As Double, hi As Double, rms As Double, warnText As String, ymax As Double, ymin As Double, txt As String
++    Dim res As Worksheet
++    wtTest = False
++    n = RPX_WTScanUnknowns(ws, guess, labels, hasGuess)
++    If n = 0 Then Err.Raise 5, , "推定する境界の値に「?」がありません。"
++    m = RPX_WTReadTable(ws, False, 16)
++    ReDim obsX(0 To m - 1): ReDim obsY(0 To m - 1)
++    For i = 0 To m - 1: obsX(i) = WTX(i): obsY(i) = WTY(i): Next i
++    ymin = RXY(0, 1): ymax = ymin
++    For i = 1 To rn - 1
++        If RXY(i, 1) < ymin Then ymin = RXY(i, 1)
++        If RXY(i, 1) > ymax Then ymax = RXY(i, 1)
++    Next i
++    lo = ymin: hi = ymax + (ymax - ymin)
++    ReDim p(0 To n - 1): ReDim SUnkVal(0 To n - 1): SUnkCount = n
++    For i = 0 To n - 1
++        If hasGuess(i) Then
++            p(i) = guess(i)
++        Else
++            p(i) = obsMax(obsY, m)
++        End If
++    Next i
++    If maxEval < 3 * (n + 1) Then maxEval = 3 * (n + 1)
++    Invert ws, p, n, labels, obsX, obsY, m, lo, hi, maxEval, rms, warnText
++    For i = 0 To n - 1: SUnkVal(i) = p(i): Next i
++    RPX_SeepBuildModel ws: RPX_SeepSolve: RPX_SeepWriteResults
++    Set res = RPX_Sheet("浸透結果")
++    res.Range("J10").Value2 = "モード": res.Range("K10").Value2 = "3：未知境界水頭の逆推定"
++    res.Range("J11").Value2 = "水位RMS [m]": res.Range("K11").Value2 = rms
++    res.Range("J12").Value2 = "順解析回数": res.Range("K12").Value2 = evalCount
++    res.Range("J13").Value2 = "観測点数": res.Range("K13").Value2 = m
++    res.Range("J14").Value2 = "注意": res.Range("K14").Value2 = IIf(Len(warnText) = 0, "なし", warnText)
++    txt = ""
++    For i = 0 To n - 1
++        res.Cells(15 + i, 10).Value2 = labels(i): res.Cells(15 + i, 11).Value2 = p(i)
++        txt = txt & labels(i) & " = " & Format(p(i), "0.000") & " m" & vbLf
++    Next i
++    WTInvResult = "推定結果" & vbLf & txt & "水位RMS = " & Format(rms, "0.0000") & " m（" & m & "点、順解析" & evalCount & "回）" & vbLf & _
++                  IIf(Len(warnText) = 0, "", "注意：" & warnText & vbLf) & "推定値は浸透入力のK列に書き戻していません（浸透結果 J15以降）。"
++    SUnkReady = True
++End Sub
++
++Public Sub RPX_WTWriteMode(ByVal mode As Long)
++    Dim res As Worksheet
++    Set res = RPX_Sheet("浸透結果")
++    res.Range("J10").Value2 = "モード"
++    res.Range("K10").Value2 = Choose(mode + 1, "0：浸透流FEM", "1：地下水位＋cos2θ補正", "2：地下水位（静水圧）", "3：未知境界水頭の逆推定")
++End Sub
++
++' ---------------------------------------------------------------- self test
++Public Function RPX_SeepWaterTableSelfTest() As String
++    Dim msg As String, th As Double, i As Long, j As Long, nx As Long, ny As Long, x As Double, y As Double, hw As Double, u As Double, emax As Double
++    Dim obsX(0 To 4) As Double, obsY(0 To 4) As Double, p(0 To 0) As Double, labels(0 To 0) As String, rms As Double, warnText As String
++    Dim seg() As Double, ns As Long, found As Boolean, started As Double
++    On Error GoTo Failed
++    started = Timer
++    ' 1) 無限斜面：u = γw×hw×cos2θ
++    th = 30# * 3.14159265358979 / 180#
++    WTN = 2: ReDim WTX(0 To 1): ReDim WTY(0 To 1)
++    WTX(0) = -10#: WTY(0) = 10# * Tan(th) - 2#: WTX(1) = 50#: WTY(1) = -50# * Tan(th) - 2#
++    For i = 0 To 40
++        For j = 0 To 12
++            x = i: y = -Tan(th) * x - 6# * j / 12#
++            hw = (-Tan(th) * x - 2#) - y
++            u = 9.81 * (RPX_WTHead(x, y, 1) - y)
++            If hw > 0# Then
++                If Abs(u - 9.81 * hw * Cos(th) ^ 2) > emax Then emax = Abs(u - 9.81 * hw * Cos(th) ^ 2)
++            End If
++            If Abs(9.81 * (RPX_WTHead(x, y, 2) - y) - 9.81 * hw) > emax Then emax = Abs(9.81 * (RPX_WTHead(x, y, 2) - y) - 9.81 * hw)
++        Next j
++    Next i
++    msg = "1) 無限斜面 θ=30°：max|u－γw×hw×cos2θ|（モード1）・max|u－γw×hw|（モード2）= " & Format(emax, "0.0E+00") & " kPa → " & IIf(emax < 0.000001, "合格", "不合格") & vbLf
++    ' 2) 逆解析：H1=10 の矩形ダム（20×10）から観測5点を作り、初期値8から復元
++    wtTest = True: wtTestNx = 20: wtTestNy = 10
++    BuildTestDam 10#: RPX_SeepSolve
++    ns = RPX_SeepFreeSurface(seg)
++    For i = 0 To 4
++        obsX(i) = 2# + 3# * i: obsY(i) = RPX_WTSurfaceY(seg, ns, obsX(i), found)
++    Next i
++    ReDim SUnkVal(0 To 0): SUnkCount = 1: p(0) = 8#: labels(0) = "上流水位H1"
++    Invert Nothing, p, 1, labels, obsX, obsY, 5, 0#, 20#, 40, rms, warnText
++    msg = msg & "2) 逆解析：H1 推定 " & Format(p(0), "0.0000") & "（真値10、誤差 " & Format(100# * (p(0) - 10#) / 10#, "0.000") & "%）、RMS " & Format(rms, "0.0E+00") & " m、順解析 " & evalCount & " 回 → " & _
++          IIf(Abs(p(0) - 10#) < 0.1, "合格", "不合格") & IIf(Len(warnText) > 0, "（注意：" & warnText & "）", "") & vbLf
++    GoTo Done
++Failed:
++    msg = msg & "自己テスト失敗：" & Err.Number & " " & Err.Description & vbLf
++    Resume Done
++Done:
++    On Error Resume Next
++    wtTest = False: SUnkReady = False
++    msg = msg & "所要 " & Format(Timer - started, "0.0") & " 秒"
++    Debug.Print msg
++    RPX_SeepWaterTableSelfTest = msg
++End Function
+diff -ruN versions/G1R14/src/vba/RPX_Seismic.bas versions/G1R15/src/vba/RPX_Seismic.bas
+--- versions/G1R14/src/vba/RPX_Seismic.bas	1970-01-01 09:00:00.000000000 +0900
++++ versions/G1R15/src/vba/RPX_Seismic.bas	2026-10-11 14:59:38.768656937 +0900
+@@ -0,0 +1,161 @@
++Attribute VB_Name = "RPX_Seismic"
++Option Explicit
++' RPX_Seismic : 水平震度法（G1R15）。浸透モジュールとは独立して動作する。
++'   入力：設定シート SEISMIC_KH（水平震度 kh、0=地震なし）、SEISMIC_DIR（慣性力の向き 右(+x)/左(-x)）。
++'   各要素の体積力に水平成分 ±kh・γ を加える（自重と同じ配列＝固定/比例の扱いも自重に従う）。
++'   連成ONでも有効応力の体積力（γ - grad u）に kh・γ（全単位体積重量）を加える。
++Private cacheKh As Double, cacheText As String
++
++Public Sub RPX_SeismicSetup()
++    Dim ws As Worksheet, r As Long, rowKh As Long, rowDir As Long
++    Set ws = ThisWorkbook.Worksheets("設定")
++    For r = 4 To 120
++        If CStr(ws.Cells(r, 4).Value2) = "SEISMIC_KH" Then rowKh = r
++        If CStr(ws.Cells(r, 4).Value2) = "SEISMIC_DIR" Then rowDir = r
++    Next r
++    If rowKh = 0 Or rowDir = 0 Then
++        ' 利用者向け項目（14行目まで）の直後に2行挿入する。5～11行目の固定参照は動かない。
++        ws.Rows("15:16").Insert
++        rowKh = 15: rowDir = 16
++        ws.Cells(rowKh, 1).Value2 = "地震：水平震度 kh": ws.Cells(rowKh, 2).Value2 = 0
++        ws.Cells(rowKh, 3).Value2 = "水平震度法。0=地震なし。重力加速度を1とした水平加速度（目安0.14～0.25）。全要素に kh・γ を水平に作用"
++        ws.Cells(rowKh, 4).Value2 = "SEISMIC_KH"
++        ws.Cells(rowDir, 1).Value2 = "地震：慣性力の向き": ws.Cells(rowDir, 2).Value2 = "右(+x)"
++        ws.Cells(rowDir, 3).Value2 = "右(+x)／左(-x)。斜面が下る向き（谷側）を選ぶと危険側"
++        ws.Cells(rowDir, 4).Value2 = "SEISMIC_DIR"
++    End If
++    With ws.Range(ws.Cells(rowKh, 1), ws.Cells(rowDir, 3))
++        .Interior.Color = RGB(255, 242, 204): .Font.Bold = False
++    End With
++    ws.Range(ws.Cells(rowKh, 1), ws.Cells(rowDir, 1)).Font.Bold = True
++    With ws.Cells(rowKh, 2).Validation
++        .Delete
++        .Add Type:=xlValidateDecimal, AlertStyle:=xlValidAlertStop, Operator:=xlBetween, Formula1:="0", Formula2:="1"
++        .ErrorMessage = "水平震度 kh は 0 以上 1 以下の数値です（目安 0.14～0.25）。"
++    End With
++    ws.Cells(rowKh, 2).NumberFormat = "0.00"
++    With ws.Cells(rowDir, 2).Validation
++        .Delete
++        .Add Type:=xlValidateList, AlertStyle:=xlValidAlertStop, Formula1:="右(+x),左(-x)"
++    End With
++End Sub
++
++' 符号付き kh（+x=右）。入力誤りは理由つきで解析へ返す。
++Public Function RPX_SeismicKhSigned() As Double
++    Dim v As Variant, d As String, kh As Double, sg As Double
++    v = RPX_Setting("SEISMIC_KH", 0)
++    If IsError(v) Then Err.Raise 5, , "地震：水平震度 kh がExcelのエラー値です。"
++    If IsEmpty(v) Or Len(Trim$(CStr(v))) = 0 Then v = 0
++    If Not IsNumeric(v) Then Err.Raise 5, , "地震：水平震度 kh が数値ではありません（" & CStr(v) & "）。"
++    kh = CDbl(v)
++    If kh < 0# Or kh > 1# Then Err.Raise 5, , "地震：水平震度 kh は 0 以上 1 以下です（入力 " & kh & "）。向きは「慣性力の向き」で指定してください。"
++    d = Replace(Replace(Trim$(CStr(RPX_Setting("SEISMIC_DIR", "右(+x)"))), "（", "("), "）", ")")
++    Select Case d
++        Case "右(+x)", "右", "+x", "+X", "x", "X", "": sg = 1#
++        Case "左(-x)", "左", "-x", "-X": sg = -1#
++        Case Else: Err.Raise 5, , "地震：慣性力の向きは 右(+x) または 左(-x) です（入力 " & d & "）。"
++    End Select
++    RPX_SeismicKhSigned = sg * kh
++End Function
++
++Public Function RPX_SeismicNote() As String
++    Dim k As Double
++    On Error Resume Next
++    k = RPX_SeismicKhSigned()
++    If Err.Number <> 0 Then RPX_SeismicNote = "地震入力エラー：" & Err.Description: Exit Function
++    If k = 0# Then RPX_SeismicNote = "地震：なし" Else RPX_SeismicNote = "地震：kh=" & Format(Abs(k), "0.000") & IIf(k > 0#, " 右(+x)", " 左(-x)")
++End Function
++
++' 要素 e の水平体積力に ±kh・γ を設定（addOnly=False：自重組立直後、上書き）／加算（True：連成の再組立後）。
++' e=0 のとき設定を読み直す（1回の組立で1回だけ読む）。
++Public Sub RPX_SeismicBody(ByVal e As Long, Optional ByVal addOnly As Boolean = False)
++    Dim s As Double
++    If e = 0 Then cacheKh = RPX_SeismicKhSigned()
++    If cacheKh = 0# Then Exit Sub
++    s = cacheKh * RMaterials(RMatId(e)).gamma
++    If RPX_LoadPhase = "reference_total" Or RGravityMode = "reference" Then
++        If addOnly Then RBody1(e, 0) = RBody1(e, 0) + s Else RBody1(e, 0) = s
++    Else
++        If addOnly Then RBody0(e, 0) = RBody0(e, 0) + s Else RBody0(e, 0) = s
++    End If
++End Sub
++
++
++' 図と解析結果に地震条件を表示（RPX_DrawCore の末尾から呼ぶ）。
++' G1R15修正：図形（テキストボックス・矢印）の追加は解析直後の再描画でExcelが異常終了する例があったため、
++' セルへの文字表示だけにする（図形は使わない。旧版の図形が残っていれば削除）。
++Public Sub RPX_SeismicOverlay()
++    Dim ws As Worksheet, i As Long, note As String, k As Double
++    On Error Resume Next
++    note = RPX_SeismicNote(): k = 0#: k = RPX_SeismicKhSigned()
++    If k > 0# Then note = note & " →" Else If k < 0# Then note = note & " ←"
++    Set ws = RPX_Sheet("解析結果")
++    ws.Range("H1").Value2 = "地震条件": ws.Range("H2").Value2 = note
++    ws.Range("H1").Font.Bold = True
++    Set ws = RPX_Sheet("図")
++    For i = ws.Shapes.Count To 1 Step -1
++        If ws.Shapes(i).AlternativeText = "RPX_SEISMIC" Then ws.Shapes(i).Delete
++    Next i
++    With ws.Range("M1")
++        .Value2 = note
++        .Font.Bold = True: .Font.Size = 11
++        .Font.Color = IIf(k = 0#, RGB(90, 90, 90), RGB(192, 0, 0))
++    End With
++End Sub
++
++' ---------------------------------------------------------------- 検証
++' 浸透なし（連成OFF）で kh を変えて Fs を求め、向きの反転（鏡像形状）も確認する。
++' 結果は戻り値と logPath（任意）に書く。設定・形状は終了時に元へ戻す。
++Public Function RPX_SeismicSelfTest(Optional ByVal target As Long = 300, Optional ByVal logPath As String = "", Optional ByVal khList As String = "0,0.1,0.15,0.2,0.25") As String
++    Dim ws As Worksheet, wd As Worksheet, saved(1 To 4) As Variant, rKh As Long, rDir As Long, r As Long
++    Dim out As String, ks() As String, i As Long, xmax As Double, oldX As Variant, n As Long, t As Double
++    Set ws = RPX_Sheet("設定"): Set wd = RPX_Sheet("要素定義")
++    RPX_SeismicSetup
++    For r = 4 To 120
++        If ws.Cells(r, 4).Value2 = "SEISMIC_KH" Then rKh = r
++        If ws.Cells(r, 4).Value2 = "SEISMIC_DIR" Then rDir = r
++    Next r
++    saved(1) = ws.Range("B5").Value2: saved(2) = ws.Range("B7").Value2
++    saved(3) = ws.Cells(rKh, 2).Value2: saved(4) = ws.Cells(rDir, 2).Value2
++    n = Application.WorksheetFunction.CountA(wd.Range("A7:A1006"))
++    oldX = wd.Range("B7:B" & 6 + n).Value2
++    On Error GoTo Failed
++    ws.Range("B5").Value2 = target: ws.Range("B7").Value2 = 0
++    out = "水平震度法 自己検証（浸透なし・要素数目標 " & target & "・適応OFF）" & vbLf
++    ks = Split(khList, ",")
++    For i = 0 To UBound(ks)
++        out = out & OneCase(ws, rKh, rDir, CDbl(ks(i)), "右(+x)", "原形状") & vbLf
++        out = out & OneCase(ws, rKh, rDir, CDbl(ks(i)), "左(-x)", "原形状") & vbLf
++    Next i
++    ' 鏡像形状：x → xmax - x。kh 右(+x) の原形状 と kh 左(-x) の鏡像形状は一致するはず。
++    xmax = Application.WorksheetFunction.Max(wd.Range("B7:B" & 6 + n))
++    For r = 7 To 6 + n: wd.Cells(r, 2).Value2 = xmax - CDbl(oldX(r - 6, 1)): Next r
++    out = out & OneCase(ws, rKh, rDir, 0#, "右(+x)", "鏡像") & vbLf
++    out = out & OneCase(ws, rKh, rDir, 0.15, "左(-x)", "鏡像") & vbLf
++    out = out & OneCase(ws, rKh, rDir, 0.15, "右(+x)", "鏡像") & vbLf
++Done:
++    On Error Resume Next
++    wd.Range("B7:B" & 6 + n).Value2 = oldX
++    ws.Range("B5").Value2 = saved(1): ws.Range("B7").Value2 = saved(2)
++    ws.Cells(rKh, 2).Value2 = saved(3): ws.Cells(rDir, 2).Value2 = saved(4)
++    RPX_SeismicSelfTest = out
++    If Len(logPath) > 0 Then
++        Dim f As Integer: f = FreeFile
++        Open logPath For Output As #f: Print #f, out: Close #f
++    End If
++    Exit Function
++Failed:
++    out = out & "FAIL " & Err.Description & vbLf
++    Resume Done
++End Function
++
++Private Function OneCase(ByVal ws As Worksheet, ByVal rKh As Long, ByVal rDir As Long, ByVal kh As Double, ByVal dirText As String, ByVal tag As String) As String
++    Dim t As Double
++    ws.Cells(rKh, 2).Value2 = kh: ws.Cells(rDir, 2).Value2 = dirText
++    t = Timer
++    Call RPX_CreateMesh
++    If Len(RPX_LastError) > 0 Then OneCase = tag & " kh=" & kh & " " & dirText & " メッシュ失敗：" & RPX_LastError: Exit Function
++    Call RPX_Run
++    If Len(RPX_LastError) > 0 Then OneCase = tag & " kh=" & kh & " " & dirText & " 解析失敗：" & RPX_LastError: Exit Function
++    OneCase = tag & vbTab & "kh=" & Format(kh, "0.00") & vbTab & dirText & vbTab & "Fs下界=" & Format(RLowerFs, "0.0000") & vbTab & "Fs上界=" & Format(RUpperFs, "0.0000") & vbTab & Format(Timer - t, "0.0") & "s"
++End Function
+diff -ruN versions/G1R14/src/vba/RPX_Water.bas versions/G1R15/src/vba/RPX_Water.bas
+--- versions/G1R14/src/vba/RPX_Water.bas	2026-10-11 07:52:19.754751734 +0900
++++ versions/G1R15/src/vba/RPX_Water.bas	2026-10-11 16:01:15.219487049 +0900
+@@ -20,6 +20,24 @@
+ Private Const ROW_COUPLE As Long = 19
+ Private Const ROW_SUCTION As Long = 20
+ 
++' 新配置（Z1 マーカー）では γw=B4・連成=D4・サクション=F4、旧配置では N13/N19/N20。
++Private Function WCell(ByVal ws As Worksheet, ByVal r As Long) As Range
++    Dim v2 As Boolean
++    On Error Resume Next
++    v2 = (CStr(ws.Range("Z1").Value2) = "RPX_SEEP_LAYOUT_V2")
++    Err.Clear
++    On Error GoTo 0
++    If v2 Then
++        Select Case r
++            Case ROW_COUPLE: Set WCell = ws.Range("D4")
++            Case ROW_SUCTION: Set WCell = ws.Range("F4")
++            Case Else: Set WCell = ws.Range("B4")
++        End Select
++    Else
++        Set WCell = ws.Cells(r, 14)
++    End If
++End Function
++
+ Private Function OptSheet(ByVal name As String) As Worksheet
+     On Error Resume Next
+     Set OptSheet = ThisWorkbook.Worksheets(name)
+@@ -29,7 +47,7 @@
+ Public Function RPX_WaterCouplingOn() As Boolean
+     Dim ws As Worksheet, v As Variant
+     Set ws = OptSheet("浸透入力"): If ws Is Nothing Then Exit Function
+-    v = ws.Cells(ROW_COUPLE, 14).Value2
++    v = WCell(ws, ROW_COUPLE).Value2
+     If IsError(v) Then Exit Function
+     If IsNumeric(v) Then
+         If Len(CStr(v)) > 0 Then RPX_WaterCouplingOn = (CDbl(v) = 1#)
+@@ -47,7 +65,7 @@
+ Private Function SuctionOn() As Boolean
+     Dim ws As Worksheet, v As Variant
+     Set ws = OptSheet("浸透入力"): If ws Is Nothing Then Exit Function
+-    v = ws.Cells(ROW_SUCTION, 14).Value2
++    v = WCell(ws, ROW_SUCTION).Value2
+     If IsError(v) Then Exit Function
+     If IsNumeric(v) Then
+         If Len(CStr(v)) > 0 Then SuctionOn = (CDbl(v) = 1#)
+@@ -58,7 +76,7 @@
+     Dim ws As Worksheet, v As Variant
+     GammaW = 9.81
+     Set ws = OptSheet("浸透入力"): If ws Is Nothing Then Exit Function
+-    v = ws.Cells(13, 14).Value2
++    v = WCell(ws, 13).Value2
+     If IsError(v) Then Exit Function
+     If IsNumeric(v) Then
+         If Len(CStr(v)) > 0 Then GammaW = CDbl(v)
+@@ -225,6 +243,7 @@
+         Else
+             RBody0(e, 0) = wx: RBody0(e, 1) = g + wy
+         End If
++        RPX_SeismicBody e, True
+     Next e
+     RPX_WaterApplied = True
+     RPX_WaterNote = "連成：有効応力（γ - grad u）"

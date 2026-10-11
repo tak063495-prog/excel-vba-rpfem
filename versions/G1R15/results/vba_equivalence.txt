@@ -1,0 +1,4 @@
+配布XLSMのVBAとsrc/vbaの照合。VBEが行う自動整形（識別子の大文字小文字、1e-12→0.000000000001 等の数値表記）は同一視。Attribute行は除外。
+RPFEM_20261011_G1R15_D03N_Seismic.xlsm RPX_Seep:一致 RPX_SeepUI:一致 RPX_SeepWT:一致 RPX_Water:一致 RPX_Seismic:一致 RPX_Mesh:一致 RPX_Control:一致
+RPFEM_20261011_G1R15_D07A_Seismic.xlsm RPX_Seep:一致 RPX_SeepUI:一致 RPX_SeepWT:一致 RPX_Water:一致 RPX_Seismic:一致 RPX_Mesh:一致 RPX_Control:一致
+RPFEM_20261011_G1R15_Levee_Example.xlsm RPX_Seep:一致 RPX_SeepUI:一致 RPX_SeepWT:一致 RPX_Water:一致 RPX_Seismic:一致 RPX_Mesh:一致 RPX_Control:一致

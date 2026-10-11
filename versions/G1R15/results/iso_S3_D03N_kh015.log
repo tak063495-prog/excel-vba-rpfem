@@ -1,0 +1,7 @@
+﻿15:07:55 mesh kh=0.15 vis=0 noSeis=0 noSeep=0
+15:07:56 run
+15:23:59 run done
+15:23:59 A1=上下界を取得（目標区間幅またはFs探索許容差は未達） lower=0.258423 upper=0.848328 H2=地震：kh=0.150 右(+x) →
+15:23:59 diagram shown
+15:24:00 png
+15:24:00 saved
