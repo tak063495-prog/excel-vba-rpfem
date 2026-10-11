@@ -1,0 +1,13 @@
+{
+  "RPX_NativeInfo": "DLL_READY;numeric=0;dd_numeric=0;backsolve=0;ordering=0;column_ordering=0",
+  "RPX_TestHSDPrecision": "PASS TwoSum; TwoProd; cancellation; division; large scale; zero; coef cache; muladd",
+  "TestNativeKernels": "PASS bitwise Double/DD/Schur; 3,70,270 rows; SPD/indefinite; chunk boundaries",
+  "TestNativePivot": "PASS singular pivot: VBA/DLL both reject at 0",
+  "TestNativeCancellation": "PASS cancellation 18 preserved",
+  "TestNativeShortBuffer": "PASS subscript error 9 before native pointer access",
+  "TestNativeOverflow": "PASS VBA/DLL both propagate overflow 6; no successful factor",
+  "TestNativeOrdering": "PASS 68 exact permutation/inverse pairs; symmetric and implicit normal graph; insertion/reinsertion/ties/disconnected; n>20000",
+  "TestOrderingCancellation": "PASS ordering cancellation 18 preserved",
+  "TestOrderingBadIndex": "PASS ordering invalid index 9 preserved; native feed not called",
+  "missing_dll": "PASS automatic missing-DLL VBA fallback; numeric LDL/Schur and both ordering paths"
+}

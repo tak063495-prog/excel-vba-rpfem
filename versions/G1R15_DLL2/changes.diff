@@ -1,0 +1,430 @@
+--- G1R15/RPX_LDL.bas
++++ G1R15_DLL/RPX_LDL.bas
+@@ -118,6 +118,7 @@
+     Dim k As Long, p As Long, j As Long, q As Long, stopAt As Long, qEnd As Long, r As Long
+     Dim value As Double, lij As Double, dk As Double
+     Dim useCache As Boolean
++    Dim nativeAccepted As Boolean
+     ddReady = False
+     useCache = patternReady
+     For k = 0 To orderN - 1
+@@ -127,6 +128,9 @@
+     If Not useCache Then
+         RPX_Numeric = NumericWalk(ap, ai, av)
+         Exit Function
++    End If
++    If RPX_NativeNumeric(orderN, ap, ai, av, colPtr, rowInd, reachPtr, reachNode, writeAt, factorVal, diagonal, scatter, RPX_PivotMinimum, RPX_PivotFailure, nativeAccepted) Then
++        RPX_Numeric = nativeAccepted: Exit Function
+     End If
+     For k = 0 To orderN - 1
+         If k Mod 4096 = 0 Then
+@@ -199,6 +203,7 @@
+ Public Sub RPX_Backsolve(ByRef rhs() As Double, ByRef answer() As Double)
+     Dim j As Long, p As Long, r As Long, value As Double
+     ReDim answer(0 To orderN - 1)
++    If RPX_NativeBacksolve(orderN, colPtr, rowInd, factorVal, diagonal, rhs, answer) Then Exit Sub
+     For j = 0 To orderN - 1: answer(j) = rhs(j): Next j
+     For j = 0 To orderN - 1
+         value = answer(j)
+@@ -247,11 +252,15 @@
+     Dim k As Long, p As Long, j As Long, q As Long, stopAt As Long, r As Long
+     Dim value As RPX_DD, lij As RPX_DD, dk As RPX_DD, term As RPX_DD, zero As RPX_DD
+     Dim bh As Double, bl As Double
++    Dim nativeAccepted As Boolean
+     ddReady = False
+     If Not patternReady Then err.Raise 5, , "DD_LDL_PATTERN_NOT_READY"
+     RPX_CapacityCheck "dd_ldl_factor", 16# * (CDbl(RPX_FactorNNZ) + 2# * orderN + 1#)
+     ReDim ddFactor(0 To RPX_FactorNNZ): ReDim ddDiagonal(0 To orderN - 1): ReDim ddScatter(0 To orderN - 1)
+     RPX_PivotMinimum = 1E+300: RPX_PivotFailure = -1
++    If RPX_NativeDDNumeric(orderN, ap, ai, av, colPtr, rowInd, reachPtr, reachNode, writeAt, ddFactor, ddDiagonal, ddScatter, RPX_PivotMinimum, RPX_PivotFailure, nativeAccepted) Then
++        ddReady = nativeAccepted: RPX_DDNumeric = nativeAccepted: Exit Function
++    End If
+     For k = 0 To orderN - 1
+         If k Mod 256 = 0 Then
+             RPX_Stage "HSD DD LDL " & k & "/" & orderN
+@@ -282,6 +291,7 @@
+     Dim bh As Double, bl As Double
+     If Not ddReady Then err.Raise 5, , "DD_LDL_FACTOR_NOT_READY"
+     ReDim answer(0 To orderN - 1)
++    If RPX_NativeDDBacksolve(orderN, colPtr, rowInd, ddFactor, ddDiagonal, rhs, answer) Then Exit Sub
+     For j = 0 To orderN - 1: answer(j) = HDD(rhs(j)): Next j
+     For j = 0 To orderN - 1
+         If j Mod 4096 = 0 Then
+--- G1R15/RPX_SchurLDL.bas
++++ G1R15_DLL/RPX_SchurLDL.bas
+@@ -124,6 +124,7 @@
+     Dim k As Long, p As Long, j As Long, q As Long, stopAt As Long, qEnd As Long, r As Long
+     Dim value As Double, lij As Double, dk As Double
+     Dim useCache As Boolean
++    Dim nativeAccepted As Boolean
+     useCache = patternReady
+     For k = 0 To orderN - 1
+         scatter(k) = 0#
+@@ -132,6 +133,9 @@
+     If Not useCache Then
+         RPXC_Numeric = NumericWalk(ap, ai, av)
+         Exit Function
++    End If
++    If RPX_NativeNumeric(orderN, ap, ai, av, colPtr, rowInd, reachPtr, reachNode, writeAt, factorVal, diagonal, scatter, RPXC_PivotMinimum, RPXC_PivotFailure, nativeAccepted) Then
++        RPXC_Numeric = nativeAccepted: Exit Function
+     End If
+     For k = 0 To orderN - 1
+         If k Mod 4096 = 0 Then
+@@ -204,6 +208,7 @@
+ Public Sub RPXC_Backsolve(ByRef rhs() As Double, ByRef answer() As Double)
+     Dim j As Long, p As Long, r As Long, value As Double
+     ReDim answer(0 To orderN - 1)
++    If RPX_NativeBacksolve(orderN, colPtr, rowInd, factorVal, diagonal, rhs, answer) Then Exit Sub
+     For j = 0 To orderN - 1: answer(j) = rhs(j): Next j
+     For j = 0 To orderN - 1
+         value = answer(j)
+--- G1R15/RPX_SeepUI.bas
++++ G1R15_DLL/RPX_SeepUI.bas
+@@ -646,7 +646,7 @@
+         n = DRegions(region).pointCount
+         For i = 0 To n - 1
+             a = DRegions(region).points(i): b = DRegions(region).points((i + 1) Mod n)
+-            PreviewLine fig, px(DPXY(a, 0), xmin, f), py(DPXY(a, 1), ymax, f), px(DPXY(b, 0), xmin, f), py(DPXY(b, 1), ymax, f), RGB(128, 128, 128), 0.75, 0
++            PreviewLine fig, PreviewX(DPXY(a, 0), xmin, f), PreviewY(DPXY(a, 1), ymax, f), PreviewX(DPXY(b, 0), xmin, f), PreviewY(DPXY(b, 1), ymax, f), RGB(128, 128, 128), 0.75, 0
+         Next i
+     Next region
+     ' 水理境界
+@@ -665,14 +665,14 @@
+                 If found Then
+                     For stepCount = 1 To n
+                         a = DRegions(region).points(i): b = DRegions(region).points((i + 1) Mod n)
+-                        PreviewLine fig, px(DPXY(a, 0), xmin, f), py(DPXY(a, 1), ymax, f), px(DPXY(b, 0), xmin, f), py(DPXY(b, 1), ymax, f), col, 3.5, 0
+-                        If stepCount = 1 Then PreviewText fig, px(DPXY(a, 0), xmin, f) + 3, py(DPXY(a, 1), ymax, f) - 14, ws.cells(r, 5).Value2 & " " & k & IIf(Len(s) > 0, " " & s, ""), col
++                        PreviewLine fig, PreviewX(DPXY(a, 0), xmin, f), PreviewY(DPXY(a, 1), ymax, f), PreviewX(DPXY(b, 0), xmin, f), PreviewY(DPXY(b, 1), ymax, f), col, 3.5, 0
++                        If stepCount = 1 Then PreviewText fig, PreviewX(DPXY(a, 0), xmin, f) + 3, PreviewY(DPXY(a, 1), ymax, f) - 14, ws.cells(r, 5).Value2 & " " & k & IIf(Len(s) > 0, " " & s, ""), col
+                         If b = ep Then Exit For
+                         i = (i + 1) Mod n
+                     Next stepCount
+                     If k = "水位" Or k = "水位+浸出面" Or k = "水位＋浸出面" Then
+                         y = CellNum(ws, r, 11, ok)
+-                        If ok Then PreviewLine fig, px(DPXY(sp, 0), xmin, f), py(y, ymax, f), px(DPXY(ep, 0), xmin, f), py(y, ymax, f), col, 1, 4
++                        If ok Then PreviewLine fig, PreviewX(DPXY(sp, 0), xmin, f), PreviewY(y, ymax, f), PreviewX(DPXY(ep, 0), xmin, f), PreviewY(y, ymax, f), col, 1, 4
+                     End If
+                 End If
+             End If
+@@ -684,7 +684,7 @@
+         For r = FIRST_ROW To LAST_ROW
+             x = CellNum(ws, r, 13, ok): y = CellNum(ws, r, 14, ok2)
+             If ok And ok2 Then
+-                If havePrev Then PreviewLine fig, px(px, xmin, f), py(py, ymax, f), px(x, xmin, f), py(y, ymax, f), RGB(0, 112, 192), 2.25, 4
++                If havePrev Then PreviewLine fig, PreviewX(px, xmin, f), PreviewY(py, ymax, f), PreviewX(x, xmin, f), PreviewY(y, ymax, f), RGB(0, 112, 192), 2.25, 4
+                 px = x: py = y: havePrev = True
+             End If
+         Next r
+@@ -694,7 +694,7 @@
+         For r = FIRST_ROW To LAST_ROW
+             x = CellNum(ws, r, 16, ok): y = CellNum(ws, r, 17, ok2)
+             If ok And ok2 Then
+-                Set sh = fig.Shapes.AddShape(9, CSng(px(x, xmin, f) - 4), CSng(py(y, ymax, f) - 4), 8, 8)
++                Set sh = fig.Shapes.AddShape(9, CSng(PreviewX(x, xmin, f) - 4), CSng(PreviewY(y, ymax, f) - 4), 8, 8)
+                 sh.AlternativeText = PREVIEW_TAG: sh.fill.ForeColor.RGB = RGB(220, 0, 0): sh.line.Visible = False
+             End If
+         Next r
+@@ -1128,11 +1128,11 @@
+     Loop
+ End Sub
+ 
+-Private Function px(ByVal x As Double, ByVal xmin As Double, ByVal factor As Double) As Double
+-    px = 30# + factor * (x - xmin)
+-End Function
+-Private Function py(ByVal y As Double, ByVal ymax As Double, ByVal factor As Double) As Double
+-    py = 55# + factor * (ymax - y)
++Private Function PreviewX(ByVal x As Double, ByVal xmin As Double, ByVal factor As Double) As Double
++    PreviewX = 30# + factor * (x - xmin)
++End Function
++Private Function PreviewY(ByVal y As Double, ByVal ymax As Double, ByVal factor As Double) As Double
++    PreviewY = 55# + factor * (ymax - y)
+ End Function
+ 
+ ' 速度ジャンプの大きい辺を分位点基準で選び、連結成分の最長経路を推定すべり面として太線で描く。
+@@ -1187,7 +1187,7 @@
+     For i = 0 To RNEdge - 1
+         If sel(i) Then
+             a = REdges(i).a: b = REdges(i).b
+-            Set s = ws.Shapes.AddLine(px(RXY(a, 0), xmin, factor), py(RXY(a, 1), ymax, factor), px(RXY(b, 0), xmin, factor), py(RXY(b, 1), ymax, factor))
++            Set s = ws.Shapes.AddLine(PreviewX(RXY(a, 0), xmin, factor), PreviewY(RXY(a, 1), ymax, factor), PreviewX(RXY(b, 0), xmin, factor), PreviewY(RXY(b, 1), ymax, factor))
+             t = jump(i) / ref: If t > 1# Then t = 1#
+             s.AlternativeText = "RPX_VELOCITY": s.line.ForeColor.RGB = RGB(150, 90, 200): s.line.weight = 1.5 + 1# * t
+             s.ZOrder 0
+@@ -1353,7 +1353,7 @@
+     If chainCount < 2 Then Exit Sub
+     ReDim pts(1 To chainCount, 1 To 2): v = dst
+     For k = 1 To chainCount
+-        pts(k, 1) = CSng(px(RXY(v, 0), xmin, factor)): pts(k, 2) = CSng(py(RXY(v, 1), ymax, factor)): v = prev(v)
++        pts(k, 1) = CSng(PreviewX(RXY(v, 0), xmin, factor)): pts(k, 2) = CSng(PreviewY(RXY(v, 1), ymax, factor)): v = prev(v)
+     Next k
+     Set s = ws.Shapes.AddPolyline(pts)
+     s.AlternativeText = "RPX_VELOCITY": s.fill.Visible = False
+@@ -1399,7 +1399,7 @@
+     nPts = 60: ReDim pts(1 To nPts + 1, 1 To 2)
+     For k = 0 To nPts
+         x = arcCx + arcR * Cos(t0 + sweep * k / nPts): y = arcCy + arcR * Sin(t0 + sweep * k / nPts)
+-        pts(k + 1, 1) = CSng(px(x, xmin, factor)): pts(k + 1, 2) = CSng(py(y, ymax, factor))
++        pts(k + 1, 1) = CSng(PreviewX(x, xmin, factor)): pts(k + 1, 2) = CSng(PreviewY(y, ymax, factor))
+     Next k
+     Set s = ws.Shapes.AddPolyline(pts)
+     s.AlternativeText = "RPX_VELOCITY": s.fill.Visible = False
+--- G1R15/RPX_Order.bas
++++ G1R15_DLL/RPX_Order.bas
+@@ -13,6 +13,7 @@
+ 
+ Public Sub RPX_Ordering(ByVal n As Long, ByRef columns() As Object, ByRef permutation() As Long, ByRef inverse() As Long)
+     Dim i As Long, j As Variant
++    If RPX_NativeOrdering(n, columns, permutation, inverse) Then Exit Sub
+     ReDim adjacency(0 To n - 1): ReDim selected(0 To n - 1)
+     ReDim outputOrder(0 To n - 1)
+     tag = 0: written = 0
+--- G1R15/RPX_ColumnOrder.bas
++++ G1R15_DLL/RPX_ColumnOrder.bas
+@@ -14,6 +14,7 @@
+ 
+ Public Sub RPX_ColumnOrdering(ByVal n As Long, ByRef columns() As Object, ByRef permutation() As Long, ByRef inverse() As Long)
+     Dim i As Long, j As Variant
++    If RPX_NativeOrdering(n, columns, permutation, inverse, True) Then Exit Sub
+     ReDim adjacency(0 To n - 1): ReDim selected(0 To n - 1)
+     ReDim outputOrder(0 To n - 1)
+     tag = 0: written = 0
+--- /dev/null
++++ G1R15_DLL/RPX_Native.bas
+@@ -0,0 +1,236 @@
++Attribute VB_Name = "RPX_Native"
++Option Explicit
++' Optional x64 numeric backend. VBA owns every array and symbolic pattern.
++' No PATH search, trust setting changes, or blanket exception recovery.
++#If Win64 Then
++Private Declare PtrSafe Function LoadLibraryExW Lib "kernel32" (ByVal path As LongPtr, ByVal file As LongPtr, ByVal flags As Long) As LongPtr
++Private Declare PtrSafe Function GetProcAddress Lib "kernel32" (ByVal module As LongPtr, ByVal name As String) As LongPtr
++Private Declare PtrSafe Function GetLastError Lib "kernel32" () As Long
++Private Declare PtrSafe Function GetModuleHandleW Lib "kernel32" (ByVal name As LongPtr) As LongPtr
++Private Declare PtrSafe Function GetModuleFileNameW Lib "kernel32" (ByVal module As LongPtr, ByVal buffer As LongPtr, ByVal size As Long) As Long
++Private Declare PtrSafe Function NativeAbi Lib "rpfem_native_x64.dll" Alias "rpx_abi" () As Long
++Private Declare PtrSafe Function NativeNumeric Lib "rpfem_native_x64.dll" Alias "rpx_numeric" (ByVal n As Long, ByVal first As Long, ByVal last As Long, ByVal ap As LongPtr, ByVal ai As LongPtr, ByVal av As LongPtr, ByVal cp As LongPtr, ByVal ri As LongPtr, ByVal rp As LongPtr, ByVal rn As LongPtr, ByVal wa As LongPtr, ByVal lv As LongPtr, ByVal dv As LongPtr, ByVal yv As LongPtr, ByRef minimum As Double, ByRef failure As Long) As Long
++Private Declare PtrSafe Function NativeDDNumeric Lib "rpfem_native_x64.dll" Alias "rpx_dd_numeric" (ByVal n As Long, ByVal first As Long, ByVal last As Long, ByVal ap As LongPtr, ByVal ai As LongPtr, ByVal av As LongPtr, ByVal cp As LongPtr, ByVal ri As LongPtr, ByVal rp As LongPtr, ByVal rn As LongPtr, ByVal wa As LongPtr, ByVal lv As LongPtr, ByVal dv As LongPtr, ByVal yv As LongPtr, ByRef minimum As Double, ByRef failure As Long) As Long
++Private Declare PtrSafe Function NativeBacksolve Lib "rpfem_native_x64.dll" Alias "rpx_backsolve" (ByVal n As Long, ByVal phase As Long, ByVal first As Long, ByVal last As Long, ByVal cp As LongPtr, ByVal ri As LongPtr, ByVal lv As LongPtr, ByVal dv As LongPtr, ByVal rhs As LongPtr, ByVal answer As LongPtr) As Long
++Private Declare PtrSafe Function NativeDDBacksolve Lib "rpfem_native_x64.dll" Alias "rpx_dd_backsolve" (ByVal n As Long, ByVal phase As Long, ByVal first As Long, ByVal last As Long, ByVal cp As LongPtr, ByVal ri As LongPtr, ByVal lv As LongPtr, ByVal dv As LongPtr, ByVal rhs As LongPtr, ByVal answer As LongPtr) As Long
++Private Declare PtrSafe Function NativeOrderCreate Lib "rpfem_native_x64.dll" Alias "rpx_order_create" (ByVal n As Long, ByVal mode As Long, ByRef handle As LongPtr) As Long
++Private Declare PtrSafe Function NativeOrderFeed Lib "rpfem_native_x64.dll" Alias "rpx_order_feed" (ByVal handle As LongPtr, ByVal first As Long, ByVal last As Long, ByVal ap As LongPtr, ByVal apSize As Long, ByVal ai As LongPtr, ByVal aiSize As Long) As Long
++Private Declare PtrSafe Function NativeOrderStart Lib "rpfem_native_x64.dll" Alias "rpx_order_start" (ByVal handle As LongPtr) As Long
++Private Declare PtrSafe Function NativeOrderStep Lib "rpfem_native_x64.dll" Alias "rpx_order_step" (ByVal handle As LongPtr, ByVal limit As Long, ByRef written As Long, ByVal output As LongPtr, ByVal outputSize As Long) As Long
++Private Declare PtrSafe Function NativeOrderDestroy Lib "rpfem_native_x64.dll" Alias "rpx_order_destroy" (ByVal handle As LongPtr) As Long
++Private nativeHandle As LongPtr
++#End If
++Private checked As Boolean, available As Boolean, forcedVBA As Boolean
++Private reason As String
++Private numericCalls As Long, ddCalls As Long, solveCalls As Long, orderCalls As Long, columnOrderCalls As Long
++
++Public Sub RPX_NativeSetMode(ByVal mode As String)
++    If mode <> "auto" And mode <> "vba" Then err.Raise 5, , "NATIVE_MODE_INVALID"
++    forcedVBA = (mode = "vba"): checked = False: available = False
++    numericCalls = 0: ddCalls = 0: solveCalls = 0
++    orderCalls = 0: columnOrderCalls = 0
++End Sub
++Public Function RPX_NativeAvailable() As Boolean
++    Dim path As String, exportName As Variant, dllName As String, loadedPath As String, size As Long
++    If forcedVBA Then reason = "VBA_SELECTED": Exit Function
++    If checked Then RPX_NativeAvailable = available: Exit Function
++    checked = True
++#If Win64 Then
++    path = ThisWorkbook.path & Application.PathSeparator & "rpfem_native_x64.dll"
++    If Len(Dir$(path)) = 0 Then reason = "DLL_NOT_FOUND": Exit Function
++    dllName = "rpfem_native_x64.dll"
++    nativeHandle = GetModuleHandleW(StrPtr(dllName))
++    If nativeHandle <> 0 Then
++        loadedPath = String$(32768, vbNullChar)
++        size = GetModuleFileNameW(nativeHandle, StrPtr(loadedPath), Len(loadedPath))
++        If size = 0 Or size >= Len(loadedPath) Then reason = "DLL_PATH_UNVERIFIED": Exit Function
++        If StrComp(Left$(loadedPath, size), path, vbTextCompare) <> 0 Then reason = "DLL_ALREADY_LOADED_OTHER_PATH": Exit Function
++    Else
++        nativeHandle = LoadLibraryExW(StrPtr(path), 0, &H1100)
++    End If
++    If nativeHandle = 0 Then reason = "DLL_LOAD_FAILED_" & CStr(GetLastError()): Exit Function
++    For Each exportName In Array("rpx_abi", "rpx_numeric", "rpx_dd_numeric", "rpx_backsolve", "rpx_dd_backsolve", "rpx_order_create", "rpx_order_feed", "rpx_order_start", "rpx_order_step", "rpx_order_destroy")
++        If GetProcAddress(nativeHandle, CStr(exportName)) = 0 Then reason = "DLL_ENTRY_MISSING": Exit Function
++    Next exportName
++    If NativeAbi() <> &H150002 Then reason = "DLL_ABI_MISMATCH": Exit Function
++    available = True: reason = "DLL_READY"
++#Else
++    reason = "VBA_32BIT_OR_LEGACY"
++#End If
++    RPX_NativeAvailable = available
++End Function
++Public Function RPX_NativeInfo() As String
++    Dim ready As Boolean
++    ready = RPX_NativeAvailable()
++    RPX_NativeInfo = reason & ";numeric=" & numericCalls & ";dd_numeric=" & ddCalls & ";backsolve=" & solveCalls & ";ordering=" & orderCalls & ";column_ordering=" & columnOrderCalls
++End Function
++Private Sub CheckCode(ByVal code As Long)
++    Select Case code
++        Case 0, 1
++        Case 201: err.Raise 5, , "HSD_DD_NONFINITE_PRODUCT"
++        Case 202: err.Raise 5, , "HSD_DD_PRODUCT_UNDERFLOW"
++        Case 203: err.Raise 5, , "HSD_DD_ZERO_DIVISOR"
++        Case 204: err.Raise 5, , "HSD_DD_NONFINITE"
++        Case 205: err.Raise 11, "RPX_Native", "NATIVE_DOUBLE_ZERO_DIVISOR"
++        Case 206: err.Raise 6, "RPX_Native", "NATIVE_DOUBLE_OVERFLOW"
++        Case 207: err.Raise 7, "RPX_Native", "NATIVE_OUT_OF_MEMORY"
++        Case 208: err.Raise 513, "RPX_Native", "NATIVE_UNEXPECTED_EXCEPTION"
++        Case Else: err.Raise 5, "RPX_Native", "NATIVE_KERNEL_CONTRACT_FAILED " & CStr(code)
++    End Select
++End Sub
++Private Sub Poll()
++    DoEvents
++    If XCancel Then err.Raise 18, , "ANALYSIS_CANCELLED"
++End Sub
++Public Function RPX_NativeOrdering(ByVal n As Long, ByRef columns() As Object, ByRef permutation() As Long, ByRef inverse() As Long, Optional ByVal normalGraph As Boolean = False) As Boolean
++    Dim ap() As Long, ai() As Long, i As Long, p As Long, count As Long, key As Variant
++    Dim first As Long, last As Long, written As Long, mode As Long, ignored As Long
++    Dim failNumber As Long, failSource As String, failText As String
++    If Not RPX_NativeAvailable() Then Exit Function
++#If Win64 Then
++    Dim handle As LongPtr
++    On Error GoTo Failed
++    If n <= 0 Or LBound(columns) <> 0 Or UBound(columns) < n - 1 Then err.Raise 9, "RPX_Native", "NATIVE_ORDERING_SIZE"
++    ReDim ap(0 To n)
++    For i = 0 To n - 1
++        If i Mod 256 = 0 Then Call Poll
++        count = count + columns(i).count: ap(i + 1) = count
++    Next i
++    If count = 0 Then ReDim ai(0 To 0) Else ReDim ai(0 To count - 1)
++    For i = 0 To n - 1
++        If i Mod 256 = 0 Then Call Poll
++        For Each key In columns(i).keys
++            If p >= ap(i + 1) Then err.Raise 5, "RPX_Native", "NATIVE_ORDERING_INPUT_CHANGED"
++            ai(p) = CLng(key)
++            If ai(p) < 0 Or ai(p) >= n Then err.Raise 9, "RPX_Native", "NATIVE_ORDERING_COLUMN"
++            p = p + 1
++        Next key
++        If p <> ap(i + 1) Then err.Raise 5, "RPX_Native", "NATIVE_ORDERING_INPUT_CHANGED"
++    Next i
++    If normalGraph Then mode = 1
++    CheckCode NativeOrderCreate(n, mode, handle)
++    For first = 0 To n - 1 Step 256
++        Call Poll: last = first + 256: If last > n Then last = n
++        CheckCode NativeOrderFeed(handle, first, last, VarPtr(ap(0)), n + 1, VarPtr(ai(0)), count)
++    Next first
++    CheckCode NativeOrderStart(handle)
++    ReDim permutation(0 To n - 1): ReDim inverse(0 To n - 1)
++    Do While written < n
++        If written Mod 8192 = 0 Then RPX_Stage "ordering " & written & "/" & n
++        Call Poll
++        RPX_AssertInputs "native_ordering"
++        CheckCode NativeOrderStep(handle, 64, written, VarPtr(permutation(0)), n)
++    Loop
++    For i = 0 To n - 1: inverse(permutation(i)) = i: Next i
++    CheckCode NativeOrderDestroy(handle): handle = 0
++    If normalGraph Then columnOrderCalls = columnOrderCalls + 1 Else orderCalls = orderCalls + 1
++    RPX_NativeOrdering = True: Exit Function
++Failed:
++    failNumber = err.number: failSource = err.source: failText = err.description
++    ' Destroy is allocation-free and cannot replace the original VBA exception.
++    If handle <> 0 Then ignored = NativeOrderDestroy(handle): handle = 0
++    err.Raise failNumber, failSource, failText
++#End If
++End Function
++Private Sub PatternBounds(ByVal n As Long, ByRef ap() As Long, ByRef ai() As Long, ByRef cp() As Long, ByRef ri() As Long, ByRef rp() As Long, ByRef rn() As Long, ByRef wa() As Long)
++    ' Validate managed buffer extents before exposing element addresses to C.
++    If n <= 0 Or LBound(ap) <> 0 Or UBound(ap) <> n Or LBound(cp) <> 0 Or UBound(cp) <> n Or LBound(rp) <> 0 Or UBound(rp) <> n Then err.Raise 9, "RPX_Native", "NATIVE_PATTERN_SIZE_MISMATCH"
++    If ap(n) < 0 Or cp(n) < 0 Then err.Raise 5, , "NATIVE_PATTERN_SIZE_INVALID"
++    If ap(n) > 0 Then
++        If LBound(ai) <> 0 Or UBound(ai) < ap(n) - 1 Then err.Raise 9, "RPX_Native", "NATIVE_INPUT_BUFFER_SHORT"
++    End If
++    If cp(n) > 0 Then
++        If LBound(ri) <> 0 Or UBound(ri) < cp(n) - 1 Or LBound(rn) <> 0 Or UBound(rn) < cp(n) - 1 Or LBound(wa) <> 0 Or UBound(wa) < cp(n) - 1 Then err.Raise 9, "RPX_Native", "NATIVE_REACH_BUFFER_SHORT"
++    End If
++End Sub
++Private Sub SolveBounds(ByVal n As Long, ByRef cp() As Long, ByRef ri() As Long, ByRef rhs() As Double)
++    If n <= 0 Or LBound(cp) <> 0 Or UBound(cp) <> n Or LBound(rhs) <> 0 Or UBound(rhs) < n - 1 Then err.Raise 9, "RPX_Native", "NATIVE_SOLVE_BUFFER_SHORT"
++    If cp(n) < 0 Then err.Raise 5, , "NATIVE_PATTERN_SIZE_INVALID"
++    If LBound(ri) <> 0 Or UBound(ri) < cp(n) - 1 Then err.Raise 9, "RPX_Native", "NATIVE_ROW_BUFFER_SHORT"
++End Sub
++
++Public Function RPX_NativeNumeric(ByVal n As Long, ByRef ap() As Long, ByRef ai() As Long, ByRef av() As Double, ByRef cp() As Long, ByRef ri() As Long, ByRef rp() As Long, ByRef rn() As Long, ByRef wa() As Long, ByRef lv() As Double, ByRef dv() As Double, ByRef yv() As Double, ByRef minimum As Double, ByRef failure As Long, ByRef accepted As Boolean) As Boolean
++    Dim first As Long, last As Long, code As Long
++    If Not RPX_NativeAvailable() Then Exit Function
++#If Win64 Then
++    PatternBounds n, ap, ai, cp, ri, rp, rn, wa
++    ' A diagonal pattern has empty reach arrays; keep its ordinary VBA path.
++    If cp(n) = 0 Then Exit Function
++    If LBound(av) <> 0 Or UBound(av) < ap(n) - 1 Or LBound(lv) <> 0 Or UBound(lv) < cp(n) - 1 Or LBound(dv) <> 0 Or UBound(dv) < n - 1 Or LBound(yv) <> 0 Or UBound(yv) < n - 1 Then err.Raise 9, "RPX_Native", "NATIVE_NUMERIC_BUFFER_SHORT"
++    numericCalls = numericCalls + 1
++    For first = 0 To n - 1 Step 128
++        Call Poll: last = first + 128: If last > n Then last = n
++        code = NativeNumeric(n, first, last, VarPtr(ap(0)), VarPtr(ai(0)), VarPtr(av(0)), VarPtr(cp(0)), VarPtr(ri(0)), VarPtr(rp(0)), VarPtr(rn(0)), VarPtr(wa(0)), VarPtr(lv(0)), VarPtr(dv(0)), VarPtr(yv(0)), minimum, failure)
++        CheckCode code
++        If code = 1 Then RPX_NativeNumeric = True: accepted = False: Exit Function
++    Next first
++    accepted = True: RPX_NativeNumeric = True
++#End If
++End Function
++
++Public Function RPX_NativeDDNumeric(ByVal n As Long, ByRef ap() As Long, ByRef ai() As Long, ByRef av() As RPX_DD, ByRef cp() As Long, ByRef ri() As Long, ByRef rp() As Long, ByRef rn() As Long, ByRef wa() As Long, ByRef lv() As RPX_DD, ByRef dv() As RPX_DD, ByRef yv() As RPX_DD, ByRef minimum As Double, ByRef failure As Long, ByRef accepted As Boolean) As Boolean
++    Dim first As Long, last As Long, code As Long
++    If Not RPX_NativeAvailable() Then Exit Function
++#If Win64 Then
++    PatternBounds n, ap, ai, cp, ri, rp, rn, wa
++    If cp(n) = 0 Then Exit Function
++    If LBound(av) <> 0 Or UBound(av) < ap(n) - 1 Or LBound(lv) <> 0 Or UBound(lv) < cp(n) - 1 Or LBound(dv) <> 0 Or UBound(dv) < n - 1 Or LBound(yv) <> 0 Or UBound(yv) < n - 1 Then err.Raise 9, "RPX_Native", "NATIVE_DD_BUFFER_SHORT"
++    ddCalls = ddCalls + 1
++    For first = 0 To n - 1 Step 32
++        Call Poll: last = first + 32: If last > n Then last = n
++        If first Mod 256 = 0 Then RPX_Stage "HSD DD LDL " & first & "/" & n
++        code = NativeDDNumeric(n, first, last, VarPtr(ap(0)), VarPtr(ai(0)), VarPtr(av(0)), VarPtr(cp(0)), VarPtr(ri(0)), VarPtr(rp(0)), VarPtr(rn(0)), VarPtr(wa(0)), VarPtr(lv(0)), VarPtr(dv(0)), VarPtr(yv(0)), minimum, failure)
++        CheckCode code
++        If code = 1 Then RPX_NativeDDNumeric = True: accepted = False: Exit Function
++    Next first
++    accepted = True: RPX_NativeDDNumeric = True
++#End If
++End Function
++
++Public Function RPX_NativeBacksolve(ByVal n As Long, ByRef cp() As Long, ByRef ri() As Long, ByRef lv() As Double, ByRef dv() As Double, ByRef rhs() As Double, ByRef answer() As Double) As Boolean
++    Dim phase As Long, first As Long, last As Long, code As Long
++    If Not RPX_NativeAvailable() Then Exit Function
++#If Win64 Then
++    SolveBounds n, cp, ri, rhs
++    If LBound(lv) <> 0 Or UBound(lv) < cp(n) - 1 Or LBound(dv) <> 0 Or UBound(dv) < n - 1 Or LBound(answer) <> 0 Or UBound(answer) < n - 1 Then err.Raise 9, "RPX_Native", "NATIVE_SOLVE_BUFFER_SHORT"
++    solveCalls = solveCalls + 1
++    For phase = 0 To 2
++        For first = 0 To n - 1 Step 256
++            Call Poll: last = first + 256: If last > n Then last = n
++            code = NativeBacksolve(n, phase, first, last, VarPtr(cp(0)), VarPtr(ri(0)), VarPtr(lv(0)), VarPtr(dv(0)), VarPtr(rhs(0)), VarPtr(answer(0)))
++            CheckCode code
++        Next first
++    Next phase
++    last = n
++    Do While last > 0
++        Call Poll: first = last - 256: If first < 0 Then first = 0
++        code = NativeBacksolve(n, 3, first, last, VarPtr(cp(0)), VarPtr(ri(0)), VarPtr(lv(0)), VarPtr(dv(0)), VarPtr(rhs(0)), VarPtr(answer(0)))
++        CheckCode code: last = first
++    Loop
++    RPX_NativeBacksolve = True
++#End If
++End Function
++
++Public Function RPX_NativeDDBacksolve(ByVal n As Long, ByRef cp() As Long, ByRef ri() As Long, ByRef lv() As RPX_DD, ByRef dv() As RPX_DD, ByRef rhs() As Double, ByRef answer() As RPX_DD) As Boolean
++    Dim phase As Long, first As Long, last As Long, code As Long
++    If Not RPX_NativeAvailable() Then Exit Function
++#If Win64 Then
++    SolveBounds n, cp, ri, rhs
++    If LBound(lv) <> 0 Or UBound(lv) < cp(n) - 1 Or LBound(dv) <> 0 Or UBound(dv) < n - 1 Or LBound(answer) <> 0 Or UBound(answer) < n - 1 Then err.Raise 9, "RPX_Native", "NATIVE_DD_SOLVE_BUFFER_SHORT"
++    solveCalls = solveCalls + 1
++    For phase = 0 To 2
++        For first = 0 To n - 1 Step 128
++            Call Poll: last = first + 128: If last > n Then last = n
++            code = NativeDDBacksolve(n, phase, first, last, VarPtr(cp(0)), VarPtr(ri(0)), VarPtr(lv(0)), VarPtr(dv(0)), VarPtr(rhs(0)), VarPtr(answer(0)))
++            CheckCode code
++        Next first
++    Next phase
++    last = n
++    Do While last > 0
++        Call Poll: first = last - 128: If first < 0 Then first = 0
++        code = NativeDDBacksolve(n, 3, first, last, VarPtr(cp(0)), VarPtr(ri(0)), VarPtr(lv(0)), VarPtr(dv(0)), VarPtr(rhs(0)), VarPtr(answer(0)))
++        CheckCode code: last = first
++    Loop
++    RPX_NativeDDBacksolve = True
++#End If
++End Function

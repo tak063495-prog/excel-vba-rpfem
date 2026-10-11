@@ -21,6 +21,18 @@ Excel VBAによる2次元RPFEM解析のソース、XLSM、検証資料です。
 
 **最新版G1R15では、G1R14（定常浸透・間隙水圧の一方向連成）に、浸透入力シートの整理・地下水面からの水圧入力・水平震度法（地震）を追加した（実Excelで全回帰済み：連成OFF・kh=0でD03N・D07AのFsがG1R14と全桁一致）。G1R14では連成OFFでD03N・D07AのFsがG1R13と全桁一致した。G1R13の修復・制限は[G1R13報告](versions/G1R13/REPORT.md)、G1R12時点の25ケース結果（23/25取得・11/25目標達成）は[過去25ケース結果](validation/G1R12_native25_20261009/REPORT.md)を参照し、区別する。図の矢印は規準化された速度機構であり、変位量ではない。**
 
+## G1R15 DLL2 — 64bit Excel用の高速化版
+
+2026年10月12日。G1R15のLDL・DD数値核と並べ替えをDLLへ移植した版です。堤防例題で **622.12秒（元VBAの既存記録）→443.89秒（前回DLL）→400.16秒（DLL2）**。元VBA比 **35.68%短縮・約1.55倍**、前回DLLから **9.85%短縮**でした。同じPCの既存記録との比較で、元VBAは再計測していません。
+
+- **[XLSM・DLL・ソース・検証結果の一式ZIPをダウンロード](https://github.com/tak063495-prog/excel-vba-rpfem/raw/refs/heads/main/downloads/RPFEM_G1R15_DLL2_Levee_Checked.zip)**
+- [最新DLL（rpfem_native_x64.dll）をダウンロード](https://github.com/tak063495-prog/excel-vba-rpfem/raw/refs/heads/main/versions/G1R15_DLL2/delivery/rpfem_native_x64.dll) / [対応XLSMをダウンロード](https://github.com/tak063495-prog/excel-vba-rpfem/raw/refs/heads/main/versions/G1R15_DLL2/delivery/RPFEM_20261012_G1R15_DLL2_Levee_Checked.xlsm)
+- [使い方](versions/G1R15_DLL2/README.md) / [検証報告](versions/G1R15_DLL2/REPORT.md) / [導入・復旧](versions/G1R15_DLL2/IMPORT_ROLLBACK_JA.md) / [VBAソース](versions/G1R15_DLL2/src/vba/) / [DLLのC・C++・ASMソースとライセンス](versions/G1R15_DLL2/native/) / [差分](versions/G1R15_DLL2/changes.diff) / [SHA-256](downloads/SHA256SUMS.txt)
+
+ZIPを展開し、`delivery/` のXLSMとDLLを同じフォルダーに置いてください。**DLLだけを元G1R15へ追加しても高速化経路には入りません。対応XLSMを使うか、導入手順でVBAを更新してください。** 前回DLL版を使っていたExcelは終了してから新しい版を開きます。DLL不在・読込不可・版不一致ではVBAへ自動切替します。
+
+64bit Excelで検証済み。構成則・Davis変換・Fs定義・許容差・監査を維持し、堤防の53求解・603監査は元VBAと前回DLLのログ記録精度で一致しました。Fs下界1.224448、上界1.234308、上下界差0.802056%。今回の実解析は堤防1例で、DLL2の25ケース全回帰と、DDを多用する実解析の高速化率は未確認です。
+
 ## G1R15 — 浸透入力の整理・地下水面入力・水平震度法（最新版）
 
 2026年10月11日。詳細は[G1R15 README](versions/G1R15/README.md)・[検証報告](versions/G1R15/REPORT.md)。

@@ -1,0 +1,4 @@
+{
+  "exit_code": 0,
+  "output": "order_failure_injection.cpp\r\nPASS 2835 allocation-failure points code207; 8 unknown exceptions code208; no leaks; cleanup after partial steps; invalid contracts rejected\r\n"
+}

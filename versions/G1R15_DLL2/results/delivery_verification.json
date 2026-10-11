@@ -1,0 +1,22 @@
+{
+  "protected_g1r15_files": 152,
+  "all_protected_hashes_match": true,
+  "original_modules": 65,
+  "delivered_modules": 66,
+  "added_modules": [
+    "RPX_Native"
+  ],
+  "changed_modules": [
+    "RPX_ColumnOrder",
+    "RPX_LDL",
+    "RPX_Order",
+    "RPX_SchurLDL",
+    "RPX_SeepUI"
+  ],
+  "unchanged_modules": 60,
+  "comparison": "VBA identifiers case-insensitive, string literals exact, equivalent VBE decimal/scientific Double literals normalized; comments/attributes excluded",
+  "all_document_and_class_modules_unchanged": true,
+  "cp932_crlf_lossless": true,
+  "xlsm_sha256": "5434dd7d9bfb1a76b366dfd29f39369fbb1a1effb793d6b010a3c742da1693bc",
+  "dll_sha256": "026a04e0c230a96389a677187a679938678b01448d2bb2e0560518b06d9c5c3c"
+}
