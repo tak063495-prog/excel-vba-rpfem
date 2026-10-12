@@ -1,0 +1,15 @@
+09:12:00 own Excel pid=33572
+09:12:01 modules: RPX_Seep,RPX_SeepUI,RPX_SeepWT
+09:12:02 compile=True
+09:12:02 probe relax=0.5: relax=0.5;iters=21;converged=True;h2=9.33333365122477;h3=9.66666682561239;err=3.1789143998661E-07;dfix=6.35782877012048E-07;res=1.78813924334165E-07
+09:12:03 saved C:\Users\link_\Desktop\G1R16_work_20261012\RPFEM_20261012_0915_G1R15_D07A_SeepConv.xlsm
+09:12:07 own Excel pid=27312
+09:12:08 modules: RPX_Seep,RPX_SeepUI,RPX_SeepWT
+09:12:09 compile=True
+09:12:09 probe relax=0.5: relax=0.5;iters=21;converged=True;h2=9.33333365122477;h3=9.66666682561239;err=3.1789143998661E-07;dfix=6.35782877012048E-07;res=1.78813924334165E-07
+09:12:10 saved C:\Users\link_\Desktop\G1R16_work_20261012\RPFEM_20261012_0915_G1R15_D03N_SeepConv.xlsm
+09:12:14 own Excel pid=25416
+09:12:15 modules: RPX_Seep,RPX_SeepUI,RPX_SeepWT
+09:12:16 compile=True
+09:12:16 probe relax=0.5: relax=0.5;iters=21;converged=True;h2=9.33333365122477;h3=9.66666682561239;err=3.1789143998661E-07;dfix=6.35782877012048E-07;res=1.78813924334165E-07
+09:12:17 saved C:\Users\link_\Desktop\G1R16_work_20261012\RPFEM_20261012_0915_G1R15_Levee_SeepConv.xlsm

@@ -1786,5 +1786,233 @@
       "path": "downloads/RPFEM_G1R15_Seismic_20261011.zip",
       "sha256": "17a051579e4c500bbb85313cd2bf5a5301929d7f6282ab7ed6f492618d05b991"
     }
+  },
+  "g1r16_registration": {
+    "version": "G1R16",
+    "date": "2026-10-12",
+    "base": "G1R15 and G1R15_DLL2 (main b17f485)",
+    "scope": "SEEPAGE_CONVERGENCE_FIX_ISSUE6_VERIFIED_EXCEL_ISSUE1_2_REGRESSION_PASSED",
+    "workbooks": {
+      "versions/G1R16/delivery/RPFEM_20261012_G1R16_D03N_Seismic.xlsm": "a8ccb369bb79614dee6c37c92cc1ebe0832657e71cef4efee6fc09f858221691",
+      "versions/G1R16/delivery/RPFEM_20261012_G1R16_D07A_Seismic.xlsm": "3cc4217b37b92fa813200450054d297cb2377b75a367c24946607cb10223db36",
+      "versions/G1R16/delivery/RPFEM_20261012_G1R16_DLL2_Levee_Checked.xlsm": "ba21ead6ea0dbfba813fe2e4caa25c214a787f9ce98c533e3055f5e5cd656c4a",
+      "versions/G1R16/delivery/RPFEM_20261012_G1R16_Levee_Example.xlsm": "73ed4d0d62dacbd1bdb14841adee17d4442514a994002b1e3a78408cd9564af8"
+    },
+    "registered_version_files": [
+      {
+        "path": "versions/G1R16/MANIFEST.json",
+        "bytes": 4109,
+        "sha256": "3532db2f8a243bdc318909e8eba6e625db1934a5576cb16ee08a473565eb517b"
+      },
+      {
+        "path": "versions/G1R16/README.md",
+        "bytes": 1978,
+        "sha256": "08db569a0d073c30f3a9063c717f29e58ac21e29d5dd3cd63e25f669f8c3db55"
+      },
+      {
+        "path": "versions/G1R16/REPORT.md",
+        "bytes": 3194,
+        "sha256": "5b52d3fcb7fbe7561442f77b035b7e52afb3d56dbfc9cfda67c2d23091fd6fc7"
+      },
+      {
+        "path": "versions/G1R16/SHA256SUMS.txt",
+        "bytes": 3907,
+        "sha256": "549e893106aad8ee3ed634fc1d0f7d4666914eb356c4381437e0f368f88994da"
+      },
+      {
+        "path": "versions/G1R16/changes.diff",
+        "bytes": 38257,
+        "sha256": "2575a849bc2d5218f85c3cfbc51908300165a993a7c14f436ae743572f1454ae"
+      },
+      {
+        "path": "versions/G1R16/delivery/RPFEM_20261012_G1R16_D03N_Seismic.xlsm",
+        "bytes": 2270128,
+        "sha256": "a8ccb369bb79614dee6c37c92cc1ebe0832657e71cef4efee6fc09f858221691"
+      },
+      {
+        "path": "versions/G1R16/delivery/RPFEM_20261012_G1R16_D07A_Seismic.xlsm",
+        "bytes": 2145690,
+        "sha256": "3cc4217b37b92fa813200450054d297cb2377b75a367c24946607cb10223db36"
+      },
+      {
+        "path": "versions/G1R16/delivery/RPFEM_20261012_G1R16_DLL2_Levee_Checked.xlsm",
+        "bytes": 2103340,
+        "sha256": "ba21ead6ea0dbfba813fe2e4caa25c214a787f9ce98c533e3055f5e5cd656c4a"
+      },
+      {
+        "path": "versions/G1R16/delivery/RPFEM_20261012_G1R16_Levee_Example.xlsm",
+        "bytes": 2419408,
+        "sha256": "73ed4d0d62dacbd1bdb14841adee17d4442514a994002b1e3a78408cd9564af8"
+      },
+      {
+        "path": "versions/G1R16/delivery/rpfem_native_x64.dll",
+        "bytes": 147968,
+        "sha256": "026a04e0c230a96389a677187a679938678b01448d2bb2e0560518b06d9c5c3c"
+      },
+      {
+        "path": "versions/G1R16/docs/lev_DLL2.png",
+        "bytes": 189005,
+        "sha256": "2bf8bd587ed927baa7e557eb17884c9378af1e0d0e595332e24f1983d17eeacd"
+      },
+      {
+        "path": "versions/G1R16/docs/lev_DLL2_vbafallback.png",
+        "bytes": 189005,
+        "sha256": "2bf8bd587ed927baa7e557eb17884c9378af1e0d0e595332e24f1983d17eeacd"
+      },
+      {
+        "path": "versions/G1R16/docs/lev_G1R15.png",
+        "bytes": 202920,
+        "sha256": "b53e3d53879e849cae74d0514681cee1a024eae3e76119f624955c0f04cecc17"
+      },
+      {
+        "path": "versions/G1R16/results/logs/20261012_091817_17104_mesh.tsv",
+        "bytes": 11450,
+        "sha256": "8ab493e478593876a036198a82fa36ed6acbcae2a4d4c0035e35fdeabd8d3dd9"
+      },
+      {
+        "path": "versions/G1R16/results/logs/20261012_091819_17104_analysis.tsv",
+        "bytes": 4738592,
+        "sha256": "9c4830a30483341d8f3ba9ca1cfc775f4379af0fde330ab4ce9968e89c494794"
+      },
+      {
+        "path": "versions/G1R16/results/logs/20261012_095429_23840_mesh.tsv",
+        "bytes": 11098,
+        "sha256": "2ee72aca1e04224500e81803ba41664ccfe3effa7c8d874697f0e73a9594ce3d"
+      },
+      {
+        "path": "versions/G1R16/results/logs/20261012_095430_23840_analysis.tsv",
+        "bytes": 4478594,
+        "sha256": "bf72fb4e7c85741cd8bb32b541477e6d347cdf4f957d51051963efdb8d725bd3"
+      },
+      {
+        "path": "versions/G1R16/results/logs/build6.log",
+        "bytes": 1135,
+        "sha256": "d0ecb427e9ea0e3a7e0a3ab5037362f154fc165644b8f31b9d1f653f3edae950"
+      },
+      {
+        "path": "versions/G1R16/results/logs/issueprobe_DLL2.log",
+        "bytes": 4717,
+        "sha256": "98f5e871c58291e7fc080786dfe73ea610e07a6c02fe1404f3b48651ee360f7e"
+      },
+      {
+        "path": "versions/G1R16/results/logs/issueprobe_G1R15.log",
+        "bytes": 4720,
+        "sha256": "957cbe7a1f1930b2dd9266062868a0d344f207956754f4ad79fa1b02ef35ac10"
+      },
+      {
+        "path": "versions/G1R16/results/logs/lev_DLL2.log",
+        "bytes": 670,
+        "sha256": "c2d308c12a3ee63da085ab02642e717ffa985dae9eb907645eed0556baf4d94b"
+      },
+      {
+        "path": "versions/G1R16/results/logs/lev_DLL2_vbafallback.log",
+        "bytes": 670,
+        "sha256": "f31b233d846cffbedd5fde1a1ad0e2200c7ad4ac9c641c28194dbc350a50ef5b"
+      },
+      {
+        "path": "versions/G1R16/results/logs/lev_G1R15.log",
+        "bytes": 662,
+        "sha256": "b7f703db58a164dad40905e2c41a84bb258ce2db77e4dc388c85fd37fbf25c7f"
+      },
+      {
+        "path": "versions/G1R16/results/logs/seeptest_DLL2.log",
+        "bytes": 1878,
+        "sha256": "5734af7e8513385e8b5e4c2478109f915d947cf0cf2285399b5184da0f027f5a"
+      },
+      {
+        "path": "versions/G1R16/results/logs/seeptest_G1R15.log",
+        "bytes": 1871,
+        "sha256": "d4625eee8a0ec89544adfc5783484579e349e4d5935bdeba7badb4332dce6438"
+      },
+      {
+        "path": "versions/G1R16/src/G1R15/RPX_Seep.bas",
+        "bytes": 18725,
+        "sha256": "8ca8546802048f22cc57128163e4d72f85f514008383a613a76c80658d440af6"
+      },
+      {
+        "path": "versions/G1R16/src/G1R15/RPX_SeepUI.bas",
+        "bytes": 83325,
+        "sha256": "94736935d3cff16f6a1975ad3061b8703c72fc966c95cf904068913b53b2de29"
+      },
+      {
+        "path": "versions/G1R16/src/G1R15/RPX_SeepWT.bas",
+        "bytes": 21969,
+        "sha256": "6b4a8980816b59926e7b2b0f093c4524dd2b2ce7bf7c96587a4bccccb4d0e985"
+      },
+      {
+        "path": "versions/G1R16/src/G1R15_DLL2/RPX_Seep.bas",
+        "bytes": 18725,
+        "sha256": "729525faf31a350c427512498c8677526693567d05d0e660634ddb8aae50e9f4"
+      },
+      {
+        "path": "versions/G1R16/src/G1R15_DLL2/RPX_SeepUI.bas",
+        "bytes": 83324,
+        "sha256": "b24a3681b13c821124a91868971da4f4bcde1c36394c93e627647d5aeb8810ac"
+      },
+      {
+        "path": "versions/G1R16/src/G1R15_DLL2/RPX_SeepWT.bas",
+        "bytes": 21984,
+        "sha256": "cc28de662981a4f7c36b0b65c86dc9aafa08ee0a35bcf584149c3421b95333ce"
+      },
+      {
+        "path": "versions/G1R16/tests/probe/AdaptIssueProbe.txt",
+        "bytes": 4127,
+        "sha256": "019dd109f668984f642e85fa2a81ab1bf562d4dafc6d84b24509457a4d5b441c"
+      },
+      {
+        "path": "versions/G1R16/tests/probe/IssueSolverProbe.bas",
+        "bytes": 2403,
+        "sha256": "54a471cd0edf3092d553c6b3f513f8446e285707e471835105f65c4c717d9646"
+      },
+      {
+        "path": "versions/G1R16/tests/probe/MeshProbe.bas",
+        "bytes": 3527,
+        "sha256": "fcbeb8788221caa45b020aea56f92b5a556fafaa89feeea8ba3a4f1bebcaef1d"
+      },
+      {
+        "path": "versions/G1R16/tests/probe/SmallRootProbe.bas",
+        "bytes": 1396,
+        "sha256": "74130b3041b4d3c2e75e9e33472b2f56347b331858fe39945cf79f1aaaeb9db9"
+      },
+      {
+        "path": "versions/G1R16/tests/probe/tokens.txt",
+        "bytes": 1089,
+        "sha256": "599a54ecc42f80feed211cf3b2aff7ec49bf10fc2dc2c252da6e147cd9a88243"
+      },
+      {
+        "path": "versions/G1R16/tests/seep_convergence_check.py",
+        "bytes": 5838,
+        "sha256": "3720da1c2334a8d91f804073d373797514c7ab8cafc2723fe06c5ff164ad333b"
+      },
+      {
+        "path": "versions/G1R16/tools/build6.ps1",
+        "bytes": 754,
+        "sha256": "f89938df8ab3ee11f1dd3e470d8103d8c3a5238c4b4776b1fbbb01bbaf26fc24"
+      },
+      {
+        "path": "versions/G1R16/tools/common.ps1",
+        "bytes": 2132,
+        "sha256": "b25ed8e77e6169b3b7ff208e4f732da42218a33f3d452565039f8a8843c3e95d"
+      },
+      {
+        "path": "versions/G1R16/tools/issue_probe.ps1",
+        "bytes": 4075,
+        "sha256": "fa24a7cffcec2bc56586c8bd76e76e1d4c646db188796f802a9d85449987a5a9"
+      },
+      {
+        "path": "versions/G1R16/tools/lev6.ps1",
+        "bytes": 1574,
+        "sha256": "d819063d71136d636a10fa78b8741ec6e6f56d03519104f60c790a5c6cea77c1"
+      },
+      {
+        "path": "versions/G1R16/tools/seeptest6.ps1",
+        "bytes": 1703,
+        "sha256": "fac311727a4610e6d4749027b647e0b61d43198fa47b4e07820c4fff56627d1b"
+      }
+    ],
+    "download_zip": {
+      "path": "downloads/RPFEM_G1R16_SeepConv_20261012.zip",
+      "sha256": "2d5d713c32961db2a7e581d1f3d1c2abdff0cc4fd532e5c3c6abc2080261f335"
+    }
   }
 }
