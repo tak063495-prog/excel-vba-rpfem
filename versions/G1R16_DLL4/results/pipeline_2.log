@@ -1,0 +1,2 @@
+RUNNING PID 36432
+{"status": "completed", "analysis_seconds": 273.88650849999976, "lower": 1.2244477290215, "upper": 1.2343080287831916, "native_end": "DLL_READY;numeric=1550;dd_numeric=0;backsolve=4681;ordering=15;column_ordering=0;nt_bulk=1504;g_bulk=3;gt_bulk=3067;kkt_bulk=1503;hsd_operator=64;corrector_bulk=1518;hsd_lu=0;hsd_lu_solve=0;solver_vector_calls=303077;hsd_jobs=93;hsd_job_steps=156;refine_jobs=1851;refine_steps=1851"}

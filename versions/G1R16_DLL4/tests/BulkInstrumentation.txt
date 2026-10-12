@@ -1,0 +1,32 @@
+Public Sub DLL3TestSolveDump(ByVal f As Long, ByVal precise As Boolean, ByVal unshifted As Boolean)
+    Dim i As Long, j As Long, k As Long, z() As RPX_DD, answer() As RPX_DD
+    Put #f, , CLng(&H160001): Put #f, , XN: Put #f, , XM: Put #f, , XB: Put #f, , XS: Put #f, , precise: Put #f, , unshifted
+    ReDim hh(0 To XB - 1, 0 To 2, 0 To 2): ReDim ww(0 To XB - 1, 0 To 2, 0 To 2): ReDim wi(0 To XB - 1, 0 To 2, 0 To 2)
+    ReDim sinvAll(0 To XS - 1): ReDim vvAll(0 To XS - 1)
+    Scaling precise
+    For k = 0 To XB - 1
+        For i = 0 To 2
+            For j = 0 To 2
+                Put #f, , hh(k, i, j): Put #f, , ww(k, i, j): Put #f, , wi(k, i, j)
+                If precise Then Put #f, , hNTValues(k, i, j).hi: Put #f, , hNTValues(k, i, j).lo
+            Next j
+        Next i
+        If precise Then Put #f, , hNTPrecise(k)
+    Next k
+    For i = 0 To XS - 1: Put #f, , sinvAll(i): Put #f, , vvAll(i): Next i
+    FactorSystem 0.0000000001, True
+    Put #f, , CLng(&H160002)
+    For i = 0 To UBound(XKVal): Put #f, , XKVal(i): Put #f, , originalK(i): Next i
+    For i = 0 To XN + XM - 1: Put #f, , XKScale(i): Next i
+    hMatrixEpoch = hMatrixEpoch + 1: hScaleReady = False: hHhReady = False
+    hUnshifted = unshifted
+    ReDim z(0 To XN + XM - 1)
+    For i = 0 To UBound(z): z(i).hi = Sin(i + 1.7): z(i).lo = Cos(i) * 1E-18: Next i
+    HOperator z, answer
+    Put #f, , CLng(&H160003)
+    For i = 0 To UBound(z): Put #f, , answer(i).hi: Put #f, , answer(i).lo: Next i
+    ReDim rc(0 To XS - 1): ReDim ds(0 To XS - 1): ReDim dz(0 To XS - 1)
+    For i = 0 To XS - 1: ds(i) = Cos(i + 0.7) * 0.1: dz(i) = Sin(i + 0.3) * 0.2: Next i
+    Corrector 0.003
+    For i = 0 To XS - 1: Put #f, , rc(i): Next i
+End Sub

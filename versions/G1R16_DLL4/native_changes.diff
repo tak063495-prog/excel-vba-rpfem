@@ -1,0 +1,554 @@
+--- G1R16_DLL_3/native/build.cmd
++++ G1R16_DLL4/native/build.cmd
+@@ -8,5 +8,5 @@
+ if errorlevel 1 exit /b 1
+ cl /nologo /O2 /fp:strict /MT /c /W4 /WX /std:c11 rpfem_native.c
+ if errorlevel 1 exit /b 1
+-cl /nologo /O2 /fp:strict /MT /LD /EHsc /W4 /WX /std:c++17 rpfem_order.cpp rpfem_lu.cpp rpfem_native.obj vba_fp.obj /Fe:..\delivery\rpfem_native_x64.dll /link /INCREMENTAL:NO
++cl /nologo /O2 /fp:strict /MT /LD /EHsc /W4 /WX /std:c++17 rpfem_order.cpp rpfem_lu.cpp rpfem_refine.cpp rpfem_hlinear.cpp rpfem_native.obj vba_fp.obj /Fe:..\delivery\rpfem_native_x64.dll /link /INCREMENTAL:NO
+ exit /b %errorlevel%
+--- /dev/null
++++ G1R16_DLL4/native/rpfem_hlinear.cpp
+@@ -0,0 +1,86 @@
++/* DLL4: resumable checked HSD solve/refinement. Owns all work vectors and
++ * borrows fresh model/factor pointers only within each call. LGPL-2.1-or-later. */
++#define NOMINMAX
++#include <windows.h>
++#include <cstdint>
++#include <vector>
++#include <unordered_map>
++#include <new>
++#include <cstring>
++#include <algorithm>
++struct DD {double hi,lo;};
++extern "C" int __stdcall rpx_backsolve(int32_t,int32_t,int32_t,int32_t,const int32_t*,const int32_t*,const double*,const double*,const double*,double*);
++extern "C" int __stdcall rpx_dd_backsolve(int32_t,int32_t,int32_t,int32_t,const int32_t*,const int32_t*,const DD*,const DD*,const double*,DD*);
++extern "C" int __stdcall rpx_lu_retained_solve(uintptr_t,int32_t,int32_t,int32_t,int32_t,int32_t,const double*,double*,int32_t*);
++extern "C" int __stdcall rpx_solver_vectors(int32_t,int32_t,int32_t,int32_t,const uintptr_t*,double,double*);
++extern "C" int __stdcall rpx_hoperator(int32_t,int32_t,int32_t,int32_t,int32_t,int32_t,int32_t,int32_t,const uintptr_t*);
++extern "C" double rpx_fp_add(double,double);
++extern "C" double rpx_fp_mul(double,double);
++extern "C" int32_t rpx_fp_greater_product(double,double,double);
++#define API extern "C" __declspec(dllexport) int __stdcall
++namespace {
++struct Job {
++ int32_t n,nx,nb,ns,kind=0,factor=0,stage=0,phase=0,cursor=0,j=0,checks=0,corrections=0,finite_checks=0,unshifted=0;uint64_t epoch=0;
++ bool active=false;double best=1e300,error=0,previous=0,history[9]={};
++ std::vector<double> scaled,solution,residual,correction;
++ std::vector<DD> bdd,xdd,prod,bestdd,ddsolution,opx,opv,opg,oph;
++ Job(int32_t n0,int32_t nx0,int32_t nb0,int32_t ns0):n(n0),nx(nx0),nb(nb0),ns(ns0),scaled(n),solution(n),residual(n),correction(n),bdd(n),xdd(n),prod(n),bestdd(n),ddsolution(n),opx(n),opv(n),opg(ns),oph(ns){}
++};
++std::unordered_map<uintptr_t,Job*> jobs;uintptr_t next_id=0;
++struct Failure {int code;};
++Job*get(uintptr_t h){auto i=jobs.find(h);if(i==jobs.end())throw Failure{318};return i->second;}
++template<class F>int checked(F f){try{return f();}catch(Failure e){return e.code;}catch(const std::bad_alloc&){return 207;}catch(...){return 208;}}
++uintptr_t ptr(const void*p){return reinterpret_cast<uintptr_t>(p);}
++}
++API rpx_hlinear_create(int32_t n,int32_t nx,int32_t nb,int32_t ns,uintptr_t *handle){if(!handle||n<1||n>1048576||nx<1||nx>n||nb<1||ns<1)return 100;*handle=0;
++ return checked([&](){Job*p=new Job(n,nx,nb,ns);try{if(next_id==UINTPTR_MAX)throw Failure{318};uintptr_t id=++next_id;jobs.emplace(id,p);*handle=id;}catch(...){delete p;throw;}return 0;});}
++API rpx_hlinear_destroy(uintptr_t handle){return checked([&](){auto p=get(handle);jobs.erase(handle);delete p;return 0;});}
++API rpx_hlinear_begin(uintptr_t handle,uint64_t epoch,int32_t factor,int32_t kind,int32_t unshifted,const uintptr_t *args){if(!args||kind<0||kind>2||epoch==0)return 100;
++ return checked([&](){auto p=get(handle);if(p->active)throw Failure{318};uintptr_t a[5]={args[0],args[1],args[2],ptr(p->bdd.data()),ptr(p->scaled.data())};double m[1]={};
++  int code=rpx_solver_vectors(2,p->n,0,p->n,a,0,m);if(code)throw Failure{code};
++  p->epoch=epoch;p->factor=factor;p->kind=kind;p->unshifted=unshifted;p->stage=0;p->phase=0;p->cursor=0;p->j=0;p->checks=0;p->corrections=0;p->finite_checks=0;
++  p->best=1e300;p->error=0;p->previous=0;std::fill(p->history,p->history+9,0.0);p->active=true;return 0;});}
++API rpx_hlinear_step(uintptr_t handle,uint64_t epoch,int32_t factor,const uintptr_t *opargs,const uintptr_t *fargs,uintptr_t lu,int32_t ms,int32_t *done){
++ if(!opargs||!fargs||!done||ms<1||ms>1000)return 100;*done=0;
++ return checked([&](){auto p=get(handle);if(!p->active||p->epoch!=epoch||p->factor!=factor)throw Failure{318};LARGE_INTEGER freq,clock;QueryPerformanceFrequency(&freq);QueryPerformanceCounter(&clock);LONGLONG deadline=clock.QuadPart+freq.QuadPart*ms/1000;
++  do {
++   int code=0;int32_t total=p->n,first=p->cursor,last=std::min(total,first+32);double m[1]={p->error};
++   if(p->stage==0||p->stage==4){ /* initial or correction triangular solve */
++    bool initial=p->stage==0;const double *rhs=initial?p->scaled.data():p->residual.data();double *out=initial?p->solution.data():p->correction.data();
++    if((p->kind==2&&p->phase==1)||(p->kind!=2&&p->phase==3)){last=total-first;first=std::max(0,last-32);}
++    if(p->kind==2){code=rpx_lu_retained_solve(lu,p->factor,p->n,p->phase,first,last,rhs,out,&p->finite_checks);}
++    else if(p->kind==1){code=rpx_dd_backsolve(p->n,p->phase,first,last,reinterpret_cast<const int32_t*>(fargs[0]),reinterpret_cast<const int32_t*>(fargs[1]),reinterpret_cast<const DD*>(fargs[2]),reinterpret_cast<const DD*>(fargs[3]),rhs,p->ddsolution.data());}
++    else code=rpx_backsolve(p->n,p->phase,first,last,reinterpret_cast<const int32_t*>(fargs[0]),reinterpret_cast<const int32_t*>(fargs[1]),reinterpret_cast<const double*>(fargs[2]),reinterpret_cast<const double*>(fargs[3]),rhs,out);
++   }else if(p->stage==1||p->stage==5){ /* DD iterate initialization/correction */
++    uintptr_t a[3]={ptr(p->xdd.data()),ptr(p->stage==1?p->solution.data():p->correction.data()),ptr(p->ddsolution.data())};
++    code=rpx_solver_vectors(p->stage==1?4:3,p->n,first,last,a,p->kind==1?1.0:0.0,m);
++   }else if(p->stage==2){ /* checked original DD operator */
++    uintptr_t a[20];std::copy(opargs,opargs+14,a);a[14]=ptr(p->xdd.data());a[15]=ptr(p->prod.data());a[16]=ptr(p->opx.data());a[17]=ptr(p->opv.data());a[18]=ptr(p->opg.data());a[19]=ptr(p->oph.data());
++    if(p->phase==0){code=rpx_hoperator(p->n,p->nx,p->nb,p->ns,-1,0,0,p->unshifted,a);p->cursor=total;}
++    else{int32_t phase=p->phase-1;if(phase==1)total=p->nb;if(phase==2)total=p->n-p->nx;last=std::min(total,first+32);
++     if(total>0)code=rpx_hoperator(p->n,p->nx,p->nb,p->ns,phase,first,last,p->unshifted,a);}
++   }else if(p->stage==3){uintptr_t a[4]={ptr(p->bdd.data()),ptr(p->prod.data()),opargs[1],ptr(p->residual.data())};
++    /* opargs[1] is DD coefficient data; plain Double scales are fargs[4]. */
++    a[2]=fargs[4];code=rpx_solver_vectors(1,p->n,first,last,a,0,m);p->error=m[0];
++   }else throw Failure{318};
++   if(code){p->active=false;throw Failure{code};}
++   p->cursor=std::min(total,p->cursor+32);
++   if(p->cursor==total){p->cursor=0;
++    if(p->stage==0||p->stage==4){p->phase++;int32_t phases=p->kind==2?3:4;
++     if(p->phase==phases){p->phase=0;p->stage=p->stage==0?1:5;}}
++    else if(p->stage==1||p->stage==5){if(p->stage==5){p->corrections++;p->j++;}p->stage=2;p->phase=0;p->error=0;}
++    else if(p->stage==2){p->phase++;if(p->phase==5){p->stage=3;p->phase=0;}}
++    else if(p->stage==3){p->history[p->j]=p->error;p->checks++;if(p->error<p->best){p->best=p->error;p->bestdd=p->xdd;}
++     if(p->error<=1e-11||(p->j>0&&rpx_fp_greater_product(p->error,p->previous,10))||(p->j>=3&&(p->kind==2||rpx_fp_greater_product(p->error,p->previous,.25)))||p->j==8){p->active=false;*done=1;return 0;}
++     p->previous=p->error;p->stage=4;p->phase=0;
++    }
++   }
++   QueryPerformanceCounter(&clock);
++  }while(clock.QuadPart<deadline);return 0;
++ });
++}
++API rpx_hlinear_result(uintptr_t handle,uint64_t epoch,DD *best,double *scaled,DD *bdd,double *metrics){if(!best||!scaled||!bdd||!metrics)return 100;
++ return checked([&](){auto p=get(handle);if(p->active||p->epoch!=epoch||p->checks<1)throw Failure{318};
++  std::memcpy(best,p->bestdd.data(),size_t(p->n)*16);std::memcpy(scaled,p->scaled.data(),size_t(p->n)*8);std::memcpy(bdd,p->bdd.data(),size_t(p->n)*16);
++  metrics[0]=p->checks;metrics[1]=p->corrections;metrics[2]=p->best;metrics[3]=p->error;for(int i=0;i<9;i++)metrics[4+i]=p->history[i];metrics[13]=p->finite_checks;return 0;});}
++API rpx_hlinear_live_handles(void){return static_cast<int>(jobs.size());}
+--- G1R16_DLL_3/native/rpfem_lu.cpp
++++ G1R16_DLL4/native/rpfem_lu.cpp
+@@ -5,7 +5,7 @@
+  */
+ #include <cstdint>
+ #include <vector>
+-#include <unordered_set>
++#include <unordered_map>
+ #include <algorithm>
+ #include <cmath>
+ #include <cstring>
+@@ -162,12 +162,13 @@
+         std::vector<int32_t>().swap(extra_head);std::vector<int32_t>().swap(extra_next);std::vector<int32_t>().swap(extra_col);std::vector<double>().swap(extra_value);
+     }
+ };
+-std::unordered_set<Lu*> live_handles;
+-Lu* get(uintptr_t h){auto p=reinterpret_cast<Lu*>(h);if(live_handles.find(p)==live_handles.end())throw Error{CONTEXT};return p;}
++std::unordered_map<uintptr_t,Lu*> live_handles;
++uintptr_t next_handle=0;
++Lu* get(uintptr_t h){auto i=live_handles.find(h);if(i==live_handles.end())throw Error{CONTEXT};return i->second;}
+ template<class F> int checked(F f){try{return f();}catch(const Error&e){return e.code;}catch(const std::bad_alloc&){return ALLOC;}catch(...){return UNKNOWN;}}
+ }
+ API rpx_lu_create(int32_t n,int32_t nnz,double maximum,double existing,int32_t epoch,const int32_t *order,int32_t streaming,double threshold,uintptr_t *handle) {
+-    if(!handle||!order)return BAD;*handle=0;return checked([&](){Lu*p=new Lu(n,nnz,maximum,existing,epoch,order,streaming!=0,threshold);try{live_handles.insert(p);}catch(...){delete p;throw;}*handle=reinterpret_cast<uintptr_t>(p);return OK;});
++    if(!handle||!order)return BAD;*handle=0;return checked([&](){Lu*p=new Lu(n,nnz,maximum,existing,epoch,order,streaming!=0,threshold);try{if(next_handle==UINTPTR_MAX)throw Error{CONTEXT};uintptr_t id=++next_handle;live_handles.emplace(id,p);*handle=id;}catch(...){delete p;throw;}return OK;});
+ }
+ API rpx_lu_input(uintptr_t handle,int32_t phase,int32_t first,int32_t last,const int32_t *ap,const int32_t *ai,const double *av,int32_t symmetric,int32_t equilibrate) {
+     return checked([&](){get(handle)->input(phase,first,last,ap,ai,av,symmetric!=0,equilibrate!=0);return OK;});
+@@ -189,7 +190,7 @@
+         if(bytes>size_t(size))return BAD;if(bytes)std::memcpy(out,data,bytes);return OK;});
+ }
+ API rpx_lu_destroy(uintptr_t handle) {
+-    auto p=reinterpret_cast<Lu*>(handle);auto it=live_handles.find(p);if(it==live_handles.end())return CONTEXT;live_handles.erase(it);delete p;return OK;
++    auto it=live_handles.find(handle);if(it==live_handles.end())return CONTEXT;auto p=it->second;live_handles.erase(it);delete p;return OK;
+ }
+ API rpx_lu_backsolve(int32_t n,int32_t phase,int32_t first,int32_t last,const uintptr_t *args,int32_t lcount,int32_t ucount,int32_t *checks) {
+     if(n<1||first<0||last<first||last>n||!args||!checks||lcount<0||ucount<0)return BAD;
+@@ -204,3 +205,19 @@
+ API rpx_lu_live_handles(void) { return int(live_handles.size()); }
+ 
+ 
++
++/* DLL4: factors and forward/backsolve workspace remain owned by this context.
++ * Borrowed VBA pointers exist only during this call. Epoch and dimension must
++ * agree; every release/park/mode switch invalidates the scoped handle. */
++API rpx_lu_retained_solve(uintptr_t handle,int32_t epoch,int32_t n,int32_t phase,int32_t first,int32_t last,const double *rhs,double *out,int32_t *checks) {
++    if(!rhs||!out||!checks)return BAD;
++    return checked([&](){Lu*p=get(handle);if(!p->ready||p->epoch!=epoch||p->n!=n)throw Error{CONTEXT};
++        int32_t zero_index=0;double zero_value=0;
++        uintptr_t args[14]={reinterpret_cast<uintptr_t>(p->order.data()),reinterpret_cast<uintptr_t>(p->row_at.data()),
++            reinterpret_cast<uintptr_t>(p->row_scale.data()),reinterpret_cast<uintptr_t>(p->col_scale.data()),
++            reinterpret_cast<uintptr_t>(p->lp.data()),reinterpret_cast<uintptr_t>(p->li.data()),reinterpret_cast<uintptr_t>(p->lv.data()),
++            reinterpret_cast<uintptr_t>(p->up.data()),reinterpret_cast<uintptr_t>(p->ui.empty()?&zero_index:p->ui.data()),reinterpret_cast<uintptr_t>(p->uv.empty()?&zero_value:p->uv.data()),
++            reinterpret_cast<uintptr_t>(p->diagonal.data()),reinterpret_cast<uintptr_t>(rhs),reinterpret_cast<uintptr_t>(p->u_val.data()),reinterpret_cast<uintptr_t>(out)};
++        return rpx_lu_backsolve(n,phase,first,last,args,p->lp[n],p->up[n],checks);
++    });
++}
+--- G1R16_DLL_3/native/rpfem_native.c
++++ G1R16_DLL4/native/rpfem_native.c
+@@ -17,7 +17,7 @@
+        PRODUCT_UNDERFLOW=202, ZERO_DIVISOR=203, NONFINITE_VALUE=204,
+        DOUBLE_ZERO_DIVISOR=205, DOUBLE_OVERFLOW=206 };
+ _Static_assert(sizeof(dd)==16, "VBA DD layout");
+-API rpx_abi(void) { return 0x00160003; }
++API rpx_abi(void) { return 0x00160004; }
+ extern double rpx_fp_mulsub(double accum,double a,double b);
+ extern double rpx_fp_mul(double a,double b);
+ extern double rpx_fp_add(double a,double b);
+@@ -187,3 +187,5 @@
+     return error;
+ }
+ #include "rpfem_bulk.h"
++
++#include "rpfem_solver.h"
+--- /dev/null
++++ G1R16_DLL4/native/rpfem_refine.cpp
+@@ -0,0 +1,63 @@
++/* DLL4 resumable ordinary LDL solve + checked refinement.
++ * Owns workspace, never retains borrowed VBA pointers. LGPL-2.1-or-later. */
++#define NOMINMAX
++#include <windows.h>
++#include <cstdint>
++#include <vector>
++#include <unordered_map>
++#include <new>
++#include <cstring>
++#include <algorithm>
++extern "C" int __stdcall rpx_backsolve(int32_t,int32_t,int32_t,int32_t,const int32_t*,const int32_t*,const double*,const double*,const double*,double*);
++extern "C" int __stdcall rpx_solver_vectors(int32_t,int32_t,int32_t,int32_t,const uintptr_t*,double,double*);
++#define API extern "C" __declspec(dllexport) int __stdcall
++namespace {
++struct Refine {
++ int32_t n,stage=0,cursor=0,checks=0,corrections=0;uint64_t epoch=0;
++ double residual=0;bool active=false;
++ std::vector<double> rhs,answer,res,delta;
++ explicit Refine(int32_t size):n(size),rhs(size),answer(size),res(size),delta(size){}
++};
++std::unordered_map<uintptr_t,Refine*> jobs;uintptr_t next_id=0;
++struct Failure {int code;};
++Refine* get(uintptr_t id){auto i=jobs.find(id);if(i==jobs.end())throw Failure{318};return i->second;}
++template<class F>int checked(F f){try{return f();}catch(Failure e){return e.code;}catch(const std::bad_alloc&){return 207;}catch(...){return 208;}}
++}
++API rpx_refine_create(int32_t n,uintptr_t *handle){if(!handle||n<1)return 100;*handle=0;
++ return checked([&](){Refine*p=new Refine(n);try{if(next_id==UINTPTR_MAX)throw Failure{318};uintptr_t id=++next_id;jobs.emplace(id,p);*handle=id;}catch(...){delete p;throw;}return 0;});}
++API rpx_refine_destroy(uintptr_t handle){return checked([&](){auto p=get(handle);jobs.erase(handle);delete p;return 0;});}
++API rpx_refine_begin(uintptr_t handle,int32_t n,uint64_t epoch,const double *rhs){if(!rhs)return 100;
++ return checked([&](){auto p=get(handle);if(p->n!=n||epoch==0||p->active)throw Failure{318};
++  std::memcpy(p->rhs.data(),rhs,size_t(n)*8);std::memcpy(p->answer.data(),rhs,size_t(n)*8);
++  p->epoch=epoch;p->stage=1;p->cursor=0;p->checks=0;p->corrections=0;p->residual=0;p->active=true;return 0;});}
++API rpx_refine_step(uintptr_t handle,int32_t n,uint64_t epoch,const uintptr_t *args,int32_t milliseconds,int32_t *done){
++ if(!args||!done||milliseconds<1||milliseconds>1000)return 100;for(int i=0;i<7;i++)if(!args[i])return 100;*done=0;
++ return checked([&](){auto p=get(handle);if(p->n!=n||p->epoch!=epoch||!p->active)throw Failure{318};LARGE_INTEGER freq,clock;QueryPerformanceFrequency(&freq);QueryPerformanceCounter(&clock);LONGLONG deadline=clock.QuadPart+freq.QuadPart*milliseconds/1000;
++  auto ap=reinterpret_cast<const int32_t*>(args[0]),ai=reinterpret_cast<const int32_t*>(args[1]);auto av=reinterpret_cast<const double*>(args[2]);
++  auto cp=reinterpret_cast<const int32_t*>(args[3]),ri=reinterpret_cast<const int32_t*>(args[4]);auto lv=reinterpret_cast<const double*>(args[5]),dv=reinterpret_cast<const double*>(args[6]);
++  do {
++   int32_t first=p->cursor,last=std::min(n,first+32);int code=0;double metric[1]={p->residual};
++   if(p->stage>=1&&p->stage<=3){int phase=p->stage;double*x=p->answer.data();if(phase==3){last=n-first;first=std::max(0,last-32);}code=rpx_backsolve(n,phase,first,last,cp,ri,lv,dv,p->rhs.data(),x);}
++   else if(p->stage==4){std::fill(p->res.begin(),p->res.end(),0.0);p->residual=0;p->cursor=n;}
++   else if(p->stage==5){uintptr_t a[5]={reinterpret_cast<uintptr_t>(ap),reinterpret_cast<uintptr_t>(ai),reinterpret_cast<uintptr_t>(av),reinterpret_cast<uintptr_t>(p->answer.data()),reinterpret_cast<uintptr_t>(p->res.data())};code=rpx_solver_vectors(11,n,first,last,a,0,metric);}
++   else if(p->stage==6){uintptr_t a[2]={reinterpret_cast<uintptr_t>(p->rhs.data()),reinterpret_cast<uintptr_t>(p->res.data())};code=rpx_solver_vectors(12,n,first,last,a,0,metric);p->residual=metric[0];}
++   else if(p->stage==7){std::copy(p->res.begin(),p->res.end(),p->delta.begin());p->cursor=n;}
++   else if(p->stage>=8&&p->stage<=10){int phase=p->stage-7;double*x=p->delta.data();if(phase==3){last=n-first;first=std::max(0,last-32);}code=rpx_backsolve(n,phase,first,last,cp,ri,lv,dv,p->res.data(),x);}
++   else if(p->stage==11){uintptr_t a[2]={reinterpret_cast<uintptr_t>(p->answer.data()),reinterpret_cast<uintptr_t>(p->delta.data())};code=rpx_solver_vectors(13,n,first,last,a,0,metric);}
++   else throw Failure{318};
++   if(code){p->active=false;throw Failure{code};}
++   p->cursor=std::min(n,p->cursor+32);
++   if(p->cursor==n){p->cursor=0;
++    if(p->stage==6){p->checks++;if(p->residual<1e-11){p->active=false;*done=1;return 0;}}
++    if(p->stage==11){p->corrections++;if(p->checks==3){p->active=false;*done=1;return 0;}p->stage=4;}
++    else p->stage++;
++   }
++   QueryPerformanceCounter(&clock);
++  }while(clock.QuadPart<deadline);
++  return 0;
++ });
++}
++API rpx_refine_result(uintptr_t handle,int32_t n,uint64_t epoch,double *out,int32_t *checks,int32_t *corrections,double *residual){
++ if(!out||!checks||!corrections||!residual)return 100;return checked([&](){auto p=get(handle);if(p->n!=n||p->epoch!=epoch||p->active||p->checks<1)throw Failure{318};
++  std::memcpy(out,p->answer.data(),size_t(n)*8);*checks=p->checks;*corrections=p->corrections;*residual=p->residual;return 0;});}
++API rpx_refine_live_handles(void){return static_cast<int>(jobs.size());}
+--- /dev/null
++++ G1R16_DLL4/native/rpfem_solver.h
+@@ -0,0 +1,176 @@
++/* DLL4 remaining solver vector loops. Same stored-Double and DD boundaries.
++ * Pointers are borrowed for the duration of this call only. LGPL-2.1-or-later. */
++#define VP(T,I) ((T*)a[I])
++extern double rpx_fp_bilinear3(double,double,double,double,double,double);
++extern double rpx_fp_abs6(double,double,double,double,double,double);
++extern double rpx_fp_discriminant(double,double,double);
++extern int32_t rpx_fp_boundary_tiny(double,double);
++API rpx_solver_vectors(int32_t op,int32_t n,int32_t first,int32_t last,const uintptr_t *a,double alpha,double *m) {
++ int32_t i,p,r;int e=0;dd t;double v,error,ratio;
++ if(!bounds(n,first,last)||!a||!m)return BAD_ARGUMENT;
++ {int32_t required=0;
++  switch(op){case 1:required=4;break;case 2:required=5;break;case 3:case 4:required=alpha!=0?3:2;break;case 5:required=6;break;case 6:required=5;break;case 7:required=13;break;case 8:required=9;break;case 9:required=2;break;case 10:required=3;break;case 11:required=5;break;case 12:case 13:case 15:required=2;break;case 14:required=5;break;case 16:case 17:required=4;break;case 18:required=7;break;case 19:required=9;break;default:return BAD_ARGUMENT;}
++  for(i=0;i<required;i++)if(!a[i]&&!(i==1&&(op==3||op==4)&&alpha!=0))return BAD_ARGUMENT;
++ }
++ if(op==1){ /* HLinear: residual and maximum scaled/original error */
++  const dd *b=VP(dd,0),*product=VP(dd,1);const double *scale=VP(double,2);double *res=VP(double,3);
++  for(i=first;i<last;i++){t=sub(b[i],product[i]);res[i]=value(t,&e);if(e)return e;
++   error=fabs(res[i]);if(error>m[0])m[0]=error;if(scale[i]==0)return DOUBLE_ZERO_DIVISOR;
++   error=fabs(rpx_fp_div(res[i],scale[i]));if(!isfinite(error))return DOUBLE_OVERFLOW;if(error>m[0])m[0]=error;}return OK;
++ }
++ if(op==2){ /* HLinear: keep S*b low component */
++  const double *rhs=VP(double,0);const int32_t *perm=VP(int32_t,1);const ddcoef *scale=VP(ddcoef,2);dd *b=VP(dd,3);double *scaled=VP(double,4);
++  for(i=first;i<last;i++){p=perm[i];if(p<0||p>=n)return BAD_ARGUMENT;if(!isfinite(rhs[p])||fabs(rhs[p])>1e290)return 322;
++   b[i]=bulk_right_product(from_double(rhs[p]),scale[i],&e);if(e)return e;scaled[i]=value(b[i],&e);if(e)return e;}return OK;
++ }
++ if(op==3||op==4){ /* correction / initial Double to DD */
++  dd *x=VP(dd,0);const double *y=VP(double,1);const dd *yd=VP(dd,2);
++  for(i=first;i<last;i++){t=(alpha!=0)?yd[i]:from_double(y[i]);x[i]=(op==3)?add(x[i],t):t;}return OK;
++ }
++ if(op==5){ /* final unscale/unpermute and extraction */
++  const dd *best=VP(dd,0);const ddcoef *scale=VP(ddcoef,1);const int32_t *perm=VP(int32_t,2);dd *out=VP(dd,3);double *answer=VP(double,4),*stored=VP(double,5);
++  for(i=first;i<last;i++){p=perm[i];if(p<0||p>=n)return BAD_ARGUMENT;stored[i]=value(best[i],&e);if(e)return e;
++   out[p]=bulk_right_product(best[i],scale[i],&e);if(e)return e;answer[p]=value(out[p],&e);if(e)return e;}return OK;
++ }
++ if(op==6){ /* backward diagnostic input conversions */
++  const dd *scaled=VP(dd,0);const ddcoef *scale=VP(ddcoef,1);const double *x=VP(double,2);dd *ox=VP(dd,3),*round=VP(dd,4);
++  for(i=first;i<last;i++){ox[i]=bulk_right_product(scaled[i],scale[i],&e);if(e)return e;round[i]=from_double(x[i]);}return OK;
++ }
++ if(op==7){ /* all three diagnostic sparse products, existing row-entry order */
++  const int32_t *ap=VP(int32_t,0),*ai=VP(int32_t,1);const ddcoef *val=VP(ddcoef,2),*orig=VP(ddcoef,3);
++  const dd *xs=VP(dd,4),*xo=VP(dd,5),*xr=VP(dd,6);dd *p1=VP(dd,7),*p2=VP(dd,8),*p3=VP(dd,9);
++  const double *av=VP(double,10),*x=VP(double,11);double *den=VP(double,12);
++  for(i=first;i<last;i++)for(p=ap[i];p<ap[i+1];p++){r=ai[p];if(r<0||r>i)return BAD_ARGUMENT;
++   t=bulk_coef_product(val[p],xs[i],&e);if(e)return e;p1[r]=add(p1[r],t);
++   if(r!=i){t=bulk_coef_product(val[p],xs[r],&e);if(e)return e;p1[i]=add(p1[i],t);}
++   t=bulk_coef_product(orig[p],xo[i],&e);if(e)return e;p2[r]=add(p2[r],t);
++   if(r!=i){t=bulk_coef_product(orig[p],xo[r],&e);if(e)return e;p2[i]=add(p2[i],t);}
++   t=bulk_coef_product(val[p],xr[i],&e);if(e)return e;p3[r]=add(p3[r],t);
++   if(r!=i){t=bulk_coef_product(val[p],xr[r],&e);if(e)return e;p3[i]=add(p3[i],t);}
++   den[r]=rpx_fp_addmul(den[r],fabs(av[p]),fabs(x[i]));if(r!=i)den[i]=rpx_fp_addmul(den[i],fabs(av[p]),fabs(x[r]));
++  }return OK;
++ }
++ if(op==8){ /* HBackward reductions: metrics persist across slices */
++  const double *row=VP(double,0),*x=VP(double,1),*b=VP(double,2),*rhs=VP(double,3);const int32_t *perm=VP(int32_t,4);
++  const dd *p1=VP(dd,5),*p2=VP(dd,6);double *den=VP(double,8);
++  for(i=first;i<last;i++){
++   if(row[i]>m[0])m[0]=row[i];if(fabs(x[i])>m[1])m[1]=fabs(x[i]);if(fabs(b[i])>m[2])m[2]=fabs(b[i]);
++   t=sub(from_double(b[i]),p1[i]);error=fabs(value(t,&e));if(e)return e;den[i]=rpx_fp_add(den[i],fabs(b[i]));
++   if(error>m[3]){m[3]=error;m[4]=(double)i;}ratio=0;
++   if(den[i]>0)ratio=rpx_fp_div(error,den[i]);else if(error>0)ratio=1e300;if(ratio>m[5])m[5]=ratio;
++   p=perm[i];if(p<0||p>=n)return BAD_ARGUMENT;t=sub(from_double(rhs[p]),p2[i]);v=fabs(value(t,&e));if(e)return e;if(v>m[6])m[6]=v;
++  }return OK;
++ }
++ if(op==9){const double *b=VP(double,0);const dd *p3=VP(dd,1);for(i=first;i<last;i++){t=sub(from_double(b[i]),p3[i]);v=fabs(value(t,&e));if(e)return e;if(v>m[0])m[0]=v;}return OK;}
++ if(op==10){ /* candidate HSD update; live state remains in VBA until audited */
++  const double *old=VP(double,0);const dd *d=VP(dd,1);double *out=VP(double,2);
++  for(i=first;i<last;i++){t=mul(from_double(alpha),d[i],&e);if(e)return e;out[i]=value(add(from_double(old[i]),t),&e);if(e)return e;if(!isfinite(out[i])||fabs(out[i])>1e290)return 321;}return OK;
++ }
++ if(op==11){ /* symmetric Double product */
++  const int32_t *ap=VP(int32_t,0),*ai=VP(int32_t,1);const double *av=VP(double,2),*x=VP(double,3);double *y=VP(double,4);
++  for(i=first;i<last;i++)for(p=ap[i];p<ap[i+1];p++){r=ai[p];if(r<0||r>i)return BAD_ARGUMENT;
++   y[r]=rpx_fp_addmul(y[r],av[p],x[i]);if(!isfinite(y[r]))return DOUBLE_OVERFLOW;
++   if(r!=i){y[i]=rpx_fp_addmul(y[i],av[p],x[r]);if(!isfinite(y[i]))return DOUBLE_OVERFLOW;}}
++  return OK;
++ }
++ if(op==12){ /* normal refinement residual */
++  const double *rhs=VP(double,0);double *res=VP(double,1);
++  for(i=first;i<last;i++){res[i]=rpx_fp_sub(rhs[i],res[i]);if(!isfinite(res[i]))return DOUBLE_OVERFLOW;if(fabs(res[i])>m[0])m[0]=fabs(res[i]);}return OK;
++ }
++ if(op==13){double *x=VP(double,0);const double *delta=VP(double,1);for(i=first;i<last;i++){x[i]=rpx_fp_add(x[i],delta[i]);if(!isfinite(x[i]))return DOUBLE_OVERFLOW;}return OK;}
++ if(op==14){ /* unpack normal direction */
++  const double *answer=VP(double,0),*scale=VP(double,1);const int32_t *perm=VP(int32_t,2);double *dx=VP(double,3),*dy=VP(double,4);int32_t nx=(int32_t)alpha;
++  for(i=first;i<last;i++){p=perm[i];if(p<0||p>=n)return BAD_ARGUMENT;v=rpx_fp_mul(answer[i],scale[i]);if(!isfinite(v))return DOUBLE_OVERFLOW;if(p<nx)dx[p]=v;else dy[p-nx]=v;}return OK;
++ }
++ if(op==15){ /* normal state update */
++  double *x=VP(double,0);const double *d=VP(double,1);for(i=first;i<last;i++){x[i]=rpx_fp_addmul(x[i],alpha,d[i]);if(!isfinite(x[i]))return DOUBLE_OVERFLOW;}return OK;
++ }
++ if(op==16){ /* step interior, preserving examined count and early exit */
++  const int32_t *dims=VP(int32_t,0),*starts=VP(int32_t,1);const double *x=VP(double,2),*d=VP(double,3);double u,w;
++  for(i=first;i<last;i++){p=starts[i];m[0]++;v=rpx_fp_addmul(x[p],alpha,d[p]);if(!isfinite(v))return DOUBLE_OVERFLOW;
++   if(v<=0){m[1]=0;return OK;}if(dims[i]==3){u=rpx_fp_addmul(x[p+1],alpha,d[p+1]);w=rpx_fp_addmul(x[p+2],alpha,d[p+2]);if(v<=rpx_fp_norm2(u,w)){m[1]=0;return OK;}}
++  }return OK;
++ }
++ if(op==17){ /* ConeBoundaryHit: all roots, branch choices and ties retained */
++  const int32_t *dims=VP(int32_t,0),*starts=VP(int32_t,1);const double *x=VP(double,2),*d=VP(double,3);
++  double s0,s1,s2,d0,d1,d2,aa,bb,cc,disc,q,root1,root2,cand,t0,xscale;
++  for(i=first;i<last;i++){p=starts[i];s0=x[p];d0=d[p];if(s0<=0){m[2]=0;return OK;}
++   if(d0<0){cand=rpx_fp_div(-s0,d0);if(cand<=0){m[2]=0;return OK;}if(cand<m[0]){m[0]=cand;m[1]=(double)i;}}
++   if(dims[i]==3){s1=x[p+1];s2=x[p+2];d1=d[p+1];d2=d[p+2];cc=rpx_fp_det3(s0,s1,s2);if(!isfinite(cc))return DOUBLE_OVERFLOW;if(cc<=0){m[2]=0;return OK;}
++    aa=rpx_fp_det3(d0,d1,d2);bb=rpx_fp_bilinear3(s0,d0,s1,d1,s2,d2);xscale=rpx_fp_abs6(s0,s1,s2,d0,d1,d2);if(xscale<1)xscale=1;
++    if(!isfinite(aa)||!isfinite(bb)||!isfinite(xscale))return DOUBLE_OVERFLOW;
++    if(rpx_fp_boundary_tiny(aa,xscale)){if(!rpx_fp_boundary_tiny(bb,xscale)){cand=rpx_fp_div(-cc,bb);t0=rpx_fp_addmul(s0,cand,d0);if(cand>0&&t0>=0&&cand<m[0]){m[0]=cand;m[1]=(double)i;}}}
++    else{disc=rpx_fp_discriminant(bb,aa,cc);if(!isfinite(disc))return DOUBLE_OVERFLOW;if(disc>=0){disc=rpx_fp_sqrt(disc);q=rpx_fp_adddiv(bb,bb>=0?disc:-disc,-2);
++      if(fabs(q)<=1e-300){m[2]=0;return OK;}root1=rpx_fp_div(q,aa);root2=rpx_fp_div(cc,q);
++      t0=rpx_fp_addmul(s0,root1,d0);if(root1>0&&t0>=0&&root1<m[0]){m[0]=root1;m[1]=(double)i;}
++      t0=rpx_fp_addmul(s0,root2,d0);if(root2>0&&t0>=0&&root2<m[0]){m[0]=root2;m[1]=(double)i;}
++    }}
++   }
++  }return OK;
++ }
++ if(op==18){ /* HSD border reduction, DD accumulation order retained */
++  const double *row=VP(double,0);const int32_t *perm=VP(int32_t,1);const ddcoef *scale=VP(ddcoef,2);const dd *arrow=VP(dd,3),*answer=VP(dd,4);
++  dd *den=VP(dd,5),*rhs=VP(dd,6),rowdd;
++  for(i=first;i<last;i++){p=perm[i];if(p<0||p>=n)return BAD_ARGUMENT;rowdd=bulk_right_product(from_double(row[p]),scale[i],&e);if(e)return e;
++   t=mul(rowdd,arrow[i],&e);if(e)return e;*den=sub(*den,t);m[0]=rpx_fp_add(m[0],fabs(value(t,&e)));if(e)return e;
++   t=mul(rowdd,answer[i],&e);if(e)return e;*rhs=sub(*rhs,t);
++  }return OK;
++ }
++ if(op==19){ /* HSD scaled/unscaled direction and Double view */
++  dd *scaled=VP(dd,0),*direction=VP(dd,1);const dd *dt=VP(dd,2),*arrow=VP(dd,3),*solution=VP(dd,4);const ddcoef *scale=VP(ddcoef,5);const int32_t *perm=VP(int32_t,6);
++  double *dx=VP(double,7),*dy=VP(double,8);int32_t nx=(int32_t)alpha;
++  for(i=first;i<last;i++){p=perm[i];if(p<0||p>=n)return BAD_ARGUMENT;t=mul(arrow[i],*dt,&e);if(e)return e;scaled[i]=sub(solution[i],t);
++   direction[p]=bulk_right_product(scaled[i],scale[i],&e);if(e)return e;v=value(direction[p],&e);if(e)return e;if(p<nx)dx[p]=v;else dy[p-nx]=v;
++  }return OK;
++ }
++ return BAD_ARGUMENT;
++}
++
++API rpx_solver_update(int32_t nx,int32_t nm,int32_t ns,const uintptr_t *a,double alpha) {
++ int32_t i,k,total[4]={nx,nm,ns,ns};double v;if(nx<1||nm<0||ns<1||!a)return BAD_ARGUMENT;
++ for(k=0;k<8;k++)if(!a[k])return BAD_ARGUMENT;
++ for(k=0;k<4;k++){double *x=(double*)a[2*k];const double *d=(const double*)a[2*k+1];
++  for(i=0;i<total[k];i++){v=rpx_fp_addmul(x[i],alpha,d[i]);if(!isfinite(v))return DOUBLE_OVERFLOW;x[i]=v;}}
++ return OK;
++}
++
++extern double rpx_fp_offset_tau(double,double,double);
++API rpx_solver_residual(int32_t nb,int32_t ns,int32_t nx,int32_t nm,int32_t phase,int32_t first,int32_t last,const int32_t *dims,const int32_t *starts,const int32_t *ip,const int32_t *cp,const int32_t *ids,const double *coef,const double *offset,const uintptr_t *a,double tau,double *m) {
++ int32_t i,p,j,k,r,total;double v;int code;
++ if(!a||!m||!dims||!starts||!ip||!cp||!ids||!coef||!offset)return BAD_ARGUMENT;
++ for(i=0;i<12;i++)if(!a[i])return BAD_ARGUMENT;
++ const double *xx=(const double*)a[0],*xy=(const double*)a[1],*q=(const double*)a[2],*ev=(const double*)a[5],*er=(const double*)a[6],*slack=(const double*)a[7],*dual=(const double*)a[8];
++ const int32_t *ep=(const int32_t*)a[3],*ei=(const int32_t*)a[4];double *rg=(double*)a[9],*rd=(double*)a[10],*rp=(double*)a[11];
++ if(nb<1||ns<1||nx<1||nm<0)return BAD_ARGUMENT;
++ total=nb;if(phase==1||phase==4)total=nx;if(phase==2)total=nm;if(phase==5)total=nm+ns;if(!bounds(total,first,last))return BAD_ARGUMENT;
++ if(phase==0){code=rpx_gproduct(nb,ns,nx,first,last,dims,starts,ip,cp,ids,coef,offset,xx,rg,1);if(code)return code;
++  for(k=first;k<last;k++)for(r=0;r<dims[k];r++){p=starts[k]+r;rg[p]=rpx_fp_offset_tau(rg[p],tau,offset[p]);rg[p]=rpx_fp_sub(rg[p],slack[p]);if(!isfinite(rg[p]))return DOUBLE_OVERFLOW;}return OK;}
++ if(phase==1){for(i=first;i<last;i++){rd[i]=rpx_fp_mul(tau,q[i]);if(!isfinite(rd[i]))return DOUBLE_OVERFLOW;}return OK;}
++ if(phase==2){for(i=first;i<last;i++){v=rpx_fp_mul(-tau,er[i]);for(p=ep[i];p<ep[i+1];p++){j=ei[p];if(j<0||j>=nx)return BAD_ARGUMENT;v=rpx_fp_addmul(v,ev[p],xx[j]);rd[j]=rpx_fp_addmul(rd[j],ev[p],xy[i]);if(!isfinite(rd[j]))return DOUBLE_OVERFLOW;}if(!isfinite(v))return DOUBLE_OVERFLOW;rp[i]=v;}return OK;}
++ if(phase==3)return rpx_gtadd(nb,ns,nx,first,last,dims,starts,ip,cp,ids,coef,dual,rd,-1);
++ if(phase==4){for(i=first;i<last;i++)if(fabs(rd[i])>m[1])m[1]=fabs(rd[i]);return OK;}
++ if(phase==5){for(i=first;i<last;i++){v=i<nm?rp[i]:rg[i-nm];if(fabs(v)>m[0])m[0]=fabs(v);}return OK;}
++ return BAD_ARGUMENT;
++}
++#undef VP
++
++/* Full cone direction loops: normal RHS work, normal output, HSD DD output.
++ * Common model arrays are packed once and invalidated on numeric updates. */
++API rpx_solver_cones(int32_t op,int32_t nb,int32_t ns,int32_t nx,int32_t first,int32_t last,const int32_t *dims,const int32_t *starts,const int32_t *ip,const int32_t *cp,const int32_t *ids,const double *coef,const uintptr_t *a) {
++ int32_t i,k,p,r,j,id,base;int e=0;double v;dd t;
++ if(!bounds(nb,first,last)||ns<1||nx<1||!dims||!starts||!ip||!cp||!ids||!coef||!a)return BAD_ARGUMENT;
++ for(i=0;i<(op==0?4:(op==1?6:12));i++)if(!a[i])return BAD_ARGUMENT;
++ for(k=first;k<last;k++){p=starts[k];if((dims[k]!=1&&dims[k]!=3)||p<0||p>ns-dims[k]||ip[k+1]<ip[k])return BAD_ARGUMENT;
++  if(op==0){const double *rc=(const double*)a[0],*rg=(const double*)a[1],*hh=(const double*)a[2];double *work=(double*)a[3];
++   for(r=0;r<dims[k];r++){v=rc[p+r];for(j=0;j<dims[k];j++)v=rpx_fp_addmul(v,hh[k+nb*(r+3*j)],rg[p+j]);if(!isfinite(v))return DOUBLE_OVERFLOW;work[p+r]=v;}}
++  else if(op==1){const double *rc=(const double*)a[0],*rg=(const double*)a[1],*hh=(const double*)a[2],*dx=(const double*)a[3];double *ds=(double*)a[4],*dz=(double*)a[5];
++   for(r=0;r<dims[k];r++){v=0;for(j=ip[k];j<ip[k+1];j++){id=ids[j];if(id<0||id>=nx)return BAD_ARGUMENT;v=rpx_fp_addmul(v,coef[cp[k]+r*(ip[k+1]-ip[k])+j-ip[k]],dx[id]);}ds[p+r]=rpx_fp_add(v,rg[p+r]);}
++   for(r=0;r<dims[k];r++){v=-rc[p+r];for(j=0;j<dims[k];j++)v=rpx_fp_mulsub(v,hh[k+nb*(r+3*j)],ds[p+j]);if(!isfinite(v))return DOUBLE_OVERFLOW;dz[p+r]=v;}}
++  else if(op==2){const double *offset=(const double*)a[0],*rg=(const double*)a[1],*rc=(const double*)a[2];const dd *dt=(const dd*)a[3],*direction=(const dd*)a[4];
++   const int32_t *at=(const int32_t*)a[5];const ddcoef *co=(const ddcoef*)a[6],*hh=(const ddcoef*)a[7];dd *ds=(dd*)a[8],*dz=(dd*)a[9];double *ds0=(double*)a[10],*dz0=(double*)a[11];
++   for(r=0;r<dims[k];r++){t=mul(from_double(offset[p+r]),*dt,&e);if(e)return e;ds[p+r]=add(t,from_double(rg[p+r]));base=at[k]+r*(ip[k+1]-ip[k]);
++    for(j=ip[k];j<ip[k+1];j++){id=ids[j];if(id<0||id>=nx)return BAD_ARGUMENT;t=bulk_coef_product(co[base+j-ip[k]],direction[id],&e);if(e)return e;ds[p+r]=add(ds[p+r],t);}}
++   for(r=0;r<dims[k];r++){dz[p+r]=from_double(-rc[p+r]);for(j=0;j<dims[k];j++){t=bulk_coef_product(hh[k+nb*(r+3*j)],ds[p+j],&e);if(e)return e;dz[p+r]=sub(dz[p+r],t);}ds0[p+r]=value(ds[p+r],&e);if(e)return e;dz0[p+r]=value(dz[p+r],&e);if(e)return e;}}
++  else return BAD_ARGUMENT;
++ }return OK;
++}
+--- G1R16_DLL_3/native/vba_fp.asm
++++ G1R16_DLL4/native/vba_fp.asm
+@@ -374,4 +374,134 @@
+     add rsp,24
+     ret
+ rpx_fp_controlword ENDP
++rpx_fp_bilinear3 PROC FRAME
++    sub rsp,40
++    .allocstack 40
++    .endprolog
++    movsd qword ptr [rsp],xmm0
++    movsd qword ptr [rsp+8],xmm1
++    movsd qword ptr [rsp+16],xmm2
++    movsd qword ptr [rsp+24],xmm3
++    fld qword ptr [rsp]
++    fmul qword ptr [rsp+8]
++    fld qword ptr [rsp+16]
++    fmul qword ptr [rsp+24]
++    fsubp st(1),st(0)
++    fld qword ptr [rsp+80]
++    fmul qword ptr [rsp+88]
++    fsubp st(1),st(0)
++    fadd st(0),st(0)
++    fstp qword ptr [rsp]
++    movsd xmm0,qword ptr [rsp]
++    add rsp,40
++    ret
++rpx_fp_bilinear3 ENDP
++rpx_fp_abs6 PROC FRAME
++    sub rsp,40
++    .allocstack 40
++    .endprolog
++    movsd qword ptr [rsp],xmm0
++    movsd qword ptr [rsp+8],xmm1
++    movsd qword ptr [rsp+16],xmm2
++    movsd qword ptr [rsp+24],xmm3
++    fld qword ptr [rsp]
++    fabs
++    fld qword ptr [rsp+8]
++    fabs
++    faddp st(1),st(0)
++    fld qword ptr [rsp+16]
++    fabs
++    faddp st(1),st(0)
++    fld qword ptr [rsp+24]
++    fabs
++    faddp st(1),st(0)
++    fld qword ptr [rsp+80]
++    fabs
++    faddp st(1),st(0)
++    fld qword ptr [rsp+88]
++    fabs
++    faddp st(1),st(0)
++    fstp qword ptr [rsp]
++    movsd xmm0,qword ptr [rsp]
++    add rsp,40
++    ret
++rpx_fp_abs6 ENDP
++rpx_fp_discriminant PROC FRAME
++    sub rsp,40
++    .allocstack 40
++    .endprolog
++    movsd qword ptr [rsp],xmm0
++    movsd qword ptr [rsp+8],xmm1
++    movsd qword ptr [rsp+16],xmm2
++    movsd qword ptr [rsp+24],xmm3
++    fld qword ptr [rsp]
++    fmul st(0),st(0)
++    fld qword ptr [rsp+8]
++    fadd st(0),st(0)
++    fadd st(0),st(0)
++    fmul qword ptr [rsp+16]
++    fsubp st(1),st(0)
++    fstp qword ptr [rsp]
++    movsd xmm0,qword ptr [rsp]
++    add rsp,40
++    ret
++rpx_fp_discriminant ENDP
++rpx_fp_boundary_tiny PROC FRAME
++    sub rsp,40
++    .allocstack 40
++    .endprolog
++    movsd qword ptr [rsp],xmm0
++    movsd qword ptr [rsp+8],xmm1
++    movsd qword ptr [rsp+16],xmm2
++    movsd qword ptr [rsp+24],xmm3
++    mov rax,03c32725dd1d243ach
++    mov qword ptr [rsp+16],rax
++    fld qword ptr [rsp+16]
++    fmul qword ptr [rsp+8]
++    fmul qword ptr [rsp+8]
++    fld qword ptr [rsp]
++    fabs
++    fcomip st(0),st(1)
++    setbe al
++    movzx eax,al
++    fstp st(0)
++    add rsp,40
++    ret
++rpx_fp_boundary_tiny ENDP
++rpx_fp_offset_tau PROC FRAME
++    sub rsp,40
++    .allocstack 40
++    .endprolog
++    movsd qword ptr [rsp],xmm0
++    movsd qword ptr [rsp+8],xmm1
++    movsd qword ptr [rsp+16],xmm2
++    movsd qword ptr [rsp+24],xmm3
++    mov rax,03ff0000000000000h
++    mov qword ptr [rsp+24],rax
++    fld qword ptr [rsp+8]
++    fsub qword ptr [rsp+24]
++    fmul qword ptr [rsp+16]
++    fadd qword ptr [rsp]
++    fstp qword ptr [rsp]
++    movsd xmm0,qword ptr [rsp]
++    add rsp,40
++    ret
++rpx_fp_offset_tau ENDP
++rpx_fp_greater_product PROC FRAME
++    sub rsp,40
++    .allocstack 40
++    .endprolog
++    movsd qword ptr [rsp],xmm0
++    movsd qword ptr [rsp+8],xmm1
++    movsd qword ptr [rsp+16],xmm2
++    fld qword ptr [rsp+8]
++    fmul qword ptr [rsp+16]
++    fld qword ptr [rsp]
++    fcomip st(0),st(1)
++    seta al
++    movzx eax,al
++    fstp st(0)
++    add rsp,40
++    ret
++rpx_fp_greater_product ENDP
+ END

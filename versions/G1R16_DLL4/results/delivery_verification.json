@@ -1,0 +1,35 @@
+{
+  "protected_original_files": 533,
+  "protected_hashes_match": true,
+  "baseline_modules": 68,
+  "baseline_sources_match_actual_DLL3": true,
+  "delivery_modules": 69,
+  "changed_existing_modules": [
+    "RPX_HSDLu",
+    "RPX_LDL",
+    "RPX_Native",
+    "RPX_NativeBulk",
+    "RPX_NativeLU",
+    "RPX_Solve"
+  ],
+  "added_modules": [
+    "RPX_NativeSolver"
+  ],
+  "unchanged_existing_modules": 62,
+  "document_modules_unchanged": true,
+  "sources_match_saved_workbook": true,
+  "comparison": "case-insensitive identifiers; exact string literals and IEEE754-equivalent VBE numeric formatting; excludes comments/attributes",
+  "cp932_crlf_strict_roundtrip": true,
+  "xlsm_sha256": "57351ad9ba8a5e565737efdaa3ab185692a1bf09621313a1a7bccc376e6658ed",
+  "dll_sha256": "ff794f03846bccb995d63e289f69bcb9eca96efc8cc732d467db328d346f5ce4",
+  "main_buttons_resolve_in_renamed_delivery_book": [
+    "RPX_CreateMesh",
+    "RPX_Run",
+    "RPX_ShowDiagram",
+    "RPX_Stop"
+  ],
+  "reopen_native_info": "DLL_READY;numeric=0;dd_numeric=0;backsolve=0;ordering=0;column_ordering=0;nt_bulk=0;g_bulk=0;gt_bulk=0;kkt_bulk=0;hsd_operator=0;corrector_bulk=0;hsd_lu=0;hsd_lu_solve=0;solver_vector_calls=0;hsd_jobs=0;hsd_job_steps=0;refine_jobs=0;refine_steps=0",
+  "reopen_whole_project_compile": "PASS",
+  "actual_module_count": 69,
+  "security_unmodified": 1
+}

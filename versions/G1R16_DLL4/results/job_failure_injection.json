@@ -1,0 +1,4 @@
+{
+  "exit_code": 0,
+  "output": " Assembling: ..\\native\\vba_fp.asm\r\nrpfem_native.c\r\njob_failure_injection.cpp\r\n   ライブラリ refine_failure_injection.lib とオブジェクト refine_failure_injection.exp を作成中\r\nPASS 6 allocation points207; 4 unknown points208; partial cleanup; stale handles rejected; exact identity solve\r\njob_failure_injection.cpp\r\nrpfem_lu.cpp\r\nコードを生成中...\r\n   ライブラリ hlinear_failure_injection.lib とオブジェクト hlinear_failure_injection.exp を作成中\r\nPASS 15 allocation points207; 4 unknown points208; partial cleanup; stale handles rejected; exact identity solve\r\n"
+}

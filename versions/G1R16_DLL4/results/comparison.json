@@ -1,0 +1,91 @@
+{
+  "DLL4_seconds": 273.805245,
+  "DLL3_seconds": 338.586663,
+  "DLL4_COM_seconds": 273.88650849999976,
+  "DLL3_COM_seconds": 338.6668231000076,
+  "reduction_percent_vs_DLL3": 19.13289124444928,
+  "speedup_vs_DLL3": 1.236596702155943,
+  "VBA_existing_seconds": 611.555194,
+  "VBA_time_source": "Actual existing VBA log; no new full VBA speed run",
+  "Fs_bitwise_exact": true,
+  "lower": 1.2244477290215,
+  "upper": 1.2343080287831916,
+  "same_saved_inputs_and_mesh": {
+    "要素定義": true,
+    "材料データ": true,
+    "設定": true,
+    "浸透入力": true,
+    "節点データ": true,
+    "要素データ": true
+  },
+  "DLL3_log_comparison": {
+    "solves": 53,
+    "completed_solves": 53,
+    "audits": 603,
+    "matches": true,
+    "errors": [],
+    "old_sha256": "0cce991f59966a336470ebd57915b3b55083874d030d00c8c1b99b3a2ff56eae",
+    "new_sha256": "9a8b3b896f5439cb3e298d889c250c75607d76de80120e86c479cc1c33e4eb4a",
+    "maximum_compared_solve_id": null
+  },
+  "VBA_log_comparison": {
+    "solves": 53,
+    "completed_solves": 53,
+    "audits": 603,
+    "matches": true,
+    "errors": [],
+    "old_sha256": "a0437181c7309b3c2fda0df1e6fd82df7f1a11d0526de12d859f49b34f6f4f52",
+    "new_sha256": "9a8b3b896f5439cb3e298d889c250c75607d76de80120e86c479cc1c33e4eb4a",
+    "maximum_compared_solve_id": null
+  },
+  "DLL3_phases": {
+    "assembly": 23.9921448999667,
+    "convert_pattern": 39.3292340999469,
+    "ordering": 32.6855266999628,
+    "symbolic": 0.817290899984073,
+    "kkt_update": 8.58577459980734,
+    "numeric_ldl": 72.2118181003607,
+    "linear_solve_and_refinement": 95.2665105991764,
+    "nt_scaling": 25.4966057003476,
+    "physical_audit": 1.07185780000873,
+    "mesh": 1.42244220004068,
+    "draw": 0.802217800024664,
+    "sheet_output": 0.230690700002015,
+    "ldl_reach_cache": 0.460179200017592,
+    "step_limit": 6.8476693991106,
+    "residuals": 8.57444409967866,
+    "corrector": 5.83536249957979,
+    "gproduct": 8.9073631996871,
+    "gtadd": 7.22789960086811
+  },
+  "DLL4_phases": {
+    "assembly": 23.6479391000175,
+    "convert_pattern": 38.85372679992,
+    "ordering": 32.3595434000308,
+    "symbolic": 0.835849899944151,
+    "kkt_update": 4.42763610041584,
+    "numeric_ldl": 70.461270900385,
+    "linear_solve_and_refinement": 63.6890770991449,
+    "nt_scaling": 14.1170476006519,
+    "physical_audit": 1.07687479999731,
+    "mesh": 1.40656219996163,
+    "draw": 0.831359400006477,
+    "sheet_output": 0.223821700026747,
+    "ldl_reach_cache": 0.487038500054041,
+    "step_limit": 1.29385490046116,
+    "residuals": 3.81801569994423,
+    "corrector": 0.82218630015268,
+    "gproduct": 0.00142549996962771,
+    "gtadd": 1.93806649898761
+  },
+  "dll_sha256": "ff794f03846bccb995d63e289f69bcb9eca96efc8cc732d467db328d346f5ce4",
+  "timing_scope": "serial fresh processes, same PC, one pair; RPX_Run log; excludes separate seep/mesh calls, save and Python audit",
+  "seep_seconds": {
+    "dll3": 0.8343243999988772,
+    "dll4": 0.8320691999979317
+  },
+  "mesh_seconds": {
+    "dll3": 1.2666177000210155,
+    "dll4": 1.249756500008516
+  }
+}

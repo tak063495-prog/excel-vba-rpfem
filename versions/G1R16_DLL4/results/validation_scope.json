@@ -1,0 +1,19 @@
+{
+  "task": "Implement DLL4 including HSD, compare VBA/DLL3 precision and robustness and DLL3 speed, then publish to GitHub.",
+  "user_full_P06_choice": "P06Aフルを中断し、両ケースの比較検証を先に完了する（推奨）",
+  "user_extra_P06A_choice": "P06Aの極小Fs探索を終了し、取得済みの実用Fs点をDLL4と照合して仕上げる（推奨）",
+  "bounded_comparison": {
+    "case": "P06A",
+    "target": 200,
+    "quadrature": 8,
+    "adapt": 0,
+    "minimum_Fs": 0.125,
+    "completed_solve_points": 15,
+    "test_copy_only_stop": "Error18 TEST_SCOPE_MIN_FS_FLOOR before the 16th solve",
+    "production_Fs_control_changed": false,
+    "DLL3_extreme_failure_reproduction_in_DLL4": "NOT_RUN",
+    "full_case_Fs_obtained_claimed": false
+  },
+  "P06N_full_adaptive": "NOT_RUN",
+  "old_26_case_batch": "Interrupted; not resumed by this task"
+}

@@ -1,0 +1,10 @@
+RUNNING P06N dll3 PID 23268
+{"case": "P06N", "backend": "dll3", "status": "failed", "analysis_seconds": 977.375496099994, "lower": null, "upper": null, "terminal_text": "âêÕñ¢äÆóπÅFFS_LOWER_BRACKET_NOT_FOUND"}
+Traceback (most recent call last):
+  File "C:\Users\link_\Downloads\RPFEM_G1R16_DLL4_20261012\versions\G1R16_DLL4\tools\run_case.py", line 64, in <module>
+    result['exception']=traceback.format_exc();result['status']='failed';raise
+                          ^^^^^
+  File "C:\Users\link_\Downloads\RPFEM_G1R16_DLL4_20261012\versions\G1R16_DLL4\tools\run_case.py", line 57, in run
+    known_bracket_failure=bool(origins) and all(r.get('number')=='5' and r.get('message','').startswith('FS_LOWER_BRACKET_NOT_FOUND') for r in origins)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: âêÕñ¢äÆóπÅFFS_LOWER_BRACKET_NOT_FOUND

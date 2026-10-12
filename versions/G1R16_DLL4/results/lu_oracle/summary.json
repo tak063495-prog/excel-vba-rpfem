@@ -1,0 +1,18 @@
+{
+  "cases": 360,
+  "exact_factor_and_solution": 352,
+  "singular_identical": 8,
+  "failures": [],
+  "max_independent_backward_error": 8.626413736794503e-17,
+  "timing": {
+    "vba": {
+      "message": "rows=360;VBA_SELECTED;numeric=0;dd_numeric=0;backsolve=0;ordering=0;column_ordering=0;nt_bulk=0;g_bulk=0;gt_bulk=0;kkt_bulk=0;hsd_operator=0;corrector_bulk=0;hsd_lu=0;hsd_lu_solve=0;solver_vector_calls=0;hsd_jobs=0;hsd_job_steps=0;refine_jobs=0;refine_steps=0",
+      "seconds": 6.444948399992427
+    },
+    "auto": {
+      "message": "rows=360;DLL_READY;numeric=0;dd_numeric=0;backsolve=0;ordering=0;column_ordering=0;nt_bulk=0;g_bulk=0;gt_bulk=0;kkt_bulk=0;hsd_operator=0;corrector_bulk=0;hsd_lu=360;hsd_lu_solve=352;solver_vector_calls=0;hsd_jobs=0;hsd_job_steps=0;refine_jobs=0;refine_steps=0",
+      "seconds": 3.421368400013307
+    }
+  },
+  "dll_sha256": "ff794f03846bccb995d63e289f69bcb9eca96efc8cc732d467db328d346f5ce4"
+}

@@ -1,0 +1,27 @@
+﻿test,validation_type,result,executed_scope,evidence
+Original533,static,PASS,533 immutable hashes,results/delivery_verification.json
+ExcelCompile,actual Excel,PASS,69 modules; reopen/compile,results/delivery_verification.json
+HSD_threeway,actual VBA/DLL3/DLL4,PASS,6 canonical SOCP pairs,results/three_way_precision.json
+FEM_q8_threeway,actual VBA/DLL3/DLL4 + independent Python audit,PASS,6 fixed-Fs pairs; TARGET256 q8,results/fixed_q8_threeway/summary.json
+LU,actual VBA/DLL4 + independent Python residual,PASS,360;352 exact+8 singular,results/lu_oracle/summary.json
+NT,actual VBA + native API,PASS,224;174 exact+50 matching rejections,results/nt_oracle_extended/comparison.json
+Bulk,actual VBA/DLL4,PASS,160;1239592 bytes exact,results/bulk_oracle/summary.json
+Boundary,actual VBA/DLL4,PASS,5070 exact including partial outputs on overflow,results/boundary_oracle/summary.json
+NativeFaults,native C++ test builds and runs,PASS,allocation/unknown exception injection; no leaks,results/native_faults.json
+JobControls,actual VBA/DLL4 failure injection,PASS,12; cancellation/OOM/subscript/unknown/input/success,results/job_contract/summary.json
+JobLifecycle,native API,PASS,262144 variables; real yields/interleaving/stale guards,results/job_lifecycle.json
+ModeSwitch,actual VBA/DLL4,PASS,2 modes invalidate stale factor; new solves,results/mode_switch_fixed/summary.json
+Issue1_2,actual Excel,PASS,51 assertions,results/issue_regression/summary.json
+Fallback_Seep,actual Excel,PASS,missing/old DLL2/old DLL3; seep convergence regressions,results/fallback_seep.json
+Levee,actual complete RPX_Run DLL3/DLL4; existing VBA reference,PASS,same Fs bits; complete solve and audit log matches,results/comparison.json
+P06A_root,actual RPX_Run DLL3/DLL4,CANCELLED,TARGET200 q8 ADAPT0; 15-point bounded test; no final Fs,results/root_regressions.json
+P06N_root,actual RPX_Run DLL3/DLL4,NUMERICAL_FAILURE,TARGET200 q8 ADAPT0; Fs unavailable; named baseline bracket failure and logs match,results/root_regressions.json
+D03N_root,actual RPX_Run DLL3/DLL4,PARTIAL_CERTIFIED,TARGET200 q8 ADAPT0; Fs bits and logs exact,results/root_regressions.json
+D07A_root,actual RPX_Run DLL3/DLL4,PARTIAL_CERTIFIED,TARGET200 q8 ADAPT0; Fs bits and logs exact,results/root_regressions.json
+P06A_root_baseline_comparison,actual RPX_Run DLL3/DLL4,PASS,Same solve/audit sequence and 15 completed Fs points only; final outcomes not compared,results/root_regressions.json
+P06N_root_baseline_comparison,actual RPX_Run DLL3/DLL4,PASS,Same solve/audit sequence and final outcome,results/root_regressions.json
+D03N_root_baseline_comparison,actual RPX_Run DLL3/DLL4,PASS,Same solve/audit sequence and final outcome,results/root_regressions.json
+D07A_root_baseline_comparison,actual RPX_Run DLL3/DLL4,PASS,Same solve/audit sequence and final outcome,results/root_regressions.json
+P06A_extreme_failure_reproduction,actual RPX_Run DLL4,NOT_RUN,DLL3 failed at Fs0.00048828125; DLL4 comparison bounded above that point,results/root_regressions.json
+P06A_adaptive,actual RPX_Run DLL4,CANCELLED,TARGET1536 q8 ADAPT1; no same-size DLL3 comparator,results/root_regressions.json
+P06N_adaptive,actual RPX_Run DLL4,NOT_RUN,Full adaptive search not started per user-selected comparison scope,results/root_regressions.json

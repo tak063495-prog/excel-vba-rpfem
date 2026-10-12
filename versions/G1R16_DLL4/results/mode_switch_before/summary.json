@@ -1,0 +1,6 @@
+{
+  "message": "FAIL 513:mode-switch must invalidate the factor; got 9:インデックスが有効範囲にありません。",
+  "book_sha256": "c744c35d7f9fca4571eb0e3de81fe574792c255a3775aeffdd6b54846f3284a6",
+  "dll_sha256": "ff794f03846bccb995d63e289f69bcb9eca96efc8cc732d467db328d346f5ce4",
+  "pass": false
+}

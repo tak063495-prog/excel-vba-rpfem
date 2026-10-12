@@ -1,0 +1,470 @@
+{
+  "scope": "Actual Excel paired fixed-Fs solves, three backends; not final safety-factor search",
+  "target": 256,
+  "q": 8,
+  "timing_method": "serial fresh Excel process per backend; one solve per case and side; physical audit excluded from solve timing",
+  "cases": {
+    "C5_45_upper": {
+      "vba": {
+        "Fs_input": 3.0,
+        "message": "PASS;side=upper;Fs=3;load=0.241541741123093;iteration=29;audit=1.04359098473807E-09;elements=269;engine=LEGACY;VBA_SELECTED;numeric=0;dd_numeric=0;backsolve=0;ordering=0;column_ordering=0;nt_bulk=0;g_bulk=0;gt_bulk=0;kkt_bulk=0;hsd_operator=0;corrector_bulk=0;hsd_lu=0;hsd_lu_solve=0;solver_vector_calls=0;hsd_jobs=0;hsd_job_steps=0;refine_jobs=0;refine_steps=0",
+        "seconds": 13.695142699987628,
+        "elements": 269,
+        "independent_audit": {
+          "pass": true,
+          "errors": {
+            "flow": 0.0,
+            "jump": 0.0,
+            "boundary": 1.0435909847380663e-09,
+            "work": 1.7397183693645957e-10,
+            "objective": 2.7755575615628914e-17
+          },
+          "dissipation": 0.24154174112309335,
+          "work": [
+            0.0,
+            0.9999999998260282
+          ],
+          "value": 0.24154174112309335
+        },
+        "field_sha256": "2d49540783a34fd7f1d6bd0f2e98bb7fb4e5c235c2f2887bcd3bb91b8d53f735",
+        "mesh_sha256": "eeb7440f96d44540f24443e6d2b59bb8d1faf9bc561357a76f81c4b382353d08"
+      },
+      "dll3": {
+        "Fs_input": 3.0,
+        "message": "PASS;side=upper;Fs=3;load=0.241541741123093;iteration=29;audit=1.04359098473807E-09;elements=269;engine=LEGACY;DLL_READY;numeric=29;dd_numeric=0;backsolve=58;ordering=1;column_ordering=0;nt_bulk=29;g_bulk=88;gt_bulk=88;kkt_bulk=29;hsd_operator=0;corrector_bulk=29;hsd_lu=0;hsd_lu_solve=0",
+        "seconds": 7.446928299992578,
+        "elements": 269,
+        "independent_audit": {
+          "pass": true,
+          "errors": {
+            "flow": 0.0,
+            "jump": 0.0,
+            "boundary": 1.0435909847380663e-09,
+            "work": 1.7397183693645957e-10,
+            "objective": 2.7755575615628914e-17
+          },
+          "dissipation": 0.24154174112309335,
+          "work": [
+            0.0,
+            0.9999999998260282
+          ],
+          "value": 0.24154174112309335
+        },
+        "field_sha256": "2d49540783a34fd7f1d6bd0f2e98bb7fb4e5c235c2f2887bcd3bb91b8d53f735",
+        "mesh_sha256": "eeb7440f96d44540f24443e6d2b59bb8d1faf9bc561357a76f81c4b382353d08"
+      },
+      "dll4": {
+        "Fs_input": 3.0,
+        "message": "PASS;side=upper;Fs=3;load=0.241541741123093;iteration=29;audit=1.04359098473807E-09;elements=269;engine=LEGACY;DLL_READY;numeric=29;dd_numeric=0;backsolve=0;ordering=1;column_ordering=0;nt_bulk=29;g_bulk=0;gt_bulk=58;kkt_bulk=29;hsd_operator=0;corrector_bulk=29;hsd_lu=0;hsd_lu_solve=0;solver_vector_calls=4433;hsd_jobs=0;hsd_job_steps=0;refine_jobs=58;refine_steps=58",
+        "seconds": 6.380882199999178,
+        "elements": 269,
+        "independent_audit": {
+          "pass": true,
+          "errors": {
+            "flow": 0.0,
+            "jump": 0.0,
+            "boundary": 1.0435909847380663e-09,
+            "work": 1.7397183693645957e-10,
+            "objective": 2.7755575615628914e-17
+          },
+          "dissipation": 0.24154174112309335,
+          "work": [
+            0.0,
+            0.9999999998260282
+          ],
+          "value": 0.24154174112309335
+        },
+        "field_sha256": "2d49540783a34fd7f1d6bd0f2e98bb7fb4e5c235c2f2887bcd3bb91b8d53f735",
+        "mesh_sha256": "eeb7440f96d44540f24443e6d2b59bb8d1faf9bc561357a76f81c4b382353d08"
+      },
+      "bitwise_exact_backends": true,
+      "compared_backends": [
+        "vba",
+        "dll3",
+        "dll4"
+      ],
+      "reduction_percent_vs_DLL3": 14.315245924879694
+    },
+    "C5_45_lower": {
+      "vba": {
+        "Fs_input": 3.0,
+        "message": "PASS;side=lower;Fs=3;load=0.18797698847683;iteration=18;audit=1.74764212744136E-10;elements=269;engine=LEGACY;VBA_SELECTED;numeric=0;dd_numeric=0;backsolve=0;ordering=0;column_ordering=0;nt_bulk=0;g_bulk=0;gt_bulk=0;kkt_bulk=0;hsd_operator=0;corrector_bulk=0;hsd_lu=0;hsd_lu_solve=0;solver_vector_calls=0;hsd_jobs=0;hsd_job_steps=0;refine_jobs=0;refine_steps=0",
+        "seconds": 19.85253110001213,
+        "elements": 269,
+        "independent_audit": {
+          "pass": true,
+          "errors": {
+            "yield": 0.0,
+            "equilibrium": 1.7476408131859176e-10,
+            "internal_traction": 4.487360483196312e-11,
+            "boundary_traction": 1.1327873997368386e-11
+          },
+          "load": 0.1879769884768296,
+          "value": 0.1879769884768296
+        },
+        "field_sha256": "7c8f2fc5083924af6098a2124c18cb841959bd6bce0d9b1cc6ca77fb9da38de1",
+        "mesh_sha256": "eeb7440f96d44540f24443e6d2b59bb8d1faf9bc561357a76f81c4b382353d08"
+      },
+      "dll3": {
+        "Fs_input": 3.0,
+        "message": "PASS;side=lower;Fs=3;load=0.18797698847683;iteration=18;audit=1.74764212744136E-10;elements=269;engine=LEGACY;DLL_READY;numeric=49;dd_numeric=0;backsolve=209;ordering=3;column_ordering=0;nt_bulk=47;g_bulk=143;gt_bulk=143;kkt_bulk=47;hsd_operator=0;corrector_bulk=47;hsd_lu=0;hsd_lu_solve=0",
+        "seconds": 11.001231400005054,
+        "elements": 269,
+        "independent_audit": {
+          "pass": true,
+          "errors": {
+            "yield": 0.0,
+            "equilibrium": 1.7476408131859176e-10,
+            "internal_traction": 4.487360483196312e-11,
+            "boundary_traction": 1.1327873997368386e-11
+          },
+          "load": 0.1879769884768296,
+          "value": 0.1879769884768296
+        },
+        "field_sha256": "7c8f2fc5083924af6098a2124c18cb841959bd6bce0d9b1cc6ca77fb9da38de1",
+        "mesh_sha256": "eeb7440f96d44540f24443e6d2b59bb8d1faf9bc561357a76f81c4b382353d08"
+      },
+      "dll4": {
+        "Fs_input": 3.0,
+        "message": "PASS;side=lower;Fs=3;load=0.18797698847683;iteration=18;audit=1.74764212744136E-10;elements=269;engine=LEGACY;DLL_READY;numeric=49;dd_numeric=0;backsolve=136;ordering=3;column_ordering=0;nt_bulk=47;g_bulk=0;gt_bulk=94;kkt_bulk=47;hsd_operator=0;corrector_bulk=47;hsd_lu=0;hsd_lu_solve=0;solver_vector_calls=8183;hsd_jobs=0;hsd_job_steps=0;refine_jobs=62;refine_steps=62",
+        "seconds": 10.317562999989605,
+        "elements": 269,
+        "independent_audit": {
+          "pass": true,
+          "errors": {
+            "yield": 0.0,
+            "equilibrium": 1.7476408131859176e-10,
+            "internal_traction": 4.487360483196312e-11,
+            "boundary_traction": 1.1327873997368386e-11
+          },
+          "load": 0.1879769884768296,
+          "value": 0.1879769884768296
+        },
+        "field_sha256": "7c8f2fc5083924af6098a2124c18cb841959bd6bce0d9b1cc6ca77fb9da38de1",
+        "mesh_sha256": "eeb7440f96d44540f24443e6d2b59bb8d1faf9bc561357a76f81c4b382353d08"
+      },
+      "bitwise_exact_backends": true,
+      "compared_backends": [
+        "vba",
+        "dll3",
+        "dll4"
+      ],
+      "reduction_percent_vs_DLL3": 6.214471591017845
+    },
+    "P06A_upper": {
+      "vba": {
+        "Fs_input": 1.0,
+        "message": "PASS;side=upper;Fs=1;load=1.06134381259978;iteration=32;audit=4.25071089438234E-12;elements=307;engine=HSD_C0;VBA_SELECTED;numeric=0;dd_numeric=0;backsolve=0;ordering=0;column_ordering=0;nt_bulk=0;g_bulk=0;gt_bulk=0;kkt_bulk=0;hsd_operator=0;corrector_bulk=0;hsd_lu=0;hsd_lu_solve=0;solver_vector_calls=0;hsd_jobs=0;hsd_job_steps=0;refine_jobs=0;refine_steps=0",
+        "seconds": 74.63641590002226,
+        "elements": 307,
+        "independent_audit": {
+          "pass": true,
+          "errors": {
+            "flow": 3.332735101684209e-14,
+            "jump": 2.450138426075265e-14,
+            "bonded_interface": 2.579817894229769e-13,
+            "boundary": 2.972605405292506e-13,
+            "work": 4.251377028197112e-12,
+            "objective": 8.881784197001252e-16
+          },
+          "dissipation": 1.0613438125997807,
+          "work": [
+            0.0,
+            0.9999999999957486
+          ],
+          "value": 1.0613438125997807
+        },
+        "field_sha256": "b95f1583d99e5cd01f9f02aa6a44a73d4bdb5b4ff1064eeb4237c7a3080ca79b",
+        "mesh_sha256": "2fd5311c398b1aac5c99f70dcf54aaae2f6f9dbd9b18e7be7dd632e52792cfe9"
+      },
+      "dll3": {
+        "Fs_input": 1.0,
+        "message": "PASS;side=upper;Fs=1;load=1.06134381259978;iteration=32;audit=4.25071089438234E-12;elements=307;engine=HSD_C0;DLL_READY;numeric=81;dd_numeric=0;backsolve=463;ordering=4;column_ordering=0;nt_bulk=79;g_bulk=180;gt_bulk=273;kkt_bulk=79;hsd_operator=319;corrector_bulk=79;hsd_lu=0;hsd_lu_solve=0",
+        "seconds": 32.35678109998116,
+        "elements": 307,
+        "independent_audit": {
+          "pass": true,
+          "errors": {
+            "flow": 3.332735101684209e-14,
+            "jump": 2.450138426075265e-14,
+            "bonded_interface": 2.579817894229769e-13,
+            "boundary": 2.972605405292506e-13,
+            "work": 4.251377028197112e-12,
+            "objective": 8.881784197001252e-16
+          },
+          "dissipation": 1.0613438125997807,
+          "work": [
+            0.0,
+            0.9999999999957486
+          ],
+          "value": 1.0613438125997807
+        },
+        "field_sha256": "b95f1583d99e5cd01f9f02aa6a44a73d4bdb5b4ff1064eeb4237c7a3080ca79b",
+        "mesh_sha256": "2fd5311c398b1aac5c99f70dcf54aaae2f6f9dbd9b18e7be7dd632e52792cfe9"
+      },
+      "dll4": {
+        "Fs_input": 1.0,
+        "message": "PASS;side=upper;Fs=1;load=1.06134381259978;iteration=32;audit=4.25071089438234E-12;elements=307;engine=HSD_C0;DLL_READY;numeric=81;dd_numeric=0;backsolve=137;ordering=4;column_ordering=0;nt_bulk=79;g_bulk=3;gt_bulk=190;kkt_bulk=79;hsd_operator=66;corrector_bulk=79;hsd_lu=0;hsd_lu_solve=0;solver_vector_calls=16279;hsd_jobs=96;hsd_job_steps=253;refine_jobs=62;refine_steps=62",
+        "seconds": 22.330311099998653,
+        "elements": 307,
+        "independent_audit": {
+          "pass": true,
+          "errors": {
+            "flow": 3.332735101684209e-14,
+            "jump": 2.450138426075265e-14,
+            "bonded_interface": 2.579817894229769e-13,
+            "boundary": 2.972605405292506e-13,
+            "work": 4.251377028197112e-12,
+            "objective": 8.881784197001252e-16
+          },
+          "dissipation": 1.0613438125997807,
+          "work": [
+            0.0,
+            0.9999999999957486
+          ],
+          "value": 1.0613438125997807
+        },
+        "field_sha256": "b95f1583d99e5cd01f9f02aa6a44a73d4bdb5b4ff1064eeb4237c7a3080ca79b",
+        "mesh_sha256": "2fd5311c398b1aac5c99f70dcf54aaae2f6f9dbd9b18e7be7dd632e52792cfe9"
+      },
+      "bitwise_exact_backends": true,
+      "compared_backends": [
+        "vba",
+        "dll3",
+        "dll4"
+      ],
+      "reduction_percent_vs_DLL3": 30.98722944350094
+    },
+    "P06A_lower": {
+      "vba": {
+        "Fs_input": 1.0,
+        "message": "PASS;side=lower;Fs=1;load=7.87031096191311E-11;iteration=21;audit=3.58367693946701E-11;elements=307;engine=HSD_C0;VBA_SELECTED;numeric=0;dd_numeric=0;backsolve=0;ordering=0;column_ordering=0;nt_bulk=0;g_bulk=0;gt_bulk=0;kkt_bulk=0;hsd_operator=0;corrector_bulk=0;hsd_lu=0;hsd_lu_solve=0;solver_vector_calls=0;hsd_jobs=0;hsd_job_steps=0;refine_jobs=0;refine_steps=0",
+        "seconds": 97.87427510000998,
+        "elements": 307,
+        "independent_audit": {
+          "pass": true,
+          "errors": {
+            "yield": 4.141726342593514e-12,
+            "equilibrium": 3.583676939467014e-11,
+            "internal_traction": 8.181888155041385e-13,
+            "boundary_traction": 5.534395806308798e-13
+          },
+          "load": 7.870310961913107e-11,
+          "value": 7.870310961913107e-11
+        },
+        "field_sha256": "1dd9b04b6e992ce8ce8326e4ccccf7ed8420f5dd5640bfa8dff56f4568328507",
+        "mesh_sha256": "2fd5311c398b1aac5c99f70dcf54aaae2f6f9dbd9b18e7be7dd632e52792cfe9"
+      },
+      "dll3": {
+        "Fs_input": 1.0,
+        "message": "PASS;side=lower;Fs=1;load=7.87031096191311E-11;iteration=21;audit=3.58367693946701E-11;elements=307;engine=HSD_C0;DLL_READY;numeric=96;dd_numeric=7;backsolve=807;ordering=5;column_ordering=0;nt_bulk=100;g_bulk=223;gt_bulk=360;kkt_bulk=100;hsd_operator=718;corrector_bulk=100;hsd_lu=0;hsd_lu_solve=0",
+        "seconds": 45.1060526999936,
+        "elements": 307,
+        "independent_audit": {
+          "pass": true,
+          "errors": {
+            "yield": 4.141726342593514e-12,
+            "equilibrium": 3.583676939467014e-11,
+            "internal_traction": 8.181888155041385e-13,
+            "boundary_traction": 5.534395806308798e-13
+          },
+          "load": 7.870310961913107e-11,
+          "value": 7.870310961913107e-11
+        },
+        "field_sha256": "1dd9b04b6e992ce8ce8326e4ccccf7ed8420f5dd5640bfa8dff56f4568328507",
+        "mesh_sha256": "2fd5311c398b1aac5c99f70dcf54aaae2f6f9dbd9b18e7be7dd632e52792cfe9"
+      },
+      "dll4": {
+        "Fs_input": 1.0,
+        "message": "PASS;side=lower;Fs=1;load=7.87031096191311E-11;iteration=21;audit=3.58367693946701E-11;elements=307;engine=HSD_C0;DLL_READY;numeric=96;dd_numeric=7;backsolve=281;ordering=5;column_ordering=0;nt_bulk=100;g_bulk=23;gt_bulk=254;kkt_bulk=100;hsd_operator=265;corrector_bulk=100;hsd_lu=0;hsd_lu_solve=0;solver_vector_calls=20860;hsd_jobs=160;hsd_job_steps=386;refine_jobs=62;refine_steps=62",
+        "seconds": 34.24682080000639,
+        "elements": 307,
+        "independent_audit": {
+          "pass": true,
+          "errors": {
+            "yield": 4.141726342593514e-12,
+            "equilibrium": 3.583676939467014e-11,
+            "internal_traction": 8.181888155041385e-13,
+            "boundary_traction": 5.534395806308798e-13
+          },
+          "load": 7.870310961913107e-11,
+          "value": 7.870310961913107e-11
+        },
+        "field_sha256": "1dd9b04b6e992ce8ce8326e4ccccf7ed8420f5dd5640bfa8dff56f4568328507",
+        "mesh_sha256": "2fd5311c398b1aac5c99f70dcf54aaae2f6f9dbd9b18e7be7dd632e52792cfe9"
+      },
+      "bitwise_exact_backends": true,
+      "compared_backends": [
+        "vba",
+        "dll3",
+        "dll4"
+      ],
+      "reduction_percent_vs_DLL3": 24.074888512664614
+    },
+    "P06N_upper": {
+      "vba": {
+        "Fs_input": 1.0,
+        "message": "PASS;side=upper;Fs=1;load=0.849537719035043;iteration=30;audit=1.60919610969756E-10;elements=307;engine=HSD_C0;VBA_SELECTED;numeric=0;dd_numeric=0;backsolve=0;ordering=0;column_ordering=0;nt_bulk=0;g_bulk=0;gt_bulk=0;kkt_bulk=0;hsd_operator=0;corrector_bulk=0;hsd_lu=0;hsd_lu_solve=0;solver_vector_calls=0;hsd_jobs=0;hsd_job_steps=0;refine_jobs=0;refine_steps=0",
+        "seconds": 62.32680429998436,
+        "elements": 307,
+        "independent_audit": {
+          "pass": true,
+          "errors": {
+            "flow": 1.0469393675626396e-12,
+            "jump": 9.900983890289138e-13,
+            "bonded_interface": 9.880023041798741e-12,
+            "boundary": 1.1088905623413283e-11,
+            "work": 1.6092094323738593e-10,
+            "objective": 2.220446049250313e-15
+          },
+          "dissipation": 0.8495377190350434,
+          "work": [
+            0.0,
+            0.9999999998390791
+          ],
+          "value": 0.8495377190350434
+        },
+        "field_sha256": "23abd32173e442b66effa36a08484450619767577566222ac0060711c79109f5",
+        "mesh_sha256": "2fd5311c398b1aac5c99f70dcf54aaae2f6f9dbd9b18e7be7dd632e52792cfe9"
+      },
+      "dll3": {
+        "Fs_input": 1.0,
+        "message": "PASS;side=upper;Fs=1;load=0.849537719035043;iteration=30;audit=1.60919610969756E-10;elements=307;engine=HSD_C0;DLL_READY;numeric=126;dd_numeric=7;backsolve=1037;ordering=5;column_ordering=0;nt_bulk=130;g_bulk=258;gt_bulk=482;kkt_bulk=130;hsd_operator=1008;corrector_bulk=130;hsd_lu=0;hsd_lu_solve=0",
+        "seconds": 28.907549600000493,
+        "elements": 307,
+        "independent_audit": {
+          "pass": true,
+          "errors": {
+            "flow": 1.0469393675626396e-12,
+            "jump": 9.900983890289138e-13,
+            "bonded_interface": 9.880023041798741e-12,
+            "boundary": 1.1088905623413283e-11,
+            "work": 1.6092094323738593e-10,
+            "objective": 2.220446049250313e-15
+          },
+          "dissipation": 0.8495377190350434,
+          "work": [
+            0.0,
+            0.9999999998390791
+          ],
+          "value": 0.8495377190350434
+        },
+        "field_sha256": "23abd32173e442b66effa36a08484450619767577566222ac0060711c79109f5",
+        "mesh_sha256": "2fd5311c398b1aac5c99f70dcf54aaae2f6f9dbd9b18e7be7dd632e52792cfe9"
+      },
+      "dll4": {
+        "Fs_input": 1.0,
+        "message": "PASS;side=upper;Fs=1;load=0.849537719035043;iteration=30;audit=1.60919610969756E-10;elements=307;engine=HSD_C0;DLL_READY;numeric=126;dd_numeric=7;backsolve=281;ordering=5;column_ordering=0;nt_bulk=130;g_bulk=26;gt_bulk=344;kkt_bulk=130;hsd_operator=325;corrector_bulk=130;hsd_lu=0;hsd_lu_solve=0;solver_vector_calls=28450;hsd_jobs=250;hsd_job_steps=616;refine_jobs=62;refine_steps=62",
+        "seconds": 18.09633629999007,
+        "elements": 307,
+        "independent_audit": {
+          "pass": true,
+          "errors": {
+            "flow": 1.0469393675626396e-12,
+            "jump": 9.900983890289138e-13,
+            "bonded_interface": 9.880023041798741e-12,
+            "boundary": 1.1088905623413283e-11,
+            "work": 1.6092094323738593e-10,
+            "objective": 2.220446049250313e-15
+          },
+          "dissipation": 0.8495377190350434,
+          "work": [
+            0.0,
+            0.9999999998390791
+          ],
+          "value": 0.8495377190350434
+        },
+        "field_sha256": "23abd32173e442b66effa36a08484450619767577566222ac0060711c79109f5",
+        "mesh_sha256": "2fd5311c398b1aac5c99f70dcf54aaae2f6f9dbd9b18e7be7dd632e52792cfe9"
+      },
+      "bitwise_exact_backends": true,
+      "compared_backends": [
+        "vba",
+        "dll3",
+        "dll4"
+      ],
+      "reduction_percent_vs_DLL3": 37.39927267999996
+    },
+    "P06N_lower": {
+      "vba": {
+        "Fs_input": 1.0,
+        "message": "PASS;side=lower;Fs=1;load=1.77789148280336E-12;iteration=20;audit=8.32184792543445E-13;elements=307;engine=HSD_C0;VBA_SELECTED;numeric=0;dd_numeric=0;backsolve=0;ordering=0;column_ordering=0;nt_bulk=0;g_bulk=0;gt_bulk=0;kkt_bulk=0;hsd_operator=0;corrector_bulk=0;hsd_lu=0;hsd_lu_solve=0;solver_vector_calls=0;hsd_jobs=0;hsd_job_steps=0;refine_jobs=0;refine_steps=0",
+        "seconds": 81.21577690000413,
+        "elements": 307,
+        "independent_audit": {
+          "pass": true,
+          "errors": {
+            "yield": 1.2433023516995623e-13,
+            "equilibrium": 8.32184792543445e-13,
+            "internal_traction": 2.115678993811793e-14,
+            "boundary_traction": 1.2851716557384428e-14
+          },
+          "load": 1.7778914828033622e-12,
+          "value": 1.7778914828033622e-12
+        },
+        "field_sha256": "ac2b450882627ece76090959f20b4cd030ab6fa037ba737928dda68a9da67a22",
+        "mesh_sha256": "2fd5311c398b1aac5c99f70dcf54aaae2f6f9dbd9b18e7be7dd632e52792cfe9"
+      },
+      "dll3": {
+        "Fs_input": 1.0,
+        "message": "PASS;side=lower;Fs=1;load=1.77789148280336E-12;iteration=20;audit=8.32184792543445E-13;elements=307;engine=HSD_C0;DLL_READY;numeric=140;dd_numeric=14;backsolve=1307;ordering=5;column_ordering=0;nt_bulk=150;g_bulk=299;gt_bulk=565;kkt_bulk=150;hsd_operator=1325;corrector_bulk=150;hsd_lu=0;hsd_lu_solve=0",
+        "seconds": 40.56905210000696,
+        "elements": 307,
+        "independent_audit": {
+          "pass": true,
+          "errors": {
+            "yield": 1.2433023516995623e-13,
+            "equilibrium": 8.32184792543445e-13,
+            "internal_traction": 2.115678993811793e-14,
+            "boundary_traction": 1.2851716557384428e-14
+          },
+          "load": 1.7778914828033622e-12,
+          "value": 1.7778914828033622e-12
+        },
+        "field_sha256": "ac2b450882627ece76090959f20b4cd030ab6fa037ba737928dda68a9da67a22",
+        "mesh_sha256": "2fd5311c398b1aac5c99f70dcf54aaae2f6f9dbd9b18e7be7dd632e52792cfe9"
+      },
+      "dll4": {
+        "Fs_input": 1.0,
+        "message": "PASS;side=lower;Fs=1;load=1.77789148280336E-12;iteration=20;audit=8.32184792543445E-13;elements=307;engine=HSD_C0;DLL_READY;numeric=140;dd_numeric=14;backsolve=363;ordering=5;column_ordering=0;nt_bulk=150;g_bulk=45;gt_bulk=405;kkt_bulk=150;hsd_operator=454;corrector_bulk=150;hsd_lu=0;hsd_lu_solve=0;solver_vector_calls=32810;hsd_jobs=311;hsd_job_steps=743;refine_jobs=62;refine_steps=62",
+        "seconds": 29.621529399999417,
+        "elements": 307,
+        "independent_audit": {
+          "pass": true,
+          "errors": {
+            "yield": 1.2433023516995623e-13,
+            "equilibrium": 8.32184792543445e-13,
+            "internal_traction": 2.115678993811793e-14,
+            "boundary_traction": 1.2851716557384428e-14
+          },
+          "load": 1.7778914828033622e-12,
+          "value": 1.7778914828033622e-12
+        },
+        "field_sha256": "ac2b450882627ece76090959f20b4cd030ab6fa037ba737928dda68a9da67a22",
+        "mesh_sha256": "2fd5311c398b1aac5c99f70dcf54aaae2f6f9dbd9b18e7be7dd632e52792cfe9"
+      },
+      "bitwise_exact_backends": true,
+      "compared_backends": [
+        "vba",
+        "dll3",
+        "dll4"
+      ],
+      "reduction_percent_vs_DLL3": 26.984911239781372
+    }
+  },
+  "backends": {
+    "vba": {
+      "source_sha256": "f5e49ecfeeae04b884f2eaf181677d1cf008a7fd414defdd8318c945605a79bb",
+      "dll_sha256": "ff794f03846bccb995d63e289f69bcb9eca96efc8cc732d467db328d346f5ce4"
+    },
+    "dll3": {
+      "source_sha256": "3bb7d87b6fbec14e9ea3d378e49e40355e05850a532f865cbd392531902ecdae",
+      "dll_sha256": "6ff070d8c398a85d3c0ef038210c07d9ac93c6dd497cd57f4e3e2eafcbe23269"
+    },
+    "dll4": {
+      "source_sha256": "f5e49ecfeeae04b884f2eaf181677d1cf008a7fd414defdd8318c945605a79bb",
+      "dll_sha256": "ff794f03846bccb995d63e289f69bcb9eca96efc8cc732d467db328d346f5ce4"
+    }
+  },
+  "passed": true
+}

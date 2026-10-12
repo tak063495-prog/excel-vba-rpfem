@@ -1,0 +1,494 @@
+{
+  "paired_roots": [
+    {
+      "case": "P06A",
+      "DLL3": {
+        "raw_harness_status": "failed",
+        "terminal_status": "NUMERICAL_FAILURE",
+        "target_met": false,
+        "Fs_obtained": false,
+        "lower": null,
+        "upper": null,
+        "seconds": 1732.015916299977,
+        "target": 200,
+        "q": 8,
+        "adapt": 0,
+        "source_sha256": "3bb7d87b6fbec14e9ea3d378e49e40355e05850a532f865cbd392531902ecdae",
+        "dll_sha256": "6ff070d8c398a85d3c0ef038210c07d9ac93c6dd497cd57f4e3e2eafcbe23269",
+        "terminal_text": "解析未完了：HSD_NOT_CONVERGED",
+        "error_origins": [
+          {
+            "number": "5",
+            "source": "VBAProject",
+            "line": "0",
+            "stage": "optimize",
+            "message": "HSD_NOT_CONVERGED"
+          },
+          {
+            "number": "5",
+            "source": "VBAProject",
+            "line": "0",
+            "stage": "bound",
+            "message": "HSD_NOT_CONVERGED"
+          },
+          {
+            "number": "5",
+            "source": "VBAProject",
+            "line": "0",
+            "stage": "fs_pair",
+            "message": "HSD_NOT_CONVERGED"
+          },
+          {
+            "number": "5",
+            "source": "VBAProject",
+            "line": "0",
+            "stage": "control_analysis",
+            "message": "HSD_NOT_CONVERGED"
+          }
+        ],
+        "upper_bracket": [
+          {
+            "mode": "upper",
+            "a": "1.03320965384101",
+            "b": "1.03323272973136",
+            "fa": "3.8027887890979E-05",
+            "fb": "-1.61464393677591E-06",
+            "target": "0.999999",
+            "quadrature": "8",
+            "root_width": "2.30758903470019E-05"
+          }
+        ]
+      },
+      "DLL4": {
+        "raw_harness_status": "failed",
+        "terminal_status": "CANCELLED",
+        "target_met": false,
+        "Fs_obtained": false,
+        "lower": null,
+        "upper": null,
+        "seconds": 323.4595823000127,
+        "target": 200,
+        "q": 8,
+        "adapt": 0,
+        "source_sha256": "f5e49ecfeeae04b884f2eaf181677d1cf008a7fd414defdd8318c945605a79bb",
+        "dll_sha256": "ff794f03846bccb995d63e289f69bcb9eca96efc8cc732d467db328d346f5ce4",
+        "terminal_text": "解析未完了：TEST_SCOPE_MIN_FS_FLOOR",
+        "error_origins": [
+          {
+            "number": "18",
+            "source": "DLL4TestScope",
+            "line": "0",
+            "stage": "fs_pair",
+            "message": "TEST_SCOPE_MIN_FS_FLOOR"
+          },
+          {
+            "number": "18",
+            "source": "DLL4TestScope",
+            "line": "0",
+            "stage": "control_analysis",
+            "message": "TEST_SCOPE_MIN_FS_FLOOR"
+          }
+        ],
+        "upper_bracket": [
+          {
+            "mode": "upper",
+            "a": "1.03320965384101",
+            "b": "1.03323272973136",
+            "fa": "3.8027887890979E-05",
+            "fb": "-1.61464393677591E-06",
+            "target": "0.999999",
+            "quadrature": "8",
+            "root_width": "2.30758903470019E-05"
+          }
+        ]
+      },
+      "Fs_bitwise_exact": null,
+      "comparison_passed": true,
+      "case_passed": false,
+      "full_case_compared": false,
+      "comparison_scope": "15 complete solves with Fs>=0.125; original DLL3 failed later at solve23; DLL4 test-copy-only stop before solve16",
+      "log_comparison": {
+        "solves": 15,
+        "completed_solves": 15,
+        "audits": 166,
+        "matches": true,
+        "errors": [],
+        "old_sha256": "7d977cf1ea7095179f2432027a893375b22509c51e29486dbfa5928af9199b72",
+        "new_sha256": "0946a60f8713bd168f43582cfb86e043e1f07505231bacd130e0c28769dd3d8c",
+        "maximum_compared_solve_id": 15
+      },
+      "same_inputs_mesh": true,
+      "comparison_seconds": {
+        "DLL3": 454.332828,
+        "DLL4": 323.392492
+      },
+      "test_only_Fs_control_change_verified": true,
+      "reduction_percent_vs_DLL3": 28.8203554597644
+    },
+    {
+      "case": "P06N",
+      "DLL3": {
+        "raw_harness_status": "failed",
+        "terminal_status": "NUMERICAL_FAILURE",
+        "target_met": false,
+        "Fs_obtained": false,
+        "lower": null,
+        "upper": null,
+        "seconds": 977.375496099994,
+        "target": 200,
+        "q": 8,
+        "adapt": 0,
+        "source_sha256": "3bb7d87b6fbec14e9ea3d378e49e40355e05850a532f865cbd392531902ecdae",
+        "dll_sha256": "6ff070d8c398a85d3c0ef038210c07d9ac93c6dd497cd57f4e3e2eafcbe23269",
+        "terminal_text": "解析未完了：FS_LOWER_BRACKET_NOT_FOUND",
+        "error_origins": [
+          {
+            "number": "5",
+            "source": "VBAProject",
+            "line": "0",
+            "stage": "fs_pair",
+            "message": "FS_LOWER_BRACKET_NOT_FOUND"
+          },
+          {
+            "number": "5",
+            "source": "VBAProject",
+            "line": "0",
+            "stage": "control_analysis",
+            "message": "FS_LOWER_BRACKET_NOT_FOUND"
+          }
+        ],
+        "upper_bracket": [
+          {
+            "mode": "upper",
+            "a": "0.885524714823829",
+            "b": "0.885588244608155",
+            "fa": "9.36191717014756E-05",
+            "fb": "-7.57028834497131E-06",
+            "target": "0.999999",
+            "quadrature": "8",
+            "root_width": "6.35297843262217E-05"
+          }
+        ]
+      },
+      "DLL4": {
+        "raw_harness_status": "failed",
+        "terminal_status": "NUMERICAL_FAILURE",
+        "target_met": false,
+        "Fs_obtained": false,
+        "lower": null,
+        "upper": null,
+        "seconds": 718.0331812000077,
+        "target": 200,
+        "q": 8,
+        "adapt": 0,
+        "source_sha256": "f5e49ecfeeae04b884f2eaf181677d1cf008a7fd414defdd8318c945605a79bb",
+        "dll_sha256": "ff794f03846bccb995d63e289f69bcb9eca96efc8cc732d467db328d346f5ce4",
+        "terminal_text": "解析未完了：FS_LOWER_BRACKET_NOT_FOUND",
+        "error_origins": [
+          {
+            "number": "5",
+            "source": "VBAProject",
+            "line": "0",
+            "stage": "fs_pair",
+            "message": "FS_LOWER_BRACKET_NOT_FOUND"
+          },
+          {
+            "number": "5",
+            "source": "VBAProject",
+            "line": "0",
+            "stage": "control_analysis",
+            "message": "FS_LOWER_BRACKET_NOT_FOUND"
+          }
+        ],
+        "upper_bracket": [
+          {
+            "mode": "upper",
+            "a": "0.885524714823829",
+            "b": "0.885588244608155",
+            "fa": "9.36191717014756E-05",
+            "fb": "-7.57028834497131E-06",
+            "target": "0.999999",
+            "quadrature": "8",
+            "root_width": "6.35297843262217E-05"
+          }
+        ]
+      },
+      "Fs_bitwise_exact": null,
+      "saved_result_cells_match": true,
+      "comparison_passed": true,
+      "case_passed": false,
+      "full_case_compared": true,
+      "comparison_scope": "Full original RPX_Run to identical terminal outcome",
+      "log_comparison": {
+        "solves": 31,
+        "completed_solves": 31,
+        "audits": 294,
+        "matches": true,
+        "errors": [],
+        "old_sha256": "7e9906a41df51215d9a56073bee6854865a79af9bd2730c3d913e510503c7bd1",
+        "new_sha256": "ce8e14bd2d63d3349d4a48f3ce799c3f778ff062dc5c1eebeaffd331526e31f7",
+        "maximum_compared_solve_id": null
+      },
+      "same_inputs_mesh": true,
+      "comparison_seconds": {
+        "DLL3": 977.375496099994,
+        "DLL4": 718.0331812000077
+      },
+      "reduction_percent_vs_DLL3": 26.53456280977331
+    },
+    {
+      "case": "D03N",
+      "DLL3": {
+        "raw_harness_status": "partial_certified",
+        "terminal_status": "PARTIAL_CERTIFIED",
+        "target_met": false,
+        "Fs_obtained": true,
+        "lower": 1.117980764587677,
+        "upper": 1.4150393955079879,
+        "seconds": 575.7617941000208,
+        "target": 200,
+        "q": 8,
+        "adapt": 0,
+        "source_sha256": "3bb7d87b6fbec14e9ea3d378e49e40355e05850a532f865cbd392531902ecdae",
+        "dll_sha256": "6ff070d8c398a85d3c0ef038210c07d9ac93c6dd497cd57f4e3e2eafcbe23269",
+        "terminal_text": "上下界を取得（目標区間幅またはFs探索許容差は未達）",
+        "error_origins": [],
+        "upper_bracket": [
+          {
+            "mode": "upper",
+            "a": "1.41491732525652",
+            "b": "1.41503939550799",
+            "fa": "1",
+            "fb": "-0.999999",
+            "target": "0.999999",
+            "quadrature": "8",
+            "root_width": "1.22070251464601E-04"
+          }
+        ]
+      },
+      "DLL4": {
+        "raw_harness_status": "partial_certified",
+        "terminal_status": "PARTIAL_CERTIFIED",
+        "target_met": false,
+        "Fs_obtained": true,
+        "lower": 1.117980764587677,
+        "upper": 1.4150393955079879,
+        "seconds": 376.7655963000143,
+        "target": 200,
+        "q": 8,
+        "adapt": 0,
+        "source_sha256": "f5e49ecfeeae04b884f2eaf181677d1cf008a7fd414defdd8318c945605a79bb",
+        "dll_sha256": "ff794f03846bccb995d63e289f69bcb9eca96efc8cc732d467db328d346f5ce4",
+        "terminal_text": "上下界を取得（目標区間幅またはFs探索許容差は未達）",
+        "error_origins": [],
+        "upper_bracket": [
+          {
+            "mode": "upper",
+            "a": "1.41491732525652",
+            "b": "1.41503939550799",
+            "fa": "1",
+            "fb": "-0.999999",
+            "target": "0.999999",
+            "quadrature": "8",
+            "root_width": "1.22070251464601E-04"
+          }
+        ]
+      },
+      "Fs_bitwise_exact": true,
+      "saved_result_cells_match": true,
+      "comparison_passed": true,
+      "case_passed": true,
+      "full_case_compared": true,
+      "comparison_scope": "Full original RPX_Run to identical terminal outcome",
+      "log_comparison": {
+        "solves": 31,
+        "completed_solves": 31,
+        "audits": 207,
+        "matches": true,
+        "errors": [],
+        "old_sha256": "951bbe82007f7c6184b4eba6163c448bc85a5428c883ad95876204385418fecd",
+        "new_sha256": "960e000b94aac93dcda71d953b7e1ad11cbb38a8c51ecebb0aa40b78252e6f6b",
+        "maximum_compared_solve_id": null
+      },
+      "same_inputs_mesh": true,
+      "comparison_seconds": {
+        "DLL3": 575.7617941000208,
+        "DLL4": 376.7655963000143
+      },
+      "reduction_percent_vs_DLL3": 34.56224428907435
+    },
+    {
+      "case": "D07A",
+      "DLL3": {
+        "raw_harness_status": "partial_certified",
+        "terminal_status": "PARTIAL_CERTIFIED",
+        "target_met": false,
+        "Fs_obtained": true,
+        "lower": 1.2223035780099496,
+        "upper": 1.3639635115731257,
+        "seconds": 54.45974130000104,
+        "target": 200,
+        "q": 8,
+        "adapt": 0,
+        "source_sha256": "3bb7d87b6fbec14e9ea3d378e49e40355e05850a532f865cbd392531902ecdae",
+        "dll_sha256": "6ff070d8c398a85d3c0ef038210c07d9ac93c6dd497cd57f4e3e2eafcbe23269",
+        "terminal_text": "上下界を取得（目標区間幅またはFs探索許容差は未達）",
+        "error_origins": [],
+        "upper_bracket": [
+          {
+            "mode": "upper",
+            "a": "1.36386895303266",
+            "b": "1.36396351157313",
+            "fa": "1.71569019703166E-04",
+            "fb": "-1.90615925188542E-06",
+            "target": "0.999999",
+            "quadrature": "8",
+            "root_width": "9.455854046303E-05"
+          }
+        ]
+      },
+      "DLL4": {
+        "raw_harness_status": "partial_certified",
+        "terminal_status": "PARTIAL_CERTIFIED",
+        "target_met": false,
+        "Fs_obtained": true,
+        "lower": 1.2223035780099496,
+        "upper": 1.3639635115731257,
+        "seconds": 42.678501899994444,
+        "target": 200,
+        "q": 8,
+        "adapt": 0,
+        "source_sha256": "f5e49ecfeeae04b884f2eaf181677d1cf008a7fd414defdd8318c945605a79bb",
+        "dll_sha256": "ff794f03846bccb995d63e289f69bcb9eca96efc8cc732d467db328d346f5ce4",
+        "terminal_text": "上下界を取得（目標区間幅またはFs探索許容差は未達）",
+        "error_origins": [],
+        "upper_bracket": [
+          {
+            "mode": "upper",
+            "a": "1.36386895303266",
+            "b": "1.36396351157313",
+            "fa": "1.71569019703166E-04",
+            "fb": "-1.90615925188542E-06",
+            "target": "0.999999",
+            "quadrature": "8",
+            "root_width": "9.455854046303E-05"
+          }
+        ]
+      },
+      "Fs_bitwise_exact": true,
+      "saved_result_cells_match": true,
+      "comparison_passed": true,
+      "case_passed": true,
+      "full_case_compared": true,
+      "comparison_scope": "Full original RPX_Run to identical terminal outcome",
+      "log_comparison": {
+        "solves": 18,
+        "completed_solves": 18,
+        "audits": 173,
+        "matches": true,
+        "errors": [],
+        "old_sha256": "9aa5827afa91cde76ae0ab1271e1ab15acf1a1756c40be080f6b0d023fb6bb67",
+        "new_sha256": "ab2e83abfbb253c55dedbedbbe15fb3edf4db1e396d0626eb3424b7954c71611",
+        "maximum_compared_solve_id": null
+      },
+      "same_inputs_mesh": true,
+      "comparison_seconds": {
+        "DLL3": 54.45974130000104,
+        "DLL4": 42.678501899994444
+      },
+      "reduction_percent_vs_DLL3": 21.63293309659253
+    }
+  ],
+  "P06A_full_mesh": {
+    "raw_harness_status": "failed",
+    "terminal_status": "CANCELLED",
+    "target_met": false,
+    "Fs_obtained": false,
+    "lower": null,
+    "upper": null,
+    "seconds": 3987.3183097,
+    "target": 1536,
+    "q": 8,
+    "adapt": 1,
+    "source_sha256": "c744c35d7f9fca4571eb0e3de81fe574792c255a3775aeffdd6b54846f3284a6",
+    "dll_sha256": "ff794f03846bccb995d63e289f69bcb9eca96efc8cc732d467db328d346f5ce4",
+    "terminal_text": "解析未完了：ANALYSIS_CANCELLED",
+    "error_origins": [
+      {
+        "number": "18",
+        "source": "VBAProject",
+        "line": "0",
+        "stage": "optimize",
+        "message": "ANALYSIS_CANCELLED"
+      },
+      {
+        "number": "18",
+        "source": "VBAProject",
+        "line": "0",
+        "stage": "bound",
+        "message": "ANALYSIS_CANCELLED"
+      },
+      {
+        "number": "18",
+        "source": "VBAProject",
+        "line": "0",
+        "stage": "fs_trial",
+        "message": "ANALYSIS_CANCELLED"
+      },
+      {
+        "number": "18",
+        "source": "VBAProject",
+        "line": "0",
+        "stage": "evaluate",
+        "message": "ANALYSIS_CANCELLED"
+      },
+      {
+        "number": "18",
+        "source": "VBAProject",
+        "line": "0",
+        "stage": "evaluate",
+        "message": "ANALYSIS_CANCELLED"
+      },
+      {
+        "number": "18",
+        "source": "VBAProject",
+        "line": "0",
+        "stage": "control_analysis",
+        "message": "ANALYSIS_CANCELLED"
+      }
+    ],
+    "upper_bracket": [
+      {
+        "mode": "upper",
+        "a": "1.0091815393407",
+        "b": "1.01147692417587",
+        "fa": "2.92074720795166E-03",
+        "fb": "-1.20029364333696E-03",
+        "target": "0.999999",
+        "quadrature": "4",
+        "root_width": "2.29538483517477E-03"
+      },
+      {
+        "mode": "upper",
+        "a": "1.0076107867554",
+        "b": "1.01247486450525",
+        "fa": "3.30132149662388E-03",
+        "fb": "-5.48487436863387E-03",
+        "target": "0.999999",
+        "quadrature": "4",
+        "root_width": "4.86407774985542E-03"
+      },
+      {
+        "mode": "upper",
+        "a": "0.975324878114438",
+        "b": "0.97748394671264",
+        "fa": "4.25321778808019E-03",
+        "fb": "-1.56843425991093E-04",
+        "target": "0.999999",
+        "quadrature": "4",
+        "root_width": "2.15906859820159E-03"
+      }
+    ]
+  },
+  "P06A_full_mesh_note": "User explicitly requested cancellation after approximately 66 minutes because full runs can take 10 hours. RPX_Stop was used; not a solver failure, not a completion/accuracy/target pass. No full-size adaptive speed comparator. Final DLL with a pre-mode-switch-fix workbook; numerical code is the same. P06N full adaptive run not started."
+}

@@ -1,0 +1,10 @@
+{
+  "rows": 224,
+  "normal_success": 83,
+  "precise_success": 91,
+  "bitwise_exact_rows": 174,
+  "maximum_relative_error": 0.0,
+  "differences": [],
+  "classification_mismatches": [],
+  "dll_sha256": "ff794f03846bccb995d63e289f69bcb9eca96efc8cc732d467db328d346f5ce4"
+}

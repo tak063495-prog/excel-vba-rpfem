@@ -1,0 +1,262 @@
+{
+  "tests": [
+    {
+      "test": "#1_different_count",
+      "actual": "PASS;upper=601;lower=1000;final_model_exact=True;scenario=different_count",
+      "pass": true
+    },
+    {
+      "test": "#1_same_count",
+      "actual": "PASS;upper=601;lower=601;final_model_exact=True;scenario=same_count",
+      "pass": true
+    },
+    {
+      "test": "#1_same_owner",
+      "actual": "PASS;upper=601;lower=601;final_model_exact=True;scenario=same_owner",
+      "pass": true
+    },
+    {
+      "test": "#1_retained",
+      "actual": "PASS;upper=601;lower=1000;final_model_exact=True;scenario=retained",
+      "pass": true
+    },
+    {
+      "test": "#1_guard_model",
+      "actual": "ERROR 5:UPPER_OUTPUT_MODEL_MISMATCH",
+      "pass": true
+    },
+    {
+      "test": "#1_guard_field",
+      "actual": "ERROR 5:UPPER_OUTPUT_FIELD_MISMATCH",
+      "pass": true
+    },
+    {
+      "test": "#1_guard_shape",
+      "actual": "ERROR 5:UPPER_OUTPUT_FIELD_SHAPE",
+      "pass": true
+    },
+    {
+      "test": "#1_guard_q",
+      "actual": "ERROR 5:UPPER_OUTPUT_CONTEXT_MISMATCH",
+      "pass": true
+    },
+    {
+      "test": "#1_guard_factor",
+      "actual": "ERROR 5:UPPER_OUTPUT_CONTEXT_MISMATCH",
+      "pass": true
+    },
+    {
+      "test": "#1_guard_incomplete",
+      "actual": "ERROR 5:UPPER_OUTPUT_OWNER_INCOMPLETE",
+      "pass": true
+    },
+    {
+      "test": "#1_guard_epoch",
+      "actual": "ERROR 5:UPPER_OUTPUT_INPUT_MISMATCH",
+      "pass": true
+    },
+    {
+      "test": "#2_token_0",
+      "actual": true,
+      "pass": true
+    },
+    {
+      "test": "#2_token_1",
+      "actual": true,
+      "pass": true
+    },
+    {
+      "test": "#2_token_2",
+      "actual": true,
+      "pass": true
+    },
+    {
+      "test": "#2_token_3",
+      "actual": true,
+      "pass": true
+    },
+    {
+      "test": "#2_token_4",
+      "actual": true,
+      "pass": true
+    },
+    {
+      "test": "#2_token_5",
+      "actual": true,
+      "pass": true
+    },
+    {
+      "test": "#2_token_6",
+      "actual": true,
+      "pass": true
+    },
+    {
+      "test": "#2_token_7",
+      "actual": true,
+      "pass": true
+    },
+    {
+      "test": "#2_token_8",
+      "actual": true,
+      "pass": true
+    },
+    {
+      "test": "#2_token_9",
+      "actual": true,
+      "pass": true
+    },
+    {
+      "test": "#2_token_10",
+      "actual": false,
+      "pass": true
+    },
+    {
+      "test": "#2_token_11",
+      "actual": false,
+      "pass": true
+    },
+    {
+      "test": "#2_token_12",
+      "actual": false,
+      "pass": true
+    },
+    {
+      "test": "#2_token_13",
+      "actual": false,
+      "pass": true
+    },
+    {
+      "test": "#2_token_14",
+      "actual": false,
+      "pass": true
+    },
+    {
+      "test": "#2_token_15",
+      "actual": false,
+      "pass": true
+    },
+    {
+      "test": "#2_token_16",
+      "actual": false,
+      "pass": true
+    },
+    {
+      "test": "#2_token_17",
+      "actual": false,
+      "pass": true
+    },
+    {
+      "test": "#2_token_18",
+      "actual": false,
+      "pass": true
+    },
+    {
+      "test": "#2_token_19",
+      "actual": false,
+      "pass": true
+    },
+    {
+      "test": "#2_token_20",
+      "actual": false,
+      "pass": true
+    },
+    {
+      "test": "#2_token_21",
+      "actual": false,
+      "pass": true
+    },
+    {
+      "test": "#2_token_22",
+      "actual": false,
+      "pass": true
+    },
+    {
+      "test": "#2_token_23",
+      "actual": false,
+      "pass": true
+    },
+    {
+      "test": "#2_token_24",
+      "actual": false,
+      "pass": true
+    },
+    {
+      "test": "#2_token_25",
+      "actual": false,
+      "pass": true
+    },
+    {
+      "test": "#2_token_26",
+      "actual": false,
+      "pass": true
+    },
+    {
+      "test": "#2_token_27",
+      "actual": false,
+      "pass": true
+    },
+    {
+      "test": "#2_cancel_audit",
+      "actual": false,
+      "pass": true
+    },
+    {
+      "test": "#2_cancel_audit",
+      "actual": false,
+      "pass": true
+    },
+    {
+      "test": "#2_solver_normal",
+      "actual": "PASS;value=1.01458795869196;audit=5.93895012057644E-08;engine=LEGACY;rescues=0;hsd_calls=0;status=OPTIMAL",
+      "pass": true
+    },
+    {
+      "test": "#2_solver_factor",
+      "actual": "PASS;value=1.01458850816143;audit=1.89990467802659E-10;engine=HSD_RESCUE;rescues=1;hsd_calls=1;status=OPTIMAL",
+      "pass": true
+    },
+    {
+      "test": "#2_solver_memory",
+      "actual": "ERROR 7:OUT_OF_MEMORY;engine=LEGACY;rescues=0;hsd_calls=0",
+      "pass": true
+    },
+    {
+      "test": "#2_solver_subscript",
+      "actual": "ERROR 9:SUBSCRIPT;engine=LEGACY;rescues=0;hsd_calls=0",
+      "pass": true
+    },
+    {
+      "test": "#2_solver_cancel",
+      "actual": "ERROR 18:ANALYSIS_CANCELLED;engine=LEGACY;rescues=0;hsd_calls=0",
+      "pass": true
+    },
+    {
+      "test": "#2_solver_unknown",
+      "actual": "ERROR 5:UNKNOWN_FAILURE;engine=LEGACY;rescues=0;hsd_calls=0",
+      "pass": true
+    },
+    {
+      "test": "#2_solver_audit",
+      "actual": "ERROR 5:RAW_YIELD_AUDIT_FAILED;engine=LEGACY;rescues=0;hsd_calls=0",
+      "pass": true
+    },
+    {
+      "test": "#2_solver_model",
+      "actual": "ERROR 5:ROBUST_MODEL_MISMATCH;engine=LEGACY;rescues=0;hsd_calls=0",
+      "pass": true
+    },
+    {
+      "test": "#2_solver_hsd_failure",
+      "actual": "ERROR 7:HSD_TEST_MEMORY;engine=HSD_RESCUE;rescues=1;hsd_calls=1",
+      "pass": true
+    },
+    {
+      "test": "C5_roots",
+      "actual": "PASS;lower=1.51428621843036;upper=3.00323393673885;lower_calls=6;upper_calls=24;elements=20;audit=4.03184972387616E-11",
+      "pass": true
+    }
+  ],
+  "passed": 51,
+  "failed": 0,
+  "scope": "same G1R16 issue #1/#2 assertions; test-only injection in isolated workbook"
+}

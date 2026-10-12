@@ -1,0 +1,25 @@
+{
+  "ordinary": {
+    "n": 262144,
+    "steps": 6,
+    "actual_yield": true,
+    "owned_rhs": true,
+    "interleaved_contexts": true,
+    "destroy_partly_processed_context": true,
+    "wrong_epoch_reentry_early_result_and_stale_id_rejected": true,
+    "exact_identity_solution": true,
+    "live_handles_after": 0
+  },
+  "HSD": {
+    "n": 262144,
+    "steps": 229,
+    "actual_yield": true,
+    "interleaved_contexts": true,
+    "destroy_partly_processed_context": true,
+    "wrong_epoch_factor_reentry_early_result_and_stale_id_rejected": true,
+    "exact_DD_identity_solution": true,
+    "live_handles_after": 0
+  },
+  "dll_sha256": "ff794f03846bccb995d63e289f69bcb9eca96efc8cc732d467db328d346f5ce4",
+  "pass": true
+}

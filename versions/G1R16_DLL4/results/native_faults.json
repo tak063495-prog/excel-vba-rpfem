@@ -1,0 +1,57 @@
+{
+  "order": {
+    "exit_code": 0,
+    "messages": [
+      "PASS 2835 allocation-failure points code207; 8 unknown exceptions code208; no leaks; cleanup after partial steps; invalid contracts rejected"
+    ],
+    "test_source_sha256": "4ec1e7d9dd3f20be48eb402c37129a6f2c4abbf3c107b990b1032a75e3ca167f",
+    "source_hashes": {
+      "rpfem_bulk.h": "a4ddd039f2b5002429c4105b1b652c08972ba8426ecf0ca137f0665236d9b9ec",
+      "rpfem_hlinear.cpp": "4039e797d611405d940f4dd4eadd0d074cf910fc172a7f6d9fe825e45190e9f0",
+      "rpfem_lu.cpp": "bc4ae174581cdf97f0f5d42b121ede82a7c963576155cebf10f074566e6ce15d",
+      "rpfem_native.c": "4f00144ba81cea31502a6a405e6ff60d1cd8ba0b6962852a17c6c21565f7a239",
+      "rpfem_order.cpp": "c52c71450f90af56aaf10c71fafbbae33d7562072df0a1a2e89f34cb7ae80216",
+      "rpfem_refine.cpp": "a1e55d428ef93bf48ab680623f8314b8f7844fff6b3c518b14bbb61955ae5387",
+      "rpfem_solver.h": "51ff5a54fe7d3e333b0215ff4bc6382e8edd019ff3b2a3e4f329afd48b554a4a",
+      "vba_fp.asm": "8319f5c2b53942b3ad9ded001b6baa47bcf5cfebccf82d66fef6b0ad47728cb0"
+    },
+    "actual_compile_and_execute": true
+  },
+  "lu": {
+    "exit_code": 0,
+    "messages": [
+      "PASS 66 allocation-failure points code207; 8 unknown points code208; scoped context no leaks; partial-step cleanup; memory/order/storage/threshold rejection"
+    ],
+    "test_source_sha256": "30d2747723772410638c310daf72cb61a438dbaf1b58ca0c268c9eed3e6188a0",
+    "source_hashes": {
+      "rpfem_bulk.h": "a4ddd039f2b5002429c4105b1b652c08972ba8426ecf0ca137f0665236d9b9ec",
+      "rpfem_hlinear.cpp": "4039e797d611405d940f4dd4eadd0d074cf910fc172a7f6d9fe825e45190e9f0",
+      "rpfem_lu.cpp": "bc4ae174581cdf97f0f5d42b121ede82a7c963576155cebf10f074566e6ce15d",
+      "rpfem_native.c": "4f00144ba81cea31502a6a405e6ff60d1cd8ba0b6962852a17c6c21565f7a239",
+      "rpfem_order.cpp": "c52c71450f90af56aaf10c71fafbbae33d7562072df0a1a2e89f34cb7ae80216",
+      "rpfem_refine.cpp": "a1e55d428ef93bf48ab680623f8314b8f7844fff6b3c518b14bbb61955ae5387",
+      "rpfem_solver.h": "51ff5a54fe7d3e333b0215ff4bc6382e8edd019ff3b2a3e4f329afd48b554a4a",
+      "vba_fp.asm": "8319f5c2b53942b3ad9ded001b6baa47bcf5cfebccf82d66fef6b0ad47728cb0"
+    },
+    "actual_compile_and_execute": true
+  },
+  "job": {
+    "exit_code": 0,
+    "messages": [
+      "PASS 6 allocation points207; 4 unknown points208; partial cleanup; stale handles rejected; exact identity solve",
+      "PASS 15 allocation points207; 4 unknown points208; partial cleanup; stale handles rejected; exact identity solve"
+    ],
+    "test_source_sha256": "fc6ef6abc39f4723c052db19f5ee2d5b22c1744523361f08be117c75b92a0448",
+    "source_hashes": {
+      "rpfem_bulk.h": "a4ddd039f2b5002429c4105b1b652c08972ba8426ecf0ca137f0665236d9b9ec",
+      "rpfem_hlinear.cpp": "4039e797d611405d940f4dd4eadd0d074cf910fc172a7f6d9fe825e45190e9f0",
+      "rpfem_lu.cpp": "bc4ae174581cdf97f0f5d42b121ede82a7c963576155cebf10f074566e6ce15d",
+      "rpfem_native.c": "4f00144ba81cea31502a6a405e6ff60d1cd8ba0b6962852a17c6c21565f7a239",
+      "rpfem_order.cpp": "c52c71450f90af56aaf10c71fafbbae33d7562072df0a1a2e89f34cb7ae80216",
+      "rpfem_refine.cpp": "a1e55d428ef93bf48ab680623f8314b8f7844fff6b3c518b14bbb61955ae5387",
+      "rpfem_solver.h": "51ff5a54fe7d3e333b0215ff4bc6382e8edd019ff3b2a3e4f329afd48b554a4a",
+      "vba_fp.asm": "8319f5c2b53942b3ad9ded001b6baa47bcf5cfebccf82d66fef6b0ad47728cb0"
+    },
+    "actual_compile_and_execute": true
+  }
+}

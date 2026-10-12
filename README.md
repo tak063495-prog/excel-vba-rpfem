@@ -21,7 +21,19 @@ Excel VBAによる2次元RPFEM解析のソース、XLSM、検証資料です。
 
 **G1R15では、G1R14（定常浸透・間隙水圧の一方向連成）に、浸透入力シートの整理・地下水面からの水圧入力・水平震度法（地震）を追加した（実Excelで全回帰済み：連成OFF・kh=0でD03N・D07AのFsがG1R14と全桁一致）。G1R14では連成OFFでD03N・D07AのFsがG1R13と全桁一致した。G1R13の修復・制限は[G1R13報告](versions/G1R13/REPORT.md)、G1R12時点の25ケース結果（23/25取得・11/25目標達成）は[過去25ケース結果](validation/G1R12_native25_20261009/REPORT.md)を参照し、区別する。図の矢印は規準化された速度機構であり、変位量ではない。**
 
-## G1R16 DLL_3 — 通常内点法・HSDの追加DLL化（最新版）
+## G1R16 DLL4 — 通常内点法・HSDの線形求解と精度補正をまとめてDLL化（最新版）
+
+2026年10月12日。線形求解・反復補正を状態付きのDLL内処理にし、HSDのLU因子をDLLに保持します。残差・方向・境界・状態更新も追加移植しました。堤防例題は **DLL_3 338.59秒 → DLL4 273.81秒（19.13%短縮、約1.24倍）**。同一PC・同一入力で両版を順番に再測定しています。
+
+- **[対応XLSM・DLL・ソース・検証資料の一式ZIP](https://github.com/tak063495-prog/excel-vba-rpfem/raw/refs/heads/main/downloads/RPFEM_G1R16_DLL4_20261012.zip)**
+- [対応XLSM](https://github.com/tak063495-prog/excel-vba-rpfem/raw/refs/heads/main/versions/G1R16_DLL4/delivery/RPFEM_20261012_G1R16_DLL4_Levee_Checked.xlsm) / [DLL4](https://github.com/tak063495-prog/excel-vba-rpfem/raw/refs/heads/main/versions/G1R16_DLL4/delivery/rpfem_native_x64.dll)
+- [使い方](versions/G1R16_DLL4/README.md) / [検証報告・速度表](versions/G1R16_DLL4/REPORT.md) / [実装範囲](versions/G1R16_DLL4/IMPLEMENTATION_JA.md) / [導入・復旧](versions/G1R16_DLL4/IMPORT_ROLLBACK_JA.md) / [VBA差分](versions/G1R16_DLL4/changes.diff) / [native差分](versions/G1R16_DLL4/native_changes.diff)
+
+堤防のFs下界1.2244477290215・上界1.2343080287831916、全53求解・603監査がVBA/DLL_3記録と一致。HSD6組、q8のC5・多層P06A/P06N固定点6組、P06N/D03N/D07Aの粗メッシュ終端比較、P06AのFs≥0.125の15点、LU360・境界5070・取消/入力変更/メモリ不足/未知例外等を比較しました。粗メッシュの一部ではDLL_3でもFsを取得できず、失敗を含む回帰一致と安全率取得を区別しています。P06Aフル適応解析はユーザー指示で中断しました。追加の粗メッシュ探索ではDLL_3が極小Fsで未収束となり、ユーザーが選択した15点に比較範囲を絞りました。その未収束のDLL4再現は未実施です。P06Nフル適応解析は開始していません。`PARTIAL_CERTIFIED`と目標GAP達成も区別します。26ケース全再実行ではありません。
+
+XLSMとDLLを組で同じフォルダーに置き、交換時にはExcelを終了します。DLL不在・非対応版ではVBAに切替します。固定Fsの非線形反復制御、Fs探索、監査、救済、メッシュは既存VBAを維持しています。詳細な検証条件・未実施範囲は報告書を参照してください。
+
+## G1R16 DLL_3 — 通常内点法・HSDの追加DLL化（前版）
 
 2026年10月12日。NTスケーリング・補正・KKT組立・G/G転置積・HSDのDD原作用素・疎LUを、配列単位のループとしてDLLへ追加移植した版です。堤防例題は **DLL2 402.57秒 → DLL_3 338.56秒、15.90%短縮**。元VBAの同一PCの既存記録611.56秒比では **44.64%短縮・約1.81倍**です。VBAの長時間測定は再実行していません。
 

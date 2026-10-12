@@ -1,0 +1,9 @@
+{
+  "zip_path": "downloads\\RPFEM_G1R16_DLL4_20261012.zip",
+  "zip_sha256": "698bcd43829214eb6f911f5d966f8105160eb596c1f5fcb5320b5593434a650b",
+  "zip_bytes": 21411834,
+  "entries": 550,
+  "every_payload_hash_verified": true,
+  "only_one_delivery_xlsm_and_dll": true,
+  "historical32_and_protected533_intact": true
+}

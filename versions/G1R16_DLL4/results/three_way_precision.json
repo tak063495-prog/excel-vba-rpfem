@@ -1,0 +1,86 @@
+{
+  "fixed_fem": [
+    {
+      "file": "C5_45_lower_auto_field.bin",
+      "vba_dll3_dll4_bitwise_exact": true,
+      "DLL3_field_sha256": "e3e2ee6ade7a032c3e98d924eb558e32d3eff610d0d6cba072d085f16e3cf58e",
+      "DLL4_field_sha256": "e3e2ee6ade7a032c3e98d924eb558e32d3eff610d0d6cba072d085f16e3cf58e",
+      "same_mesh": true
+    },
+    {
+      "file": "C5_45_upper_auto_field.bin",
+      "vba_dll3_dll4_bitwise_exact": true,
+      "DLL3_field_sha256": "ebebd42a752e2d2b6c4fce36f3cfabfc144eb29d59983f915c76d2826c3db139",
+      "DLL4_field_sha256": "ebebd42a752e2d2b6c4fce36f3cfabfc144eb29d59983f915c76d2826c3db139",
+      "same_mesh": true
+    },
+    {
+      "file": "P06A_lower_auto_field.bin",
+      "vba_dll3_dll4_bitwise_exact": true,
+      "DLL3_field_sha256": "1a709c7bfcee4e37a412613a43b9c22cbf00d9aa7fbc265afd72d80abd209d7e",
+      "DLL4_field_sha256": "1a709c7bfcee4e37a412613a43b9c22cbf00d9aa7fbc265afd72d80abd209d7e",
+      "same_mesh": true
+    },
+    {
+      "file": "P06A_upper_auto_field.bin",
+      "vba_dll3_dll4_bitwise_exact": true,
+      "DLL3_field_sha256": "0fdaec3a614cd9fbf88aa6a789d4a9dcf737b0797119e71460af89fadc8c7304",
+      "DLL4_field_sha256": "0fdaec3a614cd9fbf88aa6a789d4a9dcf737b0797119e71460af89fadc8c7304",
+      "same_mesh": true
+    },
+    {
+      "file": "P06N_lower_auto_field.bin",
+      "vba_dll3_dll4_bitwise_exact": true,
+      "DLL3_field_sha256": "6c64bdd96c1a9c0759f273f4c442f260dcf2fe3a0c31c35d7a979ab81a594973",
+      "DLL4_field_sha256": "6c64bdd96c1a9c0759f273f4c442f260dcf2fe3a0c31c35d7a979ab81a594973",
+      "same_mesh": true
+    },
+    {
+      "file": "P06N_upper_auto_field.bin",
+      "vba_dll3_dll4_bitwise_exact": true,
+      "DLL3_field_sha256": "96adaaa00cf1f9aa384e2e2b524daf1ab718b162eb2a8836bb446e7264dd9b68",
+      "DLL4_field_sha256": "96adaaa00cf1f9aa384e2e2b524daf1ab718b162eb2a8836bb446e7264dd9b68",
+      "same_mesh": true
+    }
+  ],
+  "HSD": [
+    {
+      "file": "LDL_CHECKED_0_auto.bin",
+      "vba_dll3_dll4_bitwise_exact": true,
+      "DLL3_sha256": "2ae1beb4e53b0070bae95c75b6484259a7a80c4ea24076e509b3cf2ce137b3c7",
+      "DLL4_sha256": "2ae1beb4e53b0070bae95c75b6484259a7a80c4ea24076e509b3cf2ce137b3c7"
+    },
+    {
+      "file": "LDL_CHECKED_1_auto.bin",
+      "vba_dll3_dll4_bitwise_exact": true,
+      "DLL3_sha256": "7749add09bcbe3d0a3ba583b5f394127c943ad885c819109ad86e73a8b515bfa",
+      "DLL4_sha256": "7749add09bcbe3d0a3ba583b5f394127c943ad885c819109ad86e73a8b515bfa"
+    },
+    {
+      "file": "LDL_CHECKED_2_auto.bin",
+      "vba_dll3_dll4_bitwise_exact": true,
+      "DLL3_sha256": "e2bd9671c81dc8b57f12b61d3c528f13e33cc55f7e7625a9d5213d0ea781e149",
+      "DLL4_sha256": "e2bd9671c81dc8b57f12b61d3c528f13e33cc55f7e7625a9d5213d0ea781e149"
+    },
+    {
+      "file": "PIVOT_ONLY_0_auto.bin",
+      "vba_dll3_dll4_bitwise_exact": true,
+      "DLL3_sha256": "7501941cedd53bc652b0fc8e0265ba6b0069146be008227132fc3a1bc53dbd86",
+      "DLL4_sha256": "7501941cedd53bc652b0fc8e0265ba6b0069146be008227132fc3a1bc53dbd86"
+    },
+    {
+      "file": "PIVOT_ONLY_1_auto.bin",
+      "vba_dll3_dll4_bitwise_exact": true,
+      "DLL3_sha256": "753b18bbc9c1e3c51dd4cc15fa2ec57a7545c81fdb23a06c58c75f5b51dea422",
+      "DLL4_sha256": "753b18bbc9c1e3c51dd4cc15fa2ec57a7545c81fdb23a06c58c75f5b51dea422"
+    },
+    {
+      "file": "PIVOT_ONLY_2_auto.bin",
+      "vba_dll3_dll4_bitwise_exact": true,
+      "DLL3_sha256": "e64a9d0d61b402af60144de174ef75a1fe625c193883560822043d3e97d0010c",
+      "DLL4_sha256": "e64a9d0d61b402af60144de174ef75a1fe625c193883560822043d3e97d0010c"
+    }
+  ],
+  "comparison": "actual recorded DLL3 outputs against actual paired VBA/DLL4 outputs; bit-for-bit including binary metadata",
+  "note": "q2 fixed FEM was executed before final clock/budget/guard-only changes; final q8 three-backend FEM is recorded separately. HSD canonical cases use the final DLL and workbook."
+}

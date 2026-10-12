@@ -1,0 +1,16 @@
+{
+  "compile": "PASS",
+  "security_unmodified": 1,
+  "modules": [
+    "RPX_HSDLu",
+    "RPX_LDL",
+    "RPX_Native",
+    "RPX_NativeBulk",
+    "RPX_NativeLU",
+    "RPX_NativeSolver",
+    "RPX_Solve"
+  ],
+  "native_info": "DLL_READY;numeric=0;dd_numeric=0;backsolve=0;ordering=0;column_ordering=0;nt_bulk=0;g_bulk=0;gt_bulk=0;kkt_bulk=0;hsd_operator=0;corrector_bulk=0;hsd_lu=0;hsd_lu_solve=0;solver_vector_calls=0;hsd_jobs=0;hsd_job_steps=0;refine_jobs=0;refine_steps=0",
+  "source_sha256": "3bb7d87b6fbec14e9ea3d378e49e40355e05850a532f865cbd392531902ecdae",
+  "delivery_sha256": "f5e49ecfeeae04b884f2eaf181677d1cf008a7fd414defdd8318c945605a79bb"
+}

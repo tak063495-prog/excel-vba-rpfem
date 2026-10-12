@@ -1,0 +1,195 @@
+{
+  "state": "VALIDATED_READY_FOR_PUBLICATION",
+  "source_protected": 533,
+  "latest_dll_sha256": "ff794f03846bccb995d63e289f69bcb9eca96efc8cc732d467db328d346f5ce4",
+  "scope": "DLL4 normal IPM and HSD numerical jobs; compare actual VBA/DLL3 precision, robustness and DLL3 speed; publish verified paired XLSM/DLL and evidence.",
+  "user_selected_P06_scope": "Cancel full P06A, complete both-case comparison first. Then stop P06A extreme-Fs coarse exploration and compare completed practical Fs points (Fs>=0.125,15 points). P06N full adaptive run not started.",
+  "P06A_full": {
+    "user_requested_stop": true,
+    "excel_pid": 29772,
+    "method": "existing RPX_Stop macro; no process kill",
+    "requested_at": "2026-10-12 13:40:15",
+    "stop_macro_returned": true
+  },
+  "primary_comparisons": {
+    "state": "completed",
+    "runs": [
+      {
+        "command": "benchmark_fixed.py --tag fixed_q8_threeway --target 256 --q 8",
+        "exit_code": 0,
+        "wall_seconds": 658.3534119999968,
+        "log": "results\\pipeline_0.log"
+      },
+      {
+        "command": "run_levee.py --backend dll3 --tag levee_dll3_serial",
+        "exit_code": 0,
+        "wall_seconds": 345.43252250002115,
+        "log": "results\\pipeline_1.log"
+      },
+      {
+        "command": "run_levee.py --backend dll4 --tag levee_dll4_final",
+        "exit_code": 0,
+        "wall_seconds": 281.34455189999426,
+        "log": "results\\pipeline_2.log"
+      },
+      {
+        "command": "run_case.py P06N --backend dll3 --tag p06n_roots_dll3 --target 200 --q 8 --adapt 0",
+        "exit_code": 1,
+        "wall_seconds": 985.8778119999915,
+        "log": "results\\pipeline_3.log",
+        "case_failed": true,
+        "failure_classification": "BASELINE_FS_LOWER_BRACKET_NOT_FOUND"
+      },
+      {
+        "command": "run_case.py P06N --backend dll4 --tag p06n_roots_dll4 --target 200 --q 8 --adapt 0 --record-lower-bracket-failure",
+        "exit_code": 0,
+        "wall_seconds": 727.2396301999979,
+        "log": "results\\pipeline_resumed_4.log",
+        "case_status": "failed",
+        "Fs_obtained": false,
+        "comparison_driver_outcome": "RECORDED_FAILED_FS_BRACKET"
+      },
+      {
+        "command": "run_case.py P06A --backend dll3 --tag p06a_roots_dll3 --target 200 --q 8 --adapt 0 --record-lower-bracket-failure",
+        "exit_code": 1,
+        "wall_seconds": 1740.1362682000035,
+        "log": "results\\pipeline_resumed_5.log",
+        "case_status": "failed",
+        "Fs_obtained": false,
+        "comparison_driver_outcome": "failed"
+      },
+      {
+        "command": "run_case.py P06A --backend dll4 --tag p06a_roots_dll4 --target 200 --q 8 --adapt 0 --minimum-test-fs 0.125",
+        "exit_code": 0,
+        "wall_seconds": 330.2215891999949,
+        "log": "results\\pipeline_bounded_6.log",
+        "case_status": "failed",
+        "Fs_obtained": false,
+        "comparison_driver_outcome": "BOUNDED_TEST_STOP"
+      },
+      {
+        "command": "run_case.py D03N --backend dll3 --tag d03n_roots_dll3 --target 200 --q 8 --adapt 0 --record-lower-bracket-failure",
+        "exit_code": 0,
+        "wall_seconds": 583.8821248000022,
+        "log": "results\\pipeline_bounded_7.log",
+        "case_status": "partial_certified",
+        "Fs_obtained": true,
+        "comparison_driver_outcome": "partial_certified"
+      },
+      {
+        "command": "run_case.py D03N --backend dll4 --tag d03n_roots_dll4 --target 200 --q 8 --adapt 0 --record-lower-bracket-failure",
+        "exit_code": 0,
+        "wall_seconds": 384.75123480000184,
+        "log": "results\\pipeline_bounded_8.log",
+        "case_status": "partial_certified",
+        "Fs_obtained": true,
+        "comparison_driver_outcome": "partial_certified"
+      },
+      {
+        "command": "run_case.py D07A --backend dll3 --tag d07a_roots_dll3 --target 200 --q 8 --adapt 0 --record-lower-bracket-failure",
+        "exit_code": 0,
+        "wall_seconds": 62.49561059998814,
+        "log": "results\\pipeline_bounded_9.log",
+        "case_status": "partial_certified",
+        "Fs_obtained": true,
+        "comparison_driver_outcome": "partial_certified"
+      },
+      {
+        "command": "run_case.py D07A --backend dll4 --tag d07a_roots_dll4 --target 200 --q 8 --adapt 0 --record-lower-bracket-failure",
+        "exit_code": 0,
+        "wall_seconds": 50.797349600004964,
+        "log": "results\\pipeline_bounded_10.log",
+        "case_status": "partial_certified",
+        "Fs_obtained": true,
+        "comparison_driver_outcome": "partial_certified"
+      }
+    ],
+    "current": "run_case.py D07A --backend dll4 --tag d07a_roots_dll4 --target 200 --q 8 --adapt 0 --record-lower-bracket-failure",
+    "protocol_discrepancy": "The initial controller required positive Fs on every coarse mesh. Actual DLL3 cannot form the lower bracket for P06N TARGET200. Preserve its failed case, compare DLL4 under identical settings, and never count this as an Fs pass.",
+    "P06A_scope_resolution": "Optional additional coarse-mesh validation bounded after the scope question and stated recommended assumption. DLL3 ended at HSD_NOT_CONVERGED before stop; preserve raw failure. Compare all completed Fs>=0.125 points with DLL4; do not claim a full-P06A failure-path match or completed Fs."
+  },
+  "P06A_coarse_comparisons": {
+    "state": "bounded_prefix_completed",
+    "runs": [
+      {
+        "command": "run_case.py P06A --backend dll3 --tag p06a_roots_dll3 --target 200 --q 8 --adapt 0 --record-lower-bracket-failure",
+        "exit_code": 1,
+        "wall_seconds": 1740.1362682000035,
+        "log": "results\\pipeline_resumed_5.log",
+        "case_status": "failed",
+        "Fs_obtained": false,
+        "comparison_driver_outcome": "failed"
+      },
+      {
+        "command": "run_case.py P06A --backend dll4 --tag p06a_roots_dll4 --target 200 --q 8 --adapt 0 --minimum-test-fs 0.125",
+        "exit_code": 0,
+        "wall_seconds": 330.2215891999949,
+        "log": "results\\pipeline_bounded_6.log",
+        "case_status": "failed",
+        "Fs_obtained": false,
+        "comparison_driver_outcome": "BOUNDED_TEST_STOP"
+      }
+    ],
+    "minimum_compared_fs": 0.125,
+    "full_case_compared": false
+  },
+  "tests_with_evidence": [
+    "native C/C++/ASM build and native Excel import/compile",
+    "HSD 6; actual VBA/DLL4 with recorded actual DLL3 three-way output",
+    "LU 360:352 bitwise exact + 8 matching singular rejections",
+    "NT 224:174 bitwise exact + 50 matching rejections",
+    "bulk160:1239592 exact bytes, ordering68 including n>20000",
+    "boundary5070: exact outputs and error partial state",
+    "job controls12: cancel/OOM/subscript/unknown/input/success",
+    "large262144-variable job lifecycle and real yielding",
+    "mode switch2: factor invalidation and new solve",
+    "C++ allocation and unknown exception injection builds/runs",
+    "Issue1/2 assertions51 and native/missing/oldDLL2/oldDLL3 fallback",
+    "seep convergence, nonconvergence and water-input checks"
+  ],
+  "delivery_verification": {
+    "protected_original_files": 533,
+    "protected_hashes_match": true,
+    "baseline_modules": 68,
+    "baseline_sources_match_actual_DLL3": true,
+    "delivery_modules": 69,
+    "changed_existing_modules": [
+      "RPX_HSDLu",
+      "RPX_LDL",
+      "RPX_Native",
+      "RPX_NativeBulk",
+      "RPX_NativeLU",
+      "RPX_Solve"
+    ],
+    "added_modules": [
+      "RPX_NativeSolver"
+    ],
+    "unchanged_existing_modules": 62,
+    "document_modules_unchanged": true,
+    "sources_match_saved_workbook": true,
+    "comparison": "case-insensitive identifiers; exact string literals and IEEE754-equivalent VBE numeric formatting; excludes comments/attributes",
+    "cp932_crlf_strict_roundtrip": true,
+    "xlsm_sha256": "57351ad9ba8a5e565737efdaa3ab185692a1bf09621313a1a7bccc376e6658ed",
+    "dll_sha256": "ff794f03846bccb995d63e289f69bcb9eca96efc8cc732d467db328d346f5ce4",
+    "main_buttons_resolve_in_renamed_delivery_book": [
+      "RPX_CreateMesh",
+      "RPX_Run",
+      "RPX_ShowDiagram",
+      "RPX_Stop"
+    ],
+    "reopen_native_info": "DLL_READY;numeric=0;dd_numeric=0;backsolve=0;ordering=0;column_ordering=0;nt_bulk=0;g_bulk=0;gt_bulk=0;kkt_bulk=0;hsd_operator=0;corrector_bulk=0;hsd_lu=0;hsd_lu_solve=0;solver_vector_calls=0;hsd_jobs=0;hsd_job_steps=0;refine_jobs=0;refine_steps=0",
+    "reopen_whole_project_compile": "PASS",
+    "actual_module_count": 69,
+    "security_unmodified": 1
+  },
+  "package_verification": null,
+  "not_completed": [
+    "P06A full adaptive search (user canceled)",
+    "P06A coarse failure reproduction below Fs0.125 in DLL4 (user narrowed extra comparison)",
+    "P06N full adaptive search (not started)",
+    "full25/26 case batch (not resumed)"
+  ],
+  "numerical_scope": "Nonlinear loop control, Fs search, physical audits, rescue policy and mesh remain VBA. Linear solve/refinement jobs and fused numerical loops execute in DLL.",
+  "snapshot_semantics": "Immutable validation snapshot taken before ZIP creation and GitHub publication. Post-package and post-upload checks are recorded separately, so this file remains covered by the archive manifest.",
+  "publication": "GitHub upload and HTTP/SHA256 download verification follow this snapshot. verify_published.py records the actual result separately; the delivery message reports the verified published commit."
+}

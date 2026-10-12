@@ -1,0 +1,10 @@
+RUNNING P06A dll3 PID 29740
+{"case": "P06A", "backend": "dll3", "status": "failed", "analysis_seconds": 1732.015916299977, "lower": null, "upper": null, "terminal_text": "解析未完了：HSD_NOT_CONVERGED"}
+Traceback (most recent call last):
+  File "C:\Users\link_\Downloads\RPFEM_G1R16_DLL4_20261012\versions\G1R16_DLL4\tools\run_case.py", line 69, in <module>
+    if __name__=='__main__':run()
+                            ^^^^^
+  File "C:\Users\link_\Downloads\RPFEM_G1R16_DLL4_20261012\versions\G1R16_DLL4\tools\run_case.py", line 62, in run
+    assert (result['status'] in ['completed','partial_certified'] and result['Fs_obtained']) or result['comparison_driver_outcome']=='RECORDED_FAILED_FS_BRACKET',result['terminal_text']
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 解析未完了：HSD_NOT_CONVERGED

@@ -1,0 +1,13 @@
+{
+  "modules": [
+    "RPX_HSDLu",
+    "RPX_LDL",
+    "RPX_Native",
+    "RPX_NativeBulk",
+    "RPX_NativeLU",
+    "RPX_NativeSolver",
+    "RPX_Solve"
+  ],
+  "encoding": "CP932 strict round trip",
+  "line_endings": "CRLF"
+}

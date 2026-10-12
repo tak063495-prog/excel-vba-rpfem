@@ -1,0 +1,2 @@
+RUNNING PID 25488
+{"status": "completed", "analysis_seconds": 338.6668231000076, "lower": 1.2244477290215, "upper": 1.2343080287831916, "native_end": "DLL_READY;numeric=1550;dd_numeric=0;backsolve=6980;ordering=15;column_ordering=0;nt_bulk=1504;g_bulk=4535;gt_bulk=4625;kkt_bulk=1503;hsd_operator=225;corrector_bulk=1518;hsd_lu=0;hsd_lu_solve=0"}

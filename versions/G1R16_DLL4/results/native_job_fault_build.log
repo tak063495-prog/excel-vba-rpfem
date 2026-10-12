@@ -1,0 +1,10 @@
+ Assembling: ..\native\vba_fp.asm
+rpfem_native.c
+job_failure_injection.cpp
+   ライブラリ refine_failure_injection.lib とオブジェクト refine_failure_injection.exp を作成中
+PASS 6 allocation points207; 4 unknown points208; partial cleanup; stale handles rejected; exact identity solve
+job_failure_injection.cpp
+rpfem_lu.cpp
+コードを生成中...
+   ライブラリ hlinear_failure_injection.lib とオブジェクト hlinear_failure_injection.exp を作成中
+PASS 15 allocation points207; 4 unknown points208; partial cleanup; stale handles rejected; exact identity solve

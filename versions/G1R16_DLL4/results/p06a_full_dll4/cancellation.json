@@ -1,0 +1,7 @@
+{
+  "user_requested_stop": true,
+  "excel_pid": 29772,
+  "method": "existing RPX_Stop macro; no process kill",
+  "requested_at": "2026-10-12 13:40:15",
+  "stop_macro_returned": true
+}

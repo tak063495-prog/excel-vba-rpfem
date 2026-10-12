@@ -1,0 +1,78 @@
+{
+  "tests": [
+    {
+      "hsd": false,
+      "fault": "cancel",
+      "result": "ERROR 18:ANALYSIS_CANCELLED;status=CANCELLED;h=0;r=0;l=0",
+      "pass": true
+    },
+    {
+      "hsd": false,
+      "fault": "memory",
+      "result": "ERROR 7:INJECTED_MEMORY;status=CAPACITY_EXCEEDED;h=0;r=0;l=0",
+      "pass": true
+    },
+    {
+      "hsd": false,
+      "fault": "subscript",
+      "result": "ERROR 9:INJECTED_SUBSCRIPT;status=NUMERICAL_FAILURE;h=0;r=0;l=0",
+      "pass": true
+    },
+    {
+      "hsd": false,
+      "fault": "unknown",
+      "result": "ERROR 513:INJECTED_UNKNOWN;status=NUMERICAL_FAILURE;h=0;r=0;l=0",
+      "pass": true
+    },
+    {
+      "hsd": false,
+      "fault": "input",
+      "result": "ERROR 5:INPUT_MISMATCH native_bulk;status=CANCELLED;h=0;r=0;l=0",
+      "pass": true
+    },
+    {
+      "hsd": false,
+      "fault": "",
+      "result": "PASS;objective=1.00000000004586;status=OPTIMAL;h=0;r=0;l=0",
+      "pass": true
+    },
+    {
+      "hsd": true,
+      "fault": "cancel",
+      "result": "ERROR 18:ANALYSIS_CANCELLED;status=CANCELLED;h=0;r=0;l=0",
+      "pass": true
+    },
+    {
+      "hsd": true,
+      "fault": "memory",
+      "result": "ERROR 7:INJECTED_MEMORY;status=CAPACITY_EXCEEDED;h=0;r=0;l=0",
+      "pass": true
+    },
+    {
+      "hsd": true,
+      "fault": "subscript",
+      "result": "ERROR 9:INJECTED_SUBSCRIPT;status=NUMERICAL_FAILURE;h=0;r=0;l=0",
+      "pass": true
+    },
+    {
+      "hsd": true,
+      "fault": "unknown",
+      "result": "ERROR 513:INJECTED_UNKNOWN;status=NUMERICAL_FAILURE;h=0;r=0;l=0",
+      "pass": true
+    },
+    {
+      "hsd": true,
+      "fault": "input",
+      "result": "ERROR 5:INPUT_MISMATCH hsd_linear;status=CANCELLED;h=0;r=0;l=0",
+      "pass": true
+    },
+    {
+      "hsd": true,
+      "fault": "",
+      "result": "PASS;objective=0.999999999539072;status=OPTIMAL;h=0;r=0;l=0",
+      "pass": true
+    }
+  ],
+  "dll_sha256": "ff794f03846bccb995d63e289f69bcb9eca96efc8cc732d467db328d346f5ce4",
+  "passed": 12
+}

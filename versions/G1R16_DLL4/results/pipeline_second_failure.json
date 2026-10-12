@@ -1,0 +1,51 @@
+{
+  "state": "failed",
+  "runs": [
+    {
+      "command": "benchmark_fixed.py --tag fixed_q8_threeway --target 256 --q 8",
+      "exit_code": 0,
+      "wall_seconds": 658.3534119999968,
+      "log": "results\\pipeline_0.log"
+    },
+    {
+      "command": "run_levee.py --backend dll3 --tag levee_dll3_serial",
+      "exit_code": 0,
+      "wall_seconds": 345.43252250002115,
+      "log": "results\\pipeline_1.log"
+    },
+    {
+      "command": "run_levee.py --backend dll4 --tag levee_dll4_final",
+      "exit_code": 0,
+      "wall_seconds": 281.34455189999426,
+      "log": "results\\pipeline_2.log"
+    },
+    {
+      "command": "run_case.py P06N --backend dll3 --tag p06n_roots_dll3 --target 200 --q 8 --adapt 0",
+      "exit_code": 1,
+      "wall_seconds": 985.8778119999915,
+      "log": "results\\pipeline_3.log",
+      "case_failed": true,
+      "failure_classification": "BASELINE_FS_LOWER_BRACKET_NOT_FOUND"
+    },
+    {
+      "command": "run_case.py P06N --backend dll4 --tag p06n_roots_dll4 --target 200 --q 8 --adapt 0 --record-lower-bracket-failure",
+      "exit_code": 0,
+      "wall_seconds": 727.2396301999979,
+      "log": "results\\pipeline_resumed_4.log",
+      "case_status": "failed",
+      "Fs_obtained": false,
+      "comparison_driver_outcome": "RECORDED_FAILED_FS_BRACKET"
+    },
+    {
+      "command": "run_case.py P06A --backend dll3 --tag p06a_roots_dll3 --target 200 --q 8 --adapt 0 --record-lower-bracket-failure",
+      "exit_code": 1,
+      "wall_seconds": 1740.1362682000035,
+      "log": "results\\pipeline_resumed_5.log",
+      "case_status": "failed",
+      "Fs_obtained": false,
+      "comparison_driver_outcome": "failed"
+    }
+  ],
+  "current": "run_case.py P06A --backend dll3 --tag p06a_roots_dll3 --target 200 --q 8 --adapt 0 --record-lower-bracket-failure",
+  "protocol_discrepancy": "The initial controller required positive Fs on every coarse mesh. Actual DLL3 cannot form the lower bracket for P06N TARGET200. Preserve its failed case, compare DLL4 under identical settings, and never count this as an Fs pass."
+}

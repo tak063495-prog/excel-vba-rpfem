@@ -1,0 +1,3 @@
+COMPILE PASS
+RUNNING P06A dll4 PID 35500
+{"case": "P06A", "backend": "dll4", "status": "failed", "analysis_seconds": 323.4595823000127, "lower": null, "upper": null, "terminal_text": "解析未完了：TEST_SCOPE_MIN_FS_FLOOR"}

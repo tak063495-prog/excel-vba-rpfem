@@ -1,0 +1,2 @@
+RUNNING D07A dll4 PID 18828
+{"case": "D07A", "backend": "dll4", "status": "partial_certified", "analysis_seconds": 42.678501899994444, "lower": 1.2223035780099496, "upper": 1.3639635115731257, "terminal_text": "上下界を取得（目標区間幅またはFs探索許容差は未達）"}

@@ -1,0 +1,97 @@
+{
+  "state": "completed",
+  "runs": [
+    {
+      "command": "benchmark_fixed.py --tag fixed_q8_threeway --target 256 --q 8",
+      "exit_code": 0,
+      "wall_seconds": 658.3534119999968,
+      "log": "results\\pipeline_0.log"
+    },
+    {
+      "command": "run_levee.py --backend dll3 --tag levee_dll3_serial",
+      "exit_code": 0,
+      "wall_seconds": 345.43252250002115,
+      "log": "results\\pipeline_1.log"
+    },
+    {
+      "command": "run_levee.py --backend dll4 --tag levee_dll4_final",
+      "exit_code": 0,
+      "wall_seconds": 281.34455189999426,
+      "log": "results\\pipeline_2.log"
+    },
+    {
+      "command": "run_case.py P06N --backend dll3 --tag p06n_roots_dll3 --target 200 --q 8 --adapt 0",
+      "exit_code": 1,
+      "wall_seconds": 985.8778119999915,
+      "log": "results\\pipeline_3.log",
+      "case_failed": true,
+      "failure_classification": "BASELINE_FS_LOWER_BRACKET_NOT_FOUND"
+    },
+    {
+      "command": "run_case.py P06N --backend dll4 --tag p06n_roots_dll4 --target 200 --q 8 --adapt 0 --record-lower-bracket-failure",
+      "exit_code": 0,
+      "wall_seconds": 727.2396301999979,
+      "log": "results\\pipeline_resumed_4.log",
+      "case_status": "failed",
+      "Fs_obtained": false,
+      "comparison_driver_outcome": "RECORDED_FAILED_FS_BRACKET"
+    },
+    {
+      "command": "run_case.py P06A --backend dll3 --tag p06a_roots_dll3 --target 200 --q 8 --adapt 0 --record-lower-bracket-failure",
+      "exit_code": 1,
+      "wall_seconds": 1740.1362682000035,
+      "log": "results\\pipeline_resumed_5.log",
+      "case_status": "failed",
+      "Fs_obtained": false,
+      "comparison_driver_outcome": "failed"
+    },
+    {
+      "command": "run_case.py P06A --backend dll4 --tag p06a_roots_dll4 --target 200 --q 8 --adapt 0 --minimum-test-fs 0.125",
+      "exit_code": 0,
+      "wall_seconds": 330.2215891999949,
+      "log": "results\\pipeline_bounded_6.log",
+      "case_status": "failed",
+      "Fs_obtained": false,
+      "comparison_driver_outcome": "BOUNDED_TEST_STOP"
+    },
+    {
+      "command": "run_case.py D03N --backend dll3 --tag d03n_roots_dll3 --target 200 --q 8 --adapt 0 --record-lower-bracket-failure",
+      "exit_code": 0,
+      "wall_seconds": 583.8821248000022,
+      "log": "results\\pipeline_bounded_7.log",
+      "case_status": "partial_certified",
+      "Fs_obtained": true,
+      "comparison_driver_outcome": "partial_certified"
+    },
+    {
+      "command": "run_case.py D03N --backend dll4 --tag d03n_roots_dll4 --target 200 --q 8 --adapt 0 --record-lower-bracket-failure",
+      "exit_code": 0,
+      "wall_seconds": 384.75123480000184,
+      "log": "results\\pipeline_bounded_8.log",
+      "case_status": "partial_certified",
+      "Fs_obtained": true,
+      "comparison_driver_outcome": "partial_certified"
+    },
+    {
+      "command": "run_case.py D07A --backend dll3 --tag d07a_roots_dll3 --target 200 --q 8 --adapt 0 --record-lower-bracket-failure",
+      "exit_code": 0,
+      "wall_seconds": 62.49561059998814,
+      "log": "results\\pipeline_bounded_9.log",
+      "case_status": "partial_certified",
+      "Fs_obtained": true,
+      "comparison_driver_outcome": "partial_certified"
+    },
+    {
+      "command": "run_case.py D07A --backend dll4 --tag d07a_roots_dll4 --target 200 --q 8 --adapt 0 --record-lower-bracket-failure",
+      "exit_code": 0,
+      "wall_seconds": 50.797349600004964,
+      "log": "results\\pipeline_bounded_10.log",
+      "case_status": "partial_certified",
+      "Fs_obtained": true,
+      "comparison_driver_outcome": "partial_certified"
+    }
+  ],
+  "current": "run_case.py D07A --backend dll4 --tag d07a_roots_dll4 --target 200 --q 8 --adapt 0 --record-lower-bracket-failure",
+  "protocol_discrepancy": "The initial controller required positive Fs on every coarse mesh. Actual DLL3 cannot form the lower bracket for P06N TARGET200. Preserve its failed case, compare DLL4 under identical settings, and never count this as an Fs pass.",
+  "P06A_scope_resolution": "Optional additional coarse-mesh validation bounded after the scope question and stated recommended assumption. DLL3 ended at HSD_NOT_CONVERGED before stop; preserve raw failure. Compare all completed Fs>=0.125 points with DLL4; do not claim a full-P06A failure-path match or completed Fs."
+}

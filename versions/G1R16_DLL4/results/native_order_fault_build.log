@@ -1,0 +1,3 @@
+order_failure_injection.cpp
+   ライブラリ order_failure_injection.lib とオブジェクト order_failure_injection.exp を作成中
+PASS 2835 allocation-failure points code207; 8 unknown exceptions code208; no leaks; cleanup after partial steps; invalid contracts rejected

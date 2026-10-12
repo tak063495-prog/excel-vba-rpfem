@@ -1,0 +1,25 @@
+{
+  "state": "bounded_prefix_completed",
+  "runs": [
+    {
+      "command": "run_case.py P06A --backend dll3 --tag p06a_roots_dll3 --target 200 --q 8 --adapt 0 --record-lower-bracket-failure",
+      "exit_code": 1,
+      "wall_seconds": 1740.1362682000035,
+      "log": "results\\pipeline_resumed_5.log",
+      "case_status": "failed",
+      "Fs_obtained": false,
+      "comparison_driver_outcome": "failed"
+    },
+    {
+      "command": "run_case.py P06A --backend dll4 --tag p06a_roots_dll4 --target 200 --q 8 --adapt 0 --minimum-test-fs 0.125",
+      "exit_code": 0,
+      "wall_seconds": 330.2215891999949,
+      "log": "results\\pipeline_bounded_6.log",
+      "case_status": "failed",
+      "Fs_obtained": false,
+      "comparison_driver_outcome": "BOUNDED_TEST_STOP"
+    }
+  ],
+  "minimum_compared_fs": 0.125,
+  "full_case_compared": false
+}

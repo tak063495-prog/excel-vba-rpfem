@@ -1,0 +1,461 @@
+{
+  "case": "P06A",
+  "backend": "dll3",
+  "status": "failed",
+  "source_sha256": "3bb7d87b6fbec14e9ea3d378e49e40355e05850a532f865cbd392531902ecdae",
+  "dll_sha256": "6ff070d8c398a85d3c0ef038210c07d9ac93c6dd497cd57f4e3e2eafcbe23269",
+  "catalog_sha256": "7ba1d27d7f1d4bee57972dd9e87881a3efa59f8765808631c87916e3bf3ee9d1",
+  "target": 200,
+  "q": 8,
+  "adapt": 0,
+  "scope": "full RPX_Run; original catalog geometry and materials; current G1R16 gravity fixed; seismic/seep off",
+  "gravity_note": "Original UTF-8 catalog GRAVITY is fixed; explicitly assigned identically on DLL3 and DLL4.",
+  "excel_pid": 29740,
+  "native_start": "DLL_READY;numeric=0;dd_numeric=0;backsolve=0;ordering=0;column_ordering=0;nt_bulk=0;g_bulk=0;gt_bulk=0;kkt_bulk=0;hsd_operator=0;corrector_bulk=0;hsd_lu=0;hsd_lu_solve=0",
+  "input_book_sha256": "4523e307a694da63266b6b1460d73527671a629e0a66f9f24e7ff564f74b91cd",
+  "mesh_seconds": 1.0542660999926738,
+  "analysis_seconds": 1732.015916299977,
+  "output": [
+    [
+      "解析未完了：HSD_NOT_CONVERGED",
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      "地震条件"
+    ],
+    [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      "地震：なし"
+    ],
+    [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      "診断ログ",
+      "C:\\Users\\link_\\Downloads\\RPFEM_G1R16_DLL4_20261012\\versions\\G1R16_DLL4\\results\\p06a_roots_dll3\\RPFEM_logs\\20261012_143101_29740_analysis.tsv",
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ]
+  ],
+  "lower": null,
+  "upper": null,
+  "terminal_text": "解析未完了：HSD_NOT_CONVERGED",
+  "terminal_status": "NUMERICAL_FAILURE",
+  "target_met": false,
+  "error_origins": [
+    {
+      "number": "5",
+      "source": "VBAProject",
+      "line": "0",
+      "stage": "optimize",
+      "message": "HSD_NOT_CONVERGED"
+    },
+    {
+      "number": "5",
+      "source": "VBAProject",
+      "line": "0",
+      "stage": "bound",
+      "message": "HSD_NOT_CONVERGED"
+    },
+    {
+      "number": "5",
+      "source": "VBAProject",
+      "line": "0",
+      "stage": "fs_pair",
+      "message": "HSD_NOT_CONVERGED"
+    },
+    {
+      "number": "5",
+      "source": "VBAProject",
+      "line": "0",
+      "stage": "control_analysis",
+      "message": "HSD_NOT_CONVERGED"
+    }
+  ],
+  "Fs_obtained": false,
+  "comparison_driver_outcome": "failed",
+  "native_end": "DLL_READY;numeric=519;dd_numeric=443;backsolve=10596;ordering=2;column_ordering=0;nt_bulk=949;g_bulk=1662;gt_bulk=3853;kkt_bulk=949;hsd_operator=13115;corrector_bulk=949;hsd_lu=0;hsd_lu_solve=0",
+  "dialogs": [],
+  "output_sha256": "ee73669feff318fc4a7505a15aa356511b3a82d0015d04a0b1494f7949a8f885",
+  "exception": "Traceback (most recent call last):\n  File \"C:\\Users\\link_\\Downloads\\RPFEM_G1R16_DLL4_20261012\\versions\\G1R16_DLL4\\tools\\run_case.py\", line 62, in run\n    assert (result['status'] in ['completed','partial_certified'] and result['Fs_obtained']) or result['comparison_driver_outcome']=='RECORDED_FAILED_FS_BRACKET',result['terminal_text']\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 解析未完了：HSD_NOT_CONVERGED\n"
+}

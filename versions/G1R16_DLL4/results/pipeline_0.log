@@ -1,0 +1,40 @@
+COMPILE PASS
+START vba C5_45_upper
+DONE vba C5_45_upper 13.695142699987628 PASS;side=upper;Fs=3;load=0.241541741123093;iteration=29;audit=1.04359098473807E-09;elements=269;engine=LEGACY;VBA_SELECTED;numeric=0;dd_numeric=0;backsolve=0;ordering=0;column_ordering=0;nt_bulk=0;g_bulk=0;gt_bulk=0;kkt_bulk=0;hsd_operator=0;corrector_bulk=0;hsd_lu=0;hsd_lu_solve=0;solver_vector_calls=0;hsd_jobs=0;hsd_job_steps=0;refine_jobs=0;refine_steps=0
+START vba C5_45_lower
+DONE vba C5_45_lower 19.85253110001213 PASS;side=lower;Fs=3;load=0.18797698847683;iteration=18;audit=1.74764212744136E-10;elements=269;engine=LEGACY;VBA_SELECTED;numeric=0;dd_numeric=0;backsolve=0;ordering=0;column_ordering=0;nt_bulk=0;g_bulk=0;gt_bulk=0;kkt_bulk=0;hsd_operator=0;corrector_bulk=0;hsd_lu=0;hsd_lu_solve=0;solver_vector_calls=0;hsd_jobs=0;hsd_job_steps=0;refine_jobs=0;refine_steps=0
+START vba P06A_upper
+DONE vba P06A_upper 74.63641590002226 PASS;side=upper;Fs=1;load=1.06134381259978;iteration=32;audit=4.25071089438234E-12;elements=307;engine=HSD_C0;VBA_SELECTED;numeric=0;dd_numeric=0;backsolve=0;ordering=0;column_ordering=0;nt_bulk=0;g_bulk=0;gt_bulk=0;kkt_bulk=0;hsd_operator=0;corrector_bulk=0;hsd_lu=0;hsd_lu_solve=0;solver_vector_calls=0;hsd_jobs=0;hsd_job_steps=0;refine_jobs=0;refine_steps=0
+START vba P06A_lower
+DONE vba P06A_lower 97.87427510000998 PASS;side=lower;Fs=1;load=7.87031096191311E-11;iteration=21;audit=3.58367693946701E-11;elements=307;engine=HSD_C0;VBA_SELECTED;numeric=0;dd_numeric=0;backsolve=0;ordering=0;column_ordering=0;nt_bulk=0;g_bulk=0;gt_bulk=0;kkt_bulk=0;hsd_operator=0;corrector_bulk=0;hsd_lu=0;hsd_lu_solve=0;solver_vector_calls=0;hsd_jobs=0;hsd_job_steps=0;refine_jobs=0;refine_steps=0
+START vba P06N_upper
+DONE vba P06N_upper 62.32680429998436 PASS;side=upper;Fs=1;load=0.849537719035043;iteration=30;audit=1.60919610969756E-10;elements=307;engine=HSD_C0;VBA_SELECTED;numeric=0;dd_numeric=0;backsolve=0;ordering=0;column_ordering=0;nt_bulk=0;g_bulk=0;gt_bulk=0;kkt_bulk=0;hsd_operator=0;corrector_bulk=0;hsd_lu=0;hsd_lu_solve=0;solver_vector_calls=0;hsd_jobs=0;hsd_job_steps=0;refine_jobs=0;refine_steps=0
+START vba P06N_lower
+DONE vba P06N_lower 81.21577690000413 PASS;side=lower;Fs=1;load=1.77789148280336E-12;iteration=20;audit=8.32184792543445E-13;elements=307;engine=HSD_C0;VBA_SELECTED;numeric=0;dd_numeric=0;backsolve=0;ordering=0;column_ordering=0;nt_bulk=0;g_bulk=0;gt_bulk=0;kkt_bulk=0;hsd_operator=0;corrector_bulk=0;hsd_lu=0;hsd_lu_solve=0;solver_vector_calls=0;hsd_jobs=0;hsd_job_steps=0;refine_jobs=0;refine_steps=0
+COMPILE PASS
+START dll3 C5_45_upper
+DONE dll3 C5_45_upper 7.446928299992578 PASS;side=upper;Fs=3;load=0.241541741123093;iteration=29;audit=1.04359098473807E-09;elements=269;engine=LEGACY;DLL_READY;numeric=29;dd_numeric=0;backsolve=58;ordering=1;column_ordering=0;nt_bulk=29;g_bulk=88;gt_bulk=88;kkt_bulk=29;hsd_operator=0;corrector_bulk=29;hsd_lu=0;hsd_lu_solve=0
+START dll3 C5_45_lower
+DONE dll3 C5_45_lower 11.001231400005054 PASS;side=lower;Fs=3;load=0.18797698847683;iteration=18;audit=1.74764212744136E-10;elements=269;engine=LEGACY;DLL_READY;numeric=49;dd_numeric=0;backsolve=209;ordering=3;column_ordering=0;nt_bulk=47;g_bulk=143;gt_bulk=143;kkt_bulk=47;hsd_operator=0;corrector_bulk=47;hsd_lu=0;hsd_lu_solve=0
+START dll3 P06A_upper
+DONE dll3 P06A_upper 32.35678109998116 PASS;side=upper;Fs=1;load=1.06134381259978;iteration=32;audit=4.25071089438234E-12;elements=307;engine=HSD_C0;DLL_READY;numeric=81;dd_numeric=0;backsolve=463;ordering=4;column_ordering=0;nt_bulk=79;g_bulk=180;gt_bulk=273;kkt_bulk=79;hsd_operator=319;corrector_bulk=79;hsd_lu=0;hsd_lu_solve=0
+START dll3 P06A_lower
+DONE dll3 P06A_lower 45.1060526999936 PASS;side=lower;Fs=1;load=7.87031096191311E-11;iteration=21;audit=3.58367693946701E-11;elements=307;engine=HSD_C0;DLL_READY;numeric=96;dd_numeric=7;backsolve=807;ordering=5;column_ordering=0;nt_bulk=100;g_bulk=223;gt_bulk=360;kkt_bulk=100;hsd_operator=718;corrector_bulk=100;hsd_lu=0;hsd_lu_solve=0
+START dll3 P06N_upper
+DONE dll3 P06N_upper 28.907549600000493 PASS;side=upper;Fs=1;load=0.849537719035043;iteration=30;audit=1.60919610969756E-10;elements=307;engine=HSD_C0;DLL_READY;numeric=126;dd_numeric=7;backsolve=1037;ordering=5;column_ordering=0;nt_bulk=130;g_bulk=258;gt_bulk=482;kkt_bulk=130;hsd_operator=1008;corrector_bulk=130;hsd_lu=0;hsd_lu_solve=0
+START dll3 P06N_lower
+DONE dll3 P06N_lower 40.56905210000696 PASS;side=lower;Fs=1;load=1.77789148280336E-12;iteration=20;audit=8.32184792543445E-13;elements=307;engine=HSD_C0;DLL_READY;numeric=140;dd_numeric=14;backsolve=1307;ordering=5;column_ordering=0;nt_bulk=150;g_bulk=299;gt_bulk=565;kkt_bulk=150;hsd_operator=1325;corrector_bulk=150;hsd_lu=0;hsd_lu_solve=0
+COMPILE PASS
+START dll4 C5_45_upper
+DONE dll4 C5_45_upper 6.380882199999178 PASS;side=upper;Fs=3;load=0.241541741123093;iteration=29;audit=1.04359098473807E-09;elements=269;engine=LEGACY;DLL_READY;numeric=29;dd_numeric=0;backsolve=0;ordering=1;column_ordering=0;nt_bulk=29;g_bulk=0;gt_bulk=58;kkt_bulk=29;hsd_operator=0;corrector_bulk=29;hsd_lu=0;hsd_lu_solve=0;solver_vector_calls=4433;hsd_jobs=0;hsd_job_steps=0;refine_jobs=58;refine_steps=58
+START dll4 C5_45_lower
+DONE dll4 C5_45_lower 10.317562999989605 PASS;side=lower;Fs=3;load=0.18797698847683;iteration=18;audit=1.74764212744136E-10;elements=269;engine=LEGACY;DLL_READY;numeric=49;dd_numeric=0;backsolve=136;ordering=3;column_ordering=0;nt_bulk=47;g_bulk=0;gt_bulk=94;kkt_bulk=47;hsd_operator=0;corrector_bulk=47;hsd_lu=0;hsd_lu_solve=0;solver_vector_calls=8183;hsd_jobs=0;hsd_job_steps=0;refine_jobs=62;refine_steps=62
+START dll4 P06A_upper
+DONE dll4 P06A_upper 22.330311099998653 PASS;side=upper;Fs=1;load=1.06134381259978;iteration=32;audit=4.25071089438234E-12;elements=307;engine=HSD_C0;DLL_READY;numeric=81;dd_numeric=0;backsolve=137;ordering=4;column_ordering=0;nt_bulk=79;g_bulk=3;gt_bulk=190;kkt_bulk=79;hsd_operator=66;corrector_bulk=79;hsd_lu=0;hsd_lu_solve=0;solver_vector_calls=16279;hsd_jobs=96;hsd_job_steps=253;refine_jobs=62;refine_steps=62
+START dll4 P06A_lower
+DONE dll4 P06A_lower 34.24682080000639 PASS;side=lower;Fs=1;load=7.87031096191311E-11;iteration=21;audit=3.58367693946701E-11;elements=307;engine=HSD_C0;DLL_READY;numeric=96;dd_numeric=7;backsolve=281;ordering=5;column_ordering=0;nt_bulk=100;g_bulk=23;gt_bulk=254;kkt_bulk=100;hsd_operator=265;corrector_bulk=100;hsd_lu=0;hsd_lu_solve=0;solver_vector_calls=20860;hsd_jobs=160;hsd_job_steps=386;refine_jobs=62;refine_steps=62
+START dll4 P06N_upper
+DONE dll4 P06N_upper 18.09633629999007 PASS;side=upper;Fs=1;load=0.849537719035043;iteration=30;audit=1.60919610969756E-10;elements=307;engine=HSD_C0;DLL_READY;numeric=126;dd_numeric=7;backsolve=281;ordering=5;column_ordering=0;nt_bulk=130;g_bulk=26;gt_bulk=344;kkt_bulk=130;hsd_operator=325;corrector_bulk=130;hsd_lu=0;hsd_lu_solve=0;solver_vector_calls=28450;hsd_jobs=250;hsd_job_steps=616;refine_jobs=62;refine_steps=62
+START dll4 P06N_lower
+DONE dll4 P06N_lower 29.621529399999417 PASS;side=lower;Fs=1;load=1.77789148280336E-12;iteration=20;audit=8.32184792543445E-13;elements=307;engine=HSD_C0;DLL_READY;numeric=140;dd_numeric=14;backsolve=363;ordering=5;column_ordering=0;nt_bulk=150;g_bulk=45;gt_bulk=405;kkt_bulk=150;hsd_operator=454;corrector_bulk=150;hsd_lu=0;hsd_lu_solve=0;solver_vector_calls=32810;hsd_jobs=311;hsd_job_steps=743;refine_jobs=62;refine_steps=62
+BACKEND q8 FEM PASS 6 ['vba', 'dll3', 'dll4']
