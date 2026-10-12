@@ -1,0 +1,13 @@
+Public Sub DLL3TestDumpFactors(ByVal f As Long)
+    Dim i As Long, lc As Long, uc As Long
+    RPX_NativeLUMaterialize order, rowAt, rowScale, colScale, lp, li, lv, up, ui, uv, diagonal
+    lc = lp(count): uc = up(count)
+    Put #f, , lc: Put #f, , uc
+    For i = 0 To count - 1
+        Put #f, , order(i): Put #f, , rowAt(i)
+        Put #f, , rowScale(i): Put #f, , colScale(i): Put #f, , diagonal(i)
+    Next i
+    For i = 0 To count: Put #f, , lp(i): Put #f, , up(i): Next i
+    For i = 0 To lc - 1: Put #f, , li(i): Put #f, , lv(i): Next i
+    For i = 0 To uc - 1: Put #f, , ui(i): Put #f, , uv(i): Next i
+End Sub

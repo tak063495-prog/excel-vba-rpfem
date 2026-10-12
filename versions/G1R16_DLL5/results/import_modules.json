@@ -1,0 +1,15 @@
+{
+  "modules": [
+    "RPX_Conic",
+    "RPX_Guard",
+    "RPX_Native",
+    "RPX_NativeBulk",
+    "RPX_NativeGuard",
+    "RPX_NativeSolver",
+    "RPX_Schur",
+    "RPX_SchurLDL",
+    "RPX_Solve"
+  ],
+  "encoding": "CP932 strict round trip",
+  "line_endings": "CRLF"
+}

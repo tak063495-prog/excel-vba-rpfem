@@ -1,0 +1,42 @@
+Public Function DLL5LiveIdentityOracle() As String
+    Dim mode As Variant, scenario As Long, i As Long, old() As Boolean, current As Boolean
+    Dim f As HBitFloat, pair As HBitPair
+    ReDim old(0 To 11)
+    For Each mode In Array("vba", "auto")
+        RPX_NativeSetMode CStr(mode)
+        For scenario = 0 To 11
+            XN = 4: XM = 3: XS = 6
+            ReDim xx(0 To XN - 1): ReDim xy(0 To XM): ReDim XSlack(0 To XS - 1): ReDim XDual(0 To XS - 1)
+            For i = 0 To XN - 1: xx(i) = i + 1#: Next i
+            For i = 0 To XM: xy(i) = i + 2#: Next i
+            For i = 0 To XS - 1: XSlack(i) = i + 3#: XDual(i) = i + 4#: Next i
+            hTau = 1#: hKappa = 2#
+            If scenario = 7 Then xx(0) = 0#
+            If scenario = 10 Or scenario = 11 Then
+                pair.hi = &H7FF80000: pair.lo = 1: LSet f = pair: xx(0) = f.bits
+            End If
+            hSavedX = xx: hSavedY = xy: hSavedSlack = XSlack: hSavedDual = XDual
+            hSavedTau = hTau: hSavedKappa = hKappa: hLiveSaved = True
+            Select Case scenario
+                Case 1: xx(3) = xx(3) + 0.000000000000001#
+                Case 2: xy(XM) = xy(XM) + 1#
+                Case 3: XSlack(5) = XSlack(5) + 1#
+                Case 4: XDual(5) = XDual(5) + 1#
+                Case 5: hTau = hTau + 0.0000000000000002#
+                Case 6: hKappa = hKappa + 1#
+                Case 7: pair.hi = &H80000000: pair.lo = 0: LSet f = pair: xx(0) = f.bits
+                Case 8: ReDim Preserve xx(0 To XN - 2)
+                Case 9: ReDim XSlack(1 To XS)
+                Case 11: pair.hi = &H7FF80000: pair.lo = 2: LSet f = pair: xx(0) = f.bits
+            End Select
+            current = HLiveMatches()
+            If mode = "vba" Then
+                old(scenario) = current
+                If current <> (scenario = 0 Or scenario = 10) Then err.Raise 513, , "LIVE_IDENTITY_WITNESS " & scenario
+            ElseIf current <> old(scenario) Then
+                err.Raise 513, , "LIVE_IDENTITY_NATIVE_DIFFERENCE " & scenario
+            End If
+        Next scenario
+    Next mode
+    DLL5LiveIdentityOracle = "PASS;cases=12;VBA/native exact;one_ulp,tau,kappa,signed_zero,NaN_payload,array_bounds"
+End Function

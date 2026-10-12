@@ -1,0 +1,6 @@
+{
+  "message": "PASS auto-to-vba and auto-to-auto invalidate stale factor; fresh solve",
+  "book_sha256": "ee11109c4468916a017a42e75309002ed341491623340658893dd7379306b8f4",
+  "dll_sha256": "393dd3b1d6323104b023f0e04c933913e17723b925c0fc3f156ea534ae952af2",
+  "pass": true
+}

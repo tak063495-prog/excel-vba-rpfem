@@ -1,0 +1,451 @@
+{
+  "case": "P06A",
+  "backend": "dll5",
+  "status": "failed",
+  "source_sha256": "ee11109c4468916a017a42e75309002ed341491623340658893dd7379306b8f4",
+  "dll_sha256": "393dd3b1d6323104b023f0e04c933913e17723b925c0fc3f156ea534ae952af2",
+  "catalog_sha256": "7ba1d27d7f1d4bee57972dd9e87881a3efa59f8765808631c87916e3bf3ee9d1",
+  "target": 200,
+  "q": 8,
+  "adapt": 0,
+  "scope": "coarse RPX_Run; original catalog geometry and materials; current G1R16 gravity fixed; seismic/seep off",
+  "gravity_note": "Original UTF-8 catalog GRAVITY is fixed; explicitly assigned identically on all backends.",
+  "test_only_instrumentation": {
+    "module": "RPX_Fs",
+    "minimum_fs": 0.125,
+    "effect": "Raise cancellation18 before FsValue below floor; no numerical model, tolerance or product source change."
+  },
+  "excel_pid": 16888,
+  "native_start": "DLL_READY;numeric=0;dd_numeric=0;backsolve=0;ordering=0;column_ordering=0;nt_bulk=0;g_bulk=0;gt_bulk=0;kkt_bulk=0;hsd_operator=0;corrector_bulk=0;bulk_job_steps=0;hsd_lu=0;hsd_lu_solve=0;solver_vector_calls=0;hsd_jobs=0;hsd_job_steps=0;krylov_jobs=0;krylov_steps=0;refine_jobs=0;refine_steps=0;input_compare_calls=0;schur_jobs=0;schur_steps=0;schur_native_bytes=0",
+  "input_book_sha256": "7e7a32cde7f144ec61648bd28d71b3a050606e52768229ec29ce03b36db35c20",
+  "mesh_seconds": 0.9818782000220381,
+  "analysis_seconds": 197.34459959997912,
+  "output": [
+    [
+      "解析未完了：TEST_SCOPE_MIN_FS_FLOOR",
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      "地震条件"
+    ],
+    [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      "地震：なし"
+    ],
+    [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      "診断ログ",
+      "C:\\Users\\link_\\Downloads\\RPFEM_G1R16_DLL5_20261012\\versions\\G1R16_DLL5\\results\\p06a_roots_dll5\\RPFEM_logs\\20261012_175306_16888_analysis.tsv",
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ]
+  ],
+  "lower": null,
+  "upper": null,
+  "terminal_text": "解析未完了：TEST_SCOPE_MIN_FS_FLOOR",
+  "terminal_status": "CANCELLED",
+  "target_met": false,
+  "error_origins": [
+    {
+      "number": "18",
+      "source": "DLL5TestScope",
+      "line": "0",
+      "stage": "fs_pair",
+      "message": "TEST_SCOPE_MIN_FS_FLOOR"
+    },
+    {
+      "number": "18",
+      "source": "DLL5TestScope",
+      "line": "0",
+      "stage": "control_analysis",
+      "message": "TEST_SCOPE_MIN_FS_FLOOR"
+    }
+  ],
+  "Fs_obtained": false,
+  "comparison_driver_outcome": "BOUNDED_TEST_STOP",
+  "native_end": "DLL_READY;numeric=363;dd_numeric=40;backsolve=19;ordering=0;column_ordering=0;nt_bulk=398;g_bulk=126;gt_bulk=1199;kkt_bulk=398;hsd_operator=834;corrector_bulk=398;bulk_job_steps=10811;hsd_lu=0;hsd_lu_solve=0;solver_vector_calls=8368;hsd_jobs=1199;hsd_job_steps=1668;krylov_jobs=35;krylov_steps=292;refine_jobs=0;refine_steps=0;input_compare_calls=7095;schur_jobs=0;schur_steps=0;schur_native_bytes=0",
+  "dialogs": [],
+  "output_sha256": "c1369ebfc0c4e366b35d9c809dd24bfa85a7c6d5fd49171dee367010715842be"
+}

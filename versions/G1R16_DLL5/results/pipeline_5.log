@@ -1,0 +1,2 @@
+RUNNING P06N dll5 PID 38536
+{"case": "P06N", "backend": "dll5", "status": "failed", "analysis_seconds": 420.3322612999764, "lower": null, "upper": null, "terminal_text": "解析未完了：FS_LOWER_BRACKET_NOT_FOUND"}

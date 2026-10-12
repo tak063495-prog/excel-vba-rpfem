@@ -1,0 +1,3 @@
+COMPILE PASS
+PASS;assertions=18;;input_compare_calls=16
+PASS;cases=12;VBA/native exact;one_ulp,tau,kappa,signed_zero,NaN_payload,array_bounds

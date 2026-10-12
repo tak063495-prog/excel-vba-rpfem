@@ -1,0 +1,151 @@
+{
+  "tests": [
+    {
+      "scope": "compile",
+      "fault": "cancel",
+      "message": "ERROR 18:ANALYSIS_CANCELLED;status=CANCELLED;hits=1;h=0;r=0;l=0;s=0;k=0;c=0",
+      "pass": true
+    },
+    {
+      "scope": "compile",
+      "fault": "memory",
+      "message": "ERROR 7:INJECTED_MEMORY;status=CAPACITY_EXCEEDED;hits=1;h=0;r=0;l=0;s=0;k=0;c=0",
+      "pass": true
+    },
+    {
+      "scope": "compile",
+      "fault": "subscript",
+      "message": "ERROR 9:INJECTED_SUBSCRIPT;status=NUMERICAL_FAILURE;hits=1;h=0;r=0;l=0;s=0;k=0;c=0",
+      "pass": true
+    },
+    {
+      "scope": "compile",
+      "fault": "unknown",
+      "message": "ERROR 513:INJECTED_UNKNOWN;status=NUMERICAL_FAILURE;hits=1;h=0;r=0;l=0;s=0;k=0;c=0",
+      "pass": true
+    },
+    {
+      "scope": "compile",
+      "fault": "input",
+      "message": "ERROR 5:INPUT_MISMATCH test_persistent_edit;status=CANCELLED;hits=1;h=0;r=0;l=0;s=0;k=0;c=0",
+      "pass": true
+    },
+    {
+      "scope": "compile",
+      "fault": "",
+      "message": "PASS;objective=0.999999999539072;status=OPTIMAL;hits=1;h=0;r=0;l=0;s=0;k=0;c=0",
+      "pass": true
+    },
+    {
+      "scope": "schur_factor",
+      "fault": "cancel",
+      "message": "ERROR 18:ANALYSIS_CANCELLED;DLL_READY;numeric=0;dd_numeric=0;backsolve=0;ordering=1;column_ordering=0;nt_bulk=1;g_bulk=0;gt_bulk=0;kkt_bulk=1;hsd_operator=0;corrector_bulk=0;bulk_job_steps=11;hsd_lu=0;hsd_lu_solve=0;solver_vector_calls=0;hsd_jobs=0;hsd_job_steps=0;krylov_jobs=0;krylov_steps=0;refine_jobs=0;refine_steps=0;input_compare_calls=96;schur_jobs=0;schur_steps=0;schur_native_bytes=0;hits=1;h=0;r=0;l=0;s=0;k=0;c=0",
+      "pass": true
+    },
+    {
+      "scope": "schur_factor",
+      "fault": "memory",
+      "message": "ERROR 7:INJECTED_MEMORY;DLL_READY;numeric=0;dd_numeric=0;backsolve=0;ordering=1;column_ordering=0;nt_bulk=1;g_bulk=0;gt_bulk=0;kkt_bulk=1;hsd_operator=0;corrector_bulk=0;bulk_job_steps=11;hsd_lu=0;hsd_lu_solve=0;solver_vector_calls=0;hsd_jobs=0;hsd_job_steps=0;krylov_jobs=0;krylov_steps=0;refine_jobs=0;refine_steps=0;input_compare_calls=93;schur_jobs=0;schur_steps=0;schur_native_bytes=0;hits=1;h=0;r=0;l=0;s=0;k=0;c=0",
+      "pass": true
+    },
+    {
+      "scope": "schur_factor",
+      "fault": "subscript",
+      "message": "ERROR 9:INJECTED_SUBSCRIPT;DLL_READY;numeric=0;dd_numeric=0;backsolve=0;ordering=1;column_ordering=0;nt_bulk=1;g_bulk=0;gt_bulk=0;kkt_bulk=1;hsd_operator=0;corrector_bulk=0;bulk_job_steps=11;hsd_lu=0;hsd_lu_solve=0;solver_vector_calls=0;hsd_jobs=0;hsd_job_steps=0;krylov_jobs=0;krylov_steps=0;refine_jobs=0;refine_steps=0;input_compare_calls=93;schur_jobs=0;schur_steps=0;schur_native_bytes=0;hits=1;h=0;r=0;l=0;s=0;k=0;c=0",
+      "pass": true
+    },
+    {
+      "scope": "schur_factor",
+      "fault": "unknown",
+      "message": "ERROR 513:INJECTED_UNKNOWN;DLL_READY;numeric=0;dd_numeric=0;backsolve=0;ordering=1;column_ordering=0;nt_bulk=1;g_bulk=0;gt_bulk=0;kkt_bulk=1;hsd_operator=0;corrector_bulk=0;bulk_job_steps=11;hsd_lu=0;hsd_lu_solve=0;solver_vector_calls=0;hsd_jobs=0;hsd_job_steps=0;krylov_jobs=0;krylov_steps=0;refine_jobs=0;refine_steps=0;input_compare_calls=93;schur_jobs=0;schur_steps=0;schur_native_bytes=0;hits=1;h=0;r=0;l=0;s=0;k=0;c=0",
+      "pass": true
+    },
+    {
+      "scope": "schur_factor",
+      "fault": "input",
+      "message": "ERROR 5:INPUT_MISMATCH test_persistent_edit;DLL_READY;numeric=0;dd_numeric=0;backsolve=0;ordering=1;column_ordering=0;nt_bulk=1;g_bulk=0;gt_bulk=0;kkt_bulk=1;hsd_operator=0;corrector_bulk=0;bulk_job_steps=11;hsd_lu=0;hsd_lu_solve=0;solver_vector_calls=0;hsd_jobs=0;hsd_job_steps=0;krylov_jobs=0;krylov_steps=0;refine_jobs=0;refine_steps=0;input_compare_calls=95;schur_jobs=0;schur_steps=0;schur_native_bytes=0;hits=1;h=0;r=0;l=0;s=0;k=0;c=0",
+      "pass": true
+    },
+    {
+      "scope": "schur_factor",
+      "fault": "",
+      "message": "PASS;side=lower;Fs=3;load=0.186913155741698;iteration=15;audit=8.40879810226625E-10;elements=71;engine=LEGACY;DLL_READY;numeric=16;dd_numeric=0;backsolve=0;ordering=1;column_ordering=0;nt_bulk=15;g_bulk=0;gt_bulk=30;kkt_bulk=15;hsd_operator=0;corrector_bulk=15;bulk_job_steps=291;hsd_lu=0;hsd_lu_solve=0;solver_vector_calls=184;hsd_jobs=0;hsd_job_steps=0;krylov_jobs=0;krylov_steps=0;refine_jobs=2;refine_steps=2;input_compare_calls=141;schur_jobs=29;schur_steps=44;schur_native_bytes=798680;hits=1;h=0;r=0;l=0;s=0;k=0;c=0",
+      "pass": true
+    },
+    {
+      "scope": "schur",
+      "fault": "cancel",
+      "message": "ERROR 18:ANALYSIS_CANCELLED;DLL_READY;numeric=1;dd_numeric=0;backsolve=0;ordering=1;column_ordering=0;nt_bulk=1;g_bulk=0;gt_bulk=1;kkt_bulk=1;hsd_operator=0;corrector_bulk=0;bulk_job_steps=13;hsd_lu=0;hsd_lu_solve=0;solver_vector_calls=0;hsd_jobs=0;hsd_job_steps=0;krylov_jobs=0;krylov_steps=0;refine_jobs=0;refine_steps=0;input_compare_calls=96;schur_jobs=0;schur_steps=1;schur_native_bytes=0;hits=1;h=0;r=0;l=0;s=0;k=0;c=0",
+      "pass": true
+    },
+    {
+      "scope": "schur",
+      "fault": "memory",
+      "message": "ERROR 7:INJECTED_MEMORY;DLL_READY;numeric=1;dd_numeric=0;backsolve=0;ordering=1;column_ordering=0;nt_bulk=1;g_bulk=0;gt_bulk=1;kkt_bulk=1;hsd_operator=0;corrector_bulk=0;bulk_job_steps=13;hsd_lu=0;hsd_lu_solve=0;solver_vector_calls=0;hsd_jobs=0;hsd_job_steps=0;krylov_jobs=0;krylov_steps=0;refine_jobs=0;refine_steps=0;input_compare_calls=96;schur_jobs=0;schur_steps=1;schur_native_bytes=0;hits=1;h=0;r=0;l=0;s=0;k=0;c=0",
+      "pass": true
+    },
+    {
+      "scope": "schur",
+      "fault": "subscript",
+      "message": "ERROR 9:INJECTED_SUBSCRIPT;DLL_READY;numeric=1;dd_numeric=0;backsolve=0;ordering=1;column_ordering=0;nt_bulk=1;g_bulk=0;gt_bulk=1;kkt_bulk=1;hsd_operator=0;corrector_bulk=0;bulk_job_steps=13;hsd_lu=0;hsd_lu_solve=0;solver_vector_calls=0;hsd_jobs=0;hsd_job_steps=0;krylov_jobs=0;krylov_steps=0;refine_jobs=0;refine_steps=0;input_compare_calls=96;schur_jobs=0;schur_steps=1;schur_native_bytes=0;hits=1;h=0;r=0;l=0;s=0;k=0;c=0",
+      "pass": true
+    },
+    {
+      "scope": "schur",
+      "fault": "unknown",
+      "message": "ERROR 513:INJECTED_UNKNOWN;DLL_READY;numeric=1;dd_numeric=0;backsolve=0;ordering=1;column_ordering=0;nt_bulk=1;g_bulk=0;gt_bulk=1;kkt_bulk=1;hsd_operator=0;corrector_bulk=0;bulk_job_steps=13;hsd_lu=0;hsd_lu_solve=0;solver_vector_calls=0;hsd_jobs=0;hsd_job_steps=0;krylov_jobs=0;krylov_steps=0;refine_jobs=0;refine_steps=0;input_compare_calls=96;schur_jobs=0;schur_steps=1;schur_native_bytes=0;hits=1;h=0;r=0;l=0;s=0;k=0;c=0",
+      "pass": true
+    },
+    {
+      "scope": "schur",
+      "fault": "input",
+      "message": "ERROR 5:INPUT_MISMATCH test_persistent_edit;DLL_READY;numeric=1;dd_numeric=0;backsolve=0;ordering=1;column_ordering=0;nt_bulk=1;g_bulk=0;gt_bulk=1;kkt_bulk=1;hsd_operator=0;corrector_bulk=0;bulk_job_steps=13;hsd_lu=0;hsd_lu_solve=0;solver_vector_calls=0;hsd_jobs=0;hsd_job_steps=0;krylov_jobs=0;krylov_steps=0;refine_jobs=0;refine_steps=0;input_compare_calls=98;schur_jobs=0;schur_steps=1;schur_native_bytes=0;hits=1;h=0;r=0;l=0;s=0;k=0;c=0",
+      "pass": true
+    },
+    {
+      "scope": "schur",
+      "fault": "",
+      "message": "PASS;side=lower;Fs=3;load=0.186913155741698;iteration=15;audit=8.40879810226625E-10;elements=71;engine=LEGACY;DLL_READY;numeric=16;dd_numeric=0;backsolve=0;ordering=1;column_ordering=0;nt_bulk=15;g_bulk=0;gt_bulk=30;kkt_bulk=15;hsd_operator=0;corrector_bulk=15;bulk_job_steps=291;hsd_lu=0;hsd_lu_solve=0;solver_vector_calls=184;hsd_jobs=0;hsd_job_steps=0;krylov_jobs=0;krylov_steps=0;refine_jobs=2;refine_steps=2;input_compare_calls=141;schur_jobs=29;schur_steps=44;schur_native_bytes=798680;hits=1;h=0;r=0;l=0;s=0;k=0;c=0",
+      "pass": true
+    },
+    {
+      "scope": "krylov",
+      "fault": "cancel",
+      "message": "ERROR 18:ANALYSIS_CANCELLED;DLL_READY;numeric=11;dd_numeric=0;backsolve=0;ordering=0;column_ordering=0;nt_bulk=11;g_bulk=10;gt_bulk=31;kkt_bulk=11;hsd_operator=20;corrector_bulk=10;bulk_job_steps=282;hsd_lu=0;hsd_lu_solve=0;solver_vector_calls=210;hsd_jobs=31;hsd_job_steps=31;krylov_jobs=1;krylov_steps=0;refine_jobs=0;refine_steps=0;input_compare_calls=69;schur_jobs=0;schur_steps=0;schur_native_bytes=0;hits=1;h=0;r=0;l=0;s=0;k=0;c=0",
+      "pass": true
+    },
+    {
+      "scope": "krylov",
+      "fault": "memory",
+      "message": "ERROR 7:INJECTED_MEMORY;DLL_READY;numeric=11;dd_numeric=0;backsolve=0;ordering=0;column_ordering=0;nt_bulk=11;g_bulk=10;gt_bulk=31;kkt_bulk=11;hsd_operator=20;corrector_bulk=10;bulk_job_steps=282;hsd_lu=0;hsd_lu_solve=0;solver_vector_calls=210;hsd_jobs=31;hsd_job_steps=31;krylov_jobs=1;krylov_steps=0;refine_jobs=0;refine_steps=0;input_compare_calls=66;schur_jobs=0;schur_steps=0;schur_native_bytes=0;hits=1;h=0;r=0;l=0;s=0;k=0;c=0",
+      "pass": true
+    },
+    {
+      "scope": "krylov",
+      "fault": "subscript",
+      "message": "ERROR 9:INJECTED_SUBSCRIPT;DLL_READY;numeric=11;dd_numeric=0;backsolve=0;ordering=0;column_ordering=0;nt_bulk=11;g_bulk=10;gt_bulk=31;kkt_bulk=11;hsd_operator=20;corrector_bulk=10;bulk_job_steps=282;hsd_lu=0;hsd_lu_solve=0;solver_vector_calls=210;hsd_jobs=31;hsd_job_steps=31;krylov_jobs=1;krylov_steps=0;refine_jobs=0;refine_steps=0;input_compare_calls=66;schur_jobs=0;schur_steps=0;schur_native_bytes=0;hits=1;h=0;r=0;l=0;s=0;k=0;c=0",
+      "pass": true
+    },
+    {
+      "scope": "krylov",
+      "fault": "unknown",
+      "message": "ERROR 513:INJECTED_UNKNOWN;DLL_READY;numeric=11;dd_numeric=0;backsolve=0;ordering=0;column_ordering=0;nt_bulk=11;g_bulk=10;gt_bulk=31;kkt_bulk=11;hsd_operator=20;corrector_bulk=10;bulk_job_steps=282;hsd_lu=0;hsd_lu_solve=0;solver_vector_calls=210;hsd_jobs=31;hsd_job_steps=31;krylov_jobs=1;krylov_steps=0;refine_jobs=0;refine_steps=0;input_compare_calls=66;schur_jobs=0;schur_steps=0;schur_native_bytes=0;hits=1;h=0;r=0;l=0;s=0;k=0;c=0",
+      "pass": true
+    },
+    {
+      "scope": "krylov",
+      "fault": "input",
+      "message": "ERROR 5:INPUT_MISMATCH test_persistent_edit;DLL_READY;numeric=11;dd_numeric=0;backsolve=0;ordering=0;column_ordering=0;nt_bulk=11;g_bulk=10;gt_bulk=31;kkt_bulk=11;hsd_operator=20;corrector_bulk=10;bulk_job_steps=282;hsd_lu=0;hsd_lu_solve=0;solver_vector_calls=210;hsd_jobs=31;hsd_job_steps=31;krylov_jobs=1;krylov_steps=0;refine_jobs=0;refine_steps=0;input_compare_calls=68;schur_jobs=0;schur_steps=0;schur_native_bytes=0;hits=1;h=0;r=0;l=0;s=0;k=0;c=0",
+      "pass": true
+    },
+    {
+      "scope": "krylov",
+      "fault": "",
+      "message": "PASS;side=lower;Fs=1;load=7.49376795282166E-11;iteration=17;audit=1.7384228480908E-11;elements=97;engine=HSD_C0;DLL_READY;numeric=13;dd_numeric=5;backsolve=0;ordering=0;column_ordering=0;nt_bulk=17;g_bulk=16;gt_bulk=52;kkt_bulk=17;hsd_operator=34;corrector_bulk=17;bulk_job_steps=471;hsd_lu=0;hsd_lu_solve=0;solver_vector_calls=361;hsd_jobs=52;hsd_job_steps=52;krylov_jobs=5;krylov_steps=32;refine_jobs=0;refine_steps=0;input_compare_calls=357;schur_jobs=0;schur_steps=0;schur_native_bytes=0;hits=1;h=0;r=0;l=0;s=0;k=0;c=0",
+      "pass": true
+    }
+  ],
+  "passed": 24,
+  "dll_sha256": "393dd3b1d6323104b023f0e04c933913e17723b925c0fc3f156ea534ae952af2",
+  "test_only_native_context_abort_hooks": true
+}

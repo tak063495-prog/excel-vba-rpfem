@@ -1,0 +1,2 @@
+RUNNING D07A dll5 PID 2636
+{"case": "D07A", "backend": "dll5", "status": "partial_certified", "analysis_seconds": 22.092828399996506, "lower": 1.2223035780099496, "upper": 1.3639635115731257, "terminal_text": "上下界を取得（目標区間幅またはFs探索許容差は未達）"}

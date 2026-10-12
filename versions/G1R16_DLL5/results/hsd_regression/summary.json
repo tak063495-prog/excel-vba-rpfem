@@ -1,0 +1,101 @@
+{
+  "cases": [
+    {
+      "backend": "LDL_CHECKED",
+      "case": 0,
+      "expected": 1.0,
+      "vba": {
+        "message": "PASS;objective=0.999999999539072;iteration=6;primal=5.37494160290919E-10;dual=1.38777878078145E-14;gap=7.99120286255683E-10;VBA_SELECTED;numeric=0;dd_numeric=0;backsolve=0;ordering=0;column_ordering=0;nt_bulk=0;g_bulk=0;gt_bulk=0;kkt_bulk=0;hsd_operator=0;corrector_bulk=0;bulk_job_steps=0;hsd_lu=0;hsd_lu_solve=0;solver_vector_calls=0;hsd_jobs=0;hsd_job_steps=0;krylov_jobs=0;krylov_steps=0;refine_jobs=0;refine_steps=0;input_compare_calls=0;schur_jobs=0;schur_steps=0;schur_native_bytes=0",
+        "seconds": 0.08709299998008646,
+        "objective": 0.9999999995390719
+      },
+      "auto": {
+        "message": "PASS;objective=0.999999999539072;iteration=6;primal=5.37494160290919E-10;dual=1.38777878078145E-14;gap=7.99120286255683E-10;DLL_READY;numeric=6;dd_numeric=0;backsolve=0;ordering=0;column_ordering=0;nt_bulk=6;g_bulk=0;gt_bulk=18;kkt_bulk=6;hsd_operator=12;corrector_bulk=6;bulk_job_steps=168;hsd_lu=0;hsd_lu_solve=0;solver_vector_calls=124;hsd_jobs=18;hsd_job_steps=18;krylov_jobs=0;krylov_steps=0;refine_jobs=0;refine_steps=0;input_compare_calls=0;schur_jobs=0;schur_steps=0;schur_native_bytes=0",
+        "seconds": 0.08041190000949427,
+        "objective": 0.9999999995390719
+      },
+      "bitwise_exact": true
+    },
+    {
+      "backend": "LDL_CHECKED",
+      "case": 1,
+      "expected": 0.7,
+      "vba": {
+        "message": "PASS;objective=0.699999998762673;iteration=6;primal=2.25707030843125E-09;dual=1.01568191643625E-09;gap=3.13020436928896E-09;VBA_SELECTED;numeric=0;dd_numeric=0;backsolve=0;ordering=0;column_ordering=0;nt_bulk=0;g_bulk=0;gt_bulk=0;kkt_bulk=0;hsd_operator=0;corrector_bulk=0;bulk_job_steps=0;hsd_lu=0;hsd_lu_solve=0;solver_vector_calls=0;hsd_jobs=0;hsd_job_steps=0;krylov_jobs=0;krylov_steps=0;refine_jobs=0;refine_steps=0;input_compare_calls=0;schur_jobs=0;schur_steps=0;schur_native_bytes=0",
+        "seconds": 0.081916099996306,
+        "objective": 0.6999999987626734
+      },
+      "auto": {
+        "message": "PASS;objective=0.699999998762673;iteration=6;primal=2.25707030843125E-09;dual=1.01568191643625E-09;gap=3.13020436928896E-09;DLL_READY;numeric=6;dd_numeric=0;backsolve=0;ordering=0;column_ordering=0;nt_bulk=6;g_bulk=0;gt_bulk=18;kkt_bulk=6;hsd_operator=12;corrector_bulk=6;bulk_job_steps=168;hsd_lu=0;hsd_lu_solve=0;solver_vector_calls=132;hsd_jobs=18;hsd_job_steps=18;krylov_jobs=0;krylov_steps=0;refine_jobs=0;refine_steps=0;input_compare_calls=0;schur_jobs=0;schur_steps=0;schur_native_bytes=0",
+        "seconds": 0.06610190001083538,
+        "objective": 0.6999999987626734
+      },
+      "bitwise_exact": true
+    },
+    {
+      "backend": "LDL_CHECKED",
+      "case": 2,
+      "expected": 10.2,
+      "vba": {
+        "message": "PASS;objective=10.1999999912647;iteration=7;primal=7.98982391359004E-09;dual=8.98855392436151E-10;gap=9.01801377430812E-09;VBA_SELECTED;numeric=0;dd_numeric=0;backsolve=0;ordering=0;column_ordering=0;nt_bulk=0;g_bulk=0;gt_bulk=0;kkt_bulk=0;hsd_operator=0;corrector_bulk=0;bulk_job_steps=0;hsd_lu=0;hsd_lu_solve=0;solver_vector_calls=0;hsd_jobs=0;hsd_job_steps=0;krylov_jobs=0;krylov_steps=0;refine_jobs=0;refine_steps=0;input_compare_calls=0;schur_jobs=0;schur_steps=0;schur_native_bytes=0",
+        "seconds": 0.08400249999249354,
+        "objective": 10.199999991264706
+      },
+      "auto": {
+        "message": "PASS;objective=10.1999999912647;iteration=7;primal=7.98982391359004E-09;dual=8.98855392436151E-10;gap=9.01801377430812E-09;DLL_READY;numeric=7;dd_numeric=0;backsolve=0;ordering=0;column_ordering=0;nt_bulk=7;g_bulk=0;gt_bulk=21;kkt_bulk=7;hsd_operator=14;corrector_bulk=7;bulk_job_steps=194;hsd_lu=0;hsd_lu_solve=0;solver_vector_calls=155;hsd_jobs=21;hsd_job_steps=21;krylov_jobs=0;krylov_steps=0;refine_jobs=0;refine_steps=0;input_compare_calls=0;schur_jobs=0;schur_steps=0;schur_native_bytes=0",
+        "seconds": 0.06610380002530292,
+        "objective": 10.199999991264706
+      },
+      "bitwise_exact": true
+    },
+    {
+      "backend": "PIVOT_ONLY",
+      "case": 0,
+      "expected": 1.0,
+      "vba": {
+        "message": "PASS;objective=0.999999999539068;iteration=6;primal=5.37496602781573E-10;dual=2.22044604925031E-16;gap=7.99120837620575E-10;VBA_SELECTED;numeric=0;dd_numeric=0;backsolve=0;ordering=0;column_ordering=0;nt_bulk=0;g_bulk=0;gt_bulk=0;kkt_bulk=0;hsd_operator=0;corrector_bulk=0;bulk_job_steps=0;hsd_lu=0;hsd_lu_solve=0;solver_vector_calls=0;hsd_jobs=0;hsd_job_steps=0;krylov_jobs=0;krylov_steps=0;refine_jobs=0;refine_steps=0;input_compare_calls=0;schur_jobs=0;schur_steps=0;schur_native_bytes=0",
+        "seconds": 0.07709170001908205,
+        "objective": 0.9999999995390677
+      },
+      "auto": {
+        "message": "PASS;objective=0.999999999539068;iteration=6;primal=5.37496602781573E-10;dual=2.22044604925031E-16;gap=7.99120837620575E-10;DLL_READY;numeric=0;dd_numeric=0;backsolve=0;ordering=0;column_ordering=0;nt_bulk=6;g_bulk=0;gt_bulk=18;kkt_bulk=6;hsd_operator=12;corrector_bulk=6;bulk_job_steps=168;hsd_lu=6;hsd_lu_solve=0;solver_vector_calls=124;hsd_jobs=18;hsd_job_steps=18;krylov_jobs=0;krylov_steps=0;refine_jobs=0;refine_steps=0;input_compare_calls=0;schur_jobs=0;schur_steps=0;schur_native_bytes=0",
+        "seconds": 0.064485999988392,
+        "objective": 0.9999999995390677
+      },
+      "bitwise_exact": true
+    },
+    {
+      "backend": "PIVOT_ONLY",
+      "case": 1,
+      "expected": 0.7,
+      "vba": {
+        "message": "PASS;objective=0.699999998762673;iteration=6;primal=2.25707030843125E-09;dual=1.01568188206629E-09;gap=3.13020425788215E-09;VBA_SELECTED;numeric=0;dd_numeric=0;backsolve=0;ordering=0;column_ordering=0;nt_bulk=0;g_bulk=0;gt_bulk=0;kkt_bulk=0;hsd_operator=0;corrector_bulk=0;bulk_job_steps=0;hsd_lu=0;hsd_lu_solve=0;solver_vector_calls=0;hsd_jobs=0;hsd_job_steps=0;krylov_jobs=0;krylov_steps=0;refine_jobs=0;refine_steps=0;input_compare_calls=0;schur_jobs=0;schur_steps=0;schur_native_bytes=0",
+        "seconds": 0.08143009999184869,
+        "objective": 0.6999999987626735
+      },
+      "auto": {
+        "message": "PASS;objective=0.699999998762673;iteration=6;primal=2.25707030843125E-09;dual=1.01568188206629E-09;gap=3.13020425788215E-09;DLL_READY;numeric=0;dd_numeric=0;backsolve=0;ordering=0;column_ordering=0;nt_bulk=6;g_bulk=0;gt_bulk=18;kkt_bulk=6;hsd_operator=12;corrector_bulk=6;bulk_job_steps=168;hsd_lu=6;hsd_lu_solve=0;solver_vector_calls=132;hsd_jobs=18;hsd_job_steps=18;krylov_jobs=0;krylov_steps=0;refine_jobs=0;refine_steps=0;input_compare_calls=0;schur_jobs=0;schur_steps=0;schur_native_bytes=0",
+        "seconds": 0.06343109998852015,
+        "objective": 0.6999999987626735
+      },
+      "bitwise_exact": true
+    },
+    {
+      "backend": "PIVOT_ONLY",
+      "case": 2,
+      "expected": 10.2,
+      "vba": {
+        "message": "PASS;objective=10.1999999912647;iteration=7;primal=7.98982746630372E-09;dual=8.98855906957424E-10;gap=9.01801151505999E-09;VBA_SELECTED;numeric=0;dd_numeric=0;backsolve=0;ordering=0;column_ordering=0;nt_bulk=0;g_bulk=0;gt_bulk=0;kkt_bulk=0;hsd_operator=0;corrector_bulk=0;bulk_job_steps=0;hsd_lu=0;hsd_lu_solve=0;solver_vector_calls=0;hsd_jobs=0;hsd_job_steps=0;krylov_jobs=0;krylov_steps=0;refine_jobs=0;refine_steps=0;input_compare_calls=0;schur_jobs=0;schur_steps=0;schur_native_bytes=0",
+        "seconds": 0.0792535999789834,
+        "objective": 10.1999999912647
+      },
+      "auto": {
+        "message": "PASS;objective=10.1999999912647;iteration=7;primal=7.98982746630372E-09;dual=8.98855906957424E-10;gap=9.01801151505999E-09;DLL_READY;numeric=0;dd_numeric=0;backsolve=0;ordering=0;column_ordering=0;nt_bulk=7;g_bulk=0;gt_bulk=21;kkt_bulk=7;hsd_operator=14;corrector_bulk=7;bulk_job_steps=194;hsd_lu=7;hsd_lu_solve=0;solver_vector_calls=155;hsd_jobs=21;hsd_job_steps=21;krylov_jobs=0;krylov_steps=0;refine_jobs=0;refine_steps=0;input_compare_calls=0;schur_jobs=0;schur_steps=0;schur_native_bytes=0",
+        "seconds": 0.06757420001667924,
+        "objective": 10.1999999912647
+      },
+      "bitwise_exact": true
+    }
+  ],
+  "LU_contract": "PASS default optional arguments; shared factors; epoch; memory; threshold; finite predicate; cancellation"
+}

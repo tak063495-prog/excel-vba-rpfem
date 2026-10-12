@@ -1,0 +1,5 @@
+order 0 ['PASS 2835 allocation-failure points code207; 8 unknown exceptions code208; no leaks; cleanup after partial steps; invalid contracts rejected']
+lu 0 ['PASS 66 allocation-failure points code207; 8 unknown points code208; scoped context no leaks; partial-step cleanup; memory/order/storage/threshold rejection']
+job 0 ['PASS 6 allocation points207; 4 unknown points208; partial cleanup; stale handles rejected; exact identity solve', 'PASS 15 allocation points207; 4 unknown points208; partial cleanup; stale handles rejected; exact identity solve']
+dll5 0 ['PASS 211 allocation points207; 4 unknown points208; partial cleanup; live handles0', 'PASS 30 allocation points207; 4 unknown points208; partial cleanup; live handles0', 'PASS 17 allocation points207; 4 unknown points208; partial cleanup; live handles0']
+NATIVE fault builds/runs PASS

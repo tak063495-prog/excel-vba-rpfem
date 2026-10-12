@@ -1,0 +1,108 @@
+{
+  "seconds": {
+    "VBA_existing": 611.555194,
+    "DLL3_existing": 338.586663,
+    "DLL4_fresh": 272.967684,
+    "DLL5_fresh": 142.167906
+  },
+  "DLL5_COM_seconds": 142.25146299999324,
+  "DLL4_COM_seconds": 273.0509686000005,
+  "reduction_percent_vs_DLL4": 47.917678782811535,
+  "speedup_vs_DLL4": 1.9200373113746223,
+  "reduction_percent_vs_VBA_reference": 76.75305395247776,
+  "speedup_vs_VBA_reference": 4.301640301292755,
+  "VBA_time_source": "Existing actual log, not a new measurement; DLL3 also existing. DLL4 and DLL5 freshly measured in separate serialized Excel processes.",
+  "Fs_bitwise_exact": true,
+  "lower": 1.2244477290215,
+  "upper": 1.2343080287831916,
+  "same_saved_inputs_and_mesh": {
+    "要素定義": true,
+    "材料データ": true,
+    "設定": true,
+    "浸透入力": true,
+    "節点データ": true,
+    "要素データ": true
+  },
+  "log_comparisons": {
+    "DLL4_fresh": {
+      "solves": 53,
+      "completed_solves": 53,
+      "audits": 603,
+      "matches": true,
+      "errors": [],
+      "old_sha256": "3360f28cd0ec2f2f209af119885317256f6d6f0d3e3917e02bc260d4d73f4f7c",
+      "new_sha256": "34192caf1f57cfdc3b6eb08a9961a4abb95439308bb5d79949a1920998b3fde1",
+      "maximum_compared_solve_id": null
+    },
+    "DLL3_existing": {
+      "solves": 53,
+      "completed_solves": 53,
+      "audits": 603,
+      "matches": true,
+      "errors": [],
+      "old_sha256": "0cce991f59966a336470ebd57915b3b55083874d030d00c8c1b99b3a2ff56eae",
+      "new_sha256": "34192caf1f57cfdc3b6eb08a9961a4abb95439308bb5d79949a1920998b3fde1",
+      "maximum_compared_solve_id": null
+    },
+    "VBA_existing": {
+      "solves": 53,
+      "completed_solves": 53,
+      "audits": 603,
+      "matches": true,
+      "errors": [],
+      "old_sha256": "a0437181c7309b3c2fda0df1e6fd82df7f1a11d0526de12d859f49b34f6f4f52",
+      "new_sha256": "34192caf1f57cfdc3b6eb08a9961a4abb95439308bb5d79949a1920998b3fde1",
+      "maximum_compared_solve_id": null
+    }
+  },
+  "DLL4_phases": {
+    "assembly": 23.491359800013,
+    "convert_pattern": 38.5948460999934,
+    "ordering": 32.0994940999954,
+    "symbolic": 0.824193399981596,
+    "kkt_update": 4.44002250069752,
+    "numeric_ldl": 70.3133275002183,
+    "linear_solve_and_refinement": 63.8224658001855,
+    "nt_scaling": 14.0955470000044,
+    "physical_audit": 1.05381520016817,
+    "mesh": 1.41420160001144,
+    "draw": 0.809912299999269,
+    "sheet_output": 0.228226400009589,
+    "ldl_reach_cache": 0.470971000002464,
+    "step_limit": 1.28638939882512,
+    "residuals": 3.77419179980643,
+    "corrector": 0.821885600220412,
+    "gproduct": 0.0016446000081487,
+    "gtadd": 1.98076279918314
+  },
+  "DLL5_phases": {
+    "assembly": 41.8862395999604,
+    "convert_pattern": 1.07403209988843,
+    "ordering": 1.59608069999376,
+    "symbolic": 0.690319600049406,
+    "kkt_update": 4.043521700165,
+    "numeric_ldl": 44.6310961988056,
+    "linear_solve_and_refinement": 18.7924123000121,
+    "nt_scaling": 10.4429962007853,
+    "physical_audit": 1.06137949990807,
+    "mesh": 1.05723710000166,
+    "draw": 0.837716999987606,
+    "sheet_output": 0.168301400030032,
+    "ldl_reach_cache": 0.471616200054996,
+    "step_limit": 1.05360160043347,
+    "residuals": 2.71629620005842,
+    "corrector": 0.454805999528617,
+    "gproduct": 0.00132050001411699,
+    "gtadd": 1.73919900131295
+  },
+  "dll_sha256": "393dd3b1d6323104b023f0e04c933913e17723b925c0fc3f156ea534ae952af2",
+  "timing_scope": "One fresh serial pair, same PC; RPX_Run run_end. Excludes separate seep/mesh calls, save, Python audit.",
+  "seep_seconds": {
+    "dll4": 0.8256193999841344,
+    "dll5": 0.8162432000099216
+  },
+  "mesh_seconds": {
+    "dll4": 1.290296200022567,
+    "dll5": 1.2201957999786828
+  }
+}

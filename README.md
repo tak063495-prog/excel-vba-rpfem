@@ -21,7 +21,21 @@ Excel VBAによる2次元RPFEM解析のソース、XLSM、検証資料です。
 
 **G1R15では、G1R14（定常浸透・間隙水圧の一方向連成）に、浸透入力シートの整理・地下水面からの水圧入力・水平震度法（地震）を追加した（実Excelで全回帰済み：連成OFF・kh=0でD03N・D07AのFsがG1R14と全桁一致）。G1R14では連成OFFでD03N・D07AのFsがG1R13と全桁一致した。G1R13の修復・制限は[G1R13報告](versions/G1R13/REPORT.md)、G1R12時点の25ケース結果（23/25取得・11/25目標達成）は[過去25ケース結果](validation/G1R12_native25_20261009/REPORT.md)を参照し、区別する。図の矢印は規準化された速度機構であり、変位量ではない。**
 
-## G1R16 DLL4 — 通常内点法・HSDの線形求解と精度補正をまとめてDLL化（最新版）
+## G1R16 DLL5 — Schur・HSD修復・疎構造・一括演算の追加最適化（最新版）
+
+2026年10月12日。主要な追加最適化をDLL5にまとめました。堤防例題は **DLL4 272.97秒 → DLL5 142.17秒（47.92%短縮、約1.92倍）**。両版を同一PCで順番に再測定しています。DLLなしの既存実測611.56秒比では約4.30倍ですが、VBAの長時間測定は再実行していません。
+
+- **[対応XLSM・DLL・ソース・検証資料の一式ZIP](https://github.com/tak063495-prog/excel-vba-rpfem/raw/refs/heads/main/downloads/RPFEM_G1R16_DLL5_20261012.zip)**
+- [対応XLSM](https://github.com/tak063495-prog/excel-vba-rpfem/raw/refs/heads/main/versions/G1R16_DLL5/delivery/RPFEM_20261012_G1R16_DLL5_Levee_Checked.xlsm) / [DLL5](https://github.com/tak063495-prog/excel-vba-rpfem/raw/refs/heads/main/versions/G1R16_DLL5/delivery/rpfem_native_x64.dll)
+- [使い方](versions/G1R16_DLL5/README.md) / [検証報告・DLLなし基準の速度表](versions/G1R16_DLL5/REPORT.md) / [実装範囲](versions/G1R16_DLL5/IMPLEMENTATION_JA.md) / [導入・復旧](versions/G1R16_DLL5/IMPORT_ROLLBACK_JA.md) / [VBA差分](versions/G1R16_DLL5/changes.diff) / [native差分](versions/G1R16_DLL5/native_changes.diff)
+
+通常内点法のSchur内部処理、HSDのDD組立とGMRES修復、疎パターン準備、入力比較、時間区間ごとの一括処理、DD/疎Double演算の細かい呼出しを追加移植しました。物理モデル・Fs定義・監査・許容誤差・救済順序は維持しています。堤防のFs下界1.2244477290215・上界1.2343080287831916、53求解・603監査がVBA/DLL3/DLL4記録と一致しました。固定FsのC5/P06A/P06N計6組は全解成分とメッシュがVBA/DLL4/DLL5でビット一致しています。
+
+主回帰22グループ、HSD既知解6組、追加の障害注入24条件、入力・世代・所有権・DLL不在/旧版復帰などを検証しました。P06Aの粗メッシュはFs≥0.125の15点だけ、P06N/D03N/D07Aは限定した粗メッシュ終端までです。粗メッシュP06NのFs未取得はDLL4と同じであり、回帰一致とFs取得を区別しています。フルP06A/P06N、極小Fs探索、以前中断した26ケース全試験は再開していません。
+
+XLSMとDLLを組で同じフォルダーに置き、交換前にExcelを終了してください。DLL不在・非対応時はVBAで計算できます。詳細な実測条件・未実施範囲は報告書を参照してください。
+
+## G1R16 DLL4 — 通常内点法・HSDの線形求解と精度補正をまとめてDLL化（前版）
 
 2026年10月12日。線形求解・反復補正を状態付きのDLL内処理にし、HSDのLU因子をDLLに保持します。残差・方向・境界・状態更新も追加移植しました。堤防例題は **DLL_3 338.59秒 → DLL4 273.81秒（19.13%短縮、約1.24倍）**。同一PC・同一入力で両版を順番に再測定しています。
 

@@ -1,0 +1,15 @@
+ Assembling: ..\native\vba_fp.asm
+rpfem_native.c
+dll5_failure_injection.cpp
+rpfem_order.cpp
+コードを生成中...
+   ライブラリ compile_failure_test.lib とオブジェクト compile_failure_test.exp を作成中
+PASS 211 allocation points207; 4 unknown points208; partial cleanup; live handles0
+dll5_failure_injection.cpp
+   ライブラリ schur_failure_test.lib とオブジェクト schur_failure_test.exp を作成中
+PASS 30 allocation points207; 4 unknown points208; partial cleanup; live handles0
+dll5_failure_injection.cpp
+rpfem_lu.cpp
+コードを生成中...
+   ライブラリ krylov_failure_test.lib とオブジェクト krylov_failure_test.exp を作成中
+PASS 17 allocation points207; 4 unknown points208; partial cleanup; live handles0

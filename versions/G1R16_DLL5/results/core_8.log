@@ -1,0 +1,12 @@
+COMPILE PASS
+normal PASS;value=1.01458795869196;audit=5.93895012057644E-08;engine=LEGACY;rescues=0;hsd_calls=0;status=OPTIMAL
+factor PASS;value=1.01458850816143;audit=1.89990467802659E-10;engine=HSD_RESCUE;rescues=1;hsd_calls=1;status=OPTIMAL
+memory ERROR 7:OUT_OF_MEMORY;engine=LEGACY;rescues=0;hsd_calls=0
+subscript ERROR 9:SUBSCRIPT;engine=LEGACY;rescues=0;hsd_calls=0
+cancel ERROR 18:ANALYSIS_CANCELLED;engine=LEGACY;rescues=0;hsd_calls=0
+unknown ERROR 5:UNKNOWN_FAILURE;engine=LEGACY;rescues=0;hsd_calls=0
+audit ERROR 5:RAW_YIELD_AUDIT_FAILED;engine=LEGACY;rescues=0;hsd_calls=0
+model ERROR 5:ROBUST_MODEL_MISMATCH;engine=LEGACY;rescues=0;hsd_calls=0
+hsd_failure ERROR 7:HSD_TEST_MEMORY;engine=HSD_RESCUE;rescues=1;hsd_calls=1
+PASS;lower=1.51428621843036;upper=3.00323393673885;lower_calls=6;upper_calls=24;elements=20;audit=4.03184972387616E-11
+ISSUE regression PASS 51

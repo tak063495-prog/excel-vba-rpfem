@@ -1,0 +1,2 @@
+RUNNING D03N dll5 PID 26972
+{"case": "D03N", "backend": "dll5", "status": "partial_certified", "analysis_seconds": 220.47590030002175, "lower": 1.117980764587677, "upper": 1.4150393955079879, "terminal_text": "上下界を取得（目標区間幅またはFs探索許容差は未達）"}

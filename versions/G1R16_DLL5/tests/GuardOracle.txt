@@ -1,0 +1,51 @@
+Public Function DLL5GuardOracle() As String
+    Dim saved As Variant, forms As Variant, live As Variant, oldforms As Variant, cols As Variant
+    Dim ids(1 To 3) As Long, i As Long, k As Long, expected As Boolean, got As Boolean, accepted As Boolean, passed As Long
+    ReDim saved(1 To 3, 1 To 3): ReDim oldforms(1 To 3, 1 To 3)
+    saved(1, 1) = 1#: saved(1, 2) = "=1": saved(1, 3) = CVErr(2042)
+    saved(2, 2) = True: saved(2, 3) = "日本語" & ChrW(0) & "A"
+    saved(3, 1) = CCur(1.25): saved(3, 2) = CDate(40000): saved(3, 3) = CSng(1.25)
+    oldforms = saved: oldforms(1, 1) = "=1"
+    For k = 1 To 3: ids(k) = k: Next k
+    cols = ids
+    For i = 0 To 15
+        live = saved: forms = oldforms
+        Select Case i
+            Case 1: forms(1, 1) = "=1+0"
+            Case 2: live(2, 1) = ""
+            Case 3: live(1, 1) = CLng(1)
+            Case 4: live(1, 3) = CVErr(2007)
+            Case 5: live(2, 2) = False
+            Case 6: live(2, 3) = "日本語" & ChrW(0) & "B"
+            Case 7: live(3, 1) = CCur(1.2501)
+            Case 8: live(3, 2) = CDate(40001)
+            Case 9: live(3, 3) = CSng(1.2501)
+            Case 10: live(1, 1) = 1.0000000000000002#
+            Case 11: live(1, 1) = -1#
+            Case 12: forms(2, 1) = "=0"
+            Case 13: live(3, 3) = 1.25#
+            Case 14: live(2, 3) = "日本語" & ChrW(0) & "A"
+            Case 15: live(1, 1) = 0#: saved(1, 1) = -live(1, 1)
+        End Select
+        expected = LegacyCore(live, forms, saved, oldforms, cols, 3, 3)
+        accepted = RPX_NativeSnapshot(live, forms, saved, oldforms, cols, 3, 3, got)
+        If Not accepted Or got <> expected Then err.Raise 513, , "GUARD_ORACLE_MISMATCH " & i
+        passed = passed + 1
+    Next i
+    live = saved: forms = oldforms: live(1, 1) = Null: saved(1, 1) = Null
+    accepted = RPX_NativeSnapshot(live, forms, saved, oldforms, cols, 3, 3, got)
+    If accepted Then err.Raise 513, , "GUARD_NULL_MUST_USE_VBA"
+    On Error Resume Next
+    expected = LegacyCore(live, forms, saved, oldforms, cols, 3, 3)
+    k = err.number: err.Clear
+    On Error GoTo 0
+    If k <> 94 Then err.Raise 513, , "GUARD_NULL_ERROR_CHANGED"
+    passed = passed + 1
+    live = saved: live(1, 1) = 1#: saved(1, 1) = 1#
+    On Error Resume Next
+    accepted = RPX_NativeSnapshot(live, forms, saved, oldforms, cols, 3, 4, got)
+    k = err.number: err.Clear
+    On Error GoTo 0
+    If k <> 9 Then err.Raise 513, , "GUARD_SHAPE_ERROR_CHANGED"
+    DLL5GuardOracle = "PASS;assertions=" & passed + 1 & ";" & RPX_NativeGuardInfo()
+End Function

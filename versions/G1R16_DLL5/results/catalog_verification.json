@@ -1,0 +1,18 @@
+{
+  "D07A": {
+    "sha256": "0d3692d33369ea14aa1e4af77c3cc073b6cf17728108491bd2de15663fd3ab19",
+    "unchanged_from_git_baseline": true
+  },
+  "D03N": {
+    "sha256": "f3697c56685aeb86cea502a91db1adddfe9be68f9aaa0004770e42f954e0405d",
+    "unchanged_from_git_baseline": true
+  },
+  "P06A": {
+    "sha256": "7ba1d27d7f1d4bee57972dd9e87881a3efa59f8765808631c87916e3bf3ee9d1",
+    "unchanged_from_git_baseline": true
+  },
+  "P06N": {
+    "sha256": "25f865f0e776f231feb5437eebaefbdbf59b6c3e0f8297174c4c6aa6abeff392",
+    "unchanged_from_git_baseline": true
+  }
+}

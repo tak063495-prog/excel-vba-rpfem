@@ -1,0 +1,14 @@
+COMPILE PASS
+PASS VBA NT oracle rows=188
+{"rows": 188, "normal_success": 66, "precise_success": 91, "bitwise_exact_rows": 47, "maximum_relative_error": 1.9990341998847445, "dll_sha256": "393dd3b1d6323104b023f0e04c933913e17723b925c0fc3f156ea534ae952af2"}
+DIFFERING ROWS 110 CLASSIFICATION MISMATCHES 13
+[{"index": 15, "precise": 0, "vba_error": 5, "native_code": 0, "s": [1e-08, -8.604147405281e-09, -5.095944213605191e-09], "z": [1.7e-08, -9.969937254855438e-09, 1.3769544332845144e-08]}, {"index": 30, "precise": 0, "vba_error": 0, "native_code": 301, "s": [0.001, 0.0008983954077131729, -0.00043918753534211526], "z": [0.0017, -0.0016536272667564131, -0.000394356262866097]}, {"index": 31, "precise": 0, "vba_error": 5, "native_code": 0, "s": [0.001, 0.0009241730518374562, 0.0003819740436959588], "z": [0.0017, 0.0012927531932284662, 0.001103987853565248]}]
+[{"index": 0, "precise": 0, "relative_error": 1.2941811537067266e-16, "components": [32], "first": {"component": 32, "vba": 1.5978841334998964e-09, "native": 1.5978841334998966e-09}}, {"index": 1, "precise": 0, "relative_error": 3.863066816680433e-16, "components": [0, 4, 8, 31], "first": {"component": 0, "vba": 1.7871930849236195, "native": 1.7871930849236197}}, {"index": 2, "precise": 0, "relative_error": 1.2797997641269856e-13, "components": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 19, 20, 21, 23, 24, 25, 28, 29, 32], "first": {"component": 0, "vba": 1.7019672058147535, "native": 1.7019672058147544}}, {"index": 3, "precise": 0, "relative_error": 6.530568166568905e-15, "components": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 28, 29, 30, 31, 32], "first": {"component": 0, "vba": 5.5132959495505744, "native": 5.513295949550555}}]
+Traceback (most recent call last):
+  File "C:\Users\link_\Downloads\RPFEM_G1R16_DLL5_20261012\versions\G1R16_DLL5\tools\test_nt_oracle.py", line 74, in <module>
+    if __name__=='__main__':run()
+                            ^^^^^
+  File "C:\Users\link_\Downloads\RPFEM_G1R16_DLL5_20261012\versions\G1R16_DLL5\tools\test_nt_oracle.py", line 73, in run
+    assert not errors and not summary['differences']
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError

@@ -1,0 +1,35 @@
+﻿test,validation_type,result,executed_scope,evidence
+core,mixed actual Excel/native API/Python,PASS,22 test groups,results/core_pipeline.json
+Guard,actual Excel,PASS,18 input +12 exact HSD identity,results/guard_oracle/summary.json
+HSD,actual VBA/DLL5 + recorded DLL3,PASS,6 known solutions,results/fixed_comparison.json
+Fixed_FEM,actual VBA/DLL4/DLL5 + independent Python audit,PASS,"6 q8 points, full fields and mesh bitwise exact",results/fixed_comparison.json
+LU,actual VBA/DLL5 + independent Python residual,PASS,360,results/lu_oracle/summary.json
+NT,actual VBA/native API,PASS,224:174 exact+50 matching rejects,results/nt_oracle_extended/comparison.json
+Bulk,actual VBA/DLL5,PASS,160;1239592 bytes,results/bulk_oracle/summary.json
+Boundary,actual VBA/DLL5,PASS,5070,results/boundary_oracle/summary.json
+Existing_job_faults,actual Excel failure injection,PASS,12,results/job_contract/summary.json
+New_job_faults,actual Excel failure injection,PASS,24,results/new_job_contract/summary.json
+Native_faults,C++ actual build/execute,PASS,all allocation/unknown injection contracts,results/native_faults.json
+Schur,independent Python,PASS,240,results/schur_python.json
+Krylov,independent Python,PASS,80,results/krylov_python.json
+DD_assembly,80-digit Decimal Python,PASS,60,results/hdd_python.json
+Compiler,independent Python sparse construction,PASS,120,results/compile_python.json
+DD_fused,DLL4/DLL5 native API,PASS,7552,results/dd_core_python.json
+Large_lifecycle,native API,PASS,real yields/ownership/stale/cancel cleanup,results/new_job_lifecycle.json
+Mode_switch,actual Excel,PASS,auto/vba and auto/auto,results/mode_switch_final/summary.json
+Fallback_seep,actual Excel,PASS,"native,missing,old2,old3,old4 +seep/water",results/fallback_seep.json
+Issue1_2,actual Excel,PASS,51 assertions,results/issue_regression/summary.json
+Levee,actual DLL4/DLL5 full RPX_Run; prior VBA/DLL3,PASS,53 solves603 audits; saved Fs bits exact,results/comparison.json
+Delivery,actual Excel compile/save/reopen,PASS,"70 modules,4 buttons,DLL_READY",results/delivery_verification.json
+D07A_regression,actual coarse DLL5 vs recorded DLL4,PASS,Complete coarse search to the same terminal outcome; not full adaptive analysis.,results/root_regressions.json
+D07A_final_Fs,actual coarse DLL5,PARTIAL_CERTIFIED,Fs obtained,results/root_regressions.json
+D03N_regression,actual coarse DLL5 vs recorded DLL4,PASS,Complete coarse search to the same terminal outcome; not full adaptive analysis.,results/root_regressions.json
+D03N_final_Fs,actual coarse DLL5,PARTIAL_CERTIFIED,Fs obtained,results/root_regressions.json
+P06A_regression,actual coarse DLL5 vs recorded DLL4,PASS,"Only the first 15 completed solves, Fs>=0.125. Test copy stops before solve16. No final Fs.",results/root_regressions.json
+P06A_final_Fs,actual coarse DLL5,CANCELLED,Fs unavailable; do not count as pass,results/root_regressions.json
+P06N_regression,actual coarse DLL5 vs recorded DLL4,PASS,Complete coarse search to the same terminal outcome; not full adaptive analysis.,results/root_regressions.json
+P06N_final_Fs,actual coarse DLL5,NUMERICAL_FAILURE,Fs unavailable; do not count as pass,results/root_regressions.json
+P06A_full,full adaptive Excel,NOT_RUN,user stopped full analysis,results/root_regressions.json
+P06N_full,full adaptive Excel,NOT_RUN,not restarted,results/root_regressions.json
+P06A_tiny_Fs,extreme Fs Excel,NOT_RUN,user limited floor0.125,results/root_regressions.json
+26_case_batch,actual full cases,NOT_RUN,user interrupted batch earlier,results/root_regressions.json

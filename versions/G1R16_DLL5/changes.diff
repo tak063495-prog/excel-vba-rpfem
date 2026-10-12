@@ -1,0 +1,1083 @@
+--- G1R16_DLL4/RPX_Conic.bas
++++ G1R16_DLL5/RPX_Conic.bas
+@@ -1,5 +1,16 @@
+ Attribute VB_Name = "RPX_Conic"
+ Option Explicit
++#If Win64 Then
++Private Declare PtrSafe Function NCInit Lib "rpfem_native_x64.dll" Alias "rpx_compile_create" (ByVal nx As Long, ByVal nm As Long, ByVal nb As Long, ByVal coneN As Long, ByVal equalityN As Long, ByVal args As LongPtr, ByRef handle As LongPtr) As Long
++Private Declare PtrSafe Function NCDestroy Lib "rpfem_native_x64.dll" Alias "rpx_compile_destroy" (ByVal handle As LongPtr) As Long
++Private Declare PtrSafe Function NCStep Lib "rpfem_native_x64.dll" Alias "rpx_compile_step" (ByVal handle As LongPtr, ByVal milliseconds As Long, ByRef done As Long) As Long
++Private Declare PtrSafe Function NCSignature Lib "rpfem_native_x64.dll" Alias "rpx_compile_signature" (ByVal handle As LongPtr, ByVal output As LongPtr, ByVal capacity As Long, ByRef written As Long) As Long
++Private Declare PtrSafe Function NCOrder Lib "rpfem_native_x64.dll" Alias "rpx_compile_order_begin" (ByVal handle As LongPtr, ByVal permutation As LongPtr, ByVal inverse As LongPtr, ByVal hit As Long) As Long
++Private Declare PtrSafe Function NCPermute Lib "rpfem_native_x64.dll" Alias "rpx_compile_permute_begin" (ByVal handle As LongPtr) As Long
++Private Declare PtrSafe Function NCCounts Lib "rpfem_native_x64.dll" Alias "rpx_compile_counts" (ByVal handle As LongPtr, ByVal output As LongPtr) As Long
++Private Declare PtrSafe Function NCExport Lib "rpfem_native_x64.dll" Alias "rpx_compile_export" (ByVal handle As LongPtr, ByVal nz As Long, ByVal args As LongPtr) As Long
++Private Declare PtrSafe Function NCSlots Lib "rpfem_native_x64.dll" Alias "rpx_compile_slots" (ByVal handle As LongPtr, ByVal cone As Long, ByVal count As Long, ByVal output As LongPtr) As Long
++#End If
+ Public OriginalEqualityError As Double, OriginalConeError As Double, OriginalCandidateObjective As Double
+ ' version=20260926_0545 engine=20260926_order_slots
+ Public Type RPX_ConeData
+@@ -399,6 +410,7 @@
+     Next i
+     nv = XN + XM
+     RPX_CapacityCheck "before_kkt_pattern", 2400# * nv + 32# * XEPtr(XM) + 400# * XB
++    If NativeCompilePattern(nv) Then GoTo CompiledPattern
+     ReDim columns(0 To nv - 1)
+     Set patterns = RPX_Row()
+     For i = 0 To nv - 1: Set columns(i) = RPX_Row(): columns(i)(i) = True: Next i
+@@ -478,17 +490,88 @@
+             XKBase(permCols(col)(id)) = XKBase(permCols(col)(id)) + XEVal(p)
+         Next p
+     Next i
++CompiledPattern:
+     RPX_DiagEnd dpConvert: RPX_DiagBegin dpSymbolic
+     RPX_Stage "symbolic factorization": RPX_Symbolic nv, XKPtr, XKId
+     RPX_DiagEnd dpSymbolic
+     Call RPX_DiagCounts
+     RPX_Stage "symbolic complete " & RPX_FactorNNZ
+-    For i = 0 To nv - 1
+-        RPX_ReleaseRow permCols(i)
+-    Next i
+-    RPX_ReleaseRow patterns
++    If Not patterns Is Nothing Then
++        For i = 0 To nv - 1: RPX_ReleaseRow permCols(i): Next i
++        RPX_ReleaseRow patterns
++    End If
+     Set rawEq = Nothing: Set rawCones = Nothing: Set rawRhs = Nothing
+ End Sub
++
++Private Function NativeCompilePattern(ByVal nv As Long) As Boolean
++    If Not RPX_NativeAvailable() Then Exit Function
++#If Win64 Then
++    Dim handle As LongPtr, args(0 To 4) As LongPtr, outputArgs(0 To 6) As LongPtr
++    Dim coneN As Long, done As Long, counts(0 To 1) As Long, patterns() As Long
++    Dim signature As String, written As Long, hit As Long, reason As String, i As Long, milliseconds As Long
++    Dim eno As Long, es As String, et As String
++    On Error GoTo Failed
++    RPX_NativeConeIdentityArgs args, coneN
++    args(2) = VarPtr(XEPtr(0)): args(3) = VarPtr(XEId(0)): args(4) = VarPtr(XEVal(0))
++    RPX_NativeCheckCode NCInit(XN, XM, XB, coneN, XEPtr(XM), VarPtr(args(0)), handle)
++    milliseconds = 50: If RPX_StageIntervalValue() = 0# Then milliseconds = 0
++    Do While done <> 1
++        RPX_NativePulse
++        RPX_NativeCheckCode NCStep(handle, milliseconds, done)
++    Loop
++    RPX_NativeCheckCode NCSignature(handle, 0, 0, written)
++    signature = String$(written, vbNullChar)
++    RPX_NativeCheckCode NCSignature(handle, StrPtr(signature), Len(signature), written)
++    RPX_DiagEnd dpConvert: RPX_DiagBegin dpOrdering
++    If LoadOrdering(RPX_OrderMode, nv, signature, reason) Then
++        hit = 1
++    Else
++        RPX_Stage "ordering " & nv
++        ReDim XPerm(0 To nv - 1): ReDim XInv(0 To nv - 1)
++    End If
++    RPX_NativeCheckCode NCOrder(handle, VarPtr(XPerm(0)), VarPtr(XInv(0)), hit)
++    done = 0
++    Do While done <> 3
++        RPX_NativePulse
++        RPX_NativeCheckCode NCStep(handle, milliseconds, done)
++    Loop
++    RPX_DiagEnd dpOrdering: RPX_DiagBegin dpConvert
++    RPX_Stage "ordering complete"
++    RPX_NativeCheckCode NCPermute(handle)
++    done = 0
++    Do While done <> 2
++        RPX_NativePulse
++        RPX_NativeCheckCode NCStep(handle, milliseconds, done)
++    Loop
++    RPX_NativeCheckCode NCCounts(handle, VarPtr(counts(0)))
++    ReDim XKPtr(0 To nv): ReDim XKId(0 To counts(0) - 1): ReDim XKDiag(0 To nv - 1)
++    ReDim XKVal(0 To counts(0) - 1): ReDim XKBase(0 To counts(0) - 1): ReDim XKScale(0 To nv - 1): ReDim patterns(0 To XB - 1)
++    outputArgs(0) = VarPtr(XPerm(0)): outputArgs(1) = VarPtr(XInv(0)): outputArgs(2) = VarPtr(XKPtr(0))
++    outputArgs(3) = VarPtr(XKId(0)): outputArgs(4) = VarPtr(XKDiag(0)): outputArgs(5) = VarPtr(XKBase(0)): outputArgs(6) = VarPtr(patterns(0))
++    RPX_NativeCheckCode NCExport(handle, counts(0), VarPtr(outputArgs(0)))
++    For i = 0 To XB - 1
++        If i Mod 256 = 0 Then RPX_NativePulse
++        With XC(i)
++            .Pattern = patterns(i)
++            If .Pattern <> i Then
++                Erase .slots
++            ElseIf .count > 0 Then
++                If LBound(.slots, 1) <> 0 Or UBound(.slots, 1) <> .count - 1 Or LBound(.slots, 2) <> 0 Or UBound(.slots, 2) <> .count - 1 Then err.Raise 9, , "NATIVE_COMPILE_SLOT_SHAPE"
++                RPX_NativeCheckCode NCSlots(handle, i, .count * .count, VarPtr(.slots(0, 0)))
++            End If
++        End With
++    Next i
++    If hit = 0 Then KeepOrdering RPX_OrderMode, nv, signature
++    RPX_DiagEvent "order_cache_lookup", "engine=20260926_order_slots;ver=20260926_0545;mode=" & RPX_OrderMode & ";hit=" & hit & ";miss_reason=" & reason & ";nv=" & nv & ";key_chars=" & Len(signature) & ";cache_slot=" & RPX_OrderMode
++    RPX_NativeCheckCode NCDestroy(handle): handle = 0
++    NativeCompilePattern = True
++    Exit Function
++Failed:
++    eno = err.number: es = err.source: et = err.description
++    If handle <> 0 Then RPX_NativeCheckCode NCDestroy(handle)
++    err.Raise eno, es, et
++#End If
++End Function
+ 
+ Public Sub RPX_GProduct(ByRef x() As Double, ByRef answer() As Double, Optional ByVal withOffset As Boolean = False)
+     Dim i As Long, j As Long, r As Long, value As Double
+--- G1R16_DLL4/RPX_Guard.bas
++++ G1R16_DLL5/RPX_Guard.bas
+@@ -233,6 +233,7 @@
+     Dim i As Long
+     Dim live As Variant, saved As Variant, formulas As Variant, oldFormulas As Variant
+     Dim cols As Variant, valueTypes As Variant, formulaTypes As Variant
++    Dim nativeChanged As Boolean
+     Dim mark As Long, failNumber As Long, failSource As String, failText As String
+     mark = RPX_HoptMark()
+     On Error GoTo HoptFailed
+@@ -243,7 +244,13 @@
+         RPX_HoptLeave HoptInputRead
+         ' R4 B10: pass the saved arrays ByRef. A local assignment copies the sheet snapshot.
+         RPX_HoptEnter HoptInputCompare
+-        If inputUseFast Then
++        If RPX_NativeSnapshot(live, formulas, inputValues(i), inputFormulas(i), inputCols(i), inputColN(i), inputRows(i), nativeChanged) Then
++            If nativeChanged Then
++                RPX_InputsChanged = True
++                RPX_HoptLeave HoptInputCompare
++                GoTo HoptDone
++            End If
++        ElseIf inputUseFast Then
+             If FastCore(live, formulas, inputValues(i), inputFormulas(i), inputValueType(i), inputFormulaType(i), inputCols(i), inputColN(i), inputRows(i)) Then
+                 RPX_InputsChanged = True
+                 RPX_HoptLeave HoptInputCompare
+--- G1R16_DLL4/RPX_Native.bas
++++ G1R16_DLL5/RPX_Native.bas
+@@ -11,6 +11,7 @@
+ Private Declare PtrSafe Function NativeAbi Lib "rpfem_native_x64.dll" Alias "rpx_abi" () As Long
+ Private Declare PtrSafe Function NativeBulkReady Lib "rpfem_native_x64.dll" Alias "rpx_bulk_ready" () As Long
+ Private Declare PtrSafe Function NativeNumeric Lib "rpfem_native_x64.dll" Alias "rpx_numeric" (ByVal n As Long, ByVal first As Long, ByVal last As Long, ByVal ap As LongPtr, ByVal ai As LongPtr, ByVal av As LongPtr, ByVal cp As LongPtr, ByVal ri As LongPtr, ByVal rp As LongPtr, ByVal rn As LongPtr, ByVal wa As LongPtr, ByVal lv As LongPtr, ByVal dv As LongPtr, ByVal yv As LongPtr, ByRef minimum As Double, ByRef failure As Long) As Long
++Private Declare PtrSafe Function NativeFactorStep Lib "rpfem_native_x64.dll" Alias "rpx_factor_step" (ByVal n As Long, ByRef cursor As Long, ByVal args As LongPtr, ByVal precise As Long, ByVal milliseconds As Long, ByRef minimum As Double, ByRef failure As Long) As Long
+ Private Declare PtrSafe Function NativeDDNumeric Lib "rpfem_native_x64.dll" Alias "rpx_dd_numeric" (ByVal n As Long, ByVal first As Long, ByVal last As Long, ByVal ap As LongPtr, ByVal ai As LongPtr, ByVal av As LongPtr, ByVal cp As LongPtr, ByVal ri As LongPtr, ByVal rp As LongPtr, ByVal rn As LongPtr, ByVal wa As LongPtr, ByVal lv As LongPtr, ByVal dv As LongPtr, ByVal yv As LongPtr, ByRef minimum As Double, ByRef failure As Long) As Long
+ Private Declare PtrSafe Function NativeBacksolve Lib "rpfem_native_x64.dll" Alias "rpx_backsolve" (ByVal n As Long, ByVal phase As Long, ByVal first As Long, ByVal last As Long, ByVal cp As LongPtr, ByVal ri As LongPtr, ByVal lv As LongPtr, ByVal dv As LongPtr, ByVal rhs As LongPtr, ByVal answer As LongPtr) As Long
+ Private Declare PtrSafe Function NativeDDBacksolve Lib "rpfem_native_x64.dll" Alias "rpx_dd_backsolve" (ByVal n As Long, ByVal phase As Long, ByVal first As Long, ByVal last As Long, ByVal cp As LongPtr, ByVal ri As LongPtr, ByVal lv As LongPtr, ByVal dv As LongPtr, ByVal rhs As LongPtr, ByVal answer As LongPtr) As Long
+@@ -31,11 +32,13 @@
+     numericCalls = 0: ddCalls = 0: solveCalls = 0
+     orderCalls = 0: columnOrderCalls = 0
+     RPX_HLURelease
++    RPX_SchurModeReset
+     RPX_NativeRefineRelease
+     RPX_NativeHLinearRelease
+     RPX_NativeSolverResetCounts
+     RPX_NativeRefineResetCounts
+     RPX_NativeBulkResetCounts
++    RPX_NativeGuardResetCounts
+     RPX_NativeLUResetCounts
+ End Sub
+ Public Function RPX_NativeAvailable() As Boolean
+@@ -57,10 +60,19 @@
+         nativeHandle = LoadLibraryExW(StrPtr(path), 0, &H1100)
+     End If
+     If nativeHandle = 0 Then reason = "DLL_LOAD_FAILED_" & CStr(GetLastError()): Exit Function
+-    For Each exportName In Array("rpx_abi", "rpx_numeric", "rpx_dd_numeric", "rpx_backsolve", "rpx_dd_backsolve", "rpx_order_create", "rpx_order_feed", "rpx_order_start", "rpx_order_step", "rpx_order_destroy", "rpx_scaling", "rpx_gproduct", "rpx_gtadd", "rpx_kkt_cones", "rpx_hoperator", "rpx_lu_create", "rpx_lu_input", "rpx_lu_step", "rpx_lu_finish", "rpx_lu_metrics", "rpx_lu_export", "rpx_lu_destroy", "rpx_lu_backsolve", "rpx_kkt_init", "rpx_kkt_diagonal", "rpx_kkt_scale", "rpx_corrector")
+-        If GetProcAddress(nativeHandle, CStr(exportName)) = 0 Then reason = "DLL_ENTRY_MISSING": Exit Function
+-    Next exportName
+-    If NativeAbi() <> &H160004 Then reason = "DLL_ABI_MISMATCH": Exit Function
++    For Each exportName In Array("rpx_abi", "rpx_numeric", "rpx_dd_numeric", "rpx_backsolve", "rpx_dd_backsolve", "rpx_order_create", "rpx_order_feed", "rpx_order_start", "rpx_order_step", "rpx_order_destroy", "rpx_scaling", "rpx_gproduct", "rpx_gtadd", "rpx_kkt_cones", "rpx_hoperator", "rpx_lu_create", "rpx_lu_input", "rpx_lu_step", "rpx_lu_finish", "rpx_lu_metrics", "rpx_lu_export", "rpx_lu_destroy", "rpx_lu_backsolve", "rpx_kkt_init", "rpx_kkt_diagonal", "rpx_kkt_scale", "rpx_corrector", "rpx_snapshot_compare", "rpx_vector_step", "rpx_factor_step")
++        If GetProcAddress(nativeHandle, CStr(exportName)) = 0 Then reason = "DLL_ENTRY_MISSING": Exit Function
++    Next exportName
++    For Each exportName In Array("rpx_compile_create", "rpx_compile_destroy", "rpx_compile_step", "rpx_compile_signature", "rpx_compile_order_begin", "rpx_compile_permute_begin", "rpx_compile_counts", "rpx_compile_export", "rpx_compile_slots")
++        If GetProcAddress(nativeHandle, CStr(exportName)) = 0 Then reason = "DLL_ENTRY_MISSING": Exit Function
++    Next exportName
++    For Each exportName In Array("rpx_exact_spans", "rpx_hdd_step", "rpx_bulk_step", "rpx_krylov_create", "rpx_krylov_destroy", "rpx_krylov_begin", "rpx_krylov_step", "rpx_krylov_result", "rpx_krylov_bytes")
++        If GetProcAddress(nativeHandle, CStr(exportName)) = 0 Then reason = "DLL_ENTRY_MISSING": Exit Function
++    Next exportName
++    For Each exportName In Array("rpx_schur_create", "rpx_schur_destroy", "rpx_schur_bytes", "rpx_schur_factor_begin", "rpx_schur_factor_step", "rpx_schur_factor_result", "rpx_schur_factor_commit", "rpx_schur_solve_begin", "rpx_schur_solve_step", "rpx_schur_solve_result", "rpx_schur_finite")
++        If GetProcAddress(nativeHandle, CStr(exportName)) = 0 Then reason = "DLL_ENTRY_MISSING": Exit Function
++    Next exportName
++    If NativeAbi() <> &H160005 Then reason = "DLL_ABI_MISMATCH": Exit Function
+     If GetProcAddress(nativeHandle, "rpx_bulk_ready") = 0 Then reason = "DLL_ENTRY_MISSING": Exit Function
+     If NativeBulkReady() <> 0 Then reason = "DLL_NT_RUNTIME_UNAVAILABLE": Exit Function
+     available = True: reason = "DLL_READY"
+@@ -72,7 +84,7 @@
+ Public Function RPX_NativeInfo() As String
+     Dim ready As Boolean
+     ready = RPX_NativeAvailable()
+-    RPX_NativeInfo = reason & ";numeric=" & numericCalls & ";dd_numeric=" & ddCalls & ";backsolve=" & solveCalls & ";ordering=" & orderCalls & ";column_ordering=" & columnOrderCalls & RPX_NativeBulkInfo() & RPX_NativeLUInfo() & RPX_NativeSolverInfo() & RPX_NativeRefineInfo()
++    RPX_NativeInfo = reason & ";numeric=" & numericCalls & ";dd_numeric=" & ddCalls & ";backsolve=" & solveCalls & ";ordering=" & orderCalls & ";column_ordering=" & columnOrderCalls & RPX_NativeBulkInfo() & RPX_NativeLUInfo() & RPX_NativeSolverInfo() & RPX_NativeRefineInfo() & RPX_NativeGuardInfo() & RPX_SchurNativeInfo()
+ End Function
+ Public Sub RPX_NativeCheckCode(ByVal code As Long)
+     Select Case code
+@@ -100,6 +112,8 @@
+         Case 318: err.Raise 5, "RPX_HSDLu", "HSD_FACTOR_CONTEXT_MISMATCH"
+         Case 319: err.Raise 5, , "HSD_RHS_SHAPE_MISMATCH"
+         Case 320: err.Raise 5, , "HSD_NONFINITE_SOLUTION"
++        Case 330: err.Raise 9, "RPX_Native", "NATIVE_ARRAY_SHAPE_MISMATCH"
++        Case 339: err.Raise 5, , "HSD_NONFINITE_KRYLOV"
+         Case 207: err.Raise 7, "RPX_Native", "NATIVE_OUT_OF_MEMORY"
+         Case 208: err.Raise 513, "RPX_Native", "NATIVE_UNEXPECTED_EXCEPTION"
+         Case Else: err.Raise 5, "RPX_Native", "NATIVE_KERNEL_CONTRACT_FAILED " & CStr(code)
+@@ -185,12 +199,18 @@
+     If cp(n) = 0 Then Exit Function
+     If LBound(av) <> 0 Or UBound(av) < ap(n) - 1 Or LBound(lv) <> 0 Or UBound(lv) < cp(n) - 1 Or LBound(dv) <> 0 Or UBound(dv) < n - 1 Or LBound(yv) <> 0 Or UBound(yv) < n - 1 Then err.Raise 9, "RPX_Native", "NATIVE_NUMERIC_BUFFER_SHORT"
+     numericCalls = numericCalls + 1
+-    For first = 0 To n - 1 Step 128
+-        Call Poll: last = first + 128: If last > n Then last = n
+-        code = NativeNumeric(n, first, last, VarPtr(ap(0)), VarPtr(ai(0)), VarPtr(av(0)), VarPtr(cp(0)), VarPtr(ri(0)), VarPtr(rp(0)), VarPtr(rn(0)), VarPtr(wa(0)), VarPtr(lv(0)), VarPtr(dv(0)), VarPtr(yv(0)), minimum, failure)
++    Dim args(0 To 10) As LongPtr, milliseconds As Long
++    args(0) = VarPtr(ap(0)): args(1) = VarPtr(ai(0)): args(2) = VarPtr(av(0))
++    args(3) = VarPtr(cp(0)): args(4) = VarPtr(ri(0)): args(5) = VarPtr(rp(0))
++    args(6) = VarPtr(rn(0)): args(7) = VarPtr(wa(0)): args(8) = VarPtr(lv(0))
++    args(9) = VarPtr(dv(0)): args(10) = VarPtr(yv(0))
++    milliseconds = 50: If RPX_StageIntervalValue() = 0# Then milliseconds = 0
++    Do While first < n
++        Call Poll
++        code = NativeFactorStep(n, first, VarPtr(args(0)), 0, milliseconds, minimum, failure)
+         RPX_NativeCheckCode code
+         If code = 1 Then RPX_NativeNumeric = True: accepted = False: Exit Function
+-    Next first
++    Loop
+     accepted = True: RPX_NativeNumeric = True
+ #End If
+ End Function
+@@ -203,13 +223,19 @@
+     If cp(n) = 0 Then Exit Function
+     If LBound(av) <> 0 Or UBound(av) < ap(n) - 1 Or LBound(lv) <> 0 Or UBound(lv) < cp(n) - 1 Or LBound(dv) <> 0 Or UBound(dv) < n - 1 Or LBound(yv) <> 0 Or UBound(yv) < n - 1 Then err.Raise 9, "RPX_Native", "NATIVE_DD_BUFFER_SHORT"
+     ddCalls = ddCalls + 1
+-    For first = 0 To n - 1 Step 32
+-        Call Poll: last = first + 32: If last > n Then last = n
++    Dim args(0 To 10) As LongPtr, milliseconds As Long
++    args(0) = VarPtr(ap(0)): args(1) = VarPtr(ai(0)): args(2) = VarPtr(av(0))
++    args(3) = VarPtr(cp(0)): args(4) = VarPtr(ri(0)): args(5) = VarPtr(rp(0))
++    args(6) = VarPtr(rn(0)): args(7) = VarPtr(wa(0)): args(8) = VarPtr(lv(0))
++    args(9) = VarPtr(dv(0)): args(10) = VarPtr(yv(0))
++    milliseconds = 50: If RPX_StageIntervalValue() = 0# Then milliseconds = 0
++    Do While first < n
++        Call Poll
+         If first Mod 256 = 0 Then RPX_Stage "HSD DD LDL " & first & "/" & n
+-        code = NativeDDNumeric(n, first, last, VarPtr(ap(0)), VarPtr(ai(0)), VarPtr(av(0)), VarPtr(cp(0)), VarPtr(ri(0)), VarPtr(rp(0)), VarPtr(rn(0)), VarPtr(wa(0)), VarPtr(lv(0)), VarPtr(dv(0)), VarPtr(yv(0)), minimum, failure)
++        code = NativeFactorStep(n, first, VarPtr(args(0)), 1, milliseconds, minimum, failure)
+         RPX_NativeCheckCode code
+         If code = 1 Then RPX_NativeDDNumeric = True: accepted = False: Exit Function
+-    Next first
++    Loop
+     accepted = True: RPX_NativeDDNumeric = True
+ #End If
+ End Function
+--- G1R16_DLL4/RPX_NativeBulk.bas
++++ G1R16_DLL5/RPX_NativeBulk.bas
+@@ -2,6 +2,7 @@
+ Option Explicit
+ ' DLL_3: array-level kernels. No per-scalar calls from VBA to the DLL.
+ #If Win64 Then
++Private Declare PtrSafe Function NBulkStep Lib "rpfem_native_x64.dll" Alias "rpx_bulk_step" (ByVal op As Long, ByVal metadata As LongPtr, ByVal args As LongPtr, ByVal total As Long, ByRef cursor As Long, ByVal alpha As Double, ByVal metrics As LongPtr, ByVal milliseconds As Long) As Long
+ Private Declare PtrSafe Function NScaling Lib "rpfem_native_x64.dll" Alias "rpx_scaling" (ByVal nb As Long, ByVal ns As Long, ByVal first As Long, ByVal last As Long, ByVal precise As Long, ByVal dims As LongPtr, ByVal starts As LongPtr, ByVal slack As LongPtr, ByVal dual As LongPtr, ByVal hh As LongPtr, ByVal wm As LongPtr, ByVal wi As LongPtr, ByVal si As LongPtr, ByVal v As LongPtr, ByVal flags As LongPtr, ByVal hd As LongPtr, ByRef preciseCount As Long) As Long
+ Private Declare PtrSafe Function NGProduct Lib "rpfem_native_x64.dll" Alias "rpx_gproduct" (ByVal nb As Long, ByVal ns As Long, ByVal nx As Long, ByVal first As Long, ByVal last As Long, ByVal dims As LongPtr, ByVal starts As LongPtr, ByVal ip As LongPtr, ByVal cp As LongPtr, ByVal ids As LongPtr, ByVal coef As LongPtr, ByVal offset As LongPtr, ByVal x As LongPtr, ByVal answer As LongPtr, ByVal withOffset As Long) As Long
+ Private Declare PtrSafe Function NGTAdd Lib "rpfem_native_x64.dll" Alias "rpx_gtadd" (ByVal nb As Long, ByVal ns As Long, ByVal nx As Long, ByVal first As Long, ByVal last As Long, ByVal dims As LongPtr, ByVal starts As LongPtr, ByVal ip As LongPtr, ByVal cp As LongPtr, ByVal ids As LongPtr, ByVal coef As LongPtr, ByVal x As LongPtr, ByVal answer As LongPtr, ByVal factor As Double) As Long
+@@ -20,6 +21,7 @@
+ Private dummyFlags() As Boolean, dummyHD() As RPX_DD
+ Private packedN As Long, packedS As Long, packedB As Long
+ Private ntCalls As Long, gCalls As Long, gtCalls As Long, kktCalls As Long, opCalls As Long, correctionCalls As Long
++Private bulkSteps As Long
+ Private guardReady As Boolean, guardClock As Double
+ Private uiReady As Boolean, uiClock As Double
+ Public Sub RPX_NativeBulkReset()
+@@ -30,15 +32,29 @@
+ Public Sub RPX_NativeBulkResetCounts()
+     ntCalls = 0: gCalls = 0: gtCalls = 0: kktCalls = 0: opCalls = 0
+     correctionCalls = 0
++    bulkSteps = 0
+ End Sub
+ Public Function RPX_NativeBulkInfo() As String
+-    RPX_NativeBulkInfo = ";nt_bulk=" & ntCalls & ";g_bulk=" & gCalls & ";gt_bulk=" & gtCalls & ";kkt_bulk=" & kktCalls & ";hsd_operator=" & opCalls & ";corrector_bulk=" & correctionCalls
+-End Function
++    RPX_NativeBulkInfo = ";nt_bulk=" & ntCalls & ";g_bulk=" & gCalls & ";gt_bulk=" & gtCalls & ";kkt_bulk=" & kktCalls & ";hsd_operator=" & opCalls & ";corrector_bulk=" & correctionCalls & ";bulk_job_steps=" & bulkSteps
++End Function
++#If Win64 Then
++Private Sub BatchCore(ByVal op As Long, ByRef args() As LongPtr, ByRef metadata() As Long, ByVal total As Long, ByRef metrics() As Double, Optional ByVal alpha As Double = 0#)
++    Dim cursor As Long, milliseconds As Long
++    metadata(0) = XB: metadata(1) = XS: metadata(2) = XN: metadata(3) = XM
++    milliseconds = 50: If RPX_StageIntervalValue() = 0# Then milliseconds = 0
++    Do While cursor < total
++        Pulse
++        RPX_NativeCheckCode NBulkStep(op, VarPtr(metadata(0)), VarPtr(args(0)), total, cursor, alpha, VarPtr(metrics(0)), milliseconds)
++        bulkSteps = bulkSteps + 1
++    Loop
++End Sub
++#End If
+ Public Function RPX_NativeCorrector(ByVal target As Double, ByRef si() As Double, ByRef v() As Double, ByRef ww() As Double, ByRef wi() As Double, ByRef ds() As Double, ByRef dz() As Double, ByRef rc() As Double) As Boolean
+     Dim first As Long, last As Long, phase As Long, total As Long
+     If Not RPX_NativeAvailable() Or XB <= 0 Or XS <= 0 Then Exit Function
+ #If Win64 Then
+     Dim args(0 To 8) As LongPtr
++    Dim batch(0 To 2) As LongPtr, metadata(0 To 6) As Long, metrics(0 To 0) As Double
+     PrepareCones
+     If LBound(si) <> 0 Or LBound(v) <> 0 Or LBound(ds) <> 0 Or LBound(dz) <> 0 Or LBound(rc) <> 0 Or LBound(XDual) <> 0 Or LBound(XSlack) <> 0 Then err.Raise 9, , "NATIVE_CORRECTOR_BASE"
+     If UBound(si) < XS - 1 Or UBound(v) < XS - 1 Or UBound(ds) < XS - 1 Or UBound(dz) < XS - 1 Or UBound(rc) < XS - 1 Or UBound(XDual) < XS - 1 Or UBound(XSlack) < XS - 1 Then err.Raise 9, , "NATIVE_CORRECTOR_BUFFER"
+@@ -47,12 +63,11 @@
+     args(0) = VarPtr(XDual(0)): args(1) = VarPtr(si(0)): args(2) = VarPtr(v(0)): args(3) = VarPtr(ww(0, 0, 0)): args(4) = VarPtr(wi(0, 0, 0))
+     args(5) = VarPtr(ds(0)): args(6) = VarPtr(dz(0)): args(7) = VarPtr(XSlack(0)): args(8) = VarPtr(rc(0))
+     correctionCalls = correctionCalls + 1
++    batch(0) = VarPtr(dims(0)): batch(1) = VarPtr(starts(0)): batch(2) = VarPtr(args(0))
+     For phase = 0 To 1
+         total = XS: If phase = 1 Then total = XB
+-        For first = 0 To total - 1 Step 128
+-            Call Pulse: last = first + 128: If last > total Then last = total
+-            RPX_NativeCheckCode NCorrector(XB, XS, phase, first, last, VarPtr(dims(0)), VarPtr(starts(0)), target, VarPtr(args(0)))
+-        Next first
++        metadata(4) = phase
++        BatchCore 5, batch, metadata, total, metrics, target
+     Next phase
+     RPX_NativeCorrector = True
+ #End If
+@@ -62,6 +77,7 @@
+     If Not RPX_NativeAvailable() Or XB <= 0 Or XS <= 0 Or XM <= 0 Then Exit Function
+ #If Win64 Then
+     Dim args(0 To 19) As LongPtr
++    Dim batch(0 To 0) As LongPtr, metadata(0 To 6) As Long, metrics(0 To 0) As Double
+     PrepareCones
+     n = XN + XM
+     If LBound(z) <> 0 Or UBound(z) <> n - 1 Or UBound(answer) < n - 1 Or UBound(scaleValues) <> n - 1 Then err.Raise 9, "RPX_NativeBulk", "NATIVE_HSD_BUFFER"
+@@ -81,13 +97,12 @@
+     args(16) = VarPtr(opX(0)): args(17) = VarPtr(opV(0)): args(18) = VarPtr(opG(0)): args(19) = VarPtr(opH(0))
+     opCalls = opCalls + 1
+     RPX_NativeCheckCode NHOperator(n, XN, XB, XS, -1, 0, 0, Abs(CLng(unshifted)), VarPtr(args(0)))
++    batch(0) = VarPtr(args(0)): metadata(5) = Abs(CLng(unshifted))
+     For phase = 0 To 3
+         total = n: If phase = 1 Then total = XB
+         If phase = 2 Then total = XM
+-        For first = 0 To total - 1 Step 128
+-            Call Pulse: last = first + 128: If last > total Then last = total
+-            RPX_NativeCheckCode NHOperator(n, XN, XB, XS, phase, first, last, Abs(CLng(unshifted)), VarPtr(args(0)))
+-        Next first
++        metadata(4) = phase
++        BatchCore 6, batch, metadata, total, metrics
+     Next phase
+     RPX_NativeHOperator = True
+ #End If
+@@ -172,6 +187,7 @@
+     Dim first As Long, last As Long, code As Long
+     If Not RPX_NativeAvailable() Or XB <= 0 Or XS <= 0 Then Exit Function
+ #If Win64 Then
++    Dim batch(0 To 11) As LongPtr, metadata(0 To 6) As Long, metrics(0 To 0) As Double
+     PrepareCones
+     If LBound(XSlack) <> 0 Or UBound(XSlack) < XS - 1 Or LBound(XDual) <> 0 Or UBound(XDual) < XS - 1 Then err.Raise 9, "RPX_NativeBulk", "NATIVE_NT_BUFFER"
+     If UBound(hh, 1) <> XB - 1 Or UBound(wm, 1) <> XB - 1 Or UBound(wi, 1) <> XB - 1 Or UBound(si) < XS - 1 Or UBound(v) < XS - 1 Then err.Raise 9, "RPX_NativeBulk", "NATIVE_NT_OUTPUT"
+@@ -185,15 +201,15 @@
+     End If
+     If Not precise Then ReDim dummyFlags(0 To XB - 1): ReDim dummyHD(0 To XB - 1, 0 To 2, 0 To 2)
+     ntCalls = ntCalls + 1
+-    For first = 0 To XB - 1 Step 64
+-        Call Pulse: last = first + 64: If last > XB Then last = XB
+-        If precise Then
+-            code = NScaling(XB, XS, first, last, 1, VarPtr(dims(0)), VarPtr(starts(0)), VarPtr(XSlack(0)), VarPtr(XDual(0)), VarPtr(hh(0, 0, 0)), VarPtr(wm(0, 0, 0)), VarPtr(wi(0, 0, 0)), VarPtr(si(0)), VarPtr(v(0)), VarPtr(flags(0)), VarPtr(hd(0, 0, 0)), preciseCount)
+-        Else
+-            code = NScaling(XB, XS, first, last, 0, VarPtr(dims(0)), VarPtr(starts(0)), VarPtr(XSlack(0)), VarPtr(XDual(0)), VarPtr(hh(0, 0, 0)), VarPtr(wm(0, 0, 0)), VarPtr(wi(0, 0, 0)), VarPtr(si(0)), VarPtr(v(0)), VarPtr(dummyFlags(0)), VarPtr(dummyHD(0, 0, 0)), preciseCount)
+-        End If
+-        RPX_NativeCheckCode code
+-    Next first
++    batch(0) = VarPtr(dims(0)): batch(1) = VarPtr(starts(0)): batch(2) = VarPtr(XSlack(0)): batch(3) = VarPtr(XDual(0))
++    batch(4) = VarPtr(hh(0, 0, 0)): batch(5) = VarPtr(wm(0, 0, 0)): batch(6) = VarPtr(wi(0, 0, 0)): batch(7) = VarPtr(si(0)): batch(8) = VarPtr(v(0))
++    If precise Then
++        batch(9) = VarPtr(flags(0)): batch(10) = VarPtr(hd(0, 0, 0))
++    Else
++        batch(9) = VarPtr(dummyFlags(0)): batch(10) = VarPtr(dummyHD(0, 0, 0))
++    End If
++    batch(11) = VarPtr(preciseCount): metadata(5) = Abs(CLng(precise))
++    BatchCore 1, batch, metadata, XB, metrics
+     RPX_NativeScaling = True
+ #End If
+ End Function
+@@ -201,13 +217,14 @@
+     Dim first As Long, last As Long
+     If Not RPX_NativeAvailable() Or XB <= 0 Or XS <= 0 Then Exit Function
+ #If Win64 Then
++    Dim batch(0 To 8) As LongPtr, metadata(0 To 6) As Long, metrics(0 To 0) As Double
+     PrepareCones
+     If LBound(x) <> 0 Or UBound(x) < XN - 1 Or LBound(answer) <> 0 Or UBound(answer) < XS - 1 Then err.Raise 9, "RPX_NativeBulk", "NATIVE_G_BUFFER"
+     gCalls = gCalls + 1
+-    For first = 0 To XB - 1 Step 256
+-        Call Pulse: last = first + 256: If last > XB Then last = XB
+-        RPX_NativeCheckCode NGProduct(XB, XS, XN, first, last, VarPtr(dims(0)), VarPtr(starts(0)), VarPtr(ip(0)), VarPtr(cp(0)), VarPtr(ids(0)), VarPtr(coef(0)), VarPtr(offsets(0)), VarPtr(x(0)), VarPtr(answer(0)), Abs(CLng(withOffset)))
+-    Next first
++    batch(0) = VarPtr(dims(0)): batch(1) = VarPtr(starts(0)): batch(2) = VarPtr(ip(0)): batch(3) = VarPtr(cp(0))
++    batch(4) = VarPtr(ids(0)): batch(5) = VarPtr(coef(0)): batch(6) = VarPtr(offsets(0)): batch(7) = VarPtr(x(0)): batch(8) = VarPtr(answer(0))
++    metadata(5) = Abs(CLng(withOffset))
++    BatchCore 2, batch, metadata, XB, metrics
+     RPX_NativeGProduct = True
+ #End If
+ End Function
+@@ -215,13 +232,13 @@
+     Dim first As Long, last As Long
+     If Not RPX_NativeAvailable() Or XB <= 0 Or XS <= 0 Then Exit Function
+ #If Win64 Then
++    Dim batch(0 To 7) As LongPtr, metadata(0 To 6) As Long, metrics(0 To 0) As Double
+     PrepareCones
+     If LBound(x) <> 0 Or UBound(x) < XS - 1 Or LBound(answer) <> 0 Or UBound(answer) < XN - 1 Then err.Raise 9, "RPX_NativeBulk", "NATIVE_GT_BUFFER"
+     gtCalls = gtCalls + 1
+-    For first = 0 To XB - 1 Step 256
+-        Call Pulse: last = first + 256: If last > XB Then last = XB
+-        RPX_NativeCheckCode NGTAdd(XB, XS, XN, first, last, VarPtr(dims(0)), VarPtr(starts(0)), VarPtr(ip(0)), VarPtr(cp(0)), VarPtr(ids(0)), VarPtr(coef(0)), VarPtr(x(0)), VarPtr(answer(0)), factor)
+-    Next first
++    batch(0) = VarPtr(dims(0)): batch(1) = VarPtr(starts(0)): batch(2) = VarPtr(ip(0)): batch(3) = VarPtr(cp(0))
++    batch(4) = VarPtr(ids(0)): batch(5) = VarPtr(coef(0)): batch(6) = VarPtr(x(0)): batch(7) = VarPtr(answer(0))
++    BatchCore 3, batch, metadata, XB, metrics, factor
+     RPX_NativeGTAdd = True
+ #End If
+ End Function
+@@ -229,18 +246,17 @@
+     Dim first As Long, last As Long, p As Long
+     If Not RPX_NativeAvailable() Or XB <= 0 Then Exit Function
+ #If Win64 Then
++    Dim batch(0 To 7) As LongPtr, metadata(0 To 6) As Long, metrics(0 To 0) As Double
+     PrepareCones True
+     If UBound(hh, 1) <> XB - 1 Or UBound(XKBase) <> UBound(XKVal) Then err.Raise 9, "RPX_NativeBulk", "NATIVE_KKT_BUFFER"
+     If LBound(hh, 1) <> 0 Or LBound(hh, 2) <> 0 Or UBound(hh, 2) <> 2 Or LBound(hh, 3) <> 0 Or UBound(hh, 3) <> 2 Or LBound(XKBase) <> 0 Or LBound(XKVal) <> 0 Then err.Raise 9, , "NATIVE_KKT_BASE"
+-    For first = 0 To UBound(XKVal) Step 65536
+-        Call Pulse: last = first + 65536: If last > UBound(XKVal) + 1 Then last = UBound(XKVal) + 1
+-        RPX_NativeCheckCode NKInit(UBound(XKVal) + 1, first, last, VarPtr(XKBase(0)), VarPtr(XKVal(0)))
+-    Next first
++    metadata(6) = UBound(XKVal) + 1
++    batch(0) = VarPtr(XKBase(0)): batch(1) = VarPtr(XKVal(0))
++    BatchCore 9, batch, metadata, UBound(XKVal) + 1, metrics
+     kktCalls = kktCalls + 1
+-    For first = 0 To XB - 1 Step 128
+-        Call Pulse: last = first + 128: If last > XB Then last = XB
+-        RPX_NativeCheckCode NKKT(XB, UBound(XKVal) + 1, first, last, VarPtr(dims(0)), VarPtr(ip(0)), VarPtr(cp(0)), VarPtr(sp(0)), VarPtr(slots(0)), VarPtr(coef(0)), VarPtr(hh(0, 0, 0)), VarPtr(XKVal(0)))
+-    Next first
++    batch(0) = VarPtr(dims(0)): batch(1) = VarPtr(ip(0)): batch(2) = VarPtr(cp(0)): batch(3) = VarPtr(sp(0))
++    batch(4) = VarPtr(slots(0)): batch(5) = VarPtr(coef(0)): batch(6) = VarPtr(hh(0, 0, 0)): batch(7) = VarPtr(XKVal(0))
++    BatchCore 4, batch, metadata, XB, metrics
+     RPX_NativeKKTCones = True
+ #End If
+ End Function
+@@ -248,18 +264,16 @@
+     Dim n As Long, count As Long, first As Long, last As Long
+     If Not RPX_NativeAvailable() Or XB <= 0 Then Exit Function
+ #If Win64 Then
++    Dim batch(0 To 4) As LongPtr, metadata(0 To 6) As Long, metrics(0 To 0) As Double
+     n = XN + XM: count = UBound(XKVal) + 1
+     If LBound(XKPtr) <> 0 Or UBound(XKPtr) <> n Or XKPtr(n) <> count Or LBound(XKId) <> 0 Or UBound(XKId) <> count - 1 Then err.Raise 9, , "NATIVE_KKT_PATTERN_BUFFER"
+     If LBound(XKScale) <> 0 Or UBound(XKScale) <> n - 1 Or LBound(XKDiag) <> 0 Or UBound(XKDiag) <> n - 1 Or LBound(XPerm) <> 0 Or UBound(XPerm) <> n - 1 Then err.Raise 9, , "NATIVE_KKT_VECTOR_BUFFER"
+     If LBound(original) <> 0 Or UBound(original) <> count - 1 Then err.Raise 9, , "NATIVE_KKT_ORIGINAL_BUFFER"
+-    For first = 0 To n - 1 Step 256
+-        Call Pulse: last = first + 256: If last > n Then last = n
+-        RPX_NativeCheckCode NKDiag(n, XN, count, first, last, VarPtr(XKDiag(0)), VarPtr(XPerm(0)), regularization, VarPtr(XKVal(0)), VarPtr(XKScale(0)))
+-    Next first
+-    For first = 0 To n - 1 Step 256
+-        Call Pulse: last = first + 256: If last > n Then last = n
+-        RPX_NativeCheckCode NKScale(n, count, first, last, VarPtr(XKPtr(0)), VarPtr(XKId(0)), VarPtr(XKScale(0)), VarPtr(XKVal(0)), VarPtr(original(0)))
+-    Next first
++    metadata(6) = count
++    batch(0) = VarPtr(XKDiag(0)): batch(1) = VarPtr(XPerm(0)): batch(2) = VarPtr(XKVal(0)): batch(3) = VarPtr(XKScale(0))
++    BatchCore 10, batch, metadata, n, metrics, regularization
++    batch(0) = VarPtr(XKPtr(0)): batch(1) = VarPtr(XKId(0)): batch(2) = VarPtr(XKScale(0)): batch(3) = VarPtr(XKVal(0)): batch(4) = VarPtr(original(0))
++    BatchCore 11, batch, metadata, n, metrics
+     RPX_NativeKKTTail = True
+ #End If
+ End Function
+@@ -267,13 +281,11 @@
+ Public Function RPX_NativeSolverCones(ByVal op As Long, ByRef args() As LongPtr) As Boolean
+     If Not RPX_NativeAvailable() Or XB < 1 Then Exit Function
+ #If Win64 Then
+-    Dim first As Long, last As Long
+-    PrepareCones
+-    For first = 0 To XB - 1 Step 256
+-        Pulse
+-        last = first + 256: If last > XB Then last = XB
+-        RPX_NativeCheckCode NSolverCones(op, XB, XS, XN, first, last, VarPtr(dims(0)), VarPtr(starts(0)), VarPtr(ip(0)), VarPtr(cp(0)), VarPtr(ids(0)), VarPtr(coef(0)), VarPtr(args(0)))
+-    Next first
++    Dim first As Long, last As Long, batch(0 To 6) As LongPtr, metadata(0 To 6) As Long, metrics(0 To 0) As Double
++    PrepareCones
++    batch(0) = VarPtr(dims(0)): batch(1) = VarPtr(starts(0)): batch(2) = VarPtr(ip(0)): batch(3) = VarPtr(cp(0))
++    batch(4) = VarPtr(ids(0)): batch(5) = VarPtr(coef(0)): batch(6) = VarPtr(args(0)): metadata(4) = op
++    BatchCore 7, batch, metadata, XB, metrics
+     RPX_NativeSolverCones = True
+ #End If
+ End Function
+@@ -314,26 +326,40 @@
+     If Not RPX_NativeAvailable() Or XB < 1 Or XN < 1 Or XS < 1 Or XM < 1 Then Exit Function
+ #If Win64 Then
+     Dim args(0 To 11) As LongPtr, metrics(0 To 1) As Double, phase As Long, total As Long, first As Long, last As Long
++    Dim batch(0 To 7) As LongPtr, metadata(0 To 6) As Long
+     PrepareCones
+     ReDim rg(0 To XS - 1): ReDim rd(0 To XN - 1): ReDim rp(0 To XM)
+     args(0) = VarPtr(xx(0)): args(1) = VarPtr(xy(0)): args(2) = VarPtr(XQ(0)): args(3) = VarPtr(XEPtr(0)): args(4) = VarPtr(XEId(0)): args(5) = VarPtr(XEVal(0)): args(6) = VarPtr(XERhs(0))
+     args(7) = VarPtr(XSlack(0)): args(8) = VarPtr(XDual(0)): args(9) = VarPtr(rg(0)): args(10) = VarPtr(rd(0)): args(11) = VarPtr(rp(0))
++    batch(0) = VarPtr(dims(0)): batch(1) = VarPtr(starts(0)): batch(2) = VarPtr(ip(0)): batch(3) = VarPtr(cp(0))
++    batch(4) = VarPtr(ids(0)): batch(5) = VarPtr(coef(0)): batch(6) = VarPtr(offsets(0)): batch(7) = VarPtr(args(0))
+     For phase = 0 To 5
+         total = XB
+         If phase = 1 Or phase = 4 Then total = XN
+         If phase = 2 Then total = XM
+         If phase = 5 Then total = XM + XS
+-        For first = 0 To total - 1 Step 512
+-            Pulse
+-            last = first + 512: If last > total Then last = total
+-            RPX_NativeCheckCode NResidual(XB, XS, XN, XM, phase, first, last, VarPtr(dims(0)), VarPtr(starts(0)), VarPtr(ip(0)), VarPtr(cp(0)), VarPtr(ids(0)), VarPtr(coef(0)), VarPtr(offsets(0)), VarPtr(args(0)), tau, VarPtr(metrics(0)))
+-        Next first
++        metadata(4) = phase
++        BatchCore 8, batch, metadata, total, metrics, tau
+     Next phase
+     primal = metrics(0): dual = metrics(1): RPX_NativeResidual = True
+ #End If
+ End Function
+ 
+ #If Win64 Then
++Public Sub RPX_NativeConeIdentityArgs(ByRef args() As LongPtr, ByRef count As Long)
++    PrepareCones
++    If LBound(args) <> 0 Or UBound(args) < 1 Then err.Raise 9, , "NATIVE_COMPILE_CONE_ARGUMENTS"
++    args(0) = VarPtr(ip(0)): args(1) = VarPtr(ids(0)): count = ip(XB)
++End Sub
++Public Sub RPX_NativeDDKKTArgs(ByRef args() As LongPtr, ByRef values() As RPX_DD, ByRef coefAt() As Long, ByRef coefficients() As RPX_DDCoef, ByRef blocks() As RPX_DDCoef, ByRef scaleValues() As RPX_DDCoef)
++    PrepareCones True
++    If LBound(args) <> 0 Or UBound(args) <> 13 Or LBound(values) <> 0 Or UBound(values) <> UBound(XKVal) Then err.Raise 9, , "NATIVE_DDKKT_ARGUMENTS"
++    If LBound(coefAt) <> 0 Or UBound(coefAt) <> XB - 1 Or LBound(scaleValues) <> 0 Or UBound(scaleValues) <> XN + XM - 1 Then err.Raise 9, , "NATIVE_DDKKT_CONTEXT"
++    args(0) = VarPtr(XKBase(0)): args(1) = VarPtr(values(0)): args(2) = VarPtr(dims(0)): args(3) = VarPtr(ip(0))
++    args(4) = VarPtr(sp(0)): args(5) = VarPtr(slots(0)): args(6) = VarPtr(coefAt(0)): args(7) = VarPtr(coefficients(0))
++    args(8) = VarPtr(blocks(0, 0, 0)): args(9) = VarPtr(XKDiag(0)): args(10) = VarPtr(XPerm(0))
++    args(11) = VarPtr(scaleValues(0)): args(12) = VarPtr(XKPtr(0)): args(13) = VarPtr(XKId(0))
++End Sub
+ Public Sub RPX_NativeOperatorArgs(ByRef args() As LongPtr, ByRef scaleValues() As RPX_DDCoef, ByRef coefAt() As Long, ByRef coefValues() As RPX_DDCoef, ByRef blocks() As RPX_DDCoef, ByRef equalities() As RPX_DDCoef, ByRef positive As RPX_DDCoef, ByRef negative As RPX_DDCoef)
+     PrepareCones
+     args(0) = VarPtr(XPerm(0)): args(1) = VarPtr(scaleValues(0)): args(2) = VarPtr(dims(0)): args(3) = VarPtr(starts(0))
+--- /dev/null
++++ G1R16_DLL5/RPX_NativeGuard.bas
+@@ -0,0 +1,23 @@
++Attribute VB_Name = "RPX_NativeGuard"
++Option Explicit
++#If Win64 Then
++Private Declare PtrSafe Function NCompare Lib "rpfem_native_x64.dll" Alias "rpx_snapshot_compare" (ByVal live As LongPtr, ByVal forms As LongPtr, ByVal saved As LongPtr, ByVal oldforms As LongPtr, ByVal columns As LongPtr, ByVal n As Long, ByVal rows As Long, ByRef changed As Long) As Long
++#End If
++Private calls As Double
++Public Function RPX_NativeSnapshot(ByRef live As Variant, ByRef forms As Variant, ByRef saved As Variant, ByRef oldforms As Variant, ByRef columns As Variant, ByVal n As Long, ByVal rows As Long, ByRef changed As Boolean) As Boolean
++    If Not RPX_NativeAvailable() Then Exit Function
++#If Win64 Then
++    Dim code As Long, difference As Long
++    code = NCompare(VarPtr(live), VarPtr(forms), VarPtr(saved), VarPtr(oldforms), VarPtr(columns), n, rows, difference)
++    If code = 3 Then Exit Function
++    If code = 330 Then err.Raise 9, "RPX_Guard", "NATIVE_SNAPSHOT_SHAPE_MISMATCH"
++    RPX_NativeCheckCode code
++    calls = calls + 1: changed = (difference <> 0): RPX_NativeSnapshot = True
++#End If
++End Function
++Public Function RPX_NativeGuardInfo() As String
++    RPX_NativeGuardInfo = ";input_compare_calls=" & calls
++End Function
++Public Sub RPX_NativeGuardResetCounts()
++    calls = 0#
++End Sub
+--- G1R16_DLL4/RPX_NativeSolver.bas
++++ G1R16_DLL5/RPX_NativeSolver.bas
+@@ -1,42 +1,62 @@
+ Attribute VB_Name = "RPX_NativeSolver"
+ Option Explicit
+ #If Win64 Then
++Private Declare PtrSafe Function NExactSpans Lib "rpfem_native_x64.dll" Alias "rpx_exact_spans" (ByVal count As Long, ByVal args As LongPtr, ByVal lengths As LongPtr, ByRef equal As Long) As Long
+ Private Declare PtrSafe Function NVector Lib "rpfem_native_x64.dll" Alias "rpx_solver_vectors" (ByVal op As Long, ByVal n As Long, ByVal first As Long, ByVal last As Long, ByVal args As LongPtr, ByVal alpha As Double, ByVal metrics As LongPtr) As Long
++Private Declare PtrSafe Function NVectorStep Lib "rpfem_native_x64.dll" Alias "rpx_vector_step" (ByVal op As Long, ByVal n As Long, ByRef cursor As Long, ByVal args As LongPtr, ByVal alpha As Double, ByVal metrics As LongPtr, ByVal milliseconds As Long) As Long
+ Private Declare PtrSafe Function NUUpdate Lib "rpfem_native_x64.dll" Alias "rpx_solver_update" (ByVal nx As Long, ByVal nm As Long, ByVal ns As Long, ByVal args As LongPtr, ByVal alpha As Double) As Long
+ Private Declare PtrSafe Function NHCreate Lib "rpfem_native_x64.dll" Alias "rpx_hlinear_create" (ByVal n As Long, ByVal nx As Long, ByVal nb As Long, ByVal ns As Long, ByRef handle As LongPtr) As Long
+ Private Declare PtrSafe Function NHBegin Lib "rpfem_native_x64.dll" Alias "rpx_hlinear_begin" (ByVal handle As LongPtr, ByVal epoch As LongLong, ByVal factor As Long, ByVal kind As Long, ByVal unshifted As Long, ByVal args As LongPtr) As Long
+ Private Declare PtrSafe Function NHStep Lib "rpfem_native_x64.dll" Alias "rpx_hlinear_step" (ByVal handle As LongPtr, ByVal epoch As LongLong, ByVal factor As Long, ByVal opArgs As LongPtr, ByVal factorArgs As LongPtr, ByVal lu As LongPtr, ByVal milliseconds As Long, ByRef done As Long) As Long
+ Private Declare PtrSafe Function NHResult Lib "rpfem_native_x64.dll" Alias "rpx_hlinear_result" (ByVal handle As LongPtr, ByVal epoch As LongLong, ByVal best As LongPtr, ByVal scaled As LongPtr, ByVal bdd As LongPtr, ByVal metrics As LongPtr) As Long
+ Private Declare PtrSafe Function NHDestroy Lib "rpfem_native_x64.dll" Alias "rpx_hlinear_destroy" (ByVal handle As LongPtr) As Long
++Private Declare PtrSafe Function NKCreate Lib "rpfem_native_x64.dll" Alias "rpx_krylov_create" (ByVal n As Long, ByVal nx As Long, ByVal nb As Long, ByVal ns As Long, ByRef handle As LongPtr) As Long
++Private Declare PtrSafe Function NKDestroy Lib "rpfem_native_x64.dll" Alias "rpx_krylov_destroy" (ByVal handle As LongPtr) As Long
++Private Declare PtrSafe Function NKBegin Lib "rpfem_native_x64.dll" Alias "rpx_krylov_begin" (ByVal handle As LongPtr, ByVal serial As LongLong, ByVal factor As Long, ByVal kind As Long, ByVal unshifted As Long, ByVal bdd As LongPtr, ByVal answer As LongPtr, ByVal best As Double) As Long
++Private Declare PtrSafe Function NKStep Lib "rpfem_native_x64.dll" Alias "rpx_krylov_step" (ByVal handle As LongPtr, ByVal serial As LongLong, ByVal factor As Long, ByVal opArgs As LongPtr, ByVal factorArgs As LongPtr, ByVal lu As LongPtr, ByVal milliseconds As Long, ByRef done As Long) As Long
++Private Declare PtrSafe Function NKResult Lib "rpfem_native_x64.dll" Alias "rpx_krylov_result" (ByVal handle As LongPtr, ByVal serial As LongLong, ByVal answer As LongPtr, ByVal metrics As LongPtr) As Long
++Private Declare PtrSafe Function NKBytes Lib "rpfem_native_x64.dll" Alias "rpx_krylov_bytes" (ByVal handle As LongPtr, ByRef resident As LongLong) As Long
+ Private hHandle As LongPtr, hSerial As LongLong
++Private kHandle As LongPtr, kSerial As LongLong
+ #End If
+ Private hn As Long, hnx As Long, hnb As Long, hns As Long, hJobs As Long, hSteps As Long
+ Private calls As Double
++Private kn As Long, kJobs As Long, kSteps As Long, kResident As Double
++Public Function RPX_NativeExactSpans(ByRef args() As LongPtr, ByRef lengths() As Long, ByRef equal As Boolean) As Boolean
++    If Not RPX_NativeAvailable() Then Exit Function
++#If Win64 Then
++    Dim same As Long, count As Long
++    If LBound(lengths) <> 0 Or LBound(args) <> 0 Then err.Raise 9, , "NATIVE_EXACT_SPAN_BASE"
++    count = UBound(lengths) + 1
++    If UBound(args) <> 2 * count - 1 Then err.Raise 9, , "NATIVE_EXACT_SPAN_SHAPE"
++    RPX_NativeCheckCode NExactSpans(count, VarPtr(args(0)), VarPtr(lengths(0)), same)
++    equal = (same <> 0): RPX_NativeExactSpans = True
++#End If
++End Function
+ Public Sub RPX_NativeSolverResetCounts()
+-    calls = 0#: hJobs = 0: hSteps = 0
++    calls = 0#: hJobs = 0: hSteps = 0: kJobs = 0: kSteps = 0
+ End Sub
+ Public Function RPX_NativeSolverInfo() As String
+-    RPX_NativeSolverInfo = ";solver_vector_calls=" & calls & ";hsd_jobs=" & hJobs & ";hsd_job_steps=" & hSteps
++    RPX_NativeSolverInfo = ";solver_vector_calls=" & calls & ";hsd_jobs=" & hJobs & ";hsd_job_steps=" & hSteps & ";krylov_jobs=" & kJobs & ";krylov_steps=" & kSteps
+ End Function
+ Public Function RPX_NativeVectors(ByVal op As Long, ByVal n As Long, ByRef args() As LongPtr, ByRef metrics() As Double, Optional ByVal alpha As Double = 0#) As Boolean
+     If Not RPX_NativeAvailable() Then Exit Function
+     If n < 0 Then err.Raise 9, , "NATIVE_SOLVER_SIZE"
+     If n = 0 Then RPX_NativeVectors = True: Exit Function
+ #If Win64 Then
+-    Dim first As Long, last As Long
+-    For first = 0 To n - 1 Step 512
++    Dim first As Long, milliseconds As Long
++    milliseconds = 50: If RPX_StageIntervalValue() = 0# Then milliseconds = 0
++    Do While first < n
+         RPX_NativePulse
+-        last = first + 512: If last > n Then last = n
+         calls = calls + 1
+-        RPX_NativeCheckCode NVector(op, n, first, last, VarPtr(args(0)), alpha, VarPtr(metrics(0)))
+-        If op = 16 Then If metrics(1) = 0# Then Exit For
+-        If op = 17 Then If metrics(2) = 0# Then Exit For
+-    Next first
++        RPX_NativeCheckCode NVectorStep(op, n, first, VarPtr(args(0)), alpha, VarPtr(metrics(0)), milliseconds)
++    Loop
+     RPX_NativeVectors = True
+ #End If
+ End Function
+ 
+ Public Sub RPX_NativeHLinearRelease()
++    RPX_NativeKrylovRelease
+ #If Win64 Then
+     Dim code As Long
+     If hHandle <> 0 Then
+@@ -46,7 +66,39 @@
+     End If
+ #End If
+ End Sub
++Public Sub RPX_NativeKrylovRelease()
+ #If Win64 Then
++    Dim code As Long
++    If kHandle <> 0 Then
++        code = NKDestroy(kHandle): kHandle = 0: kn = 0: kResident = 0#
++        RPX_NativeCheckCode code
++    End If
++#End If
++End Sub
++#If Win64 Then
++Public Function RPX_NativeKrylovBegin(ByRef bdd() As RPX_DD, ByRef answer() As RPX_DD, ByVal best As Double, ByVal factor As Long, ByVal kind As Long, ByVal unshifted As Boolean) As LongLong
++    Dim n As Long, resident As LongLong
++    RPX_NativeKrylovRelease
++    n = XN + XM
++    If LBound(bdd) <> 0 Or UBound(bdd) <> n - 1 Or LBound(answer) <> 0 Or UBound(answer) <> n - 1 Then err.Raise 9, , "NATIVE_KRYLOV_BUFFER"
++    RPX_CapacityCheck "native_hsd_krylov", 600# * n + 32# * XS + 16384#
++    RPX_NativeCheckCode NKCreate(n, XN, XB, XS, kHandle): kn = n
++    RPX_NativeCheckCode NKBytes(kHandle, resident): kResident = CDbl(resident)
++    kSerial = kSerial + 1
++    RPX_NativeCheckCode NKBegin(kHandle, kSerial, factor, kind, Abs(CLng(unshifted)), VarPtr(bdd(0)), VarPtr(answer(0)), best)
++    kJobs = kJobs + 1: RPX_NativeKrylovBegin = kSerial
++End Function
++Public Sub RPX_NativeKrylovStep(ByVal serial As LongLong, ByVal factor As Long, ByRef opArgs() As LongPtr, ByRef factorArgs() As LongPtr, ByVal lu As LongPtr, ByRef done As Long)
++    Dim milliseconds As Long
++    milliseconds = 50: If RPX_StageIntervalValue() = 0# Then milliseconds = 0
++    RPX_NativePulse
++    RPX_NativeCheckCode NKStep(kHandle, serial, factor, VarPtr(opArgs(0)), VarPtr(factorArgs(0)), lu, milliseconds, done)
++    kSteps = kSteps + 1
++End Sub
++Public Sub RPX_NativeKrylovResult(ByVal serial As LongLong, ByRef answer() As RPX_DD, ByRef metrics() As Double)
++    ReDim answer(0 To kn - 1): ReDim metrics(0 To 3)
++    RPX_NativeCheckCode NKResult(kHandle, serial, VarPtr(answer(0)), VarPtr(metrics(0)))
++End Sub
+ Public Function RPX_NativeHLinearBegin(ByRef rhs() As Double, ByRef opArgs() As LongPtr, ByVal kind As Long, ByVal factor As Long, ByVal unshifted As Boolean) As LongLong
+     Dim n As Long, initArgs(0 To 2) As LongPtr
+     n = XN + XM
+@@ -87,5 +139,6 @@
+ Public Function RPX_NativeHLinearBytes() As Double
+ #If Win64 Then
+     If hHandle <> 0 Then RPX_NativeHLinearBytes = 144# * hn + 32# * hns + 4096#
++    RPX_NativeHLinearBytes = RPX_NativeHLinearBytes + kResident
+ #End If
+ End Function
+--- G1R16_DLL4/RPX_Schur.bas
++++ G1R16_DLL5/RPX_Schur.bas
+@@ -1,5 +1,20 @@
+ Attribute VB_Name = "RPX_Schur"
+ Option Explicit
++#If Win64 Then
++Private Declare PtrSafe Function NSFinite Lib "rpfem_native_x64.dll" Alias "rpx_schur_finite" (ByVal n As Long, ByVal matrix As LongPtr, ByRef invalid As Long) As Long
++Private Declare PtrSafe Function NSCreate Lib "rpfem_native_x64.dll" Alias "rpx_schur_create" (ByVal nf As Long, ByVal nr As Long, ByVal nb As Long, ByVal fullnz As Long, ByVal nz As Long, ByVal rows As Long, ByVal slots As Long, ByVal pattern As LongLong, ByVal args As LongPtr, ByRef handle As LongPtr) As Long
++Private Declare PtrSafe Function NSDestroy Lib "rpfem_native_x64.dll" Alias "rpx_schur_destroy" (ByVal handle As LongPtr) As Long
++Private Declare PtrSafe Function NSBytes Lib "rpfem_native_x64.dll" Alias "rpx_schur_bytes" (ByVal handle As LongPtr, ByVal pattern As LongLong, ByRef bytes As LongLong) As Long
++Private Declare PtrSafe Function NSFactorBegin Lib "rpfem_native_x64.dll" Alias "rpx_schur_factor_begin" (ByVal handle As LongPtr, ByVal pattern As LongLong, ByVal epoch As LongLong) As Long
++Private Declare PtrSafe Function NSFactorStep Lib "rpfem_native_x64.dll" Alias "rpx_schur_factor_step" (ByVal handle As LongPtr, ByVal pattern As LongLong, ByVal epoch As LongLong, ByVal matrix As LongPtr, ByVal milliseconds As Long, ByRef done As Long, ByRef reason As Long) As Long
++Private Declare PtrSafe Function NSFactorResult Lib "rpfem_native_x64.dll" Alias "rpx_schur_factor_result" (ByVal handle As LongPtr, ByVal pattern As LongLong, ByVal epoch As LongLong, ByVal av As LongPtr, ByVal metrics As LongPtr) As Long
++Private Declare PtrSafe Function NSCommit Lib "rpfem_native_x64.dll" Alias "rpx_schur_factor_commit" (ByVal handle As LongPtr, ByVal pattern As LongLong, ByVal epoch As LongLong, ByVal args As LongPtr, ByVal count As Long) As Long
++Private Declare PtrSafe Function NSSolveBegin Lib "rpfem_native_x64.dll" Alias "rpx_schur_solve_begin" (ByVal handle As LongPtr, ByVal pattern As LongLong, ByVal epoch As LongLong, ByVal rhs As LongPtr, ByVal checked As Long, ByVal reuse As Long, ByRef serial As LongLong) As Long
++Private Declare PtrSafe Function NSSolveStep Lib "rpfem_native_x64.dll" Alias "rpx_schur_solve_step" (ByVal handle As LongPtr, ByVal pattern As LongLong, ByVal epoch As LongLong, ByVal serial As LongLong, ByVal milliseconds As Long, ByRef done As Long) As Long
++Private Declare PtrSafe Function NSSolveResult Lib "rpfem_native_x64.dll" Alias "rpx_schur_solve_result" (ByVal handle As LongPtr, ByVal pattern As LongLong, ByVal epoch As LongLong, ByVal serial As LongLong, ByVal answer As LongPtr, ByVal metrics As LongPtr) As Long
++Private nativeSchur As LongPtr
++#End If
++Private nativeChecked As Boolean, nativeBytes As Double, nativeJobs As Long, nativeSteps As Long
+ ' P3-C1/C2 compare on independent sparse state; C3 AUTO uses full residual guards.
+ Private Type LocalBlock
+     pos(0 To 2) As Long
+@@ -64,14 +79,33 @@
+ End Sub
+ 
+ Public Function RPX_SchurResidentBytes() As Double
+-    If ready Then RPX_SchurResidentBytes = estimate + 28# * RPXC_FactorNNZ + 64# * nr
+-End Function
++    If ready Then RPX_SchurResidentBytes = estimate + 28# * RPXC_FactorNNZ + 64# * nr + nativeBytes
++End Function
++Public Function RPX_SchurNativeInfo() As String
++    RPX_SchurNativeInfo = ";schur_jobs=" & nativeJobs & ";schur_steps=" & nativeSteps & ";schur_native_bytes=" & nativeBytes
++End Function
++Public Sub RPX_SchurModeReset()
++    ' Standalone RPXC kernel tests may own a factor outside this Schur engine.
++    If ready Then RPX_SchurRelease
++#If Win64 Then
++    If nativeSchur <> 0 Then RPX_SchurRelease
++#End If
++    nativeJobs = 0: nativeSteps = 0
++End Sub
+ Public Sub RPX_SchurDeactivate()
+     factored = False: factorEpoch = -1: enabled = False
+     P4Generic = -1: P4Current.numericValid = False
+     workspaceRhs = -1
+ End Sub
+ Public Sub RPX_SchurRelease()
++#If Win64 Then
++    Dim code As Long
++    If nativeSchur <> 0 Then
++        code = NSDestroy(nativeSchur): nativeSchur = 0
++        RPX_NativeCheckCode code
++    End If
++#End If
++    nativeChecked = False: nativeBytes = 0#
+     RPX_SchurDeactivate
+     lastLower = False
+     ready = False: factored = False: enabled = False: factorEpoch = -1
+@@ -80,6 +114,116 @@
+     Erase ap: Erase ai: Erase av: Erase perm: Erase inv: Erase directSlot: Erase z
+     Call RPXC_LDLRelease: RPX_SchurIdentityRelease
+ End Sub
++
++Private Sub NativePrepare()
++    If nativeChecked Then Exit Sub
++    nativeChecked = True
++    If Not RPX_NativeAvailable() Then Exit Sub
++#If Win64 Then
++    Dim pos() As Long, hp() As Long, ptr() As Long, rows() As Long, bp() As Long
++    Dim sp() As Long, slots() As Long, args(0 To 9) As LongPtr
++    Dim b As Long, i As Long, j As Long, k As Long, r As Long, s As Long, extra As Double
++    Dim resident As LongLong
++    For b = 0 To nb - 1
++        r = r + blocks(b).n: s = s + blocks(b).n * blocks(b).n
++    Next b
++    If r = 0 Or s = 0 Then Exit Sub
++    ' Include future owned CSC/factor copies and temporary marshaling arrays.
++    extra = 1048576# + 4# * (12# * nb + 2# * (nb + 1#) + 4# * r + s + 3# * nr + nf + 2# + 2# * (UBound(XKVal) + 1#) + RPXC_FactorNNZ)
++    extra = extra + 8# * (2# * (UBound(av) + 1#) + 12# * nb + 6# * r + 6# * nf + 3# * nr + UBound(XKVal) + 1# + RPXC_FactorNNZ)
++    If extra > budget - RPX_SchurResidentBytes() Then
++        RPX_DiagEvent "schur_native_bypass", "reason=owned_workspace_budget"
++        Exit Sub
++    End If
++    RPX_CapacityCheck "native_schur", extra
++    ReDim pos(0 To 3 * nb - 1): ReDim hp(0 To 9 * nb - 1)
++    ReDim ptr(0 To nb): ReDim sp(0 To nb)
++    ReDim rows(0 To r - 1): ReDim bp(0 To 3 * r - 1): ReDim slots(0 To s - 1)
++    r = 0: s = 0
++    For b = 0 To nb - 1
++        ptr(b) = r: sp(b) = s
++        With blocks(b)
++            For i = 0 To 2
++                pos(3 * b + i) = .pos(i)
++                For j = 0 To 2: hp(9 * b + i + 3 * j) = .hp(i, j): Next j
++            Next i
++            For i = 0 To .n - 1
++                rows(r + i) = .row(i)
++                For k = 0 To 2: bp(3 * (r + i) + k) = .bp(i, k): Next k
++                For j = 0 To .n - 1: slots(s + i + .n * j) = .Slot(i, j): Next j
++            Next i
++            r = r + .n: s = s + .n * .n
++        End With
++    Next b
++    ptr(nb) = r: sp(nb) = s
++    args(0) = VarPtr(pos(0)): args(1) = VarPtr(hp(0)): args(2) = VarPtr(ptr(0))
++    args(3) = VarPtr(rows(0)): args(4) = VarPtr(bp(0)): args(5) = VarPtr(sp(0))
++    args(6) = VarPtr(slots(0)): args(7) = VarPtr(inv(0)): args(8) = VarPtr(fullPos(0)): args(9) = VarPtr(directSlot(0))
++    RPX_NativeCheckCode NSCreate(nf, nr, nb, UBound(XKVal) + 1, UBound(av) + 1, r, s, CLngLng(P4Pattern), VarPtr(args(0)), nativeSchur)
++    RPX_NativeCheckCode NSBytes(nativeSchur, CLngLng(P4Pattern), resident): nativeBytes = CDbl(resident)
++#End If
++End Sub
++
++Private Function NativeFactor(ByRef reason As String) As Boolean
++#If Win64 Then
++    Dim done As Long, rejected As Long, milliseconds As Long, metrics(0 To 2) As Double
++    NativePrepare
++    If nativeSchur = 0 Then Exit Function
++    RPX_NativeCheckCode NSFactorBegin(nativeSchur, CLngLng(P4Pattern), CLngLng(P4Matrix))
++    milliseconds = 50: If RPX_StageIntervalValue() = 0# Then milliseconds = 0
++    Do While done = 0
++        RPX_NativePulse
++        RPX_NativeCheckCode NSFactorStep(nativeSchur, CLngLng(P4Pattern), CLngLng(P4Matrix), VarPtr(XKVal(0)), milliseconds, done, rejected)
++        nativeSteps = nativeSteps + 1
++    Loop
++    NativeFactor = True
++    Select Case rejected
++        Case 0
++            RPX_NativeCheckCode NSFactorResult(nativeSchur, CLngLng(P4Pattern), CLngLng(P4Matrix), VarPtr(av(0)), VarPtr(metrics(0)))
++            P4LocalFactor = P4LocalFactor + metrics(0)
++            RPX_P4Time 1, RPX_DiagClock() - metrics(1)
++            RPX_P4Time 2, RPX_DiagClock() - metrics(2)
++        Case 1: reason = "nonfinite_matrix"
++        Case 2: reason = "local_pivot"
++        Case 3: reason = "nonfinite_local_solve"
++        Case 4: reason = "nonfinite_schur"
++        Case Else: err.Raise 5, , "SCHUR_NATIVE_REJECTION_CONTRACT"
++    End Select
++#End If
++End Function
++
++Private Sub NativeCommit()
++#If Win64 Then
++    Dim args(0 To 6) As LongPtr, resident As LongLong
++    If nativeSchur = 0 Then Exit Sub
++    RPXC_NativeFactorArgs args
++    args(0) = VarPtr(XKPtr(0)): args(1) = VarPtr(XKId(0)): args(2) = VarPtr(XKVal(0))
++    RPX_NativeCheckCode NSCommit(nativeSchur, CLngLng(P4Pattern), CLngLng(P4Matrix), VarPtr(args(0)), RPXC_FactorNNZ)
++    RPX_NativeCheckCode NSBytes(nativeSchur, CLngLng(P4Pattern), resident): nativeBytes = CDbl(resident)
++#End If
++End Sub
++
++Private Function NativeSolve(ByRef rhs() As Double, ByRef answer() As Double, ByVal checked As Boolean, ByRef metrics() As Double) As Boolean
++#If Win64 Then
++    Dim serial As LongLong, done As Long, milliseconds As Long
++    If nativeSchur = 0 Then Exit Function
++    If LBound(rhs) <> 0 Or UBound(rhs) <> nf - 1 Then err.Raise 9, , "SCHUR_NATIVE_RHS_SHAPE"
++    RPX_NativeCheckCode NSSolveBegin(nativeSchur, CLngLng(P4Pattern), CLngLng(factorEpoch), VarPtr(rhs(0)), Abs(CLng(checked)), Abs(CLng(P4ReuseU)), serial)
++    milliseconds = 50: If RPX_StageIntervalValue() = 0# Then milliseconds = 0
++    Do While done = 0
++        RPX_NativePulse
++        RPX_NativeCheckCode NSSolveStep(nativeSchur, CLngLng(P4Pattern), CLngLng(factorEpoch), serial, milliseconds, done)
++        nativeSteps = nativeSteps + 1
++    Loop
++    ReDim answer(0 To nf - 1): ReDim metrics(0 To 11)
++    RPX_NativeCheckCode NSSolveResult(nativeSchur, CLngLng(P4Pattern), CLngLng(factorEpoch), serial, VarPtr(answer(0)), VarPtr(metrics(0)))
++    RPX_P4Time 4, RPX_DiagClock() - metrics(8)
++    RPX_P4Time 5, RPX_DiagClock() - metrics(9)
++    RPX_P4Time 6, RPX_DiagClock() - metrics(10)
++    RPX_P4Time 7, RPX_DiagClock() - metrics(11)
++    nativeJobs = nativeJobs + 1: NativeSolve = True
++#End If
++End Function
+ 
+ Private Function Slot(ByRef rows() As Object, ByVal a As Long, ByVal b As Long) As Long
+     Dim t As Long
+@@ -266,7 +410,7 @@
+ 
+ Public Sub RPX_SchurFactor(ByVal regularization As Double)
+     Dim reason As String, b As Long, i As Long, j As Long, k As Long, p As Long, value As Double
+-    Dim x(0 To 2) As Double, started As Double, phaseStart As Double
++    Dim x(0 To 2) As Double, started As Double, phaseStart As Double, invalid As Long
+     reg = regularization: directionNo = 0: autoDirection = 0: factored = False: RPX_SchurAutoFailed = False
+     If Not enabled Then Exit Sub
+     started = RPX_DiagClock(): lastPulse = Timer
+@@ -289,9 +433,16 @@
+     RPX_Stage "Schur factor"
+     RPX_TestHook "schur_factor"
+     If fault = "local" Then fault = "": reason = "test_local_pivot": GoTo rejected
+-    For p = 0 To UBound(XKVal)
+-        If Not RPX_SchurFinite(XKVal(p)) Then reason = "nonfinite_matrix": GoTo rejected
+-    Next p
++    If RPX_NativeAvailable() Then
++#If Win64 Then
++        RPX_NativeCheckCode NSFinite(UBound(XKVal) + 1, VarPtr(XKVal(0)), invalid)
++        If invalid <> 0 Then reason = "nonfinite_matrix": GoTo rejected
++#End If
++    Else
++        For p = 0 To UBound(XKVal)
++            If Not RPX_SchurFinite(XKVal(p)) Then reason = "nonfinite_matrix": GoTo rejected
++        Next p
++    End If
+     If Not ready Then
+         phaseStart = RPX_DiagClock()
+         If Not Prepare(reason) Then
+@@ -301,6 +452,10 @@
+         End If
+         RPX_P4Time 0, phaseStart
+         ready = True
++    End If
++    If NativeFactor(reason) Then
++        If Len(reason) > 0 Then GoTo rejected
++        GoTo NumericReduced
+     End If
+     phaseStart = RPX_DiagClock()
+     For p = 0 To UBound(av): av(p) = 0#: Next p
+@@ -352,12 +507,15 @@
+         End With
+     Next b
+     RPX_P4Time 2, phaseStart: phaseStart = RPX_DiagClock()
++NumericReduced:
++    phaseStart = RPX_DiagClock()
+     If fault = "factor" Then fault = "": reason = "test_schur_pivot": GoTo rejected
+     For p = 0 To UBound(av)
+         If Not RPX_SchurFinite(av(p)) Then reason = "nonfinite_schur": GoTo rejected
+     Next p
+     If Not RPXC_Numeric(ap, ai, av) Then reason = "schur_pivot": GoTo rejected
+     RPX_P4Time 3, phaseStart
++    NativeCommit
+     factored = True: factorEpoch = P4Matrix
+     RPX_DiagEvent "schur_numeric", "iteration=" & XIteration & ";delta=" & reg & ";seconds=" & RPX_DiagClock() - started
+     Exit Sub
+@@ -368,6 +526,7 @@
+ 
+ Private Sub SolveReduced(ByRef rhs() As Double, ByRef answer() As Double)
+     Dim small() As Double, result() As Double, x(0 To 2) As Double
++    Dim metrics() As Double
+     Dim b As Long, i As Long, k As Long, value As Double, started As Double
+     Dim number As Long, description As String, source As String
+     On Error GoTo Failed
+@@ -375,6 +534,7 @@
+     solving = True: P4Rhs = P4Rhs + 1: workspaceRhs = P4Rhs
+     P4LocalRhs = P4LocalRhs + nb * IIf(P4ReuseU, 1#, 2#)
+     P4Reduced = P4Reduced + 1: started = RPX_DiagClock()
++    If NativeSolve(rhs, answer, False, metrics) Then solving = False: Exit Sub
+     ReDim small(0 To nr - 1): ReDim answer(0 To nf - 1)
+     For i = 0 To nr - 1: small(inv(i)) = rhs(fullPos(i)): Next i
+     For b = 0 To nb - 1
+@@ -508,10 +668,22 @@
+ End Function
+ Public Function RPX_SchurAutoSolve(ByRef rhs() As Double, ByRef answer() As Double, ByRef iterations As Long, ByRef residual As Double) As Boolean
+     Dim res() As Double, correction() As Double, i As Long, step As Long, started As Double, correctionStart As Double
++    Dim metrics() As Double
+     If Not RPX_SchurAutoReady() Then Exit Function
+     P4Attempts = P4Attempts + 1
+     autoDirection = autoDirection + 1
+     RPX_TestHook "schur_direction"
++    If NativeSolve(rhs, answer, True, metrics) Then
++        iterations = CLng(metrics(2)): residual = metrics(3)
++        P4Rhs = P4Rhs + CLng(metrics(0)): workspaceRhs = P4Rhs
++        P4Reduced = P4Reduced + CLng(metrics(0))
++        P4LocalRhs = P4LocalRhs + nb * metrics(0) * IIf(P4ReuseU, 1#, 2#)
++        P4Corrections = P4Corrections + iterations
++        P4Current.corrections = iterations: P4Current.schurCorrections = iterations
++        P4Current.checks = P4Current.checks + CLng(metrics(1))
++        For i = 0 To 3: P4Current.errors(i) = metrics(4 + i): Next i
++        GoTo AssessAuto
++    End If
+     SolveReduced rhs, answer
+     iterations = 0
+     For step = 1 To 3
+--- G1R16_DLL4/RPX_SchurLDL.bas
++++ G1R16_DLL5/RPX_SchurLDL.bas
+@@ -20,6 +20,13 @@
+ Public RPXC_PivotFailure As Long
+ Public RPXC_ReachCacheBytes As Double
+ 
++Public Sub RPXC_NativeFactorArgs(ByRef args() As LongPtr)
++    If Not patternReady Or orderN < 1 Then err.Raise 5, , "SCHUR_FACTOR_NOT_PREPARED"
++    If LBound(args) <> 0 Or UBound(args) < 6 Then err.Raise 9, , "SCHUR_FACTOR_ARGUMENT_SHAPE"
++    args(3) = VarPtr(colPtr(0)): args(4) = VarPtr(rowInd(0))
++    args(5) = VarPtr(factorVal(0)): args(6) = VarPtr(diagonal(0))
++End Sub
++
+ Public Sub RPXC_LDLRelease()
+     patternReady = False
+     rowPatternFilled = False
+--- G1R16_DLL4/RPX_Solve.bas
++++ G1R16_DLL5/RPX_Solve.bas
+@@ -1,5 +1,8 @@
+ Attribute VB_Name = "RPX_Solve"
+ Option Explicit
++#If Win64 Then
++Private Declare PtrSafe Function NHDDStep Lib "rpfem_native_x64.dll" Alias "rpx_hdd_step" (ByVal n As Long, ByVal nx As Long, ByVal nb As Long, ByVal nz As Long, ByVal phase As Long, ByRef cursor As Long, ByVal args As LongPtr, ByVal milliseconds As Long) As Long
++#End If
+ #Const HOPT13_DIR_SPLIT = 1
+ ' version=20260925_2023 engine=20260925_warm_off
+ Private hh() As Double, ww() As Double, wi() As Double, sinvAll() As Double, vvAll() As Double
+@@ -814,6 +817,12 @@
+     If LBound(xy) <> LBound(hSavedY) Or UBound(xy) <> UBound(hSavedY) Then Exit Function
+     If LBound(XSlack) <> LBound(hSavedSlack) Or UBound(XSlack) <> UBound(hSavedSlack) Then Exit Function
+     If LBound(XDual) <> LBound(hSavedDual) Or UBound(XDual) <> UBound(hSavedDual) Then Exit Function
++    Dim spans(0 To 11) As LongPtr, lengths(0 To 5) As Long, equal As Boolean
++    lengths(0) = XN: lengths(1) = XM + 1: lengths(2) = XS: lengths(3) = XS: lengths(4) = 1: lengths(5) = 1
++    spans(0) = VarPtr(xx(0)): spans(1) = VarPtr(hSavedX(0)): spans(2) = VarPtr(xy(0)): spans(3) = VarPtr(hSavedY(0))
++    spans(4) = VarPtr(XSlack(0)): spans(5) = VarPtr(hSavedSlack(0)): spans(6) = VarPtr(XDual(0)): spans(7) = VarPtr(hSavedDual(0))
++    spans(8) = VarPtr(hTau): spans(9) = VarPtr(hSavedTau): spans(10) = VarPtr(hKappa): spans(11) = VarPtr(hSavedKappa)
++    If RPX_NativeExactSpans(spans, lengths, equal) Then HLiveMatches = equal: Exit Function
+     For i = 0 To XN - 1
+         liveBits.bits = xx(i): savedBits.bits = hSavedX(i)
+         LSet livePair = liveBits: LSet savedPair = savedBits
+@@ -1955,6 +1964,7 @@
+     HKNorm = largest * Sqr(total)
+ End Function
+ Private Function HKRepair(ByRef bdd() As RPX_DD, ByRef answer() As RPX_DD, ByRef bestError As Double) As Boolean
++    If HNativeKrylov(bdd, answer, bestError, HKRepair) Then Exit Function
+     Const width As Long = 24
+     Const restarts As Long = 3
+     Dim basis() As Double, preconditioned() As Double, hess() As Double
+@@ -2050,6 +2060,37 @@
+     RPX_DiagEvent "hsd_krylov_repair", "iteration=" & XIteration & ";steps=" & steps & ";before=" & previousError & ";after=" & bestError & ";accepted=" & HKRepair & ";factor_reused=True"
+ End Function
+ 
++Private Function HNativeKrylov(ByRef bdd() As RPX_DD, ByRef answer() As RPX_DD, ByRef bestError As Double, ByRef accepted As Boolean) As Boolean
++    If Not RPX_NativeAvailable() Or XM < 1 Or XB < 1 Or XS < 1 Then Exit Function
++#If Win64 Then
++    Dim opArgs(0 To 13) As LongPtr, factorArgs(0 To 4) As LongPtr, serial As LongLong, lu As LongPtr
++    Dim kind As Long, done As Long, metrics() As Double, eno As Long, es As String, et As String, before As Double
++    On Error GoTo Failed
++    HContext: HEnsureDD XN + XM
++    RPX_NativeOperatorArgs opArgs, hScaleDD, hCoefAt, hCoefDD, hHhDD, hEvalDD, hRegPos, hRegNeg
++    kind = 0: If hPreciseFactor Then kind = 1
++    If hPivot Then kind = 2: lu = RPX_NativeLUHandle(hFactorEpoch)
++    If kind <> 2 Then RPX_NativeLDLFactorArgs hPreciseFactor, factorArgs
++    factorArgs(4) = VarPtr(XKScale(0)): before = bestError
++    serial = RPX_NativeKrylovBegin(bdd, answer, bestError, hFactorEpoch, kind, hUnshifted)
++    Do While done = 0
++        HContext
++        RPX_NativeKrylovStep serial, hFactorEpoch, opArgs, factorArgs, lu, done
++    Loop
++    RPX_NativeKrylovResult serial, answer, metrics
++    bestError = metrics(0): accepted = (metrics(2) <> 0#)
++    RPX_HoptAddFinite metrics(3)
++    RPX_NativeKrylovRelease
++    RPX_DiagEvent "hsd_krylov_repair", "iteration=" & XIteration & ";steps=" & CLng(metrics(1)) & ";before=" & before & ";after=" & bestError & ";accepted=" & accepted & ";factor_reused=True"
++    HNativeKrylov = True
++    Exit Function
++Failed:
++    eno = err.number: es = err.source: et = err.description
++    RPX_NativeKrylovRelease
++    err.Raise eno, es, et
++#End If
++End Function
++
+ Private Function HDDFactor() As Boolean
+     Dim values() As RPX_DD, work(0 To 2) As RPX_DD, coefficient As RPX_DD, term As RPX_DD, total As RPX_DD
+     Dim i As Long, j As Long, k As Long, r As Long, q As Long, p As Long, col As Long, pat As Long, n As Long
+@@ -2057,6 +2098,7 @@
+     n = XN + XM: HEnsureDD n
+     RPX_CapacityCheck "dd_kkt", 16# * (UBound(XKVal) + 1#)
+     ReDim values(0 To UBound(XKVal))
++    If HNativeDDAssembly(values) Then GoTo DDAssembled
+     For p = 0 To UBound(XKVal): values(p) = HDD(XKBase(p)): Next p
+     For i = 0 To XB - 1
+         If i Mod 256 = 0 Then
+@@ -2100,8 +2142,35 @@
+             values(p) = HDMulCoef(hScaleDD(XKId(p)), values(p))
+         Next p
+     Next col
++DDAssembled:
+     HDDFactor = RPX_DDNumeric(XKPtr, XKId, values)
+     RPX_DiagEvent "hsd_dd_ldl", "iteration=" & XIteration & ";nnz=" & RPX_FactorNNZ & ";factor_bytes=" & 16# * (CDbl(RPX_FactorNNZ) + 2# * n + UBound(values) + 2#) & ";accepted=" & HDDFactor
++End Function
++
++Private Function HNativeDDAssembly(ByRef values() As RPX_DD) As Boolean
++    If Not RPX_NativeAvailable() Or XB < 1 Or XS < 1 Then Exit Function
++#If Win64 Then
++    Dim args(0 To 13) As LongPtr, phase As Long, cursor As Long, total As Long, n As Long, milliseconds As Long
++    n = XN + XM
++    RPX_NativeDDKKTArgs args, values, hCoefAt, hCoefDD, hHhDD, hScaleDD
++    milliseconds = 50: If RPX_StageIntervalValue() = 0# Then milliseconds = 0
++    For phase = 0 To 3
++        total = n: If phase = 0 Then total = UBound(values) + 1
++        If phase = 1 Then total = XB
++        cursor = 0
++        Do While cursor < total
++            RPX_NativePulse
++            If phase = 1 And cursor Mod 256 = 0 Then
++                RPX_AssertInputs "hsd_dd_factor"
++                If XCancel Then err.Raise 18, , "ANALYSIS_CANCELLED"
++                If hSolveEpoch <> P4Solve Or hInputEpoch <> RPX_InputEpoch Then err.Raise 5, , "HSD_CONTEXT_EPOCH_MISMATCH"
++                If Not HLiveMatches() Then err.Raise 5, , "HSD_ITERATE_CONTEXT_MISMATCH"
++            End If
++            RPX_NativeCheckCode NHDDStep(n, XN, XB, UBound(values) + 1, phase, cursor, VarPtr(args(0)), milliseconds)
++        Loop
++    Next phase
++    HNativeDDAssembly = True
++#End If
+ End Function
+ 
+ Private Function HNativeLinearLoop(ByRef rhs() As Double, ByRef bestDD() As RPX_DD, ByRef scaled() As Double, ByRef bdd() As RPX_DD, ByRef quality As RPX_HLinearQuality, ByRef finalError As Double) As Boolean

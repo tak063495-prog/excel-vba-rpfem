@@ -1,0 +1,159 @@
+{
+  "state": "completed",
+  "dll_sha256": "393dd3b1d6323104b023f0e04c933913e17723b925c0fc3f156ea534ae952af2",
+  "scope": "Final DLL5 targeted regressions; no full P06 restart; no interrupted 26-case batch restart",
+  "runs": [
+    {
+      "command": "test_guard_oracle.py",
+      "exit_code": 0,
+      "seconds": 4.3984689000062644,
+      "log": "results\\core_0.log"
+    },
+    {
+      "command": "test_hsd_regression.py",
+      "exit_code": 0,
+      "seconds": 6.7751193000003695,
+      "log": "results\\core_1.log"
+    },
+    {
+      "command": "test_bulk_oracle.py",
+      "exit_code": 0,
+      "seconds": 48.622392099990975,
+      "log": "results\\core_2.log"
+    },
+    {
+      "command": "test_nt_oracle.py",
+      "exit_code": 0,
+      "seconds": 0.1751329000107944,
+      "log": "results\\core_3.log"
+    },
+    {
+      "command": "probe_cw.py",
+      "exit_code": 0,
+      "seconds": 4.013820799998939,
+      "log": "results\\core_4.log"
+    },
+    {
+      "command": "test_nt_oracle.py --extended",
+      "exit_code": 0,
+      "seconds": 5.470989199995529,
+      "log": "results\\core_5.log"
+    },
+    {
+      "command": "test_lu_oracle.py",
+      "exit_code": 0,
+      "seconds": 15.958509499992942,
+      "log": "results\\core_6.log"
+    },
+    {
+      "command": "test_boundary.py",
+      "exit_code": 0,
+      "seconds": 18.31970039999578,
+      "log": "results\\core_7.log"
+    },
+    {
+      "command": "test_issue_regression.py",
+      "exit_code": 0,
+      "seconds": 22.463926399999764,
+      "log": "results\\core_8.log"
+    },
+    {
+      "command": "test_job_contract.py",
+      "exit_code": 0,
+      "seconds": 17.748091299989028,
+      "log": "results\\core_9.log"
+    },
+    {
+      "command": "test_new_job_contract.py",
+      "exit_code": 0,
+      "seconds": 72.00954619998811,
+      "log": "results\\core_10.log"
+    },
+    {
+      "command": "test_fallback_seep.py",
+      "exit_code": 0,
+      "seconds": 25.322873099998105,
+      "log": "results\\core_11.log"
+    },
+    {
+      "command": "test_mode_switch.py --tag mode_switch_final",
+      "exit_code": 0,
+      "seconds": 4.394040799990762,
+      "log": "results\\core_12.log"
+    },
+    {
+      "command": "test_job_lifecycle.py",
+      "exit_code": 0,
+      "seconds": 0.45503630000166595,
+      "log": "results\\core_13.log"
+    },
+    {
+      "command": "test_native_faults.py",
+      "exit_code": 0,
+      "seconds": 16.80828029999975,
+      "log": "results\\core_14.log"
+    },
+    {
+      "command": "test_schur_python.py",
+      "exit_code": 0,
+      "seconds": 0.23605289999977686,
+      "log": "results\\core_15.log"
+    },
+    {
+      "command": "test_krylov_python.py",
+      "exit_code": 0,
+      "seconds": 0.25005390000296757,
+      "log": "results\\core_16.log"
+    },
+    {
+      "command": "test_hdd_python.py",
+      "exit_code": 0,
+      "seconds": 0.23874719999730587,
+      "log": "results\\core_17.log"
+    },
+    {
+      "command": "test_compile_python.py",
+      "exit_code": 0,
+      "seconds": 0.30744929998763837,
+      "log": "results\\core_18.log"
+    },
+    {
+      "command": "test_dd_core_python.py",
+      "exit_code": 0,
+      "seconds": 0.13800839998293668,
+      "log": "results\\core_19.log"
+    },
+    {
+      "command": "test_new_job_lifecycle.py",
+      "exit_code": 0,
+      "seconds": 0.45473880000645295,
+      "log": "results\\core_20.log"
+    },
+    {
+      "command": "benchmark_fixed.py --tag fixed_q8_release --backends dll5",
+      "exit_code": 0,
+      "seconds": 89.92545710000559,
+      "log": "results\\core_21.log"
+    }
+  ],
+  "previous_failures": [
+    {
+      "command": "test_nt_oracle.py",
+      "exit_code": 1,
+      "seconds": 5.45573190000141,
+      "log": "results\\core_3_previous_1791794338609052600.log"
+    },
+    {
+      "command": "test_new_job_contract.py",
+      "exit_code": 1,
+      "seconds": 28.548158699995838,
+      "log": "results\\core_10_previous_1791794514256645500.log"
+    }
+  ],
+  "resume_reason": "Unchanged final DLL; completed passes retained, actual failed log paths preserved after test-harness fixes.",
+  "current": "benchmark_fixed.py --tag fixed_q8_release --backends dll5",
+  "resolved_harness_issues": [
+    "Observed Excel x87 0x137f vs Python 0x027f; aligning only the Python test process gives zero mismatch. Product DLL unchanged.",
+    "Existing-output collision OUTPUT_EXISTS; separate test output prefixes give all24 passes."
+  ]
+}

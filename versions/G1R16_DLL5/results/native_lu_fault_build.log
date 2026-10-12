@@ -1,0 +1,4 @@
+ Assembling: ..\native\vba_fp.asm
+lu_failure_injection.cpp
+   ライブラリ lu_failure_injection.lib とオブジェクト lu_failure_injection.exp を作成中
+PASS 66 allocation-failure points code207; 8 unknown points code208; scoped context no leaks; partial-step cleanup; memory/order/storage/threshold rejection

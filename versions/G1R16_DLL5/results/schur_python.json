@@ -1,0 +1,8 @@
+{
+  "passed": 240,
+  "real_yielded_jobs": 240,
+  "maximum_independent_backward_error": 1.3437744537129643e-16,
+  "live_handles": 0,
+  "dll_sha256": "393dd3b1d6323104b023f0e04c933913e17723b925c0fc3f156ea534ae952af2",
+  "validation_type": "Independent Python matrices/residuals; not VBA bitwise comparison"
+}

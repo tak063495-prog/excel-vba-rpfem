@@ -1,0 +1,165 @@
+{
+  "cases": [
+    {
+      "case": "D07A",
+      "comparison_passed": true,
+      "Fs_obtained": true,
+      "target_met": false,
+      "terminal_status": "PARTIAL_CERTIFIED",
+      "lower": 1.2223035780099496,
+      "upper": 1.3639635115731257,
+      "Fs_bitwise_exact": true,
+      "scope": "Complete coarse search to the same terminal outcome; not full adaptive analysis.",
+      "log_comparison": {
+        "solves": 18,
+        "completed_solves": 18,
+        "audits": 173,
+        "matches": true,
+        "errors": [],
+        "old_sha256": "ab2e83abfbb253c55dedbedbbe15fb3edf4db1e396d0626eb3424b7954c71611",
+        "new_sha256": "e46f210bdcef2b65d6ad8023506ab93c3e3da5d716fde6ff3aaa32ccafd2529e",
+        "maximum_compared_solve_id": null
+      },
+      "same_inputs_mesh": {
+        "要素定義": true,
+        "材料データ": true,
+        "設定": true,
+        "浸透入力": true,
+        "節点データ": true,
+        "要素データ": true
+      },
+      "seconds": {
+        "DLL4_existing": 42.678501899994444,
+        "DLL5_current": 22.092828399996506
+      },
+      "reduction_percent_vs_DLL4": 48.23429263809425,
+      "DLL4_evidence": "versions\\G1R16_DLL4\\results\\d07a_roots_dll4",
+      "DLL5_evidence": "results\\d07a_roots_dll5",
+      "DLL4_native_saved_workbook_sha256": "8fd643ccf07645354197679e0915e4b95885b491bf9a7f56716c0f57c87d5e28",
+      "DLL4_extracted_cells_sha256": "d9e7253044733cfe8a482058ad2ab5aa018921134fa1a198f90f4b0e6145241c",
+      "DLL5_sha256": "393dd3b1d6323104b023f0e04c933913e17723b925c0fc3f156ea534ae952af2"
+    },
+    {
+      "case": "D03N",
+      "comparison_passed": true,
+      "Fs_obtained": true,
+      "target_met": false,
+      "terminal_status": "PARTIAL_CERTIFIED",
+      "lower": 1.117980764587677,
+      "upper": 1.4150393955079879,
+      "Fs_bitwise_exact": true,
+      "scope": "Complete coarse search to the same terminal outcome; not full adaptive analysis.",
+      "log_comparison": {
+        "solves": 31,
+        "completed_solves": 31,
+        "audits": 207,
+        "matches": true,
+        "errors": [],
+        "old_sha256": "960e000b94aac93dcda71d953b7e1ad11cbb38a8c51ecebb0aa40b78252e6f6b",
+        "new_sha256": "fae938a79b8c8b3bd3b1159406086bd74aec98798354f667c278e01dc5464b3a",
+        "maximum_compared_solve_id": null
+      },
+      "same_inputs_mesh": {
+        "要素定義": true,
+        "材料データ": true,
+        "設定": true,
+        "浸透入力": true,
+        "節点データ": true,
+        "要素データ": true
+      },
+      "seconds": {
+        "DLL4_existing": 376.7655963000143,
+        "DLL5_current": 220.47590030002175
+      },
+      "reduction_percent_vs_DLL4": 41.48194461883424,
+      "DLL4_evidence": "versions\\G1R16_DLL4\\results\\d03n_roots_dll4",
+      "DLL5_evidence": "results\\d03n_roots_dll5",
+      "DLL4_native_saved_workbook_sha256": "881b0b6cf0141365d2c1acacac00394e8ff4c2eaac3977cc4b1e5d5de61fc1fe",
+      "DLL4_extracted_cells_sha256": "4e015048e117d08e48dc3d64f0d1a777b9f6a3001e181a37c33664dbfa5bc63a",
+      "DLL5_sha256": "393dd3b1d6323104b023f0e04c933913e17723b925c0fc3f156ea534ae952af2"
+    },
+    {
+      "case": "P06A",
+      "comparison_passed": true,
+      "Fs_obtained": false,
+      "target_met": false,
+      "terminal_status": "CANCELLED",
+      "lower": null,
+      "upper": null,
+      "Fs_bitwise_exact": null,
+      "scope": "Only the first 15 completed solves, Fs>=0.125. Test copy stops before solve16. No final Fs.",
+      "log_comparison": {
+        "solves": 15,
+        "completed_solves": 15,
+        "audits": 166,
+        "matches": true,
+        "errors": [],
+        "old_sha256": "0946a60f8713bd168f43582cfb86e043e1f07505231bacd130e0c28769dd3d8c",
+        "new_sha256": "848e1d5441f862f33748379a2641484a04e1319272019e7c5dfafed9e57ba7b0",
+        "maximum_compared_solve_id": 15
+      },
+      "same_inputs_mesh": {
+        "要素定義": true,
+        "材料データ": true,
+        "設定": true,
+        "浸透入力": true,
+        "節点データ": true,
+        "要素データ": true
+      },
+      "seconds": {
+        "DLL4_existing": 323.392492,
+        "DLL5_current": 197.276108
+      },
+      "reduction_percent_vs_DLL4": 38.997931961883644,
+      "DLL4_evidence": "versions\\G1R16_DLL4\\results\\p06a_roots_dll4",
+      "DLL5_evidence": "results\\p06a_roots_dll5",
+      "DLL4_native_saved_workbook_sha256": "59291bf2012206db49837200d459ae3600ecb6584005975fa7ba78d9b1f56a09",
+      "DLL4_extracted_cells_sha256": "8b8af5193b2ae31e3db92c34915887083d61ea0b5dabc37b61617c2f741eb376",
+      "DLL5_sha256": "393dd3b1d6323104b023f0e04c933913e17723b925c0fc3f156ea534ae952af2"
+    },
+    {
+      "case": "P06N",
+      "comparison_passed": true,
+      "Fs_obtained": false,
+      "target_met": false,
+      "terminal_status": "NUMERICAL_FAILURE",
+      "lower": null,
+      "upper": null,
+      "Fs_bitwise_exact": null,
+      "scope": "Complete coarse search to the same terminal outcome; not full adaptive analysis.",
+      "log_comparison": {
+        "solves": 31,
+        "completed_solves": 31,
+        "audits": 294,
+        "matches": true,
+        "errors": [],
+        "old_sha256": "ce8e14bd2d63d3349d4a48f3ce799c3f778ff062dc5c1eebeaffd331526e31f7",
+        "new_sha256": "e41b9bca8fcf749f1f34184dc641d9f8e6d905c3d54bd1fa02c0e151af9bc7f1",
+        "maximum_compared_solve_id": null
+      },
+      "same_inputs_mesh": {
+        "要素定義": true,
+        "材料データ": true,
+        "設定": true,
+        "浸透入力": true,
+        "節点データ": true,
+        "要素データ": true
+      },
+      "seconds": {
+        "DLL4_existing": 718.0331812000077,
+        "DLL5_current": 420.3322612999764
+      },
+      "reduction_percent_vs_DLL4": 41.46060762853616,
+      "DLL4_evidence": "versions\\G1R16_DLL4\\results\\p06n_roots_dll4",
+      "DLL5_evidence": "results\\p06n_roots_dll5",
+      "DLL4_native_saved_workbook_sha256": "8c44f3b9bf2b9a362545b4b9ece4e1924f4e02492dc2b00d1fae4c047a9ee750",
+      "DLL4_extracted_cells_sha256": "8230ca52cc44c5548a09e57eccd14e24e52ae59acc3368be713d4b01b9c38154",
+      "DLL5_sha256": "393dd3b1d6323104b023f0e04c933913e17723b925c0fc3f156ea534ae952af2"
+    }
+  ],
+  "P06A_full": "NOT_RUN: user stopped full analysis and tiny-Fs exploration.",
+  "P06N_full": "NOT_RUN: no full adaptive P06 run restarted.",
+  "26_case_batch": "NOT_RUN: user interrupted this batch earlier.",
+  "passed_comparisons": 4,
+  "scope": "Same coarse mesh and unchanged Fs policy; identical failures are recorded separately from successful Fs results."
+}

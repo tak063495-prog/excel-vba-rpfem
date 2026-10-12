@@ -1,0 +1,202 @@
+{
+  "q": 8,
+  "target": 256,
+  "FEM": {
+    "C5_45_upper": {
+      "Fs_input": 3.0,
+      "elements": 269,
+      "VBA_DLL4_DLL5_full_field_and_mesh_bitwise_exact": true,
+      "independent_python_audit": {
+        "pass": true,
+        "errors": {
+          "flow": 0.0,
+          "jump": 0.0,
+          "boundary": 1.0435909847380663e-09,
+          "work": 1.7397183693645957e-10,
+          "objective": 2.7755575615628914e-17
+        },
+        "dissipation": 0.24154174112309335,
+        "work": [
+          0.0,
+          0.9999999998260282
+        ],
+        "value": 0.24154174112309335
+      },
+      "seconds": {
+        "vba": 13.388576700002886,
+        "dll4": 6.343416999996407,
+        "dll5": 4.114047999988543
+      },
+      "reduction_percent_vs_DLL4": 35.144607393919195,
+      "final_field_sha256": "2d49540783a34fd7f1d6bd0f2e98bb7fb4e5c235c2f2887bcd3bb91b8d53f735",
+      "final_mesh_sha256": "eeb7440f96d44540f24443e6d2b59bb8d1faf9bc561357a76f81c4b382353d08"
+    },
+    "C5_45_lower": {
+      "Fs_input": 3.0,
+      "elements": 269,
+      "VBA_DLL4_DLL5_full_field_and_mesh_bitwise_exact": true,
+      "independent_python_audit": {
+        "pass": true,
+        "errors": {
+          "yield": 0.0,
+          "equilibrium": 1.7476408131859176e-10,
+          "internal_traction": 4.487360483196312e-11,
+          "boundary_traction": 1.1327873997368386e-11
+        },
+        "load": 0.1879769884768296,
+        "value": 0.1879769884768296
+      },
+      "seconds": {
+        "vba": 19.83796020000591,
+        "dll4": 10.428973400004907,
+        "dll5": 8.142688899999484
+      },
+      "reduction_percent_vs_DLL4": 21.92243102283056,
+      "final_field_sha256": "7c8f2fc5083924af6098a2124c18cb841959bd6bce0d9b1cc6ca77fb9da38de1",
+      "final_mesh_sha256": "eeb7440f96d44540f24443e6d2b59bb8d1faf9bc561357a76f81c4b382353d08"
+    },
+    "P06A_upper": {
+      "Fs_input": 1.0,
+      "elements": 307,
+      "VBA_DLL4_DLL5_full_field_and_mesh_bitwise_exact": true,
+      "independent_python_audit": {
+        "pass": true,
+        "errors": {
+          "flow": 3.332735101684209e-14,
+          "jump": 2.450138426075265e-14,
+          "bonded_interface": 2.579817894229769e-13,
+          "boundary": 2.972605405292506e-13,
+          "work": 4.251377028197112e-12,
+          "objective": 8.881784197001252e-16
+        },
+        "dissipation": 1.0613438125997807,
+        "work": [
+          0.0,
+          0.9999999999957486
+        ],
+        "value": 1.0613438125997807
+      },
+      "seconds": {
+        "vba": 74.59673600000679,
+        "dll4": 20.246506900002714,
+        "dll5": 15.328522700001486
+      },
+      "reduction_percent_vs_DLL4": 24.290531815147677,
+      "final_field_sha256": "b95f1583d99e5cd01f9f02aa6a44a73d4bdb5b4ff1064eeb4237c7a3080ca79b",
+      "final_mesh_sha256": "2fd5311c398b1aac5c99f70dcf54aaae2f6f9dbd9b18e7be7dd632e52792cfe9"
+    },
+    "P06A_lower": {
+      "Fs_input": 1.0,
+      "elements": 307,
+      "VBA_DLL4_DLL5_full_field_and_mesh_bitwise_exact": true,
+      "independent_python_audit": {
+        "pass": true,
+        "errors": {
+          "yield": 4.141726342593514e-12,
+          "equilibrium": 3.583676939467014e-11,
+          "internal_traction": 8.181888155041385e-13,
+          "boundary_traction": 5.534395806308798e-13
+        },
+        "load": 7.870310961913107e-11,
+        "value": 7.870310961913107e-11
+      },
+      "seconds": {
+        "vba": 98.0061732000031,
+        "dll4": 33.620896100008395,
+        "dll5": 20.125136199989356
+      },
+      "reduction_percent_vs_DLL4": 40.14098809227059,
+      "final_field_sha256": "1dd9b04b6e992ce8ce8326e4ccccf7ed8420f5dd5640bfa8dff56f4568328507",
+      "final_mesh_sha256": "2fd5311c398b1aac5c99f70dcf54aaae2f6f9dbd9b18e7be7dd632e52792cfe9"
+    },
+    "P06N_upper": {
+      "Fs_input": 1.0,
+      "elements": 307,
+      "VBA_DLL4_DLL5_full_field_and_mesh_bitwise_exact": true,
+      "independent_python_audit": {
+        "pass": true,
+        "errors": {
+          "flow": 1.0469393675626396e-12,
+          "jump": 9.900983890289138e-13,
+          "bonded_interface": 9.880023041798741e-12,
+          "boundary": 1.1088905623413283e-11,
+          "work": 1.6092094323738593e-10,
+          "objective": 2.220446049250313e-15
+        },
+        "dissipation": 0.8495377190350434,
+        "work": [
+          0.0,
+          0.9999999998390791
+        ],
+        "value": 0.8495377190350434
+      },
+      "seconds": {
+        "vba": 63.25889150000876,
+        "dll4": 17.834314300009282,
+        "dll5": 16.270733800018206
+      },
+      "reduction_percent_vs_DLL4": 8.767258856654003,
+      "final_field_sha256": "23abd32173e442b66effa36a08484450619767577566222ac0060711c79109f5",
+      "final_mesh_sha256": "2fd5311c398b1aac5c99f70dcf54aaae2f6f9dbd9b18e7be7dd632e52792cfe9"
+    },
+    "P06N_lower": {
+      "Fs_input": 1.0,
+      "elements": 307,
+      "VBA_DLL4_DLL5_full_field_and_mesh_bitwise_exact": true,
+      "independent_python_audit": {
+        "pass": true,
+        "errors": {
+          "yield": 1.2433023516995623e-13,
+          "equilibrium": 8.32184792543445e-13,
+          "internal_traction": 2.115678993811793e-14,
+          "boundary_traction": 1.2851716557384428e-14
+        },
+        "load": 1.7778914828033622e-12,
+        "value": 1.7778914828033622e-12
+      },
+      "seconds": {
+        "vba": 81.34395579999546,
+        "dll4": 29.130007499974454,
+        "dll5": 18.246235099999467
+      },
+      "reduction_percent_vs_DLL4": 37.362751794638335,
+      "final_field_sha256": "ac2b450882627ece76090959f20b4cd030ab6fa037ba737928dda68a9da67a22",
+      "final_mesh_sha256": "2fd5311c398b1aac5c99f70dcf54aaae2f6f9dbd9b18e7be7dd632e52792cfe9"
+    }
+  },
+  "HSD_known_SOCP": [
+    {
+      "name": "LDL_CHECKED_0_auto.bin",
+      "actual_VBA_DLL3_DLL5_exact": true,
+      "sha256": "2ae1beb4e53b0070bae95c75b6484259a7a80c4ea24076e509b3cf2ce137b3c7"
+    },
+    {
+      "name": "LDL_CHECKED_1_auto.bin",
+      "actual_VBA_DLL3_DLL5_exact": true,
+      "sha256": "7749add09bcbe3d0a3ba583b5f394127c943ad885c819109ad86e73a8b515bfa"
+    },
+    {
+      "name": "LDL_CHECKED_2_auto.bin",
+      "actual_VBA_DLL3_DLL5_exact": true,
+      "sha256": "e2bd9671c81dc8b57f12b61d3c528f13e33cc55f7e7625a9d5213d0ea781e149"
+    },
+    {
+      "name": "PIVOT_ONLY_0_auto.bin",
+      "actual_VBA_DLL3_DLL5_exact": true,
+      "sha256": "7501941cedd53bc652b0fc8e0265ba6b0069146be008227132fc3a1bc53dbd86"
+    },
+    {
+      "name": "PIVOT_ONLY_1_auto.bin",
+      "actual_VBA_DLL3_DLL5_exact": true,
+      "sha256": "753b18bbc9c1e3c51dd4cc15fa2ec57a7545c81fdb23a06c58c75f5b51dea422"
+    },
+    {
+      "name": "PIVOT_ONLY_2_auto.bin",
+      "actual_VBA_DLL3_DLL5_exact": true,
+      "sha256": "e64a9d0d61b402af60144de174ef75a1fe625c193883560822043d3e97d0010c"
+    }
+  ],
+  "final_DLL5_sha256": "393dd3b1d6323104b023f0e04c933913e17723b925c0fc3f156ea534ae952af2",
+  "passed": true,
+  "scope": "fixed Fs, not final safety-factor search; all vector/mesh bytes compared, not just displayed values"
+}

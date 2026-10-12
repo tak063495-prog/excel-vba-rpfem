@@ -1,0 +1,9 @@
+{
+  "message": "PASS;assertions=18;;input_compare_calls=16",
+  "live_identity": "PASS;cases=12;VBA/native exact;one_ulp,tau,kappa,signed_zero,NaN_payload,array_bounds",
+  "seconds": 0.003314200002932921,
+  "source_sha256": "ee11109c4468916a017a42e75309002ed341491623340658893dd7379306b8f4",
+  "dll_sha256": "393dd3b1d6323104b023f0e04c933913e17723b925c0fc3f156ea534ae952af2",
+  "actual_Excel": true,
+  "security_unmodified": 1
+}

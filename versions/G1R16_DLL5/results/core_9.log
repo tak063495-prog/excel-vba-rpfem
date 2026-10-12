@@ -1,0 +1,14 @@
+COMPILE PASS
+False cancel ERROR 18:ANALYSIS_CANCELLED;status=CANCELLED;hits=1;h=0;r=0;l=0;s=0;k=0;c=0
+False memory ERROR 7:INJECTED_MEMORY;status=CAPACITY_EXCEEDED;hits=1;h=0;r=0;l=0;s=0;k=0;c=0
+False subscript ERROR 9:INJECTED_SUBSCRIPT;status=NUMERICAL_FAILURE;hits=1;h=0;r=0;l=0;s=0;k=0;c=0
+False unknown ERROR 513:INJECTED_UNKNOWN;status=NUMERICAL_FAILURE;hits=1;h=0;r=0;l=0;s=0;k=0;c=0
+False input ERROR 5:INPUT_MISMATCH native_bulk;status=CANCELLED;hits=1;h=0;r=0;l=0;s=0;k=0;c=0
+False normal PASS;objective=1.00000000004586;status=OPTIMAL;hits=1;h=0;r=0;l=0;s=0;k=0;c=0
+True cancel ERROR 18:ANALYSIS_CANCELLED;status=CANCELLED;hits=1;h=0;r=0;l=0;s=0;k=0;c=0
+True memory ERROR 7:INJECTED_MEMORY;status=CAPACITY_EXCEEDED;hits=1;h=0;r=0;l=0;s=0;k=0;c=0
+True subscript ERROR 9:INJECTED_SUBSCRIPT;status=NUMERICAL_FAILURE;hits=1;h=0;r=0;l=0;s=0;k=0;c=0
+True unknown ERROR 513:INJECTED_UNKNOWN;status=NUMERICAL_FAILURE;hits=1;h=0;r=0;l=0;s=0;k=0;c=0
+True input ERROR 5:INPUT_MISMATCH hsd_linear;status=CANCELLED;hits=1;h=0;r=0;l=0;s=0;k=0;c=0
+True normal PASS;objective=0.999999999539072;status=OPTIMAL;hits=1;h=0;r=0;l=0;s=0;k=0;c=0
+Job contracts PASS 12

@@ -1,0 +1,33 @@
+# Build outputs, test workbook copies, diagnostic trials.
+native/*.obj
+delivery/*.lib
+delivery/*.exp
+tests/*.obj
+tests/*.exe
+tests/*.lib
+tests/*.exp
+tools/__pycache__/
+results/**/*.xlsm
+results/**/rpfem_native_x64.dll
+results/working_before_update_*
+results/compile_*
+results/fixed_fem/
+results/fixed_fem_verified/
+results/levee_native/
+results/levee_native_final/
+results/levee_native_checked/
+results/nt_oracle/nttrace*
+results/bulk_oracle/nttrace*
+# One-off development patch builders and superseded numerical witnesses.
+tools/implement_*.py
+tools/add_solver_asm.py
+tools/stop_trial.py
+tools/probe_nt_trace.py
+results/fixed_fem_dll4_initial/
+results/fixed_fem_dll4_refine/
+results/fixed_fem_hlinear/
+results/levee_dll4_initial/
+results/publication_verification.json
+results/fixed_q8_final/
+results/fixed_q8_fused/
+results/p06n_upper_profile/

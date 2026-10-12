@@ -1,0 +1,30 @@
+{
+  "pass": true,
+  "records": {
+    "Schur": {
+      "variables": 98305,
+      "factor_steps": 11,
+      "checked_solve_steps": 43,
+      "actual_yield": true,
+      "owned_rhs": true,
+      "stale_generation_and_handle_reentry_rejected": true,
+      "partly_processed_context_destroyed": true,
+      "three_corrections_four_checks": true,
+      "exact_identity_solution": true,
+      "live_handles": 0
+    },
+    "Krylov": {
+      "variables": 65536,
+      "steps": 183,
+      "actual_yield": true,
+      "owned_rhs_and_answer": true,
+      "interleaved_contexts": true,
+      "partly_processed_context_destroyed": true,
+      "wrong_epoch_factor_reentry_and_stale_id_rejected": true,
+      "accepted_original_DD_gate": true,
+      "residual": 4.200747685363284e-12,
+      "live_handles": 0
+    }
+  },
+  "dll_sha256": "393dd3b1d6323104b023f0e04c933913e17723b925c0fc3f156ea534ae952af2"
+}

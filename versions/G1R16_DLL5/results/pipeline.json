@@ -1,0 +1,56 @@
+{
+  "state": "completed",
+  "dll_sha256": "393dd3b1d6323104b023f0e04c933913e17723b925c0fc3f156ea534ae952af2",
+  "runs": [
+    {
+      "command": "verify_fixed.py",
+      "exit_code": 0,
+      "seconds": 0.12551530002383515,
+      "log": "results\\pipeline_0.log"
+    },
+    {
+      "command": "run_levee.py --backend dll5 --tag levee_dll5_final",
+      "exit_code": 0,
+      "seconds": 149.136516700004,
+      "log": "results\\pipeline_1.log"
+    },
+    {
+      "command": "run_case.py D07A --backend dll5 --tag d07a_roots_dll5",
+      "exit_code": 0,
+      "seconds": 29.90073530000518,
+      "log": "results\\pipeline_2.log"
+    },
+    {
+      "command": "run_case.py D03N --backend dll5 --tag d03n_roots_dll5",
+      "exit_code": 0,
+      "seconds": 228.35253100001137,
+      "log": "results\\pipeline_3.log"
+    },
+    {
+      "command": "run_case.py P06A --backend dll5 --tag p06a_roots_dll5 --minimum-test-fs 0.125",
+      "exit_code": 0,
+      "seconds": 203.88976040002308,
+      "log": "results\\pipeline_4.log"
+    },
+    {
+      "command": "run_case.py P06N --backend dll5 --tag p06n_roots_dll5 --record-lower-bracket-failure",
+      "exit_code": 0,
+      "seconds": 428.3239506999962,
+      "log": "results\\pipeline_5.log"
+    },
+    {
+      "command": "verify_coarse.py",
+      "exit_code": 0,
+      "seconds": 7.0475402000010945,
+      "log": "results\\pipeline_6.log"
+    },
+    {
+      "command": "verify_release.py",
+      "exit_code": 0,
+      "seconds": 67.32951189999585,
+      "log": "results\\pipeline_7.log"
+    }
+  ],
+  "scope": "Fixed q8, fresh full levee, four coarse comparisons only. Full P06, tiny-Fs exploration and interrupted 26-case batch excluded.",
+  "current": "verify_release.py"
+}

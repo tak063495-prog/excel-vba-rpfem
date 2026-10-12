@@ -1,0 +1,18 @@
+{
+  "state": "VALIDATED_READY_FOR_PUBLICATION",
+  "protected_original_files": 1085,
+  "final_dll_sha256": "393dd3b1d6323104b023f0e04c933913e17723b925c0fc3f156ea534ae952af2",
+  "final_xlsm_sha256": "ecc8807bc138506b9fe4bb9c8223325e2313e8cd4112d4a8b58b61c49490a7df",
+  "core_groups_completed": 22,
+  "final_groups_completed": 8,
+  "full_levee": "PASS",
+  "fixed_FEM_and_HSD": "PASS",
+  "coarse_comparisons": 4,
+  "not_run": [
+    "full P06A",
+    "full P06N",
+    "tiny-Fs exploration",
+    "interrupted 26-case batch"
+  ],
+  "user_stop_preferences_preserved": true
+}
