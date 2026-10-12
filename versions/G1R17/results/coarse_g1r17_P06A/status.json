@@ -1,0 +1,16 @@
+{
+  "state": "Fs_obtained",
+  "case": "P06A",
+  "excel_pid": 17868,
+  "source_sha256": "e87a1eecf54e0bf9d3cb5190ea893aac9fcffeb4ec280817b1e5ba02b4b5fc1f",
+  "DLL_SHA256": "72aaf9bfccc0acc186eb69cdcbabd93b27f7ce245ceac574193ba6602c675323",
+  "scope": "P06A coarse TARGET200 q8 ADAPT0 only; no full run",
+  "native_start": "DLL_READY;numeric=0;dd_numeric=0;backsolve=0;ordering=0;column_ordering=0;nt_bulk=0;g_bulk=0;gt_bulk=0;kkt_bulk=0;hsd_operator=0;corrector_bulk=0;bulk_job_steps=0;hsd_lu=0;hsd_lu_solve=0;solver_vector_calls=0;hsd_jobs=0;hsd_job_steps=0;krylov_jobs=0;krylov_steps=0;refine_jobs=0;refine_steps=0;input_compare_calls=0;schur_jobs=0;schur_steps=0;schur_native_bytes=0;meshfan_jobs=0;meshfan_steps=0",
+  "seconds": 330.8209088000003,
+  "lower": 0.7311064349583457,
+  "upper": 1.0285373768400026,
+  "terminal_text": "上下界を取得（目標区間幅またはFs探索許容差は未達）",
+  "native_end": "DLL_READY;numeric=482;dd_numeric=84;backsolve=17;ordering=0;column_ordering=0;nt_bulk=554;g_bulk=255;gt_bulk=1674;kkt_bulk=554;hsd_operator=1142;corrector_bulk=554;bulk_job_steps=15059;hsd_lu=0;hsd_lu_solve=0;solver_vector_calls=11630;hsd_jobs=1674;hsd_job_steps=2501;krylov_jobs=98;krylov_steps=881;refine_jobs=0;refine_steps=0;input_compare_calls=13434;schur_jobs=0;schur_steps=0;schur_native_bytes=0;meshfan_jobs=2;meshfan_steps=2",
+  "dialogs": [],
+  "result_sha256": "d3b6dc0648b899c1958cdc64b14f41ab663f26ed3b2a985091df7c511ab51d24"
+}

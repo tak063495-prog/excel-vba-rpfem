@@ -1,0 +1,5 @@
+issue,cause,fix,evidence
+P06N_FS_LOWER_BRACKET_NOT_FOUND,Obtuse c0 zero-stress fan excludes positive lower load,Geometry-only bisector fan split in VBA and DLL,coarse_g1r17_P06N/status.json
+P06A_ZERO_COARSE_LOWER,Same original243 geometric obstruction,Same case-independent mesh rule,original_P06A_fixed/summary.json;coarse_g1r17_P06A/status.json
+DLL_SUPPORT,Native solver alone cannot alter bad finite-element mesh,Copied resumable native mesh plan; guarded VBA commit; ABI170005,native_meshfan.json;fixed_precision/summary.json
+FALLBACK_ROBUSTNESS,Missing/mismatched DLL must remain usable,Same VBA repair + checked DLL selection; errors propagated,mesh_fallback/summary.json;fan_guards/summary.json

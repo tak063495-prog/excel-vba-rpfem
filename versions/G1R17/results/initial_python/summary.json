@@ -1,0 +1,334 @@
+{
+  "python_version": "3.12.13 (main, Aug  7 2026, 02:26:41) [MSC v.1944 64 bit (AMD64)]",
+  "clarabel_version": "0.11.1",
+  "mesh_id": "fa74f33ba46a7e49cf71e7a00b31864428e86532eb21e2d3d746d3ec97e56b62",
+  "nodes": 146,
+  "elements": 243,
+  "region_areas": [
+    83.75000000000004,
+    11.600000000000003,
+    207.1499999999996
+  ],
+  "total_weight": 5747.500000000001,
+  "policy": {
+    "psi_policy": "hold_initial",
+    "case": "P06N"
+  },
+  "scope": "Same actual243-element coarse mesh; no full adaptive run",
+  "fixed_points": [
+    {
+      "fs": 1.0,
+      "mode": "upper",
+      "fixed_load": null,
+      "status": "AlmostSolved",
+      "objective": 0.8495377566875053,
+      "load": null,
+      "seconds": 0.1553568,
+      "iterations": 24,
+      "eq_error": 1.8990214049575246e-12,
+      "cone_error": 9.102363307533778e-10,
+      "zero_stress_controls": null,
+      "physical_audit": {
+        "pass": true,
+        "errors": {
+          "flow": 3.5433522782568616e-10,
+          "jump": 7.427242886747083e-11,
+          "bonded_interface": 2.68562182612781e-12,
+          "boundary": 8.190763629430387e-13,
+          "work": 4.02267108512433e-12,
+          "objective": 7.771561172376096e-16
+        },
+        "dissipation": 0.8495377566875045,
+        "work": [
+          0.0,
+          0.9999999999959773
+        ],
+        "value": 0.8495377566875045
+      }
+    },
+    {
+      "fs": 1.0,
+      "mode": "lower",
+      "fixed_load": null,
+      "status": "AlmostSolved",
+      "objective": -3.510791897478052e-09,
+      "load": 3.510791897478052e-09,
+      "seconds": 0.1014107,
+      "iterations": 15,
+      "eq_error": 1.0621867594903123e-12,
+      "cone_error": 4.6520857423770514e-10,
+      "zero_stress_controls": 13,
+      "physical_audit": {
+        "pass": true,
+        "errors": {
+          "yield": 4.6520857423770514e-10,
+          "equilibrium": 6.305757672451673e-12,
+          "internal_traction": 8.108188162447783e-13,
+          "boundary_traction": 1.1479699947820997e-13
+        },
+        "load": 3.510791897478052e-09,
+        "value": 3.510791897478052e-09
+      },
+      "outer_polygon_LP": {
+        "status": 0,
+        "message": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+        "seconds": 14.521392199996626,
+        "load": -0.0,
+        "objective": 0.0,
+        "equality_error": 4.759387328689968e-14,
+        "inequality_error": 8.602654448658597e-14,
+        "dual_objective": 0.0,
+        "dual_stationarity_max": 1.7763568394002505e-15,
+        "nonnegative_weights": true,
+        "upper_bound_on_true_lower_lambda": -0.0
+      }
+    },
+    {
+      "fs": 0.5,
+      "mode": "lower",
+      "fixed_load": null,
+      "status": "AlmostSolved",
+      "objective": -1.2354935420186373e-08,
+      "load": 1.2354935420186373e-08,
+      "seconds": 0.1049811,
+      "iterations": 16,
+      "eq_error": 8.681969734664935e-12,
+      "cone_error": 1.1210531306955117e-09,
+      "zero_stress_controls": 13,
+      "physical_audit": {
+        "pass": true,
+        "errors": {
+          "yield": 1.1210531306955117e-09,
+          "equilibrium": 5.1070036640946383e-11,
+          "internal_traction": 6.566825812414927e-12,
+          "boundary_traction": 9.514071504740592e-13
+        },
+        "load": 1.2354935420186373e-08,
+        "value": 1.2354935420186373e-08
+      },
+      "outer_polygon_LP": {
+        "status": 0,
+        "message": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+        "seconds": 6.682626100024208,
+        "load": -0.0,
+        "objective": 0.0,
+        "equality_error": 1.5880968104103665e-12,
+        "inequality_error": 1.3131350334296217e-11,
+        "dual_objective": 0.0,
+        "dual_stationarity_max": 1.3322676295501878e-14,
+        "nonnegative_weights": true,
+        "upper_bound_on_true_lower_lambda": -0.0
+      }
+    },
+    {
+      "fs": 0.125,
+      "mode": "lower",
+      "fixed_load": null,
+      "status": "AlmostSolved",
+      "objective": -5.426704073814685e-11,
+      "load": 5.426704073814685e-11,
+      "seconds": 0.1078558,
+      "iterations": 17,
+      "eq_error": 1.3626925129331522e-13,
+      "cone_error": 3.735234305067719e-12,
+      "zero_stress_controls": 13,
+      "physical_audit": {
+        "pass": true,
+        "errors": {
+          "yield": 3.735234305067719e-12,
+          "equilibrium": 3.190896982405156e-13,
+          "internal_traction": 2.934223108988955e-15,
+          "boundary_traction": 4.241514082742116e-16
+        },
+        "load": 5.426704073814685e-11,
+        "value": 5.426704073814685e-11
+      },
+      "outer_polygon_LP": {
+        "status": 0,
+        "message": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+        "seconds": 11.24192299999413,
+        "load": -0.0,
+        "objective": 0.0,
+        "equality_error": 2.0508822071163557e-11,
+        "inequality_error": 4.440892098500626e-16,
+        "dual_objective": 0.0,
+        "dual_stationarity_max": 3.197442310920451e-14,
+        "nonnegative_weights": true,
+        "upper_bound_on_true_lower_lambda": -0.0
+      }
+    },
+    {
+      "fs": 0.5,
+      "mode": "lower",
+      "fixed_load": 1.0,
+      "status": "PrimalInfeasible",
+      "objective": 0.0,
+      "load": 9.034213808616528e-10,
+      "seconds": 0.0945895,
+      "iterations": 13,
+      "eq_error": 0.9999999990965787,
+      "cone_error": 8.36295805427533e-11,
+      "zero_stress_controls": 13,
+      "infeasibility_certificate": {
+        "stationarity_max": 4.547473508864641e-11,
+        "rhs_dot_dual": -0.9999998983322484,
+        "SOC_dual_error": 0.0
+      }
+    }
+  ],
+  "zero_controls_by_element": [
+    {
+      "element": 0,
+      "material": 2,
+      "vertices": [
+        [
+          26.333333333333332,
+          4.833333333333333
+        ],
+        [
+          26.333333333333332,
+          5.0
+        ],
+        [
+          24.666666666666668,
+          5.0
+        ]
+      ],
+      "zero": [
+        1,
+        2,
+        4
+      ]
+    },
+    {
+      "element": 5,
+      "material": 2,
+      "vertices": [
+        [
+          24.666666666666668,
+          4.666666666666667
+        ],
+        [
+          26.333333333333332,
+          4.833333333333333
+        ],
+        [
+          24.666666666666668,
+          5.0
+        ]
+      ],
+      "zero": [
+        2
+      ]
+    },
+    {
+      "element": 18,
+      "material": 2,
+      "vertices": [
+        [
+          23.0,
+          5.0
+        ],
+        [
+          24.666666666666668,
+          4.666666666666667
+        ],
+        [
+          24.666666666666668,
+          5.0
+        ]
+      ],
+      "zero": [
+        0,
+        2,
+        5
+      ]
+    },
+    {
+      "element": 24,
+      "material": 2,
+      "vertices": [
+        [
+          23.0,
+          5.0
+        ],
+        [
+          22.0,
+          5.833333333333333
+        ],
+        [
+          22.0,
+          5.366666666666666
+        ]
+      ],
+      "zero": [
+        0
+      ]
+    },
+    {
+      "element": 51,
+      "material": 2,
+      "vertices": [
+        [
+          23.0,
+          5.0
+        ],
+        [
+          23.0,
+          4.5
+        ],
+        [
+          24.666666666666668,
+          4.666666666666667
+        ]
+      ],
+      "zero": [
+        0
+      ]
+    },
+    {
+      "element": 56,
+      "material": 2,
+      "vertices": [
+        [
+          26.333333333333332,
+          4.833333333333333
+        ],
+        [
+          28.0,
+          5.0
+        ],
+        [
+          26.333333333333332,
+          5.0
+        ]
+      ],
+      "zero": [
+        1,
+        2,
+        4
+      ]
+    },
+    {
+      "element": 65,
+      "material": 2,
+      "vertices": [
+        [
+          23.0,
+          4.5
+        ],
+        [
+          23.0,
+          5.0
+        ],
+        [
+          22.0,
+          5.366666666666666
+        ]
+      ],
+      "zero": [
+        1
+      ]
+    }
+  ]
+}

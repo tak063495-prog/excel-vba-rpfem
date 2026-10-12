@@ -1,0 +1,12 @@
+native/*.obj
+delivery/*.lib
+delivery/*.exp
+tests/*.obj
+tests/*.exe
+tests/*.lib
+tests/*.exp
+results/**/*.xlsm
+results/**/rpfem_native_x64.dll
+__pycache__/
+*.pyc
+results/publication_verification.json

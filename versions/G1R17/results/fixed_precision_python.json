@@ -1,0 +1,100 @@
+{
+  "points": [
+    {
+      "case": "P06N",
+      "Fs": 0.5,
+      "native_field_audit": {
+        "pass": true,
+        "errors": {
+          "yield": 1.0859282445263366e-13,
+          "equilibrium": 5.38946665074036e-12,
+          "internal_traction": 3.155392613862773e-13,
+          "boundary_traction": 1.698086116164177e-13
+        },
+        "load": 1.6064926886369801,
+        "value": 1.6064926886369801
+      },
+      "python_solution": {
+        "fs": 0.5,
+        "mode": "lower",
+        "fixed_load": null,
+        "status": "AlmostSolved",
+        "objective": -1.6064851566842604,
+        "load": 1.6064851566842604,
+        "seconds": 0.1182672,
+        "iterations": 18,
+        "eq_error": 4.263256414560601e-14,
+        "cone_error": 2.794216980017694e-08,
+        "zero_stress_controls": 14,
+        "solver_primal_obj": -1.6064851566842604,
+        "solver_dual_obj": -1.6065281765188126,
+        "dual_gap": 4.301983455223812e-05,
+        "reduced": false,
+        "reduction_stats": [],
+        "dual_stationarity_max": 1.8786636037344324e-08,
+        "dual_cone_error": 0.0,
+        "physical_audit": {
+          "pass": true,
+          "errors": {
+            "yield": 2.794216980017694e-08,
+            "equilibrium": 4.4986236957811343e-13,
+            "internal_traction": 6.0285110237146e-14,
+            "boundary_traction": 2.6173507805538065e-14
+          },
+          "load": 1.6064851566842604,
+          "value": 1.6064851566842604
+        }
+      },
+      "lambda_difference": -7.531952719741497e-06
+    },
+    {
+      "case": "P06A",
+      "Fs": 0.7,
+      "native_field_audit": {
+        "pass": true,
+        "errors": {
+          "yield": 8.668852691375779e-14,
+          "equilibrium": 4.297895372928906e-12,
+          "internal_traction": 2.5153490401663703e-13,
+          "boundary_traction": 1.354610867920769e-13
+        },
+        "load": 1.5498681306023656,
+        "value": 1.5498681306023656
+      },
+      "python_solution": {
+        "fs": 0.7,
+        "mode": "lower",
+        "fixed_load": null,
+        "status": "AlmostSolved",
+        "objective": -1.5498674148827356,
+        "load": 1.5498674148827356,
+        "seconds": 0.1321608,
+        "iterations": 20,
+        "eq_error": 7.621625552900468e-12,
+        "cone_error": 0.0,
+        "zero_stress_controls": 14,
+        "solver_primal_obj": -1.5498674148827356,
+        "solver_dual_obj": -1.5498711233436422,
+        "dual_gap": 3.708460906581834e-06,
+        "reduced": false,
+        "reduction_stats": [],
+        "dual_stationarity_max": 1.5689848445234886e-08,
+        "dual_cone_error": 0.0,
+        "physical_audit": {
+          "pass": true,
+          "errors": {
+            "yield": 2.7847647917518274e-12,
+            "equilibrium": 2.1972645924961398e-11,
+            "internal_traction": 1.0778600234573332e-11,
+            "boundary_traction": 1.2836537388594138e-12
+          },
+          "load": 1.5498674148827356,
+          "value": 1.5498674148827356
+        }
+      },
+      "lambda_difference": -7.15719630006717e-07
+    }
+  ],
+  "native_field_audits_PASS": true,
+  "scope": "Native fields accepted by independent physical audit. Independent Python solver statuses and audit failures are recorded literally."
+}

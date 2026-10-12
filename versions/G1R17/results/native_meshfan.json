@@ -1,0 +1,54 @@
+{
+  "DLL_sha256": "72aaf9bfccc0acc186eb69cdcbabd93b27f7ce245ceac574193ba6602c675323",
+  "tests": [
+    {
+      "test": "actual",
+      "PASS": true,
+      "split_count": 1,
+      "steps": 9
+    },
+    {
+      "test": "positive_cohesion",
+      "PASS": true,
+      "split_count": 0,
+      "steps": 5
+    },
+    {
+      "test": "no_body_load",
+      "PASS": true,
+      "split_count": 0,
+      "steps": 9
+    },
+    {
+      "test": "loaded_or_fixed_surface",
+      "PASS": true,
+      "split_count": 0,
+      "steps": 5
+    },
+    {
+      "test": "bad_node",
+      "code": 330,
+      "PASS": true
+    },
+    {
+      "test": "bad_flag",
+      "code": 330,
+      "PASS": true
+    },
+    {
+      "test": "bad_loc",
+      "code": 330,
+      "PASS": true
+    },
+    {
+      "test": "nonfinite_geometry",
+      "code": 206,
+      "PASS": true
+    },
+    {
+      "test": "100_cancelled_contexts_no_leak",
+      "PASS": true
+    }
+  ],
+  "PASS": true
+}

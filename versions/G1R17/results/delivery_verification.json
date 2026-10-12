@@ -1,0 +1,46 @@
+{
+  "PASS": true,
+  "protected_originals": 2789,
+  "protected_hashes_match": true,
+  "old_modules": 70,
+  "new_modules": 71,
+  "changed_existing_modules": [
+    "RPX_Mesh",
+    "RPX_Native"
+  ],
+  "added_modules": [
+    "RPX_NativeMesh"
+  ],
+  "unchanged_existing_modules": 68,
+  "changed_native_files": [
+    "build.cmd",
+    "rpfem_meshfan.cpp",
+    "rpfem_native.c",
+    "vba_fp.asm"
+  ],
+  "DLL_sha256": "72aaf9bfccc0acc186eb69cdcbabd93b27f7ce245ceac574193ba6602c675323",
+  "old_DLL_sha256": "393dd3b1d6323104b023f0e04c933913e17723b925c0fc3f156ea534ae952af2",
+  "CP932_CRLF_lossless": true,
+  "workbooks": [
+    {
+      "file": "RPFEM_20261012_G1R17_P06A_Coarse_Checked.xlsm",
+      "sha256": "d3b6dc0648b899c1958cdc64b14f41ab663f26ed3b2a985091df7c511ab51d24",
+      "modules": 71,
+      "source_match": true,
+      "document_modules_unchanged": true,
+      "lower": 0.7311064349583457,
+      "upper": 1.0285373768400026,
+      "settings_coarse": true
+    },
+    {
+      "file": "RPFEM_20261012_G1R17_P06N_Coarse_Checked.xlsm",
+      "sha256": "dcbfdcfb2d4bbcf382f07d237e77d7122185ebe91c4fce59935cb751f04e2fda",
+      "modules": 71,
+      "source_match": true,
+      "document_modules_unchanged": true,
+      "lower": 0.5601486798687134,
+      "upper": 0.882117062283862,
+      "settings_coarse": true
+    }
+  ]
+}

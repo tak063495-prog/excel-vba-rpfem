@@ -1,0 +1,15 @@
+{
+  "PASS": true,
+  "zip": "downloads\\RPFEM_G1R17_20261012.zip",
+  "sha256": "4fd5e3fedfaa6c238f522a7f9e6920d1ac75ac2496a8f30a93c50d97f00af831",
+  "bytes": 8122598,
+  "entries": 635,
+  "workbooks": [
+    "RPFEM_20261012_G1R17_P06A_Coarse_Checked.xlsm",
+    "RPFEM_20261012_G1R17_P06N_Coarse_Checked.xlsm"
+  ],
+  "dlls": [
+    "rpfem_native_x64.dll"
+  ],
+  "manifest_all_files_hashes_match": true
+}

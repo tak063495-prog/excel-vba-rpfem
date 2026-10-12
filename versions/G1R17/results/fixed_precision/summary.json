@@ -1,0 +1,37 @@
+{
+  "rows": [
+    {
+      "case": "P06N",
+      "Fs": 0.5,
+      "side": "lower",
+      "vba": {
+        "result": "PASS;side=lower;Fs=0.5;load=1.60649268863698;iteration=24;audit=5.38957767304282E-12;elements=245;engine=HSD_C0;VBA_SELECTED;numeric=0;dd_numeric=0;backsolve=0;ordering=0;column_ordering=0;nt_bulk=0;g_bulk=0;gt_bulk=0;kkt_bulk=0;hsd_operator=0;corrector_bulk=0;bulk_job_steps=0;hsd_lu=0;hsd_lu_solve=0;solver_vector_calls=0;hsd_jobs=0;hsd_job_steps=0;krylov_jobs=0;krylov_steps=0;refine_jobs=0;refine_steps=0;input_compare_calls=0;schur_jobs=0;schur_steps=0;schur_native_bytes=0;meshfan_jobs=0;meshfan_steps=0",
+        "seconds": 116.15244910001638
+      },
+      "auto": {
+        "result": "PASS;side=lower;Fs=0.5;load=1.60649268863698;iteration=24;audit=5.38957767304282E-12;elements=245;engine=HSD_C0;DLL_READY;numeric=14;dd_numeric=11;backsolve=0;ordering=0;column_ordering=0;nt_bulk=24;g_bulk=23;gt_bulk=73;kkt_bulk=24;hsd_operator=48;corrector_bulk=24;bulk_job_steps=660;hsd_lu=0;hsd_lu_solve=0;solver_vector_calls=498;hsd_jobs=73;hsd_job_steps=100;krylov_jobs=12;krylov_steps=99;refine_jobs=0;refine_steps=0;input_compare_calls=0;schur_jobs=0;schur_steps=0;schur_native_bytes=0;meshfan_jobs=2;meshfan_steps=2",
+        "seconds": 18.274307599989697
+      },
+      "mesh_bitwise_exact": true,
+      "field_bitwise_exact": true,
+      "old_DLL5_repaired_mesh_field_bitwise_exact": true
+    },
+    {
+      "case": "P06A",
+      "Fs": 0.7,
+      "side": "lower",
+      "vba": {
+        "result": "PASS;side=lower;Fs=0.7;load=1.54986813060237;iteration=24;audit=4.29713209459948E-12;elements=245;engine=HSD_C0;VBA_SELECTED;numeric=0;dd_numeric=0;backsolve=0;ordering=0;column_ordering=0;nt_bulk=0;g_bulk=0;gt_bulk=0;kkt_bulk=0;hsd_operator=0;corrector_bulk=0;bulk_job_steps=0;hsd_lu=0;hsd_lu_solve=0;solver_vector_calls=0;hsd_jobs=0;hsd_job_steps=0;krylov_jobs=0;krylov_steps=0;refine_jobs=0;refine_steps=0;input_compare_calls=0;schur_jobs=0;schur_steps=0;schur_native_bytes=0;meshfan_jobs=0;meshfan_steps=0",
+        "seconds": 109.18670099999872
+      },
+      "auto": {
+        "result": "PASS;side=lower;Fs=0.7;load=1.54986813060237;iteration=24;audit=4.29713209459948E-12;elements=245;engine=HSD_C0;DLL_READY;numeric=14;dd_numeric=11;backsolve=1;ordering=0;column_ordering=0;nt_bulk=24;g_bulk=23;gt_bulk=73;kkt_bulk=24;hsd_operator=50;corrector_bulk=24;bulk_job_steps=668;hsd_lu=0;hsd_lu_solve=0;solver_vector_calls=497;hsd_jobs=73;hsd_job_steps=102;krylov_jobs=11;krylov_steps=92;refine_jobs=0;refine_steps=0;input_compare_calls=0;schur_jobs=0;schur_steps=0;schur_native_bytes=0;meshfan_jobs=2;meshfan_steps=2",
+        "seconds": 17.818252299999585
+      },
+      "mesh_bitwise_exact": true,
+      "field_bitwise_exact": true
+    }
+  ],
+  "PASS": true,
+  "DLL_sha256": "72aaf9bfccc0acc186eb69cdcbabd93b27f7ce245ceac574193ba6602c675323"
+}

@@ -1,0 +1,9 @@
+{
+  "case": "P06A",
+  "Fs": 0.5,
+  "side": "lower",
+  "result": "PASS;side=lower;Fs=0.5;load=1.07400023240042E-10;iteration=20;audit=1.1717150298607E-11;elements=243;engine=HSD_C0;DLL_READY;numeric=14;dd_numeric=7;backsolve=0;ordering=0;column_ordering=0;nt_bulk=20;g_bulk=19;gt_bulk=61;kkt_bulk=20;hsd_operator=40;corrector_bulk=20;bulk_job_steps=552;hsd_lu=0;hsd_lu_solve=0;solver_vector_calls=425;hsd_jobs=61;hsd_job_steps=76;krylov_jobs=6;krylov_steps=43;refine_jobs=0;refine_steps=0;input_compare_calls=0;schur_jobs=0;schur_steps=0;schur_native_bytes=0",
+  "seconds": 15.765553500008537,
+  "DLL_sha256": "393dd3b1d6323104b023f0e04c933913e17723b925c0fc3f156ea534ae952af2",
+  "scope": "Original243 mesh; one fixed point only; full/Fs search not run"
+}

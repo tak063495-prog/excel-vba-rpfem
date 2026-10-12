@@ -1,0 +1,440 @@
+{
+  "experiments": [
+    {
+      "name": "centroid65",
+      "elements": 245,
+      "mesh_id": "88745f8a257cf9f852fc5fde7cf3a12bceee21a712335df3614a19f205cbe605",
+      "points": [
+        {
+          "fs": 1.0,
+          "mode": "lower",
+          "fixed_load": null,
+          "status": "AlmostSolved",
+          "objective": -7.69190885057671e-08,
+          "load": 7.69190885057671e-08,
+          "seconds": 0.1029307,
+          "iterations": 15,
+          "eq_error": 1.4144894824908306e-11,
+          "cone_error": 4.211804840090376e-09,
+          "zero_stress_controls": 14,
+          "physical_audit": {
+            "pass": true,
+            "errors": {
+              "yield": 4.211804840090376e-09,
+              "equilibrium": 2.319438095563683e-10,
+              "internal_traction": 1.5872975235133105e-11,
+              "boundary_traction": 2.2170569844586e-12
+            },
+            "load": 7.69190885057671e-08,
+            "value": 7.69190885057671e-08
+          }
+        },
+        {
+          "fs": 0.5,
+          "mode": "lower",
+          "fixed_load": null,
+          "status": "AlmostSolved",
+          "objective": -1.4848791470740963,
+          "load": 1.4848791470740963,
+          "seconds": 0.1457446,
+          "iterations": 23,
+          "eq_error": 3.800265657716295e-12,
+          "cone_error": 0.0,
+          "zero_stress_controls": 14,
+          "physical_audit": {
+            "pass": true,
+            "errors": {
+              "yield": 6.417637245357961e-12,
+              "equilibrium": 5.1249671173536626e-11,
+              "internal_traction": 5.374367617605458e-12,
+              "boundary_traction": 2.4531765507873615e-12
+            },
+            "load": 1.4848791470740963,
+            "value": 1.4848791470740963
+          }
+        },
+        {
+          "fs": 0.125,
+          "mode": "lower",
+          "fixed_load": null,
+          "status": "AlmostSolved",
+          "objective": -116.52610517698011,
+          "load": 116.52610517698011,
+          "seconds": 0.1021949,
+          "iterations": 15,
+          "eq_error": 1.1488730955128694e-12,
+          "cone_error": 0.0,
+          "zero_stress_controls": 14,
+          "physical_audit": {
+            "pass": true,
+            "errors": {
+              "yield": 2.228433457271538e-16,
+              "equilibrium": 1.3571366253017914e-12,
+              "internal_traction": 6.821210263296962e-13,
+              "boundary_traction": 1.1488730955128694e-12
+            },
+            "load": 116.52610517698011,
+            "value": 116.52610517698011
+          }
+        }
+      ],
+      "upper_at_1": {
+        "fs": 1.0,
+        "mode": "upper",
+        "fixed_load": null,
+        "status": "AlmostSolved",
+        "objective": 0.8253862355483175,
+        "load": null,
+        "seconds": 0.1483492,
+        "iterations": 23,
+        "eq_error": 1.8122921130866446e-11,
+        "cone_error": 1.3129039334496825e-08,
+        "zero_stress_controls": null,
+        "physical_audit": {
+          "pass": true,
+          "errors": {
+            "flow": 6.004609804057676e-09,
+            "jump": 1.8543980736619867e-09,
+            "bonded_interface": 2.5629680853087356e-11,
+            "boundary": 1.3234177188898971e-11,
+            "work": 7.623235376286175e-12,
+            "objective": 5.551115123125783e-16
+          },
+          "dissipation": 0.8253862355483169,
+          "work": [
+            0.0,
+            0.9999999999923768
+          ],
+          "value": 0.8253862355483169
+        }
+      }
+    },
+    {
+      "name": "centroid51",
+      "elements": 245,
+      "mesh_id": "c2bc82acd5a6c7196b777d19b536adf36ec8022dee75c3d78726454e1395cc1a",
+      "points": [
+        {
+          "fs": 1.0,
+          "mode": "lower",
+          "fixed_load": null,
+          "status": "Solved",
+          "objective": -1.739162258563115e-13,
+          "load": 1.739162258563115e-13,
+          "seconds": 0.1152983,
+          "iterations": 17,
+          "eq_error": 8.806782694363852e-16,
+          "cone_error": 1.1855959294030861e-14,
+          "zero_stress_controls": 14,
+          "physical_audit": {
+            "pass": true,
+            "errors": {
+              "yield": 1.1855959294030863e-14,
+              "equilibrium": 2.0617188511984352e-15,
+              "internal_traction": 4.163336342344337e-17,
+              "boundary_traction": 1.4190749768475046e-17
+            },
+            "load": 1.739162258563115e-13,
+            "value": 1.739162258563115e-13
+          }
+        },
+        {
+          "fs": 0.5,
+          "mode": "lower",
+          "fixed_load": null,
+          "status": "AlmostSolved",
+          "objective": -1.0502751854874995e-05,
+          "load": 1.0502751854874995e-05,
+          "seconds": 0.1269005,
+          "iterations": 19,
+          "eq_error": 3.3934940764221196e-11,
+          "cone_error": 5.365326462040027e-08,
+          "zero_stress_controls": 14,
+          "physical_audit": {
+            "pass": true,
+            "errors": {
+              "yield": 5.3653264620400695e-08,
+              "equilibrium": 2.403611851671132e-10,
+              "internal_traction": 2.5933557505699533e-11,
+              "boundary_traction": 4.285736154594542e-12
+            },
+            "load": 1.0502751854874995e-05,
+            "value": 1.0502751854874995e-05
+          }
+        },
+        {
+          "fs": 0.125,
+          "mode": "lower",
+          "fixed_load": null,
+          "status": "AlmostSolved",
+          "objective": -116.52758980855742,
+          "load": 116.52758980855742,
+          "seconds": 0.1078497,
+          "iterations": 16,
+          "eq_error": 2.7711166694643907e-13,
+          "cone_error": 0.0,
+          "zero_stress_controls": 14,
+          "physical_audit": {
+            "pass": true,
+            "errors": {
+              "yield": 3.4430494028625306e-18,
+              "equilibrium": 1.1510792319313623e-12,
+              "internal_traction": 3.410605131648481e-13,
+              "boundary_traction": 3.6653958339877756e-14
+            },
+            "load": 116.52758980855742,
+            "value": 116.52758980855742
+          }
+        }
+      ],
+      "upper_at_1": {
+        "fs": 1.0,
+        "mode": "upper",
+        "fixed_load": null,
+        "status": "AlmostSolved",
+        "objective": 0.8495382782481511,
+        "load": null,
+        "seconds": 0.1395478,
+        "iterations": 21,
+        "eq_error": 4.191878527291154e-13,
+        "cone_error": 7.808624911578929e-09,
+        "zero_stress_controls": null,
+        "physical_audit": {
+          "pass": true,
+          "errors": {
+            "flow": 3.5954175653014794e-09,
+            "jump": 1.1156073857286476e-09,
+            "bonded_interface": 2.6270167495408243e-13,
+            "boundary": 4.191878527291154e-13,
+            "work": 1.8762769116165146e-14,
+            "objective": 5.773159728050814e-15
+          },
+          "dissipation": 0.8495382782481453,
+          "work": [
+            0.0,
+            0.9999999999999812
+          ],
+          "value": 0.8495382782481453
+        }
+      }
+    },
+    {
+      "name": "centroid18_51_65",
+      "elements": 249,
+      "mesh_id": "c3249e3b1178f1d8275a4135a8b3db572073763cc21ffe79c7fbda99cefde03a",
+      "points": [
+        {
+          "fs": 1.0,
+          "mode": "lower",
+          "fixed_load": null,
+          "status": "AlmostSolved",
+          "objective": -1.8141662972813065e-09,
+          "load": 1.8141662972813065e-09,
+          "seconds": 0.1276094,
+          "iterations": 18,
+          "eq_error": 1.0313084565166931e-13,
+          "cone_error": 6.127782124800061e-11,
+          "zero_stress_controls": 17,
+          "physical_audit": {
+            "pass": true,
+            "errors": {
+              "yield": 6.127782124800061e-11,
+              "equilibrium": 2.0272025641211176e-12,
+              "internal_traction": 5.776360978059569e-14,
+              "boundary_traction": 7.750164683709237e-15
+            },
+            "load": 1.8141662972813065e-09,
+            "value": 1.8141662972813065e-09
+          }
+        },
+        {
+          "fs": 0.5,
+          "mode": "lower",
+          "fixed_load": null,
+          "status": "AlmostSolved",
+          "objective": -1.6709667031455737,
+          "load": 1.6709667031455737,
+          "seconds": 0.1445852,
+          "iterations": 22,
+          "eq_error": 3.2507330161024584e-13,
+          "cone_error": 0.0,
+          "zero_stress_controls": 17,
+          "physical_audit": {
+            "pass": true,
+            "errors": {
+              "yield": 4.852876171887639e-13,
+              "equilibrium": 5.639932965095795e-12,
+              "internal_traction": 2.5702356909462765e-13,
+              "boundary_traction": 3.2507330161024584e-13
+            },
+            "load": 1.6709667031455737,
+            "value": 1.6709667031455737
+          }
+        },
+        {
+          "fs": 0.125,
+          "mode": "lower",
+          "fixed_load": null,
+          "status": "AlmostSolved",
+          "objective": -116.52782791286151,
+          "load": 116.52782791286151,
+          "seconds": 0.1246462,
+          "iterations": 19,
+          "eq_error": 5.425620170029788e-05,
+          "cone_error": 0.0,
+          "zero_stress_controls": 17,
+          "physical_audit": {
+            "pass": false,
+            "errors": {
+              "yield": 4.028465463245209e-16,
+              "equilibrium": 0.0001375661714533294,
+              "internal_traction": 3.416152695874611e-13,
+              "boundary_traction": 9.91166991966111e-13
+            },
+            "load": 116.52782791286151,
+            "value": 116.52782791286151
+          }
+        }
+      ],
+      "upper_at_1": {
+        "fs": 1.0,
+        "mode": "upper",
+        "fixed_load": null,
+        "status": "AlmostSolved",
+        "objective": 0.8253854312888744,
+        "load": null,
+        "seconds": 0.1683048,
+        "iterations": 25,
+        "eq_error": 4.2979945070141804e-13,
+        "cone_error": 3.471096835053934e-10,
+        "zero_stress_controls": null,
+        "physical_audit": {
+          "pass": true,
+          "errors": {
+            "flow": 1.5855004525263247e-10,
+            "jump": 4.9964189013132225e-11,
+            "bonded_interface": 5.954280574367339e-13,
+            "boundary": 4.2979945070141804e-13,
+            "work": 3.397282455352979e-14,
+            "objective": 2.3314683517128287e-15
+          },
+          "dissipation": 0.8253854312888721,
+          "work": [
+            0.0,
+            1.000000000000034
+          ],
+          "value": 0.8253854312888721
+        }
+      }
+    },
+    {
+      "name": "flip18_51",
+      "elements": 243,
+      "mesh_id": "d68e37330176028b5110f95a2170f68d61dfa6aca325bd0af270fc1cc4818bc1",
+      "points": [
+        {
+          "fs": 1.0,
+          "mode": "lower",
+          "fixed_load": null,
+          "status": "AlmostSolved",
+          "objective": -2.5537850556268823e-09,
+          "load": 2.5537850556268823e-09,
+          "seconds": 0.1002528,
+          "iterations": 14,
+          "eq_error": 5.546430946603461e-13,
+          "cone_error": 3.9657893618490376e-10,
+          "zero_stress_controls": 13,
+          "physical_audit": {
+            "pass": true,
+            "errors": {
+              "yield": 3.9657893618490376e-10,
+              "equilibrium": 3.289767160125402e-12,
+              "internal_traction": 3.864728441576932e-13,
+              "boundary_traction": 2.1640888521687387e-13
+            },
+            "load": 2.5537850556268823e-09,
+            "value": 2.5537850556268823e-09
+          }
+        },
+        {
+          "fs": 0.5,
+          "mode": "lower",
+          "fixed_load": null,
+          "status": "AlmostSolved",
+          "objective": -5.413892559079166e-09,
+          "load": 5.413892559079166e-09,
+          "seconds": 0.1062751,
+          "iterations": 15,
+          "eq_error": 2.3752020274443326e-12,
+          "cone_error": 5.969318013926487e-10,
+          "zero_stress_controls": 13,
+          "physical_audit": {
+            "pass": true,
+            "errors": {
+              "yield": 5.969318013926488e-10,
+              "equilibrium": 1.4101143213196842e-11,
+              "internal_traction": 1.6610869633963827e-12,
+              "boundary_traction": 9.233622562103932e-13
+            },
+            "load": 5.413892559079166e-09,
+            "value": 5.413892559079166e-09
+          }
+        },
+        {
+          "fs": 0.125,
+          "mode": "lower",
+          "fixed_load": null,
+          "status": "AlmostSolved",
+          "objective": -1.8228037250763443e-11,
+          "load": 1.8228037250763443e-11,
+          "seconds": 0.1173935,
+          "iterations": 18,
+          "eq_error": 3.135807111563705e-15,
+          "cone_error": 1.4941020347457097e-12,
+          "zero_stress_controls": 13,
+          "physical_audit": {
+            "pass": true,
+            "errors": {
+              "yield": 1.4941020347457101e-12,
+              "equilibrium": 1.851985486130387e-14,
+              "internal_traction": 2.213724330653106e-15,
+              "boundary_traction": 1.208549118633746e-15
+            },
+            "load": 1.8228037250763443e-11,
+            "value": 1.8228037250763443e-11
+          }
+        }
+      ],
+      "upper_at_1": {
+        "fs": 1.0,
+        "mode": "upper",
+        "fixed_load": null,
+        "status": "AlmostSolved",
+        "objective": 0.849537834984479,
+        "load": null,
+        "seconds": 0.1550406,
+        "iterations": 24,
+        "eq_error": 4.038938148441969e-12,
+        "cone_error": 1.8346160146620605e-09,
+        "zero_stress_controls": null,
+        "physical_audit": {
+          "pass": true,
+          "errors": {
+            "flow": 7.229925636312809e-10,
+            "jump": 2.204798995383519e-10,
+            "bonded_interface": 5.7119211071124345e-12,
+            "boundary": 2.286740474172548e-12,
+            "work": 2.90878432451791e-14,
+            "objective": 2.886579864025407e-15
+          },
+          "dissipation": 0.8495378349844819,
+          "work": [
+            0.0,
+            1.000000000000029
+          ],
+          "value": 0.8495378349844819
+        }
+      }
+    }
+  ]
+}

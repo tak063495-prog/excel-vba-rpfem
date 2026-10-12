@@ -1,0 +1,101 @@
+{
+  "trials": [
+    {
+      "fs": 0.5,
+      "mode": "lower",
+      "fixed_load": null,
+      "status": "NumericalError",
+      "objective": -1.5959853723615616,
+      "load": 1.5959853723615616,
+      "seconds": 0.1000748,
+      "iterations": 13,
+      "eq_error": 7.66053886991358e-15,
+      "cone_error": 0.0,
+      "zero_stress_controls": 14,
+      "solver_primal_obj": -1.5959853723615616,
+      "solver_dual_obj": -1.6233858289382674,
+      "dual_gap": 0.027400456576705867,
+      "reduced": false,
+      "reduction_stats": [],
+      "settings": {
+        "static_regularization_constant": 1e-10,
+        "dynamic_regularization_eps": 1e-15,
+        "dynamic_regularization_delta": 1e-10,
+        "iterative_refinement_max_iter": 30
+      }
+    },
+    {
+      "fs": 0.5,
+      "mode": "lower",
+      "fixed_load": null,
+      "status": "NumericalError",
+      "objective": -0.17245208380983157,
+      "load": 0.17245208380983157,
+      "seconds": 0.0546538,
+      "iterations": 6,
+      "eq_error": 7.216449660063518e-16,
+      "cone_error": 0.0,
+      "zero_stress_controls": 14,
+      "solver_primal_obj": -0.17245208380983157,
+      "solver_dual_obj": -1.0062158293492725,
+      "dual_gap": 0.8337637455394409,
+      "reduced": false,
+      "reduction_stats": [],
+      "settings": {
+        "static_regularization_constant": 1e-12,
+        "dynamic_regularization_eps": 1e-15,
+        "dynamic_regularization_delta": 1e-10,
+        "iterative_refinement_max_iter": 30
+      }
+    },
+    {
+      "fs": 0.5,
+      "mode": "lower",
+      "fixed_load": null,
+      "status": "NumericalError",
+      "objective": -0.06583244379438047,
+      "load": 0.06583244379438047,
+      "seconds": 0.0454504,
+      "iterations": 4,
+      "eq_error": 5.689893001203927e-16,
+      "cone_error": 0.009581556244237417,
+      "zero_stress_controls": 14,
+      "solver_primal_obj": -0.06583244379438047,
+      "solver_dual_obj": -9.886399158241465,
+      "dual_gap": 9.820566714447084,
+      "reduced": false,
+      "reduction_stats": [],
+      "settings": {
+        "static_regularization_constant": 1e-14,
+        "dynamic_regularization_eps": 1e-15,
+        "dynamic_regularization_delta": 1e-10,
+        "iterative_refinement_max_iter": 30
+      }
+    },
+    {
+      "fs": 0.5,
+      "mode": "lower",
+      "fixed_load": null,
+      "status": "NumericalError",
+      "objective": -1.591631168471711,
+      "load": 1.591631168471711,
+      "seconds": 0.0854151,
+      "iterations": 13,
+      "eq_error": 5.5752953575223466e-12,
+      "cone_error": 0.0,
+      "zero_stress_controls": 14,
+      "solver_primal_obj": -1.591631168471711,
+      "solver_dual_obj": -1.6331030526517343,
+      "dual_gap": 0.04147188418002323,
+      "reduced": false,
+      "reduction_stats": [],
+      "settings": {
+        "static_regularization_constant": 1e-16,
+        "dynamic_regularization_eps": 1e-15,
+        "dynamic_regularization_delta": 1e-10,
+        "iterative_refinement_max_iter": 30
+      }
+    }
+  ],
+  "scope": "Independent solver settings only; production VBA/DLL tolerances unchanged"
+}

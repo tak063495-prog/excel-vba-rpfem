@@ -1,0 +1,97 @@
+{
+  "rows": [
+    {
+      "mode": "vba",
+      "test": "cancel",
+      "expected_error": 18,
+      "result": "ERROR 18:ANALYSIS_CANCELLED;nodes_unchanged=True;elements_unchanged=True",
+      "PASS": true
+    },
+    {
+      "mode": "vba",
+      "test": "phase",
+      "expected_error": 5,
+      "result": "ERROR 5:ZERO_STRESS_FAN_LOAD_PHASE;nodes_unchanged=True;elements_unchanged=True",
+      "PASS": true
+    },
+    {
+      "mode": "vba",
+      "test": "input",
+      "expected_error": 5,
+      "result": "ERROR 5:INPUT_MISMATCH zero_stress_fan_begin;nodes_unchanged=True;elements_unchanged=True",
+      "PASS": true
+    },
+    {
+      "mode": "vba",
+      "test": "capacity",
+      "expected_error": 7,
+      "result": "ERROR 7:ZERO_STRESS_FAN_CAPACITY;nodes_unchanged=True;elements_unchanged=True",
+      "PASS": true
+    },
+    {
+      "mode": "vba",
+      "test": "subscript",
+      "expected_error": 9,
+      "result": "ERROR 9:インデックスが有効範囲にありません。;nodes_unchanged=True;elements_unchanged=True",
+      "PASS": true
+    },
+    {
+      "mode": "auto",
+      "test": "cancel",
+      "expected_error": 18,
+      "result": "ERROR 18:ANALYSIS_CANCELLED;nodes_unchanged=True;elements_unchanged=True",
+      "PASS": true
+    },
+    {
+      "mode": "auto",
+      "test": "phase",
+      "expected_error": 5,
+      "result": "ERROR 5:ZERO_STRESS_FAN_LOAD_PHASE;nodes_unchanged=True;elements_unchanged=True",
+      "PASS": true
+    },
+    {
+      "mode": "auto",
+      "test": "input",
+      "expected_error": 5,
+      "result": "ERROR 5:INPUT_MISMATCH zero_stress_fan_begin;nodes_unchanged=True;elements_unchanged=True",
+      "PASS": true
+    },
+    {
+      "mode": "auto",
+      "test": "capacity",
+      "expected_error": 7,
+      "result": "ERROR 7:ZERO_STRESS_FAN_CAPACITY;nodes_unchanged=True;elements_unchanged=True",
+      "PASS": true
+    },
+    {
+      "mode": "auto",
+      "test": "subscript",
+      "expected_error": 9,
+      "result": "ERROR 9:NATIVE_ARRAY_SHAPE_MISMATCH;nodes_unchanged=True;elements_unchanged=True",
+      "PASS": true
+    },
+    {
+      "mode": "auto",
+      "test": "native_memory",
+      "expected_error": 7,
+      "result": "ERROR 7:INJECTED_NATIVE_JOB_FAILURE;nodes_unchanged=True;elements_unchanged=True",
+      "PASS": true
+    },
+    {
+      "mode": "auto",
+      "test": "native_unknown",
+      "expected_error": 513,
+      "result": "ERROR 513:INJECTED_NATIVE_JOB_FAILURE;nodes_unchanged=True;elements_unchanged=True",
+      "PASS": true
+    },
+    {
+      "mode": "auto",
+      "test": "native_cancel",
+      "expected_error": 18,
+      "result": "ERROR 18:INJECTED_NATIVE_JOB_FAILURE;nodes_unchanged=True;elements_unchanged=True",
+      "PASS": true
+    }
+  ],
+  "PASS": true,
+  "scope": "Actual Excel test-only injection, before mesh mutation. Production source contains no hooks."
+}

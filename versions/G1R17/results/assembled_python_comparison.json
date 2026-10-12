@@ -1,0 +1,74 @@
+{
+  "rows": [
+    {
+      "case": "P06N",
+      "version": "old",
+      "nodes": 146,
+      "elements": 243,
+      "Fs": 0.5,
+      "variables": 4375,
+      "equations": 3696,
+      "cones": 1445,
+      "max_coefficient_errors": {
+        "E": 2.220446049250313e-16,
+        "b": 0.0,
+        "G": 1.1102230246251565e-16,
+        "h": 4.440892098500626e-16
+      },
+      "PASS": true
+    },
+    {
+      "case": "P06N",
+      "version": "new",
+      "nodes": 147,
+      "elements": 245,
+      "Fs": 0.5,
+      "variables": 4411,
+      "equations": 3729,
+      "cones": 1456,
+      "max_coefficient_errors": {
+        "E": 2.220446049250313e-16,
+        "b": 0.0,
+        "G": 1.1102230246251565e-16,
+        "h": 4.440892098500626e-16
+      },
+      "PASS": true
+    },
+    {
+      "case": "P06A",
+      "version": "old",
+      "nodes": 146,
+      "elements": 243,
+      "Fs": 0.5,
+      "variables": 4375,
+      "equations": 3696,
+      "cones": 1445,
+      "max_coefficient_errors": {
+        "E": 2.220446049250313e-16,
+        "b": 0.0,
+        "G": 1.1102230246251565e-16,
+        "h": 0.0
+      },
+      "PASS": true
+    },
+    {
+      "case": "P06A",
+      "version": "new",
+      "nodes": 147,
+      "elements": 245,
+      "Fs": 0.5,
+      "variables": 4411,
+      "equations": 3729,
+      "cones": 1456,
+      "max_coefficient_errors": {
+        "E": 2.220446049250313e-16,
+        "b": 0.0,
+        "G": 1.1102230246251565e-16,
+        "h": 0.0
+      },
+      "PASS": true
+    }
+  ],
+  "PASS": true,
+  "scope": "Four native VBA exports. Exact binary geometry; same MC/Davis/Fs. Compare normalized equations because Python normalizes them."
+}

@@ -1,0 +1,14 @@
+COMPILE PASS
+vba cancel ERROR 18:ANALYSIS_CANCELLED;nodes_unchanged=True;elements_unchanged=True
+vba phase ERROR 5:ZERO_STRESS_FAN_LOAD_PHASE;nodes_unchanged=True;elements_unchanged=True
+vba input ERROR 5:INPUT_MISMATCH zero_stress_fan_begin;nodes_unchanged=True;elements_unchanged=True
+vba capacity ERROR 7:ZERO_STRESS_FAN_CAPACITY;nodes_unchanged=True;elements_unchanged=True
+vba subscript ERROR 9:インデックスが有効範囲にありません。;nodes_unchanged=True;elements_unchanged=True
+auto cancel ERROR 18:ANALYSIS_CANCELLED;nodes_unchanged=True;elements_unchanged=True
+auto phase ERROR 5:ZERO_STRESS_FAN_LOAD_PHASE;nodes_unchanged=True;elements_unchanged=True
+auto input ERROR 5:INPUT_MISMATCH zero_stress_fan_begin;nodes_unchanged=True;elements_unchanged=True
+auto capacity ERROR 7:ZERO_STRESS_FAN_CAPACITY;nodes_unchanged=True;elements_unchanged=True
+auto subscript ERROR 9:NATIVE_ARRAY_SHAPE_MISMATCH;nodes_unchanged=True;elements_unchanged=True
+auto native_memory ERROR 7:INJECTED_NATIVE_JOB_FAILURE;nodes_unchanged=True;elements_unchanged=True
+auto native_unknown ERROR 513:INJECTED_NATIVE_JOB_FAILURE;nodes_unchanged=True;elements_unchanged=True
+auto native_cancel ERROR 18:INJECTED_NATIVE_JOB_FAILURE;nodes_unchanged=True;elements_unchanged=True

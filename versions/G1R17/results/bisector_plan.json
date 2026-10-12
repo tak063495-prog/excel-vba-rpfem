@@ -1,0 +1,113 @@
+{
+  "nodes": 147,
+  "elements": 245,
+  "changes": [
+    {
+      "element": 65,
+      "vertex": 1,
+      "point": [
+        22.84026610599239,
+        4.888436041473261
+      ]
+    }
+  ],
+  "repeat_changes": [],
+  "fixed_points": [
+    {
+      "fs": 1.0,
+      "mode": "lower",
+      "fixed_load": null,
+      "status": "AlmostSolved",
+      "objective": -4.020053868817562e-09,
+      "load": 4.020053868817562e-09,
+      "seconds": 0.1216708,
+      "iterations": 17,
+      "eq_error": 6.366041647563172e-13,
+      "cone_error": 2.0455601697124553e-10,
+      "zero_stress_controls": 14,
+      "physical_audit": {
+        "pass": true,
+        "errors": {
+          "yield": 2.0455601697124574e-10,
+          "equilibrium": 9.853485816515397e-12,
+          "internal_traction": 3.8438399188763325e-13,
+          "boundary_traction": 1.0005393696220458e-13
+        },
+        "load": 4.020053868817562e-09,
+        "value": 4.020053868817562e-09
+      }
+    },
+    {
+      "fs": 0.65,
+      "mode": "lower",
+      "fixed_load": null,
+      "status": "AlmostSolved",
+      "objective": -0.27613022551990396,
+      "load": 0.27613022551990396,
+      "seconds": 0.1201272,
+      "iterations": 17,
+      "eq_error": 1.24222078803915e-10,
+      "cone_error": 4.6216928201170404e-10,
+      "zero_stress_controls": 14,
+      "physical_audit": {
+        "pass": true,
+        "errors": {
+          "yield": 4.6216929588949185e-10,
+          "equilibrium": 2.1197693045316157e-09,
+          "internal_traction": 8.591040527680603e-11,
+          "boundary_traction": 1.887393635358852e-11
+        },
+        "load": 0.27613022551990396,
+        "value": 0.27613022551990396
+      }
+    },
+    {
+      "fs": 0.5,
+      "mode": "lower",
+      "fixed_load": null,
+      "status": "AlmostSolved",
+      "objective": -1.6064851566842604,
+      "load": 1.6064851566842604,
+      "seconds": 0.1220404,
+      "iterations": 18,
+      "eq_error": 4.263256414560601e-14,
+      "cone_error": 2.794216980017694e-08,
+      "zero_stress_controls": 14,
+      "physical_audit": {
+        "pass": true,
+        "errors": {
+          "yield": 2.794216980017694e-08,
+          "equilibrium": 4.4986236957811343e-13,
+          "internal_traction": 6.0285110237146e-14,
+          "boundary_traction": 2.6173507805538065e-14
+        },
+        "load": 1.6064851566842604,
+        "value": 1.6064851566842604
+      }
+    },
+    {
+      "fs": 0.125,
+      "mode": "lower",
+      "fixed_load": null,
+      "status": "AlmostSolved",
+      "objective": -116.52590086350897,
+      "load": 116.52590086350897,
+      "seconds": 0.104937,
+      "iterations": 15,
+      "eq_error": 3.197442310920451e-13,
+      "cone_error": 0.0,
+      "zero_stress_controls": 14,
+      "physical_audit": {
+        "pass": true,
+        "errors": {
+          "yield": 5.445007988447263e-17,
+          "equilibrium": 1.2647660696529783e-12,
+          "internal_traction": 3.410605131648481e-13,
+          "boundary_traction": 1.2141573760094856e-13
+        },
+        "load": 116.52590086350897,
+        "value": 116.52590086350897
+      }
+    }
+  ]
+}

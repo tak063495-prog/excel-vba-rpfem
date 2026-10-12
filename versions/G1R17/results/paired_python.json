@@ -1,0 +1,588 @@
+{
+  "cases": [
+    {
+      "case": "P06N",
+      "original_mesh": "fa74f33ba46a7e49cf71e7a00b31864428e86532eb21e2d3d746d3ec97e56b62",
+      "repaired_mesh": "57a4df385a3534894039f2cd05a898a5c16dd9d23e5f5da46d848ffd5d2b34f4",
+      "changes": [
+        {
+          "element": 65,
+          "vertex": 1,
+          "point": [
+            22.84026610599239,
+            4.888436041473261
+          ]
+        }
+      ],
+      "points": [
+        {
+          "fs": 0.5,
+          "mode": "lower",
+          "fixed_load": null,
+          "status": "AlmostSolved",
+          "objective": -1.2354935420186373e-08,
+          "load": 1.2354935420186373e-08,
+          "seconds": 0.1065305,
+          "iterations": 16,
+          "eq_error": 8.681969734664935e-12,
+          "cone_error": 1.1210531306955117e-09,
+          "zero_stress_controls": 13,
+          "solver_primal_obj": -1.2354935420186373e-08,
+          "solver_dual_obj": -9.812415945883448e-07,
+          "dual_gap": 9.688866591681584e-07,
+          "reduced": false,
+          "reduction_stats": [],
+          "physical_audit": {
+            "pass": true,
+            "errors": {
+              "yield": 1.1210531306955117e-09,
+              "equilibrium": 5.1070036640946383e-11,
+              "internal_traction": 6.566825812414927e-12,
+              "boundary_traction": 9.514071504740592e-13
+            },
+            "load": 1.2354935420186373e-08,
+            "value": 1.2354935420186373e-08
+          },
+          "mesh": "original243",
+          "outer_polygon_LP_dual": {
+            "status": 0,
+            "dual_stationarity_max": 2.6645352591003757e-15,
+            "dual_objective": 0.0,
+            "nonnegative_weights": true,
+            "upper_bound_on_true_lower_lambda": -0.0,
+            "eq_indices": [
+              120,
+              121,
+              126,
+              128,
+              132,
+              133,
+              134,
+              330,
+              336,
+              338,
+              428,
+              429,
+              432,
+              433,
+              434,
+              1790,
+              2179,
+              2180
+            ],
+            "ineq_indices": [
+              1747,
+              1825,
+              3271,
+              9051,
+              10417,
+              11941
+            ],
+            "equality_dual": [
+              0.9447726877602621,
+              4.752245634632634,
+              0.13101639882221341,
+              0.6550819941110682,
+              -0.13101639882221341,
+              -3.275409970555346,
+              -1.3101639882221363,
+              61.32553761864859,
+              4.19212744833298,
+              -41.92127448332975,
+              -75.5481249756257,
+              3.6213072990995303,
+              36.97588124695603,
+              -2.026919668752579,
+              40.90781464895346,
+              -4.723863438801318,
+              -11.857126985258004,
+              -59.28563492629011
+            ],
+            "nonnegative_dual": [
+              7.925896157777131,
+              4.643153419053246,
+              9.106520566681127,
+              1.922747235988291,
+              0.3275409970555341,
+              7.900397652040505
+            ],
+            "scope": "Localized support; certificate verified against every original variable"
+          }
+        },
+        {
+          "fs": 1.0,
+          "mode": "lower",
+          "fixed_load": null,
+          "status": "AlmostSolved",
+          "objective": -3.510791897478052e-09,
+          "load": 3.510791897478052e-09,
+          "seconds": 0.1016267,
+          "iterations": 15,
+          "eq_error": 1.0621867594903123e-12,
+          "cone_error": 4.6520857423770514e-10,
+          "zero_stress_controls": 13,
+          "solver_primal_obj": -3.510791897478052e-09,
+          "solver_dual_obj": -5.125696989362046e-07,
+          "dual_gap": 5.090589070387266e-07,
+          "reduced": false,
+          "reduction_stats": [],
+          "physical_audit": {
+            "pass": true,
+            "errors": {
+              "yield": 4.6520857423770514e-10,
+              "equilibrium": 6.305757672451673e-12,
+              "internal_traction": 8.108188162447783e-13,
+              "boundary_traction": 1.1479699947820997e-13
+            },
+            "load": 3.510791897478052e-09,
+            "value": 3.510791897478052e-09
+          },
+          "mesh": "original243",
+          "outer_polygon_LP_dual": {
+            "status": 0,
+            "dual_stationarity_max": 7.105427357601002e-15,
+            "dual_objective": 0.0,
+            "nonnegative_weights": true,
+            "upper_bound_on_true_lower_lambda": -0.0,
+            "eq_indices": [
+              120,
+              121,
+              126,
+              128,
+              132,
+              133,
+              134,
+              330,
+              336,
+              338,
+              428,
+              429,
+              432,
+              433,
+              434,
+              1790,
+              2179,
+              2180
+            ],
+            "ineq_indices": [
+              1747,
+              1825,
+              3271,
+              9051,
+              10417,
+              11941
+            ],
+            "equality_dual": [
+              0.9413224266056327,
+              4.734890678543353,
+              0.1305379336873381,
+              0.6526896684366915,
+              -0.1305379336873381,
+              -3.263448342183463,
+              -1.3053793368733833,
+              38.22894683122365,
+              2.613277005879861,
+              -26.132770058798585,
+              -47.595808387681494,
+              3.6355544455783284,
+              23.295044838817446,
+              -2.034894087667167,
+              25.115323014965007,
+              -4.7066121330281705,
+              -7.39146356790609,
+              -36.9573178395305
+            ],
+            "nonnegative_dual": [
+              5.551639679911516,
+              3.3319679846266457,
+              8.271207681352983,
+              3.8793667910727634,
+              0.3263448342183458,
+              5.111284594473154
+            ],
+            "scope": "Localized support; certificate verified against every original variable"
+          }
+        },
+        {
+          "fs": 0.5,
+          "mode": "lower",
+          "fixed_load": null,
+          "status": "AlmostSolved",
+          "objective": -1.6064851566842604,
+          "load": 1.6064851566842604,
+          "seconds": 0.1139834,
+          "iterations": 18,
+          "eq_error": 4.263256414560601e-14,
+          "cone_error": 2.794216980017694e-08,
+          "zero_stress_controls": 14,
+          "solver_primal_obj": -1.6064851566842604,
+          "solver_dual_obj": -1.6065281765188126,
+          "dual_gap": 4.301983455223812e-05,
+          "reduced": false,
+          "reduction_stats": [],
+          "physical_audit": {
+            "pass": true,
+            "errors": {
+              "yield": 2.794216980017694e-08,
+              "equilibrium": 4.4986236957811343e-13,
+              "internal_traction": 6.0285110237146e-14,
+              "boundary_traction": 2.6173507805538065e-14
+            },
+            "load": 1.6064851566842604,
+            "value": 1.6064851566842604
+          },
+          "mesh": "repaired245"
+        },
+        {
+          "fs": 1.0,
+          "mode": "lower",
+          "fixed_load": null,
+          "status": "AlmostSolved",
+          "objective": -4.020053868817562e-09,
+          "load": 4.020053868817562e-09,
+          "seconds": 0.1147478,
+          "iterations": 17,
+          "eq_error": 6.366041647563172e-13,
+          "cone_error": 2.0455601697124553e-10,
+          "zero_stress_controls": 14,
+          "solver_primal_obj": -4.020053868817562e-09,
+          "solver_dual_obj": -2.157653307329166e-07,
+          "dual_gap": 2.1174527686409904e-07,
+          "reduced": false,
+          "reduction_stats": [],
+          "physical_audit": {
+            "pass": true,
+            "errors": {
+              "yield": 2.0455601697124574e-10,
+              "equilibrium": 9.853485816515397e-12,
+              "internal_traction": 3.8438399188763325e-13,
+              "boundary_traction": 1.0005393696220458e-13
+            },
+            "load": 4.020053868817562e-09,
+            "value": 4.020053868817562e-09
+          },
+          "mesh": "repaired245"
+        },
+        {
+          "fs": 0.5601486798687134,
+          "mode": "lower",
+          "fixed_load": 1.0,
+          "status": "AlmostSolved",
+          "objective": 0.0,
+          "load": 1.0000000000000424,
+          "seconds": 0.0740251,
+          "iterations": 11,
+          "eq_error": 3.588823279834625e-12,
+          "cone_error": 0.0,
+          "zero_stress_controls": 14,
+          "solver_primal_obj": 0.0,
+          "solver_dual_obj": -1.832728115754313e-05,
+          "dual_gap": 1.832728115754313e-05,
+          "reduced": false,
+          "reduction_stats": [],
+          "physical_audit": {
+            "pass": true,
+            "errors": {
+              "yield": 6.050378338323626e-12,
+              "equilibrium": 2.858868697330763e-11,
+              "internal_traction": 1.8211508689969236e-12,
+              "boundary_traction": 1.6834589278147405e-12
+            },
+            "load": 1.0000000000000424,
+            "value": 1.0000000000000424
+          },
+          "mesh": "repaired245_fixed_lambda1"
+        },
+        {
+          "fs": 0.560219483290432,
+          "mode": "lower",
+          "fixed_load": 1.0,
+          "status": "PrimalInfeasible",
+          "objective": 0.0,
+          "load": 2.83664936133635e-10,
+          "seconds": 0.1217743,
+          "iterations": 20,
+          "eq_error": 0.999999999716335,
+          "cone_error": 1.1191965728613156e-15,
+          "zero_stress_controls": 14,
+          "solver_primal_obj": null,
+          "solver_dual_obj": null,
+          "dual_gap": null,
+          "reduced": false,
+          "reduction_stats": [],
+          "infeasibility_certificate": {
+            "stationarity_max": 4.470348358154297e-08,
+            "rhs_dot_dual": -1.0000000003591936,
+            "SOC_dual_error": 0.0
+          },
+          "mesh": "repaired245_fixed_lambda1"
+        }
+      ]
+    },
+    {
+      "case": "P06A",
+      "original_mesh": "59fdbf604e4205c2c4a8d1babc299ae86a8de3de455c3a5acd84c3920acf3c49",
+      "repaired_mesh": "ee2bc027f95d18ca7fe0ff2588d5cf0662fb57ac48ee5fff79266bd43ac1a073",
+      "changes": [
+        {
+          "element": 65,
+          "vertex": 1,
+          "point": [
+            22.84026610599239,
+            4.888436041473261
+          ]
+        }
+      ],
+      "points": [
+        {
+          "fs": 0.5,
+          "mode": "lower",
+          "fixed_load": null,
+          "status": "AlmostSolved",
+          "objective": -1.2136759894140886e-07,
+          "load": 1.2136759894140886e-07,
+          "seconds": 0.1022692,
+          "iterations": 16,
+          "eq_error": 4.058087994083055e-11,
+          "cone_error": 8.516337043738242e-09,
+          "zero_stress_controls": 13,
+          "solver_primal_obj": -1.2136759894140886e-07,
+          "solver_dual_obj": -6.8393124319432785e-06,
+          "dual_gap": 6.717944833001869e-06,
+          "reduced": false,
+          "reduction_stats": [],
+          "physical_audit": {
+            "pass": true,
+            "errors": {
+              "yield": 8.516337043738242e-09,
+              "equilibrium": 2.374588377935792e-10,
+              "internal_traction": 3.068419889463179e-11,
+              "boundary_traction": 4.5903498955024636e-12
+            },
+            "load": 1.2136759894140886e-07,
+            "value": 1.2136759894140886e-07
+          },
+          "mesh": "original243",
+          "outer_polygon_LP_dual": {
+            "status": 0,
+            "dual_stationarity_max": 7.105427357601002e-15,
+            "dual_objective": 0.0,
+            "nonnegative_weights": true,
+            "upper_bound_on_true_lower_lambda": -0.0,
+            "eq_indices": [
+              120,
+              121,
+              126,
+              128,
+              132,
+              133,
+              134,
+              330,
+              336,
+              338,
+              428,
+              429,
+              432,
+              433,
+              434,
+              1790,
+              2179,
+              2180
+            ],
+            "ineq_indices": [
+              1747,
+              1825,
+              3271,
+              9051,
+              10417,
+              11941
+            ],
+            "equality_dual": [
+              0.946656287412142,
+              4.7617202186664525,
+              0.1312776070963403,
+              0.6563880354817024,
+              -0.1312776070963403,
+              -3.281940177408518,
+              -1.3127760709634049,
+              91.52519611363502,
+              6.256533603145337,
+              -62.5653360314533,
+              -112.10077032145172,
+              3.6135293602870604,
+              54.86601781891493,
+              -2.0225661975171305,
+              61.554052932694724,
+              -4.733281437060717,
+              -17.696149350022242,
+              -88.48074675011134
+            ],
+            "nonnegative_dual": [
+              11.025770493422248,
+              6.361022495768318,
+              11.244997163774013,
+              0.4113474466734123,
+              0.3281940177408513,
+              11.548734853932128
+            ],
+            "scope": "Localized support; certificate verified against every original variable"
+          }
+        },
+        {
+          "fs": 1.0,
+          "mode": "lower",
+          "fixed_load": null,
+          "status": "AlmostSolved",
+          "objective": -3.903121247141496e-12,
+          "load": 3.903121247141496e-12,
+          "seconds": 0.1068705,
+          "iterations": 16,
+          "eq_error": 3.1449715288433588e-15,
+          "cone_error": 4.844680265870035e-13,
+          "zero_stress_controls": 13,
+          "solver_primal_obj": -3.903121247141496e-12,
+          "solver_dual_obj": -5.016747891341349e-10,
+          "dual_gap": 4.977716678869934e-10,
+          "reduced": false,
+          "reduction_stats": [],
+          "physical_audit": {
+            "pass": true,
+            "errors": {
+              "yield": 4.844680265870035e-13,
+              "equilibrium": 7.368075333885615e-15,
+              "internal_traction": 1.7041915568708392e-16,
+              "boundary_traction": 1.134306883272471e-16
+            },
+            "load": 3.903121247141496e-12,
+            "value": 3.903121247141496e-12
+          },
+          "mesh": "original243",
+          "outer_polygon_LP_dual": {
+            "status": 0,
+            "dual_stationarity_max": 3.552713678800501e-15,
+            "dual_objective": 0.0,
+            "nonnegative_weights": true,
+            "upper_bound_on_true_lower_lambda": -0.0,
+            "eq_indices": [
+              120,
+              121,
+              126,
+              128,
+              132,
+              133,
+              134,
+              330,
+              336,
+              338,
+              428,
+              429,
+              432,
+              433,
+              434,
+              1790,
+              2179,
+              2180
+            ],
+            "ineq_indices": [
+              1747,
+              1825,
+              3271,
+              9051,
+              10417,
+              11941
+            ],
+            "equality_dual": [
+              0.9420591074242143,
+              4.738596213482686,
+              0.13064009293599374,
+              0.6532004646799698,
+              -0.13064009293599374,
+              -3.2660023233998547,
+              -1.3064009293599397,
+              41.571263599703975,
+              2.8417530765390313,
+              -28.417530765390282,
+              -51.64044291363031,
+              3.6325124730840512,
+              25.274629718879957,
+              -2.033191433522906,
+              27.40093504862883,
+              -4.710295537121079,
+              -8.037691483513912,
+              -40.18845741756962
+            ],
+            "nonnegative_dual": [
+              5.895630776508466,
+              3.521398926908571,
+              8.26628137609278,
+              3.4703574118281946,
+              0.3266002323399849,
+              5.5147656893118056
+            ],
+            "scope": "Localized support; certificate verified against every original variable"
+          }
+        },
+        {
+          "fs": 0.5,
+          "mode": "lower",
+          "fixed_load": null,
+          "status": "AlmostSolved",
+          "objective": -316.7271248569132,
+          "load": 316.7271248569132,
+          "seconds": 0.1009089,
+          "iterations": 15,
+          "eq_error": 4.8728271302721246e-11,
+          "cone_error": 0.0,
+          "zero_stress_controls": 14,
+          "solver_primal_obj": -316.7271248569132,
+          "solver_dual_obj": -316.72746658075334,
+          "dual_gap": 0.0003417238401652867,
+          "reduced": false,
+          "reduction_stats": [],
+          "physical_audit": {
+            "pass": true,
+            "errors": {
+              "yield": 5.172336567821078e-15,
+              "equilibrium": 7.58326734739967e-12,
+              "internal_traction": 1.041295879253384e-11,
+              "boundary_traction": 4.8728271302721246e-11
+            },
+            "load": 316.7271248569132,
+            "value": 316.7271248569132
+          },
+          "mesh": "repaired245"
+        },
+        {
+          "fs": 1.0,
+          "mode": "lower",
+          "fixed_load": null,
+          "status": "AlmostSolved",
+          "objective": -1.5167949077753453e-08,
+          "load": 1.5167949077753453e-08,
+          "seconds": 0.1325458,
+          "iterations": 20,
+          "eq_error": 2.9707156714290395e-12,
+          "cone_error": 4.213284795421192e-10,
+          "zero_stress_controls": 14,
+          "solver_primal_obj": -1.5167949077753453e-08,
+          "solver_dual_obj": -4.2523270446887527e-07,
+          "dual_gap": 4.100647553911218e-07,
+          "reduced": false,
+          "reduction_stats": [],
+          "physical_audit": {
+            "pass": true,
+            "errors": {
+              "yield": 4.2132847954212005e-10,
+              "equilibrium": 5.0693338171865445e-11,
+              "internal_traction": 1.987075351265358e-12,
+              "boundary_traction": 4.884775452654162e-13
+            },
+            "load": 1.5167949077753453e-08,
+            "value": 1.5167949077753453e-08
+          },
+          "mesh": "repaired245"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,187 @@
+--- G1R16_DLL5/native/build.cmd
++++ G1R17/native/build.cmd
+@@ -8,5 +8,5 @@
+ if errorlevel 1 exit /b 1
+ cl /nologo /O2 /fp:strict /MT /c /W4 /WX /std:c11 rpfem_native.c
+ if errorlevel 1 exit /b 1
+-cl /nologo /O2 /fp:strict /MT /LD /EHsc /W4 /WX /std:c++17 rpfem_order.cpp rpfem_lu.cpp rpfem_refine.cpp rpfem_hlinear.cpp rpfem_guard.cpp rpfem_batch.cpp rpfem_schur.cpp rpfem_krylov.cpp rpfem_compile.cpp rpfem_native.obj vba_fp.obj /Fe:..\delivery\rpfem_native_x64.dll /link /INCREMENTAL:NO oleaut32.lib
++cl /nologo /O2 /fp:strict /MT /LD /EHsc /W4 /WX /std:c++17 rpfem_order.cpp rpfem_lu.cpp rpfem_refine.cpp rpfem_hlinear.cpp rpfem_guard.cpp rpfem_batch.cpp rpfem_schur.cpp rpfem_krylov.cpp rpfem_compile.cpp rpfem_meshfan.cpp rpfem_native.obj vba_fp.obj /Fe:..\delivery\rpfem_native_x64.dll /link /INCREMENTAL:NO oleaut32.lib
+ exit /b %errorlevel%
+--- /dev/null
++++ G1R17/native/rpfem_meshfan.cpp
+@@ -0,0 +1,99 @@
++/* G1R17: repair planning for exposed c=0 obtuse vertex fans.
++ * Own copied geometry only. No constitutive, load, solver or tolerance changes.
++ * SPDX-License-Identifier: LGPL-2.1-or-later */
++#define NOMINMAX
++#include <windows.h>
++#include <cstdint>
++#include <vector>
++#include <unordered_map>
++#include <memory>
++#include <new>
++#include <cmath>
++#include <cstring>
++#include <algorithm>
++#define API extern "C" __declspec(dllexport) int __stdcall
++extern "C" double rpx_fp_sub(double,double),rpx_fp_norm2(double,double),rpx_fp_dot2(double,double,double,double);
++extern "C" double rpx_fp_fan_weight(double,double),rpx_fp_fan_center(double,double,double,double,double);
++extern "C" int rpx_fp_fan_obtuse(double,double,double);
++namespace {
++struct Failure{int code;};
++struct Fan {
++ int nn,ne,nd,phase=0,cursor=0,count=0;bool changed=false,complete=false;
++ std::vector<double> xy,cx,cy;std::vector<int32_t> tri,eligible,body,edges,split;
++ std::vector<unsigned char> exposed;
++ Fan(int n,int e,int d,const double*x,const int32_t*t,const int32_t*a,const int32_t*b,const int32_t*g):
++ nn(n),ne(e),nd(d),xy(x,x+size_t(n)*2),cx(e),cy(e),tri(t,t+size_t(e)*3),eligible(a,a+e),body(b,b+e),edges(g,g+size_t(d)*7),split(e,-1),exposed(size_t(e)*3,0){}
++};
++std::unordered_map<uintptr_t,Fan*> jobs;uintptr_t next_id=0;
++Fan* get(uintptr_t h){auto i=jobs.find(h);if(i==jobs.end())throw Failure{318};return i->second;}
++template<class F>int checked(F f){try{return f();}catch(Failure e){return e.code;}catch(const std::bad_alloc&){return 207;}catch(...){return 208;}}
++void angle(Fan&p,int e){
++ if(!p.eligible[e]||!p.body[e])return;
++ for(int k=0;k<3;k++)if(p.exposed[size_t(e)*3+k]){
++  int v=p.tri[size_t(e)*3+k],a=p.tri[size_t(e)*3+(k+1)%3],b=p.tri[size_t(e)*3+(k+2)%3];
++  double ux=rpx_fp_sub(p.xy[size_t(a)*2],p.xy[size_t(v)*2]),uy=rpx_fp_sub(p.xy[size_t(a)*2+1],p.xy[size_t(v)*2+1]);
++  double vx=rpx_fp_sub(p.xy[size_t(b)*2],p.xy[size_t(v)*2]),vy=rpx_fp_sub(p.xy[size_t(b)*2+1],p.xy[size_t(v)*2+1]);
++  double lu=rpx_fp_norm2(ux,uy),lv=rpx_fp_norm2(vx,vy),dot=rpx_fp_dot2(ux,vx,uy,vy);
++  if(!std::isfinite(lu)||!std::isfinite(lv)||!std::isfinite(dot))throw Failure{206};
++  if(lu<=0||lv<=0)throw Failure{341};
++  if(rpx_fp_fan_obtuse(dot,lu,lv)){
++   double wa=rpx_fp_fan_weight(lu,lv),wb=rpx_fp_fan_weight(lv,lu);
++   p.cx[e]=rpx_fp_fan_center(p.xy[size_t(v)*2],wa,ux,wb,vx);
++   p.cy[e]=rpx_fp_fan_center(p.xy[size_t(v)*2+1],wa,uy,wb,vy);
++   if(!std::isfinite(p.cx[e])||!std::isfinite(p.cy[e]))throw Failure{206};
++   p.split[e]=k;p.count++;break;
++  }
++ }
++}
++}
++API rpx_meshfan_create(int32_t nn,int32_t ne,int32_t nd,const double*xy,const int32_t*tri,const int32_t*eligible,const int32_t*body,const int32_t*edges,uintptr_t*handle){
++ if(!handle)return 330;*handle=0;
++ if(nn<3||nn>2000000||ne<1||ne>2000000||nd<1||nd>3*ne||!xy||!tri||!eligible||!body||!edges)return 330;
++ return checked([&](){
++  for(int i=0;i<2*nn;i++)if(!std::isfinite(xy[i]))throw Failure{206};
++  for(int e=0;e<ne;e++){
++   if((eligible[e]!=0&&eligible[e]!=1)||(body[e]!=0&&body[e]!=1))throw Failure{330};
++   for(int k=0;k<3;k++)if(tri[size_t(e)*3+k]<0||tri[size_t(e)*3+k]>=nn)throw Failure{330};
++  }
++  for(int id=0;id<nd;id++){
++   const int32_t*g=edges+size_t(id)*7;int e=g[0],f=g[1];
++   if(e<0||e>=ne||f< -1||f>=ne||f==e||g[2]<0||g[2]>2||g[3]<0||g[3]>2||g[2]==g[3]||(g[6]!=0&&g[6]!=1))throw Failure{330};
++   if(f>=0){if(g[4]<0||g[4]>2||g[5]<0||g[5]>2||g[4]==g[5]||g[6])throw Failure{330};
++    if(tri[size_t(e)*3+g[2]]!=tri[size_t(f)*3+g[4]]||tri[size_t(e)*3+g[3]]!=tri[size_t(f)*3+g[5]])throw Failure{330};}
++  }
++  auto p=std::make_unique<Fan>(nn,ne,nd,xy,tri,eligible,body,edges);
++  if(next_id==UINTPTR_MAX)throw Failure{318};uintptr_t h=++next_id;jobs.emplace(h,p.get());*handle=h;p.release();return 0;
++ });
++}
++API rpx_meshfan_step(uintptr_t handle,int32_t milliseconds,int32_t*done){
++ if(!done||milliseconds<0||milliseconds>1000)return 330;*done=0;
++ return checked([&](){auto&p=*get(handle);if(p.complete)throw Failure{318};
++  LARGE_INTEGER frequency,now;QueryPerformanceFrequency(&frequency);QueryPerformanceCounter(&now);auto deadline=now.QuadPart+frequency.QuadPart*milliseconds/1000;
++  do{
++   int total=p.phase==2?p.ne:p.nd,last=std::min(total,p.cursor+256);
++   for(int i=p.cursor;i<last;i++){
++    if(p.phase==2)angle(p,i);
++    else{const int32_t*g=p.edges.data()+size_t(i)*7;int e=g[0],f=g[1];
++     if(p.phase==0){if(f<0&&g[6]&&p.eligible[e])for(int k=2;k<4;k++)p.exposed[size_t(e)*3+g[k]]=1;}
++     else if(f>=0&&p.eligible[e]&&p.eligible[f])for(int k=0;k<2;k++){
++      size_t a=size_t(e)*3+g[2+k],b=size_t(f)*3+g[4+k];
++      if(p.exposed[a]!=p.exposed[b]){p.exposed[a]=p.exposed[b]=1;p.changed=true;}
++     }
++    }
++   }
++   p.cursor=last;
++   if(last==total){p.cursor=0;if(p.phase==0)p.phase=1;
++    else if(p.phase==1){if(!p.changed)p.phase=2;p.changed=false;}
++    else{p.complete=true;*done=1;return 0;}}
++   if(milliseconds==0)return 0;QueryPerformanceCounter(&now);
++  }while(now.QuadPart<deadline);
++  return 0;
++ });
++}
++API rpx_meshfan_result(uintptr_t handle,int32_t ne,int32_t*split,double*cx,double*cy,int32_t*count){
++ if(!split||!cx||!cy||!count)return 330;
++ return checked([&](){auto&p=*get(handle);if(ne!=p.ne)throw Failure{330};if(!p.complete)throw Failure{318};
++  std::memcpy(split,p.split.data(),size_t(ne)*4);std::memcpy(cx,p.cx.data(),size_t(ne)*8);std::memcpy(cy,p.cy.data(),size_t(ne)*8);*count=p.count;return 0;});
++}
++API rpx_meshfan_destroy(uintptr_t handle){return checked([&](){auto p=get(handle);jobs.erase(handle);delete p;return 0;});}
++API rpx_meshfan_live_handles(void){return static_cast<int>(jobs.size());}
+--- G1R16_DLL5/native/rpfem_native.c
++++ G1R17/native/rpfem_native.c
+@@ -17,7 +17,7 @@
+        PRODUCT_UNDERFLOW=202, ZERO_DIVISOR=203, NONFINITE_VALUE=204,
+        DOUBLE_ZERO_DIVISOR=205, DOUBLE_OVERFLOW=206 };
+ _Static_assert(sizeof(dd)==16, "VBA DD layout");
+-API rpx_abi(void) { return 0x00160005; }
++API rpx_abi(void) { return 0x00170005; }
+ extern double rpx_fp_mulsub(double accum,double a,double b);
+ extern int32_t rpx_fp_scatter(int32_t n,int32_t first,int32_t last,const int32_t*rows,const double*factor,double*buffer,double scalar);
+ extern int32_t rpx_fp_gather(int32_t n,int32_t first,int32_t last,const int32_t*rows,const double*factor,const double*buffer,double*scalar);
+--- G1R16_DLL5/native/vba_fp.asm
++++ G1R17/native/vba_fp.asm
+@@ -690,4 +690,62 @@
+     add rsp,40
+     ret
+ rpx_fp_greater_product ENDP
++; G1R17 geometry: preserve the VBA expression/store boundaries.
++rpx_fp_fan_weight PROC FRAME
++    sub rsp,40
++    .allocstack 40
++    .endprolog
++    movsd qword ptr [rsp],xmm0
++    movsd qword ptr [rsp+8],xmm1
++    mov rax,03FE0000000000000h
++    mov qword ptr [rsp+16],rax
++    fld qword ptr [rsp+16]
++    fmul qword ptr [rsp+8]
++    fld qword ptr [rsp]
++    fadd qword ptr [rsp+8]
++    fdivp st(1),st(0)
++    fstp qword ptr [rsp]
++    movsd xmm0,qword ptr [rsp]
++    add rsp,40
++    ret
++rpx_fp_fan_weight ENDP
++rpx_fp_fan_center PROC FRAME
++    sub rsp,40
++    .allocstack 40
++    .endprolog
++    movsd qword ptr [rsp],xmm0
++    movsd qword ptr [rsp+8],xmm1
++    movsd qword ptr [rsp+16],xmm2
++    movsd qword ptr [rsp+24],xmm3
++    fld qword ptr [rsp+8]
++    fmul qword ptr [rsp+16]
++    fadd qword ptr [rsp]
++    fld qword ptr [rsp+24]
++    fmul qword ptr [rsp+80]
++    faddp st(1),st(0)
++    fstp qword ptr [rsp]
++    movsd xmm0,qword ptr [rsp]
++    add rsp,40
++    ret
++rpx_fp_fan_center ENDP
++rpx_fp_fan_obtuse PROC FRAME
++    sub rsp,40
++    .allocstack 40
++    .endprolog
++    movsd qword ptr [rsp],xmm0
++    movsd qword ptr [rsp+8],xmm1
++    movsd qword ptr [rsp+16],xmm2
++    mov rax,0BD719799812DEA11h ; -1e-12
++    mov qword ptr [rsp+24],rax
++    fld qword ptr [rsp+24]
++    fmul qword ptr [rsp+8]
++    fmul qword ptr [rsp+16]
++    fld qword ptr [rsp]
++    fcomip st(0),st(1)
++    setb al
++    movzx eax,al
++    fstp st(0)
++    add rsp,40
++    ret
++rpx_fp_fan_obtuse ENDP
+ END

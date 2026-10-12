@@ -1,0 +1,45 @@
+' Append to RPX_Mesh only in an isolated TEST workbook.
+Public Function FanGuardTest(ByVal kind As String, ByVal original As String) As String
+    Dim f As Integer, i As Long, j As Long, v As Double, a As Long, beforeN As Long, beforeE As Long
+    Dim savedXY() As Double, result As Boolean, number As Long, message As String, savedTarget As Variant
+    On Error GoTo Failed
+    XCancel = False: RPX_InputEnd: RPX_InputBegin: RPX_ReadInputs: RPX_GenerateMesh
+    f = FreeFile: Open original For Binary Access Read As #f
+    Get #f, , rn: Get #f, , re
+    For i = 0 To rn - 1: For j = 0 To 1: Get #f, , v: RXY(i, j) = v: Next j: Next i
+    For i = 0 To re - 1
+        For j = 0 To 2: Get #f, , a: RTri(i, j) = a: Next j
+        Get #f, , a: RMatId(i) = a: RRigidId(i) = -1
+        RBody0(i, 0) = 0#: RBody0(i, 1) = -RMaterials(a).gamma
+        RBody1(i, 0) = 0#: RBody1(i, 1) = 0#
+    Next i
+    Close #f
+    RPX_LoadPhase = "raw": RPX_Topology: RPX_MapFaces
+    beforeN = rn: beforeE = re
+    Select Case kind
+        Case "cancel": XCancel = True
+        Case "phase": RPX_LoadPhase = "reference_total"
+        Case "input"
+            savedTarget = RPX_Sheet("設定").Range("B5").Value2
+            RPX_Sheet("設定").Range("B5").Value2 = CDbl(savedTarget) + 1#
+        Case "capacity"
+            ReDim savedXY(0 To rn - 1, 0 To 1)
+            For i = 0 To rn - 1: For j = 0 To 1: savedXY(i, j) = RXY(i, j): Next j: Next i
+            ReDim RXY(0 To rn, 0 To 1)
+            For i = 0 To rn - 1: For j = 0 To 1: RXY(i, j) = savedXY(i, j): Next j: Next i
+        Case "subscript": RTri(65, 0) = UBound(RXY, 1) + 1
+        Case "native_memory": FanInjected = 7
+        Case "native_unknown": FanInjected = 513
+        Case "native_cancel": FanInjected = 18
+    End Select
+    result = RPX_RepairZeroStressFans()
+    FanGuardTest = "UNEXPECTED_SUCCESS": GoTo Cleanup
+Failed:
+    number = err.number: message = err.description
+    FanGuardTest = "ERROR " & number & ":" & message & ";nodes_unchanged=" & (rn = beforeN) & ";elements_unchanged=" & (re = beforeE)
+Cleanup:
+    On Error Resume Next
+    Close #f
+    If kind = "input" Then RPX_Sheet("設定").Range("B5").Value2 = savedTarget
+    FanInjected = 0: XCancel = False: RPX_InputEnd
+End Function

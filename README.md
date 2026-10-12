@@ -21,7 +21,24 @@ Excel VBAによる2次元RPFEM解析のソース、XLSM、検証資料です。
 
 **G1R15では、G1R14（定常浸透・間隙水圧の一方向連成）に、浸透入力シートの整理・地下水面からの水圧入力・水平震度法（地震）を追加した（実Excelで全回帰済み：連成OFF・kh=0でD03N・D07AのFsがG1R14と全桁一致）。G1R14では連成OFFでD03N・D07AのFsがG1R13と全桁一致した。G1R13の修復・制限は[G1R13報告](versions/G1R13/REPORT.md)、G1R12時点の25ケース結果（23/25取得・11/25目標達成）は[過去25ケース結果](validation/G1R12_native25_20261009/REPORT.md)を参照し、区別する。図の矢印は規準化された速度機構であり、変位量ではない。**
 
-## G1R16 DLL5 — Schur・HSD修復・疎構造・一括演算の追加最適化（最新版）
+## G1R17 — P06A・P06N粗メッシュ修復、VBA／DLL対応（最新版）
+
+2026年10月12日。c=0自由頂点からゼロ応力が伝わる鈍角要素の局所制約を、PythonのSOCP・LP双対と実Excelで特定し、VBAとDLL5の両方で修復しました。粗メッシュは243→245要素、追加節点は1つです。構成則・Davis変換・Fs定義・物理監査・求解許容差は維持しています。
+
+- **[XLSM2冊・対応DLL・ソース・Python検証の一式ZIP](https://github.com/tak063495-prog/excel-vba-rpfem/raw/refs/heads/main/downloads/RPFEM_G1R17_20261012.zip)**
+- [P06N設定済みXLSM](https://github.com/tak063495-prog/excel-vba-rpfem/raw/refs/heads/main/versions/G1R17/delivery/RPFEM_20261012_G1R17_P06N_Coarse_Checked.xlsm) / [P06A設定済みXLSM](https://github.com/tak063495-prog/excel-vba-rpfem/raw/refs/heads/main/versions/G1R17/delivery/RPFEM_20261012_G1R17_P06A_Coarse_Checked.xlsm) / [G1R17対応DLL](https://github.com/tak063495-prog/excel-vba-rpfem/raw/refs/heads/main/versions/G1R17/delivery/rpfem_native_x64.dll)
+- [原因・実装・検証報告](versions/G1R17/REPORT.md) / [使い方](versions/G1R17/README.md) / [導入・復旧](versions/G1R17/IMPORT_ROLLBACK_JA.md) / [試験台帳](versions/G1R17/TEST_RESULTS.csv) / [局所メッシュ比較図](versions/G1R17/figures/P06N_local_mesh.png)
+
+|ケース|Fs下界|Fs上界|判定|
+|---|---:|---:|---|
+|P06N（Davis等価）|0.56014868|0.88211706|PARTIAL_CERTIFIED|
+|P06A（関連）|0.73110643|1.02853738|PARTIAL_CERTIFIED|
+
+TARGET200、q8、適応OFF、浸透OFF、kh0の粗メッシュ確認用です。上下界を取得しましたが、幅は36.50%／28.92%で目標精度には未達です。フル解析は未実施です。VBA／DLLの固定Fs全応力場は両ケースともビット一致、保存場のPython物理監査はPASS、他23ケースのメッシュは変更されませんでした。25ケースの比較はメッシュ生成のみで、Fs全解析ではありません。
+
+ブックとDLLはG1R17の組で、同じフォルダーに置きます。DLL交換前にExcelを終了してください。DLL不在・旧DLLでは修復済みVBAへ復帰します。G1R17はDLL5の改訂で、DLL6は作成していません。
+
+## G1R16 DLL5 — Schur・HSD修復・疎構造・一括演算の追加最適化
 
 2026年10月12日。主要な追加最適化をDLL5にまとめました。堤防例題は **DLL4 272.97秒 → DLL5 142.17秒（47.92%短縮、約1.92倍）**。両版を同一PCで順番に再測定しています。DLLなしの既存実測611.56秒比では約4.30倍ですが、VBAの長時間測定は再実行していません。
 

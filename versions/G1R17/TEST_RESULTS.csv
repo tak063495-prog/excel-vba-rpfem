@@ -1,0 +1,30 @@
+test,kind,status,finding,evidence
+BASELINE,static_hash,PASS,2789 protected versions +32 P2-S files unchanged,results/delivery_verification.json
+ASSEMBLY,native_export_vs_python,PASS,4 same-mesh models; max coefficient difference4.44e-16,results/assembled_python_comparison.json
+ROOT_CAUSE,python_SOCP_LP,PASS,Original243 P06A/N localized dual maximum lambda0,results/paired_python.json
+P06A_ORIGINAL,native_fixed_Fs,PASS,Fs0.5 lambda1.074e-10; confirms original obstruction; no Fs search,results/original_P06A_fixed/summary.json
+P06N_COARSE,native_Excel,PASS_FS_OBTAINED_TARGET_NOT_MET,Fs0.5601486798687134--0.882117062283862; PARTIAL_CERTIFIED,results/coarse_g1r17_P06N/status.json
+P06A_COARSE,native_Excel,PASS_FS_OBTAINED_TARGET_NOT_MET,Fs0.7311064349583457--1.0285373768400026; PARTIAL_CERTIFIED,results/coarse_g1r17_P06A/status.json
+FIELD_AUDIT,independent_python,PASS,Both saved upper/lower full fields physically audited,results/coarse_python_verification.json
+ROOT_ENDPOINTS,independent_python,PASS_CHECKS_WITH_LIMITATIONS,P06A b: primal audit failed; independently checked dual selected; failed field not accepted,results/coarse_python_verification.json
+FIXED_PRECISION,native_VBA_vs_DLL,PASS,P06N Fs0.5; P06A Fs0.7 mesh/full-field bitwise exact,results/fixed_precision/summary.json
+FIXED_PYTHON,independent_python,PASS_FIELD_AUDIT_ALMOST_SOLVED,"AlmostSolved objective differences and dual gaps reported, not exact optimizer identity",results/fixed_precision_python.json
+DLL5_COMPARE,native_logs,PASS,22 coarse solves230 audits unchanged with repaired same mesh,results/numerical_dll5_vs_g1r17.json
+GEOMETRY25,native_mesh_only,PASS,75 exports25 cases; other23 unchanged; boundary/material/raw loads preserved,results/geometry25/summary.json
+EXCEL_FAILURES,native_Excel_injection,PASS,13 failures propagated before mesh mutation,results/fan_guards/summary.json
+DLL_CONTRACTS,ctypes_native,PASS,"9 conditions,100 partial-context releases",results/native_meshfan.json
+DLL_OOM_UNKNOWN,C++_injection,PASS,11 actual allocation failures207;4 unknown208; no leak,results/meshfan_native_faults.log
+FALLBACK,native_Excel,PASS,Missing and old ABI DLL use repaired VBA mesh and HSD,results/mesh_fallback/summary.json
+HSD,native_Excel_analytic,PASS,6 conditions VBA/DLL bitwise exact,results/hsd_regression/summary.json
+NT,native_Excel_oracle,PASS,188 inputs;165 successes exact; error classifications match,results/nt_oracle/comparison.json
+DD,native_binary_oracle,PASS,7552 operations,results/dd_core_python.json
+HSD_DD,python_decimal80,PASS,60 matrix assemblies,results/hdd_python.json
+COMPILER,python_native,PASS,120 sparse compilation conditions,results/compile_python.json
+DELIVERY,native_reopen_compile,PASS,"2 books71 modules, buttons and DLL_READY",results/reopen_delivery.json
+PYTHON_REDUCED,independent_solver_trial,REJECTED,NumericalError not counted as pass,results/fixed_python_comparison.json
+PYTHON_REGULARIZATION,independent_solver_trial,REJECTED,NumericalError retained; no production tolerance changes,results/python_regularization_trials.json
+P06_FULL,native_Excel,NOT_RUN,User requested coarse only,
+FS25_26_FULL,native_Excel,NOT_RUN,"Geometry25 only, no full case batch",
+SEEP_FULL,native_Excel,NOT_RUN,Dry P06 scope,
+EXCEL32,native_Excel,NOT_RUN,No32bit native Excel environment,
+LEVEE_TIMING,native_Excel,NOT_RUN,No speed retiming in this repair,

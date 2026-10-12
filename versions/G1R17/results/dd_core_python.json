@@ -1,0 +1,15 @@
+{
+  "cases": 7552,
+  "bitwise_exact_successes_and_identical_error_precedence": true,
+  "codes": {
+    "0": 7435,
+    "201": 15,
+    "206": 78,
+    "202": 2,
+    "203": 22
+  },
+  "seconds": 0.020208100002491847,
+  "DLL4_sha256": "ff794f03846bccb995d63e289f69bcb9eca96efc8cc732d467db328d346f5ce4",
+  "DLL5_sha256": "72aaf9bfccc0acc186eb69cdcbabd93b27f7ce245ceac574193ba6602c675323",
+  "scope": "native primitive binary oracle; actual VBA/FEM verification follows"
+}

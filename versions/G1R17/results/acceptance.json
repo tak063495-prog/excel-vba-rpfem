@@ -1,0 +1,71 @@
+{
+  "state": "PASS",
+  "DLL_sha256": "72aaf9bfccc0acc186eb69cdcbabd93b27f7ce245ceac574193ba6602c675323",
+  "runs": [
+    {
+      "test": "test_geometry.py",
+      "exit_code": 0,
+      "seconds": 0.514476399985142,
+      "log": "results\\acceptance_test_geometry.py.log"
+    },
+    {
+      "test": "test_guards.py",
+      "exit_code": 0,
+      "seconds": 15.131598100007977,
+      "log": "results\\acceptance_test_guards.py.log"
+    },
+    {
+      "test": "test_fixed_precision.py",
+      "exit_code": 0,
+      "seconds": 268.0291070000094,
+      "log": "results\\acceptance_test_fixed_precision.py.log"
+    },
+    {
+      "test": "test_mesh_fallback.py",
+      "exit_code": 0,
+      "seconds": 9.764643999980763,
+      "log": "results\\acceptance_test_mesh_fallback.py.log"
+    },
+    {
+      "test": "test_hsd_regression.py",
+      "exit_code": 0,
+      "seconds": 7.0280516000057105,
+      "log": "results\\acceptance_test_hsd_regression.py.log"
+    },
+    {
+      "test": "probe_cw.py",
+      "exit_code": 0,
+      "seconds": 4.457608500000788,
+      "log": "results\\acceptance_probe_cw.py.log"
+    },
+    {
+      "test": "test_nt_oracle.py",
+      "exit_code": 0,
+      "seconds": 5.705244399985531,
+      "log": "results\\acceptance_test_nt_oracle.py.log"
+    }
+  ],
+  "scope": "Geometry25 only; controlled failures; two fixed-Fs VBA/DLL cases; analytic HSD/NT; no full analysis",
+  "previous_failures": [
+    {
+      "test": "test_geometry.py",
+      "exit_code": 1,
+      "seconds": 81.77948570001172,
+      "log": "results\\acceptance_test_geometry.py_previous_1791800574833956600.log"
+    },
+    {
+      "test": "test_guards.py",
+      "exit_code": 1,
+      "seconds": 4.996905699983472,
+      "log": "results\\acceptance_test_guards.py_previous_1791800609604682800.log"
+    },
+    {
+      "test": "test_guards.py",
+      "exit_code": 1,
+      "seconds": 10.970804900018265,
+      "log": "results\\acceptance_test_guards.py_previous_1791800667811095900.log"
+    }
+  ],
+  "harness_correction": "Normalize interface encounter side labels for old/new mesh comparison. Actual 75 Excel exports are retained, never replaced by simulated results.",
+  "current": "test_nt_oracle.py"
+}

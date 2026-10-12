@@ -1,0 +1,3 @@
+# Preserve verified source, CP932/CRLF imports and evidence bytes on GitHub.
+* -text whitespace=-blank-at-eof,-blank-at-eol
+import/* -diff

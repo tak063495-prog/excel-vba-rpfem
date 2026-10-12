@@ -1,0 +1,4 @@
+ Assembling: ..\native\vba_fp.asm
+meshfan_failure_injection.cpp
+   ライブラリ meshfan_failure_test.lib とオブジェクト meshfan_failure_test.exp を作成中
+PASS 11 allocation points207; 4 unknown points208; partial cleanup; live handles0

@@ -1,0 +1,229 @@
+--- G1R16_DLL5/RPX_Mesh.bas
++++ G1R17/RPX_Mesh.bas
+@@ -146,9 +146,112 @@
+     re = count: If re = 0 Then err.Raise 5, , "NO_ELEMENTS_IN_REGIONS"
+     RPX_LoadPhase = "raw"
+     Call RPX_Topology: Call RPX_MapFaces: Call RPX_RepairFreeCorners
++    If RPX_RepairZeroStressFans() Then
++        Call RPX_AssignRegions
++        Exit Sub
++    End If
+     If RPX_RepairLoadSteps() Then Call RPX_AssignRegions
+     Call RPX_WaterApply
+ End Sub
++Private Function RPX_RepairZeroStressFans() As Boolean
++    ' A zero-stress free vertex can reach an adjacent c=0 triangle that
++    ' has no free edge itself. An obtuse fan at that vertex can force
++    ' the coarse Bernstein lower load to zero. Split only that triangle.
++    Dim exposed() As Boolean, splitAt() As Long, centerX() As Double, centerY() As Double
++    Dim id As Long, e As Long, f As Long, k As Long, a As Long, b As Long, c As Long, v As Long
++    Dim oldRE As Long, splitN As Long, mid As Long, changed As Boolean, hasC0 As Boolean
++    Dim ux As Double, uy As Double, vx As Double, vy As Double, lu As Double, lv As Double
++    Dim dot As Double, wa As Double, wb As Double
++    RPX_AssertInputs "zero_stress_fan_begin"
++    If RPX_LoadPhase <> "raw" Then err.Raise 5, "RPX_Mesh", "ZERO_STRESS_FAN_LOAD_PHASE"
++    For e = 0 To re - 1
++        If e Mod 256 = 0 Then RPX_Stage "zero stress fan eligibility " & e
++        If RRigidId(e) < 0 Then
++            If RMaterials(RMatId(e)).cohesion = 0# Then hasC0 = True: Exit For
++        End If
++    Next e
++    If Not hasC0 Then Exit Function
++    oldRE = re
++    ReDim exposed(0 To re - 1, 0 To 2)
++    ReDim splitAt(0 To re - 1): ReDim centerX(0 To re - 1): ReDim centerY(0 To re - 1)
++    If RPX_NativeMeshFans(splitAt, centerX, centerY, splitN) Then GoTo PlanReady
++    For id = 0 To RNEdge - 1
++        If id Mod 256 = 0 Then RPX_Stage "zero stress fan boundary " & id
++        With REdges(id)
++            e = .element(0)
++            If .element(1) < 0 And .kind = "load" And RRigidId(e) < 0 Then
++                If RMaterials(RMatId(e)).cohesion = 0# And Abs(.load0(0)) + Abs(.load0(1)) + Abs(.load1(0)) + Abs(.load1(1)) = 0# Then
++                    For k = 0 To 1: exposed(e, .loc(0, k)) = True: Next k
++                End If
++            End If
++        End With
++    Next id
++    Do
++        changed = False
++        For id = 0 To RNEdge - 1
++            If id Mod 256 = 0 Then RPX_Stage "zero stress fan propagation " & id
++            With REdges(id)
++                e = .element(0): f = .element(1)
++                If f >= 0 Then
++                    If RRigidId(e) < 0 And RRigidId(f) < 0 Then
++                        If RMaterials(RMatId(e)).cohesion = 0# And RMaterials(RMatId(f)).cohesion = 0# Then
++                            For k = 0 To 1
++                                a = .loc(0, k): b = .loc(1, k)
++                                If exposed(e, a) <> exposed(f, b) Then
++                                    exposed(e, a) = True: exposed(f, b) = True: changed = True
++                                End If
++                            Next k
++                        End If
++                    End If
++                End If
++            End With
++        Next id
++    Loop While changed
++    For e = 0 To oldRE - 1
++        If e Mod 256 = 0 Then RPX_Stage "zero stress fan angles " & e
++        splitAt(e) = -1
++        If RRigidId(e) < 0 And RMaterials(RMatId(e)).cohesion = 0# Then
++            If Abs(RBody0(e, 0)) + Abs(RBody0(e, 1)) + Abs(RBody1(e, 0)) + Abs(RBody1(e, 1)) > 0# Then
++                For k = 0 To 2
++                    If exposed(e, k) Then
++                        v = RTri(e, k): a = RTri(e, (k + 1) Mod 3): b = RTri(e, (k + 2) Mod 3)
++                        ux = RXY(a, 0) - RXY(v, 0): uy = RXY(a, 1) - RXY(v, 1)
++                        vx = RXY(b, 0) - RXY(v, 0): vy = RXY(b, 1) - RXY(v, 1)
++                        lu = Sqr(ux * ux + uy * uy): lv = Sqr(vx * vx + vy * vy)
++                        If lu <= 0# Or lv <= 0# Then err.Raise 5, "RPX_Mesh", "ZERO_STRESS_FAN_DEGENERATE"
++                        dot = ux * vx + uy * vy
++                        If dot < -0.000000000001 * lu * lv Then
++                            wa = 0.5 * lv / (lu + lv): wb = 0.5 * lu / (lu + lv)
++                            centerX(e) = RXY(v, 0) + wa * ux + wb * vx
++                            centerY(e) = RXY(v, 1) + wa * uy + wb * vy
++                            splitAt(e) = k: splitN = splitN + 1: Exit For
++                        End If
++                    End If
++                Next k
++            End If
++        End If
++    Next e
++PlanReady:
++    If splitN = 0 Then Exit Function
++    ' Preflight every insertion before changing the first node/element.
++    If rn + splitN + 2 > UBound(RXY, 1) Or re + 2 * splitN - 1 > UBound(RTri, 1) Then err.Raise 7, "RPX_Mesh", "ZERO_STRESS_FAN_CAPACITY"
++    RPX_AssertInputs "zero_stress_fan_commit"
++    RProgramKind = ""
++    For e = 0 To oldRE - 1
++        If e Mod 256 = 0 Then RPX_Stage "zero stress fan insertion " & e
++        If splitAt(e) >= 0 Then
++            a = RTri(e, 0): b = RTri(e, 1): c = RTri(e, 2): mid = rn
++            RXY(mid, 0) = centerX(e): RXY(mid, 1) = centerY(e): rn = rn + 1
++            RPX_SetPositive e, a, b, mid
++            RPX_SetPositive re, b, c, mid: RPX_SetPositive re + 1, c, a, mid
++            re = re + 2
++            RPX_DiagEvent "zero_stress_fan_split", "element=" & e & ";vertex=" & splitAt(e) & ";added_node=" & mid & ";x=" & centerX(e) & ";y=" & centerY(e)
++        End If
++    Next e
++    RProgramKind = ""
++    RPX_DiagEvent "zero_stress_fan_repair", "split_count=" & splitN & ";old_elements=" & oldRE & ";new_elements=" & re & ";scope=GEOMETRY_ONLY;loads=raw;constitutive_unchanged=True"
++    RPX_RepairZeroStressFans = True
++End Function
+ Private Sub RPX_RepairFreeCorners()
+     ' With c=0, two traction-free edges on one P2 stress triangle force
+     ' zero stress derivatives at their shared corner, conflicting with gravity.
+--- G1R16_DLL5/RPX_Native.bas
++++ G1R17/RPX_Native.bas
+@@ -39,6 +39,7 @@
+     RPX_NativeRefineResetCounts
+     RPX_NativeBulkResetCounts
+     RPX_NativeGuardResetCounts
++    RPX_NativeMeshResetCounts
+     RPX_NativeLUResetCounts
+ End Sub
+ Public Function RPX_NativeAvailable() As Boolean
+@@ -72,7 +73,10 @@
+     For Each exportName In Array("rpx_schur_create", "rpx_schur_destroy", "rpx_schur_bytes", "rpx_schur_factor_begin", "rpx_schur_factor_step", "rpx_schur_factor_result", "rpx_schur_factor_commit", "rpx_schur_solve_begin", "rpx_schur_solve_step", "rpx_schur_solve_result", "rpx_schur_finite")
+         If GetProcAddress(nativeHandle, CStr(exportName)) = 0 Then reason = "DLL_ENTRY_MISSING": Exit Function
+     Next exportName
+-    If NativeAbi() <> &H160005 Then reason = "DLL_ABI_MISMATCH": Exit Function
++    If NativeAbi() <> &H170005 Then reason = "DLL_ABI_MISMATCH": Exit Function
++    For Each exportName In Array("rpx_meshfan_create", "rpx_meshfan_step", "rpx_meshfan_result", "rpx_meshfan_destroy")
++        If GetProcAddress(nativeHandle, CStr(exportName)) = 0 Then reason = "DLL_ENTRY_MISSING": Exit Function
++    Next exportName
+     If GetProcAddress(nativeHandle, "rpx_bulk_ready") = 0 Then reason = "DLL_ENTRY_MISSING": Exit Function
+     If NativeBulkReady() <> 0 Then reason = "DLL_NT_RUNTIME_UNAVAILABLE": Exit Function
+     available = True: reason = "DLL_READY"
+@@ -84,7 +88,7 @@
+ Public Function RPX_NativeInfo() As String
+     Dim ready As Boolean
+     ready = RPX_NativeAvailable()
+-    RPX_NativeInfo = reason & ";numeric=" & numericCalls & ";dd_numeric=" & ddCalls & ";backsolve=" & solveCalls & ";ordering=" & orderCalls & ";column_ordering=" & columnOrderCalls & RPX_NativeBulkInfo() & RPX_NativeLUInfo() & RPX_NativeSolverInfo() & RPX_NativeRefineInfo() & RPX_NativeGuardInfo() & RPX_SchurNativeInfo()
++    RPX_NativeInfo = reason & ";numeric=" & numericCalls & ";dd_numeric=" & ddCalls & ";backsolve=" & solveCalls & ";ordering=" & orderCalls & ";column_ordering=" & columnOrderCalls & RPX_NativeBulkInfo() & RPX_NativeLUInfo() & RPX_NativeSolverInfo() & RPX_NativeRefineInfo() & RPX_NativeGuardInfo() & RPX_SchurNativeInfo() & RPX_NativeMeshInfo()
+ End Function
+ Public Sub RPX_NativeCheckCode(ByVal code As Long)
+     Select Case code
+@@ -113,6 +117,7 @@
+         Case 319: err.Raise 5, , "HSD_RHS_SHAPE_MISMATCH"
+         Case 320: err.Raise 5, , "HSD_NONFINITE_SOLUTION"
+         Case 330: err.Raise 9, "RPX_Native", "NATIVE_ARRAY_SHAPE_MISMATCH"
++        Case 341: err.Raise 5, "RPX_Mesh", "ZERO_STRESS_FAN_DEGENERATE"
+         Case 339: err.Raise 5, , "HSD_NONFINITE_KRYLOV"
+         Case 207: err.Raise 7, "RPX_Native", "NATIVE_OUT_OF_MEMORY"
+         Case 208: err.Raise 513, "RPX_Native", "NATIVE_UNEXPECTED_EXCEPTION"
+--- /dev/null
++++ G1R17/RPX_NativeMesh.bas
+@@ -0,0 +1,72 @@
++Attribute VB_Name = "RPX_NativeMesh"
++Option Explicit
++' G1R17: DLL owns a copied repair plan; VBA commits only after input/capacity checks.
++#If Win64 Then
++Private Declare PtrSafe Function NCreate Lib "rpfem_native_x64.dll" Alias "rpx_meshfan_create" (ByVal nn As Long, ByVal ne As Long, ByVal nd As Long, ByVal xy As LongPtr, ByVal tri As LongPtr, ByVal eligible As LongPtr, ByVal body As LongPtr, ByVal edges As LongPtr, ByRef handle As LongPtr) As Long
++Private Declare PtrSafe Function NStep Lib "rpfem_native_x64.dll" Alias "rpx_meshfan_step" (ByVal handle As LongPtr, ByVal milliseconds As Long, ByRef done As Long) As Long
++Private Declare PtrSafe Function NResult Lib "rpfem_native_x64.dll" Alias "rpx_meshfan_result" (ByVal handle As LongPtr, ByVal ne As Long, ByVal split As LongPtr, ByVal cx As LongPtr, ByVal cy As LongPtr, ByRef count As Long) As Long
++Private Declare PtrSafe Function NDestroy Lib "rpfem_native_x64.dll" Alias "rpx_meshfan_destroy" (ByVal handle As LongPtr) As Long
++#End If
++Private jobs As Long, steps As Long
++Public Function RPX_NativeMeshFans(ByRef split() As Long, ByRef cx() As Double, ByRef cy() As Double, ByRef count As Long) As Boolean
++    If Not RPX_NativeAvailable() Then Exit Function
++#If Win64 Then
++    Dim xy() As Double, tri() As Long, eligible() As Long, body() As Long, edges() As Long
++    Dim i As Long, k As Long, e As Long, done As Long, handle As LongPtr
++    Dim failNumber As Long, failSource As String, failText As String
++    On Error GoTo Failed
++    RPX_AssertInputs "native_meshfan_begin"
++    If RPX_LoadPhase <> "raw" Then err.Raise 5, "RPX_NativeMesh", "ZERO_STRESS_FAN_LOAD_PHASE"
++    If rn < 3 Or re < 1 Or RNEdge < 1 Then err.Raise 9, "RPX_NativeMesh", "NATIVE_MESHFAN_SIZE"
++    ReDim xy(0 To 2 * rn - 1): ReDim tri(0 To 3 * re - 1)
++    ReDim eligible(0 To re - 1): ReDim body(0 To re - 1): ReDim edges(0 To 7 * RNEdge - 1)
++    For i = 0 To rn - 1
++        If i Mod 256 = 0 Then RPX_Stage "native mesh fan nodes " & i
++        For k = 0 To 1: xy(2 * i + k) = RXY(i, k): Next k
++    Next i
++    For e = 0 To re - 1
++        If e Mod 256 = 0 Then RPX_Stage "native mesh fan elements " & e
++        For k = 0 To 2: tri(3 * e + k) = RTri(e, k): Next k
++        If RRigidId(e) < 0 And RMaterials(RMatId(e)).cohesion = 0# Then eligible(e) = 1
++        If Abs(RBody0(e, 0)) + Abs(RBody0(e, 1)) + Abs(RBody1(e, 0)) + Abs(RBody1(e, 1)) > 0# Then body(e) = 1
++    Next e
++    For i = 0 To RNEdge - 1
++        If i Mod 256 = 0 Then RPX_Stage "native mesh fan edges " & i
++        With REdges(i)
++            edges(7 * i) = .element(0): edges(7 * i + 1) = .element(1)
++            For k = 0 To 1
++                edges(7 * i + 2 + k) = .loc(0, k): edges(7 * i + 4 + k) = .loc(1, k)
++            Next k
++            If .element(1) < 0 And .kind = "load" Then
++                If Abs(.load0(0)) + Abs(.load0(1)) + Abs(.load1(0)) + Abs(.load1(1)) = 0# Then edges(7 * i + 6) = 1
++            End If
++        End With
++    Next i
++    RPX_AssertInputs "native_meshfan_copy"
++    RPX_NativeCheckCode NCreate(rn, re, RNEdge, VarPtr(xy(0)), VarPtr(tri(0)), VarPtr(eligible(0)), VarPtr(body(0)), VarPtr(edges(0)), handle)
++    jobs = jobs + 1
++    Do
++        RPX_Stage "native zero stress fan planning"
++        RPX_NativeCheckCode NStep(handle, 20, done): steps = steps + 1
++    Loop While done = 0
++    RPX_NativeCheckCode NResult(handle, re, VarPtr(split(0)), VarPtr(cx(0)), VarPtr(cy(0)), count)
++    RPX_NativeCheckCode NDestroy(handle): handle = 0
++    RPX_AssertInputs "native_meshfan_result"
++    RPX_NativeMeshFans = True
++    Exit Function
++Failed:
++    failNumber = err.number: failSource = err.source: failText = err.description
++    If handle <> 0 Then
++        On Error Resume Next
++        NDestroy handle
++        On Error GoTo 0
++    End If
++    err.Raise failNumber, failSource, failText
++#End If
++End Function
++Public Function RPX_NativeMeshInfo() As String
++    RPX_NativeMeshInfo = ";meshfan_jobs=" & jobs & ";meshfan_steps=" & steps
++End Function
++Public Sub RPX_NativeMeshResetCounts()
++    jobs = 0: steps = 0
++End Sub

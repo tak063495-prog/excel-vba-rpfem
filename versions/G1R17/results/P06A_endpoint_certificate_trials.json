@@ -1,0 +1,175 @@
+{
+  "trials": [
+    {
+      "fs": 0.731162975511205,
+      "mode": "lower",
+      "fixed_load": 1,
+      "status": "AlmostPrimalInfeasible",
+      "objective": 0.0,
+      "load": -2.1896332882448785e-19,
+      "seconds": 0.5062568,
+      "iterations": 101,
+      "eq_error": 1.0,
+      "cone_error": 6.344675019725338e-16,
+      "zero_stress_controls": 14,
+      "solver_primal_obj": null,
+      "solver_dual_obj": null,
+      "dual_gap": null,
+      "reduced": false,
+      "reduction_stats": [],
+      "infeasibility_certificate": {
+        "stationarity_max": 7.152557373046875e-07,
+        "rhs_dot_dual": -1.0000000002269758,
+        "SOC_dual_error": 0.0
+      },
+      "settings_overrides": {}
+    },
+    {
+      "fs": 0.731162975511205,
+      "mode": "lower",
+      "fixed_load": 1,
+      "status": "PrimalInfeasible",
+      "objective": 0.0,
+      "load": 2.302141925767131e-19,
+      "seconds": 0.2124811,
+      "iterations": 37,
+      "eq_error": 1.0,
+      "cone_error": 6.548798387193827e-16,
+      "zero_stress_controls": 14,
+      "solver_primal_obj": null,
+      "solver_dual_obj": null,
+      "dual_gap": null,
+      "reduced": false,
+      "reduction_stats": [],
+      "infeasibility_certificate": {
+        "stationarity_max": 7.152557373046875e-07,
+        "rhs_dot_dual": -0.9999999910855877,
+        "SOC_dual_error": 0.0
+      },
+      "settings_overrides": {
+        "max_step_fraction": 0.95
+      }
+    },
+    {
+      "fs": 0.731162975511205,
+      "mode": "lower",
+      "fixed_load": 1,
+      "status": "PrimalInfeasible",
+      "objective": 0.0,
+      "load": -2.5111117443597045e-19,
+      "seconds": 0.3033999,
+      "iterations": 56,
+      "eq_error": 1.0,
+      "cone_error": 9.286371006929691e-16,
+      "zero_stress_controls": 14,
+      "solver_primal_obj": null,
+      "solver_dual_obj": null,
+      "dual_gap": null,
+      "reduced": false,
+      "reduction_stats": [],
+      "infeasibility_certificate": {
+        "stationarity_max": 7.152557373046875e-07,
+        "rhs_dot_dual": -0.9999999915937678,
+        "SOC_dual_error": 0.0
+      },
+      "settings_overrides": {
+        "max_step_fraction": 0.99,
+        "equilibrate_max_iter": 20
+      }
+    },
+    {
+      "fs": 0.731162975511205,
+      "mode": "lower",
+      "fixed_load": 1,
+      "status": "AlmostSolved",
+      "objective": 0.0,
+      "load": 0.9999999970089546,
+      "seconds": 0.1292722,
+      "iterations": 20,
+      "eq_error": 2.358433648042133e-07,
+      "cone_error": 5.086034842172182e-07,
+      "zero_stress_controls": 14,
+      "solver_primal_obj": 0.0,
+      "solver_dual_obj": -2.06486062023075e-05,
+      "dual_gap": 2.06486062023075e-05,
+      "reduced": false,
+      "reduction_stats": [],
+      "physical_audit": {
+        "pass": false,
+        "errors": {
+          "yield": 5.086034842172182e-07,
+          "equilibrium": 1.8743917795660536e-06,
+          "internal_traction": 1.193627796811092e-07,
+          "boundary_traction": 1.1038904956794937e-07
+        },
+        "load": 0.9999999970089546,
+        "value": 0.9999999970089546
+      },
+      "settings_overrides": {
+        "max_step_fraction": 0.999
+      }
+    },
+    {
+      "fs": 0.731162975511205,
+      "mode": "lower",
+      "fixed_load": 1,
+      "status": "AlmostSolved",
+      "objective": 0.0,
+      "load": 0.9999999959404567,
+      "seconds": 1.361252,
+      "iterations": 250,
+      "eq_error": 2.3100202922377082e-07,
+      "cone_error": 5.103827938335304e-07,
+      "zero_stress_controls": 14,
+      "solver_primal_obj": 0.0,
+      "solver_dual_obj": 2.0696472642769837e-09,
+      "dual_gap": 2.0696472642769837e-09,
+      "reduced": false,
+      "reduction_stats": [],
+      "physical_audit": {
+        "pass": false,
+        "errors": {
+          "yield": 5.103827938335304e-07,
+          "equilibrium": 1.8362747340461283e-06,
+          "internal_traction": 1.1691287023912755e-07,
+          "boundary_traction": 1.0812333867127322e-07
+        },
+        "load": 0.9999999959404567,
+        "value": 0.9999999959404567
+      },
+      "settings_overrides": {
+        "static_regularization_constant": 1e-07
+      }
+    },
+    {
+      "fs": 0.731162975511205,
+      "mode": "lower",
+      "fixed_load": null,
+      "status": "AlmostSolved",
+      "objective": -0.9997918622601665,
+      "load": 0.9997918622601665,
+      "seconds": 0.1138846,
+      "iterations": 17,
+      "eq_error": 3.0274297230237224e-07,
+      "cone_error": 3.7857945250907576e-10,
+      "zero_stress_controls": 14,
+      "solver_primal_obj": -0.9997918622601665,
+      "solver_dual_obj": -0.9997922712191067,
+      "dual_gap": 4.0895894026782287e-07,
+      "reduced": false,
+      "reduction_stats": [],
+      "physical_audit": {
+        "pass": false,
+        "errors": {
+          "yield": 3.7857945250907576e-10,
+          "equilibrium": 7.092800904384688e-07,
+          "internal_traction": 1.0298359387483913e-13,
+          "boundary_traction": 9.534040223968532e-14
+        },
+        "load": 0.9997918622601665,
+        "value": 0.9997918622601665
+      }
+    }
+  ],
+  "scope": "Independent Python feasibility-certificate checks, production tolerances unchanged"
+}

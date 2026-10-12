@@ -1,0 +1,12 @@
+COMPILE PASS
+vba cancel ERROR 18:ANALYSIS_CANCELLED;nodes_unchanged=True;elements_unchanged=True
+vba phase ERROR 5:ZERO_STRESS_FAN_LOAD_PHASE;nodes_unchanged=True;elements_unchanged=True
+vba input UNEXPECTED_SUCCESS
+Traceback (most recent call last):
+  File "C:\Users\link_\Downloads\RPFEM_G1R16_DLL5_P06N_Repair_20261012\versions\G1R17\tools\test_guards.py", line 30, in <module>
+    if __name__=='__main__':main()
+                            ^^^^^^
+  File "C:\Users\link_\Downloads\RPFEM_G1R16_DLL5_P06N_Repair_20261012\versions\G1R17\tools\test_guards.py", line 24, in main
+    assert msg.startswith('ERROR '+str(expected)+':') and 'nodes_unchanged=True;elements_unchanged=True'in msg,msg
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: UNEXPECTED_SUCCESS

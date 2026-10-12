@@ -1,0 +1,431 @@
+{
+  "cases": [
+    {
+      "case": "P06N",
+      "nodes": 147,
+      "elements": 245,
+      "Fs_lower": 0.5601486798687134,
+      "Fs_upper": 0.882117062283862,
+      "independent_native_field_audits": {
+        "lower": {
+          "pass": true,
+          "errors": {
+            "yield": 1.7673678912224724e-13,
+            "equilibrium": 9.418021917895203e-12,
+            "internal_traction": 6.445607936278464e-13,
+            "boundary_traction": 2.94320123828129e-13
+          },
+          "load": 1.0001070045564207,
+          "value": 1.0001070045564207
+        },
+        "upper": {
+          "pass": true,
+          "errors": {
+            "flow": 1.4664432946871876e-12,
+            "jump": 1.108294179041577e-12,
+            "bonded_interface": 1.1266325675738617e-11,
+            "boundary": 1.1986839051557235e-11,
+            "work": 1.9992885125219573e-10,
+            "objective": 4.440892098500626e-16
+          },
+          "dissipation": 0.9999948599239163,
+          "work": [
+            0.0,
+            0.9999999998000711
+          ],
+          "value": 0.9999948599239163
+        }
+      },
+      "native_brackets": {
+        "upper": {
+          "mode": "upper",
+          "a": "0.882089979792507",
+          "b": "0.882117062283862",
+          "fa": "4.07537955252613E-05",
+          "fb": "-4.14007608362521E-06",
+          "target": "0.999999",
+          "quadrature": "8",
+          "root_width": "2.70824913545242E-05"
+        },
+        "lower": {
+          "mode": "lower",
+          "a": "0.560148679868713",
+          "b": "0.560219483290432",
+          "fa": "1.06004556420736E-04",
+          "fb": "-1.68864826286141E-03",
+          "target": "1.000001",
+          "quadrature": "8",
+          "root_width": "7.08034217183906E-05"
+        }
+      },
+      "python_points": [
+        {
+          "fs": 0.560148679868713,
+          "mode": "lower",
+          "fixed_load": 1.0,
+          "status": "AlmostSolved",
+          "objective": 0.0,
+          "load": 1.0000000000005156,
+          "seconds": 0.0771682,
+          "iterations": 11,
+          "eq_error": 4.358536221287586e-11,
+          "cone_error": 0.0,
+          "zero_stress_controls": 14,
+          "solver_primal_obj": 0.0,
+          "solver_dual_obj": -1.833790328762434e-05,
+          "dual_gap": 1.833790328762434e-05,
+          "reduced": false,
+          "reduction_stats": [],
+          "dual_stationarity_max": 7.873201749051951e-09,
+          "dual_cone_error": 0.0,
+          "physical_audit": {
+            "pass": true,
+            "errors": {
+              "yield": 7.348038045611206e-11,
+              "equilibrium": 3.4720315511549416e-10,
+              "internal_traction": 2.211850494426848e-11,
+              "boundary_traction": 2.0445339865560186e-11
+            },
+            "load": 1.0000000000005156,
+            "value": 1.0000000000005156
+          },
+          "endpoint": "a"
+        },
+        {
+          "fs": 0.560219483290432,
+          "mode": "lower",
+          "fixed_load": 1.0,
+          "status": "PrimalInfeasible",
+          "objective": 0.0,
+          "load": 2.83664936133635e-10,
+          "seconds": 0.1237169,
+          "iterations": 20,
+          "eq_error": 0.999999999716335,
+          "cone_error": 1.1191965728613156e-15,
+          "zero_stress_controls": 14,
+          "solver_primal_obj": null,
+          "solver_dual_obj": null,
+          "dual_gap": null,
+          "reduced": false,
+          "reduction_stats": [],
+          "dual_stationarity_max": 4.470348358154297e-08,
+          "dual_cone_error": 0.0,
+          "infeasibility_certificate": {
+            "stationarity_max": 4.470348358154297e-08,
+            "rhs_dot_dual": -1.0000000003591936,
+            "SOC_dual_error": 0.0
+          },
+          "endpoint": "b",
+          "strict_infeasibility_certificate_pass": true
+        },
+        {
+          "fs": 0.882089979792507,
+          "mode": "upper",
+          "fixed_load": null,
+          "status": "AlmostSolved",
+          "objective": 1.0000398869059972,
+          "load": null,
+          "seconds": 0.1507719,
+          "iterations": 22,
+          "eq_error": 2.4851664457954514e-13,
+          "cone_error": 1.7428856184993015e-09,
+          "zero_stress_controls": null,
+          "solver_primal_obj": 1.0000398869059968,
+          "solver_dual_obj": 1.0000398864775266,
+          "dual_gap": 4.2847014825042606e-10,
+          "reduced": false,
+          "reduction_stats": [],
+          "dual_stationarity_max": 8.093593167757907e-08,
+          "dual_cone_error": 0.0,
+          "physical_audit": {
+            "pass": true,
+            "errors": {
+              "flow": 8.078986120638399e-10,
+              "jump": 2.236889322018799e-10,
+              "bonded_interface": 3.481659405224491e-13,
+              "boundary": 2.4851664457954514e-13,
+              "work": 1.383337888682945e-13,
+              "objective": 4.218847493575595e-15
+            },
+            "dissipation": 1.0000398869060014,
+            "work": [
+              0.0,
+              1.0000000000001383
+            ],
+            "value": 1.0000398869060014
+          },
+          "endpoint": "a"
+        },
+        {
+          "fs": 0.882117062283862,
+          "mode": "upper",
+          "fixed_load": null,
+          "status": "AlmostSolved",
+          "objective": 0.9999948923335713,
+          "load": null,
+          "seconds": 0.1515082,
+          "iterations": 23,
+          "eq_error": 1.0686591011695242e-13,
+          "cone_error": 4.5547875213800895e-10,
+          "zero_stress_controls": null,
+          "solver_primal_obj": 0.9999948923335672,
+          "solver_dual_obj": 0.9999948922215934,
+          "dual_gap": 1.1197376359461941e-10,
+          "reduced": false,
+          "reduction_stats": [],
+          "dual_stationarity_max": 2.1152877754012813e-08,
+          "dual_cone_error": 0.0,
+          "physical_audit": {
+            "pass": true,
+            "errors": {
+              "flow": 2.1115159109205738e-10,
+              "jump": 5.843091433450727e-11,
+              "bonded_interface": 1.5113121944275213e-13,
+              "boundary": 6.808761150006973e-14,
+              "work": 4.973799150320701e-14,
+              "objective": 2.7755575615628914e-15
+            },
+            "dissipation": 0.9999948923335685,
+            "work": [
+              0.0,
+              1.0000000000000497
+            ],
+            "value": 0.9999948923335685
+          },
+          "endpoint": "b"
+        }
+      ]
+    },
+    {
+      "case": "P06A",
+      "nodes": 147,
+      "elements": 245,
+      "Fs_lower": 0.7311064349583457,
+      "Fs_upper": 1.0285373768400026,
+      "independent_native_field_audits": {
+        "lower": {
+          "pass": true,
+          "errors": {
+            "yield": 7.05707625265587e-14,
+            "equilibrium": 3.747835375378372e-12,
+            "internal_traction": 2.559341627517142e-13,
+            "boundary_traction": 1.1685097334179773e-13
+          },
+          "load": 1.0015408469828635,
+          "value": 1.0015408469828635
+        },
+        "upper": {
+          "pass": true,
+          "errors": {
+            "flow": 9.786525423515618e-15,
+            "jump": 0.0,
+            "bonded_interface": 4.929597480123371e-12,
+            "boundary": 8.50976969443621e-12,
+            "work": 8.812350849041195e-11,
+            "objective": 1.887379141862766e-15
+          },
+          "dissipation": 0.9999977549686648,
+          "work": [
+            0.0,
+            0.9999999999118765
+          ],
+          "value": 0.9999977549686648
+        }
+      },
+      "native_brackets": {
+        "upper": {
+          "mode": "upper",
+          "a": "1.02844541109511",
+          "b": "1.02853737684",
+          "fa": "1.6302367094323E-04",
+          "fb": "-1.24503133513976E-06",
+          "target": "0.999999",
+          "quadrature": "8",
+          "root_width": "9.19657448914535E-05"
+        },
+        "lower": {
+          "mode": "lower",
+          "a": "0.731106434958346",
+          "b": "0.731162975511205",
+          "fa": "1.53984698286358E-03",
+          "fb": "-2.0918421984939E-04",
+          "target": "1.000001",
+          "quadrature": "8",
+          "root_width": "5.65405528590857E-05"
+        }
+      },
+      "python_points": [
+        {
+          "fs": 0.731106434958346,
+          "mode": "lower",
+          "fixed_load": 1.0,
+          "status": "AlmostSolved",
+          "objective": 0.0,
+          "load": 1.0,
+          "seconds": 0.0769776,
+          "iterations": 11,
+          "eq_error": 5.3013888895613114e-15,
+          "cone_error": 0.0,
+          "zero_stress_controls": 14,
+          "solver_primal_obj": 0.0,
+          "solver_dual_obj": -9.25950097539063e-06,
+          "dual_gap": 9.25950097539063e-06,
+          "reduced": false,
+          "reduction_stats": [],
+          "dual_stationarity_max": 3.975468645150105e-09,
+          "dual_cone_error": 0.0,
+          "physical_audit": {
+            "pass": true,
+            "errors": {
+              "yield": 8.928234286766477e-15,
+              "equilibrium": 4.263256414560601e-14,
+              "internal_traction": 2.6645352591003757e-15,
+              "boundary_traction": 2.4702462297909733e-15
+            },
+            "load": 1.0,
+            "value": 1.0
+          },
+          "endpoint": "a"
+        },
+        {
+          "fs": 0.731162975511205,
+          "mode": "lower",
+          "fixed_load": 1.0,
+          "status": "AlmostPrimalInfeasible",
+          "objective": 0.0,
+          "load": -2.1896332882448785e-19,
+          "seconds": 0.5163471,
+          "iterations": 101,
+          "eq_error": 1.0,
+          "cone_error": 6.344675019725338e-16,
+          "zero_stress_controls": 14,
+          "solver_primal_obj": null,
+          "solver_dual_obj": null,
+          "dual_gap": null,
+          "reduced": false,
+          "reduction_stats": [],
+          "dual_stationarity_max": 7.152557373046875e-07,
+          "dual_cone_error": 0.0,
+          "infeasibility_certificate": {
+            "stationarity_max": 7.152557373046875e-07,
+            "rhs_dot_dual": -1.0000000002269758,
+            "SOC_dual_error": 0.0
+          },
+          "endpoint": "b",
+          "strict_infeasibility_certificate_pass": false,
+          "fallback_max_load_check": {
+            "fs": 0.731162975511205,
+            "mode": "lower",
+            "fixed_load": null,
+            "status": "AlmostSolved",
+            "objective": -0.9997918622601665,
+            "load": 0.9997918622601665,
+            "seconds": 0.1105538,
+            "iterations": 17,
+            "eq_error": 3.0274297230237224e-07,
+            "cone_error": 3.7857945250907576e-10,
+            "zero_stress_controls": 14,
+            "solver_primal_obj": -0.9997918622601665,
+            "solver_dual_obj": -0.9997922712191067,
+            "dual_gap": 4.0895894026782287e-07,
+            "reduced": false,
+            "reduction_stats": [],
+            "dual_stationarity_max": 4.238146165516165e-10,
+            "dual_cone_error": 0.0,
+            "physical_audit": {
+              "pass": false,
+              "errors": {
+                "yield": 3.7857945250907576e-10,
+                "equilibrium": 7.092800904384688e-07,
+                "internal_traction": 1.0298359387483913e-13,
+                "boundary_traction": 9.534040223968532e-14
+              },
+              "load": 0.9997918622601665,
+              "value": 0.9997918622601665
+            },
+            "primal_field_accepted": false,
+            "dual_max_load_check_pass": true
+          }
+        },
+        {
+          "fs": 1.02844541109511,
+          "mode": "upper",
+          "fixed_load": null,
+          "status": "AlmostSolved",
+          "objective": 1.0001623062992269,
+          "load": null,
+          "seconds": 0.1486753,
+          "iterations": 21,
+          "eq_error": 1.1127717874734758e-13,
+          "cone_error": 3.792925359122086e-09,
+          "zero_stress_controls": null,
+          "solver_primal_obj": 1.0001623062992293,
+          "solver_dual_obj": 1.0001623054005588,
+          "dual_gap": 8.986704713720428e-10,
+          "reduced": false,
+          "reduction_stats": [],
+          "dual_stationarity_max": 1.7931916316344771e-07,
+          "dual_cone_error": 0.0,
+          "physical_audit": {
+            "pass": true,
+            "errors": {
+              "flow": 1.948500523421703e-09,
+              "jump": 5.083782597499571e-10,
+              "bonded_interface": 1.0274469340194488e-13,
+              "boundary": 1.1127717874734758e-13,
+              "work": 3.83026943495679e-14,
+              "objective": 1.3322676295501878e-15
+            },
+            "dissipation": 1.0001623062992282,
+            "work": [
+              0.0,
+              0.9999999999999617
+            ],
+            "value": 1.0001623062992282
+          },
+          "endpoint": "a"
+        },
+        {
+          "fs": 1.02853737684,
+          "mode": "upper",
+          "fixed_load": null,
+          "status": "Solved",
+          "objective": 0.9999977559457232,
+          "load": null,
+          "seconds": 0.168245,
+          "iterations": 22,
+          "eq_error": 3.824961421848988e-14,
+          "cone_error": 2.554987531346851e-11,
+          "zero_stress_controls": null,
+          "solver_primal_obj": 0.9999977559457242,
+          "solver_dual_obj": 0.9999977559396636,
+          "dual_gap": 6.060596469126267e-12,
+          "reduced": false,
+          "reduction_stats": [],
+          "dual_stationarity_max": 1.205553564440954e-09,
+          "dual_cone_error": 0.0,
+          "physical_audit": {
+            "pass": true,
+            "errors": {
+              "flow": 1.3115625381954149e-11,
+              "jump": 3.4133134860923774e-12,
+              "bonded_interface": 5.409312318334256e-14,
+              "boundary": 1.1679032212648475e-14,
+              "work": 4.218847493575595e-15,
+              "objective": 1.2212453270876722e-15
+            },
+            "dissipation": 0.9999977559457244,
+            "work": [
+              0.0,
+              1.0000000000000042
+            ],
+            "value": 0.9999977559457244
+          },
+          "endpoint": "b"
+        }
+      ]
+    }
+  ],
+  "scope": "Saved native fields on actual coarse mesh. XML decimal serialization is audited, never used as an exact binary identity key.",
+  "PASS": true
+}

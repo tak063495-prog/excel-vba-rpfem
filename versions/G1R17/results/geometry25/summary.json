@@ -1,0 +1,833 @@
+{
+  "scope": "25 cases geometry only, TARGET200 q8 ADAPT0 dry kh0; no full runs",
+  "exports": [
+    {
+      "case": "D01A",
+      "version": "old",
+      "mode": "vba",
+      "result": "PASS;nodes=130;elements=214;VBA_SELECTED;numeric=0;dd_numeric=0;backsolve=0;ordering=0;column_ordering=0;nt_bulk=0;g_bulk=0;gt_bulk=0;kkt_bulk=0;hsd_operator=0;corrector_bulk=0;bulk_job_steps=0;hsd_lu=0;hsd_lu_solve=0;solver_vector_calls=0;hsd_jobs=0;hsd_job_steps=0;krylov_jobs=0;krylov_steps=0;refine_jobs=0;refine_steps=0;input_compare_calls=0;schur_jobs=0;schur_steps=0;schur_native_bytes=0",
+      "idempotent": true
+    },
+    {
+      "case": "D02A",
+      "version": "old",
+      "mode": "vba",
+      "result": "PASS;nodes=131;elements=212;VBA_SELECTED;numeric=0;dd_numeric=0;backsolve=0;ordering=0;column_ordering=0;nt_bulk=0;g_bulk=0;gt_bulk=0;kkt_bulk=0;hsd_operator=0;corrector_bulk=0;bulk_job_steps=0;hsd_lu=0;hsd_lu_solve=0;solver_vector_calls=0;hsd_jobs=0;hsd_job_steps=0;krylov_jobs=0;krylov_steps=0;refine_jobs=0;refine_steps=0;input_compare_calls=0;schur_jobs=0;schur_steps=0;schur_native_bytes=0",
+      "idempotent": true
+    },
+    {
+      "case": "D03N",
+      "version": "old",
+      "mode": "vba",
+      "result": "PASS;nodes=131;elements=212;VBA_SELECTED;numeric=0;dd_numeric=0;backsolve=0;ordering=0;column_ordering=0;nt_bulk=0;g_bulk=0;gt_bulk=0;kkt_bulk=0;hsd_operator=0;corrector_bulk=0;bulk_job_steps=0;hsd_lu=0;hsd_lu_solve=0;solver_vector_calls=0;hsd_jobs=0;hsd_job_steps=0;krylov_jobs=0;krylov_steps=0;refine_jobs=0;refine_steps=0;input_compare_calls=0;schur_jobs=0;schur_steps=0;schur_native_bytes=0",
+      "idempotent": true
+    },
+    {
+      "case": "D04A",
+      "version": "old",
+      "mode": "vba",
+      "result": "PASS;nodes=130;elements=214;VBA_SELECTED;numeric=0;dd_numeric=0;backsolve=0;ordering=0;column_ordering=0;nt_bulk=0;g_bulk=0;gt_bulk=0;kkt_bulk=0;hsd_operator=0;corrector_bulk=0;bulk_job_steps=0;hsd_lu=0;hsd_lu_solve=0;solver_vector_calls=0;hsd_jobs=0;hsd_job_steps=0;krylov_jobs=0;krylov_steps=0;refine_jobs=0;refine_steps=0;input_compare_calls=0;schur_jobs=0;schur_steps=0;schur_native_bytes=0",
+      "idempotent": true
+    },
+    {
+      "case": "D05A",
+      "version": "old",
+      "mode": "vba",
+      "result": "PASS;nodes=130;elements=214;VBA_SELECTED;numeric=0;dd_numeric=0;backsolve=0;ordering=0;column_ordering=0;nt_bulk=0;g_bulk=0;gt_bulk=0;kkt_bulk=0;hsd_operator=0;corrector_bulk=0;bulk_job_steps=0;hsd_lu=0;hsd_lu_solve=0;solver_vector_calls=0;hsd_jobs=0;hsd_job_steps=0;krylov_jobs=0;krylov_steps=0;refine_jobs=0;refine_steps=0;input_compare_calls=0;schur_jobs=0;schur_steps=0;schur_native_bytes=0",
+      "idempotent": true
+    },
+    {
+      "case": "D06A",
+      "version": "old",
+      "mode": "vba",
+      "result": "PASS;nodes=130;elements=214;VBA_SELECTED;numeric=0;dd_numeric=0;backsolve=0;ordering=0;column_ordering=0;nt_bulk=0;g_bulk=0;gt_bulk=0;kkt_bulk=0;hsd_operator=0;corrector_bulk=0;bulk_job_steps=0;hsd_lu=0;hsd_lu_solve=0;solver_vector_calls=0;hsd_jobs=0;hsd_job_steps=0;krylov_jobs=0;krylov_steps=0;refine_jobs=0;refine_steps=0;input_compare_calls=0;schur_jobs=0;schur_steps=0;schur_native_bytes=0",
+      "idempotent": true
+    },
+    {
+      "case": "D07A",
+      "version": "old",
+      "mode": "vba",
+      "result": "PASS;nodes=131;elements=215;VBA_SELECTED;numeric=0;dd_numeric=0;backsolve=0;ordering=0;column_ordering=0;nt_bulk=0;g_bulk=0;gt_bulk=0;kkt_bulk=0;hsd_operator=0;corrector_bulk=0;bulk_job_steps=0;hsd_lu=0;hsd_lu_solve=0;solver_vector_calls=0;hsd_jobs=0;hsd_job_steps=0;krylov_jobs=0;krylov_steps=0;refine_jobs=0;refine_steps=0;input_compare_calls=0;schur_jobs=0;schur_steps=0;schur_native_bytes=0",
+      "idempotent": true
+    },
+    {
+      "case": "D09A",
+      "version": "old",
+      "mode": "vba",
+      "result": "PASS;nodes=130;elements=214;VBA_SELECTED;numeric=0;dd_numeric=0;backsolve=0;ordering=0;column_ordering=0;nt_bulk=0;g_bulk=0;gt_bulk=0;kkt_bulk=0;hsd_operator=0;corrector_bulk=0;bulk_job_steps=0;hsd_lu=0;hsd_lu_solve=0;solver_vector_calls=0;hsd_jobs=0;hsd_job_steps=0;krylov_jobs=0;krylov_steps=0;refine_jobs=0;refine_steps=0;input_compare_calls=0;schur_jobs=0;schur_steps=0;schur_native_bytes=0",
+      "idempotent": true
+    },
+    {
+      "case": "P01A",
+      "version": "old",
+      "mode": "vba",
+      "result": "PASS;nodes=130;elements=214;VBA_SELECTED;numeric=0;dd_numeric=0;backsolve=0;ordering=0;column_ordering=0;nt_bulk=0;g_bulk=0;gt_bulk=0;kkt_bulk=0;hsd_operator=0;corrector_bulk=0;bulk_job_steps=0;hsd_lu=0;hsd_lu_solve=0;solver_vector_calls=0;hsd_jobs=0;hsd_job_steps=0;krylov_jobs=0;krylov_steps=0;refine_jobs=0;refine_steps=0;input_compare_calls=0;schur_jobs=0;schur_steps=0;schur_native_bytes=0",
+      "idempotent": true
+    },
+    {
+      "case": "P01N",
+      "version": "old",
+      "mode": "vba",
+      "result": "PASS;nodes=130;elements=214;VBA_SELECTED;numeric=0;dd_numeric=0;backsolve=0;ordering=0;column_ordering=0;nt_bulk=0;g_bulk=0;gt_bulk=0;kkt_bulk=0;hsd_operator=0;corrector_bulk=0;bulk_job_steps=0;hsd_lu=0;hsd_lu_solve=0;solver_vector_calls=0;hsd_jobs=0;hsd_job_steps=0;krylov_jobs=0;krylov_steps=0;refine_jobs=0;refine_steps=0;input_compare_calls=0;schur_jobs=0;schur_steps=0;schur_native_bytes=0",
+      "idempotent": true
+    },
+    {
+      "case": "P02A",
+      "version": "old",
+      "mode": "vba",
+      "result": "PASS;nodes=130;elements=214;VBA_SELECTED;numeric=0;dd_numeric=0;backsolve=0;ordering=0;column_ordering=0;nt_bulk=0;g_bulk=0;gt_bulk=0;kkt_bulk=0;hsd_operator=0;corrector_bulk=0;bulk_job_steps=0;hsd_lu=0;hsd_lu_solve=0;solver_vector_calls=0;hsd_jobs=0;hsd_job_steps=0;krylov_jobs=0;krylov_steps=0;refine_jobs=0;refine_steps=0;input_compare_calls=0;schur_jobs=0;schur_steps=0;schur_native_bytes=0",
+      "idempotent": true
+    },
+    {
+      "case": "P02N",
+      "version": "old",
+      "mode": "vba",
+      "result": "PASS;nodes=130;elements=214;VBA_SELECTED;numeric=0;dd_numeric=0;backsolve=0;ordering=0;column_ordering=0;nt_bulk=0;g_bulk=0;gt_bulk=0;kkt_bulk=0;hsd_operator=0;corrector_bulk=0;bulk_job_steps=0;hsd_lu=0;hsd_lu_solve=0;solver_vector_calls=0;hsd_jobs=0;hsd_job_steps=0;krylov_jobs=0;krylov_steps=0;refine_jobs=0;refine_steps=0;input_compare_calls=0;schur_jobs=0;schur_steps=0;schur_native_bytes=0",
+      "idempotent": true
+    },
+    {
+      "case": "P03A",
+      "version": "old",
+      "mode": "vba",
+      "result": "PASS;nodes=130;elements=214;VBA_SELECTED;numeric=0;dd_numeric=0;backsolve=0;ordering=0;column_ordering=0;nt_bulk=0;g_bulk=0;gt_bulk=0;kkt_bulk=0;hsd_operator=0;corrector_bulk=0;bulk_job_steps=0;hsd_lu=0;hsd_lu_solve=0;solver_vector_calls=0;hsd_jobs=0;hsd_job_steps=0;krylov_jobs=0;krylov_steps=0;refine_jobs=0;refine_steps=0;input_compare_calls=0;schur_jobs=0;schur_steps=0;schur_native_bytes=0",
+      "idempotent": true
+    },
+    {
+      "case": "P03N",
+      "version": "old",
+      "mode": "vba",
+      "result": "PASS;nodes=130;elements=214;VBA_SELECTED;numeric=0;dd_numeric=0;backsolve=0;ordering=0;column_ordering=0;nt_bulk=0;g_bulk=0;gt_bulk=0;kkt_bulk=0;hsd_operator=0;corrector_bulk=0;bulk_job_steps=0;hsd_lu=0;hsd_lu_solve=0;solver_vector_calls=0;hsd_jobs=0;hsd_job_steps=0;krylov_jobs=0;krylov_steps=0;refine_jobs=0;refine_steps=0;input_compare_calls=0;schur_jobs=0;schur_steps=0;schur_native_bytes=0",
+      "idempotent": true
+    },
+    {
+      "case": "P04A",
+      "version": "old",
+      "mode": "vba",
+      "result": "PASS;nodes=130;elements=214;VBA_SELECTED;numeric=0;dd_numeric=0;backsolve=0;ordering=0;column_ordering=0;nt_bulk=0;g_bulk=0;gt_bulk=0;kkt_bulk=0;hsd_operator=0;corrector_bulk=0;bulk_job_steps=0;hsd_lu=0;hsd_lu_solve=0;solver_vector_calls=0;hsd_jobs=0;hsd_job_steps=0;krylov_jobs=0;krylov_steps=0;refine_jobs=0;refine_steps=0;input_compare_calls=0;schur_jobs=0;schur_steps=0;schur_native_bytes=0",
+      "idempotent": true
+    },
+    {
+      "case": "P04N",
+      "version": "old",
+      "mode": "vba",
+      "result": "PASS;nodes=130;elements=214;VBA_SELECTED;numeric=0;dd_numeric=0;backsolve=0;ordering=0;column_ordering=0;nt_bulk=0;g_bulk=0;gt_bulk=0;kkt_bulk=0;hsd_operator=0;corrector_bulk=0;bulk_job_steps=0;hsd_lu=0;hsd_lu_solve=0;solver_vector_calls=0;hsd_jobs=0;hsd_job_steps=0;krylov_jobs=0;krylov_steps=0;refine_jobs=0;refine_steps=0;input_compare_calls=0;schur_jobs=0;schur_steps=0;schur_native_bytes=0",
+      "idempotent": true
+    },
+    {
+      "case": "P05A",
+      "version": "old",
+      "mode": "vba",
+      "result": "PASS;nodes=147;elements=238;VBA_SELECTED;numeric=0;dd_numeric=0;backsolve=0;ordering=0;column_ordering=0;nt_bulk=0;g_bulk=0;gt_bulk=0;kkt_bulk=0;hsd_operator=0;corrector_bulk=0;bulk_job_steps=0;hsd_lu=0;hsd_lu_solve=0;solver_vector_calls=0;hsd_jobs=0;hsd_job_steps=0;krylov_jobs=0;krylov_steps=0;refine_jobs=0;refine_steps=0;input_compare_calls=0;schur_jobs=0;schur_steps=0;schur_native_bytes=0",
+      "idempotent": true
+    },
+    {
+      "case": "P05N",
+      "version": "old",
+      "mode": "vba",
+      "result": "PASS;nodes=147;elements=238;VBA_SELECTED;numeric=0;dd_numeric=0;backsolve=0;ordering=0;column_ordering=0;nt_bulk=0;g_bulk=0;gt_bulk=0;kkt_bulk=0;hsd_operator=0;corrector_bulk=0;bulk_job_steps=0;hsd_lu=0;hsd_lu_solve=0;solver_vector_calls=0;hsd_jobs=0;hsd_job_steps=0;krylov_jobs=0;krylov_steps=0;refine_jobs=0;refine_steps=0;input_compare_calls=0;schur_jobs=0;schur_steps=0;schur_native_bytes=0",
+      "idempotent": true
+    },
+    {
+      "case": "P06A",
+      "version": "old",
+      "mode": "vba",
+      "result": "PASS;nodes=146;elements=243;VBA_SELECTED;numeric=0;dd_numeric=0;backsolve=0;ordering=0;column_ordering=0;nt_bulk=0;g_bulk=0;gt_bulk=0;kkt_bulk=0;hsd_operator=0;corrector_bulk=0;bulk_job_steps=0;hsd_lu=0;hsd_lu_solve=0;solver_vector_calls=0;hsd_jobs=0;hsd_job_steps=0;krylov_jobs=0;krylov_steps=0;refine_jobs=0;refine_steps=0;input_compare_calls=0;schur_jobs=0;schur_steps=0;schur_native_bytes=0",
+      "idempotent": true
+    },
+    {
+      "case": "P06N",
+      "version": "old",
+      "mode": "vba",
+      "result": "PASS;nodes=146;elements=243;VBA_SELECTED;numeric=0;dd_numeric=0;backsolve=0;ordering=0;column_ordering=0;nt_bulk=0;g_bulk=0;gt_bulk=0;kkt_bulk=0;hsd_operator=0;corrector_bulk=0;bulk_job_steps=0;hsd_lu=0;hsd_lu_solve=0;solver_vector_calls=0;hsd_jobs=0;hsd_job_steps=0;krylov_jobs=0;krylov_steps=0;refine_jobs=0;refine_steps=0;input_compare_calls=0;schur_jobs=0;schur_steps=0;schur_native_bytes=0",
+      "idempotent": true
+    },
+    {
+      "case": "P07A",
+      "version": "old",
+      "mode": "vba",
+      "result": "PASS;nodes=129;elements=205;VBA_SELECTED;numeric=0;dd_numeric=0;backsolve=0;ordering=0;column_ordering=0;nt_bulk=0;g_bulk=0;gt_bulk=0;kkt_bulk=0;hsd_operator=0;corrector_bulk=0;bulk_job_steps=0;hsd_lu=0;hsd_lu_solve=0;solver_vector_calls=0;hsd_jobs=0;hsd_job_steps=0;krylov_jobs=0;krylov_steps=0;refine_jobs=0;refine_steps=0;input_compare_calls=0;schur_jobs=0;schur_steps=0;schur_native_bytes=0",
+      "idempotent": true
+    },
+    {
+      "case": "P07N",
+      "version": "old",
+      "mode": "vba",
+      "result": "PASS;nodes=129;elements=205;VBA_SELECTED;numeric=0;dd_numeric=0;backsolve=0;ordering=0;column_ordering=0;nt_bulk=0;g_bulk=0;gt_bulk=0;kkt_bulk=0;hsd_operator=0;corrector_bulk=0;bulk_job_steps=0;hsd_lu=0;hsd_lu_solve=0;solver_vector_calls=0;hsd_jobs=0;hsd_job_steps=0;krylov_jobs=0;krylov_steps=0;refine_jobs=0;refine_steps=0;input_compare_calls=0;schur_jobs=0;schur_steps=0;schur_native_bytes=0",
+      "idempotent": true
+    },
+    {
+      "case": "P08A",
+      "version": "old",
+      "mode": "vba",
+      "result": "PASS;nodes=144;elements=234;VBA_SELECTED;numeric=0;dd_numeric=0;backsolve=0;ordering=0;column_ordering=0;nt_bulk=0;g_bulk=0;gt_bulk=0;kkt_bulk=0;hsd_operator=0;corrector_bulk=0;bulk_job_steps=0;hsd_lu=0;hsd_lu_solve=0;solver_vector_calls=0;hsd_jobs=0;hsd_job_steps=0;krylov_jobs=0;krylov_steps=0;refine_jobs=0;refine_steps=0;input_compare_calls=0;schur_jobs=0;schur_steps=0;schur_native_bytes=0",
+      "idempotent": true
+    },
+    {
+      "case": "P09A",
+      "version": "old",
+      "mode": "vba",
+      "result": "PASS;nodes=144;elements=234;VBA_SELECTED;numeric=0;dd_numeric=0;backsolve=0;ordering=0;column_ordering=0;nt_bulk=0;g_bulk=0;gt_bulk=0;kkt_bulk=0;hsd_operator=0;corrector_bulk=0;bulk_job_steps=0;hsd_lu=0;hsd_lu_solve=0;solver_vector_calls=0;hsd_jobs=0;hsd_job_steps=0;krylov_jobs=0;krylov_steps=0;refine_jobs=0;refine_steps=0;input_compare_calls=0;schur_jobs=0;schur_steps=0;schur_native_bytes=0",
+      "idempotent": true
+    },
+    {
+      "case": "P10A",
+      "version": "old",
+      "mode": "vba",
+      "result": "PASS;nodes=144;elements=234;VBA_SELECTED;numeric=0;dd_numeric=0;backsolve=0;ordering=0;column_ordering=0;nt_bulk=0;g_bulk=0;gt_bulk=0;kkt_bulk=0;hsd_operator=0;corrector_bulk=0;bulk_job_steps=0;hsd_lu=0;hsd_lu_solve=0;solver_vector_calls=0;hsd_jobs=0;hsd_job_steps=0;krylov_jobs=0;krylov_steps=0;refine_jobs=0;refine_steps=0;input_compare_calls=0;schur_jobs=0;schur_steps=0;schur_native_bytes=0",
+      "idempotent": true
+    },
+    {
+      "case": "D01A",
+      "version": "new",
+      "mode": "vba",
+      "result": "PASS;nodes=138;elements=230;VBA_SELECTED;numeric=0;dd_numeric=0;backsolve=0;ordering=0;column_ordering=0;nt_bulk=0;g_bulk=0;gt_bulk=0;kkt_bulk=0;hsd_operator=0;corrector_bulk=0;bulk_job_steps=0;hsd_lu=0;hsd_lu_solve=0;solver_vector_calls=0;hsd_jobs=0;hsd_job_steps=0;krylov_jobs=0;krylov_steps=0;refine_jobs=0;refine_steps=0;input_compare_calls=0;schur_jobs=0;schur_steps=0;schur_native_bytes=0;meshfan_jobs=0;meshfan_steps=0",
+      "idempotent": true
+    },
+    {
+      "case": "D01A",
+      "version": "new",
+      "mode": "auto",
+      "result": "PASS;nodes=138;elements=230;DLL_READY;numeric=0;dd_numeric=0;backsolve=0;ordering=0;column_ordering=0;nt_bulk=0;g_bulk=0;gt_bulk=0;kkt_bulk=0;hsd_operator=0;corrector_bulk=0;bulk_job_steps=0;hsd_lu=0;hsd_lu_solve=0;solver_vector_calls=0;hsd_jobs=0;hsd_job_steps=0;krylov_jobs=0;krylov_steps=0;refine_jobs=0;refine_steps=0;input_compare_calls=0;schur_jobs=0;schur_steps=0;schur_native_bytes=0;meshfan_jobs=3;meshfan_steps=3",
+      "idempotent": true
+    },
+    {
+      "case": "D02A",
+      "version": "new",
+      "mode": "vba",
+      "result": "PASS;nodes=133;elements=216;VBA_SELECTED;numeric=0;dd_numeric=0;backsolve=0;ordering=0;column_ordering=0;nt_bulk=0;g_bulk=0;gt_bulk=0;kkt_bulk=0;hsd_operator=0;corrector_bulk=0;bulk_job_steps=0;hsd_lu=0;hsd_lu_solve=0;solver_vector_calls=0;hsd_jobs=0;hsd_job_steps=0;krylov_jobs=0;krylov_steps=0;refine_jobs=0;refine_steps=0;input_compare_calls=0;schur_jobs=0;schur_steps=0;schur_native_bytes=0;meshfan_jobs=0;meshfan_steps=0",
+      "idempotent": true
+    },
+    {
+      "case": "D02A",
+      "version": "new",
+      "mode": "auto",
+      "result": "PASS;nodes=133;elements=216;DLL_READY;numeric=0;dd_numeric=0;backsolve=0;ordering=0;column_ordering=0;nt_bulk=0;g_bulk=0;gt_bulk=0;kkt_bulk=0;hsd_operator=0;corrector_bulk=0;bulk_job_steps=0;hsd_lu=0;hsd_lu_solve=0;solver_vector_calls=0;hsd_jobs=0;hsd_job_steps=0;krylov_jobs=0;krylov_steps=0;refine_jobs=0;refine_steps=0;input_compare_calls=0;schur_jobs=0;schur_steps=0;schur_native_bytes=0;meshfan_jobs=3;meshfan_steps=3",
+      "idempotent": true
+    },
+    {
+      "case": "D03N",
+      "version": "new",
+      "mode": "vba",
+      "result": "PASS;nodes=133;elements=216;VBA_SELECTED;numeric=0;dd_numeric=0;backsolve=0;ordering=0;column_ordering=0;nt_bulk=0;g_bulk=0;gt_bulk=0;kkt_bulk=0;hsd_operator=0;corrector_bulk=0;bulk_job_steps=0;hsd_lu=0;hsd_lu_solve=0;solver_vector_calls=0;hsd_jobs=0;hsd_job_steps=0;krylov_jobs=0;krylov_steps=0;refine_jobs=0;refine_steps=0;input_compare_calls=0;schur_jobs=0;schur_steps=0;schur_native_bytes=0;meshfan_jobs=0;meshfan_steps=0",
+      "idempotent": true
+    },
+    {
+      "case": "D03N",
+      "version": "new",
+      "mode": "auto",
+      "result": "PASS;nodes=133;elements=216;DLL_READY;numeric=0;dd_numeric=0;backsolve=0;ordering=0;column_ordering=0;nt_bulk=0;g_bulk=0;gt_bulk=0;kkt_bulk=0;hsd_operator=0;corrector_bulk=0;bulk_job_steps=0;hsd_lu=0;hsd_lu_solve=0;solver_vector_calls=0;hsd_jobs=0;hsd_job_steps=0;krylov_jobs=0;krylov_steps=0;refine_jobs=0;refine_steps=0;input_compare_calls=0;schur_jobs=0;schur_steps=0;schur_native_bytes=0;meshfan_jobs=3;meshfan_steps=3",
+      "idempotent": true
+    },
+    {
+      "case": "D04A",
+      "version": "new",
+      "mode": "vba",
+      "result": "PASS;nodes=130;elements=214;VBA_SELECTED;numeric=0;dd_numeric=0;backsolve=0;ordering=0;column_ordering=0;nt_bulk=0;g_bulk=0;gt_bulk=0;kkt_bulk=0;hsd_operator=0;corrector_bulk=0;bulk_job_steps=0;hsd_lu=0;hsd_lu_solve=0;solver_vector_calls=0;hsd_jobs=0;hsd_job_steps=0;krylov_jobs=0;krylov_steps=0;refine_jobs=0;refine_steps=0;input_compare_calls=0;schur_jobs=0;schur_steps=0;schur_native_bytes=0;meshfan_jobs=0;meshfan_steps=0",
+      "idempotent": true
+    },
+    {
+      "case": "D04A",
+      "version": "new",
+      "mode": "auto",
+      "result": "PASS;nodes=130;elements=214;DLL_READY;numeric=0;dd_numeric=0;backsolve=0;ordering=0;column_ordering=0;nt_bulk=0;g_bulk=0;gt_bulk=0;kkt_bulk=0;hsd_operator=0;corrector_bulk=0;bulk_job_steps=0;hsd_lu=0;hsd_lu_solve=0;solver_vector_calls=0;hsd_jobs=0;hsd_job_steps=0;krylov_jobs=0;krylov_steps=0;refine_jobs=0;refine_steps=0;input_compare_calls=0;schur_jobs=0;schur_steps=0;schur_native_bytes=0;meshfan_jobs=0;meshfan_steps=0",
+      "idempotent": true
+    },
+    {
+      "case": "D05A",
+      "version": "new",
+      "mode": "vba",
+      "result": "PASS;nodes=130;elements=214;VBA_SELECTED;numeric=0;dd_numeric=0;backsolve=0;ordering=0;column_ordering=0;nt_bulk=0;g_bulk=0;gt_bulk=0;kkt_bulk=0;hsd_operator=0;corrector_bulk=0;bulk_job_steps=0;hsd_lu=0;hsd_lu_solve=0;solver_vector_calls=0;hsd_jobs=0;hsd_job_steps=0;krylov_jobs=0;krylov_steps=0;refine_jobs=0;refine_steps=0;input_compare_calls=0;schur_jobs=0;schur_steps=0;schur_native_bytes=0;meshfan_jobs=0;meshfan_steps=0",
+      "idempotent": true
+    },
+    {
+      "case": "D05A",
+      "version": "new",
+      "mode": "auto",
+      "result": "PASS;nodes=130;elements=214;DLL_READY;numeric=0;dd_numeric=0;backsolve=0;ordering=0;column_ordering=0;nt_bulk=0;g_bulk=0;gt_bulk=0;kkt_bulk=0;hsd_operator=0;corrector_bulk=0;bulk_job_steps=0;hsd_lu=0;hsd_lu_solve=0;solver_vector_calls=0;hsd_jobs=0;hsd_job_steps=0;krylov_jobs=0;krylov_steps=0;refine_jobs=0;refine_steps=0;input_compare_calls=0;schur_jobs=0;schur_steps=0;schur_native_bytes=0;meshfan_jobs=0;meshfan_steps=0",
+      "idempotent": true
+    },
+    {
+      "case": "D06A",
+      "version": "new",
+      "mode": "vba",
+      "result": "PASS;nodes=130;elements=214;VBA_SELECTED;numeric=0;dd_numeric=0;backsolve=0;ordering=0;column_ordering=0;nt_bulk=0;g_bulk=0;gt_bulk=0;kkt_bulk=0;hsd_operator=0;corrector_bulk=0;bulk_job_steps=0;hsd_lu=0;hsd_lu_solve=0;solver_vector_calls=0;hsd_jobs=0;hsd_job_steps=0;krylov_jobs=0;krylov_steps=0;refine_jobs=0;refine_steps=0;input_compare_calls=0;schur_jobs=0;schur_steps=0;schur_native_bytes=0;meshfan_jobs=0;meshfan_steps=0",
+      "idempotent": true
+    },
+    {
+      "case": "D06A",
+      "version": "new",
+      "mode": "auto",
+      "result": "PASS;nodes=130;elements=214;DLL_READY;numeric=0;dd_numeric=0;backsolve=0;ordering=0;column_ordering=0;nt_bulk=0;g_bulk=0;gt_bulk=0;kkt_bulk=0;hsd_operator=0;corrector_bulk=0;bulk_job_steps=0;hsd_lu=0;hsd_lu_solve=0;solver_vector_calls=0;hsd_jobs=0;hsd_job_steps=0;krylov_jobs=0;krylov_steps=0;refine_jobs=0;refine_steps=0;input_compare_calls=0;schur_jobs=0;schur_steps=0;schur_native_bytes=0;meshfan_jobs=0;meshfan_steps=0",
+      "idempotent": true
+    },
+    {
+      "case": "D07A",
+      "version": "new",
+      "mode": "vba",
+      "result": "PASS;nodes=131;elements=215;VBA_SELECTED;numeric=0;dd_numeric=0;backsolve=0;ordering=0;column_ordering=0;nt_bulk=0;g_bulk=0;gt_bulk=0;kkt_bulk=0;hsd_operator=0;corrector_bulk=0;bulk_job_steps=0;hsd_lu=0;hsd_lu_solve=0;solver_vector_calls=0;hsd_jobs=0;hsd_job_steps=0;krylov_jobs=0;krylov_steps=0;refine_jobs=0;refine_steps=0;input_compare_calls=0;schur_jobs=0;schur_steps=0;schur_native_bytes=0;meshfan_jobs=0;meshfan_steps=0",
+      "idempotent": true
+    },
+    {
+      "case": "D07A",
+      "version": "new",
+      "mode": "auto",
+      "result": "PASS;nodes=131;elements=215;DLL_READY;numeric=0;dd_numeric=0;backsolve=0;ordering=0;column_ordering=0;nt_bulk=0;g_bulk=0;gt_bulk=0;kkt_bulk=0;hsd_operator=0;corrector_bulk=0;bulk_job_steps=0;hsd_lu=0;hsd_lu_solve=0;solver_vector_calls=0;hsd_jobs=0;hsd_job_steps=0;krylov_jobs=0;krylov_steps=0;refine_jobs=0;refine_steps=0;input_compare_calls=0;schur_jobs=0;schur_steps=0;schur_native_bytes=0;meshfan_jobs=0;meshfan_steps=0",
+      "idempotent": true
+    },
+    {
+      "case": "D09A",
+      "version": "new",
+      "mode": "vba",
+      "result": "PASS;nodes=130;elements=214;VBA_SELECTED;numeric=0;dd_numeric=0;backsolve=0;ordering=0;column_ordering=0;nt_bulk=0;g_bulk=0;gt_bulk=0;kkt_bulk=0;hsd_operator=0;corrector_bulk=0;bulk_job_steps=0;hsd_lu=0;hsd_lu_solve=0;solver_vector_calls=0;hsd_jobs=0;hsd_job_steps=0;krylov_jobs=0;krylov_steps=0;refine_jobs=0;refine_steps=0;input_compare_calls=0;schur_jobs=0;schur_steps=0;schur_native_bytes=0;meshfan_jobs=0;meshfan_steps=0",
+      "idempotent": true
+    },
+    {
+      "case": "D09A",
+      "version": "new",
+      "mode": "auto",
+      "result": "PASS;nodes=130;elements=214;DLL_READY;numeric=0;dd_numeric=0;backsolve=0;ordering=0;column_ordering=0;nt_bulk=0;g_bulk=0;gt_bulk=0;kkt_bulk=0;hsd_operator=0;corrector_bulk=0;bulk_job_steps=0;hsd_lu=0;hsd_lu_solve=0;solver_vector_calls=0;hsd_jobs=0;hsd_job_steps=0;krylov_jobs=0;krylov_steps=0;refine_jobs=0;refine_steps=0;input_compare_calls=0;schur_jobs=0;schur_steps=0;schur_native_bytes=0;meshfan_jobs=0;meshfan_steps=0",
+      "idempotent": true
+    },
+    {
+      "case": "P01A",
+      "version": "new",
+      "mode": "vba",
+      "result": "PASS;nodes=130;elements=214;VBA_SELECTED;numeric=0;dd_numeric=0;backsolve=0;ordering=0;column_ordering=0;nt_bulk=0;g_bulk=0;gt_bulk=0;kkt_bulk=0;hsd_operator=0;corrector_bulk=0;bulk_job_steps=0;hsd_lu=0;hsd_lu_solve=0;solver_vector_calls=0;hsd_jobs=0;hsd_job_steps=0;krylov_jobs=0;krylov_steps=0;refine_jobs=0;refine_steps=0;input_compare_calls=0;schur_jobs=0;schur_steps=0;schur_native_bytes=0;meshfan_jobs=0;meshfan_steps=0",
+      "idempotent": true
+    },
+    {
+      "case": "P01A",
+      "version": "new",
+      "mode": "auto",
+      "result": "PASS;nodes=130;elements=214;DLL_READY;numeric=0;dd_numeric=0;backsolve=0;ordering=0;column_ordering=0;nt_bulk=0;g_bulk=0;gt_bulk=0;kkt_bulk=0;hsd_operator=0;corrector_bulk=0;bulk_job_steps=0;hsd_lu=0;hsd_lu_solve=0;solver_vector_calls=0;hsd_jobs=0;hsd_job_steps=0;krylov_jobs=0;krylov_steps=0;refine_jobs=0;refine_steps=0;input_compare_calls=0;schur_jobs=0;schur_steps=0;schur_native_bytes=0;meshfan_jobs=0;meshfan_steps=0",
+      "idempotent": true
+    },
+    {
+      "case": "P01N",
+      "version": "new",
+      "mode": "vba",
+      "result": "PASS;nodes=130;elements=214;VBA_SELECTED;numeric=0;dd_numeric=0;backsolve=0;ordering=0;column_ordering=0;nt_bulk=0;g_bulk=0;gt_bulk=0;kkt_bulk=0;hsd_operator=0;corrector_bulk=0;bulk_job_steps=0;hsd_lu=0;hsd_lu_solve=0;solver_vector_calls=0;hsd_jobs=0;hsd_job_steps=0;krylov_jobs=0;krylov_steps=0;refine_jobs=0;refine_steps=0;input_compare_calls=0;schur_jobs=0;schur_steps=0;schur_native_bytes=0;meshfan_jobs=0;meshfan_steps=0",
+      "idempotent": true
+    },
+    {
+      "case": "P01N",
+      "version": "new",
+      "mode": "auto",
+      "result": "PASS;nodes=130;elements=214;DLL_READY;numeric=0;dd_numeric=0;backsolve=0;ordering=0;column_ordering=0;nt_bulk=0;g_bulk=0;gt_bulk=0;kkt_bulk=0;hsd_operator=0;corrector_bulk=0;bulk_job_steps=0;hsd_lu=0;hsd_lu_solve=0;solver_vector_calls=0;hsd_jobs=0;hsd_job_steps=0;krylov_jobs=0;krylov_steps=0;refine_jobs=0;refine_steps=0;input_compare_calls=0;schur_jobs=0;schur_steps=0;schur_native_bytes=0;meshfan_jobs=0;meshfan_steps=0",
+      "idempotent": true
+    },
+    {
+      "case": "P02A",
+      "version": "new",
+      "mode": "vba",
+      "result": "PASS;nodes=130;elements=214;VBA_SELECTED;numeric=0;dd_numeric=0;backsolve=0;ordering=0;column_ordering=0;nt_bulk=0;g_bulk=0;gt_bulk=0;kkt_bulk=0;hsd_operator=0;corrector_bulk=0;bulk_job_steps=0;hsd_lu=0;hsd_lu_solve=0;solver_vector_calls=0;hsd_jobs=0;hsd_job_steps=0;krylov_jobs=0;krylov_steps=0;refine_jobs=0;refine_steps=0;input_compare_calls=0;schur_jobs=0;schur_steps=0;schur_native_bytes=0;meshfan_jobs=0;meshfan_steps=0",
+      "idempotent": true
+    },
+    {
+      "case": "P02A",
+      "version": "new",
+      "mode": "auto",
+      "result": "PASS;nodes=130;elements=214;DLL_READY;numeric=0;dd_numeric=0;backsolve=0;ordering=0;column_ordering=0;nt_bulk=0;g_bulk=0;gt_bulk=0;kkt_bulk=0;hsd_operator=0;corrector_bulk=0;bulk_job_steps=0;hsd_lu=0;hsd_lu_solve=0;solver_vector_calls=0;hsd_jobs=0;hsd_job_steps=0;krylov_jobs=0;krylov_steps=0;refine_jobs=0;refine_steps=0;input_compare_calls=0;schur_jobs=0;schur_steps=0;schur_native_bytes=0;meshfan_jobs=0;meshfan_steps=0",
+      "idempotent": true
+    },
+    {
+      "case": "P02N",
+      "version": "new",
+      "mode": "vba",
+      "result": "PASS;nodes=130;elements=214;VBA_SELECTED;numeric=0;dd_numeric=0;backsolve=0;ordering=0;column_ordering=0;nt_bulk=0;g_bulk=0;gt_bulk=0;kkt_bulk=0;hsd_operator=0;corrector_bulk=0;bulk_job_steps=0;hsd_lu=0;hsd_lu_solve=0;solver_vector_calls=0;hsd_jobs=0;hsd_job_steps=0;krylov_jobs=0;krylov_steps=0;refine_jobs=0;refine_steps=0;input_compare_calls=0;schur_jobs=0;schur_steps=0;schur_native_bytes=0;meshfan_jobs=0;meshfan_steps=0",
+      "idempotent": true
+    },
+    {
+      "case": "P02N",
+      "version": "new",
+      "mode": "auto",
+      "result": "PASS;nodes=130;elements=214;DLL_READY;numeric=0;dd_numeric=0;backsolve=0;ordering=0;column_ordering=0;nt_bulk=0;g_bulk=0;gt_bulk=0;kkt_bulk=0;hsd_operator=0;corrector_bulk=0;bulk_job_steps=0;hsd_lu=0;hsd_lu_solve=0;solver_vector_calls=0;hsd_jobs=0;hsd_job_steps=0;krylov_jobs=0;krylov_steps=0;refine_jobs=0;refine_steps=0;input_compare_calls=0;schur_jobs=0;schur_steps=0;schur_native_bytes=0;meshfan_jobs=0;meshfan_steps=0",
+      "idempotent": true
+    },
+    {
+      "case": "P03A",
+      "version": "new",
+      "mode": "vba",
+      "result": "PASS;nodes=130;elements=214;VBA_SELECTED;numeric=0;dd_numeric=0;backsolve=0;ordering=0;column_ordering=0;nt_bulk=0;g_bulk=0;gt_bulk=0;kkt_bulk=0;hsd_operator=0;corrector_bulk=0;bulk_job_steps=0;hsd_lu=0;hsd_lu_solve=0;solver_vector_calls=0;hsd_jobs=0;hsd_job_steps=0;krylov_jobs=0;krylov_steps=0;refine_jobs=0;refine_steps=0;input_compare_calls=0;schur_jobs=0;schur_steps=0;schur_native_bytes=0;meshfan_jobs=0;meshfan_steps=0",
+      "idempotent": true
+    },
+    {
+      "case": "P03A",
+      "version": "new",
+      "mode": "auto",
+      "result": "PASS;nodes=130;elements=214;DLL_READY;numeric=0;dd_numeric=0;backsolve=0;ordering=0;column_ordering=0;nt_bulk=0;g_bulk=0;gt_bulk=0;kkt_bulk=0;hsd_operator=0;corrector_bulk=0;bulk_job_steps=0;hsd_lu=0;hsd_lu_solve=0;solver_vector_calls=0;hsd_jobs=0;hsd_job_steps=0;krylov_jobs=0;krylov_steps=0;refine_jobs=0;refine_steps=0;input_compare_calls=0;schur_jobs=0;schur_steps=0;schur_native_bytes=0;meshfan_jobs=0;meshfan_steps=0",
+      "idempotent": true
+    },
+    {
+      "case": "P03N",
+      "version": "new",
+      "mode": "vba",
+      "result": "PASS;nodes=130;elements=214;VBA_SELECTED;numeric=0;dd_numeric=0;backsolve=0;ordering=0;column_ordering=0;nt_bulk=0;g_bulk=0;gt_bulk=0;kkt_bulk=0;hsd_operator=0;corrector_bulk=0;bulk_job_steps=0;hsd_lu=0;hsd_lu_solve=0;solver_vector_calls=0;hsd_jobs=0;hsd_job_steps=0;krylov_jobs=0;krylov_steps=0;refine_jobs=0;refine_steps=0;input_compare_calls=0;schur_jobs=0;schur_steps=0;schur_native_bytes=0;meshfan_jobs=0;meshfan_steps=0",
+      "idempotent": true
+    },
+    {
+      "case": "P03N",
+      "version": "new",
+      "mode": "auto",
+      "result": "PASS;nodes=130;elements=214;DLL_READY;numeric=0;dd_numeric=0;backsolve=0;ordering=0;column_ordering=0;nt_bulk=0;g_bulk=0;gt_bulk=0;kkt_bulk=0;hsd_operator=0;corrector_bulk=0;bulk_job_steps=0;hsd_lu=0;hsd_lu_solve=0;solver_vector_calls=0;hsd_jobs=0;hsd_job_steps=0;krylov_jobs=0;krylov_steps=0;refine_jobs=0;refine_steps=0;input_compare_calls=0;schur_jobs=0;schur_steps=0;schur_native_bytes=0;meshfan_jobs=0;meshfan_steps=0",
+      "idempotent": true
+    },
+    {
+      "case": "P04A",
+      "version": "new",
+      "mode": "vba",
+      "result": "PASS;nodes=130;elements=214;VBA_SELECTED;numeric=0;dd_numeric=0;backsolve=0;ordering=0;column_ordering=0;nt_bulk=0;g_bulk=0;gt_bulk=0;kkt_bulk=0;hsd_operator=0;corrector_bulk=0;bulk_job_steps=0;hsd_lu=0;hsd_lu_solve=0;solver_vector_calls=0;hsd_jobs=0;hsd_job_steps=0;krylov_jobs=0;krylov_steps=0;refine_jobs=0;refine_steps=0;input_compare_calls=0;schur_jobs=0;schur_steps=0;schur_native_bytes=0;meshfan_jobs=0;meshfan_steps=0",
+      "idempotent": true
+    },
+    {
+      "case": "P04A",
+      "version": "new",
+      "mode": "auto",
+      "result": "PASS;nodes=130;elements=214;DLL_READY;numeric=0;dd_numeric=0;backsolve=0;ordering=0;column_ordering=0;nt_bulk=0;g_bulk=0;gt_bulk=0;kkt_bulk=0;hsd_operator=0;corrector_bulk=0;bulk_job_steps=0;hsd_lu=0;hsd_lu_solve=0;solver_vector_calls=0;hsd_jobs=0;hsd_job_steps=0;krylov_jobs=0;krylov_steps=0;refine_jobs=0;refine_steps=0;input_compare_calls=0;schur_jobs=0;schur_steps=0;schur_native_bytes=0;meshfan_jobs=0;meshfan_steps=0",
+      "idempotent": true
+    },
+    {
+      "case": "P04N",
+      "version": "new",
+      "mode": "vba",
+      "result": "PASS;nodes=130;elements=214;VBA_SELECTED;numeric=0;dd_numeric=0;backsolve=0;ordering=0;column_ordering=0;nt_bulk=0;g_bulk=0;gt_bulk=0;kkt_bulk=0;hsd_operator=0;corrector_bulk=0;bulk_job_steps=0;hsd_lu=0;hsd_lu_solve=0;solver_vector_calls=0;hsd_jobs=0;hsd_job_steps=0;krylov_jobs=0;krylov_steps=0;refine_jobs=0;refine_steps=0;input_compare_calls=0;schur_jobs=0;schur_steps=0;schur_native_bytes=0;meshfan_jobs=0;meshfan_steps=0",
+      "idempotent": true
+    },
+    {
+      "case": "P04N",
+      "version": "new",
+      "mode": "auto",
+      "result": "PASS;nodes=130;elements=214;DLL_READY;numeric=0;dd_numeric=0;backsolve=0;ordering=0;column_ordering=0;nt_bulk=0;g_bulk=0;gt_bulk=0;kkt_bulk=0;hsd_operator=0;corrector_bulk=0;bulk_job_steps=0;hsd_lu=0;hsd_lu_solve=0;solver_vector_calls=0;hsd_jobs=0;hsd_job_steps=0;krylov_jobs=0;krylov_steps=0;refine_jobs=0;refine_steps=0;input_compare_calls=0;schur_jobs=0;schur_steps=0;schur_native_bytes=0;meshfan_jobs=0;meshfan_steps=0",
+      "idempotent": true
+    },
+    {
+      "case": "P05A",
+      "version": "new",
+      "mode": "vba",
+      "result": "PASS;nodes=147;elements=238;VBA_SELECTED;numeric=0;dd_numeric=0;backsolve=0;ordering=0;column_ordering=0;nt_bulk=0;g_bulk=0;gt_bulk=0;kkt_bulk=0;hsd_operator=0;corrector_bulk=0;bulk_job_steps=0;hsd_lu=0;hsd_lu_solve=0;solver_vector_calls=0;hsd_jobs=0;hsd_job_steps=0;krylov_jobs=0;krylov_steps=0;refine_jobs=0;refine_steps=0;input_compare_calls=0;schur_jobs=0;schur_steps=0;schur_native_bytes=0;meshfan_jobs=0;meshfan_steps=0",
+      "idempotent": true
+    },
+    {
+      "case": "P05A",
+      "version": "new",
+      "mode": "auto",
+      "result": "PASS;nodes=147;elements=238;DLL_READY;numeric=0;dd_numeric=0;backsolve=0;ordering=0;column_ordering=0;nt_bulk=0;g_bulk=0;gt_bulk=0;kkt_bulk=0;hsd_operator=0;corrector_bulk=0;bulk_job_steps=0;hsd_lu=0;hsd_lu_solve=0;solver_vector_calls=0;hsd_jobs=0;hsd_job_steps=0;krylov_jobs=0;krylov_steps=0;refine_jobs=0;refine_steps=0;input_compare_calls=0;schur_jobs=0;schur_steps=0;schur_native_bytes=0;meshfan_jobs=0;meshfan_steps=0",
+      "idempotent": true
+    },
+    {
+      "case": "P05N",
+      "version": "new",
+      "mode": "vba",
+      "result": "PASS;nodes=147;elements=238;VBA_SELECTED;numeric=0;dd_numeric=0;backsolve=0;ordering=0;column_ordering=0;nt_bulk=0;g_bulk=0;gt_bulk=0;kkt_bulk=0;hsd_operator=0;corrector_bulk=0;bulk_job_steps=0;hsd_lu=0;hsd_lu_solve=0;solver_vector_calls=0;hsd_jobs=0;hsd_job_steps=0;krylov_jobs=0;krylov_steps=0;refine_jobs=0;refine_steps=0;input_compare_calls=0;schur_jobs=0;schur_steps=0;schur_native_bytes=0;meshfan_jobs=0;meshfan_steps=0",
+      "idempotent": true
+    },
+    {
+      "case": "P05N",
+      "version": "new",
+      "mode": "auto",
+      "result": "PASS;nodes=147;elements=238;DLL_READY;numeric=0;dd_numeric=0;backsolve=0;ordering=0;column_ordering=0;nt_bulk=0;g_bulk=0;gt_bulk=0;kkt_bulk=0;hsd_operator=0;corrector_bulk=0;bulk_job_steps=0;hsd_lu=0;hsd_lu_solve=0;solver_vector_calls=0;hsd_jobs=0;hsd_job_steps=0;krylov_jobs=0;krylov_steps=0;refine_jobs=0;refine_steps=0;input_compare_calls=0;schur_jobs=0;schur_steps=0;schur_native_bytes=0;meshfan_jobs=0;meshfan_steps=0",
+      "idempotent": true
+    },
+    {
+      "case": "P06A",
+      "version": "new",
+      "mode": "vba",
+      "result": "PASS;nodes=147;elements=245;VBA_SELECTED;numeric=0;dd_numeric=0;backsolve=0;ordering=0;column_ordering=0;nt_bulk=0;g_bulk=0;gt_bulk=0;kkt_bulk=0;hsd_operator=0;corrector_bulk=0;bulk_job_steps=0;hsd_lu=0;hsd_lu_solve=0;solver_vector_calls=0;hsd_jobs=0;hsd_job_steps=0;krylov_jobs=0;krylov_steps=0;refine_jobs=0;refine_steps=0;input_compare_calls=0;schur_jobs=0;schur_steps=0;schur_native_bytes=0;meshfan_jobs=0;meshfan_steps=0",
+      "idempotent": true
+    },
+    {
+      "case": "P06A",
+      "version": "new",
+      "mode": "auto",
+      "result": "PASS;nodes=147;elements=245;DLL_READY;numeric=0;dd_numeric=0;backsolve=0;ordering=0;column_ordering=0;nt_bulk=0;g_bulk=0;gt_bulk=0;kkt_bulk=0;hsd_operator=0;corrector_bulk=0;bulk_job_steps=0;hsd_lu=0;hsd_lu_solve=0;solver_vector_calls=0;hsd_jobs=0;hsd_job_steps=0;krylov_jobs=0;krylov_steps=0;refine_jobs=0;refine_steps=0;input_compare_calls=0;schur_jobs=0;schur_steps=0;schur_native_bytes=0;meshfan_jobs=3;meshfan_steps=3",
+      "idempotent": true
+    },
+    {
+      "case": "P06N",
+      "version": "new",
+      "mode": "vba",
+      "result": "PASS;nodes=147;elements=245;VBA_SELECTED;numeric=0;dd_numeric=0;backsolve=0;ordering=0;column_ordering=0;nt_bulk=0;g_bulk=0;gt_bulk=0;kkt_bulk=0;hsd_operator=0;corrector_bulk=0;bulk_job_steps=0;hsd_lu=0;hsd_lu_solve=0;solver_vector_calls=0;hsd_jobs=0;hsd_job_steps=0;krylov_jobs=0;krylov_steps=0;refine_jobs=0;refine_steps=0;input_compare_calls=0;schur_jobs=0;schur_steps=0;schur_native_bytes=0;meshfan_jobs=0;meshfan_steps=0",
+      "idempotent": true
+    },
+    {
+      "case": "P06N",
+      "version": "new",
+      "mode": "auto",
+      "result": "PASS;nodes=147;elements=245;DLL_READY;numeric=0;dd_numeric=0;backsolve=0;ordering=0;column_ordering=0;nt_bulk=0;g_bulk=0;gt_bulk=0;kkt_bulk=0;hsd_operator=0;corrector_bulk=0;bulk_job_steps=0;hsd_lu=0;hsd_lu_solve=0;solver_vector_calls=0;hsd_jobs=0;hsd_job_steps=0;krylov_jobs=0;krylov_steps=0;refine_jobs=0;refine_steps=0;input_compare_calls=0;schur_jobs=0;schur_steps=0;schur_native_bytes=0;meshfan_jobs=3;meshfan_steps=3",
+      "idempotent": true
+    },
+    {
+      "case": "P07A",
+      "version": "new",
+      "mode": "vba",
+      "result": "PASS;nodes=129;elements=205;VBA_SELECTED;numeric=0;dd_numeric=0;backsolve=0;ordering=0;column_ordering=0;nt_bulk=0;g_bulk=0;gt_bulk=0;kkt_bulk=0;hsd_operator=0;corrector_bulk=0;bulk_job_steps=0;hsd_lu=0;hsd_lu_solve=0;solver_vector_calls=0;hsd_jobs=0;hsd_job_steps=0;krylov_jobs=0;krylov_steps=0;refine_jobs=0;refine_steps=0;input_compare_calls=0;schur_jobs=0;schur_steps=0;schur_native_bytes=0;meshfan_jobs=0;meshfan_steps=0",
+      "idempotent": true
+    },
+    {
+      "case": "P07A",
+      "version": "new",
+      "mode": "auto",
+      "result": "PASS;nodes=129;elements=205;DLL_READY;numeric=0;dd_numeric=0;backsolve=0;ordering=0;column_ordering=0;nt_bulk=0;g_bulk=0;gt_bulk=0;kkt_bulk=0;hsd_operator=0;corrector_bulk=0;bulk_job_steps=0;hsd_lu=0;hsd_lu_solve=0;solver_vector_calls=0;hsd_jobs=0;hsd_job_steps=0;krylov_jobs=0;krylov_steps=0;refine_jobs=0;refine_steps=0;input_compare_calls=0;schur_jobs=0;schur_steps=0;schur_native_bytes=0;meshfan_jobs=0;meshfan_steps=0",
+      "idempotent": true
+    },
+    {
+      "case": "P07N",
+      "version": "new",
+      "mode": "vba",
+      "result": "PASS;nodes=129;elements=205;VBA_SELECTED;numeric=0;dd_numeric=0;backsolve=0;ordering=0;column_ordering=0;nt_bulk=0;g_bulk=0;gt_bulk=0;kkt_bulk=0;hsd_operator=0;corrector_bulk=0;bulk_job_steps=0;hsd_lu=0;hsd_lu_solve=0;solver_vector_calls=0;hsd_jobs=0;hsd_job_steps=0;krylov_jobs=0;krylov_steps=0;refine_jobs=0;refine_steps=0;input_compare_calls=0;schur_jobs=0;schur_steps=0;schur_native_bytes=0;meshfan_jobs=0;meshfan_steps=0",
+      "idempotent": true
+    },
+    {
+      "case": "P07N",
+      "version": "new",
+      "mode": "auto",
+      "result": "PASS;nodes=129;elements=205;DLL_READY;numeric=0;dd_numeric=0;backsolve=0;ordering=0;column_ordering=0;nt_bulk=0;g_bulk=0;gt_bulk=0;kkt_bulk=0;hsd_operator=0;corrector_bulk=0;bulk_job_steps=0;hsd_lu=0;hsd_lu_solve=0;solver_vector_calls=0;hsd_jobs=0;hsd_job_steps=0;krylov_jobs=0;krylov_steps=0;refine_jobs=0;refine_steps=0;input_compare_calls=0;schur_jobs=0;schur_steps=0;schur_native_bytes=0;meshfan_jobs=0;meshfan_steps=0",
+      "idempotent": true
+    },
+    {
+      "case": "P08A",
+      "version": "new",
+      "mode": "vba",
+      "result": "PASS;nodes=144;elements=234;VBA_SELECTED;numeric=0;dd_numeric=0;backsolve=0;ordering=0;column_ordering=0;nt_bulk=0;g_bulk=0;gt_bulk=0;kkt_bulk=0;hsd_operator=0;corrector_bulk=0;bulk_job_steps=0;hsd_lu=0;hsd_lu_solve=0;solver_vector_calls=0;hsd_jobs=0;hsd_job_steps=0;krylov_jobs=0;krylov_steps=0;refine_jobs=0;refine_steps=0;input_compare_calls=0;schur_jobs=0;schur_steps=0;schur_native_bytes=0;meshfan_jobs=0;meshfan_steps=0",
+      "idempotent": true
+    },
+    {
+      "case": "P08A",
+      "version": "new",
+      "mode": "auto",
+      "result": "PASS;nodes=144;elements=234;DLL_READY;numeric=0;dd_numeric=0;backsolve=0;ordering=0;column_ordering=0;nt_bulk=0;g_bulk=0;gt_bulk=0;kkt_bulk=0;hsd_operator=0;corrector_bulk=0;bulk_job_steps=0;hsd_lu=0;hsd_lu_solve=0;solver_vector_calls=0;hsd_jobs=0;hsd_job_steps=0;krylov_jobs=0;krylov_steps=0;refine_jobs=0;refine_steps=0;input_compare_calls=0;schur_jobs=0;schur_steps=0;schur_native_bytes=0;meshfan_jobs=0;meshfan_steps=0",
+      "idempotent": true
+    },
+    {
+      "case": "P09A",
+      "version": "new",
+      "mode": "vba",
+      "result": "PASS;nodes=144;elements=234;VBA_SELECTED;numeric=0;dd_numeric=0;backsolve=0;ordering=0;column_ordering=0;nt_bulk=0;g_bulk=0;gt_bulk=0;kkt_bulk=0;hsd_operator=0;corrector_bulk=0;bulk_job_steps=0;hsd_lu=0;hsd_lu_solve=0;solver_vector_calls=0;hsd_jobs=0;hsd_job_steps=0;krylov_jobs=0;krylov_steps=0;refine_jobs=0;refine_steps=0;input_compare_calls=0;schur_jobs=0;schur_steps=0;schur_native_bytes=0;meshfan_jobs=0;meshfan_steps=0",
+      "idempotent": true
+    },
+    {
+      "case": "P09A",
+      "version": "new",
+      "mode": "auto",
+      "result": "PASS;nodes=144;elements=234;DLL_READY;numeric=0;dd_numeric=0;backsolve=0;ordering=0;column_ordering=0;nt_bulk=0;g_bulk=0;gt_bulk=0;kkt_bulk=0;hsd_operator=0;corrector_bulk=0;bulk_job_steps=0;hsd_lu=0;hsd_lu_solve=0;solver_vector_calls=0;hsd_jobs=0;hsd_job_steps=0;krylov_jobs=0;krylov_steps=0;refine_jobs=0;refine_steps=0;input_compare_calls=0;schur_jobs=0;schur_steps=0;schur_native_bytes=0;meshfan_jobs=0;meshfan_steps=0",
+      "idempotent": true
+    },
+    {
+      "case": "P10A",
+      "version": "new",
+      "mode": "vba",
+      "result": "PASS;nodes=144;elements=234;VBA_SELECTED;numeric=0;dd_numeric=0;backsolve=0;ordering=0;column_ordering=0;nt_bulk=0;g_bulk=0;gt_bulk=0;kkt_bulk=0;hsd_operator=0;corrector_bulk=0;bulk_job_steps=0;hsd_lu=0;hsd_lu_solve=0;solver_vector_calls=0;hsd_jobs=0;hsd_job_steps=0;krylov_jobs=0;krylov_steps=0;refine_jobs=0;refine_steps=0;input_compare_calls=0;schur_jobs=0;schur_steps=0;schur_native_bytes=0;meshfan_jobs=0;meshfan_steps=0",
+      "idempotent": true
+    },
+    {
+      "case": "P10A",
+      "version": "new",
+      "mode": "auto",
+      "result": "PASS;nodes=144;elements=234;DLL_READY;numeric=0;dd_numeric=0;backsolve=0;ordering=0;column_ordering=0;nt_bulk=0;g_bulk=0;gt_bulk=0;kkt_bulk=0;hsd_operator=0;corrector_bulk=0;bulk_job_steps=0;hsd_lu=0;hsd_lu_solve=0;solver_vector_calls=0;hsd_jobs=0;hsd_job_steps=0;krylov_jobs=0;krylov_steps=0;refine_jobs=0;refine_steps=0;input_compare_calls=0;schur_jobs=0;schur_steps=0;schur_native_bytes=0;meshfan_jobs=0;meshfan_steps=0",
+      "idempotent": true
+    }
+  ],
+  "checks": [
+    {
+      "case": "D01A",
+      "old_nodes": 130,
+      "new_nodes": 138,
+      "old_elements": 214,
+      "new_elements": 230,
+      "vba_dll_mesh_loads_bitwise": true,
+      "original_nodes_exact": true,
+      "regions_and_raw_loads_preserved": true,
+      "boundary_interfaces_exact": true,
+      "unchanged_mesh": false
+    },
+    {
+      "case": "D02A",
+      "old_nodes": 131,
+      "new_nodes": 133,
+      "old_elements": 212,
+      "new_elements": 216,
+      "vba_dll_mesh_loads_bitwise": true,
+      "original_nodes_exact": true,
+      "regions_and_raw_loads_preserved": true,
+      "boundary_interfaces_exact": true,
+      "unchanged_mesh": false
+    },
+    {
+      "case": "D03N",
+      "old_nodes": 131,
+      "new_nodes": 133,
+      "old_elements": 212,
+      "new_elements": 216,
+      "vba_dll_mesh_loads_bitwise": true,
+      "original_nodes_exact": true,
+      "regions_and_raw_loads_preserved": true,
+      "boundary_interfaces_exact": true,
+      "unchanged_mesh": false
+    },
+    {
+      "case": "D04A",
+      "old_nodes": 130,
+      "new_nodes": 130,
+      "old_elements": 214,
+      "new_elements": 214,
+      "vba_dll_mesh_loads_bitwise": true,
+      "original_nodes_exact": true,
+      "regions_and_raw_loads_preserved": true,
+      "boundary_interfaces_exact": true,
+      "unchanged_mesh": true
+    },
+    {
+      "case": "D05A",
+      "old_nodes": 130,
+      "new_nodes": 130,
+      "old_elements": 214,
+      "new_elements": 214,
+      "vba_dll_mesh_loads_bitwise": true,
+      "original_nodes_exact": true,
+      "regions_and_raw_loads_preserved": true,
+      "boundary_interfaces_exact": true,
+      "unchanged_mesh": true
+    },
+    {
+      "case": "D06A",
+      "old_nodes": 130,
+      "new_nodes": 130,
+      "old_elements": 214,
+      "new_elements": 214,
+      "vba_dll_mesh_loads_bitwise": true,
+      "original_nodes_exact": true,
+      "regions_and_raw_loads_preserved": true,
+      "boundary_interfaces_exact": true,
+      "unchanged_mesh": true
+    },
+    {
+      "case": "D07A",
+      "old_nodes": 131,
+      "new_nodes": 131,
+      "old_elements": 215,
+      "new_elements": 215,
+      "vba_dll_mesh_loads_bitwise": true,
+      "original_nodes_exact": true,
+      "regions_and_raw_loads_preserved": true,
+      "boundary_interfaces_exact": true,
+      "unchanged_mesh": true
+    },
+    {
+      "case": "D09A",
+      "old_nodes": 130,
+      "new_nodes": 130,
+      "old_elements": 214,
+      "new_elements": 214,
+      "vba_dll_mesh_loads_bitwise": true,
+      "original_nodes_exact": true,
+      "regions_and_raw_loads_preserved": true,
+      "boundary_interfaces_exact": true,
+      "unchanged_mesh": true
+    },
+    {
+      "case": "P01A",
+      "old_nodes": 130,
+      "new_nodes": 130,
+      "old_elements": 214,
+      "new_elements": 214,
+      "vba_dll_mesh_loads_bitwise": true,
+      "original_nodes_exact": true,
+      "regions_and_raw_loads_preserved": true,
+      "boundary_interfaces_exact": true,
+      "unchanged_mesh": true
+    },
+    {
+      "case": "P01N",
+      "old_nodes": 130,
+      "new_nodes": 130,
+      "old_elements": 214,
+      "new_elements": 214,
+      "vba_dll_mesh_loads_bitwise": true,
+      "original_nodes_exact": true,
+      "regions_and_raw_loads_preserved": true,
+      "boundary_interfaces_exact": true,
+      "unchanged_mesh": true
+    },
+    {
+      "case": "P02A",
+      "old_nodes": 130,
+      "new_nodes": 130,
+      "old_elements": 214,
+      "new_elements": 214,
+      "vba_dll_mesh_loads_bitwise": true,
+      "original_nodes_exact": true,
+      "regions_and_raw_loads_preserved": true,
+      "boundary_interfaces_exact": true,
+      "unchanged_mesh": true
+    },
+    {
+      "case": "P02N",
+      "old_nodes": 130,
+      "new_nodes": 130,
+      "old_elements": 214,
+      "new_elements": 214,
+      "vba_dll_mesh_loads_bitwise": true,
+      "original_nodes_exact": true,
+      "regions_and_raw_loads_preserved": true,
+      "boundary_interfaces_exact": true,
+      "unchanged_mesh": true
+    },
+    {
+      "case": "P03A",
+      "old_nodes": 130,
+      "new_nodes": 130,
+      "old_elements": 214,
+      "new_elements": 214,
+      "vba_dll_mesh_loads_bitwise": true,
+      "original_nodes_exact": true,
+      "regions_and_raw_loads_preserved": true,
+      "boundary_interfaces_exact": true,
+      "unchanged_mesh": true
+    },
+    {
+      "case": "P03N",
+      "old_nodes": 130,
+      "new_nodes": 130,
+      "old_elements": 214,
+      "new_elements": 214,
+      "vba_dll_mesh_loads_bitwise": true,
+      "original_nodes_exact": true,
+      "regions_and_raw_loads_preserved": true,
+      "boundary_interfaces_exact": true,
+      "unchanged_mesh": true
+    },
+    {
+      "case": "P04A",
+      "old_nodes": 130,
+      "new_nodes": 130,
+      "old_elements": 214,
+      "new_elements": 214,
+      "vba_dll_mesh_loads_bitwise": true,
+      "original_nodes_exact": true,
+      "regions_and_raw_loads_preserved": true,
+      "boundary_interfaces_exact": true,
+      "unchanged_mesh": true
+    },
+    {
+      "case": "P04N",
+      "old_nodes": 130,
+      "new_nodes": 130,
+      "old_elements": 214,
+      "new_elements": 214,
+      "vba_dll_mesh_loads_bitwise": true,
+      "original_nodes_exact": true,
+      "regions_and_raw_loads_preserved": true,
+      "boundary_interfaces_exact": true,
+      "unchanged_mesh": true
+    },
+    {
+      "case": "P05A",
+      "old_nodes": 147,
+      "new_nodes": 147,
+      "old_elements": 238,
+      "new_elements": 238,
+      "vba_dll_mesh_loads_bitwise": true,
+      "original_nodes_exact": true,
+      "regions_and_raw_loads_preserved": true,
+      "boundary_interfaces_exact": true,
+      "unchanged_mesh": true
+    },
+    {
+      "case": "P05N",
+      "old_nodes": 147,
+      "new_nodes": 147,
+      "old_elements": 238,
+      "new_elements": 238,
+      "vba_dll_mesh_loads_bitwise": true,
+      "original_nodes_exact": true,
+      "regions_and_raw_loads_preserved": true,
+      "boundary_interfaces_exact": true,
+      "unchanged_mesh": true
+    },
+    {
+      "case": "P06A",
+      "old_nodes": 146,
+      "new_nodes": 147,
+      "old_elements": 243,
+      "new_elements": 245,
+      "vba_dll_mesh_loads_bitwise": true,
+      "original_nodes_exact": true,
+      "regions_and_raw_loads_preserved": true,
+      "boundary_interfaces_exact": true,
+      "unchanged_mesh": false
+    },
+    {
+      "case": "P06N",
+      "old_nodes": 146,
+      "new_nodes": 147,
+      "old_elements": 243,
+      "new_elements": 245,
+      "vba_dll_mesh_loads_bitwise": true,
+      "original_nodes_exact": true,
+      "regions_and_raw_loads_preserved": true,
+      "boundary_interfaces_exact": true,
+      "unchanged_mesh": false
+    },
+    {
+      "case": "P07A",
+      "old_nodes": 129,
+      "new_nodes": 129,
+      "old_elements": 205,
+      "new_elements": 205,
+      "vba_dll_mesh_loads_bitwise": true,
+      "original_nodes_exact": true,
+      "regions_and_raw_loads_preserved": true,
+      "boundary_interfaces_exact": true,
+      "unchanged_mesh": true
+    },
+    {
+      "case": "P07N",
+      "old_nodes": 129,
+      "new_nodes": 129,
+      "old_elements": 205,
+      "new_elements": 205,
+      "vba_dll_mesh_loads_bitwise": true,
+      "original_nodes_exact": true,
+      "regions_and_raw_loads_preserved": true,
+      "boundary_interfaces_exact": true,
+      "unchanged_mesh": true
+    },
+    {
+      "case": "P08A",
+      "old_nodes": 144,
+      "new_nodes": 144,
+      "old_elements": 234,
+      "new_elements": 234,
+      "vba_dll_mesh_loads_bitwise": true,
+      "original_nodes_exact": true,
+      "regions_and_raw_loads_preserved": true,
+      "boundary_interfaces_exact": true,
+      "unchanged_mesh": true
+    },
+    {
+      "case": "P09A",
+      "old_nodes": 144,
+      "new_nodes": 144,
+      "old_elements": 234,
+      "new_elements": 234,
+      "vba_dll_mesh_loads_bitwise": true,
+      "original_nodes_exact": true,
+      "regions_and_raw_loads_preserved": true,
+      "boundary_interfaces_exact": true,
+      "unchanged_mesh": true
+    },
+    {
+      "case": "P10A",
+      "old_nodes": 144,
+      "new_nodes": 144,
+      "old_elements": 234,
+      "new_elements": 234,
+      "vba_dll_mesh_loads_bitwise": true,
+      "original_nodes_exact": true,
+      "regions_and_raw_loads_preserved": true,
+      "boundary_interfaces_exact": true,
+      "unchanged_mesh": true
+    }
+  ],
+  "PASS": true
+}

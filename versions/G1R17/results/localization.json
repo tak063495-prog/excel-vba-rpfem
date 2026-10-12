@@ -1,0 +1,419 @@
+{
+  "fs": 0.5,
+  "mesh_id": "fa74f33ba46a7e49cf71e7a00b31864428e86532eb21e2d3d746d3ec97e56b62",
+  "LP_certificate": {
+    "status": 0,
+    "message": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+    "seconds": 6.975203900015913,
+    "load": -0.0,
+    "objective": 0.0,
+    "equality_error": 1.5880968104103665e-12,
+    "inequality_error": 1.3131350334296217e-11,
+    "dual_objective": 0.0,
+    "dual_stationarity_max": 1.3322676295501878e-14,
+    "nonnegative_weights": true,
+    "upper_bound_on_true_lower_lambda": -0.0
+  },
+  "equalities_only_with_lambda_cap": {
+    "status": 0,
+    "load": 1.0
+  },
+  "active_equalities": [
+    {
+      "row": 120,
+      "dual": 0.944772687760263,
+      "kind": "SOIL_EQUILIBRIUM",
+      "element": 18,
+      "vertex": 0,
+      "component": 0
+    },
+    {
+      "row": 121,
+      "dual": 4.752245634632638,
+      "kind": "SOIL_EQUILIBRIUM",
+      "element": 18,
+      "vertex": 0,
+      "component": 1
+    },
+    {
+      "row": 126,
+      "dual": 0.13101639882221353,
+      "kind": "ZERO_STRESS",
+      "element": 18,
+      "control": 0,
+      "component": 0
+    },
+    {
+      "row": 128,
+      "dual": 0.6550819941110687,
+      "kind": "ZERO_STRESS",
+      "element": 18,
+      "control": 0,
+      "component": 2
+    },
+    {
+      "row": 132,
+      "dual": -0.13101639882221353,
+      "kind": "ZERO_STRESS",
+      "element": 18,
+      "control": 5,
+      "component": 0
+    },
+    {
+      "row": 133,
+      "dual": -3.275409970555349,
+      "kind": "ZERO_STRESS",
+      "element": 18,
+      "control": 5,
+      "component": 1
+    },
+    {
+      "row": 134,
+      "dual": -1.3101639882221374,
+      "kind": "ZERO_STRESS",
+      "element": 18,
+      "control": 5,
+      "component": 2
+    },
+    {
+      "row": 330,
+      "dual": 61.32553761864867,
+      "kind": "SOIL_EQUILIBRIUM",
+      "element": 51,
+      "vertex": 0,
+      "component": 0
+    },
+    {
+      "row": 336,
+      "dual": 4.192127448332985,
+      "kind": "ZERO_STRESS",
+      "element": 51,
+      "control": 0,
+      "component": 0
+    },
+    {
+      "row": 338,
+      "dual": -41.92127448332981,
+      "kind": "ZERO_STRESS",
+      "element": 51,
+      "control": 0,
+      "component": 2
+    },
+    {
+      "row": 428,
+      "dual": -75.5481249756258,
+      "kind": "SOIL_EQUILIBRIUM",
+      "element": 65,
+      "vertex": 1,
+      "component": 0
+    },
+    {
+      "row": 429,
+      "dual": 3.621307299099527,
+      "kind": "SOIL_EQUILIBRIUM",
+      "element": 65,
+      "vertex": 1,
+      "component": 1
+    },
+    {
+      "row": 432,
+      "dual": 36.97588124695608,
+      "kind": "ZERO_STRESS",
+      "element": 65,
+      "control": 1,
+      "component": 0
+    },
+    {
+      "row": 433,
+      "dual": -2.0269196687525772,
+      "kind": "ZERO_STRESS",
+      "element": 65,
+      "control": 1,
+      "component": 1
+    },
+    {
+      "row": 434,
+      "dual": 40.90781464895352,
+      "kind": "ZERO_STRESS",
+      "element": 65,
+      "control": 1,
+      "component": 2
+    },
+    {
+      "row": 1790,
+      "dual": -4.723863438801322,
+      "kind": "INTERNAL_TRACTION",
+      "elements": [
+        18,
+        51
+      ],
+      "control": 2,
+      "component": 1,
+      "nodes": [
+        3,
+        52
+      ],
+      "positions": [
+        [
+          23.0,
+          5.0
+        ],
+        [
+          24.666666666666668,
+          4.666666666666667
+        ]
+      ]
+    },
+    {
+      "row": 2179,
+      "dual": -11.857126985258018,
+      "kind": "INTERNAL_TRACTION",
+      "elements": [
+        51,
+        65
+      ],
+      "control": 2,
+      "component": 0,
+      "nodes": [
+        3,
+        11
+      ],
+      "positions": [
+        [
+          23.0,
+          5.0
+        ],
+        [
+          23.0,
+          4.5
+        ]
+      ]
+    },
+    {
+      "row": 2180,
+      "dual": -59.285634926290186,
+      "kind": "INTERNAL_TRACTION",
+      "elements": [
+        51,
+        65
+      ],
+      "control": 2,
+      "component": 1,
+      "nodes": [
+        3,
+        11
+      ],
+      "positions": [
+        [
+          23.0,
+          5.0
+        ],
+        [
+          23.0,
+          4.5
+        ]
+      ]
+    }
+  ],
+  "active_cones": [
+    {
+      "row": 1747,
+      "dual": -7.925896157777141,
+      "facet": 0,
+      "element": 51,
+      "control": 5,
+      "material": 2,
+      "vertices": [
+        [
+          23.0,
+          5.0
+        ],
+        [
+          23.0,
+          4.5
+        ],
+        [
+          24.666666666666668,
+          4.666666666666667
+        ]
+      ]
+    },
+    {
+      "row": 1825,
+      "dual": -4.643153419053242,
+      "facet": 0,
+      "element": 65,
+      "control": 3,
+      "material": 2,
+      "vertices": [
+        [
+          23.0,
+          4.5
+        ],
+        [
+          23.0,
+          5.0
+        ],
+        [
+          22.0,
+          5.366666666666666
+        ]
+      ]
+    },
+    {
+      "row": 3271,
+      "dual": -9.10652056668114,
+      "facet": 1,
+      "element": 65,
+      "control": 4,
+      "material": 2,
+      "vertices": [
+        [
+          23.0,
+          4.5
+        ],
+        [
+          23.0,
+          5.0
+        ],
+        [
+          22.0,
+          5.366666666666666
+        ]
+      ]
+    },
+    {
+      "row": 9051,
+      "dual": -1.9227472359882956,
+      "facet": 5,
+      "element": 65,
+      "control": 4,
+      "material": 2,
+      "vertices": [
+        [
+          23.0,
+          4.5
+        ],
+        [
+          23.0,
+          5.0
+        ],
+        [
+          22.0,
+          5.366666666666666
+        ]
+      ]
+    },
+    {
+      "row": 10417,
+      "dual": -0.32754099705553497,
+      "facet": 6,
+      "element": 51,
+      "control": 5,
+      "material": 2,
+      "vertices": [
+        [
+          23.0,
+          5.0
+        ],
+        [
+          23.0,
+          4.5
+        ],
+        [
+          24.666666666666668,
+          4.666666666666667
+        ]
+      ]
+    },
+    {
+      "row": 11941,
+      "dual": -7.900397652040514,
+      "facet": 7,
+      "element": 65,
+      "control": 4,
+      "material": 2,
+      "vertices": [
+        [
+          23.0,
+          4.5
+        ],
+        [
+          23.0,
+          5.0
+        ],
+        [
+          22.0,
+          5.366666666666666
+        ]
+      ]
+    }
+  ],
+  "involved_elements": [
+    {
+      "id": 18,
+      "material": 2,
+      "vertices": [
+        [
+          23.0,
+          5.0
+        ],
+        [
+          24.666666666666668,
+          4.666666666666667
+        ],
+        [
+          24.666666666666668,
+          5.0
+        ]
+      ],
+      "zero_controls": [
+        0,
+        2,
+        5
+      ]
+    },
+    {
+      "id": 51,
+      "material": 2,
+      "vertices": [
+        [
+          23.0,
+          5.0
+        ],
+        [
+          23.0,
+          4.5
+        ],
+        [
+          24.666666666666668,
+          4.666666666666667
+        ]
+      ],
+      "zero_controls": [
+        0
+      ]
+    },
+    {
+      "id": 65,
+      "material": 2,
+      "vertices": [
+        [
+          23.0,
+          4.5
+        ],
+        [
+          23.0,
+          5.0
+        ],
+        [
+          22.0,
+          5.366666666666666
+        ]
+      ],
+      "zero_controls": [
+        1
+      ]
+    }
+  ]
+}
