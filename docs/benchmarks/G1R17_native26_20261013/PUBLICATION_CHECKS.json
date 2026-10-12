@@ -1,0 +1,80 @@
+{
+  "pass": true,
+  "scope": "Publication data/CSV/input hashes/relative links/ZIP hash; no numerical solve repeated",
+  "recorded_native_excel_cases": 26,
+  "independently_audited_fs": 26,
+  "target_met": 10,
+  "main_seconds_sum": 27966.886158,
+  "prior_dll2_matched_cases": 10,
+  "relative_link_targets_checked": 75,
+  "evidence_zip_sha256": "3b65c2f3c2ed20283ae9f052321785a7547988391895cfea37e475082e4f6d62",
+  "figures": {
+    "fs_intervals_26.png": {
+      "bytes": 287955,
+      "sha256": "3c0467604593570f6d0c3c123a13e37217b8f3e743440e6a58782a7b3bf9b3be"
+    },
+    "fs_intervals_26.svg": {
+      "bytes": 229519,
+      "sha256": "8c7698a185cbf1a73946037ecc07f374422374ebf790fafb0e11725a0d47f101"
+    },
+    "gap_26.png": {
+      "bytes": 259319,
+      "sha256": "599988a4577f0104c6302e29257cc3d9a7aa548a4bf7b11f3b9ac841059defca"
+    },
+    "gap_26.svg": {
+      "bytes": 209404,
+      "sha256": "7e34ea82f57943ee252b972009e9637fb928f9e7f2613fe8831a309533b96c6d"
+    },
+    "prior_dll2_10.png": {
+      "bytes": 187720,
+      "sha256": "091b65aa0ac5c7a907e838267683ad5c7dab9d6c8876acf0beb8eaa7b76ef0db"
+    },
+    "prior_dll2_10.svg": {
+      "bytes": 204493,
+      "sha256": "ba8b58c47240dbda701b9d8d1ce9a7f0cd51b4534a35325734ef15aba0ec850d"
+    },
+    "runtime_26.png": {
+      "bytes": 213829,
+      "sha256": "6ff0daed71b70417a976ad729540fcf94de986318a32632a872ddf9f50ef9c55"
+    },
+    "runtime_26.svg": {
+      "bytes": 173898,
+      "sha256": "3152fa3f2059892d82c8b5c42ad212796a70e6141c0e950657eef29dbb6f481c"
+    }
+  },
+  "data_sha256": {
+    "data/environment.json": "2ddf36f0f5c40074148c3077b255f5c9af63add8013d62dc8fec4388c9f90916",
+    "data/final_verification.json": "9a8f1c4a550ae8e305acc57cf90e539c06781927bd02f6fe9e01c28e71036ec2",
+    "data/inputs/D01A.json": "9b5f09ac4771f128febd047d5ade57eb40d97f171ce568265e9d3113f31f9197",
+    "data/inputs/D02A.json": "97c4f88a81575120452a427fdc80621a630a0abf4f09d5da119b3a64f6512a5b",
+    "data/inputs/D03N.json": "ec20faf54cbbf37b5410af6b467f9243ad08b6356fc7332dd6e53b493310bb59",
+    "data/inputs/D04A.json": "0ad45375992deed59e62a4261f551c18d6a3a4a0a026abb70070fa2b15b4af82",
+    "data/inputs/D05A.json": "b9c7b2b34a74889f0274f220b1895405acd68409f8df3b13571d5f62f27fa7e2",
+    "data/inputs/D06A.json": "a83db7c48b2ded624b6ec68bbd68a314127bc09c33e562fe1eade9269f030069",
+    "data/inputs/D07A.json": "d127e3e92f7ab9ac07f8a4d0e42a96e5ae531ac67c55c297b7753eccdf6492b3",
+    "data/inputs/D08A.json": "c3650aff7307ff93f79dfdf7af70ba63892b8e15c098178c71614fcbbf216b08",
+    "data/inputs/D09A.json": "46795043ad9bc7afc4024431fe4b0edd3a680edc56c19bc5d4c471a12efd5455",
+    "data/inputs/P01A.json": "c952158d3da2da80cba14b72c4c613ea13634ae667f0af35237c375e7a2e31e6",
+    "data/inputs/P01N.json": "bfca4f197eeb60d99fc2027ac947a2165c4be22c32730209d33ef68001349ca6",
+    "data/inputs/P02A.json": "9587c4b45eae1c22d9e7190ee1470f5ad2e38145305f6c374894f91240ae7e1b",
+    "data/inputs/P02N.json": "7d8d74f5d573032e7980fe7dffde911ffab2f7bd4cef784ee145f7e0349fac31",
+    "data/inputs/P03A.json": "858297b2897751405f4cc882100ff262ba994850668b8ef6054a425cf4314e8d",
+    "data/inputs/P03N.json": "603ce099f1b440bf62c485596e202d0624930bf20601fa9b10b7010974a1db70",
+    "data/inputs/P04A.json": "8dffa91b1bcb91f018ca950f9556db561dde206ac3e76f317cef11b879330a9e",
+    "data/inputs/P04N.json": "2aa99fceb305627ba7b39447ed9a2435dfd40c8202157f385b8a1478e852bff7",
+    "data/inputs/P05A.json": "0a63a1df97061275ed31d44eae841cc248828c34caff610da24e14731e607a83",
+    "data/inputs/P05N.json": "00c0f0343591fd462869feb282b56a4d34bddb9de4570d77888235ea8c99b328",
+    "data/inputs/P06A.json": "723491feaccb2c8b64c191dccf0564416816e09d3c2fe4c297e06c7505cf3215",
+    "data/inputs/P06N.json": "389bf6c3c29d49e509a1ea0f270ca0fae3594910da0cb8dd594edfea9cefec2b",
+    "data/inputs/P07A.json": "cb756be312cf7441b0b81c08c8fd5521ca7ff5a94d0d89021cb19ea5bc654074",
+    "data/inputs/P07N.json": "bad1e69be28a7088ff6e97b099d30acd4a4ce72ec9f33821e8907997253eaba3",
+    "data/inputs/P08A.json": "6edeed25559cbceb89ca2e676761ca65e933252333e676e11ecea32718dd09ef",
+    "data/inputs/P09A.json": "b22f5dd2e83f676252b7f462214108c325da08d8da3d02543c9e0b5f23f1d3ee",
+    "data/inputs/P10A.json": "706553eb9d63a7f3adb67fa4c73d3c1a6a56dee86b66dd2f67b31edd9509e3dc",
+    "data/PHASE_TIMINGS.csv": "e1bbffe55049142ae09b94ae006fba0d4aeb7ded131a4c915a37d682a120ca78",
+    "data/prior_dll2_comparison.json": "bc3f85565932a93618a5b9ec43c9407db9efd081ff5b21f0e9f5437395e63a7c",
+    "data/quality_notes.json": "8a484aa717a9c479b31739080a8e12d421c79bc30c8a14bf2aee9f6b7f901b3b",
+    "data/RESULTS.csv": "6412adc0adb4e1eda68f8f480bf32e1d93401836d29bfb8855c10305bdd13932",
+    "data/summary.json": "13b0deba27dba8d4a64befd214f2b3b99b23064f3fd2392f147521a2a8739a5c"
+  }
+}

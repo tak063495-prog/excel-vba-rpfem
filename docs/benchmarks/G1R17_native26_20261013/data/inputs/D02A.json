@@ -1,0 +1,371 @@
+{
+  "case": "D02A",
+  "source_case": {
+    "id": "D02A",
+    "title": "All c=0, slope ratio 2:3, phi=45",
+    "outline": [
+      [
+        0.0,
+        0.0
+      ],
+      [
+        70.0,
+        0.0
+      ],
+      [
+        70.0,
+        10.0
+      ],
+      [
+        50.0,
+        10.0
+      ],
+      [
+        20.0,
+        30.0
+      ],
+      [
+        0.0,
+        30.0
+      ]
+    ],
+    "materials": [
+      {
+        "name": "soil",
+        "E": 30000.0,
+        "nu": 0.3,
+        "gamma": 20.0,
+        "c": 0.0,
+        "phi": 45.0,
+        "psi": 45.0
+      }
+    ],
+    "regions": [
+      {
+        "name": "soil",
+        "xy": [
+          [
+            0.0,
+            0.0
+          ],
+          [
+            70.0,
+            0.0
+          ],
+          [
+            70.0,
+            10.0
+          ],
+          [
+            50.0,
+            10.0
+          ],
+          [
+            20.0,
+            30.0
+          ],
+          [
+            0.0,
+            30.0
+          ]
+        ]
+      }
+    ],
+    "h": [
+      3.75,
+      1.875,
+      0.9375
+    ],
+    "policy": "equal_reduced_phi",
+    "area": 1400.0,
+    "surcharge": false,
+    "pore": false
+  },
+  "points": [
+    [
+      1,
+      0.0,
+      0.0
+    ],
+    [
+      2,
+      70.0,
+      0.0
+    ],
+    [
+      3,
+      70.0,
+      10.0
+    ],
+    [
+      4,
+      50.0,
+      10.0
+    ],
+    [
+      5,
+      20.0,
+      30.0
+    ],
+    [
+      6,
+      0.0,
+      30.0
+    ]
+  ],
+  "regions": [
+    [
+      1,
+      1,
+      0,
+      "1,2,3,4,5,6"
+    ]
+  ],
+  "materials": [
+    [
+      1,
+      0.0,
+      45.0,
+      20.0,
+      45.0
+    ]
+  ],
+  "faces": [
+    [
+      1,
+      1,
+      1,
+      2,
+      0,
+      "固定XY",
+      0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    [
+      2,
+      1,
+      2,
+      3,
+      0,
+      "固定X",
+      0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    [
+      3,
+      1,
+      3,
+      4,
+      0,
+      "自由",
+      0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    [
+      4,
+      1,
+      4,
+      5,
+      0,
+      "自由",
+      0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    [
+      5,
+      1,
+      5,
+      6,
+      0,
+      "自由",
+      0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    [
+      6,
+      1,
+      6,
+      1,
+      1,
+      "固定X",
+      0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  ],
+  "boundary_explicit": [
+    {
+      "a": [
+        0.0,
+        0.0
+      ],
+      "b": [
+        70.0,
+        0.0
+      ],
+      "kind": "固定XY",
+      "load0": [
+        0.0,
+        0.0
+      ],
+      "load1": [
+        0,
+        0
+      ],
+      "region": 1
+    },
+    {
+      "a": [
+        70.0,
+        0.0
+      ],
+      "b": [
+        70.0,
+        10.0
+      ],
+      "kind": "固定X",
+      "load0": [
+        0.0,
+        0.0
+      ],
+      "load1": [
+        0,
+        0
+      ],
+      "region": 1
+    },
+    {
+      "a": [
+        70.0,
+        10.0
+      ],
+      "b": [
+        50.0,
+        10.0
+      ],
+      "kind": "自由",
+      "load0": [
+        0.0,
+        0.0
+      ],
+      "load1": [
+        0,
+        0
+      ],
+      "region": 1
+    },
+    {
+      "a": [
+        50.0,
+        10.0
+      ],
+      "b": [
+        20.0,
+        30.0
+      ],
+      "kind": "自由",
+      "load0": [
+        0.0,
+        0.0
+      ],
+      "load1": [
+        0,
+        0
+      ],
+      "region": 1
+    },
+    {
+      "a": [
+        20.0,
+        30.0
+      ],
+      "b": [
+        0.0,
+        30.0
+      ],
+      "kind": "自由",
+      "load0": [
+        0.0,
+        0.0
+      ],
+      "load1": [
+        0,
+        0
+      ],
+      "region": 1
+    },
+    {
+      "a": [
+        0.0,
+        30.0
+      ],
+      "b": [
+        0.0,
+        0.0
+      ],
+      "kind": "固定X",
+      "load0": [
+        0.0,
+        0.0
+      ],
+      "load1": [
+        0,
+        0
+      ],
+      "region": 1
+    }
+  ],
+  "settings": {
+    "MODE": "Fs",
+    "TARGET": 1536,
+    "GRAVITY": "固定",
+    "ADAPT": 1,
+    "CYCLES": 3,
+    "QUADRATURE": 8,
+    "FS_TOL": 0.0001,
+    "GAP": 0.01,
+    "C0_AUTO": 0,
+    "RAW_LOWER_AUDIT": 1,
+    "TEST_INJECTION": 0,
+    "HSD_CAPTURE": 0,
+    "DIAGNOSTIC_MODE": 1,
+    "ANALYSIS_POLICY": "ASSOCIATED",
+    "SEISMIC_KH": 0.0,
+    "SEISMIC_DIR": "右(+x)"
+  },
+  "region_areas": [
+    1400.0
+  ],
+  "total_weight": 28000.0,
+  "scope_notes": [
+    "G1R17 DLL5 full production profile: TARGET1536/adapt3/q8; one Excel at a time",
+    "N cases use the unchanged Davis equivalent associated model",
+    "E and nu are not inputs of the rigid-plastic model; D04A/D09A are still actually executed",
+    "No new full VBA timing runs; G1R12 historic timings are not a controlled DLL-only comparison"
+  ],
+  "water": {
+    "coupling": 0,
+    "mode": 2,
+    "gamma_w": 9.81,
+    "suction": 0,
+    "water_table": [],
+    "seep_target": 1536
+  }
+}

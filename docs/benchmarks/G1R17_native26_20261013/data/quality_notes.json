@@ -1,0 +1,435 @@
+{
+  "completed_cases": 26,
+  "cases": [
+    {
+      "case": "D08A",
+      "status": "PASS_TARGET",
+      "adopted_quadrature": [
+        8,
+        8
+      ],
+      "fs_obtained": true,
+      "target_met": true,
+      "target_unmet_reasons": [],
+      "final_rejections": [],
+      "hsd_budget_exceeded_solves": []
+    },
+    {
+      "case": "P01A",
+      "status": "FS_AVAILABLE_PARTIAL",
+      "adopted_quadrature": [
+        8,
+        8
+      ],
+      "fs_obtained": true,
+      "target_met": false,
+      "target_unmet_reasons": [
+        "GAP_TARGET_NOT_MET"
+      ],
+      "final_rejections": [],
+      "hsd_budget_exceeded_solves": []
+    },
+    {
+      "case": "P01N",
+      "status": "FS_AVAILABLE_PARTIAL",
+      "adopted_quadrature": [
+        8,
+        8
+      ],
+      "fs_obtained": true,
+      "target_met": false,
+      "target_unmet_reasons": [
+        "GAP_TARGET_NOT_MET"
+      ],
+      "final_rejections": [],
+      "hsd_budget_exceeded_solves": []
+    },
+    {
+      "case": "P02A",
+      "status": "PASS_TARGET",
+      "adopted_quadrature": [
+        8,
+        8
+      ],
+      "fs_obtained": true,
+      "target_met": true,
+      "target_unmet_reasons": [],
+      "final_rejections": [],
+      "hsd_budget_exceeded_solves": []
+    },
+    {
+      "case": "P02N",
+      "status": "PASS_TARGET",
+      "adopted_quadrature": [
+        8,
+        8
+      ],
+      "fs_obtained": true,
+      "target_met": true,
+      "target_unmet_reasons": [],
+      "final_rejections": [],
+      "hsd_budget_exceeded_solves": []
+    },
+    {
+      "case": "P03A",
+      "status": "FS_AVAILABLE_PARTIAL",
+      "adopted_quadrature": [
+        8,
+        8
+      ],
+      "fs_obtained": true,
+      "target_met": false,
+      "target_unmet_reasons": [
+        "GAP_TARGET_NOT_MET"
+      ],
+      "final_rejections": [],
+      "hsd_budget_exceeded_solves": []
+    },
+    {
+      "case": "P03N",
+      "status": "FS_AVAILABLE_PARTIAL",
+      "adopted_quadrature": [
+        8,
+        8
+      ],
+      "fs_obtained": true,
+      "target_met": false,
+      "target_unmet_reasons": [
+        "GAP_TARGET_NOT_MET"
+      ],
+      "final_rejections": [],
+      "hsd_budget_exceeded_solves": []
+    },
+    {
+      "case": "P04A",
+      "status": "PASS_TARGET",
+      "adopted_quadrature": [
+        8,
+        8
+      ],
+      "fs_obtained": true,
+      "target_met": true,
+      "target_unmet_reasons": [],
+      "final_rejections": [],
+      "hsd_budget_exceeded_solves": []
+    },
+    {
+      "case": "P04N",
+      "status": "PASS_TARGET",
+      "adopted_quadrature": [
+        8,
+        8
+      ],
+      "fs_obtained": true,
+      "target_met": true,
+      "target_unmet_reasons": [],
+      "final_rejections": [],
+      "hsd_budget_exceeded_solves": []
+    },
+    {
+      "case": "P05A",
+      "status": "FS_AVAILABLE_PARTIAL",
+      "adopted_quadrature": [
+        8,
+        8
+      ],
+      "fs_obtained": true,
+      "target_met": false,
+      "target_unmet_reasons": [
+        "GAP_TARGET_NOT_MET"
+      ],
+      "final_rejections": [],
+      "hsd_budget_exceeded_solves": []
+    },
+    {
+      "case": "P05N",
+      "status": "FS_AVAILABLE_PARTIAL",
+      "adopted_quadrature": [
+        8,
+        8
+      ],
+      "fs_obtained": true,
+      "target_met": false,
+      "target_unmet_reasons": [
+        "GAP_TARGET_NOT_MET"
+      ],
+      "final_rejections": [],
+      "hsd_budget_exceeded_solves": []
+    },
+    {
+      "case": "P07A",
+      "status": "PASS_TARGET",
+      "adopted_quadrature": [
+        8,
+        8
+      ],
+      "fs_obtained": true,
+      "target_met": true,
+      "target_unmet_reasons": [],
+      "final_rejections": [],
+      "hsd_budget_exceeded_solves": []
+    },
+    {
+      "case": "P07N",
+      "status": "FS_AVAILABLE_PARTIAL",
+      "adopted_quadrature": [
+        8,
+        8
+      ],
+      "fs_obtained": true,
+      "target_met": false,
+      "target_unmet_reasons": [
+        "GAP_TARGET_NOT_MET"
+      ],
+      "final_rejections": [],
+      "hsd_budget_exceeded_solves": []
+    },
+    {
+      "case": "P08A",
+      "status": "FS_AVAILABLE_PARTIAL",
+      "adopted_quadrature": [
+        4,
+        4
+      ],
+      "fs_obtained": true,
+      "target_met": false,
+      "target_unmet_reasons": [
+        "NATIVE_GLOBAL_INCOMPLETE"
+      ],
+      "final_rejections": [
+        {
+          "elapsed_s": "1373.115305",
+          "solve_id": "13",
+          "candidate": "final",
+          "mode": "upper",
+          "strength_factor": "1",
+          "detail": "FINAL_NUMERICAL_UNKNOWN;OLD_WITNESSES_KEPT HSD_SOLVE_BUDGET_EXCEEDED"
+        }
+      ],
+      "hsd_budget_exceeded_solves": [
+        {
+          "elapsed_s": "1373.114370",
+          "solve_id": "13",
+          "candidate": "final",
+          "mode": "upper",
+          "strength_factor": "1",
+          "detail": "status=NUMERICAL_FAILURE;wall_seconds=445.656918199995;last_iteration_index=37;objective=0;primal=4.22508291618703E-10;dual=2.46191199819459E-10;gap=0;message=HSD_SOLVE_BUDGET_EXCEEDED"
+        }
+      ]
+    },
+    {
+      "case": "P09A",
+      "status": "FS_AVAILABLE_PARTIAL",
+      "adopted_quadrature": [
+        4,
+        4
+      ],
+      "fs_obtained": true,
+      "target_met": false,
+      "target_unmet_reasons": [
+        "NATIVE_GLOBAL_INCOMPLETE"
+      ],
+      "final_rejections": [
+        {
+          "elapsed_s": "1125.141665",
+          "solve_id": "11",
+          "candidate": "final",
+          "mode": "upper",
+          "strength_factor": "1",
+          "detail": "FINAL_NUMERICAL_UNKNOWN;OLD_WITNESSES_KEPT HSD_SOLVE_BUDGET_EXCEEDED"
+        }
+      ],
+      "hsd_budget_exceeded_solves": [
+        {
+          "elapsed_s": "1125.128502",
+          "solve_id": "11",
+          "candidate": "final",
+          "mode": "upper",
+          "strength_factor": "1",
+          "detail": "status=NUMERICAL_FAILURE;wall_seconds=445.044810699997;last_iteration_index=37;objective=0;primal=4.94324603472762E-09;dual=9.87595441317967E-09;gap=0;message=HSD_SOLVE_BUDGET_EXCEEDED"
+        }
+      ]
+    },
+    {
+      "case": "P10A",
+      "status": "FS_AVAILABLE_PARTIAL",
+      "adopted_quadrature": [
+        4,
+        4
+      ],
+      "fs_obtained": true,
+      "target_met": false,
+      "target_unmet_reasons": [
+        "GAP_TARGET_NOT_MET"
+      ],
+      "final_rejections": [
+        {
+          "elapsed_s": "987.765981",
+          "solve_id": "9",
+          "candidate": "final",
+          "mode": "upper",
+          "strength_factor": "1",
+          "detail": "FINAL_NUMERICAL_UNKNOWN;OLD_WITNESSES_KEPT HSD_SOLVE_BUDGET_EXCEEDED"
+        }
+      ],
+      "hsd_budget_exceeded_solves": [
+        {
+          "elapsed_s": "987.753230",
+          "solve_id": "9",
+          "candidate": "final",
+          "mode": "upper",
+          "strength_factor": "1",
+          "detail": "status=NUMERICAL_FAILURE;wall_seconds=442.327681399998;last_iteration_index=36;objective=0;primal=1.82495658074706E-10;dual=2.6246442519362E-10;gap=0;message=HSD_SOLVE_BUDGET_EXCEEDED"
+        }
+      ]
+    },
+    {
+      "case": "D01A",
+      "status": "FS_AVAILABLE_PARTIAL",
+      "adopted_quadrature": [
+        8,
+        8
+      ],
+      "fs_obtained": true,
+      "target_met": false,
+      "target_unmet_reasons": [
+        "GAP_TARGET_NOT_MET",
+        "LOWER_ROOT_NOT_VALID",
+        "UPPER_ROOT_NOT_VALID"
+      ],
+      "final_rejections": [],
+      "hsd_budget_exceeded_solves": []
+    },
+    {
+      "case": "D02A",
+      "status": "FS_AVAILABLE_PARTIAL",
+      "adopted_quadrature": [
+        4,
+        8
+      ],
+      "fs_obtained": true,
+      "target_met": false,
+      "target_unmet_reasons": [
+        "GAP_TARGET_NOT_MET",
+        "LOWER_ROOT_NOT_VALID",
+        "UPPER_ROOT_NOT_VALID"
+      ],
+      "final_rejections": [],
+      "hsd_budget_exceeded_solves": []
+    },
+    {
+      "case": "D03N",
+      "status": "FS_AVAILABLE_PARTIAL",
+      "adopted_quadrature": [
+        8,
+        8
+      ],
+      "fs_obtained": true,
+      "target_met": false,
+      "target_unmet_reasons": [
+        "GAP_TARGET_NOT_MET",
+        "LOWER_ROOT_NOT_VALID",
+        "UPPER_ROOT_NOT_VALID"
+      ],
+      "final_rejections": [],
+      "hsd_budget_exceeded_solves": []
+    },
+    {
+      "case": "D04A",
+      "status": "PASS_TARGET",
+      "adopted_quadrature": [
+        8,
+        8
+      ],
+      "fs_obtained": true,
+      "target_met": true,
+      "target_unmet_reasons": [],
+      "final_rejections": [],
+      "hsd_budget_exceeded_solves": []
+    },
+    {
+      "case": "D05A",
+      "status": "PASS_TARGET",
+      "adopted_quadrature": [
+        8,
+        8
+      ],
+      "fs_obtained": true,
+      "target_met": true,
+      "target_unmet_reasons": [],
+      "final_rejections": [],
+      "hsd_budget_exceeded_solves": []
+    },
+    {
+      "case": "D06A",
+      "status": "PASS_TARGET",
+      "adopted_quadrature": [
+        8,
+        8
+      ],
+      "fs_obtained": true,
+      "target_met": true,
+      "target_unmet_reasons": [],
+      "final_rejections": [],
+      "hsd_budget_exceeded_solves": []
+    },
+    {
+      "case": "D07A",
+      "status": "FS_AVAILABLE_PARTIAL",
+      "adopted_quadrature": [
+        8,
+        4
+      ],
+      "fs_obtained": true,
+      "target_met": false,
+      "target_unmet_reasons": [
+        "NATIVE_GLOBAL_INCOMPLETE"
+      ],
+      "final_rejections": [],
+      "hsd_budget_exceeded_solves": []
+    },
+    {
+      "case": "D09A",
+      "status": "PASS_TARGET",
+      "adopted_quadrature": [
+        8,
+        8
+      ],
+      "fs_obtained": true,
+      "target_met": true,
+      "target_unmet_reasons": [],
+      "final_rejections": [],
+      "hsd_budget_exceeded_solves": []
+    },
+    {
+      "case": "P06N",
+      "status": "FS_AVAILABLE_PARTIAL",
+      "adopted_quadrature": [
+        8,
+        8
+      ],
+      "fs_obtained": true,
+      "target_met": false,
+      "target_unmet_reasons": [
+        "GAP_TARGET_NOT_MET"
+      ],
+      "final_rejections": [],
+      "hsd_budget_exceeded_solves": []
+    },
+    {
+      "case": "P06A",
+      "status": "FS_AVAILABLE_PARTIAL",
+      "adopted_quadrature": [
+        8,
+        8
+      ],
+      "fs_obtained": true,
+      "target_met": false,
+      "target_unmet_reasons": [
+        "GAP_TARGET_NOT_MET"
+      ],
+      "final_rejections": [],
+      "hsd_budget_exceeded_solves": []
+    }
+  ]
+}

@@ -1,0 +1,5567 @@
+{
+  "updated_utc": "2026-10-12T18:48:06.194919+00:00",
+  "final": true,
+  "count": 26,
+  "completed": 26,
+  "fs_obtained": 26,
+  "target_met": 10,
+  "cancelled": 0,
+  "not_run": 0,
+  "analysis_seconds_sum": 27966.886158,
+  "analysis_seconds_mean": 1075.6494676153845,
+  "analysis_seconds_median": 342.1293545,
+  "dll_actually_used_count": 26,
+  "production_preserved_count": 26,
+  "failures": [],
+  "metadata": {
+    "captured_utc": "2026-10-12T10:52:44.193529+00:00",
+    "platform": "Windows-11-10.0.26300-SP0",
+    "python": "3.12.13 (main, Aug  7 2026, 02:26:41) [MSC v.1944 64 bit (AMD64)]",
+    "packages": {
+      "pywin32": "312",
+      "numpy": "2.5.4",
+      "scipy": "1.18.1",
+      "oletools": "0.60.2"
+    },
+    "hardware": {
+      "excel_processes": {},
+      "cpu": {
+        "Name": "AMD Ryzen 9 5900X 12-Core Processor            ",
+        "NumberOfCores": 12,
+        "NumberOfLogicalProcessors": 24
+      },
+      "os": {
+        "Caption": "Microsoft Windows 11 Pro",
+        "Version": "10.0.26300",
+        "TotalVisibleMemorySize": 134123000
+      }
+    },
+    "source_commit": "24bb5c1a09cf7c92997c347ad9f0ee6868e28475",
+    "source_sha256": "dcbfdcfb2d4bbcf382f07d237e77d7122185ebe91c4fce59935cb751f04e2fda",
+    "dll_sha256": "72aaf9bfccc0acc186eb69cdcbabd93b27f7ce245ceac574193ba6602c675323",
+    "execution": "Sequential native Excel, one analysis at a time",
+    "macro_security": "Recorded without modification in each case status",
+    "VBA_measurement": "No new VBA full timing per prior user instruction",
+    "timing_boundary": "Main: run_end.elapsed_s; additionally COM RPX_Run, water preparation and initial RPX_CreateMesh measured separately; saving/audits/Excel startup excluded"
+  },
+  "cases": [
+    {
+      "case": "D01A",
+      "status": "FS_AVAILABLE_PARTIAL",
+      "analysis_seconds": 1862.762136,
+      "lower_fs": 0.5773027250336507,
+      "upper_fs": 0.5975832375661093,
+      "relative_gap": 0.03452337193234043,
+      "fs_obtained": true,
+      "target_met": false,
+      "target_unmet_reasons": [
+        "GAP_TARGET_NOT_MET",
+        "LOWER_ROOT_NOT_VALID",
+        "UPPER_ROOT_NOT_VALID"
+      ],
+      "element_counts": [
+        799.0,
+        799.0
+      ],
+      "witness_q": [
+        8,
+        8
+      ],
+      "error_number": 0,
+      "pore_pressure": false,
+      "root_width": 6.25610246275388e-05,
+      "root_search_incomplete": true,
+      "global_incomplete_note": "ADAPT_GAP_TARGET_NOT_MET",
+      "dll_actually_used": true,
+      "native_counters": {
+        "numeric": 1777,
+        "dd_numeric": 47,
+        "backsolve": 1,
+        "ordering": 0,
+        "column_ordering": 0,
+        "nt_bulk": 1806,
+        "g_bulk": 719,
+        "gt_bulk": 5438,
+        "kkt_bulk": 1806,
+        "hsd_operator": 3614,
+        "corrector_bulk": 1806,
+        "bulk_job_steps": 49402,
+        "hsd_lu": 0,
+        "hsd_lu_solve": 0,
+        "solver_vector_calls": 37483,
+        "hsd_jobs": 5438,
+        "hsd_job_steps": 13257,
+        "krylov_jobs": 149,
+        "krylov_steps": 3661,
+        "refine_jobs": 0,
+        "refine_steps": 0,
+        "input_compare_calls": 35244,
+        "schur_jobs": 0,
+        "schur_steps": 0,
+        "schur_native_bytes": 0,
+        "meshfan_jobs": 32,
+        "meshfan_steps": 32
+      },
+      "input_sha256": "9b5f09ac4771f128febd047d5ade57eb40d97f171ce568265e9d3113f31f9197",
+      "source_sha256": "dcbfdcfb2d4bbcf382f07d237e77d7122185ebe91c4fce59935cb751f04e2fda",
+      "dll_sha256": "72aaf9bfccc0acc186eb69cdcbabd93b27f7ce245ceac574193ba6602c675323",
+      "workbook_sha256": "7ff79856df4a9bdf52811bebbed0998c6d99ae102942baf144d37f1fb8197584",
+      "production_source_check": {
+        "pass": true,
+        "original_modules_unchanged": 71,
+        "only_added_module": "BatchEvidence"
+      },
+      "independent_audit": {
+        "pass": true,
+        "scope": "Independent physical equations, material/geometry, explicit boundaries, dry weight and D08A P1 water-gradient loads",
+        "results": [
+          {
+            "side": "lower",
+            "metadata": {
+              "nodes": 447,
+              "elements": 799,
+              "q": 8,
+              "factor": 0.5773027250336507,
+              "fs": 0.5773027250336507,
+              "objective": 1.0,
+              "native_audit": 4.225140080773432e-08,
+              "scale": 1.0
+            },
+            "physical_audit": {
+              "pass": true,
+              "errors": {
+                "yield": 1.5445080855900427e-09,
+                "equilibrium": 4.22514023767917e-08,
+                "internal_traction": 2.883399630171368e-10,
+                "boundary_traction": 6.827312639820539e-10
+              },
+              "load": 1.0,
+              "value": 1.0
+            },
+            "raw_lower_errors": {
+              "yield": 1.5445080855900427e-09,
+              "equilibrium": 4.22514023767917e-08,
+              "internal_traction": 2.883399630171368e-10,
+              "boundary_traction": 6.827312639820539e-10
+            },
+            "raw_lower_pass": true,
+            "endpoint_direction_pass": true,
+            "material_areas": [
+              158.0
+            ],
+            "gravity_weight": 3159.9999999999995,
+            "effective_vertical_load": 3160.0000000000023,
+            "independent_body_max_error": 0.0,
+            "pore_pressure_on": false,
+            "pass": true
+          },
+          {
+            "side": "upper",
+            "metadata": {
+              "nodes": 447,
+              "elements": 799,
+              "q": 8,
+              "factor": 0.5975832375661093,
+              "fs": 0.5975832375661093,
+              "objective": 0.0,
+              "native_audit": 8.985272526018662e-10,
+              "scale": 1.0
+            },
+            "physical_audit": {
+              "pass": true,
+              "errors": {
+                "flow": 0.0,
+                "jump": 0.0,
+                "boundary": 1.2593805808043482e-17,
+                "work": 9.89530235528946e-10,
+                "objective": 0.0
+              },
+              "dissipation": 0.0,
+              "work": [
+                0.0,
+                0.9999999990104698
+              ],
+              "value": 0.0
+            },
+            "raw_lower_errors": {},
+            "raw_lower_pass": true,
+            "endpoint_direction_pass": true,
+            "material_areas": [
+              158.0
+            ],
+            "gravity_weight": 3159.9999999999995,
+            "effective_vertical_load": 3160.0000000000023,
+            "independent_body_max_error": 0.0,
+            "pore_pressure_on": false,
+            "pass": true
+          }
+        ]
+      },
+      "actual_settings": {
+        "MODE": "Fs",
+        "TARGET": 1536.0,
+        "GRAVITY": "固定",
+        "ADAPT": 1.0,
+        "CYCLES": 3.0,
+        "GAP": 0.01,
+        "REFINE": 0.2,
+        "QUADRATURE": 8.0,
+        "FS_TOL": 0.0001,
+        "BEARING_FACES": null,
+        "BEARING_RIGIDS": null,
+        "SEISMIC_KH": 0.0,
+        "SEISMIC_DIR": "右(+x)",
+        "UPPER_PILOT": 0.0,
+        "UPPER_PILOT_RIGID": 0.0,
+        "LOWER_FS_SEED": "UPPER_TRIAL",
+        "LOWER_SEED_WIDTH": 0.02,
+        "LOWER_MODEL_CACHE": 1.0,
+        "LOWER_KKT_BACKEND": "AUTO",
+        "SCHUR_ALLOW_RIGID": 0.0,
+        "SCHUR_MAX_BYTES": 268435456.0,
+        "TEST_INJECTION": 0.0,
+        "KKT_CAPTURE": 0.0,
+        "SCHUR_TRACE_LEVEL": 0.0,
+        "SCHUR_REPLAY_POLICY": "CONSISTENT",
+        "SCHUR_STRUCTURE_CACHE": 1.0,
+        "SCHUR_RECOVERY_MODE": "REUSE_U",
+        "SCHUR_REFINEMENT": "FIXED3",
+        "SCHUR_GENERIC_START_ITERS": 0.0,
+        "DIRECT_FINAL_AFTER_PILOT": 0.0,
+        "DIAGNOSTIC_MODE": 1.0,
+        "HSD_CAPTURE": 0.0,
+        "HSD_LINEAR_BACKEND": "AUTO_PIVOT",
+        "HSD_LINEAR_CAPTURE": 0.0,
+        "HSD_LINEAR_CAPTURE_MAX": 8.0,
+        "HSD_STABLE_MAX_BYTES": 1073741824.0,
+        "HSD_LINEAR_TRACE": 0.0,
+        "C0_AUTO": 0.0,
+        "ANALYSIS_POLICY": "ASSOCIATED",
+        "RAW_LOWER_AUDIT": 1.0,
+        "C0_UPPER_ADAPT": 0.0,
+        "HSD_SOLVE_SECONDS": 300.0,
+        "C0_DIRECT_UPPER": 1.0,
+        "HSD_PROJECTIVE_NORMALIZATION": 1.0,
+        "HSD_ORIGINAL_OPERATOR": 0.0,
+        "ADAPT_MESH_POLICY": "LEGACY_THEN_REFINE",
+        "ADAPT_REFINE_CAP": 1000.0,
+        "FS_BRACKET_POLICY": "AUDITED_UPPER_LIMIT"
+      },
+      "root_tolerance_contract": "width <= FS_TOL * max(1, bracket midpoint); per-owner native root validity and completion flags",
+      "input_title": "All c=0, 45 degree face, phi=30",
+      "solve_count": 76,
+      "audit_count": 574,
+      "native_terminal": {
+        "status": "PARTIAL_CERTIFIED",
+        "solve_count": "76",
+        "sampled_peak_private_bytes": "495108096",
+        "logging_seconds_before_run_end": "5.54613399988739",
+        "message": "ADAPT_GAP_TARGET_NOT_MET"
+      }
+    },
+    {
+      "case": "D02A",
+      "status": "FS_AVAILABLE_PARTIAL",
+      "analysis_seconds": 2056.986049,
+      "lower_fs": 1.4999997500001465,
+      "upper_fs": 1.571264919285243,
+      "relative_gap": 0.04640770298814933,
+      "fs_obtained": true,
+      "target_met": false,
+      "target_unmet_reasons": [
+        "GAP_TARGET_NOT_MET",
+        "LOWER_ROOT_NOT_VALID",
+        "UPPER_ROOT_NOT_VALID"
+      ],
+      "element_counts": [
+        564.0,
+        876.0
+      ],
+      "witness_q": [
+        4,
+        8
+      ],
+      "error_number": 0,
+      "pore_pressure": false,
+      "root_width": 0.00781249609374224,
+      "root_search_incomplete": true,
+      "global_incomplete_note": "ADAPT_GAP_TARGET_NOT_MET",
+      "dll_actually_used": true,
+      "native_counters": {
+        "numeric": 1906,
+        "dd_numeric": 63,
+        "backsolve": 7,
+        "ordering": 0,
+        "column_ordering": 0,
+        "nt_bulk": 1963,
+        "g_bulk": 856,
+        "gt_bulk": 5896,
+        "kkt_bulk": 1963,
+        "hsd_operator": 3940,
+        "corrector_bulk": 1963,
+        "bulk_job_steps": 53927,
+        "hsd_lu": 0,
+        "hsd_lu_solve": 0,
+        "solver_vector_calls": 40619,
+        "hsd_jobs": 5896,
+        "hsd_job_steps": 14767,
+        "krylov_jobs": 200,
+        "krylov_steps": 3771,
+        "refine_jobs": 0,
+        "refine_steps": 0,
+        "input_compare_calls": 40242,
+        "schur_jobs": 0,
+        "schur_steps": 0,
+        "schur_native_bytes": 0,
+        "meshfan_jobs": 31,
+        "meshfan_steps": 31
+      },
+      "input_sha256": "97c4f88a81575120452a427fdc80621a630a0abf4f09d5da119b3a64f6512a5b",
+      "source_sha256": "dcbfdcfb2d4bbcf382f07d237e77d7122185ebe91c4fce59935cb751f04e2fda",
+      "dll_sha256": "72aaf9bfccc0acc186eb69cdcbabd93b27f7ce245ceac574193ba6602c675323",
+      "workbook_sha256": "68e991e68f7d6e1b65f1a6517b147312bfb3765d470f8448980c3a035f6bd8d2",
+      "production_source_check": {
+        "pass": true,
+        "original_modules_unchanged": 71,
+        "only_added_module": "BatchEvidence"
+      },
+      "independent_audit": {
+        "pass": true,
+        "scope": "Independent physical equations, material/geometry, explicit boundaries, dry weight and D08A P1 water-gradient loads",
+        "results": [
+          {
+            "side": "lower",
+            "metadata": {
+              "nodes": 323,
+              "elements": 564,
+              "q": 4,
+              "factor": 1.4999997500001465,
+              "fs": 1.4999997500001465,
+              "objective": 1.0,
+              "native_audit": 4.56686319897856e-08,
+              "scale": 1.0
+            },
+            "physical_audit": {
+              "pass": true,
+              "errors": {
+                "yield": 5.136935186208826e-09,
+                "equilibrium": 4.5668633319451146e-08,
+                "internal_traction": 3.631996732013872e-10,
+                "boundary_traction": 2.4563043087233847e-09
+              },
+              "load": 1.0,
+              "value": 1.0
+            },
+            "raw_lower_errors": {
+              "yield": 5.136935186208826e-09,
+              "equilibrium": 4.5668633319451146e-08,
+              "internal_traction": 3.631996732013872e-10,
+              "boundary_traction": 2.4563043087233847e-09
+            },
+            "raw_lower_pass": true,
+            "endpoint_direction_pass": true,
+            "material_areas": [
+              1400.0
+            ],
+            "gravity_weight": 27999.999999999996,
+            "effective_vertical_load": 28000.000000000036,
+            "independent_body_max_error": 0.0,
+            "pore_pressure_on": false,
+            "pass": true
+          },
+          {
+            "side": "upper",
+            "metadata": {
+              "nodes": 486,
+              "elements": 876,
+              "q": 8,
+              "factor": 1.571264919285243,
+              "fs": 1.571264919285243,
+              "objective": 0.0,
+              "native_audit": 7.589419093179117e-09,
+              "scale": 1.0
+            },
+            "physical_audit": {
+              "pass": true,
+              "errors": {
+                "flow": 0.0,
+                "jump": 0.0,
+                "boundary": 2.0208242961120528e-19,
+                "work": 8.614733815193176e-09,
+                "objective": 0.0
+              },
+              "dissipation": 0.0,
+              "work": [
+                0.0,
+                0.9999999913852662
+              ],
+              "value": 0.0
+            },
+            "raw_lower_errors": {},
+            "raw_lower_pass": true,
+            "endpoint_direction_pass": true,
+            "material_areas": [
+              1400.0
+            ],
+            "gravity_weight": 28000.000000000004,
+            "effective_vertical_load": 28000.000000000022,
+            "independent_body_max_error": 0.0,
+            "pore_pressure_on": false,
+            "pass": true
+          }
+        ]
+      },
+      "actual_settings": {
+        "MODE": "Fs",
+        "TARGET": 1536.0,
+        "GRAVITY": "固定",
+        "ADAPT": 1.0,
+        "CYCLES": 3.0,
+        "GAP": 0.01,
+        "REFINE": 0.2,
+        "QUADRATURE": 8.0,
+        "FS_TOL": 0.0001,
+        "BEARING_FACES": null,
+        "BEARING_RIGIDS": null,
+        "SEISMIC_KH": 0.0,
+        "SEISMIC_DIR": "右(+x)",
+        "UPPER_PILOT": 0.0,
+        "UPPER_PILOT_RIGID": 0.0,
+        "LOWER_FS_SEED": "UPPER_TRIAL",
+        "LOWER_SEED_WIDTH": 0.02,
+        "LOWER_MODEL_CACHE": 1.0,
+        "LOWER_KKT_BACKEND": "AUTO",
+        "SCHUR_ALLOW_RIGID": 0.0,
+        "SCHUR_MAX_BYTES": 268435456.0,
+        "TEST_INJECTION": 0.0,
+        "KKT_CAPTURE": 0.0,
+        "SCHUR_TRACE_LEVEL": 0.0,
+        "SCHUR_REPLAY_POLICY": "CONSISTENT",
+        "SCHUR_STRUCTURE_CACHE": 1.0,
+        "SCHUR_RECOVERY_MODE": "REUSE_U",
+        "SCHUR_REFINEMENT": "FIXED3",
+        "SCHUR_GENERIC_START_ITERS": 0.0,
+        "DIRECT_FINAL_AFTER_PILOT": 0.0,
+        "DIAGNOSTIC_MODE": 1.0,
+        "HSD_CAPTURE": 0.0,
+        "HSD_LINEAR_BACKEND": "AUTO_PIVOT",
+        "HSD_LINEAR_CAPTURE": 0.0,
+        "HSD_LINEAR_CAPTURE_MAX": 8.0,
+        "HSD_STABLE_MAX_BYTES": 1073741824.0,
+        "HSD_LINEAR_TRACE": 0.0,
+        "C0_AUTO": 0.0,
+        "ANALYSIS_POLICY": "ASSOCIATED",
+        "RAW_LOWER_AUDIT": 1.0,
+        "C0_UPPER_ADAPT": 0.0,
+        "HSD_SOLVE_SECONDS": 300.0,
+        "C0_DIRECT_UPPER": 1.0,
+        "HSD_PROJECTIVE_NORMALIZATION": 1.0,
+        "HSD_ORIGINAL_OPERATOR": 0.0,
+        "ADAPT_MESH_POLICY": "LEGACY_THEN_REFINE",
+        "ADAPT_REFINE_CAP": 1000.0,
+        "FS_BRACKET_POLICY": "AUDITED_UPPER_LIMIT"
+      },
+      "root_tolerance_contract": "width <= FS_TOL * max(1, bracket midpoint); per-owner native root validity and completion flags",
+      "input_title": "All c=0, slope ratio 2:3, phi=45",
+      "solve_count": 80,
+      "audit_count": 591,
+      "native_terminal": {
+        "status": "PARTIAL_CERTIFIED",
+        "solve_count": "80",
+        "sampled_peak_private_bytes": "561655808",
+        "logging_seconds_before_run_end": "5.95560169930104",
+        "message": "ADAPT_GAP_TARGET_NOT_MET"
+      }
+    },
+    {
+      "case": "D03N",
+      "status": "FS_AVAILABLE_PARTIAL",
+      "analysis_seconds": 2035.130294,
+      "lower_fs": 1.1179508407467074,
+      "upper_fs": 1.2119129823403816,
+      "relative_gap": 0.08065891290519597,
+      "fs_obtained": true,
+      "target_met": false,
+      "target_unmet_reasons": [
+        "GAP_TARGET_NOT_MET",
+        "LOWER_ROOT_NOT_VALID",
+        "UPPER_ROOT_NOT_VALID"
+      ],
+      "element_counts": [
+        874.0,
+        874.0
+      ],
+      "witness_q": [
+        8,
+        8
+      ],
+      "error_number": 0,
+      "pore_pressure": false,
+      "root_width": 0.000109100148544483,
+      "root_search_incomplete": true,
+      "global_incomplete_note": "ADAPT_GAP_TARGET_NOT_MET",
+      "dll_actually_used": true,
+      "native_counters": {
+        "numeric": 1927,
+        "dd_numeric": 47,
+        "backsolve": 2,
+        "ordering": 0,
+        "column_ordering": 0,
+        "nt_bulk": 1959,
+        "g_bulk": 798,
+        "gt_bulk": 5893,
+        "kkt_bulk": 1959,
+        "hsd_operator": 3922,
+        "corrector_bulk": 1959,
+        "bulk_job_steps": 53760,
+        "hsd_lu": 0,
+        "hsd_lu_solve": 0,
+        "solver_vector_calls": 40579,
+        "hsd_jobs": 5893,
+        "hsd_job_steps": 14687,
+        "krylov_jobs": 171,
+        "krylov_steps": 3799,
+        "refine_jobs": 0,
+        "refine_steps": 0,
+        "input_compare_calls": 37662,
+        "schur_jobs": 0,
+        "schur_steps": 0,
+        "schur_native_bytes": 0,
+        "meshfan_jobs": 31,
+        "meshfan_steps": 31
+      },
+      "input_sha256": "ec20faf54cbbf37b5410af6b467f9243ad08b6356fc7332dd6e53b493310bb59",
+      "source_sha256": "dcbfdcfb2d4bbcf382f07d237e77d7122185ebe91c4fce59935cb751f04e2fda",
+      "dll_sha256": "72aaf9bfccc0acc186eb69cdcbabd93b27f7ce245ceac574193ba6602c675323",
+      "workbook_sha256": "83d639872e903155567629192aa9e910aea738d3f8b924304811d50ae564e032",
+      "production_source_check": {
+        "pass": true,
+        "original_modules_unchanged": 71,
+        "only_added_module": "BatchEvidence"
+      },
+      "independent_audit": {
+        "pass": true,
+        "scope": "Independent physical equations, material/geometry, explicit boundaries, dry weight and D08A P1 water-gradient loads",
+        "results": [
+          {
+            "side": "lower",
+            "metadata": {
+              "nodes": 485,
+              "elements": 874,
+              "q": 8,
+              "factor": 1.1179508407467074,
+              "fs": 1.1179508407467074,
+              "objective": 1.0,
+              "native_audit": 2.5164510621122904e-08,
+              "scale": 1.0
+            },
+            "physical_audit": {
+              "pass": true,
+              "errors": {
+                "yield": 2.8321115751941804e-09,
+                "equilibrium": 2.5164508699049293e-08,
+                "internal_traction": 4.315824205085584e-10,
+                "boundary_traction": 1.3553126666917735e-09
+              },
+              "load": 1.0,
+              "value": 1.0
+            },
+            "raw_lower_errors": {
+              "yield": 2.8321115751941804e-09,
+              "equilibrium": 2.5164508699049293e-08,
+              "internal_traction": 4.315824205085584e-10,
+              "boundary_traction": 1.3553126666917735e-09
+            },
+            "raw_lower_pass": true,
+            "endpoint_direction_pass": true,
+            "material_areas": [
+              1400.0
+            ],
+            "gravity_weight": 28000.000000000004,
+            "effective_vertical_load": 28000.00000000003,
+            "independent_body_max_error": 0.0,
+            "pore_pressure_on": false,
+            "pass": true
+          },
+          {
+            "side": "upper",
+            "metadata": {
+              "nodes": 485,
+              "elements": 874,
+              "q": 8,
+              "factor": 1.2119129823403816,
+              "fs": 1.2119129823403816,
+              "objective": 0.0,
+              "native_audit": 3.2465937382930576e-08,
+              "scale": 1.0
+            },
+            "physical_audit": {
+              "pass": true,
+              "errors": {
+                "flow": 0.0,
+                "jump": 0.0,
+                "boundary": 2.5242206178822114e-18,
+                "work": 6.332993507385254e-08,
+                "objective": 0.0
+              },
+              "dissipation": 0.0,
+              "work": [
+                0.0,
+                0.9999999366700649
+              ],
+              "value": 0.0
+            },
+            "raw_lower_errors": {},
+            "raw_lower_pass": true,
+            "endpoint_direction_pass": true,
+            "material_areas": [
+              1400.0
+            ],
+            "gravity_weight": 28000.000000000004,
+            "effective_vertical_load": 28000.00000000003,
+            "independent_body_max_error": 0.0,
+            "pore_pressure_on": false,
+            "pass": true
+          }
+        ]
+      },
+      "actual_settings": {
+        "MODE": "Fs",
+        "TARGET": 1536.0,
+        "GRAVITY": "固定",
+        "ADAPT": 1.0,
+        "CYCLES": 3.0,
+        "GAP": 0.01,
+        "REFINE": 0.2,
+        "QUADRATURE": 8.0,
+        "FS_TOL": 0.0001,
+        "BEARING_FACES": null,
+        "BEARING_RIGIDS": null,
+        "SEISMIC_KH": 0.0,
+        "SEISMIC_DIR": "右(+x)",
+        "UPPER_PILOT": 0.0,
+        "UPPER_PILOT_RIGID": 0.0,
+        "LOWER_FS_SEED": "UPPER_TRIAL",
+        "LOWER_SEED_WIDTH": 0.02,
+        "LOWER_MODEL_CACHE": 1.0,
+        "LOWER_KKT_BACKEND": "AUTO",
+        "SCHUR_ALLOW_RIGID": 0.0,
+        "SCHUR_MAX_BYTES": 268435456.0,
+        "TEST_INJECTION": 0.0,
+        "KKT_CAPTURE": 0.0,
+        "SCHUR_TRACE_LEVEL": 0.0,
+        "SCHUR_REPLAY_POLICY": "CONSISTENT",
+        "SCHUR_STRUCTURE_CACHE": 1.0,
+        "SCHUR_RECOVERY_MODE": "REUSE_U",
+        "SCHUR_REFINEMENT": "FIXED3",
+        "SCHUR_GENERIC_START_ITERS": 0.0,
+        "DIRECT_FINAL_AFTER_PILOT": 0.0,
+        "DIAGNOSTIC_MODE": 1.0,
+        "HSD_CAPTURE": 0.0,
+        "HSD_LINEAR_BACKEND": "AUTO_PIVOT",
+        "HSD_LINEAR_CAPTURE": 0.0,
+        "HSD_LINEAR_CAPTURE_MAX": 8.0,
+        "HSD_STABLE_MAX_BYTES": 1073741824.0,
+        "HSD_LINEAR_TRACE": 0.0,
+        "C0_AUTO": 0.0,
+        "ANALYSIS_POLICY": "DAVIS_EQUIVALENT",
+        "RAW_LOWER_AUDIT": 1.0,
+        "C0_UPPER_ADAPT": 0.0,
+        "HSD_SOLVE_SECONDS": 300.0,
+        "C0_DIRECT_UPPER": 1.0,
+        "HSD_PROJECTIVE_NORMALIZATION": 1.0,
+        "HSD_ORIGINAL_OPERATOR": 0.0,
+        "ADAPT_MESH_POLICY": "LEGACY_THEN_REFINE",
+        "ADAPT_REFINE_CAP": 1000.0,
+        "FS_BRACKET_POLICY": "AUDITED_UPPER_LIMIT"
+      },
+      "root_tolerance_contract": "width <= FS_TOL * max(1, bracket midpoint); per-owner native root validity and completion flags",
+      "input_title": "D02 geometry, c=0 nonassociated psi=0",
+      "solve_count": 81,
+      "audit_count": 625,
+      "native_terminal": {
+        "status": "PARTIAL_CERTIFIED",
+        "solve_count": "81",
+        "sampled_peak_private_bytes": "549171200",
+        "logging_seconds_before_run_end": "5.72314049996203",
+        "message": "ADAPT_GAP_TARGET_NOT_MET"
+      }
+    },
+    {
+      "case": "D04A",
+      "status": "PASS_TARGET",
+      "analysis_seconds": 322.292376,
+      "lower_fs": 1.3016569748403444,
+      "upper_fs": 1.3110550654525948,
+      "relative_gap": 0.007194126614272169,
+      "fs_obtained": true,
+      "target_met": true,
+      "target_unmet_reasons": [],
+      "element_counts": [
+        1000.0,
+        1000.0
+      ],
+      "witness_q": [
+        8,
+        8
+      ],
+      "error_number": 0,
+      "pore_pressure": false,
+      "root_width": 0.000104880210027858,
+      "root_search_incomplete": false,
+      "global_incomplete_note": "",
+      "dll_actually_used": true,
+      "native_counters": {
+        "numeric": 2199,
+        "dd_numeric": 0,
+        "backsolve": 0,
+        "ordering": 6,
+        "column_ordering": 0,
+        "nt_bulk": 2132,
+        "g_bulk": 0,
+        "gt_bulk": 4276,
+        "kkt_bulk": 2132,
+        "hsd_operator": 0,
+        "corrector_bulk": 2138,
+        "bulk_job_steps": 40946,
+        "hsd_lu": 0,
+        "hsd_lu_solve": 0,
+        "solver_vector_calls": 26150,
+        "hsd_jobs": 0,
+        "hsd_job_steps": 0,
+        "krylov_jobs": 0,
+        "krylov_steps": 0,
+        "refine_jobs": 2354,
+        "refine_steps": 2354,
+        "input_compare_calls": 9243,
+        "schur_jobs": 1989,
+        "schur_steps": 3014,
+        "schur_native_bytes": 0,
+        "meshfan_jobs": 0,
+        "meshfan_steps": 0
+      },
+      "input_sha256": "0ad45375992deed59e62a4261f551c18d6a3a4a0a026abb70070fa2b15b4af82",
+      "source_sha256": "dcbfdcfb2d4bbcf382f07d237e77d7122185ebe91c4fce59935cb751f04e2fda",
+      "dll_sha256": "72aaf9bfccc0acc186eb69cdcbabd93b27f7ce245ceac574193ba6602c675323",
+      "workbook_sha256": "e6736d2a17d64513bba9835405c0bae4f87c6b3bc34038f711438dc0ea10eae5",
+      "production_source_check": {
+        "pass": true,
+        "original_modules_unchanged": 71,
+        "only_added_module": "BatchEvidence"
+      },
+      "independent_audit": {
+        "pass": true,
+        "scope": "Independent physical equations, material/geometry, explicit boundaries, dry weight and D08A P1 water-gradient loads",
+        "results": [
+          {
+            "side": "lower",
+            "metadata": {
+              "nodes": 539,
+              "elements": 1000,
+              "q": 8,
+              "factor": 1.3016569748403444,
+              "fs": 1.3016569748403444,
+              "objective": 1.000171091072684,
+              "native_audit": 8.15026761011306e-09,
+              "scale": 10.0
+            },
+            "physical_audit": {
+              "pass": true,
+              "errors": {
+                "yield": 0.0,
+                "equilibrium": 8.150266239681514e-09,
+                "boundary_traction": 5.891061870515727e-13,
+                "internal_traction": 4.6147186072431623e-10
+              },
+              "load": 1.000171091072684,
+              "value": 1.000171091072684
+            },
+            "raw_lower_errors": {
+              "yield": 0.0,
+              "equilibrium": 8.150266239681514e-08,
+              "boundary_traction": 5.891061870515727e-12,
+              "internal_traction": 4.614718607243162e-09
+            },
+            "raw_lower_pass": true,
+            "endpoint_direction_pass": true,
+            "material_areas": [
+              158.0
+            ],
+            "gravity_weight": 3160.0,
+            "effective_vertical_load": 3160.000000000001,
+            "independent_body_max_error": 0.0,
+            "pore_pressure_on": false,
+            "pass": true
+          },
+          {
+            "side": "upper",
+            "metadata": {
+              "nodes": 539,
+              "elements": 1000,
+              "q": 8,
+              "factor": 1.3110550654525948,
+              "fs": 1.3110550654525948,
+              "objective": 0.9998613550274227,
+              "native_audit": 3.6873837316875324e-10,
+              "scale": 10.0
+            },
+            "physical_audit": {
+              "pass": true,
+              "errors": {
+                "flow": 0.0,
+                "boundary": 1.8055420184654542e-11,
+                "jump": 0.0,
+                "work": 3.6873770703493847e-10,
+                "objective": 5.551115123125783e-16
+              },
+              "dissipation": 0.9998613550274232,
+              "work": [
+                0.0,
+                0.9999999996312623
+              ],
+              "value": 0.9998613550274232
+            },
+            "raw_lower_errors": {},
+            "raw_lower_pass": true,
+            "endpoint_direction_pass": true,
+            "material_areas": [
+              158.0
+            ],
+            "gravity_weight": 3160.0,
+            "effective_vertical_load": 3160.000000000001,
+            "independent_body_max_error": 0.0,
+            "pore_pressure_on": false,
+            "pass": true
+          }
+        ]
+      },
+      "actual_settings": {
+        "MODE": "Fs",
+        "TARGET": 1536.0,
+        "GRAVITY": "固定",
+        "ADAPT": 1.0,
+        "CYCLES": 3.0,
+        "GAP": 0.01,
+        "REFINE": 0.2,
+        "QUADRATURE": 8.0,
+        "FS_TOL": 0.0001,
+        "BEARING_FACES": null,
+        "BEARING_RIGIDS": null,
+        "SEISMIC_KH": 0.0,
+        "SEISMIC_DIR": "右(+x)",
+        "UPPER_PILOT": 0.0,
+        "UPPER_PILOT_RIGID": 0.0,
+        "LOWER_FS_SEED": "UPPER_TRIAL",
+        "LOWER_SEED_WIDTH": 0.02,
+        "LOWER_MODEL_CACHE": 1.0,
+        "LOWER_KKT_BACKEND": "AUTO",
+        "SCHUR_ALLOW_RIGID": 0.0,
+        "SCHUR_MAX_BYTES": 268435456.0,
+        "TEST_INJECTION": 0.0,
+        "KKT_CAPTURE": 0.0,
+        "SCHUR_TRACE_LEVEL": 0.0,
+        "SCHUR_REPLAY_POLICY": "CONSISTENT",
+        "SCHUR_STRUCTURE_CACHE": 1.0,
+        "SCHUR_RECOVERY_MODE": "REUSE_U",
+        "SCHUR_REFINEMENT": "FIXED3",
+        "SCHUR_GENERIC_START_ITERS": 0.0,
+        "DIRECT_FINAL_AFTER_PILOT": 0.0,
+        "DIAGNOSTIC_MODE": 1.0,
+        "HSD_CAPTURE": 0.0,
+        "HSD_LINEAR_BACKEND": "AUTO_PIVOT",
+        "HSD_LINEAR_CAPTURE": 0.0,
+        "HSD_LINEAR_CAPTURE_MAX": 8.0,
+        "HSD_STABLE_MAX_BYTES": 1073741824.0,
+        "HSD_LINEAR_TRACE": 0.0,
+        "C0_AUTO": 0.0,
+        "ANALYSIS_POLICY": "ASSOCIATED",
+        "RAW_LOWER_AUDIT": 1.0,
+        "C0_UPPER_ADAPT": 0.0,
+        "HSD_SOLVE_SECONDS": 300.0,
+        "C0_DIRECT_UPPER": 1.0,
+        "HSD_PROJECTIVE_NORMALIZATION": 1.0,
+        "HSD_ORIGINAL_OPERATOR": 0.0,
+        "ADAPT_MESH_POLICY": "LEGACY_THEN_REFINE",
+        "ADAPT_REFINE_CAP": 1000.0,
+        "FS_BRACKET_POLICY": "AUDITED_UPPER_LIMIT"
+      },
+      "root_tolerance_contract": "width <= FS_TOL * max(1, bracket midpoint); per-owner native root validity and completion flags",
+      "input_title": "Elastic modulus sensitivity E/10",
+      "solve_count": 65,
+      "audit_count": 994,
+      "native_terminal": {
+        "status": "OPTIMAL",
+        "solve_count": "65",
+        "sampled_peak_private_bytes": "745857024",
+        "logging_seconds_before_run_end": "4.4006261996401",
+        "message": ""
+      }
+    },
+    {
+      "case": "D05A",
+      "status": "PASS_TARGET",
+      "analysis_seconds": 363.771358,
+      "lower_fs": 1.3015184815788732,
+      "upper_fs": 1.3109054656496246,
+      "relative_gap": 0.007186417105623329,
+      "fs_obtained": true,
+      "target_met": true,
+      "target_unmet_reasons": [],
+      "element_counts": [
+        998.0,
+        998.0
+      ],
+      "witness_q": [
+        8,
+        8
+      ],
+      "error_number": 0,
+      "pore_pressure": false,
+      "root_width": 0.000104868242522205,
+      "root_search_incomplete": false,
+      "global_incomplete_note": "",
+      "dll_actually_used": true,
+      "native_counters": {
+        "numeric": 3014,
+        "dd_numeric": 0,
+        "backsolve": 0,
+        "ordering": 6,
+        "column_ordering": 0,
+        "nt_bulk": 2948,
+        "g_bulk": 0,
+        "gt_bulk": 5910,
+        "kkt_bulk": 2948,
+        "hsd_operator": 0,
+        "corrector_bulk": 2955,
+        "bulk_job_steps": 56470,
+        "hsd_lu": 0,
+        "hsd_lu_solve": 0,
+        "solver_vector_calls": 46797,
+        "hsd_jobs": 0,
+        "hsd_job_steps": 0,
+        "krylov_jobs": 0,
+        "krylov_steps": 0,
+        "refine_jobs": 4101,
+        "refine_steps": 4101,
+        "input_compare_calls": 9204,
+        "schur_jobs": 1875,
+        "schur_steps": 2842,
+        "schur_native_bytes": 0,
+        "meshfan_jobs": 0,
+        "meshfan_steps": 0
+      },
+      "input_sha256": "b9c7b2b34a74889f0274f220b1895405acd68409f8df3b13571d5f62f27fa7e2",
+      "source_sha256": "dcbfdcfb2d4bbcf382f07d237e77d7122185ebe91c4fce59935cb751f04e2fda",
+      "dll_sha256": "72aaf9bfccc0acc186eb69cdcbabd93b27f7ce245ceac574193ba6602c675323",
+      "workbook_sha256": "c6fe1f855dc56e6889487b492f68b2623d7bac6ab32bd946b6372b5bfd67772d",
+      "production_source_check": {
+        "pass": true,
+        "original_modules_unchanged": 71,
+        "only_added_module": "BatchEvidence"
+      },
+      "independent_audit": {
+        "pass": true,
+        "scope": "Independent physical equations, material/geometry, explicit boundaries, dry weight and D08A P1 water-gradient loads",
+        "results": [
+          {
+            "side": "lower",
+            "metadata": {
+              "nodes": 538,
+              "elements": 998,
+              "q": 8,
+              "factor": 1.3015184815788732,
+              "fs": 1.3015184815788732,
+              "objective": 1.0001708069007318,
+              "native_audit": 1.8034936322131045e-09,
+              "scale": 10.0
+            },
+            "physical_audit": {
+              "pass": true,
+              "errors": {
+                "yield": 0.0,
+                "equilibrium": 1.0790486559830725e-11,
+                "boundary_traction": 7.716882688413307e-12,
+                "internal_traction": 1.8034936322131045e-09
+              },
+              "load": 1.0001708069007318,
+              "value": 1.0001708069007318
+            },
+            "raw_lower_errors": {
+              "yield": 0.0,
+              "equilibrium": 1.0790486559830725e-10,
+              "boundary_traction": 7.716882688413307e-11,
+              "internal_traction": 1.8034936322131045e-08
+            },
+            "raw_lower_pass": true,
+            "endpoint_direction_pass": true,
+            "material_areas": [
+              158000000.0
+            ],
+            "gravity_weight": 3160000.0000000005,
+            "effective_vertical_load": 3159999.9999999995,
+            "independent_body_max_error": 0.0,
+            "pore_pressure_on": false,
+            "pass": true
+          },
+          {
+            "side": "upper",
+            "metadata": {
+              "nodes": 538,
+              "elements": 998,
+              "q": 8,
+              "factor": 1.3109054656496246,
+              "fs": 1.3109054656496246,
+              "objective": 0.9998350678953258,
+              "native_audit": 5.739481623301401e-08,
+              "scale": 10.0
+            },
+            "physical_audit": {
+              "pass": true,
+              "errors": {
+                "flow": 0.0,
+                "boundary": 3.092796626954301e-13,
+                "jump": 0.0,
+                "work": 5.739481623301401e-08,
+                "objective": 2.220446049250313e-16
+              },
+              "dissipation": 0.9998350678953256,
+              "work": [
+                0.0,
+                0.9999999426051838
+              ],
+              "value": 0.9998350678953256
+            },
+            "raw_lower_errors": {},
+            "raw_lower_pass": true,
+            "endpoint_direction_pass": true,
+            "material_areas": [
+              158000000.0
+            ],
+            "gravity_weight": 3160000.0000000005,
+            "effective_vertical_load": 3159999.9999999995,
+            "independent_body_max_error": 0.0,
+            "pore_pressure_on": false,
+            "pass": true
+          }
+        ]
+      },
+      "actual_settings": {
+        "MODE": "Fs",
+        "TARGET": 1536.0,
+        "GRAVITY": "固定",
+        "ADAPT": 1.0,
+        "CYCLES": 3.0,
+        "GAP": 0.01,
+        "REFINE": 0.2,
+        "QUADRATURE": 8.0,
+        "FS_TOL": 0.0001,
+        "BEARING_FACES": null,
+        "BEARING_RIGIDS": null,
+        "SEISMIC_KH": 0.0,
+        "SEISMIC_DIR": "右(+x)",
+        "UPPER_PILOT": 0.0,
+        "UPPER_PILOT_RIGID": 0.0,
+        "LOWER_FS_SEED": "UPPER_TRIAL",
+        "LOWER_SEED_WIDTH": 0.02,
+        "LOWER_MODEL_CACHE": 1.0,
+        "LOWER_KKT_BACKEND": "AUTO",
+        "SCHUR_ALLOW_RIGID": 0.0,
+        "SCHUR_MAX_BYTES": 268435456.0,
+        "TEST_INJECTION": 0.0,
+        "KKT_CAPTURE": 0.0,
+        "SCHUR_TRACE_LEVEL": 0.0,
+        "SCHUR_REPLAY_POLICY": "CONSISTENT",
+        "SCHUR_STRUCTURE_CACHE": 1.0,
+        "SCHUR_RECOVERY_MODE": "REUSE_U",
+        "SCHUR_REFINEMENT": "FIXED3",
+        "SCHUR_GENERIC_START_ITERS": 0.0,
+        "DIRECT_FINAL_AFTER_PILOT": 0.0,
+        "DIAGNOSTIC_MODE": 1.0,
+        "HSD_CAPTURE": 0.0,
+        "HSD_LINEAR_BACKEND": "AUTO_PIVOT",
+        "HSD_LINEAR_CAPTURE": 0.0,
+        "HSD_LINEAR_CAPTURE_MAX": 8.0,
+        "HSD_STABLE_MAX_BYTES": 1073741824.0,
+        "HSD_LINEAR_TRACE": 0.0,
+        "C0_AUTO": 0.0,
+        "ANALYSIS_POLICY": "ASSOCIATED",
+        "RAW_LOWER_AUDIT": 1.0,
+        "C0_UPPER_ADAPT": 0.0,
+        "HSD_SOLVE_SECONDS": 300.0,
+        "C0_DIRECT_UPPER": 1.0,
+        "HSD_PROJECTIVE_NORMALIZATION": 1.0,
+        "HSD_ORIGINAL_OPERATOR": 0.0,
+        "ADAPT_MESH_POLICY": "LEGACY_THEN_REFINE",
+        "ADAPT_REFINE_CAP": 1000.0,
+        "FS_BRACKET_POLICY": "AUDITED_UPPER_LIMIT"
+      },
+      "root_tolerance_contract": "width <= FS_TOL * max(1, bracket midpoint); per-owner native root validity and completion flags",
+      "input_title": "Geometric similitude: L x1000, gamma /1000",
+      "solve_count": 67,
+      "audit_count": 967,
+      "native_terminal": {
+        "status": "OPTIMAL",
+        "solve_count": "67",
+        "sampled_peak_private_bytes": "737456128",
+        "logging_seconds_before_run_end": "5.54198819992598",
+        "message": ""
+      }
+    },
+    {
+      "case": "D06A",
+      "status": "PASS_TARGET",
+      "analysis_seconds": 321.343931,
+      "lower_fs": 1.301656974841376,
+      "upper_fs": 1.3110550654525315,
+      "relative_gap": 0.0071941266134313685,
+      "fs_obtained": true,
+      "target_met": true,
+      "target_unmet_reasons": [],
+      "element_counts": [
+        1000.0,
+        1000.0
+      ],
+      "witness_q": [
+        8,
+        8
+      ],
+      "error_number": 0,
+      "pore_pressure": false,
+      "root_width": 0.000104880210027858,
+      "root_search_incomplete": false,
+      "global_incomplete_note": "",
+      "dll_actually_used": true,
+      "native_counters": {
+        "numeric": 2198,
+        "dd_numeric": 0,
+        "backsolve": 0,
+        "ordering": 6,
+        "column_ordering": 0,
+        "nt_bulk": 2132,
+        "g_bulk": 0,
+        "gt_bulk": 4284,
+        "kkt_bulk": 2132,
+        "hsd_operator": 0,
+        "corrector_bulk": 2142,
+        "bulk_job_steps": 40978,
+        "hsd_lu": 0,
+        "hsd_lu_solve": 0,
+        "solver_vector_calls": 26182,
+        "hsd_jobs": 0,
+        "hsd_job_steps": 0,
+        "krylov_jobs": 0,
+        "krylov_steps": 0,
+        "refine_jobs": 2356,
+        "refine_steps": 2356,
+        "input_compare_calls": 9237,
+        "schur_jobs": 1994,
+        "schur_steps": 3019,
+        "schur_native_bytes": 0,
+        "meshfan_jobs": 0,
+        "meshfan_steps": 0
+      },
+      "input_sha256": "a83db7c48b2ded624b6ec68bbd68a314127bc09c33e562fe1eade9269f030069",
+      "source_sha256": "dcbfdcfb2d4bbcf382f07d237e77d7122185ebe91c4fce59935cb751f04e2fda",
+      "dll_sha256": "72aaf9bfccc0acc186eb69cdcbabd93b27f7ce245ceac574193ba6602c675323",
+      "workbook_sha256": "7bfb9b50cdb0bab3f092d6b483387b773430e291604745a69e5a2fe11ebb5172",
+      "production_source_check": {
+        "pass": true,
+        "original_modules_unchanged": 71,
+        "only_added_module": "BatchEvidence"
+      },
+      "independent_audit": {
+        "pass": true,
+        "scope": "Independent physical equations, material/geometry, explicit boundaries, dry weight and D08A P1 water-gradient loads",
+        "results": [
+          {
+            "side": "lower",
+            "metadata": {
+              "nodes": 539,
+              "elements": 1000,
+              "q": 8,
+              "factor": 1.301656974841376,
+              "fs": 1.301656974841376,
+              "objective": 1.0001710910727366,
+              "native_audit": 8.150299563719487e-09,
+              "scale": 10.0
+            },
+            "physical_audit": {
+              "pass": true,
+              "errors": {
+                "yield": 0.0,
+                "equilibrium": 8.150294661390944e-09,
+                "boundary_traction": 5.891065482283715e-13,
+                "internal_traction": 4.614714166351064e-10
+              },
+              "load": 1.0001710910727366,
+              "value": 1.0001710910727366
+            },
+            "raw_lower_errors": {
+              "yield": 0.0,
+              "equilibrium": 8.150294661390944e-08,
+              "boundary_traction": 5.891065482283715e-12,
+              "internal_traction": 4.614714166351064e-09
+            },
+            "raw_lower_pass": true,
+            "endpoint_direction_pass": true,
+            "material_areas": [
+              158.00000000000006
+            ],
+            "gravity_weight": 3160.0000000000014,
+            "effective_vertical_load": 3160.0000000000005,
+            "independent_body_max_error": 0.0,
+            "pore_pressure_on": false,
+            "pass": true
+          },
+          {
+            "side": "upper",
+            "metadata": {
+              "nodes": 539,
+              "elements": 1000,
+              "q": 8,
+              "factor": 1.3110550654525315,
+              "fs": 1.3110550654525315,
+              "objective": 0.9998613550283136,
+              "native_audit": 3.68691743801719e-10,
+              "scale": 10.0
+            },
+            "physical_audit": {
+              "pass": true,
+              "errors": {
+                "flow": 0.0,
+                "boundary": 1.805540085238222e-11,
+                "jump": 0.0,
+                "work": 3.686916327794165e-10,
+                "objective": 4.440892098500626e-16
+              },
+              "dissipation": 0.9998613550283141,
+              "work": [
+                0.0,
+                0.9999999996313084
+              ],
+              "value": 0.9998613550283141
+            },
+            "raw_lower_errors": {},
+            "raw_lower_pass": true,
+            "endpoint_direction_pass": true,
+            "material_areas": [
+              158.00000000000006
+            ],
+            "gravity_weight": 3160.0000000000014,
+            "effective_vertical_load": 3160.0000000000005,
+            "independent_body_max_error": 0.0,
+            "pore_pressure_on": false,
+            "pass": true
+          }
+        ]
+      },
+      "actual_settings": {
+        "MODE": "Fs",
+        "TARGET": 1536.0,
+        "GRAVITY": "固定",
+        "ADAPT": 1.0,
+        "CYCLES": 3.0,
+        "GAP": 0.01,
+        "REFINE": 0.2,
+        "QUADRATURE": 8.0,
+        "FS_TOL": 0.0001,
+        "BEARING_FACES": null,
+        "BEARING_RIGIDS": null,
+        "SEISMIC_KH": 0.0,
+        "SEISMIC_DIR": "右(+x)",
+        "UPPER_PILOT": 0.0,
+        "UPPER_PILOT_RIGID": 0.0,
+        "LOWER_FS_SEED": "UPPER_TRIAL",
+        "LOWER_SEED_WIDTH": 0.02,
+        "LOWER_MODEL_CACHE": 1.0,
+        "LOWER_KKT_BACKEND": "AUTO",
+        "SCHUR_ALLOW_RIGID": 0.0,
+        "SCHUR_MAX_BYTES": 268435456.0,
+        "TEST_INJECTION": 0.0,
+        "KKT_CAPTURE": 0.0,
+        "SCHUR_TRACE_LEVEL": 0.0,
+        "SCHUR_REPLAY_POLICY": "CONSISTENT",
+        "SCHUR_STRUCTURE_CACHE": 1.0,
+        "SCHUR_RECOVERY_MODE": "REUSE_U",
+        "SCHUR_REFINEMENT": "FIXED3",
+        "SCHUR_GENERIC_START_ITERS": 0.0,
+        "DIRECT_FINAL_AFTER_PILOT": 0.0,
+        "DIAGNOSTIC_MODE": 1.0,
+        "HSD_CAPTURE": 0.0,
+        "HSD_LINEAR_BACKEND": "AUTO_PIVOT",
+        "HSD_LINEAR_CAPTURE": 0.0,
+        "HSD_LINEAR_CAPTURE_MAX": 8.0,
+        "HSD_STABLE_MAX_BYTES": 1073741824.0,
+        "HSD_LINEAR_TRACE": 0.0,
+        "C0_AUTO": 0.0,
+        "ANALYSIS_POLICY": "ASSOCIATED",
+        "RAW_LOWER_AUDIT": 1.0,
+        "C0_UPPER_ADAPT": 0.0,
+        "HSD_SOLVE_SECONDS": 300.0,
+        "C0_DIRECT_UPPER": 1.0,
+        "HSD_PROJECTIVE_NORMALIZATION": 1.0,
+        "HSD_ORIGINAL_OPERATOR": 0.0,
+        "ADAPT_MESH_POLICY": "LEGACY_THEN_REFINE",
+        "ADAPT_REFINE_CAP": 1000.0,
+        "FS_BRACKET_POLICY": "AUDITED_UPPER_LIMIT"
+      },
+      "root_tolerance_contract": "width <= FS_TOL * max(1, bracket midpoint); per-owner native root validity and completion flags",
+      "input_title": "Translation covariance (+1000,+2000)",
+      "solve_count": 65,
+      "audit_count": 994,
+      "native_terminal": {
+        "status": "OPTIMAL",
+        "solve_count": "65",
+        "sampled_peak_private_bytes": "746864640",
+        "logging_seconds_before_run_end": "4.41398850016412",
+        "message": ""
+      }
+    },
+    {
+      "case": "D07A",
+      "status": "FS_AVAILABLE_PARTIAL",
+      "analysis_seconds": 265.8232,
+      "lower_fs": 1.2651420914772866,
+      "upper_fs": 1.277577204587988,
+      "relative_gap": 0.009780956262017701,
+      "fs_obtained": true,
+      "target_met": false,
+      "target_unmet_reasons": [
+        "NATIVE_GLOBAL_INCOMPLETE"
+      ],
+      "element_counts": [
+        999.0,
+        557.0
+      ],
+      "witness_q": [
+        8,
+        4
+      ],
+      "error_number": 0,
+      "pore_pressure": false,
+      "root_width": 0.00494910153174866,
+      "root_search_incomplete": true,
+      "global_incomplete_note": "",
+      "dll_actually_used": true,
+      "native_counters": {
+        "numeric": 1693,
+        "dd_numeric": 0,
+        "backsolve": 0,
+        "ordering": 4,
+        "column_ordering": 0,
+        "nt_bulk": 1634,
+        "g_bulk": 0,
+        "gt_bulk": 3278,
+        "kkt_bulk": 1634,
+        "hsd_operator": 0,
+        "corrector_bulk": 1639,
+        "bulk_job_steps": 31410,
+        "hsd_lu": 0,
+        "hsd_lu_solve": 0,
+        "solver_vector_calls": 19944,
+        "hsd_jobs": 0,
+        "hsd_job_steps": 0,
+        "krylov_jobs": 0,
+        "krylov_steps": 0,
+        "refine_jobs": 2119,
+        "refine_steps": 2119,
+        "input_compare_calls": 6420,
+        "schur_jobs": 1218,
+        "schur_steps": 1854,
+        "schur_native_bytes": 0,
+        "meshfan_jobs": 0,
+        "meshfan_steps": 0
+      },
+      "input_sha256": "d127e3e92f7ab9ac07f8a4d0e42a96e5ae531ac67c55c297b7753eccdf6492b3",
+      "source_sha256": "dcbfdcfb2d4bbcf382f07d237e77d7122185ebe91c4fce59935cb751f04e2fda",
+      "dll_sha256": "72aaf9bfccc0acc186eb69cdcbabd93b27f7ce245ceac574193ba6602c675323",
+      "workbook_sha256": "7a4ec0f557efe61c3f5d2ca66c0abc6b398d18ce23d1ab79cc41e186451fca90",
+      "production_source_check": {
+        "pass": true,
+        "original_modules_unchanged": 71,
+        "only_added_module": "BatchEvidence"
+      },
+      "independent_audit": {
+        "pass": true,
+        "scope": "Independent physical equations, material/geometry, explicit boundaries, dry weight and D08A P1 water-gradient loads",
+        "results": [
+          {
+            "side": "lower",
+            "metadata": {
+              "nodes": 540,
+              "elements": 999,
+              "q": 8,
+              "factor": 1.2651420914772866,
+              "fs": 1.2651420914772866,
+              "objective": 1.0001905902840325,
+              "native_audit": 1.6019607307349304e-09,
+              "scale": 10.0
+            },
+            "physical_audit": {
+              "pass": true,
+              "errors": {
+                "yield": 0.0,
+                "equilibrium": 1.6019612303352915e-09,
+                "internal_traction": 2.1984924991613752e-10,
+                "boundary_traction": 5.559996907322784e-12
+              },
+              "load": 1.0001905902840325,
+              "value": 1.0001905902840325
+            },
+            "raw_lower_errors": {
+              "yield": 0.0,
+              "equilibrium": 1.6019612303352915e-08,
+              "internal_traction": 2.1984924991613752e-09,
+              "boundary_traction": 5.559996907322784e-11
+            },
+            "raw_lower_pass": true,
+            "endpoint_direction_pass": true,
+            "material_areas": [
+              158.0
+            ],
+            "gravity_weight": 3160.0000000000014,
+            "effective_vertical_load": 3159.9999999999955,
+            "independent_body_max_error": 0.0,
+            "pore_pressure_on": false,
+            "pass": true
+          },
+          {
+            "side": "upper",
+            "metadata": {
+              "nodes": 316,
+              "elements": 557,
+              "q": 4,
+              "factor": 1.277577204587988,
+              "fs": 1.277577204587988,
+              "objective": 0.9996426937689363,
+              "native_audit": 7.846046035098198e-11,
+              "scale": 10.0
+            },
+            "physical_audit": {
+              "pass": true,
+              "errors": {
+                "flow": 0.0,
+                "jump": 0.0,
+                "boundary": 3.0994670159452384e-11,
+                "work": 7.845968319486474e-11,
+                "objective": 3.3306690738754696e-16
+              },
+              "dissipation": 0.9996426937689367,
+              "work": [
+                0.0,
+                0.9999999999215403
+              ],
+              "value": 0.9996426937689367
+            },
+            "raw_lower_errors": {},
+            "raw_lower_pass": true,
+            "endpoint_direction_pass": true,
+            "material_areas": [
+              158.0
+            ],
+            "gravity_weight": 3160.0,
+            "effective_vertical_load": 3160.0000000000005,
+            "independent_body_max_error": 0.0,
+            "pore_pressure_on": false,
+            "pass": true
+          }
+        ]
+      },
+      "actual_settings": {
+        "MODE": "Fs",
+        "TARGET": 1536.0,
+        "GRAVITY": "固定",
+        "ADAPT": 1.0,
+        "CYCLES": 3.0,
+        "GAP": 0.01,
+        "REFINE": 0.2,
+        "QUADRATURE": 8.0,
+        "FS_TOL": 0.0001,
+        "BEARING_FACES": null,
+        "BEARING_RIGIDS": null,
+        "SEISMIC_KH": 0.0,
+        "SEISMIC_DIR": "右(+x)",
+        "UPPER_PILOT": 0.0,
+        "UPPER_PILOT_RIGID": 0.0,
+        "LOWER_FS_SEED": "UPPER_TRIAL",
+        "LOWER_SEED_WIDTH": 0.02,
+        "LOWER_MODEL_CACHE": 1.0,
+        "LOWER_KKT_BACKEND": "AUTO",
+        "SCHUR_ALLOW_RIGID": 0.0,
+        "SCHUR_MAX_BYTES": 268435456.0,
+        "TEST_INJECTION": 0.0,
+        "KKT_CAPTURE": 0.0,
+        "SCHUR_TRACE_LEVEL": 0.0,
+        "SCHUR_REPLAY_POLICY": "CONSISTENT",
+        "SCHUR_STRUCTURE_CACHE": 1.0,
+        "SCHUR_RECOVERY_MODE": "REUSE_U",
+        "SCHUR_REFINEMENT": "FIXED3",
+        "SCHUR_GENERIC_START_ITERS": 0.0,
+        "DIRECT_FINAL_AFTER_PILOT": 0.0,
+        "DIAGNOSTIC_MODE": 1.0,
+        "HSD_CAPTURE": 0.0,
+        "HSD_LINEAR_BACKEND": "AUTO_PIVOT",
+        "HSD_LINEAR_CAPTURE": 0.0,
+        "HSD_LINEAR_CAPTURE_MAX": 8.0,
+        "HSD_STABLE_MAX_BYTES": 1073741824.0,
+        "HSD_LINEAR_TRACE": 0.0,
+        "C0_AUTO": 0.0,
+        "ANALYSIS_POLICY": "ASSOCIATED",
+        "RAW_LOWER_AUDIT": 1.0,
+        "C0_UPPER_ADAPT": 0.0,
+        "HSD_SOLVE_SECONDS": 300.0,
+        "C0_DIRECT_UPPER": 1.0,
+        "HSD_PROJECTIVE_NORMALIZATION": 1.0,
+        "HSD_ORIGINAL_OPERATOR": 0.0,
+        "ADAPT_MESH_POLICY": "LEGACY_THEN_REFINE",
+        "ADAPT_REFINE_CAP": 1000.0,
+        "FS_BRACKET_POLICY": "AUDITED_UPPER_LIMIT"
+      },
+      "root_tolerance_contract": "width <= FS_TOL * max(1, bracket midpoint); per-owner native root validity and completion flags",
+      "input_title": "Crest surcharge 20 kPa on x=2..8",
+      "solve_count": 54,
+      "audit_count": 577,
+      "native_terminal": {
+        "status": "PARTIAL_CERTIFIED",
+        "solve_count": "54",
+        "sampled_peak_private_bytes": "742707200",
+        "logging_seconds_before_run_end": "2.88403770007426",
+        "message": ""
+      }
+    },
+    {
+      "case": "D08A",
+      "status": "PASS_TARGET",
+      "analysis_seconds": 348.077068,
+      "lower_fs": 1.3016957465342585,
+      "upper_fs": 1.3104895557092444,
+      "relative_gap": 0.006732913754191405,
+      "fs_obtained": true,
+      "target_met": true,
+      "target_unmet_reasons": [],
+      "element_counts": [
+        997.0,
+        997.0
+      ],
+      "witness_q": [
+        8,
+        8
+      ],
+      "error_number": 0,
+      "pore_pressure": true,
+      "root_width": 0.000104834971057954,
+      "root_search_incomplete": false,
+      "global_incomplete_note": "",
+      "dll_actually_used": true,
+      "native_counters": {
+        "numeric": 2317,
+        "dd_numeric": 0,
+        "backsolve": 0,
+        "ordering": 6,
+        "column_ordering": 0,
+        "nt_bulk": 2249,
+        "g_bulk": 0,
+        "gt_bulk": 4502,
+        "kkt_bulk": 2249,
+        "hsd_operator": 0,
+        "corrector_bulk": 2251,
+        "bulk_job_steps": 43149,
+        "hsd_lu": 0,
+        "hsd_lu_solve": 0,
+        "solver_vector_calls": 27475,
+        "hsd_jobs": 0,
+        "hsd_job_steps": 0,
+        "krylov_jobs": 0,
+        "krylov_steps": 0,
+        "refine_jobs": 2466,
+        "refine_steps": 2466,
+        "input_compare_calls": 9513,
+        "schur_jobs": 2104,
+        "schur_steps": 3189,
+        "schur_native_bytes": 0,
+        "meshfan_jobs": 0,
+        "meshfan_steps": 0
+      },
+      "input_sha256": "c3650aff7307ff93f79dfdf7af70ba63892b8e15c098178c71614fcbbf216b08",
+      "source_sha256": "dcbfdcfb2d4bbcf382f07d237e77d7122185ebe91c4fce59935cb751f04e2fda",
+      "dll_sha256": "72aaf9bfccc0acc186eb69cdcbabd93b27f7ce245ceac574193ba6602c675323",
+      "workbook_sha256": "5eaebe7d93a2af5870761d0256f03505c31b87031142bf81bec17c5fa8a047cf",
+      "production_source_check": {
+        "pass": true,
+        "original_modules_unchanged": 71,
+        "only_added_module": "BatchEvidence"
+      },
+      "independent_audit": {
+        "pass": true,
+        "scope": "Independent physical equations, material/geometry, explicit boundaries, dry weight and D08A P1 water-gradient loads",
+        "results": [
+          {
+            "side": "lower",
+            "metadata": {
+              "nodes": 537,
+              "elements": 997,
+              "q": 8,
+              "factor": 1.3016957465342585,
+              "fs": 1.3016957465342585,
+              "objective": 1.0001706177252316,
+              "native_audit": 7.723634523615353e-09,
+              "scale": 10.0
+            },
+            "physical_audit": {
+              "pass": true,
+              "errors": {
+                "yield": 0.0,
+                "equilibrium": 7.72362795942172e-09,
+                "boundary_traction": 3.0270785877917206e-12,
+                "internal_traction": 3.996691866348101e-10
+              },
+              "load": 1.0001706177252316,
+              "value": 1.0001706177252316
+            },
+            "raw_lower_errors": {
+              "yield": 0.0,
+              "equilibrium": 7.72362795942172e-08,
+              "boundary_traction": 3.0270785877917206e-11,
+              "internal_traction": 3.996691866348101e-09
+            },
+            "raw_lower_pass": true,
+            "endpoint_direction_pass": true,
+            "material_areas": [
+              158.0
+            ],
+            "gravity_weight": 3160.0000000000005,
+            "effective_vertical_load": 2571.3999999999987,
+            "independent_body_max_error": 1.3988810110276972e-14,
+            "pore_pressure_on": true,
+            "pass": true
+          },
+          {
+            "side": "upper",
+            "metadata": {
+              "nodes": 537,
+              "elements": 997,
+              "q": 8,
+              "factor": 1.3104895557092444,
+              "fs": 1.3104895557092444,
+              "objective": 0.9998761295150334,
+              "native_audit": 2.306677071572949e-10,
+              "scale": 10.0
+            },
+            "physical_audit": {
+              "pass": true,
+              "errors": {
+                "flow": 0.0,
+                "boundary": 3.3842408444024785e-11,
+                "jump": 0.0,
+                "work": 2.306673740903875e-10,
+                "objective": 3.3306690738754696e-16
+              },
+              "dissipation": 0.999876129515033,
+              "work": [
+                0.0,
+                0.9999999997693326
+              ],
+              "value": 0.999876129515033
+            },
+            "raw_lower_errors": {},
+            "raw_lower_pass": true,
+            "endpoint_direction_pass": true,
+            "material_areas": [
+              158.0
+            ],
+            "gravity_weight": 3160.0000000000005,
+            "effective_vertical_load": 2571.3999999999987,
+            "independent_body_max_error": 1.3988810110276972e-14,
+            "pore_pressure_on": true,
+            "pass": true
+          }
+        ]
+      },
+      "actual_settings": {
+        "MODE": "Fs",
+        "TARGET": 1536.0,
+        "GRAVITY": "固定",
+        "ADAPT": 1.0,
+        "CYCLES": 3.0,
+        "GAP": 0.01,
+        "REFINE": 0.2,
+        "QUADRATURE": 8.0,
+        "FS_TOL": 0.0001,
+        "BEARING_FACES": null,
+        "BEARING_RIGIDS": null,
+        "SEISMIC_KH": 0.0,
+        "SEISMIC_DIR": "右(+x)",
+        "UPPER_PILOT": 0.0,
+        "UPPER_PILOT_RIGID": 0.0,
+        "LOWER_FS_SEED": "UPPER_TRIAL",
+        "LOWER_SEED_WIDTH": 0.02,
+        "LOWER_MODEL_CACHE": 1.0,
+        "LOWER_KKT_BACKEND": "AUTO",
+        "SCHUR_ALLOW_RIGID": 0.0,
+        "SCHUR_MAX_BYTES": 268435456.0,
+        "TEST_INJECTION": 0.0,
+        "KKT_CAPTURE": 0.0,
+        "SCHUR_TRACE_LEVEL": 0.0,
+        "SCHUR_REPLAY_POLICY": "CONSISTENT",
+        "SCHUR_STRUCTURE_CACHE": 1.0,
+        "SCHUR_RECOVERY_MODE": "REUSE_U",
+        "SCHUR_REFINEMENT": "FIXED3",
+        "SCHUR_GENERIC_START_ITERS": 0.0,
+        "DIRECT_FINAL_AFTER_PILOT": 0.0,
+        "DIAGNOSTIC_MODE": 1.0,
+        "HSD_CAPTURE": 0.0,
+        "HSD_LINEAR_BACKEND": "AUTO_PIVOT",
+        "HSD_LINEAR_CAPTURE": 0.0,
+        "HSD_LINEAR_CAPTURE_MAX": 8.0,
+        "HSD_STABLE_MAX_BYTES": 1073741824.0,
+        "HSD_LINEAR_TRACE": 0.0,
+        "C0_AUTO": 0.0,
+        "ANALYSIS_POLICY": "ASSOCIATED",
+        "RAW_LOWER_AUDIT": 1.0,
+        "C0_UPPER_ADAPT": 0.0,
+        "HSD_SOLVE_SECONDS": 300.0,
+        "C0_DIRECT_UPPER": 1.0,
+        "HSD_PROJECTIVE_NORMALIZATION": 1.0,
+        "HSD_ORIGINAL_OPERATOR": 0.0,
+        "ADAPT_MESH_POLICY": "LEGACY_THEN_REFINE",
+        "ADAPT_REFINE_CAP": 1000.0,
+        "FS_BRACKET_POLICY": "AUDITED_UPPER_LIMIT"
+      },
+      "root_tolerance_contract": "width <= FS_TOL * max(1, bracket midpoint); per-owner native root validity and completion flags",
+      "input_title": "Fixed pore pressure field, water elevation y=3",
+      "solve_count": 67,
+      "audit_count": 1123,
+      "native_terminal": {
+        "status": "OPTIMAL",
+        "solve_count": "67",
+        "sampled_peak_private_bytes": "721002496",
+        "logging_seconds_before_run_end": "4.85131870026817",
+        "message": ""
+      }
+    },
+    {
+      "case": "D09A",
+      "status": "PASS_TARGET",
+      "analysis_seconds": 323.323682,
+      "lower_fs": 1.3016569748403444,
+      "upper_fs": 1.3110550654525948,
+      "relative_gap": 0.007194126614272169,
+      "fs_obtained": true,
+      "target_met": true,
+      "target_unmet_reasons": [],
+      "element_counts": [
+        1000.0,
+        1000.0
+      ],
+      "witness_q": [
+        8,
+        8
+      ],
+      "error_number": 0,
+      "pore_pressure": false,
+      "root_width": 0.000104880210027858,
+      "root_search_incomplete": false,
+      "global_incomplete_note": "",
+      "dll_actually_used": true,
+      "native_counters": {
+        "numeric": 2199,
+        "dd_numeric": 0,
+        "backsolve": 0,
+        "ordering": 6,
+        "column_ordering": 0,
+        "nt_bulk": 2132,
+        "g_bulk": 0,
+        "gt_bulk": 4276,
+        "kkt_bulk": 2132,
+        "hsd_operator": 0,
+        "corrector_bulk": 2138,
+        "bulk_job_steps": 40946,
+        "hsd_lu": 0,
+        "hsd_lu_solve": 0,
+        "solver_vector_calls": 26150,
+        "hsd_jobs": 0,
+        "hsd_job_steps": 0,
+        "krylov_jobs": 0,
+        "krylov_steps": 0,
+        "refine_jobs": 2354,
+        "refine_steps": 2354,
+        "input_compare_calls": 9243,
+        "schur_jobs": 1989,
+        "schur_steps": 3014,
+        "schur_native_bytes": 0,
+        "meshfan_jobs": 0,
+        "meshfan_steps": 0
+      },
+      "input_sha256": "46795043ad9bc7afc4024431fe4b0edd3a680edc56c19bc5d4c471a12efd5455",
+      "source_sha256": "dcbfdcfb2d4bbcf382f07d237e77d7122185ebe91c4fce59935cb751f04e2fda",
+      "dll_sha256": "72aaf9bfccc0acc186eb69cdcbabd93b27f7ce245ceac574193ba6602c675323",
+      "workbook_sha256": "d0a77672f5208c712aa68f52ba9aeb0d04de33ac0c74ea84a335a8cae5eeda0b",
+      "production_source_check": {
+        "pass": true,
+        "original_modules_unchanged": 71,
+        "only_added_module": "BatchEvidence"
+      },
+      "independent_audit": {
+        "pass": true,
+        "scope": "Independent physical equations, material/geometry, explicit boundaries, dry weight and D08A P1 water-gradient loads",
+        "results": [
+          {
+            "side": "lower",
+            "metadata": {
+              "nodes": 539,
+              "elements": 1000,
+              "q": 8,
+              "factor": 1.3016569748403444,
+              "fs": 1.3016569748403444,
+              "objective": 1.000171091072684,
+              "native_audit": 8.15026761011306e-09,
+              "scale": 10.0
+            },
+            "physical_audit": {
+              "pass": true,
+              "errors": {
+                "yield": 0.0,
+                "equilibrium": 8.150266239681514e-09,
+                "boundary_traction": 5.891061870515727e-13,
+                "internal_traction": 4.6147186072431623e-10
+              },
+              "load": 1.000171091072684,
+              "value": 1.000171091072684
+            },
+            "raw_lower_errors": {
+              "yield": 0.0,
+              "equilibrium": 8.150266239681514e-08,
+              "boundary_traction": 5.891061870515727e-12,
+              "internal_traction": 4.614718607243162e-09
+            },
+            "raw_lower_pass": true,
+            "endpoint_direction_pass": true,
+            "material_areas": [
+              158.0
+            ],
+            "gravity_weight": 3160.0,
+            "effective_vertical_load": 3160.000000000001,
+            "independent_body_max_error": 0.0,
+            "pore_pressure_on": false,
+            "pass": true
+          },
+          {
+            "side": "upper",
+            "metadata": {
+              "nodes": 539,
+              "elements": 1000,
+              "q": 8,
+              "factor": 1.3110550654525948,
+              "fs": 1.3110550654525948,
+              "objective": 0.9998613550274227,
+              "native_audit": 3.6873837316875324e-10,
+              "scale": 10.0
+            },
+            "physical_audit": {
+              "pass": true,
+              "errors": {
+                "flow": 0.0,
+                "boundary": 1.8055420184654542e-11,
+                "jump": 0.0,
+                "work": 3.6873770703493847e-10,
+                "objective": 5.551115123125783e-16
+              },
+              "dissipation": 0.9998613550274232,
+              "work": [
+                0.0,
+                0.9999999996312623
+              ],
+              "value": 0.9998613550274232
+            },
+            "raw_lower_errors": {},
+            "raw_lower_pass": true,
+            "endpoint_direction_pass": true,
+            "material_areas": [
+              158.0
+            ],
+            "gravity_weight": 3160.0,
+            "effective_vertical_load": 3160.000000000001,
+            "independent_body_max_error": 0.0,
+            "pore_pressure_on": false,
+            "pass": true
+          }
+        ]
+      },
+      "actual_settings": {
+        "MODE": "Fs",
+        "TARGET": 1536.0,
+        "GRAVITY": "固定",
+        "ADAPT": 1.0,
+        "CYCLES": 3.0,
+        "GAP": 0.01,
+        "REFINE": 0.2,
+        "QUADRATURE": 8.0,
+        "FS_TOL": 0.0001,
+        "BEARING_FACES": null,
+        "BEARING_RIGIDS": null,
+        "SEISMIC_KH": 0.0,
+        "SEISMIC_DIR": "右(+x)",
+        "UPPER_PILOT": 0.0,
+        "UPPER_PILOT_RIGID": 0.0,
+        "LOWER_FS_SEED": "UPPER_TRIAL",
+        "LOWER_SEED_WIDTH": 0.02,
+        "LOWER_MODEL_CACHE": 1.0,
+        "LOWER_KKT_BACKEND": "AUTO",
+        "SCHUR_ALLOW_RIGID": 0.0,
+        "SCHUR_MAX_BYTES": 268435456.0,
+        "TEST_INJECTION": 0.0,
+        "KKT_CAPTURE": 0.0,
+        "SCHUR_TRACE_LEVEL": 0.0,
+        "SCHUR_REPLAY_POLICY": "CONSISTENT",
+        "SCHUR_STRUCTURE_CACHE": 1.0,
+        "SCHUR_RECOVERY_MODE": "REUSE_U",
+        "SCHUR_REFINEMENT": "FIXED3",
+        "SCHUR_GENERIC_START_ITERS": 0.0,
+        "DIRECT_FINAL_AFTER_PILOT": 0.0,
+        "DIAGNOSTIC_MODE": 1.0,
+        "HSD_CAPTURE": 0.0,
+        "HSD_LINEAR_BACKEND": "AUTO_PIVOT",
+        "HSD_LINEAR_CAPTURE": 0.0,
+        "HSD_LINEAR_CAPTURE_MAX": 8.0,
+        "HSD_STABLE_MAX_BYTES": 1073741824.0,
+        "HSD_LINEAR_TRACE": 0.0,
+        "C0_AUTO": 0.0,
+        "ANALYSIS_POLICY": "ASSOCIATED",
+        "RAW_LOWER_AUDIT": 1.0,
+        "C0_UPPER_ADAPT": 0.0,
+        "HSD_SOLVE_SECONDS": 300.0,
+        "C0_DIRECT_UPPER": 1.0,
+        "HSD_PROJECTIVE_NORMALIZATION": 1.0,
+        "HSD_ORIGINAL_OPERATOR": 0.0,
+        "ADAPT_MESH_POLICY": "LEGACY_THEN_REFINE",
+        "ADAPT_REFINE_CAP": 1000.0,
+        "FS_BRACKET_POLICY": "AUDITED_UPPER_LIMIT"
+      },
+      "root_tolerance_contract": "width <= FS_TOL * max(1, bracket midpoint); per-owner native root validity and completion flags",
+      "input_title": "Near-incompressibility diagnostic nu=0.49",
+      "solve_count": 65,
+      "audit_count": 994,
+      "native_terminal": {
+        "status": "OPTIMAL",
+        "solve_count": "65",
+        "sampled_peak_private_bytes": "748724224",
+        "logging_seconds_before_run_end": "4.36850049981149",
+        "message": ""
+      }
+    },
+    {
+      "case": "P01A",
+      "status": "FS_AVAILABLE_PARTIAL",
+      "analysis_seconds": 264.601352,
+      "lower_fs": 0.670003704164139,
+      "upper_fs": 0.6799341966897774,
+      "relative_gap": 0.014712517545224487,
+      "fs_obtained": true,
+      "target_met": false,
+      "target_unmet_reasons": [
+        "GAP_TARGET_NOT_MET"
+      ],
+      "element_counts": [
+        997.0,
+        997.0
+      ],
+      "witness_q": [
+        8,
+        8
+      ],
+      "error_number": 0,
+      "pore_pressure": false,
+      "root_width": 8.000000000008e-05,
+      "root_search_incomplete": true,
+      "global_incomplete_note": "ADAPT_GAP_TARGET_NOT_MET",
+      "dll_actually_used": true,
+      "native_counters": {
+        "numeric": 1559,
+        "dd_numeric": 0,
+        "backsolve": 0,
+        "ordering": 5,
+        "column_ordering": 0,
+        "nt_bulk": 1466,
+        "g_bulk": 0,
+        "gt_bulk": 2936,
+        "kkt_bulk": 1466,
+        "hsd_operator": 0,
+        "corrector_bulk": 1468,
+        "bulk_job_steps": 28152,
+        "hsd_lu": 0,
+        "hsd_lu_solve": 0,
+        "solver_vector_calls": 17856,
+        "hsd_jobs": 0,
+        "hsd_job_steps": 0,
+        "krylov_jobs": 0,
+        "krylov_steps": 0,
+        "refine_jobs": 1676,
+        "refine_steps": 1676,
+        "input_compare_calls": 7266,
+        "schur_jobs": 1353,
+        "schur_steps": 2075,
+        "schur_native_bytes": 0,
+        "meshfan_jobs": 0,
+        "meshfan_steps": 0
+      },
+      "input_sha256": "c952158d3da2da80cba14b72c4c613ea13634ae667f0af35237c375e7a2e31e6",
+      "source_sha256": "dcbfdcfb2d4bbcf382f07d237e77d7122185ebe91c4fce59935cb751f04e2fda",
+      "dll_sha256": "72aaf9bfccc0acc186eb69cdcbabd93b27f7ce245ceac574193ba6602c675323",
+      "workbook_sha256": "eb649ca5a590b3ab1e81dbbb09d0f86cb4d3e50a01747c09dba7f803a2c4b98f",
+      "production_source_check": {
+        "pass": true,
+        "original_modules_unchanged": 71,
+        "only_added_module": "BatchEvidence"
+      },
+      "independent_audit": {
+        "pass": true,
+        "scope": "Independent physical equations, material/geometry, explicit boundaries, dry weight and D08A P1 water-gradient loads",
+        "results": [
+          {
+            "side": "lower",
+            "metadata": {
+              "nodes": 537,
+              "elements": 997,
+              "q": 8,
+              "factor": 0.670003704164139,
+              "fs": 0.670003704164139,
+              "objective": 1.0001616122532424,
+              "native_audit": 4.954671724982651e-10,
+              "scale": 10.0
+            },
+            "physical_audit": {
+              "pass": true,
+              "errors": {
+                "yield": 0.0,
+                "equilibrium": 4.954721077865543e-10,
+                "boundary_traction": 2.0687097937911462e-12,
+                "internal_traction": 7.773515164899436e-11
+              },
+              "load": 1.0001616122532424,
+              "value": 1.0001616122532424
+            },
+            "raw_lower_errors": {
+              "yield": 0.0,
+              "equilibrium": 4.954721077865543e-09,
+              "boundary_traction": 2.068709793791146e-11,
+              "internal_traction": 7.773515164899436e-10
+            },
+            "raw_lower_pass": true,
+            "endpoint_direction_pass": true,
+            "material_areas": [
+              158.0
+            ],
+            "gravity_weight": 3159.9999999999995,
+            "effective_vertical_load": 3160.000000000002,
+            "independent_body_max_error": 0.0,
+            "pore_pressure_on": false,
+            "pass": true
+          },
+          {
+            "side": "upper",
+            "metadata": {
+              "nodes": 537,
+              "elements": 997,
+              "q": 8,
+              "factor": 0.6799341966897774,
+              "fs": 0.6799341966897774,
+              "objective": 0.9998907591325621,
+              "native_audit": 5.922184964646249e-11,
+              "scale": 10.0
+            },
+            "physical_audit": {
+              "pass": true,
+              "errors": {
+                "flow": 0.0,
+                "boundary": 6.02666704018896e-12,
+                "jump": 0.0,
+                "work": 5.922140555725264e-11,
+                "objective": 6.661338147750939e-16
+              },
+              "dissipation": 0.9998907591325628,
+              "work": [
+                0.0,
+                0.9999999999407786
+              ],
+              "value": 0.9998907591325628
+            },
+            "raw_lower_errors": {},
+            "raw_lower_pass": true,
+            "endpoint_direction_pass": true,
+            "material_areas": [
+              158.0
+            ],
+            "gravity_weight": 3159.9999999999995,
+            "effective_vertical_load": 3160.000000000002,
+            "independent_body_max_error": 0.0,
+            "pore_pressure_on": false,
+            "pass": true
+          }
+        ]
+      },
+      "actual_settings": {
+        "MODE": "Fs",
+        "TARGET": 1536.0,
+        "GRAVITY": "固定",
+        "ADAPT": 1.0,
+        "CYCLES": 3.0,
+        "GAP": 0.01,
+        "REFINE": 0.2,
+        "QUADRATURE": 8.0,
+        "FS_TOL": 0.0001,
+        "BEARING_FACES": null,
+        "BEARING_RIGIDS": null,
+        "SEISMIC_KH": 0.0,
+        "SEISMIC_DIR": "右(+x)",
+        "UPPER_PILOT": 0.0,
+        "UPPER_PILOT_RIGID": 0.0,
+        "LOWER_FS_SEED": "UPPER_TRIAL",
+        "LOWER_SEED_WIDTH": 0.02,
+        "LOWER_MODEL_CACHE": 1.0,
+        "LOWER_KKT_BACKEND": "AUTO",
+        "SCHUR_ALLOW_RIGID": 0.0,
+        "SCHUR_MAX_BYTES": 268435456.0,
+        "TEST_INJECTION": 0.0,
+        "KKT_CAPTURE": 0.0,
+        "SCHUR_TRACE_LEVEL": 0.0,
+        "SCHUR_REPLAY_POLICY": "CONSISTENT",
+        "SCHUR_STRUCTURE_CACHE": 1.0,
+        "SCHUR_RECOVERY_MODE": "REUSE_U",
+        "SCHUR_REFINEMENT": "FIXED3",
+        "SCHUR_GENERIC_START_ITERS": 0.0,
+        "DIRECT_FINAL_AFTER_PILOT": 0.0,
+        "DIAGNOSTIC_MODE": 1.0,
+        "HSD_CAPTURE": 0.0,
+        "HSD_LINEAR_BACKEND": "AUTO_PIVOT",
+        "HSD_LINEAR_CAPTURE": 0.0,
+        "HSD_LINEAR_CAPTURE_MAX": 8.0,
+        "HSD_STABLE_MAX_BYTES": 1073741824.0,
+        "HSD_LINEAR_TRACE": 0.0,
+        "C0_AUTO": 0.0,
+        "ANALYSIS_POLICY": "ASSOCIATED",
+        "RAW_LOWER_AUDIT": 1.0,
+        "C0_UPPER_ADAPT": 0.0,
+        "HSD_SOLVE_SECONDS": 300.0,
+        "C0_DIRECT_UPPER": 1.0,
+        "HSD_PROJECTIVE_NORMALIZATION": 1.0,
+        "HSD_ORIGINAL_OPERATOR": 0.0,
+        "ADAPT_MESH_POLICY": "LEGACY_THEN_REFINE",
+        "ADAPT_REFINE_CAP": 1000.0,
+        "FS_BRACKET_POLICY": "AUDITED_UPPER_LIMIT"
+      },
+      "root_tolerance_contract": "width <= FS_TOL * max(1, bracket midpoint); per-owner native root validity and completion flags",
+      "input_title": "Jia2024 / Cheng homogeneous Case 1, psi=0, associated twin",
+      "solve_count": 47,
+      "audit_count": 544,
+      "native_terminal": {
+        "status": "PARTIAL_CERTIFIED",
+        "solve_count": "47",
+        "sampled_peak_private_bytes": "740896768",
+        "logging_seconds_before_run_end": "2.77289759996347",
+        "message": "ADAPT_GAP_TARGET_NOT_MET"
+      }
+    },
+    {
+      "case": "P01N",
+      "status": "FS_AVAILABLE_PARTIAL",
+      "analysis_seconds": 262.753328,
+      "lower_fs": 0.6642932758545593,
+      "upper_fs": 0.6741943852536502,
+      "relative_gap": 0.014794472428521527,
+      "fs_obtained": true,
+      "target_met": false,
+      "target_unmet_reasons": [
+        "GAP_TARGET_NOT_MET"
+      ],
+      "element_counts": [
+        995.0,
+        995.0
+      ],
+      "witness_q": [
+        8,
+        8
+      ],
+      "error_number": 0,
+      "pore_pressure": false,
+      "root_width": 8.000000000008e-05,
+      "root_search_incomplete": true,
+      "global_incomplete_note": "ADAPT_GAP_TARGET_NOT_MET",
+      "dll_actually_used": true,
+      "native_counters": {
+        "numeric": 1551,
+        "dd_numeric": 0,
+        "backsolve": 0,
+        "ordering": 5,
+        "column_ordering": 0,
+        "nt_bulk": 1455,
+        "g_bulk": 0,
+        "gt_bulk": 2918,
+        "kkt_bulk": 1455,
+        "hsd_operator": 0,
+        "corrector_bulk": 1459,
+        "bulk_job_steps": 27959,
+        "hsd_lu": 0,
+        "hsd_lu_solve": 0,
+        "solver_vector_calls": 17737,
+        "hsd_jobs": 0,
+        "hsd_job_steps": 0,
+        "krylov_jobs": 0,
+        "krylov_steps": 0,
+        "refine_jobs": 1682,
+        "refine_steps": 1682,
+        "input_compare_calls": 7242,
+        "schur_jobs": 1332,
+        "schur_steps": 2044,
+        "schur_native_bytes": 0,
+        "meshfan_jobs": 0,
+        "meshfan_steps": 0
+      },
+      "input_sha256": "bfca4f197eeb60d99fc2027ac947a2165c4be22c32730209d33ef68001349ca6",
+      "source_sha256": "dcbfdcfb2d4bbcf382f07d237e77d7122185ebe91c4fce59935cb751f04e2fda",
+      "dll_sha256": "72aaf9bfccc0acc186eb69cdcbabd93b27f7ce245ceac574193ba6602c675323",
+      "workbook_sha256": "278fe27192cbc0005fd3858a46c8c7ae4923a9cd6f42a342f5dc0346453dfa3e",
+      "production_source_check": {
+        "pass": true,
+        "original_modules_unchanged": 71,
+        "only_added_module": "BatchEvidence"
+      },
+      "independent_audit": {
+        "pass": true,
+        "scope": "Independent physical equations, material/geometry, explicit boundaries, dry weight and D08A P1 water-gradient loads",
+        "results": [
+          {
+            "side": "lower",
+            "metadata": {
+              "nodes": 536,
+              "elements": 995,
+              "q": 8,
+              "factor": 0.6642932758545593,
+              "fs": 0.6642932758545593,
+              "objective": 1.0001604303735447,
+              "native_audit": 3.2422404136478455e-09,
+              "scale": 10.0
+            },
+            "physical_audit": {
+              "pass": true,
+              "errors": {
+                "yield": 0.0,
+                "equilibrium": 3.2422264872877804e-09,
+                "boundary_traction": 3.172410634748829e-12,
+                "internal_traction": 1.0610090583895726e-10
+              },
+              "load": 1.0001604303735447,
+              "value": 1.0001604303735447
+            },
+            "raw_lower_errors": {
+              "yield": 0.0,
+              "equilibrium": 3.2422264872877804e-08,
+              "boundary_traction": 3.172410634748829e-11,
+              "internal_traction": 1.0610090583895726e-09
+            },
+            "raw_lower_pass": true,
+            "endpoint_direction_pass": true,
+            "material_areas": [
+              158.0
+            ],
+            "gravity_weight": 3160.0,
+            "effective_vertical_load": 3160.0000000000014,
+            "independent_body_max_error": 0.0,
+            "pore_pressure_on": false,
+            "pass": true
+          },
+          {
+            "side": "upper",
+            "metadata": {
+              "nodes": 536,
+              "elements": 995,
+              "q": 8,
+              "factor": 0.6741943852536502,
+              "fs": 0.6741943852536502,
+              "objective": 0.9998911158214373,
+              "native_audit": 9.662537436838647e-11,
+              "scale": 10.0
+            },
+            "physical_audit": {
+              "pass": true,
+              "errors": {
+                "flow": 0.0,
+                "boundary": 1.1913414995214512e-11,
+                "jump": 0.0,
+                "work": 9.662481925687416e-11,
+                "objective": 6.661338147750939e-16
+              },
+              "dissipation": 0.9998911158214366,
+              "work": [
+                0.0,
+                0.9999999999033752
+              ],
+              "value": 0.9998911158214366
+            },
+            "raw_lower_errors": {},
+            "raw_lower_pass": true,
+            "endpoint_direction_pass": true,
+            "material_areas": [
+              158.0
+            ],
+            "gravity_weight": 3160.0,
+            "effective_vertical_load": 3160.0000000000014,
+            "independent_body_max_error": 0.0,
+            "pore_pressure_on": false,
+            "pass": true
+          }
+        ]
+      },
+      "actual_settings": {
+        "MODE": "Fs",
+        "TARGET": 1536.0,
+        "GRAVITY": "固定",
+        "ADAPT": 1.0,
+        "CYCLES": 3.0,
+        "GAP": 0.01,
+        "REFINE": 0.2,
+        "QUADRATURE": 8.0,
+        "FS_TOL": 0.0001,
+        "BEARING_FACES": null,
+        "BEARING_RIGIDS": null,
+        "SEISMIC_KH": 0.0,
+        "SEISMIC_DIR": "右(+x)",
+        "UPPER_PILOT": 0.0,
+        "UPPER_PILOT_RIGID": 0.0,
+        "LOWER_FS_SEED": "UPPER_TRIAL",
+        "LOWER_SEED_WIDTH": 0.02,
+        "LOWER_MODEL_CACHE": 1.0,
+        "LOWER_KKT_BACKEND": "AUTO",
+        "SCHUR_ALLOW_RIGID": 0.0,
+        "SCHUR_MAX_BYTES": 268435456.0,
+        "TEST_INJECTION": 0.0,
+        "KKT_CAPTURE": 0.0,
+        "SCHUR_TRACE_LEVEL": 0.0,
+        "SCHUR_REPLAY_POLICY": "CONSISTENT",
+        "SCHUR_STRUCTURE_CACHE": 1.0,
+        "SCHUR_RECOVERY_MODE": "REUSE_U",
+        "SCHUR_REFINEMENT": "FIXED3",
+        "SCHUR_GENERIC_START_ITERS": 0.0,
+        "DIRECT_FINAL_AFTER_PILOT": 0.0,
+        "DIAGNOSTIC_MODE": 1.0,
+        "HSD_CAPTURE": 0.0,
+        "HSD_LINEAR_BACKEND": "AUTO_PIVOT",
+        "HSD_LINEAR_CAPTURE": 0.0,
+        "HSD_LINEAR_CAPTURE_MAX": 8.0,
+        "HSD_STABLE_MAX_BYTES": 1073741824.0,
+        "HSD_LINEAR_TRACE": 0.0,
+        "C0_AUTO": 0.0,
+        "ANALYSIS_POLICY": "DAVIS_EQUIVALENT",
+        "RAW_LOWER_AUDIT": 1.0,
+        "C0_UPPER_ADAPT": 0.0,
+        "HSD_SOLVE_SECONDS": 300.0,
+        "C0_DIRECT_UPPER": 1.0,
+        "HSD_PROJECTIVE_NORMALIZATION": 1.0,
+        "HSD_ORIGINAL_OPERATOR": 0.0,
+        "ADAPT_MESH_POLICY": "LEGACY_THEN_REFINE",
+        "ADAPT_REFINE_CAP": 1000.0,
+        "FS_BRACKET_POLICY": "AUDITED_UPPER_LIMIT"
+      },
+      "root_tolerance_contract": "width <= FS_TOL * max(1, bracket midpoint); per-owner native root validity and completion flags",
+      "input_title": "Jia2024 / Cheng homogeneous Case 1, psi=0",
+      "solve_count": 47,
+      "audit_count": 544,
+      "native_terminal": {
+        "status": "PARTIAL_CERTIFIED",
+        "solve_count": "47",
+        "sampled_peak_private_bytes": "708788224",
+        "logging_seconds_before_run_end": "2.74144969988265",
+        "message": "ADAPT_GAP_TARGET_NOT_MET"
+      }
+    },
+    {
+      "case": "P02A",
+      "status": "PASS_TARGET",
+      "analysis_seconds": 334.060525,
+      "lower_fs": 1.3016569748403444,
+      "upper_fs": 1.3110550654525948,
+      "relative_gap": 0.007194126614272169,
+      "fs_obtained": true,
+      "target_met": true,
+      "target_unmet_reasons": [],
+      "element_counts": [
+        1000.0,
+        1000.0
+      ],
+      "witness_q": [
+        8,
+        8
+      ],
+      "error_number": 0,
+      "pore_pressure": false,
+      "root_width": 0.000104880210027858,
+      "root_search_incomplete": false,
+      "global_incomplete_note": "",
+      "dll_actually_used": true,
+      "native_counters": {
+        "numeric": 2199,
+        "dd_numeric": 0,
+        "backsolve": 0,
+        "ordering": 6,
+        "column_ordering": 0,
+        "nt_bulk": 2132,
+        "g_bulk": 0,
+        "gt_bulk": 4276,
+        "kkt_bulk": 2132,
+        "hsd_operator": 0,
+        "corrector_bulk": 2138,
+        "bulk_job_steps": 40946,
+        "hsd_lu": 0,
+        "hsd_lu_solve": 0,
+        "solver_vector_calls": 26150,
+        "hsd_jobs": 0,
+        "hsd_job_steps": 0,
+        "krylov_jobs": 0,
+        "krylov_steps": 0,
+        "refine_jobs": 2354,
+        "refine_steps": 2354,
+        "input_compare_calls": 9258,
+        "schur_jobs": 1989,
+        "schur_steps": 3014,
+        "schur_native_bytes": 0,
+        "meshfan_jobs": 0,
+        "meshfan_steps": 0
+      },
+      "input_sha256": "9587c4b45eae1c22d9e7190ee1470f5ad2e38145305f6c374894f91240ae7e1b",
+      "source_sha256": "dcbfdcfb2d4bbcf382f07d237e77d7122185ebe91c4fce59935cb751f04e2fda",
+      "dll_sha256": "72aaf9bfccc0acc186eb69cdcbabd93b27f7ce245ceac574193ba6602c675323",
+      "workbook_sha256": "640aa869e032b6385378139db7e4311c9837f5f04a2c7f9cb101cfd459399cd9",
+      "production_source_check": {
+        "pass": true,
+        "original_modules_unchanged": 71,
+        "only_added_module": "BatchEvidence"
+      },
+      "independent_audit": {
+        "pass": true,
+        "scope": "Independent physical equations, material/geometry, explicit boundaries, dry weight and D08A P1 water-gradient loads",
+        "results": [
+          {
+            "side": "lower",
+            "metadata": {
+              "nodes": 539,
+              "elements": 1000,
+              "q": 8,
+              "factor": 1.3016569748403444,
+              "fs": 1.3016569748403444,
+              "objective": 1.000171091072684,
+              "native_audit": 8.15026761011306e-09,
+              "scale": 10.0
+            },
+            "physical_audit": {
+              "pass": true,
+              "errors": {
+                "yield": 0.0,
+                "equilibrium": 8.150266239681514e-09,
+                "boundary_traction": 5.891061870515727e-13,
+                "internal_traction": 4.6147186072431623e-10
+              },
+              "load": 1.000171091072684,
+              "value": 1.000171091072684
+            },
+            "raw_lower_errors": {
+              "yield": 0.0,
+              "equilibrium": 8.150266239681514e-08,
+              "boundary_traction": 5.891061870515727e-12,
+              "internal_traction": 4.614718607243162e-09
+            },
+            "raw_lower_pass": true,
+            "endpoint_direction_pass": true,
+            "material_areas": [
+              158.0
+            ],
+            "gravity_weight": 3160.0,
+            "effective_vertical_load": 3160.000000000001,
+            "independent_body_max_error": 0.0,
+            "pore_pressure_on": false,
+            "pass": true
+          },
+          {
+            "side": "upper",
+            "metadata": {
+              "nodes": 539,
+              "elements": 1000,
+              "q": 8,
+              "factor": 1.3110550654525948,
+              "fs": 1.3110550654525948,
+              "objective": 0.9998613550274227,
+              "native_audit": 3.6873837316875324e-10,
+              "scale": 10.0
+            },
+            "physical_audit": {
+              "pass": true,
+              "errors": {
+                "flow": 0.0,
+                "boundary": 1.8055420184654542e-11,
+                "jump": 0.0,
+                "work": 3.6873770703493847e-10,
+                "objective": 5.551115123125783e-16
+              },
+              "dissipation": 0.9998613550274232,
+              "work": [
+                0.0,
+                0.9999999996312623
+              ],
+              "value": 0.9998613550274232
+            },
+            "raw_lower_errors": {},
+            "raw_lower_pass": true,
+            "endpoint_direction_pass": true,
+            "material_areas": [
+              158.0
+            ],
+            "gravity_weight": 3160.0,
+            "effective_vertical_load": 3160.000000000001,
+            "independent_body_max_error": 0.0,
+            "pore_pressure_on": false,
+            "pass": true
+          }
+        ]
+      },
+      "actual_settings": {
+        "MODE": "Fs",
+        "TARGET": 1536.0,
+        "GRAVITY": "固定",
+        "ADAPT": 1.0,
+        "CYCLES": 3.0,
+        "GAP": 0.01,
+        "REFINE": 0.2,
+        "QUADRATURE": 8.0,
+        "FS_TOL": 0.0001,
+        "BEARING_FACES": null,
+        "BEARING_RIGIDS": null,
+        "SEISMIC_KH": 0.0,
+        "SEISMIC_DIR": "右(+x)",
+        "UPPER_PILOT": 0.0,
+        "UPPER_PILOT_RIGID": 0.0,
+        "LOWER_FS_SEED": "UPPER_TRIAL",
+        "LOWER_SEED_WIDTH": 0.02,
+        "LOWER_MODEL_CACHE": 1.0,
+        "LOWER_KKT_BACKEND": "AUTO",
+        "SCHUR_ALLOW_RIGID": 0.0,
+        "SCHUR_MAX_BYTES": 268435456.0,
+        "TEST_INJECTION": 0.0,
+        "KKT_CAPTURE": 0.0,
+        "SCHUR_TRACE_LEVEL": 0.0,
+        "SCHUR_REPLAY_POLICY": "CONSISTENT",
+        "SCHUR_STRUCTURE_CACHE": 1.0,
+        "SCHUR_RECOVERY_MODE": "REUSE_U",
+        "SCHUR_REFINEMENT": "FIXED3",
+        "SCHUR_GENERIC_START_ITERS": 0.0,
+        "DIRECT_FINAL_AFTER_PILOT": 0.0,
+        "DIAGNOSTIC_MODE": 1.0,
+        "HSD_CAPTURE": 0.0,
+        "HSD_LINEAR_BACKEND": "AUTO_PIVOT",
+        "HSD_LINEAR_CAPTURE": 0.0,
+        "HSD_LINEAR_CAPTURE_MAX": 8.0,
+        "HSD_STABLE_MAX_BYTES": 1073741824.0,
+        "HSD_LINEAR_TRACE": 0.0,
+        "C0_AUTO": 0.0,
+        "ANALYSIS_POLICY": "ASSOCIATED",
+        "RAW_LOWER_AUDIT": 1.0,
+        "C0_UPPER_ADAPT": 0.0,
+        "HSD_SOLVE_SECONDS": 300.0,
+        "C0_DIRECT_UPPER": 1.0,
+        "HSD_PROJECTIVE_NORMALIZATION": 1.0,
+        "HSD_ORIGINAL_OPERATOR": 0.0,
+        "ADAPT_MESH_POLICY": "LEGACY_THEN_REFINE",
+        "ADAPT_REFINE_CAP": 1000.0,
+        "FS_BRACKET_POLICY": "AUDITED_UPPER_LIMIT"
+      },
+      "root_tolerance_contract": "width <= FS_TOL * max(1, bracket midpoint); per-owner native root validity and completion flags",
+      "input_title": "Jia2024 / Cheng homogeneous Case 2, psi=0, associated twin",
+      "solve_count": 65,
+      "audit_count": 994,
+      "native_terminal": {
+        "status": "OPTIMAL",
+        "solve_count": "65",
+        "sampled_peak_private_bytes": "715984896",
+        "logging_seconds_before_run_end": "4.59192750038346",
+        "message": ""
+      }
+    },
+    {
+      "case": "P02N",
+      "status": "PASS_TARGET",
+      "analysis_seconds": 321.352305,
+      "lower_fs": 1.215929091721389,
+      "upper_fs": 1.224966156938399,
+      "relative_gap": 0.007404713677878573,
+      "fs_obtained": true,
+      "target_met": true,
+      "target_unmet_reasons": [],
+      "element_counts": [
+        1000.0,
+        1000.0
+      ],
+      "witness_q": [
+        8,
+        8
+      ],
+      "error_number": 0,
+      "pore_pressure": false,
+      "root_width": 9.79933728202376e-05,
+      "root_search_incomplete": false,
+      "global_incomplete_note": "",
+      "dll_actually_used": true,
+      "native_counters": {
+        "numeric": 2007,
+        "dd_numeric": 0,
+        "backsolve": 0,
+        "ordering": 6,
+        "column_ordering": 0,
+        "nt_bulk": 1952,
+        "g_bulk": 0,
+        "gt_bulk": 3914,
+        "kkt_bulk": 1952,
+        "hsd_operator": 0,
+        "corrector_bulk": 1957,
+        "bulk_job_steps": 37470,
+        "hsd_lu": 0,
+        "hsd_lu_solve": 0,
+        "solver_vector_calls": 24220,
+        "hsd_jobs": 0,
+        "hsd_job_steps": 0,
+        "krylov_jobs": 0,
+        "krylov_steps": 0,
+        "refine_jobs": 2211,
+        "refine_steps": 2211,
+        "input_compare_calls": 8784,
+        "schur_jobs": 1758,
+        "schur_steps": 2662,
+        "schur_native_bytes": 0,
+        "meshfan_jobs": 0,
+        "meshfan_steps": 0
+      },
+      "input_sha256": "7d8d74f5d573032e7980fe7dffde911ffab2f7bd4cef784ee145f7e0349fac31",
+      "source_sha256": "dcbfdcfb2d4bbcf382f07d237e77d7122185ebe91c4fce59935cb751f04e2fda",
+      "dll_sha256": "72aaf9bfccc0acc186eb69cdcbabd93b27f7ce245ceac574193ba6602c675323",
+      "workbook_sha256": "b2a14da7f17e573eee7bc495093dac97873b561028577f2febd6663f7bf6a99b",
+      "production_source_check": {
+        "pass": true,
+        "original_modules_unchanged": 71,
+        "only_added_module": "BatchEvidence"
+      },
+      "independent_audit": {
+        "pass": true,
+        "scope": "Independent physical equations, material/geometry, explicit boundaries, dry weight and D08A P1 water-gradient loads",
+        "results": [
+          {
+            "side": "lower",
+            "metadata": {
+              "nodes": 539,
+              "elements": 1000,
+              "q": 8,
+              "factor": 1.215929091721389,
+              "fs": 1.215929091721389,
+              "objective": 1.0000012336587123,
+              "native_audit": 8.550495179948658e-09,
+              "scale": 10.0
+            },
+            "physical_audit": {
+              "pass": true,
+              "errors": {
+                "yield": 0.0,
+                "equilibrium": 8.550517183181228e-09,
+                "boundary_traction": 1.35386105226532e-12,
+                "internal_traction": 3.287330407886202e-10
+              },
+              "load": 1.0000012336587123,
+              "value": 1.0000012336587123
+            },
+            "raw_lower_errors": {
+              "yield": 0.0,
+              "equilibrium": 8.550517183181228e-08,
+              "boundary_traction": 1.3538610522653199e-11,
+              "internal_traction": 3.287330407886202e-09
+            },
+            "raw_lower_pass": true,
+            "endpoint_direction_pass": true,
+            "material_areas": [
+              158.0
+            ],
+            "gravity_weight": 3160.0,
+            "effective_vertical_load": 3160.0000000000005,
+            "independent_body_max_error": 0.0,
+            "pore_pressure_on": false,
+            "pass": true
+          },
+          {
+            "side": "upper",
+            "metadata": {
+              "nodes": 539,
+              "elements": 1000,
+              "q": 8,
+              "factor": 1.224966156938399,
+              "fs": 1.224966156938399,
+              "objective": 0.9998838340347526,
+              "native_audit": 3.196503062241618e-10,
+              "scale": 10.0
+            },
+            "physical_audit": {
+              "pass": true,
+              "errors": {
+                "flow": 0.0,
+                "boundary": 3.610427970202506e-12,
+                "jump": 0.0,
+                "work": 3.196505282687667e-10,
+                "objective": 2.220446049250313e-16
+              },
+              "dissipation": 0.9998838340347523,
+              "work": [
+                0.0,
+                0.9999999996803495
+              ],
+              "value": 0.9998838340347523
+            },
+            "raw_lower_errors": {},
+            "raw_lower_pass": true,
+            "endpoint_direction_pass": true,
+            "material_areas": [
+              158.0
+            ],
+            "gravity_weight": 3160.0,
+            "effective_vertical_load": 3160.0000000000005,
+            "independent_body_max_error": 0.0,
+            "pore_pressure_on": false,
+            "pass": true
+          }
+        ]
+      },
+      "actual_settings": {
+        "MODE": "Fs",
+        "TARGET": 1536.0,
+        "GRAVITY": "固定",
+        "ADAPT": 1.0,
+        "CYCLES": 3.0,
+        "GAP": 0.01,
+        "REFINE": 0.2,
+        "QUADRATURE": 8.0,
+        "FS_TOL": 0.0001,
+        "BEARING_FACES": null,
+        "BEARING_RIGIDS": null,
+        "SEISMIC_KH": 0.0,
+        "SEISMIC_DIR": "右(+x)",
+        "UPPER_PILOT": 0.0,
+        "UPPER_PILOT_RIGID": 0.0,
+        "LOWER_FS_SEED": "UPPER_TRIAL",
+        "LOWER_SEED_WIDTH": 0.02,
+        "LOWER_MODEL_CACHE": 1.0,
+        "LOWER_KKT_BACKEND": "AUTO",
+        "SCHUR_ALLOW_RIGID": 0.0,
+        "SCHUR_MAX_BYTES": 268435456.0,
+        "TEST_INJECTION": 0.0,
+        "KKT_CAPTURE": 0.0,
+        "SCHUR_TRACE_LEVEL": 0.0,
+        "SCHUR_REPLAY_POLICY": "CONSISTENT",
+        "SCHUR_STRUCTURE_CACHE": 1.0,
+        "SCHUR_RECOVERY_MODE": "REUSE_U",
+        "SCHUR_REFINEMENT": "FIXED3",
+        "SCHUR_GENERIC_START_ITERS": 0.0,
+        "DIRECT_FINAL_AFTER_PILOT": 0.0,
+        "DIAGNOSTIC_MODE": 1.0,
+        "HSD_CAPTURE": 0.0,
+        "HSD_LINEAR_BACKEND": "AUTO_PIVOT",
+        "HSD_LINEAR_CAPTURE": 0.0,
+        "HSD_LINEAR_CAPTURE_MAX": 8.0,
+        "HSD_STABLE_MAX_BYTES": 1073741824.0,
+        "HSD_LINEAR_TRACE": 0.0,
+        "C0_AUTO": 0.0,
+        "ANALYSIS_POLICY": "DAVIS_EQUIVALENT",
+        "RAW_LOWER_AUDIT": 1.0,
+        "C0_UPPER_ADAPT": 0.0,
+        "HSD_SOLVE_SECONDS": 300.0,
+        "C0_DIRECT_UPPER": 1.0,
+        "HSD_PROJECTIVE_NORMALIZATION": 1.0,
+        "HSD_ORIGINAL_OPERATOR": 0.0,
+        "ADAPT_MESH_POLICY": "LEGACY_THEN_REFINE",
+        "ADAPT_REFINE_CAP": 1000.0,
+        "FS_BRACKET_POLICY": "AUDITED_UPPER_LIMIT"
+      },
+      "root_tolerance_contract": "width <= FS_TOL * max(1, bracket midpoint); per-owner native root validity and completion flags",
+      "input_title": "Jia2024 / Cheng homogeneous Case 2, psi=0",
+      "solve_count": 57,
+      "audit_count": 1015,
+      "native_terminal": {
+        "status": "OPTIMAL",
+        "solve_count": "57",
+        "sampled_peak_private_bytes": "714477568",
+        "logging_seconds_before_run_end": "4.09211820032215",
+        "message": ""
+      }
+    },
+    {
+      "case": "P03A",
+      "status": "FS_AVAILABLE_PARTIAL",
+      "analysis_seconds": 252.892343,
+      "lower_fs": 1.1553169284451044,
+      "upper_fs": 1.1741222483654132,
+      "relative_gap": 0.01614579174894554,
+      "fs_obtained": true,
+      "target_met": false,
+      "target_unmet_reasons": [
+        "GAP_TARGET_NOT_MET"
+      ],
+      "element_counts": [
+        998.0,
+        998.0
+      ],
+      "witness_q": [
+        8,
+        8
+      ],
+      "error_number": 0,
+      "pore_pressure": false,
+      "root_width": 9.39260228283167e-05,
+      "root_search_incomplete": true,
+      "global_incomplete_note": "ADAPT_GAP_TARGET_NOT_MET",
+      "dll_actually_used": true,
+      "native_counters": {
+        "numeric": 1331,
+        "dd_numeric": 0,
+        "backsolve": 0,
+        "ordering": 5,
+        "column_ordering": 0,
+        "nt_bulk": 1286,
+        "g_bulk": 0,
+        "gt_bulk": 2588,
+        "kkt_bulk": 1286,
+        "hsd_operator": 0,
+        "corrector_bulk": 1294,
+        "bulk_job_steps": 24774,
+        "hsd_lu": 0,
+        "hsd_lu_solve": 0,
+        "solver_vector_calls": 15592,
+        "hsd_jobs": 0,
+        "hsd_job_steps": 0,
+        "krylov_jobs": 0,
+        "krylov_steps": 0,
+        "refine_jobs": 1476,
+        "refine_steps": 1476,
+        "input_compare_calls": 6888,
+        "schur_jobs": 1157,
+        "schur_steps": 1754,
+        "schur_native_bytes": 0,
+        "meshfan_jobs": 0,
+        "meshfan_steps": 0
+      },
+      "input_sha256": "858297b2897751405f4cc882100ff262ba994850668b8ef6054a425cf4314e8d",
+      "source_sha256": "dcbfdcfb2d4bbcf382f07d237e77d7122185ebe91c4fce59935cb751f04e2fda",
+      "dll_sha256": "72aaf9bfccc0acc186eb69cdcbabd93b27f7ce245ceac574193ba6602c675323",
+      "workbook_sha256": "96ef92ce91197c1d8a1a0ff3513ec7f17fe51bde050e1f06907e115226f24200",
+      "production_source_check": {
+        "pass": true,
+        "original_modules_unchanged": 71,
+        "only_added_module": "BatchEvidence"
+      },
+      "independent_audit": {
+        "pass": true,
+        "scope": "Independent physical equations, material/geometry, explicit boundaries, dry weight and D08A P1 water-gradient loads",
+        "results": [
+          {
+            "side": "lower",
+            "metadata": {
+              "nodes": 539,
+              "elements": 998,
+              "q": 8,
+              "factor": 1.1553169284451044,
+              "fs": 1.1553169284451044,
+              "objective": 1.0000966206993236,
+              "native_audit": 1.4948489854396717e-09,
+              "scale": 20.0
+            },
+            "physical_audit": {
+              "pass": true,
+              "errors": {
+                "yield": 0.0,
+                "equilibrium": 1.4948493345934288e-09,
+                "boundary_traction": 1.7314539198774893e-11,
+                "internal_traction": 2.6774316097544215e-10
+              },
+              "load": 1.0000966206993236,
+              "value": 1.0000966206993236
+            },
+            "raw_lower_errors": {
+              "yield": 0.0,
+              "equilibrium": 2.989698669186858e-08,
+              "boundary_traction": 3.4629078397549786e-10,
+              "internal_traction": 5.354863219508843e-09
+            },
+            "raw_lower_pass": true,
+            "endpoint_direction_pass": true,
+            "material_areas": [
+              158.0
+            ],
+            "gravity_weight": 3160.0,
+            "effective_vertical_load": 3159.999999999999,
+            "independent_body_max_error": 0.0,
+            "pore_pressure_on": false,
+            "pass": true
+          },
+          {
+            "side": "upper",
+            "metadata": {
+              "nodes": 539,
+              "elements": 998,
+              "q": 8,
+              "factor": 1.1741222483654132,
+              "fs": 1.1741222483654132,
+              "objective": 0.9999303521703349,
+              "native_audit": 1.6291321782922654e-10,
+              "scale": 20.0
+            },
+            "physical_audit": {
+              "pass": true,
+              "errors": {
+                "flow": 0.0,
+                "boundary": 1.6291321782922654e-10,
+                "jump": 0.0,
+                "work": 7.363998300036201e-12,
+                "objective": 1.1102230246251565e-16
+              },
+              "dissipation": 0.9999303521703348,
+              "work": [
+                0.0,
+                0.999999999992636
+              ],
+              "value": 0.9999303521703348
+            },
+            "raw_lower_errors": {},
+            "raw_lower_pass": true,
+            "endpoint_direction_pass": true,
+            "material_areas": [
+              158.0
+            ],
+            "gravity_weight": 3160.0,
+            "effective_vertical_load": 3159.999999999999,
+            "independent_body_max_error": 0.0,
+            "pore_pressure_on": false,
+            "pass": true
+          }
+        ]
+      },
+      "actual_settings": {
+        "MODE": "Fs",
+        "TARGET": 1536.0,
+        "GRAVITY": "固定",
+        "ADAPT": 1.0,
+        "CYCLES": 3.0,
+        "GAP": 0.01,
+        "REFINE": 0.2,
+        "QUADRATURE": 8.0,
+        "FS_TOL": 0.0001,
+        "BEARING_FACES": null,
+        "BEARING_RIGIDS": null,
+        "SEISMIC_KH": 0.0,
+        "SEISMIC_DIR": "右(+x)",
+        "UPPER_PILOT": 0.0,
+        "UPPER_PILOT_RIGID": 0.0,
+        "LOWER_FS_SEED": "UPPER_TRIAL",
+        "LOWER_SEED_WIDTH": 0.02,
+        "LOWER_MODEL_CACHE": 1.0,
+        "LOWER_KKT_BACKEND": "AUTO",
+        "SCHUR_ALLOW_RIGID": 0.0,
+        "SCHUR_MAX_BYTES": 268435456.0,
+        "TEST_INJECTION": 0.0,
+        "KKT_CAPTURE": 0.0,
+        "SCHUR_TRACE_LEVEL": 0.0,
+        "SCHUR_REPLAY_POLICY": "CONSISTENT",
+        "SCHUR_STRUCTURE_CACHE": 1.0,
+        "SCHUR_RECOVERY_MODE": "REUSE_U",
+        "SCHUR_REFINEMENT": "FIXED3",
+        "SCHUR_GENERIC_START_ITERS": 0.0,
+        "DIRECT_FINAL_AFTER_PILOT": 0.0,
+        "DIAGNOSTIC_MODE": 1.0,
+        "HSD_CAPTURE": 0.0,
+        "HSD_LINEAR_BACKEND": "AUTO_PIVOT",
+        "HSD_LINEAR_CAPTURE": 0.0,
+        "HSD_LINEAR_CAPTURE_MAX": 8.0,
+        "HSD_STABLE_MAX_BYTES": 1073741824.0,
+        "HSD_LINEAR_TRACE": 0.0,
+        "C0_AUTO": 0.0,
+        "ANALYSIS_POLICY": "ASSOCIATED",
+        "RAW_LOWER_AUDIT": 1.0,
+        "C0_UPPER_ADAPT": 0.0,
+        "HSD_SOLVE_SECONDS": 300.0,
+        "C0_DIRECT_UPPER": 1.0,
+        "HSD_PROJECTIVE_NORMALIZATION": 1.0,
+        "HSD_ORIGINAL_OPERATOR": 0.0,
+        "ADAPT_MESH_POLICY": "LEGACY_THEN_REFINE",
+        "ADAPT_REFINE_CAP": 1000.0,
+        "FS_BRACKET_POLICY": "AUDITED_UPPER_LIMIT"
+      },
+      "root_tolerance_contract": "width <= FS_TOL * max(1, bracket midpoint); per-owner native root validity and completion flags",
+      "input_title": "Jia2024 / Cheng homogeneous Case 3, psi=0, associated twin",
+      "solve_count": 46,
+      "audit_count": 545,
+      "native_terminal": {
+        "status": "PARTIAL_CERTIFIED",
+        "solve_count": "46",
+        "sampled_peak_private_bytes": "748552192",
+        "logging_seconds_before_run_end": "2.45190040022135",
+        "message": "ADAPT_GAP_TARGET_NOT_MET"
+      }
+    },
+    {
+      "case": "P03N",
+      "status": "FS_AVAILABLE_PARTIAL",
+      "analysis_seconds": 254.10996,
+      "lower_fs": 1.1520001000286129,
+      "upper_fs": 1.1708578238454124,
+      "relative_gap": 0.016236657113620535,
+      "fs_obtained": true,
+      "target_met": false,
+      "target_unmet_reasons": [
+        "GAP_TARGET_NOT_MET"
+      ],
+      "element_counts": [
+        998.0,
+        998.0
+      ],
+      "witness_q": [
+        8,
+        8
+      ],
+      "error_number": 0,
+      "pore_pressure": false,
+      "root_width": 9.3664879312616e-05,
+      "root_search_incomplete": true,
+      "global_incomplete_note": "ADAPT_GAP_TARGET_NOT_MET",
+      "dll_actually_used": true,
+      "native_counters": {
+        "numeric": 1338,
+        "dd_numeric": 0,
+        "backsolve": 0,
+        "ordering": 5,
+        "column_ordering": 0,
+        "nt_bulk": 1289,
+        "g_bulk": 0,
+        "gt_bulk": 2592,
+        "kkt_bulk": 1289,
+        "hsd_operator": 0,
+        "corrector_bulk": 1296,
+        "bulk_job_steps": 24823,
+        "hsd_lu": 0,
+        "hsd_lu_solve": 0,
+        "solver_vector_calls": 15631,
+        "hsd_jobs": 0,
+        "hsd_job_steps": 0,
+        "krylov_jobs": 0,
+        "krylov_steps": 0,
+        "refine_jobs": 1485,
+        "refine_steps": 1485,
+        "input_compare_calls": 6894,
+        "schur_jobs": 1156,
+        "schur_steps": 1755,
+        "schur_native_bytes": 0,
+        "meshfan_jobs": 0,
+        "meshfan_steps": 0
+      },
+      "input_sha256": "603ce099f1b440bf62c485596e202d0624930bf20601fa9b10b7010974a1db70",
+      "source_sha256": "dcbfdcfb2d4bbcf382f07d237e77d7122185ebe91c4fce59935cb751f04e2fda",
+      "dll_sha256": "72aaf9bfccc0acc186eb69cdcbabd93b27f7ce245ceac574193ba6602c675323",
+      "workbook_sha256": "158a100aadda4e565af4108267db341e6a3caa1f179789c705eb8d8260d34187",
+      "production_source_check": {
+        "pass": true,
+        "original_modules_unchanged": 71,
+        "only_added_module": "BatchEvidence"
+      },
+      "independent_audit": {
+        "pass": true,
+        "scope": "Independent physical equations, material/geometry, explicit boundaries, dry weight and D08A P1 water-gradient loads",
+        "results": [
+          {
+            "side": "lower",
+            "metadata": {
+              "nodes": 539,
+              "elements": 998,
+              "q": 8,
+              "factor": 1.1520001000286129,
+              "fs": 1.1520001000286129,
+              "objective": 1.000096098048719,
+              "native_audit": 1.4948859905282505e-09,
+              "scale": 20.0
+            },
+            "physical_audit": {
+              "pass": true,
+              "errors": {
+                "yield": 0.0,
+                "equilibrium": 1.4948861939978464e-09,
+                "boundary_traction": 1.729890723714911e-11,
+                "internal_traction": 2.686544320340545e-10
+              },
+              "load": 1.000096098048719,
+              "value": 1.000096098048719
+            },
+            "raw_lower_errors": {
+              "yield": 0.0,
+              "equilibrium": 2.989772387995693e-08,
+              "boundary_traction": 3.4597814474298225e-10,
+              "internal_traction": 5.37308864068109e-09
+            },
+            "raw_lower_pass": true,
+            "endpoint_direction_pass": true,
+            "material_areas": [
+              158.0
+            ],
+            "gravity_weight": 3159.999999999999,
+            "effective_vertical_load": 3160.0,
+            "independent_body_max_error": 0.0,
+            "pore_pressure_on": false,
+            "pass": true
+          },
+          {
+            "side": "upper",
+            "metadata": {
+              "nodes": 539,
+              "elements": 998,
+              "q": 8,
+              "factor": 1.1708578238454124,
+              "fs": 1.1708578238454124,
+              "objective": 0.9999306398963902,
+              "native_audit": 1.603290685936984e-10,
+              "scale": 20.0
+            },
+            "physical_audit": {
+              "pass": true,
+              "errors": {
+                "flow": 0.0,
+                "boundary": 1.603290685936984e-10,
+                "jump": 0.0,
+                "work": 6.987410650083348e-12,
+                "objective": 1.4432899320127035e-15
+              },
+              "dissipation": 0.9999306398963916,
+              "work": [
+                0.0,
+                0.9999999999930126
+              ],
+              "value": 0.9999306398963916
+            },
+            "raw_lower_errors": {},
+            "raw_lower_pass": true,
+            "endpoint_direction_pass": true,
+            "material_areas": [
+              158.0
+            ],
+            "gravity_weight": 3159.999999999999,
+            "effective_vertical_load": 3160.0,
+            "independent_body_max_error": 0.0,
+            "pore_pressure_on": false,
+            "pass": true
+          }
+        ]
+      },
+      "actual_settings": {
+        "MODE": "Fs",
+        "TARGET": 1536.0,
+        "GRAVITY": "固定",
+        "ADAPT": 1.0,
+        "CYCLES": 3.0,
+        "GAP": 0.01,
+        "REFINE": 0.2,
+        "QUADRATURE": 8.0,
+        "FS_TOL": 0.0001,
+        "BEARING_FACES": null,
+        "BEARING_RIGIDS": null,
+        "SEISMIC_KH": 0.0,
+        "SEISMIC_DIR": "右(+x)",
+        "UPPER_PILOT": 0.0,
+        "UPPER_PILOT_RIGID": 0.0,
+        "LOWER_FS_SEED": "UPPER_TRIAL",
+        "LOWER_SEED_WIDTH": 0.02,
+        "LOWER_MODEL_CACHE": 1.0,
+        "LOWER_KKT_BACKEND": "AUTO",
+        "SCHUR_ALLOW_RIGID": 0.0,
+        "SCHUR_MAX_BYTES": 268435456.0,
+        "TEST_INJECTION": 0.0,
+        "KKT_CAPTURE": 0.0,
+        "SCHUR_TRACE_LEVEL": 0.0,
+        "SCHUR_REPLAY_POLICY": "CONSISTENT",
+        "SCHUR_STRUCTURE_CACHE": 1.0,
+        "SCHUR_RECOVERY_MODE": "REUSE_U",
+        "SCHUR_REFINEMENT": "FIXED3",
+        "SCHUR_GENERIC_START_ITERS": 0.0,
+        "DIRECT_FINAL_AFTER_PILOT": 0.0,
+        "DIAGNOSTIC_MODE": 1.0,
+        "HSD_CAPTURE": 0.0,
+        "HSD_LINEAR_BACKEND": "AUTO_PIVOT",
+        "HSD_LINEAR_CAPTURE": 0.0,
+        "HSD_LINEAR_CAPTURE_MAX": 8.0,
+        "HSD_STABLE_MAX_BYTES": 1073741824.0,
+        "HSD_LINEAR_TRACE": 0.0,
+        "C0_AUTO": 0.0,
+        "ANALYSIS_POLICY": "DAVIS_EQUIVALENT",
+        "RAW_LOWER_AUDIT": 1.0,
+        "C0_UPPER_ADAPT": 0.0,
+        "HSD_SOLVE_SECONDS": 300.0,
+        "C0_DIRECT_UPPER": 1.0,
+        "HSD_PROJECTIVE_NORMALIZATION": 1.0,
+        "HSD_ORIGINAL_OPERATOR": 0.0,
+        "ADAPT_MESH_POLICY": "LEGACY_THEN_REFINE",
+        "ADAPT_REFINE_CAP": 1000.0,
+        "FS_BRACKET_POLICY": "AUDITED_UPPER_LIMIT"
+      },
+      "root_tolerance_contract": "width <= FS_TOL * max(1, bracket midpoint); per-owner native root validity and completion flags",
+      "input_title": "Jia2024 / Cheng homogeneous Case 3, psi=0",
+      "solve_count": 46,
+      "audit_count": 545,
+      "native_terminal": {
+        "status": "PARTIAL_CERTIFIED",
+        "solve_count": "46",
+        "sampled_peak_private_bytes": "744202240",
+        "logging_seconds_before_run_end": "2.45289769995725",
+        "message": "ADAPT_GAP_TARGET_NOT_MET"
+      }
+    },
+    {
+      "case": "P04A",
+      "status": "PASS_TARGET",
+      "analysis_seconds": 336.181641,
+      "lower_fs": 2.2503402432794615,
+      "upper_fs": 2.264818318989914,
+      "relative_gap": 0.00641309735230016,
+      "fs_obtained": true,
+      "target_met": true,
+      "target_unmet_reasons": [],
+      "element_counts": [
+        995.0,
+        995.0
+      ],
+      "witness_q": [
+        8,
+        8
+      ],
+      "error_number": 0,
+      "pore_pressure": false,
+      "root_width": 0.000181178218390698,
+      "root_search_incomplete": false,
+      "global_incomplete_note": "",
+      "dll_actually_used": true,
+      "native_counters": {
+        "numeric": 2127,
+        "dd_numeric": 0,
+        "backsolve": 0,
+        "ordering": 6,
+        "column_ordering": 0,
+        "nt_bulk": 2102,
+        "g_bulk": 0,
+        "gt_bulk": 4214,
+        "kkt_bulk": 2102,
+        "hsd_operator": 0,
+        "corrector_bulk": 2107,
+        "bulk_job_steps": 40374,
+        "hsd_lu": 0,
+        "hsd_lu_solve": 0,
+        "solver_vector_calls": 25586,
+        "hsd_jobs": 0,
+        "hsd_job_steps": 0,
+        "krylov_jobs": 0,
+        "krylov_steps": 0,
+        "refine_jobs": 2383,
+        "refine_steps": 2383,
+        "input_compare_calls": 9150,
+        "schur_jobs": 1856,
+        "schur_steps": 2794,
+        "schur_native_bytes": 0,
+        "meshfan_jobs": 0,
+        "meshfan_steps": 0
+      },
+      "input_sha256": "8dffa91b1bcb91f018ca950f9556db561dde206ac3e76f317cef11b879330a9e",
+      "source_sha256": "dcbfdcfb2d4bbcf382f07d237e77d7122185ebe91c4fce59935cb751f04e2fda",
+      "dll_sha256": "72aaf9bfccc0acc186eb69cdcbabd93b27f7ce245ceac574193ba6602c675323",
+      "workbook_sha256": "6f5b29283ac18c5c07cbe2f59725c89b53ea96587ca0996570813f586f9ad309",
+      "production_source_check": {
+        "pass": true,
+        "original_modules_unchanged": 71,
+        "only_added_module": "BatchEvidence"
+      },
+      "independent_audit": {
+        "pass": true,
+        "scope": "Independent physical equations, material/geometry, explicit boundaries, dry weight and D08A P1 water-gradient loads",
+        "results": [
+          {
+            "side": "lower",
+            "metadata": {
+              "nodes": 536,
+              "elements": 995,
+              "q": 8,
+              "factor": 2.2503402432794615,
+              "fs": 2.2503402432794615,
+              "objective": 1.0001545510901866,
+              "native_audit": 3.485518376879085e-09,
+              "scale": 20.0
+            },
+            "physical_audit": {
+              "pass": true,
+              "errors": {
+                "yield": 0.0,
+                "equilibrium": 3.4855198172145663e-09,
+                "boundary_traction": 1.4301627977213905e-12,
+                "internal_traction": 1.4869212527912623e-09
+              },
+              "load": 1.0001545510901866,
+              "value": 1.0001545510901866
+            },
+            "raw_lower_errors": {
+              "yield": 0.0,
+              "equilibrium": 6.971039634429133e-08,
+              "boundary_traction": 2.860325595442781e-11,
+              "internal_traction": 2.9738425055825246e-08
+            },
+            "raw_lower_pass": true,
+            "endpoint_direction_pass": true,
+            "material_areas": [
+              158.00000000000003
+            ],
+            "gravity_weight": 3160.0000000000005,
+            "effective_vertical_load": 3160.000000000001,
+            "independent_body_max_error": 0.0,
+            "pore_pressure_on": false,
+            "pass": true
+          },
+          {
+            "side": "upper",
+            "metadata": {
+              "nodes": 536,
+              "elements": 995,
+              "q": 8,
+              "factor": 2.264818318989914,
+              "fs": 2.264818318989914,
+              "objective": 0.9998997188004495,
+              "native_audit": 1.2146017525083153e-10,
+              "scale": 20.0
+            },
+            "physical_audit": {
+              "pass": true,
+              "errors": {
+                "flow": 0.0,
+                "boundary": 2.4688729373781322e-11,
+                "jump": 0.0,
+                "work": 1.2146095240694876e-10,
+                "objective": 1.1102230246251565e-15
+              },
+              "dissipation": 0.9998997188004506,
+              "work": [
+                0.0,
+                0.999999999878539
+              ],
+              "value": 0.9998997188004506
+            },
+            "raw_lower_errors": {},
+            "raw_lower_pass": true,
+            "endpoint_direction_pass": true,
+            "material_areas": [
+              158.00000000000003
+            ],
+            "gravity_weight": 3160.0000000000005,
+            "effective_vertical_load": 3160.000000000001,
+            "independent_body_max_error": 0.0,
+            "pore_pressure_on": false,
+            "pass": true
+          }
+        ]
+      },
+      "actual_settings": {
+        "MODE": "Fs",
+        "TARGET": 1536.0,
+        "GRAVITY": "固定",
+        "ADAPT": 1.0,
+        "CYCLES": 3.0,
+        "GAP": 0.01,
+        "REFINE": 0.2,
+        "QUADRATURE": 8.0,
+        "FS_TOL": 0.0001,
+        "BEARING_FACES": null,
+        "BEARING_RIGIDS": null,
+        "SEISMIC_KH": 0.0,
+        "SEISMIC_DIR": "右(+x)",
+        "UPPER_PILOT": 0.0,
+        "UPPER_PILOT_RIGID": 0.0,
+        "LOWER_FS_SEED": "UPPER_TRIAL",
+        "LOWER_SEED_WIDTH": 0.02,
+        "LOWER_MODEL_CACHE": 1.0,
+        "LOWER_KKT_BACKEND": "AUTO",
+        "SCHUR_ALLOW_RIGID": 0.0,
+        "SCHUR_MAX_BYTES": 268435456.0,
+        "TEST_INJECTION": 0.0,
+        "KKT_CAPTURE": 0.0,
+        "SCHUR_TRACE_LEVEL": 0.0,
+        "SCHUR_REPLAY_POLICY": "CONSISTENT",
+        "SCHUR_STRUCTURE_CACHE": 1.0,
+        "SCHUR_RECOVERY_MODE": "REUSE_U",
+        "SCHUR_REFINEMENT": "FIXED3",
+        "SCHUR_GENERIC_START_ITERS": 0.0,
+        "DIRECT_FINAL_AFTER_PILOT": 0.0,
+        "DIAGNOSTIC_MODE": 1.0,
+        "HSD_CAPTURE": 0.0,
+        "HSD_LINEAR_BACKEND": "AUTO_PIVOT",
+        "HSD_LINEAR_CAPTURE": 0.0,
+        "HSD_LINEAR_CAPTURE_MAX": 8.0,
+        "HSD_STABLE_MAX_BYTES": 1073741824.0,
+        "HSD_LINEAR_TRACE": 0.0,
+        "C0_AUTO": 0.0,
+        "ANALYSIS_POLICY": "ASSOCIATED",
+        "RAW_LOWER_AUDIT": 1.0,
+        "C0_UPPER_ADAPT": 0.0,
+        "HSD_SOLVE_SECONDS": 300.0,
+        "C0_DIRECT_UPPER": 1.0,
+        "HSD_PROJECTIVE_NORMALIZATION": 1.0,
+        "HSD_ORIGINAL_OPERATOR": 0.0,
+        "ADAPT_MESH_POLICY": "LEGACY_THEN_REFINE",
+        "ADAPT_REFINE_CAP": 1000.0,
+        "FS_BRACKET_POLICY": "AUDITED_UPPER_LIMIT"
+      },
+      "root_tolerance_contract": "width <= FS_TOL * max(1, bracket midpoint); per-owner native root validity and completion flags",
+      "input_title": "Jia2024 / Cheng homogeneous Case 4, psi=0, associated twin",
+      "solve_count": 66,
+      "audit_count": 1081,
+      "native_terminal": {
+        "status": "OPTIMAL",
+        "solve_count": "66",
+        "sampled_peak_private_bytes": "746905600",
+        "logging_seconds_before_run_end": "4.49119780000183",
+        "message": ""
+      }
+    },
+    {
+      "case": "P04N",
+      "status": "PASS_TARGET",
+      "analysis_seconds": 310.336875,
+      "lower_fs": 2.138029172910192,
+      "upper_fs": 2.1539417859693817,
+      "relative_gap": 0.007415060918000153,
+      "fs_obtained": true,
+      "target_met": true,
+      "target_unmet_reasons": [],
+      "element_counts": [
+        999.0,
+        999.0
+      ],
+      "witness_q": [
+        8,
+        8
+      ],
+      "error_number": 0,
+      "pore_pressure": false,
+      "root_width": 0.000172308450539838,
+      "root_search_incomplete": false,
+      "global_incomplete_note": "",
+      "dll_actually_used": true,
+      "native_counters": {
+        "numeric": 1917,
+        "dd_numeric": 0,
+        "backsolve": 0,
+        "ordering": 6,
+        "column_ordering": 0,
+        "nt_bulk": 1900,
+        "g_bulk": 0,
+        "gt_bulk": 3804,
+        "kkt_bulk": 1900,
+        "hsd_operator": 0,
+        "corrector_bulk": 1902,
+        "bulk_job_steps": 36464,
+        "hsd_lu": 0,
+        "hsd_lu_solve": 0,
+        "solver_vector_calls": 23207,
+        "hsd_jobs": 0,
+        "hsd_job_steps": 0,
+        "krylov_jobs": 0,
+        "krylov_steps": 0,
+        "refine_jobs": 2144,
+        "refine_steps": 2144,
+        "input_compare_calls": 8595,
+        "schur_jobs": 1677,
+        "schur_steps": 2523,
+        "schur_native_bytes": 0,
+        "meshfan_jobs": 0,
+        "meshfan_steps": 0
+      },
+      "input_sha256": "2aa99fceb305627ba7b39447ed9a2435dfd40c8202157f385b8a1478e852bff7",
+      "source_sha256": "dcbfdcfb2d4bbcf382f07d237e77d7122185ebe91c4fce59935cb751f04e2fda",
+      "dll_sha256": "72aaf9bfccc0acc186eb69cdcbabd93b27f7ce245ceac574193ba6602c675323",
+      "workbook_sha256": "945ec8d56e9364377d3a8ba7c442842bb8d6cd034f1bdafe62deb86c80069b1c",
+      "production_source_check": {
+        "pass": true,
+        "original_modules_unchanged": 71,
+        "only_added_module": "BatchEvidence"
+      },
+      "independent_audit": {
+        "pass": true,
+        "scope": "Independent physical equations, material/geometry, explicit boundaries, dry weight and D08A P1 water-gradient loads",
+        "results": [
+          {
+            "side": "lower",
+            "metadata": {
+              "nodes": 538,
+              "elements": 999,
+              "q": 8,
+              "factor": 2.138029172910192,
+              "fs": 2.138029172910192,
+              "objective": 1.0001403443388144,
+              "native_audit": 2.261163206326855e-09,
+              "scale": 20.0
+            },
+            "physical_audit": {
+              "pass": true,
+              "errors": {
+                "yield": 0.0,
+                "equilibrium": 2.2611610361877865e-09,
+                "boundary_traction": 2.7797983670558036e-12,
+                "internal_traction": 1.1576961611581282e-10
+              },
+              "load": 1.0001403443388144,
+              "value": 1.0001403443388144
+            },
+            "raw_lower_errors": {
+              "yield": 0.0,
+              "equilibrium": 4.522322072375573e-08,
+              "boundary_traction": 5.5595967341116074e-11,
+              "internal_traction": 2.3153923223162565e-09
+            },
+            "raw_lower_pass": true,
+            "endpoint_direction_pass": true,
+            "material_areas": [
+              158.0
+            ],
+            "gravity_weight": 3160.0,
+            "effective_vertical_load": 3159.9999999999995,
+            "independent_body_max_error": 0.0,
+            "pore_pressure_on": false,
+            "pass": true
+          },
+          {
+            "side": "upper",
+            "metadata": {
+              "nodes": 538,
+              "elements": 999,
+              "q": 8,
+              "factor": 2.1539417859693817,
+              "fs": 2.1539417859693817,
+              "objective": 0.9998983231804197,
+              "native_audit": 8.261191730696282e-11,
+              "scale": 20.0
+            },
+            "physical_audit": {
+              "pass": true,
+              "errors": {
+                "flow": 0.0,
+                "boundary": 6.94789999166857e-12,
+                "jump": 0.0,
+                "work": 8.26116952623579e-11,
+                "objective": 0.0
+              },
+              "dissipation": 0.9998983231804197,
+              "work": [
+                0.0,
+                0.9999999999173883
+              ],
+              "value": 0.9998983231804197
+            },
+            "raw_lower_errors": {},
+            "raw_lower_pass": true,
+            "endpoint_direction_pass": true,
+            "material_areas": [
+              158.0
+            ],
+            "gravity_weight": 3160.0,
+            "effective_vertical_load": 3159.9999999999995,
+            "independent_body_max_error": 0.0,
+            "pore_pressure_on": false,
+            "pass": true
+          }
+        ]
+      },
+      "actual_settings": {
+        "MODE": "Fs",
+        "TARGET": 1536.0,
+        "GRAVITY": "固定",
+        "ADAPT": 1.0,
+        "CYCLES": 3.0,
+        "GAP": 0.01,
+        "REFINE": 0.2,
+        "QUADRATURE": 8.0,
+        "FS_TOL": 0.0001,
+        "BEARING_FACES": null,
+        "BEARING_RIGIDS": null,
+        "SEISMIC_KH": 0.0,
+        "SEISMIC_DIR": "右(+x)",
+        "UPPER_PILOT": 0.0,
+        "UPPER_PILOT_RIGID": 0.0,
+        "LOWER_FS_SEED": "UPPER_TRIAL",
+        "LOWER_SEED_WIDTH": 0.02,
+        "LOWER_MODEL_CACHE": 1.0,
+        "LOWER_KKT_BACKEND": "AUTO",
+        "SCHUR_ALLOW_RIGID": 0.0,
+        "SCHUR_MAX_BYTES": 268435456.0,
+        "TEST_INJECTION": 0.0,
+        "KKT_CAPTURE": 0.0,
+        "SCHUR_TRACE_LEVEL": 0.0,
+        "SCHUR_REPLAY_POLICY": "CONSISTENT",
+        "SCHUR_STRUCTURE_CACHE": 1.0,
+        "SCHUR_RECOVERY_MODE": "REUSE_U",
+        "SCHUR_REFINEMENT": "FIXED3",
+        "SCHUR_GENERIC_START_ITERS": 0.0,
+        "DIRECT_FINAL_AFTER_PILOT": 0.0,
+        "DIAGNOSTIC_MODE": 1.0,
+        "HSD_CAPTURE": 0.0,
+        "HSD_LINEAR_BACKEND": "AUTO_PIVOT",
+        "HSD_LINEAR_CAPTURE": 0.0,
+        "HSD_LINEAR_CAPTURE_MAX": 8.0,
+        "HSD_STABLE_MAX_BYTES": 1073741824.0,
+        "HSD_LINEAR_TRACE": 0.0,
+        "C0_AUTO": 0.0,
+        "ANALYSIS_POLICY": "DAVIS_EQUIVALENT",
+        "RAW_LOWER_AUDIT": 1.0,
+        "C0_UPPER_ADAPT": 0.0,
+        "HSD_SOLVE_SECONDS": 300.0,
+        "C0_DIRECT_UPPER": 1.0,
+        "HSD_PROJECTIVE_NORMALIZATION": 1.0,
+        "HSD_ORIGINAL_OPERATOR": 0.0,
+        "ADAPT_MESH_POLICY": "LEGACY_THEN_REFINE",
+        "ADAPT_REFINE_CAP": 1000.0,
+        "FS_BRACKET_POLICY": "AUDITED_UPPER_LIMIT"
+      },
+      "root_tolerance_contract": "width <= FS_TOL * max(1, bracket midpoint); per-owner native root validity and completion flags",
+      "input_title": "Jia2024 / Cheng homogeneous Case 4, psi=0",
+      "solve_count": 58,
+      "audit_count": 1205,
+      "native_terminal": {
+        "status": "OPTIMAL",
+        "solve_count": "58",
+        "sampled_peak_private_bytes": "749133824",
+        "logging_seconds_before_run_end": "3.91335300027276",
+        "message": ""
+      }
+    },
+    {
+      "case": "P05A",
+      "status": "FS_AVAILABLE_PARTIAL",
+      "analysis_seconds": 283.859588,
+      "lower_fs": 1.4650728061474296,
+      "upper_fs": 1.4896715015368427,
+      "relative_gap": 0.016650303936919568,
+      "fs_obtained": true,
+      "target_met": false,
+      "target_unmet_reasons": [
+        "GAP_TARGET_NOT_MET"
+      ],
+      "element_counts": [
+        551.0,
+        551.0
+      ],
+      "witness_q": [
+        8,
+        8
+      ],
+      "error_number": 0,
+      "pore_pressure": false,
+      "root_width": 0.000118976805100868,
+      "root_search_incomplete": true,
+      "global_incomplete_note": "ADAPT_GAP_TARGET_NOT_MET",
+      "dll_actually_used": true,
+      "native_counters": {
+        "numeric": 1555,
+        "dd_numeric": 0,
+        "backsolve": 8,
+        "ordering": 2,
+        "column_ordering": 0,
+        "nt_bulk": 1523,
+        "g_bulk": 12,
+        "gt_bulk": 3275,
+        "kkt_bulk": 1518,
+        "hsd_operator": 482,
+        "corrector_bulk": 1521,
+        "bulk_job_steps": 30826,
+        "hsd_lu": 0,
+        "hsd_lu_solve": 0,
+        "solver_vector_calls": 24871,
+        "hsd_jobs": 699,
+        "hsd_job_steps": 1492,
+        "krylov_jobs": 0,
+        "krylov_steps": 0,
+        "refine_jobs": 1991,
+        "refine_steps": 1991,
+        "input_compare_calls": 4605,
+        "schur_jobs": 622,
+        "schur_steps": 950,
+        "schur_native_bytes": 0,
+        "meshfan_jobs": 0,
+        "meshfan_steps": 0
+      },
+      "input_sha256": "0a63a1df97061275ed31d44eae841cc248828c34caff610da24e14731e607a83",
+      "source_sha256": "dcbfdcfb2d4bbcf382f07d237e77d7122185ebe91c4fce59935cb751f04e2fda",
+      "dll_sha256": "72aaf9bfccc0acc186eb69cdcbabd93b27f7ce245ceac574193ba6602c675323",
+      "workbook_sha256": "ae8d2b94a26e5ab2b9e294eb0eb79ce8ebb4d8f37e1fb7bdcc179f3475bf61da",
+      "production_source_check": {
+        "pass": true,
+        "original_modules_unchanged": 71,
+        "only_added_module": "BatchEvidence"
+      },
+      "independent_audit": {
+        "pass": true,
+        "scope": "Independent physical equations, material/geometry, explicit boundaries, dry weight and D08A P1 water-gradient loads",
+        "results": [
+          {
+            "side": "lower",
+            "metadata": {
+              "nodes": 318,
+              "elements": 551,
+              "q": 8,
+              "factor": 1.4650728061474296,
+              "fs": 1.4650728061474296,
+              "objective": 1.0002742462672527,
+              "native_audit": 8.615149704738201e-10,
+              "scale": 16.8
+            },
+            "physical_audit": {
+              "pass": true,
+              "errors": {
+                "yield": 0.0,
+                "equilibrium": 3.055469210977435e-10,
+                "internal_traction": 8.615150814961225e-10,
+                "boundary_traction": 4.3238701712970185e-12
+              },
+              "load": 1.0002742462672527,
+              "value": 1.0002742462672527
+            },
+            "raw_lower_errors": {
+              "yield": 0.0,
+              "equilibrium": 5.133188274442091e-09,
+              "internal_traction": 1.447345336913486e-08,
+              "boundary_traction": 7.264101887778991e-11
+            },
+            "raw_lower_pass": true,
+            "endpoint_direction_pass": true,
+            "material_areas": [
+              100.0,
+              150.0,
+              225.0
+            ],
+            "gravity_weight": 9449.999999999998,
+            "effective_vertical_load": 9449.999999999998,
+            "independent_body_max_error": 0.0,
+            "pore_pressure_on": false,
+            "pass": true
+          },
+          {
+            "side": "upper",
+            "metadata": {
+              "nodes": 318,
+              "elements": 551,
+              "q": 8,
+              "factor": 1.4896715015368427,
+              "fs": 1.4896715015368427,
+              "objective": 0.9999954013257453,
+              "native_audit": 6.6963898384675424e-09,
+              "scale": 16.8
+            },
+            "physical_audit": {
+              "pass": true,
+              "errors": {
+                "flow": 0.0,
+                "jump": 0.0,
+                "boundary": 3.172921995388667e-11,
+                "bonded_interface": 6.6963898384675424e-09,
+                "work": 1.3912626606327194e-10,
+                "objective": 2.220446049250313e-16
+              },
+              "dissipation": 0.9999954013257455,
+              "work": [
+                0.0,
+                0.9999999998608737
+              ],
+              "value": 0.9999954013257455
+            },
+            "raw_lower_errors": {},
+            "raw_lower_pass": true,
+            "endpoint_direction_pass": true,
+            "material_areas": [
+              100.0,
+              150.0,
+              225.0
+            ],
+            "gravity_weight": 9449.999999999998,
+            "effective_vertical_load": 9449.999999999998,
+            "independent_body_max_error": 0.0,
+            "pore_pressure_on": false,
+            "pass": true
+          }
+        ]
+      },
+      "actual_settings": {
+        "MODE": "Fs",
+        "TARGET": 1536.0,
+        "GRAVITY": "固定",
+        "ADAPT": 1.0,
+        "CYCLES": 3.0,
+        "GAP": 0.01,
+        "REFINE": 0.2,
+        "QUADRATURE": 8.0,
+        "FS_TOL": 0.0001,
+        "BEARING_FACES": null,
+        "BEARING_RIGIDS": null,
+        "SEISMIC_KH": 0.0,
+        "SEISMIC_DIR": "右(+x)",
+        "UPPER_PILOT": 0.0,
+        "UPPER_PILOT_RIGID": 0.0,
+        "LOWER_FS_SEED": "UPPER_TRIAL",
+        "LOWER_SEED_WIDTH": 0.02,
+        "LOWER_MODEL_CACHE": 1.0,
+        "LOWER_KKT_BACKEND": "AUTO",
+        "SCHUR_ALLOW_RIGID": 0.0,
+        "SCHUR_MAX_BYTES": 268435456.0,
+        "TEST_INJECTION": 0.0,
+        "KKT_CAPTURE": 0.0,
+        "SCHUR_TRACE_LEVEL": 0.0,
+        "SCHUR_REPLAY_POLICY": "CONSISTENT",
+        "SCHUR_STRUCTURE_CACHE": 1.0,
+        "SCHUR_RECOVERY_MODE": "REUSE_U",
+        "SCHUR_REFINEMENT": "FIXED3",
+        "SCHUR_GENERIC_START_ITERS": 0.0,
+        "DIRECT_FINAL_AFTER_PILOT": 0.0,
+        "DIAGNOSTIC_MODE": 1.0,
+        "HSD_CAPTURE": 0.0,
+        "HSD_LINEAR_BACKEND": "AUTO_PIVOT",
+        "HSD_LINEAR_CAPTURE": 0.0,
+        "HSD_LINEAR_CAPTURE_MAX": 8.0,
+        "HSD_STABLE_MAX_BYTES": 1073741824.0,
+        "HSD_LINEAR_TRACE": 0.0,
+        "C0_AUTO": 0.0,
+        "ANALYSIS_POLICY": "ASSOCIATED",
+        "RAW_LOWER_AUDIT": 1.0,
+        "C0_UPPER_ADAPT": 0.0,
+        "HSD_SOLVE_SECONDS": 300.0,
+        "C0_DIRECT_UPPER": 1.0,
+        "HSD_PROJECTIVE_NORMALIZATION": 1.0,
+        "HSD_ORIGINAL_OPERATOR": 0.0,
+        "ADAPT_MESH_POLICY": "LEGACY_THEN_REFINE",
+        "ADAPT_REFINE_CAP": 1000.0,
+        "FS_BRACKET_POLICY": "AUDITED_UPPER_LIMIT"
+      },
+      "root_tolerance_contract": "width <= FS_TOL * max(1, bracket midpoint); per-owner native root validity and completion flags",
+      "input_title": "Three horizontal layers",
+      "solve_count": 31,
+      "audit_count": 392,
+      "native_terminal": {
+        "status": "PARTIAL_CERTIFIED",
+        "solve_count": "31",
+        "sampled_peak_private_bytes": "550281216",
+        "logging_seconds_before_run_end": "2.20090859979973",
+        "message": "ADAPT_GAP_TARGET_NOT_MET"
+      }
+    },
+    {
+      "case": "P05N",
+      "status": "FS_AVAILABLE_PARTIAL",
+      "analysis_seconds": 552.866536,
+      "lower_fs": 1.4590373977014948,
+      "upper_fs": 1.4760732287084188,
+      "relative_gap": 0.011608305904136557,
+      "fs_obtained": true,
+      "target_met": false,
+      "target_unmet_reasons": [
+        "GAP_TARGET_NOT_MET"
+      ],
+      "element_counts": [
+        997.0,
+        997.0
+      ],
+      "witness_q": [
+        8,
+        8
+      ],
+      "error_number": 0,
+      "pore_pressure": false,
+      "root_width": 0.000117895541219104,
+      "root_search_incomplete": true,
+      "global_incomplete_note": "ADAPT_GAP_TARGET_NOT_MET",
+      "dll_actually_used": true,
+      "native_counters": {
+        "numeric": 2700,
+        "dd_numeric": 0,
+        "backsolve": 19,
+        "ordering": 5,
+        "column_ordering": 0,
+        "nt_bulk": 2635,
+        "g_bulk": 20,
+        "gt_bulk": 5639,
+        "kkt_bulk": 2626,
+        "hsd_operator": 752,
+        "corrector_bulk": 2641,
+        "bulk_job_steps": 53147,
+        "hsd_lu": 0,
+        "hsd_lu_solve": 0,
+        "solver_vector_calls": 41202,
+        "hsd_jobs": 1071,
+        "hsd_job_steps": 2287,
+        "krylov_jobs": 0,
+        "krylov_steps": 0,
+        "refine_jobs": 3195,
+        "refine_steps": 3195,
+        "input_compare_calls": 9702,
+        "schur_jobs": 1447,
+        "schur_steps": 2200,
+        "schur_native_bytes": 0,
+        "meshfan_jobs": 0,
+        "meshfan_steps": 0
+      },
+      "input_sha256": "00c0f0343591fd462869feb282b56a4d34bddb9de4570d77888235ea8c99b328",
+      "source_sha256": "dcbfdcfb2d4bbcf382f07d237e77d7122185ebe91c4fce59935cb751f04e2fda",
+      "dll_sha256": "72aaf9bfccc0acc186eb69cdcbabd93b27f7ce245ceac574193ba6602c675323",
+      "workbook_sha256": "c92a6dce80c2e3dc67f29a96fd3cf6421d2956453ba7a61117bde4035f32f1da",
+      "production_source_check": {
+        "pass": true,
+        "original_modules_unchanged": 71,
+        "only_added_module": "BatchEvidence"
+      },
+      "independent_audit": {
+        "pass": true,
+        "scope": "Independent physical equations, material/geometry, explicit boundaries, dry weight and D08A P1 water-gradient loads",
+        "results": [
+          {
+            "side": "lower",
+            "metadata": {
+              "nodes": 543,
+              "elements": 997,
+              "q": 8,
+              "factor": 1.4590373977014948,
+              "fs": 1.4590373977014948,
+              "objective": 1.0002665492170992,
+              "native_audit": 1.3029058334068817e-09,
+              "scale": 16.8
+            },
+            "physical_audit": {
+              "pass": true,
+              "errors": {
+                "yield": 0.0,
+                "equilibrium": 1.3029048950841116e-09,
+                "internal_traction": 8.66874572125198e-10,
+                "boundary_traction": 2.1894820293495386e-12
+              },
+              "load": 1.0002665492170992,
+              "value": 1.0002665492170992
+            },
+            "raw_lower_errors": {
+              "yield": 0.0,
+              "equilibrium": 2.1888802237413076e-08,
+              "internal_traction": 1.4563492811703328e-08,
+              "boundary_traction": 3.678329809307225e-11
+            },
+            "raw_lower_pass": true,
+            "endpoint_direction_pass": true,
+            "material_areas": [
+              100.0,
+              150.0,
+              225.0
+            ],
+            "gravity_weight": 9450.000000000002,
+            "effective_vertical_load": 9449.999999999996,
+            "independent_body_max_error": 0.0,
+            "pore_pressure_on": false,
+            "pass": true
+          },
+          {
+            "side": "upper",
+            "metadata": {
+              "nodes": 543,
+              "elements": 997,
+              "q": 8,
+              "factor": 1.4760732287084188,
+              "fs": 1.4760732287084188,
+              "objective": 0.9999947009058604,
+              "native_audit": 1.2859619584393764e-08,
+              "scale": 16.8
+            },
+            "physical_audit": {
+              "pass": true,
+              "errors": {
+                "flow": 0.0,
+                "jump": 0.0,
+                "boundary": 3.302613266904697e-10,
+                "bonded_interface": 1.2859619584393764e-08,
+                "work": 1.9902302028640406e-11,
+                "objective": 2.220446049250313e-16
+              },
+              "dissipation": 0.9999947009058606,
+              "work": [
+                0.0,
+                0.9999999999800977
+              ],
+              "value": 0.9999947009058606
+            },
+            "raw_lower_errors": {},
+            "raw_lower_pass": true,
+            "endpoint_direction_pass": true,
+            "material_areas": [
+              100.0,
+              150.0,
+              225.0
+            ],
+            "gravity_weight": 9450.000000000002,
+            "effective_vertical_load": 9449.999999999996,
+            "independent_body_max_error": 0.0,
+            "pore_pressure_on": false,
+            "pass": true
+          }
+        ]
+      },
+      "actual_settings": {
+        "MODE": "Fs",
+        "TARGET": 1536.0,
+        "GRAVITY": "固定",
+        "ADAPT": 1.0,
+        "CYCLES": 3.0,
+        "GAP": 0.01,
+        "REFINE": 0.2,
+        "QUADRATURE": 8.0,
+        "FS_TOL": 0.0001,
+        "BEARING_FACES": null,
+        "BEARING_RIGIDS": null,
+        "SEISMIC_KH": 0.0,
+        "SEISMIC_DIR": "右(+x)",
+        "UPPER_PILOT": 0.0,
+        "UPPER_PILOT_RIGID": 0.0,
+        "LOWER_FS_SEED": "UPPER_TRIAL",
+        "LOWER_SEED_WIDTH": 0.02,
+        "LOWER_MODEL_CACHE": 1.0,
+        "LOWER_KKT_BACKEND": "AUTO",
+        "SCHUR_ALLOW_RIGID": 0.0,
+        "SCHUR_MAX_BYTES": 268435456.0,
+        "TEST_INJECTION": 0.0,
+        "KKT_CAPTURE": 0.0,
+        "SCHUR_TRACE_LEVEL": 0.0,
+        "SCHUR_REPLAY_POLICY": "CONSISTENT",
+        "SCHUR_STRUCTURE_CACHE": 1.0,
+        "SCHUR_RECOVERY_MODE": "REUSE_U",
+        "SCHUR_REFINEMENT": "FIXED3",
+        "SCHUR_GENERIC_START_ITERS": 0.0,
+        "DIRECT_FINAL_AFTER_PILOT": 0.0,
+        "DIAGNOSTIC_MODE": 1.0,
+        "HSD_CAPTURE": 0.0,
+        "HSD_LINEAR_BACKEND": "AUTO_PIVOT",
+        "HSD_LINEAR_CAPTURE": 0.0,
+        "HSD_LINEAR_CAPTURE_MAX": 8.0,
+        "HSD_STABLE_MAX_BYTES": 1073741824.0,
+        "HSD_LINEAR_TRACE": 0.0,
+        "C0_AUTO": 0.0,
+        "ANALYSIS_POLICY": "DAVIS_EQUIVALENT",
+        "RAW_LOWER_AUDIT": 1.0,
+        "C0_UPPER_ADAPT": 0.0,
+        "HSD_SOLVE_SECONDS": 300.0,
+        "C0_DIRECT_UPPER": 1.0,
+        "HSD_PROJECTIVE_NORMALIZATION": 1.0,
+        "HSD_ORIGINAL_OPERATOR": 0.0,
+        "ADAPT_MESH_POLICY": "LEGACY_THEN_REFINE",
+        "ADAPT_REFINE_CAP": 1000.0,
+        "FS_BRACKET_POLICY": "AUDITED_UPPER_LIMIT"
+      },
+      "root_tolerance_contract": "width <= FS_TOL * max(1, bracket midpoint); per-owner native root validity and completion flags",
+      "input_title": "Three horizontal layers",
+      "solve_count": 59,
+      "audit_count": 734,
+      "native_terminal": {
+        "status": "PARTIAL_CERTIFIED",
+        "solve_count": "59",
+        "sampled_peak_private_bytes": "753332224",
+        "logging_seconds_before_run_end": "4.95343319987296",
+        "message": "ADAPT_GAP_TARGET_NOT_MET"
+      }
+    },
+    {
+      "case": "P06A",
+      "status": "FS_AVAILABLE_PARTIAL",
+      "analysis_seconds": 6049.832389,
+      "lower_fs": 0.8397999792049067,
+      "upper_fs": 0.9153859713305423,
+      "relative_gap": 0.08612875701583286,
+      "fs_obtained": true,
+      "target_met": false,
+      "target_unmet_reasons": [
+        "GAP_TARGET_NOT_MET"
+      ],
+      "element_counts": [
+        1000.0,
+        1000.0
+      ],
+      "witness_q": [
+        8,
+        8
+      ],
+      "error_number": 0,
+      "pore_pressure": false,
+      "root_width": 7.2366716214689e-05,
+      "root_search_incomplete": true,
+      "global_incomplete_note": "ADAPT_GAP_TARGET_NOT_MET",
+      "dll_actually_used": true,
+      "native_counters": {
+        "numeric": 1719,
+        "dd_numeric": 529,
+        "backsolve": 56,
+        "ordering": 0,
+        "column_ordering": 0,
+        "nt_bulk": 2215,
+        "g_bulk": 995,
+        "gt_bulk": 6677,
+        "kkt_bulk": 2215,
+        "hsd_operator": 4542,
+        "corrector_bulk": 2215,
+        "bulk_job_steps": 61545,
+        "hsd_lu": 0,
+        "hsd_lu_solve": 0,
+        "solver_vector_calls": 46569,
+        "hsd_jobs": 6677,
+        "hsd_job_steps": 27861,
+        "krylov_jobs": 436,
+        "krylov_steps": 10920,
+        "refine_jobs": 0,
+        "refine_steps": 0,
+        "input_compare_calls": 227550,
+        "schur_jobs": 0,
+        "schur_steps": 0,
+        "schur_native_bytes": 0,
+        "meshfan_jobs": 30,
+        "meshfan_steps": 30
+      },
+      "input_sha256": "723491feaccb2c8b64c191dccf0564416816e09d3c2fe4c297e06c7505cf3215",
+      "source_sha256": "dcbfdcfb2d4bbcf382f07d237e77d7122185ebe91c4fce59935cb751f04e2fda",
+      "dll_sha256": "72aaf9bfccc0acc186eb69cdcbabd93b27f7ce245ceac574193ba6602c675323",
+      "workbook_sha256": "41cf3fc649cb944d0d8cd23b648f0680ff56e650dd4f86d5f2f27c8501e8ac97",
+      "production_source_check": {
+        "pass": true,
+        "original_modules_unchanged": 71,
+        "only_added_module": "BatchEvidence"
+      },
+      "independent_audit": {
+        "pass": true,
+        "scope": "Independent physical equations, material/geometry, explicit boundaries, dry weight and D08A P1 water-gradient loads",
+        "results": [
+          {
+            "side": "lower",
+            "metadata": {
+              "nodes": 542,
+              "elements": 1000,
+              "q": 8,
+              "factor": 0.8397999792049067,
+              "fs": 0.8397999792049067,
+              "objective": 1.0001664356057467,
+              "native_audit": 1.0071804501521342e-11,
+              "scale": 20.0
+            },
+            "physical_audit": {
+              "pass": true,
+              "errors": {
+                "yield": 4.435960728152221e-14,
+                "equilibrium": 1.0032863428932615e-11,
+                "internal_traction": 7.754907827006718e-14,
+                "boundary_traction": 5.0134577678068445e-14
+              },
+              "load": 1.0001664356057467,
+              "value": 1.0001664356057467
+            },
+            "raw_lower_errors": {
+              "yield": 8.871921456304443e-13,
+              "equilibrium": 2.006572685786523e-10,
+              "internal_traction": 1.5509815654013437e-12,
+              "boundary_traction": 1.002691553561369e-12
+            },
+            "raw_lower_pass": true,
+            "endpoint_direction_pass": true,
+            "material_areas": [
+              83.75,
+              11.600000000000001,
+              207.14999999999998
+            ],
+            "gravity_weight": 5747.500000000001,
+            "effective_vertical_load": 5747.499999999997,
+            "independent_body_max_error": 0.0,
+            "pore_pressure_on": false,
+            "pass": true
+          },
+          {
+            "side": "upper",
+            "metadata": {
+              "nodes": 542,
+              "elements": 1000,
+              "q": 8,
+              "factor": 0.9153859713305423,
+              "fs": 0.9153859713305423,
+              "objective": 0.9999557442983772,
+              "native_audit": 3.7423730780972164e-11,
+              "scale": 20.0
+            },
+            "physical_audit": {
+              "pass": true,
+              "errors": {
+                "flow": 2.619847816101999e-13,
+                "jump": 1.7118363432940673e-13,
+                "bonded_interface": 4.603476257279243e-12,
+                "boundary": 9.604615878583273e-12,
+                "work": 3.74218434018303e-11,
+                "objective": 2.220446049250313e-16
+              },
+              "dissipation": 0.999955744298377,
+              "work": [
+                0.0,
+                0.9999999999625782
+              ],
+              "value": 0.999955744298377
+            },
+            "raw_lower_errors": {},
+            "raw_lower_pass": true,
+            "endpoint_direction_pass": true,
+            "material_areas": [
+              83.75,
+              11.600000000000001,
+              207.14999999999998
+            ],
+            "gravity_weight": 5747.500000000001,
+            "effective_vertical_load": 5747.499999999997,
+            "independent_body_max_error": 0.0,
+            "pore_pressure_on": false,
+            "pass": true
+          }
+        ]
+      },
+      "actual_settings": {
+        "MODE": "Fs",
+        "TARGET": 1536.0,
+        "GRAVITY": "固定",
+        "ADAPT": 1.0,
+        "CYCLES": 3.0,
+        "GAP": 0.01,
+        "REFINE": 0.2,
+        "QUADRATURE": 8.0,
+        "FS_TOL": 0.0001,
+        "BEARING_FACES": null,
+        "BEARING_RIGIDS": null,
+        "SEISMIC_KH": 0.0,
+        "SEISMIC_DIR": "右(+x)",
+        "UPPER_PILOT": 0.0,
+        "UPPER_PILOT_RIGID": 0.0,
+        "LOWER_FS_SEED": "UPPER_TRIAL",
+        "LOWER_SEED_WIDTH": 0.02,
+        "LOWER_MODEL_CACHE": 1.0,
+        "LOWER_KKT_BACKEND": "AUTO",
+        "SCHUR_ALLOW_RIGID": 0.0,
+        "SCHUR_MAX_BYTES": 268435456.0,
+        "TEST_INJECTION": 0.0,
+        "KKT_CAPTURE": 0.0,
+        "SCHUR_TRACE_LEVEL": 0.0,
+        "SCHUR_REPLAY_POLICY": "CONSISTENT",
+        "SCHUR_STRUCTURE_CACHE": 1.0,
+        "SCHUR_RECOVERY_MODE": "REUSE_U",
+        "SCHUR_REFINEMENT": "FIXED3",
+        "SCHUR_GENERIC_START_ITERS": 0.0,
+        "DIRECT_FINAL_AFTER_PILOT": 0.0,
+        "DIAGNOSTIC_MODE": 1.0,
+        "HSD_CAPTURE": 0.0,
+        "HSD_LINEAR_BACKEND": "AUTO_PIVOT",
+        "HSD_LINEAR_CAPTURE": 0.0,
+        "HSD_LINEAR_CAPTURE_MAX": 8.0,
+        "HSD_STABLE_MAX_BYTES": 1073741824.0,
+        "HSD_LINEAR_TRACE": 0.0,
+        "C0_AUTO": 0.0,
+        "ANALYSIS_POLICY": "ASSOCIATED",
+        "RAW_LOWER_AUDIT": 1.0,
+        "C0_UPPER_ADAPT": 0.0,
+        "HSD_SOLVE_SECONDS": 300.0,
+        "C0_DIRECT_UPPER": 1.0,
+        "HSD_PROJECTIVE_NORMALIZATION": 1.0,
+        "HSD_ORIGINAL_OPERATOR": 0.0,
+        "ADAPT_MESH_POLICY": "LEGACY_THEN_REFINE",
+        "ADAPT_REFINE_CAP": 1000.0,
+        "FS_BRACKET_POLICY": "AUDITED_UPPER_LIMIT"
+      },
+      "root_tolerance_contract": "width <= FS_TOL * max(1, bracket midpoint); per-owner native root validity and completion flags",
+      "input_title": "Thin frictional weak band, 28 m domain",
+      "solve_count": 62,
+      "audit_count": 732,
+      "native_terminal": {
+        "status": "PARTIAL_CERTIFIED",
+        "solve_count": "62",
+        "sampled_peak_private_bytes": "599875584",
+        "logging_seconds_before_run_end": "31.6191528996278",
+        "message": "ADAPT_GAP_TARGET_NOT_MET"
+      }
+    },
+    {
+      "case": "P06N",
+      "status": "FS_AVAILABLE_PARTIAL",
+      "analysis_seconds": 6057.41818,
+      "lower_fs": 0.6705083583412688,
+      "upper_fs": 0.7563936919252566,
+      "relative_gap": 0.12038013901226884,
+      "fs_obtained": true,
+      "target_met": false,
+      "target_unmet_reasons": [
+        "GAP_TARGET_NOT_MET"
+      ],
+      "element_counts": [
+        1000.0,
+        1000.0
+      ],
+      "witness_q": [
+        8,
+        8
+      ],
+      "error_number": 0,
+      "pore_pressure": false,
+      "root_width": 7.33759227800057e-05,
+      "root_search_incomplete": true,
+      "global_incomplete_note": "ADAPT_GAP_TARGET_NOT_MET",
+      "dll_actually_used": true,
+      "native_counters": {
+        "numeric": 1779,
+        "dd_numeric": 517,
+        "backsolve": 74,
+        "ordering": 0,
+        "column_ordering": 0,
+        "nt_bulk": 2264,
+        "g_bulk": 997,
+        "gt_bulk": 6825,
+        "kkt_bulk": 2264,
+        "hsd_operator": 4677,
+        "corrector_bulk": 2265,
+        "bulk_job_steps": 63234,
+        "hsd_lu": 0,
+        "hsd_lu_solve": 0,
+        "solver_vector_calls": 47538,
+        "hsd_jobs": 6825,
+        "hsd_job_steps": 28440,
+        "krylov_jobs": 436,
+        "krylov_steps": 11153,
+        "refine_jobs": 0,
+        "refine_steps": 0,
+        "input_compare_calls": 222774,
+        "schur_jobs": 0,
+        "schur_steps": 0,
+        "schur_native_bytes": 0,
+        "meshfan_jobs": 30,
+        "meshfan_steps": 30
+      },
+      "input_sha256": "389bf6c3c29d49e509a1ea0f270ca0fae3594910da0cb8dd594edfea9cefec2b",
+      "source_sha256": "dcbfdcfb2d4bbcf382f07d237e77d7122185ebe91c4fce59935cb751f04e2fda",
+      "dll_sha256": "72aaf9bfccc0acc186eb69cdcbabd93b27f7ce245ceac574193ba6602c675323",
+      "workbook_sha256": "a6d0818be00a5955880b0a41b9582e3ad352c3eb997b7bb724adc2b201ed967a",
+      "production_source_check": {
+        "pass": true,
+        "original_modules_unchanged": 71,
+        "only_added_module": "BatchEvidence"
+      },
+      "independent_audit": {
+        "pass": true,
+        "scope": "Independent physical equations, material/geometry, explicit boundaries, dry weight and D08A P1 water-gradient loads",
+        "results": [
+          {
+            "side": "lower",
+            "metadata": {
+              "nodes": 542,
+              "elements": 1000,
+              "q": 8,
+              "factor": 0.6705083583412688,
+              "fs": 0.6705083583412688,
+              "objective": 1.0001916182241943,
+              "native_audit": 7.538358826053582e-12,
+              "scale": 20.0
+            },
+            "physical_audit": {
+              "pass": true,
+              "errors": {
+                "yield": 3.39786469791691e-14,
+                "equilibrium": 7.545963853772264e-12,
+                "internal_traction": 5.795364188543317e-14,
+                "boundary_traction": 3.753585013478832e-14
+              },
+              "load": 1.0001916182241943,
+              "value": 1.0001916182241943
+            },
+            "raw_lower_errors": {
+              "yield": 6.79572939583382e-13,
+              "equilibrium": 1.5091927707544528e-10,
+              "internal_traction": 1.1590728377086634e-12,
+              "boundary_traction": 7.507170026957664e-13
+            },
+            "raw_lower_pass": true,
+            "endpoint_direction_pass": true,
+            "material_areas": [
+              83.75,
+              11.600000000000005,
+              207.14999999999998
+            ],
+            "gravity_weight": 5747.5,
+            "effective_vertical_load": 5747.500000000002,
+            "independent_body_max_error": 0.0,
+            "pore_pressure_on": false,
+            "pass": true
+          },
+          {
+            "side": "upper",
+            "metadata": {
+              "nodes": 542,
+              "elements": 1000,
+              "q": 8,
+              "factor": 0.7563936919252566,
+              "fs": 0.7563936919252566,
+              "objective": 0.9999860824119692,
+              "native_audit": 5.2689741458777917e-11,
+              "scale": 20.0
+            },
+            "physical_audit": {
+              "pass": true,
+              "errors": {
+                "flow": 0.0,
+                "jump": 0.0,
+                "bonded_interface": 6.529544691887054e-12,
+                "boundary": 1.81322789876877e-11,
+                "work": 5.2688742258055754e-11,
+                "objective": 5.551115123125783e-16
+              },
+              "dissipation": 0.9999860824119697,
+              "work": [
+                0.0,
+                0.9999999999473113
+              ],
+              "value": 0.9999860824119697
+            },
+            "raw_lower_errors": {},
+            "raw_lower_pass": true,
+            "endpoint_direction_pass": true,
+            "material_areas": [
+              83.75,
+              11.600000000000005,
+              207.14999999999998
+            ],
+            "gravity_weight": 5747.5,
+            "effective_vertical_load": 5747.500000000002,
+            "independent_body_max_error": 0.0,
+            "pore_pressure_on": false,
+            "pass": true
+          }
+        ]
+      },
+      "actual_settings": {
+        "MODE": "Fs",
+        "TARGET": 1536.0,
+        "GRAVITY": "固定",
+        "ADAPT": 1.0,
+        "CYCLES": 3.0,
+        "GAP": 0.01,
+        "REFINE": 0.2,
+        "QUADRATURE": 8.0,
+        "FS_TOL": 0.0001,
+        "BEARING_FACES": null,
+        "BEARING_RIGIDS": null,
+        "SEISMIC_KH": 0.0,
+        "SEISMIC_DIR": "右(+x)",
+        "UPPER_PILOT": 0.0,
+        "UPPER_PILOT_RIGID": 0.0,
+        "LOWER_FS_SEED": "UPPER_TRIAL",
+        "LOWER_SEED_WIDTH": 0.02,
+        "LOWER_MODEL_CACHE": 1.0,
+        "LOWER_KKT_BACKEND": "AUTO",
+        "SCHUR_ALLOW_RIGID": 0.0,
+        "SCHUR_MAX_BYTES": 268435456.0,
+        "TEST_INJECTION": 0.0,
+        "KKT_CAPTURE": 0.0,
+        "SCHUR_TRACE_LEVEL": 0.0,
+        "SCHUR_REPLAY_POLICY": "CONSISTENT",
+        "SCHUR_STRUCTURE_CACHE": 1.0,
+        "SCHUR_RECOVERY_MODE": "REUSE_U",
+        "SCHUR_REFINEMENT": "FIXED3",
+        "SCHUR_GENERIC_START_ITERS": 0.0,
+        "DIRECT_FINAL_AFTER_PILOT": 0.0,
+        "DIAGNOSTIC_MODE": 1.0,
+        "HSD_CAPTURE": 0.0,
+        "HSD_LINEAR_BACKEND": "AUTO_PIVOT",
+        "HSD_LINEAR_CAPTURE": 0.0,
+        "HSD_LINEAR_CAPTURE_MAX": 8.0,
+        "HSD_STABLE_MAX_BYTES": 1073741824.0,
+        "HSD_LINEAR_TRACE": 0.0,
+        "C0_AUTO": 0.0,
+        "ANALYSIS_POLICY": "DAVIS_EQUIVALENT",
+        "RAW_LOWER_AUDIT": 1.0,
+        "C0_UPPER_ADAPT": 0.0,
+        "HSD_SOLVE_SECONDS": 300.0,
+        "C0_DIRECT_UPPER": 1.0,
+        "HSD_PROJECTIVE_NORMALIZATION": 1.0,
+        "HSD_ORIGINAL_OPERATOR": 0.0,
+        "ADAPT_MESH_POLICY": "LEGACY_THEN_REFINE",
+        "ADAPT_REFINE_CAP": 1000.0,
+        "FS_BRACKET_POLICY": "AUDITED_UPPER_LIMIT"
+      },
+      "root_tolerance_contract": "width <= FS_TOL * max(1, bracket midpoint); per-owner native root validity and completion flags",
+      "input_title": "Thin frictional weak band, 28 m domain",
+      "solve_count": 63,
+      "audit_count": 748,
+      "native_terminal": {
+        "status": "PARTIAL_CERTIFIED",
+        "solve_count": "63",
+        "sampled_peak_private_bytes": "589099008",
+        "logging_seconds_before_run_end": "30.9295613991853",
+        "message": "ADAPT_GAP_TARGET_NOT_MET"
+      }
+    },
+    {
+      "case": "P07A",
+      "status": "PASS_TARGET",
+      "analysis_seconds": 547.532441,
+      "lower_fs": 1.374825370666586,
+      "upper_fs": 1.3882584616508422,
+      "relative_gap": 0.009723259806409623,
+      "fs_obtained": true,
+      "target_met": true,
+      "target_unmet_reasons": [],
+      "element_counts": [
+        1000.0,
+        1000.0
+      ],
+      "witness_q": [
+        8,
+        8
+      ],
+      "error_number": 0,
+      "pore_pressure": false,
+      "root_width": 0.00011105623468266,
+      "root_search_incomplete": false,
+      "global_incomplete_note": "",
+      "dll_actually_used": true,
+      "native_counters": {
+        "numeric": 2699,
+        "dd_numeric": 8,
+        "backsolve": 18,
+        "ordering": 6,
+        "column_ordering": 0,
+        "nt_bulk": 2658,
+        "g_bulk": 41,
+        "gt_bulk": 5672,
+        "kkt_bulk": 2649,
+        "hsd_operator": 782,
+        "corrector_bulk": 2649,
+        "bulk_job_steps": 53578,
+        "hsd_lu": 0,
+        "hsd_lu_solve": 0,
+        "solver_vector_calls": 42289,
+        "hsd_jobs": 1120,
+        "hsd_job_steps": 2120,
+        "krylov_jobs": 10,
+        "krylov_steps": 174,
+        "refine_jobs": 2950,
+        "refine_steps": 2950,
+        "input_compare_calls": 12915,
+        "schur_jobs": 1659,
+        "schur_steps": 2517,
+        "schur_native_bytes": 0,
+        "meshfan_jobs": 0,
+        "meshfan_steps": 0
+      },
+      "input_sha256": "cb756be312cf7441b0b81c08c8fd5521ca7ff5a94d0d89021cb19ea5bc654074",
+      "source_sha256": "dcbfdcfb2d4bbcf382f07d237e77d7122185ebe91c4fce59935cb751f04e2fda",
+      "dll_sha256": "72aaf9bfccc0acc186eb69cdcbabd93b27f7ce245ceac574193ba6602c675323",
+      "workbook_sha256": "3619965cff23df793fc6a03c677a1f7c5d11e3aead770b50ea952a13ce53b982",
+      "production_source_check": {
+        "pass": true,
+        "original_modules_unchanged": 71,
+        "only_added_module": "BatchEvidence"
+      },
+      "independent_audit": {
+        "pass": true,
+        "scope": "Independent physical equations, material/geometry, explicit boundaries, dry weight and D08A P1 water-gradient loads",
+        "results": [
+          {
+            "side": "lower",
+            "metadata": {
+              "nodes": 551,
+              "elements": 1000,
+              "q": 8,
+              "factor": 1.374825370666586,
+              "fs": 1.374825370666586,
+              "objective": 1.0002235549317071,
+              "native_audit": 1.2751171767771963e-09,
+              "scale": 10.0
+            },
+            "physical_audit": {
+              "pass": true,
+              "errors": {
+                "yield": 0.0,
+                "equilibrium": 1.2751151245993242e-09,
+                "internal_traction": 2.873861149055301e-10,
+                "boundary_traction": 2.3117618930257322e-12
+              },
+              "load": 1.0002235549317071,
+              "value": 1.0002235549317071
+            },
+            "raw_lower_errors": {
+              "yield": 0.0,
+              "equilibrium": 1.2751151245993242e-08,
+              "internal_traction": 2.8738611490553012e-09,
+              "boundary_traction": 2.3117618930257322e-11
+            },
+            "raw_lower_pass": true,
+            "endpoint_direction_pass": true,
+            "material_areas": [
+              220.0
+            ],
+            "gravity_weight": 4400.000000000001,
+            "effective_vertical_load": 4400.0,
+            "independent_body_max_error": 0.0,
+            "pore_pressure_on": false,
+            "pass": true
+          },
+          {
+            "side": "upper",
+            "metadata": {
+              "nodes": 551,
+              "elements": 1000,
+              "q": 8,
+              "factor": 1.3882584616508422,
+              "fs": 1.3882584616508422,
+              "objective": 0.9997831484625598,
+              "native_audit": 7.908171179985621e-09,
+              "scale": 10.0
+            },
+            "physical_audit": {
+              "pass": true,
+              "errors": {
+                "flow": 0.0,
+                "jump": 0.0,
+                "boundary": 7.908171179985621e-09,
+                "work": 1.7792656237247684e-11,
+                "objective": 2.220446049250313e-16
+              },
+              "dissipation": 0.9997831484625596,
+              "work": [
+                0.0,
+                0.9999999999822073
+              ],
+              "value": 0.9997831484625596
+            },
+            "raw_lower_errors": {},
+            "raw_lower_pass": true,
+            "endpoint_direction_pass": true,
+            "material_areas": [
+              220.0
+            ],
+            "gravity_weight": 4400.000000000001,
+            "effective_vertical_load": 4400.0,
+            "independent_body_max_error": 0.0,
+            "pore_pressure_on": false,
+            "pass": true
+          }
+        ]
+      },
+      "actual_settings": {
+        "MODE": "Fs",
+        "TARGET": 1536.0,
+        "GRAVITY": "固定",
+        "ADAPT": 1.0,
+        "CYCLES": 3.0,
+        "GAP": 0.01,
+        "REFINE": 0.2,
+        "QUADRATURE": 8.0,
+        "FS_TOL": 0.0001,
+        "BEARING_FACES": null,
+        "BEARING_RIGIDS": null,
+        "SEISMIC_KH": 0.0,
+        "SEISMIC_DIR": "右(+x)",
+        "UPPER_PILOT": 0.0,
+        "UPPER_PILOT_RIGID": 0.0,
+        "LOWER_FS_SEED": "UPPER_TRIAL",
+        "LOWER_SEED_WIDTH": 0.02,
+        "LOWER_MODEL_CACHE": 1.0,
+        "LOWER_KKT_BACKEND": "AUTO",
+        "SCHUR_ALLOW_RIGID": 0.0,
+        "SCHUR_MAX_BYTES": 268435456.0,
+        "TEST_INJECTION": 0.0,
+        "KKT_CAPTURE": 0.0,
+        "SCHUR_TRACE_LEVEL": 0.0,
+        "SCHUR_REPLAY_POLICY": "CONSISTENT",
+        "SCHUR_STRUCTURE_CACHE": 1.0,
+        "SCHUR_RECOVERY_MODE": "REUSE_U",
+        "SCHUR_REFINEMENT": "FIXED3",
+        "SCHUR_GENERIC_START_ITERS": 0.0,
+        "DIRECT_FINAL_AFTER_PILOT": 0.0,
+        "DIAGNOSTIC_MODE": 1.0,
+        "HSD_CAPTURE": 0.0,
+        "HSD_LINEAR_BACKEND": "AUTO_PIVOT",
+        "HSD_LINEAR_CAPTURE": 0.0,
+        "HSD_LINEAR_CAPTURE_MAX": 8.0,
+        "HSD_STABLE_MAX_BYTES": 1073741824.0,
+        "HSD_LINEAR_TRACE": 0.0,
+        "C0_AUTO": 0.0,
+        "ANALYSIS_POLICY": "ASSOCIATED",
+        "RAW_LOWER_AUDIT": 1.0,
+        "C0_UPPER_ADAPT": 0.0,
+        "HSD_SOLVE_SECONDS": 300.0,
+        "C0_DIRECT_UPPER": 1.0,
+        "HSD_PROJECTIVE_NORMALIZATION": 1.0,
+        "HSD_ORIGINAL_OPERATOR": 0.0,
+        "ADAPT_MESH_POLICY": "LEGACY_THEN_REFINE",
+        "ADAPT_REFINE_CAP": 1000.0,
+        "FS_BRACKET_POLICY": "AUDITED_UPPER_LIMIT"
+      },
+      "root_tolerance_contract": "width <= FS_TOL * max(1, bracket midpoint); per-owner native root validity and completion flags",
+      "input_title": "Griffiths–Lane Example1, D=1",
+      "solve_count": 57,
+      "audit_count": 637,
+      "native_terminal": {
+        "status": "OPTIMAL",
+        "solve_count": "57",
+        "sampled_peak_private_bytes": "765366272",
+        "logging_seconds_before_run_end": "5.52334890019847",
+        "message": ""
+      }
+    },
+    {
+      "case": "P07N",
+      "status": "FS_AVAILABLE_PARTIAL",
+      "analysis_seconds": 746.87111,
+      "lower_fs": 1.3257680282493587,
+      "upper_fs": 1.3397480948715283,
+      "relative_gap": 0.010489575734249374,
+      "fs_obtained": true,
+      "target_met": false,
+      "target_unmet_reasons": [
+        "GAP_TARGET_NOT_MET"
+      ],
+      "element_counts": [
+        998.0,
+        998.0
+      ],
+      "witness_q": [
+        8,
+        8
+      ],
+      "error_number": 0,
+      "pore_pressure": false,
+      "root_width": 0.000107175560567274,
+      "root_search_incomplete": true,
+      "global_incomplete_note": "ADAPT_GAP_TARGET_NOT_MET",
+      "dll_actually_used": true,
+      "native_counters": {
+        "numeric": 3069,
+        "dd_numeric": 22,
+        "backsolve": 39,
+        "ordering": 6,
+        "column_ordering": 0,
+        "nt_bulk": 3047,
+        "g_bulk": 82,
+        "gt_bulk": 6698,
+        "kkt_bulk": 3032,
+        "hsd_operator": 1328,
+        "corrector_bulk": 3036,
+        "bulk_job_steps": 62945,
+        "hsd_lu": 0,
+        "hsd_lu_solve": 0,
+        "solver_vector_calls": 49220,
+        "hsd_jobs": 1876,
+        "hsd_job_steps": 3620,
+        "krylov_jobs": 10,
+        "krylov_steps": 153,
+        "refine_jobs": 3190,
+        "refine_steps": 3190,
+        "input_compare_calls": 18312,
+        "schur_jobs": 1690,
+        "schur_steps": 2562,
+        "schur_native_bytes": 0,
+        "meshfan_jobs": 0,
+        "meshfan_steps": 0
+      },
+      "input_sha256": "bad1e69be28a7088ff6e97b099d30acd4a4ce72ec9f33821e8907997253eaba3",
+      "source_sha256": "dcbfdcfb2d4bbcf382f07d237e77d7122185ebe91c4fce59935cb751f04e2fda",
+      "dll_sha256": "72aaf9bfccc0acc186eb69cdcbabd93b27f7ce245ceac574193ba6602c675323",
+      "workbook_sha256": "33fcfc7c55f293aedad00e75cb0b78f8d4774033b748647eeb67534111b5130c",
+      "production_source_check": {
+        "pass": true,
+        "original_modules_unchanged": 71,
+        "only_added_module": "BatchEvidence"
+      },
+      "independent_audit": {
+        "pass": true,
+        "scope": "Independent physical equations, material/geometry, explicit boundaries, dry weight and D08A P1 water-gradient loads",
+        "results": [
+          {
+            "side": "lower",
+            "metadata": {
+              "nodes": 550,
+              "elements": 998,
+              "q": 8,
+              "factor": 1.3257680282493587,
+              "fs": 1.3257680282493587,
+              "objective": 1.0002094240240456,
+              "native_audit": 1.257162998702377e-09,
+              "scale": 10.0
+            },
+            "physical_audit": {
+              "pass": true,
+              "errors": {
+                "yield": 0.0,
+                "equilibrium": 1.2571739205213817e-09,
+                "internal_traction": 5.917366596719376e-10,
+                "boundary_traction": 3.5921334797823313e-12
+              },
+              "load": 1.0002094240240456,
+              "value": 1.0002094240240456
+            },
+            "raw_lower_errors": {
+              "yield": 0.0,
+              "equilibrium": 1.2571739205213817e-08,
+              "internal_traction": 5.917366596719376e-09,
+              "boundary_traction": 3.592133479782331e-11
+            },
+            "raw_lower_pass": true,
+            "endpoint_direction_pass": true,
+            "material_areas": [
+              220.0
+            ],
+            "gravity_weight": 4400.000000000001,
+            "effective_vertical_load": 4400.000000000002,
+            "independent_body_max_error": 0.0,
+            "pore_pressure_on": false,
+            "pass": true
+          },
+          {
+            "side": "upper",
+            "metadata": {
+              "nodes": 550,
+              "elements": 998,
+              "q": 8,
+              "factor": 1.3397480948715283,
+              "fs": 1.3397480948715283,
+              "objective": 0.9998009801622023,
+              "native_audit": 4.6396179772991526e-09,
+              "scale": 10.0
+            },
+            "physical_audit": {
+              "pass": true,
+              "errors": {
+                "flow": 0.0,
+                "jump": 0.0,
+                "boundary": 4.6396179772991526e-09,
+                "work": 3.6173575246323253e-10,
+                "objective": 3.3306690738754696e-16
+              },
+              "dissipation": 0.9998009801622026,
+              "work": [
+                0.0,
+                0.9999999996382642
+              ],
+              "value": 0.9998009801622026
+            },
+            "raw_lower_errors": {},
+            "raw_lower_pass": true,
+            "endpoint_direction_pass": true,
+            "material_areas": [
+              220.0
+            ],
+            "gravity_weight": 4400.000000000001,
+            "effective_vertical_load": 4400.000000000002,
+            "independent_body_max_error": 0.0,
+            "pore_pressure_on": false,
+            "pass": true
+          }
+        ]
+      },
+      "actual_settings": {
+        "MODE": "Fs",
+        "TARGET": 1536.0,
+        "GRAVITY": "固定",
+        "ADAPT": 1.0,
+        "CYCLES": 3.0,
+        "GAP": 0.01,
+        "REFINE": 0.2,
+        "QUADRATURE": 8.0,
+        "FS_TOL": 0.0001,
+        "BEARING_FACES": null,
+        "BEARING_RIGIDS": null,
+        "SEISMIC_KH": 0.0,
+        "SEISMIC_DIR": "右(+x)",
+        "UPPER_PILOT": 0.0,
+        "UPPER_PILOT_RIGID": 0.0,
+        "LOWER_FS_SEED": "UPPER_TRIAL",
+        "LOWER_SEED_WIDTH": 0.02,
+        "LOWER_MODEL_CACHE": 1.0,
+        "LOWER_KKT_BACKEND": "AUTO",
+        "SCHUR_ALLOW_RIGID": 0.0,
+        "SCHUR_MAX_BYTES": 268435456.0,
+        "TEST_INJECTION": 0.0,
+        "KKT_CAPTURE": 0.0,
+        "SCHUR_TRACE_LEVEL": 0.0,
+        "SCHUR_REPLAY_POLICY": "CONSISTENT",
+        "SCHUR_STRUCTURE_CACHE": 1.0,
+        "SCHUR_RECOVERY_MODE": "REUSE_U",
+        "SCHUR_REFINEMENT": "FIXED3",
+        "SCHUR_GENERIC_START_ITERS": 0.0,
+        "DIRECT_FINAL_AFTER_PILOT": 0.0,
+        "DIAGNOSTIC_MODE": 1.0,
+        "HSD_CAPTURE": 0.0,
+        "HSD_LINEAR_BACKEND": "AUTO_PIVOT",
+        "HSD_LINEAR_CAPTURE": 0.0,
+        "HSD_LINEAR_CAPTURE_MAX": 8.0,
+        "HSD_STABLE_MAX_BYTES": 1073741824.0,
+        "HSD_LINEAR_TRACE": 0.0,
+        "C0_AUTO": 0.0,
+        "ANALYSIS_POLICY": "DAVIS_EQUIVALENT",
+        "RAW_LOWER_AUDIT": 1.0,
+        "C0_UPPER_ADAPT": 0.0,
+        "HSD_SOLVE_SECONDS": 300.0,
+        "C0_DIRECT_UPPER": 1.0,
+        "HSD_PROJECTIVE_NORMALIZATION": 1.0,
+        "HSD_ORIGINAL_OPERATOR": 0.0,
+        "ADAPT_MESH_POLICY": "LEGACY_THEN_REFINE",
+        "ADAPT_REFINE_CAP": 1000.0,
+        "FS_BRACKET_POLICY": "AUDITED_UPPER_LIMIT"
+      },
+      "root_tolerance_contract": "width <= FS_TOL * max(1, bracket midpoint); per-owner native root validity and completion flags",
+      "input_title": "Griffiths–Lane Example1, D=1",
+      "solve_count": 58,
+      "audit_count": 633,
+      "native_terminal": {
+        "status": "PARTIAL_CERTIFIED",
+        "solve_count": "58",
+        "sampled_peak_private_bytes": "764751872",
+        "logging_seconds_before_run_end": "6.54629930021474",
+        "message": "ADAPT_GAP_TARGET_NOT_MET"
+      }
+    },
+    {
+      "case": "P08A",
+      "status": "FS_AVAILABLE_PARTIAL",
+      "analysis_seconds": 1375.33656,
+      "lower_fs": 1.4428188996601232,
+      "upper_fs": 1.4552607361808534,
+      "relative_gap": 0.008586262687098136,
+      "fs_obtained": true,
+      "target_met": false,
+      "target_unmet_reasons": [
+        "NATIVE_GLOBAL_INCOMPLETE"
+      ],
+      "element_counts": [
+        998.0,
+        998.0
+      ],
+      "witness_q": [
+        4,
+        4
+      ],
+      "error_number": 0,
+      "pore_pressure": false,
+      "root_width": 0.0,
+      "root_search_incomplete": true,
+      "global_incomplete_note": "",
+      "dll_actually_used": true,
+      "native_counters": {
+        "numeric": 1267,
+        "dd_numeric": 0,
+        "backsolve": 5,
+        "ordering": 0,
+        "column_ordering": 0,
+        "nt_bulk": 1272,
+        "g_bulk": 14,
+        "gt_bulk": 2777,
+        "kkt_bulk": 1267,
+        "hsd_operator": 496,
+        "corrector_bulk": 1267,
+        "bulk_job_steps": 29670,
+        "hsd_lu": 0,
+        "hsd_lu_solve": 0,
+        "solver_vector_calls": 21544,
+        "hsd_jobs": 729,
+        "hsd_job_steps": 7768,
+        "krylov_jobs": 0,
+        "krylov_steps": 0,
+        "refine_jobs": 2048,
+        "refine_steps": 2048,
+        "input_compare_calls": 7656,
+        "schur_jobs": 0,
+        "schur_steps": 0,
+        "schur_native_bytes": 0,
+        "meshfan_jobs": 0,
+        "meshfan_steps": 0
+      },
+      "input_sha256": "6edeed25559cbceb89ca2e676761ca65e933252333e676e11ecea32718dd09ef",
+      "source_sha256": "dcbfdcfb2d4bbcf382f07d237e77d7122185ebe91c4fce59935cb751f04e2fda",
+      "dll_sha256": "72aaf9bfccc0acc186eb69cdcbabd93b27f7ce245ceac574193ba6602c675323",
+      "workbook_sha256": "73de281800103ed0c1857f04c0a6f3a994519c82a28b8db2e7cca7e883db5f9b",
+      "production_source_check": {
+        "pass": true,
+        "original_modules_unchanged": 71,
+        "only_added_module": "BatchEvidence"
+      },
+      "independent_audit": {
+        "pass": true,
+        "scope": "Independent physical equations, material/geometry, explicit boundaries, dry weight and D08A P1 water-gradient loads",
+        "results": [
+          {
+            "side": "lower",
+            "metadata": {
+              "nodes": 550,
+              "elements": 998,
+              "q": 4,
+              "factor": 1.4428188996601232,
+              "fs": 1.4428188996601232,
+              "objective": 1.000001,
+              "native_audit": 2.252365411152188e-10,
+              "scale": 50.0
+            },
+            "physical_audit": {
+              "pass": true,
+              "errors": {
+                "yield": 0.0,
+                "equilibrium": 2.252231179333819e-10,
+                "internal_traction": 1.6212275966154266e-10,
+                "boundary_traction": 1.0010579130830307e-11
+              },
+              "load": 1.000001,
+              "value": 1.000001
+            },
+            "raw_lower_errors": {
+              "yield": 0.0,
+              "equilibrium": 1.1261155896669095e-08,
+              "internal_traction": 8.106137983077133e-09,
+              "boundary_traction": 5.005289565415153e-10
+            },
+            "raw_lower_pass": true,
+            "endpoint_direction_pass": true,
+            "material_areas": [
+              300.0,
+              600.0
+            ],
+            "gravity_weight": 18000.0,
+            "effective_vertical_load": 18000.0,
+            "independent_body_max_error": 0.0,
+            "pore_pressure_on": false,
+            "pass": true
+          },
+          {
+            "side": "upper",
+            "metadata": {
+              "nodes": 550,
+              "elements": 998,
+              "q": 4,
+              "factor": 1.4552607361808534,
+              "fs": 1.4552607361808534,
+              "objective": 0.9999990000000099,
+              "native_audit": 3.550395719607857e-11,
+              "scale": 50.0
+            },
+            "physical_audit": {
+              "pass": true,
+              "errors": {
+                "flow": 3.550395719607857e-11,
+                "jump_normal": 1.2071014463791258e-11,
+                "bonded_interface": 1.2701315693641746e-11,
+                "boundary": 1.9840785298387115e-12,
+                "work": 3.112754498602044e-11,
+                "objective": 1.6653345369377348e-15
+              },
+              "value": 0.9999990000000082,
+              "work": 0.9999999999688725,
+              "quadrature": 4
+            },
+            "raw_lower_errors": {},
+            "raw_lower_pass": true,
+            "endpoint_direction_pass": true,
+            "material_areas": [
+              300.0,
+              600.0
+            ],
+            "gravity_weight": 18000.0,
+            "effective_vertical_load": 18000.0,
+            "independent_body_max_error": 0.0,
+            "pore_pressure_on": false,
+            "pass": true
+          }
+        ]
+      },
+      "actual_settings": {
+        "MODE": "Fs",
+        "TARGET": 1536.0,
+        "GRAVITY": "固定",
+        "ADAPT": 1.0,
+        "CYCLES": 3.0,
+        "GAP": 0.01,
+        "REFINE": 0.2,
+        "QUADRATURE": 8.0,
+        "FS_TOL": 0.0001,
+        "BEARING_FACES": null,
+        "BEARING_RIGIDS": null,
+        "SEISMIC_KH": 0.0,
+        "SEISMIC_DIR": "右(+x)",
+        "UPPER_PILOT": 0.0,
+        "UPPER_PILOT_RIGID": 0.0,
+        "LOWER_FS_SEED": "UPPER_TRIAL",
+        "LOWER_SEED_WIDTH": 0.02,
+        "LOWER_MODEL_CACHE": 1.0,
+        "LOWER_KKT_BACKEND": "AUTO",
+        "SCHUR_ALLOW_RIGID": 0.0,
+        "SCHUR_MAX_BYTES": 268435456.0,
+        "TEST_INJECTION": 0.0,
+        "KKT_CAPTURE": 0.0,
+        "SCHUR_TRACE_LEVEL": 0.0,
+        "SCHUR_REPLAY_POLICY": "CONSISTENT",
+        "SCHUR_STRUCTURE_CACHE": 1.0,
+        "SCHUR_RECOVERY_MODE": "REUSE_U",
+        "SCHUR_REFINEMENT": "FIXED3",
+        "SCHUR_GENERIC_START_ITERS": 0.0,
+        "DIRECT_FINAL_AFTER_PILOT": 0.0,
+        "DIAGNOSTIC_MODE": 1.0,
+        "HSD_CAPTURE": 0.0,
+        "HSD_LINEAR_BACKEND": "AUTO_PIVOT",
+        "HSD_LINEAR_CAPTURE": 0.0,
+        "HSD_LINEAR_CAPTURE_MAX": 8.0,
+        "HSD_STABLE_MAX_BYTES": 1073741824.0,
+        "HSD_LINEAR_TRACE": 0.0,
+        "C0_AUTO": 0.0,
+        "ANALYSIS_POLICY": "ASSOCIATED",
+        "RAW_LOWER_AUDIT": 1.0,
+        "C0_UPPER_ADAPT": 0.0,
+        "HSD_SOLVE_SECONDS": 300.0,
+        "C0_DIRECT_UPPER": 1.0,
+        "HSD_PROJECTIVE_NORMALIZATION": 1.0,
+        "HSD_ORIGINAL_OPERATOR": 0.0,
+        "ADAPT_MESH_POLICY": "LEGACY_THEN_REFINE",
+        "ADAPT_REFINE_CAP": 1000.0,
+        "FS_BRACKET_POLICY": "AUDITED_UPPER_LIMIT"
+      },
+      "root_tolerance_contract": "width <= FS_TOL * max(1, bracket midpoint); per-owner native root validity and completion flags",
+      "input_title": "Uniform undrained clay",
+      "solve_count": 13,
+      "audit_count": 246,
+      "native_terminal": {
+        "status": "PARTIAL_CERTIFIED",
+        "solve_count": "13",
+        "sampled_peak_private_bytes": "1313095680",
+        "logging_seconds_before_run_end": "1.26557820019661",
+        "message": ""
+      }
+    },
+    {
+      "case": "P09A",
+      "status": "FS_AVAILABLE_PARTIAL",
+      "analysis_seconds": 1127.375623,
+      "lower_fs": 0.9645406357821467,
+      "upper_fs": 0.9730500784564394,
+      "relative_gap": 0.008783529578006589,
+      "fs_obtained": true,
+      "target_met": false,
+      "target_unmet_reasons": [
+        "NATIVE_GLOBAL_INCOMPLETE"
+      ],
+      "element_counts": [
+        998.0,
+        998.0
+      ],
+      "witness_q": [
+        4,
+        4
+      ],
+      "error_number": 0,
+      "pore_pressure": false,
+      "root_width": 0.0,
+      "root_search_incomplete": true,
+      "global_incomplete_note": "",
+      "dll_actually_used": true,
+      "native_counters": {
+        "numeric": 1157,
+        "dd_numeric": 0,
+        "backsolve": 10,
+        "ordering": 0,
+        "column_ordering": 0,
+        "nt_bulk": 1160,
+        "g_bulk": 12,
+        "gt_bulk": 2523,
+        "kkt_bulk": 1157,
+        "hsd_operator": 438,
+        "corrector_bulk": 1157,
+        "bulk_job_steps": 26566,
+        "hsd_lu": 0,
+        "hsd_lu_solve": 0,
+        "solver_vector_calls": 20829,
+        "hsd_jobs": 627,
+        "hsd_job_steps": 6278,
+        "krylov_jobs": 0,
+        "krylov_steps": 0,
+        "refine_jobs": 1896,
+        "refine_steps": 1896,
+        "input_compare_calls": 6411,
+        "schur_jobs": 0,
+        "schur_steps": 0,
+        "schur_native_bytes": 0,
+        "meshfan_jobs": 0,
+        "meshfan_steps": 0
+      },
+      "input_sha256": "b22f5dd2e83f676252b7f462214108c325da08d8da3d02543c9e0b5f23f1d3ee",
+      "source_sha256": "dcbfdcfb2d4bbcf382f07d237e77d7122185ebe91c4fce59935cb751f04e2fda",
+      "dll_sha256": "72aaf9bfccc0acc186eb69cdcbabd93b27f7ce245ceac574193ba6602c675323",
+      "workbook_sha256": "acc5ff68de8a509f04fd823a2f1c4dec10534271a3283007de48fb6f05ab8762",
+      "production_source_check": {
+        "pass": true,
+        "original_modules_unchanged": 71,
+        "only_added_module": "BatchEvidence"
+      },
+      "independent_audit": {
+        "pass": true,
+        "scope": "Independent physical equations, material/geometry, explicit boundaries, dry weight and D08A P1 water-gradient loads",
+        "results": [
+          {
+            "side": "lower",
+            "metadata": {
+              "nodes": 551,
+              "elements": 998,
+              "q": 4,
+              "factor": 0.9645406357821467,
+              "fs": 0.9645406357821467,
+              "objective": 1.000001,
+              "native_audit": 5.156528537497707e-10,
+              "scale": 50.0
+            },
+            "physical_audit": {
+              "pass": true,
+              "errors": {
+                "yield": 0.0,
+                "equilibrium": 2.1081997259031482e-10,
+                "internal_traction": 5.156532978389805e-10,
+                "boundary_traction": 4.985510310099718e-12
+              },
+              "load": 1.000001,
+              "value": 1.000001
+            },
+            "raw_lower_errors": {
+              "yield": 0.0,
+              "equilibrium": 1.0540998629515741e-08,
+              "internal_traction": 2.5782664891949025e-08,
+              "boundary_traction": 2.4927551550498587e-10
+            },
+            "raw_lower_pass": true,
+            "endpoint_direction_pass": true,
+            "material_areas": [
+              300.0,
+              600.0
+            ],
+            "gravity_weight": 17999.999999999993,
+            "effective_vertical_load": 18000.000000000007,
+            "independent_body_max_error": 0.0,
+            "pore_pressure_on": false,
+            "pass": true
+          },
+          {
+            "side": "upper",
+            "metadata": {
+              "nodes": 551,
+              "elements": 998,
+              "q": 4,
+              "factor": 0.9730500784564394,
+              "fs": 0.9730500784564394,
+              "objective": 0.9999990000000051,
+              "native_audit": 3.9385040696371135e-11,
+              "scale": 50.0
+            },
+            "physical_audit": {
+              "pass": true,
+              "errors": {
+                "flow": 3.938504069694614e-11,
+                "jump_normal": 1.4536608028414832e-11,
+                "bonded_interface": 6.015622028288092e-12,
+                "boundary": 1.0353983243178097e-12,
+                "work": 2.1805335315150387e-11,
+                "objective": 8.43769498715119e-15
+              },
+              "value": 0.9999989999999966,
+              "work": 0.9999999999781947,
+              "quadrature": 4
+            },
+            "raw_lower_errors": {},
+            "raw_lower_pass": true,
+            "endpoint_direction_pass": true,
+            "material_areas": [
+              300.0,
+              600.0
+            ],
+            "gravity_weight": 17999.999999999993,
+            "effective_vertical_load": 18000.000000000007,
+            "independent_body_max_error": 0.0,
+            "pore_pressure_on": false,
+            "pass": true
+          }
+        ]
+      },
+      "actual_settings": {
+        "MODE": "Fs",
+        "TARGET": 1536.0,
+        "GRAVITY": "固定",
+        "ADAPT": 1.0,
+        "CYCLES": 3.0,
+        "GAP": 0.01,
+        "REFINE": 0.2,
+        "QUADRATURE": 8.0,
+        "FS_TOL": 0.0001,
+        "BEARING_FACES": null,
+        "BEARING_RIGIDS": null,
+        "SEISMIC_KH": 0.0,
+        "SEISMIC_DIR": "右(+x)",
+        "UPPER_PILOT": 0.0,
+        "UPPER_PILOT_RIGID": 0.0,
+        "LOWER_FS_SEED": "UPPER_TRIAL",
+        "LOWER_SEED_WIDTH": 0.02,
+        "LOWER_MODEL_CACHE": 1.0,
+        "LOWER_KKT_BACKEND": "AUTO",
+        "SCHUR_ALLOW_RIGID": 0.0,
+        "SCHUR_MAX_BYTES": 268435456.0,
+        "TEST_INJECTION": 0.0,
+        "KKT_CAPTURE": 0.0,
+        "SCHUR_TRACE_LEVEL": 0.0,
+        "SCHUR_REPLAY_POLICY": "CONSISTENT",
+        "SCHUR_STRUCTURE_CACHE": 1.0,
+        "SCHUR_RECOVERY_MODE": "REUSE_U",
+        "SCHUR_REFINEMENT": "FIXED3",
+        "SCHUR_GENERIC_START_ITERS": 0.0,
+        "DIRECT_FINAL_AFTER_PILOT": 0.0,
+        "DIAGNOSTIC_MODE": 1.0,
+        "HSD_CAPTURE": 0.0,
+        "HSD_LINEAR_BACKEND": "AUTO_PIVOT",
+        "HSD_LINEAR_CAPTURE": 0.0,
+        "HSD_LINEAR_CAPTURE_MAX": 8.0,
+        "HSD_STABLE_MAX_BYTES": 1073741824.0,
+        "HSD_LINEAR_TRACE": 0.0,
+        "C0_AUTO": 0.0,
+        "ANALYSIS_POLICY": "ASSOCIATED",
+        "RAW_LOWER_AUDIT": 1.0,
+        "C0_UPPER_ADAPT": 0.0,
+        "HSD_SOLVE_SECONDS": 300.0,
+        "C0_DIRECT_UPPER": 1.0,
+        "HSD_PROJECTIVE_NORMALIZATION": 1.0,
+        "HSD_ORIGINAL_OPERATOR": 0.0,
+        "ADAPT_MESH_POLICY": "LEGACY_THEN_REFINE",
+        "ADAPT_REFINE_CAP": 1000.0,
+        "FS_BRACKET_POLICY": "AUDITED_UPPER_LIMIT"
+      },
+      "root_tolerance_contract": "width <= FS_TOL * max(1, bracket midpoint); per-owner native root validity and completion flags",
+      "input_title": "Weak clay foundation",
+      "solve_count": 11,
+      "audit_count": 206,
+      "native_terminal": {
+        "status": "PARTIAL_CERTIFIED",
+        "solve_count": "11",
+        "sampled_peak_private_bytes": "1365241856",
+        "logging_seconds_before_run_end": "1.15637560002506",
+        "message": ""
+      }
+    },
+    {
+      "case": "P10A",
+      "status": "FS_AVAILABLE_PARTIAL",
+      "analysis_seconds": 989.995308,
+      "lower_fs": 1.997662491461876,
+      "upper_fs": 2.036682630356508,
+      "relative_gap": 0.019343976638788358,
+      "fs_obtained": true,
+      "target_met": false,
+      "target_unmet_reasons": [
+        "GAP_TARGET_NOT_MET"
+      ],
+      "element_counts": [
+        1000.0,
+        1000.0
+      ],
+      "witness_q": [
+        4,
+        4
+      ],
+      "error_number": 0,
+      "pore_pressure": false,
+      "root_width": 0.0,
+      "root_search_incomplete": true,
+      "global_incomplete_note": "ADAPT_GAP_TARGET_NOT_MET",
+      "dll_actually_used": true,
+      "native_counters": {
+        "numeric": 913,
+        "dd_numeric": 0,
+        "backsolve": 6,
+        "ordering": 0,
+        "column_ordering": 0,
+        "nt_bulk": 915,
+        "g_bulk": 9,
+        "gt_bulk": 1997,
+        "kkt_bulk": 913,
+        "hsd_operator": 354,
+        "corrector_bulk": 913,
+        "bulk_job_steps": 21406,
+        "hsd_lu": 0,
+        "hsd_lu_solve": 0,
+        "solver_vector_calls": 16775,
+        "hsd_jobs": 513,
+        "hsd_job_steps": 5336,
+        "krylov_jobs": 0,
+        "krylov_steps": 0,
+        "refine_jobs": 1484,
+        "refine_steps": 1484,
+        "input_compare_calls": 5433,
+        "schur_jobs": 0,
+        "schur_steps": 0,
+        "schur_native_bytes": 0,
+        "meshfan_jobs": 0,
+        "meshfan_steps": 0
+      },
+      "input_sha256": "706553eb9d63a7f3adb67fa4c73d3c1a6a56dee86b66dd2f67b31edd9509e3dc",
+      "source_sha256": "dcbfdcfb2d4bbcf382f07d237e77d7122185ebe91c4fce59935cb751f04e2fda",
+      "dll_sha256": "72aaf9bfccc0acc186eb69cdcbabd93b27f7ce245ceac574193ba6602c675323",
+      "workbook_sha256": "38df9308fdc08d50a3eb80746fb75b7b8eeb4c9233aeffbd8087b3ac2ed41da1",
+      "production_source_check": {
+        "pass": true,
+        "original_modules_unchanged": 71,
+        "only_added_module": "BatchEvidence"
+      },
+      "independent_audit": {
+        "pass": true,
+        "scope": "Independent physical equations, material/geometry, explicit boundaries, dry weight and D08A P1 water-gradient loads",
+        "results": [
+          {
+            "side": "lower",
+            "metadata": {
+              "nodes": 548,
+              "elements": 1000,
+              "q": 4,
+              "factor": 1.997662491461876,
+              "fs": 1.997662491461876,
+              "objective": 1.000001,
+              "native_audit": 9.295333479439252e-11,
+              "scale": 75.0
+            },
+            "physical_audit": {
+              "pass": true,
+              "errors": {
+                "yield": 0.0,
+                "equilibrium": 9.295345049231685e-11,
+                "internal_traction": 8.281297869672244e-11,
+                "boundary_traction": 1.2204557326251344e-11
+              },
+              "load": 1.000001,
+              "value": 1.000001
+            },
+            "raw_lower_errors": {
+              "yield": 0.0,
+              "equilibrium": 6.9715087869237635e-09,
+              "internal_traction": 6.210973402254183e-09,
+              "boundary_traction": 9.153417994688508e-10
+            },
+            "raw_lower_pass": true,
+            "endpoint_direction_pass": true,
+            "material_areas": [
+              300.0,
+              600.0
+            ],
+            "gravity_weight": 17999.999999999993,
+            "effective_vertical_load": 17999.999999999993,
+            "independent_body_max_error": 0.0,
+            "pore_pressure_on": false,
+            "pass": true
+          },
+          {
+            "side": "upper",
+            "metadata": {
+              "nodes": 548,
+              "elements": 1000,
+              "q": 4,
+              "factor": 2.036682630356508,
+              "fs": 2.036682630356508,
+              "objective": 0.999998999999982,
+              "native_audit": 4.186459281193658e-11,
+              "scale": 75.0
+            },
+            "physical_audit": {
+              "pass": true,
+              "errors": {
+                "flow": 4.186459281193658e-11,
+                "jump_normal": 1.3388185603655984e-11,
+                "bonded_interface": 8.173592147076372e-13,
+                "boundary": 2.1291700786749655e-12,
+                "work": 3.726463582154338e-12,
+                "objective": 1.3322676295501878e-15
+              },
+              "value": 0.9999989999999807,
+              "work": 0.9999999999962735,
+              "quadrature": 4
+            },
+            "raw_lower_errors": {},
+            "raw_lower_pass": true,
+            "endpoint_direction_pass": true,
+            "material_areas": [
+              300.0,
+              600.0
+            ],
+            "gravity_weight": 17999.999999999993,
+            "effective_vertical_load": 17999.999999999993,
+            "independent_body_max_error": 0.0,
+            "pore_pressure_on": false,
+            "pass": true
+          }
+        ]
+      },
+      "actual_settings": {
+        "MODE": "Fs",
+        "TARGET": 1536.0,
+        "GRAVITY": "固定",
+        "ADAPT": 1.0,
+        "CYCLES": 3.0,
+        "GAP": 0.01,
+        "REFINE": 0.2,
+        "QUADRATURE": 8.0,
+        "FS_TOL": 0.0001,
+        "BEARING_FACES": null,
+        "BEARING_RIGIDS": null,
+        "SEISMIC_KH": 0.0,
+        "SEISMIC_DIR": "右(+x)",
+        "UPPER_PILOT": 0.0,
+        "UPPER_PILOT_RIGID": 0.0,
+        "LOWER_FS_SEED": "UPPER_TRIAL",
+        "LOWER_SEED_WIDTH": 0.02,
+        "LOWER_MODEL_CACHE": 1.0,
+        "LOWER_KKT_BACKEND": "AUTO",
+        "SCHUR_ALLOW_RIGID": 0.0,
+        "SCHUR_MAX_BYTES": 268435456.0,
+        "TEST_INJECTION": 0.0,
+        "KKT_CAPTURE": 0.0,
+        "SCHUR_TRACE_LEVEL": 0.0,
+        "SCHUR_REPLAY_POLICY": "CONSISTENT",
+        "SCHUR_STRUCTURE_CACHE": 1.0,
+        "SCHUR_RECOVERY_MODE": "REUSE_U",
+        "SCHUR_REFINEMENT": "FIXED3",
+        "SCHUR_GENERIC_START_ITERS": 0.0,
+        "DIRECT_FINAL_AFTER_PILOT": 0.0,
+        "DIAGNOSTIC_MODE": 1.0,
+        "HSD_CAPTURE": 0.0,
+        "HSD_LINEAR_BACKEND": "AUTO_PIVOT",
+        "HSD_LINEAR_CAPTURE": 0.0,
+        "HSD_LINEAR_CAPTURE_MAX": 8.0,
+        "HSD_STABLE_MAX_BYTES": 1073741824.0,
+        "HSD_LINEAR_TRACE": 0.0,
+        "C0_AUTO": 0.0,
+        "ANALYSIS_POLICY": "ASSOCIATED",
+        "RAW_LOWER_AUDIT": 1.0,
+        "C0_UPPER_ADAPT": 0.0,
+        "HSD_SOLVE_SECONDS": 300.0,
+        "C0_DIRECT_UPPER": 1.0,
+        "HSD_PROJECTIVE_NORMALIZATION": 1.0,
+        "HSD_ORIGINAL_OPERATOR": 0.0,
+        "ADAPT_MESH_POLICY": "LEGACY_THEN_REFINE",
+        "ADAPT_REFINE_CAP": 1000.0,
+        "FS_BRACKET_POLICY": "AUDITED_UPPER_LIMIT"
+      },
+      "root_tolerance_contract": "width <= FS_TOL * max(1, bracket midpoint); per-owner native root validity and completion flags",
+      "input_title": "Clay foundation mechanism transition",
+      "solve_count": 9,
+      "audit_count": 162,
+      "native_terminal": {
+        "status": "PARTIAL_CERTIFIED",
+        "solve_count": "9",
+        "sampled_peak_private_bytes": "1377763328",
+        "logging_seconds_before_run_end": "0.864314999984344",
+        "message": "ADAPT_GAP_TARGET_NOT_MET"
+      }
+    }
+  ]
+}

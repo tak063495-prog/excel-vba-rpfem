@@ -1,0 +1,177 @@
+{
+  "compared_cases": 10,
+  "both_witnesses_bitwise_equal": 10,
+  "cases": [
+    {
+      "case": "D08A",
+      "seconds": 977.333547,
+      "lower_fs": 1.3016957465342585,
+      "upper_fs": 1.3104895557092444,
+      "input_match": true,
+      "profile_differences": {},
+      "element_counts_match": true,
+      "fs_close": true,
+      "reference_speed_ratio": 2.807807916262958,
+      "limit": "Same-PC previous DLL2 measurement, no interleaved repeat; whole-version ratio, not isolated DLL-only effect",
+      "old_status_sha256": "d00a86fc392fb5462d825ee75e6ea2fb4e39eb110054f81f4d11e76678645bde",
+      "witness_binary_matches": {
+        "lower": true,
+        "upper": true
+      }
+    },
+    {
+      "case": "P01A",
+      "seconds": 719.888849,
+      "lower_fs": 0.670003704164139,
+      "upper_fs": 0.6799341966897774,
+      "input_match": true,
+      "profile_differences": {},
+      "element_counts_match": true,
+      "fs_close": true,
+      "reference_speed_ratio": 2.720654462113255,
+      "limit": "Same-PC previous DLL2 measurement, no interleaved repeat; whole-version ratio, not isolated DLL-only effect",
+      "old_status_sha256": "a0b02682ad43df75c2df38d89342ce77ff4bdd82384ea4f1b3d51a87e36e89a2",
+      "witness_binary_matches": {
+        "lower": true,
+        "upper": true
+      }
+    },
+    {
+      "case": "P01N",
+      "seconds": 720.040916,
+      "lower_fs": 0.6642932758545593,
+      "upper_fs": 0.6741943852536502,
+      "input_match": true,
+      "profile_differences": {},
+      "element_counts_match": true,
+      "fs_close": true,
+      "reference_speed_ratio": 2.7403683960189458,
+      "limit": "Same-PC previous DLL2 measurement, no interleaved repeat; whole-version ratio, not isolated DLL-only effect",
+      "old_status_sha256": "0744f96aeef2a5b9cedf44888352f5790e754b8a1630db5d200fb28f8126edba",
+      "witness_binary_matches": {
+        "lower": true,
+        "upper": true
+      }
+    },
+    {
+      "case": "P02A",
+      "seconds": 940.826682,
+      "lower_fs": 1.3016569748403444,
+      "upper_fs": 1.3110550654525948,
+      "input_match": true,
+      "profile_differences": {},
+      "element_counts_match": true,
+      "fs_close": true,
+      "reference_speed_ratio": 2.8163359977956093,
+      "limit": "Same-PC previous DLL2 measurement, no interleaved repeat; whole-version ratio, not isolated DLL-only effect",
+      "old_status_sha256": "78b959060b759b75438442eb18f4da4b75f53e5f05e26f20750af4db6b4ae803",
+      "witness_binary_matches": {
+        "lower": true,
+        "upper": true
+      }
+    },
+    {
+      "case": "P02N",
+      "seconds": 887.225843,
+      "lower_fs": 1.215929091721389,
+      "upper_fs": 1.224966156938399,
+      "input_match": true,
+      "profile_differences": {},
+      "element_counts_match": true,
+      "fs_close": true,
+      "reference_speed_ratio": 2.7609132693166774,
+      "limit": "Same-PC previous DLL2 measurement, no interleaved repeat; whole-version ratio, not isolated DLL-only effect",
+      "old_status_sha256": "ff22ff7597c7d7b46e44e4dbecc76dcdf24fcea3bfb9648e5376471f64e71afb",
+      "witness_binary_matches": {
+        "lower": true,
+        "upper": true
+      }
+    },
+    {
+      "case": "P03A",
+      "seconds": 665.424206,
+      "lower_fs": 1.1553169284451044,
+      "upper_fs": 1.1741222483654132,
+      "input_match": true,
+      "profile_differences": {},
+      "element_counts_match": true,
+      "fs_close": true,
+      "reference_speed_ratio": 2.6312548577241817,
+      "limit": "Same-PC previous DLL2 measurement, no interleaved repeat; whole-version ratio, not isolated DLL-only effect",
+      "old_status_sha256": "4bebc61c12507f93f2694fbfaf4a474f9089351610a3a4e20e8d50ab9e4e6ac6",
+      "witness_binary_matches": {
+        "lower": true,
+        "upper": true
+      }
+    },
+    {
+      "case": "P03N",
+      "seconds": 665.373713,
+      "lower_fs": 1.1520001000286129,
+      "upper_fs": 1.1708578238454124,
+      "input_match": true,
+      "profile_differences": {},
+      "element_counts_match": true,
+      "fs_close": true,
+      "reference_speed_ratio": 2.6184479860608376,
+      "limit": "Same-PC previous DLL2 measurement, no interleaved repeat; whole-version ratio, not isolated DLL-only effect",
+      "old_status_sha256": "758f1595483b0578a85fca6dfc433bbe00c7ce119edd6ea4bb91a33bcf612d5d",
+      "witness_binary_matches": {
+        "lower": true,
+        "upper": true
+      }
+    },
+    {
+      "case": "P04A",
+      "seconds": 924.821525,
+      "lower_fs": 2.2503402432794615,
+      "upper_fs": 2.264818318989914,
+      "input_match": true,
+      "profile_differences": {},
+      "element_counts_match": true,
+      "fs_close": true,
+      "reference_speed_ratio": 2.750957851978597,
+      "limit": "Same-PC previous DLL2 measurement, no interleaved repeat; whole-version ratio, not isolated DLL-only effect",
+      "old_status_sha256": "1e233b38e60631bdbba5023794e41607fbcab4d9ba9fa7debd83a66d84e48383",
+      "witness_binary_matches": {
+        "lower": true,
+        "upper": true
+      }
+    },
+    {
+      "case": "P04N",
+      "seconds": 864.989671,
+      "lower_fs": 2.138029172910192,
+      "upper_fs": 2.1539417859693817,
+      "input_match": true,
+      "profile_differences": {},
+      "element_counts_match": true,
+      "fs_close": true,
+      "reference_speed_ratio": 2.787260363435702,
+      "limit": "Same-PC previous DLL2 measurement, no interleaved repeat; whole-version ratio, not isolated DLL-only effect",
+      "old_status_sha256": "7e1a551894addf00e6c42f0085040cd7b2c4c6306dadabd9b00f092e779d5ebb",
+      "witness_binary_matches": {
+        "lower": true,
+        "upper": true
+      }
+    },
+    {
+      "case": "P05A",
+      "seconds": 1014.736043,
+      "lower_fs": 1.4650728061474296,
+      "upper_fs": 1.4896715015368427,
+      "input_match": true,
+      "profile_differences": {},
+      "element_counts_match": true,
+      "fs_close": true,
+      "reference_speed_ratio": 3.5747816381668254,
+      "limit": "Same-PC previous DLL2 measurement, no interleaved repeat; whole-version ratio, not isolated DLL-only effect",
+      "old_status_sha256": "109c9a783e9e470dfcce662fda0fa56a2132d6cf1896f4f9453eed2973bbe1cd",
+      "witness_binary_matches": {
+        "lower": true,
+        "upper": true
+      }
+    }
+  ],
+  "scope": "Actual current native Excel results versus the earlier same-PC standard profile; no earlier timings reused as current measurements"
+}

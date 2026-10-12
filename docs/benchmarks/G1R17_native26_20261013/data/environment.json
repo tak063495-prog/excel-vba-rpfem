@@ -1,0 +1,31 @@
+{
+  "captured_utc": "2026-10-12T10:52:44.193529+00:00",
+  "platform": "Windows-11-10.0.26300-SP0",
+  "python": "3.12.13 (main, Aug  7 2026, 02:26:41) [MSC v.1944 64 bit (AMD64)]",
+  "packages": {
+    "pywin32": "312",
+    "numpy": "2.5.4",
+    "scipy": "1.18.1",
+    "oletools": "0.60.2"
+  },
+  "hardware": {
+    "excel_processes": {},
+    "cpu": {
+      "Name": "AMD Ryzen 9 5900X 12-Core Processor            ",
+      "NumberOfCores": 12,
+      "NumberOfLogicalProcessors": 24
+    },
+    "os": {
+      "Caption": "Microsoft Windows 11 Pro",
+      "Version": "10.0.26300",
+      "TotalVisibleMemorySize": 134123000
+    }
+  },
+  "source_commit": "24bb5c1a09cf7c92997c347ad9f0ee6868e28475",
+  "source_sha256": "dcbfdcfb2d4bbcf382f07d237e77d7122185ebe91c4fce59935cb751f04e2fda",
+  "dll_sha256": "72aaf9bfccc0acc186eb69cdcbabd93b27f7ce245ceac574193ba6602c675323",
+  "execution": "Sequential native Excel, one analysis at a time",
+  "macro_security": "Recorded without modification in each case status",
+  "VBA_measurement": "No new VBA full timing per prior user instruction",
+  "timing_boundary": "Main: run_end.elapsed_s; additionally COM RPX_Run, water preparation and initial RPX_CreateMesh measured separately; saving/audits/Excel startup excluded"
+}

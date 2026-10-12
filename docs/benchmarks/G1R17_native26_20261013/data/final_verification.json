@@ -1,0 +1,427 @@
+{
+  "pass": true,
+  "completed": 26,
+  "audited_fs": 26,
+  "target_met": 10,
+  "protected_files_unchanged": 636,
+  "runner_sha256": "79c0a3d97225b0f751be77df9dede5e5632f00f2eb62d27739a88620fba34d21",
+  "scope": "Recorded native timings, input/profile identity, numerical DLL calls, independent physical audit results and saved file hashes; no numerical solve repeated",
+  "cases": [
+    {
+      "case": "D08A",
+      "status": "PASS_TARGET",
+      "native_seconds": 348.077068,
+      "workbook_sha256": "5eaebe7d93a2af5870761d0256f03505c31b87031142bf81bec17c5fa8a047cf",
+      "witness_sha256": {
+        "lower": "45301ebef56d3543dd5928e16cfcf921d0b8cb4d14d1c9955fb774fedbe35430",
+        "upper": "18e94e3b70732a7bf29f3f6da76158dcecae34906c21749c362c6e269cb9f3fd"
+      },
+      "quadrature": [
+        8,
+        8
+      ],
+      "dll_used": true,
+      "production_preserved": true
+    },
+    {
+      "case": "P01A",
+      "status": "FS_AVAILABLE_PARTIAL",
+      "native_seconds": 264.601352,
+      "workbook_sha256": "eb649ca5a590b3ab1e81dbbb09d0f86cb4d3e50a01747c09dba7f803a2c4b98f",
+      "witness_sha256": {
+        "lower": "9d690f49380169bc93659f15f1d7c977d4f39033952a525aa1a5b1e4896509dd",
+        "upper": "3818066778a424585028764a185f13638404b941c3e57859aec46f731968f090"
+      },
+      "quadrature": [
+        8,
+        8
+      ],
+      "dll_used": true,
+      "production_preserved": true
+    },
+    {
+      "case": "P01N",
+      "status": "FS_AVAILABLE_PARTIAL",
+      "native_seconds": 262.753328,
+      "workbook_sha256": "278fe27192cbc0005fd3858a46c8c7ae4923a9cd6f42a342f5dc0346453dfa3e",
+      "witness_sha256": {
+        "lower": "7ebec9c2b869f220b8e468fda0847311bd1d625fad32dc6c2a521e74d609b736",
+        "upper": "94e2023f214688c7d7cc14ff60507e6b91894bf72c9087ef445c23a0e7998500"
+      },
+      "quadrature": [
+        8,
+        8
+      ],
+      "dll_used": true,
+      "production_preserved": true
+    },
+    {
+      "case": "P02A",
+      "status": "PASS_TARGET",
+      "native_seconds": 334.060525,
+      "workbook_sha256": "640aa869e032b6385378139db7e4311c9837f5f04a2c7f9cb101cfd459399cd9",
+      "witness_sha256": {
+        "lower": "8a630cecb724e4e215029809372e0bd6eb2ab2244fbeb0f5c8cbbcc2f298e834",
+        "upper": "641bc2b1badf702b06305ac1c105f1621d51bc5b4603a8c25c3e3ae7051f3d57"
+      },
+      "quadrature": [
+        8,
+        8
+      ],
+      "dll_used": true,
+      "production_preserved": true
+    },
+    {
+      "case": "P02N",
+      "status": "PASS_TARGET",
+      "native_seconds": 321.352305,
+      "workbook_sha256": "b2a14da7f17e573eee7bc495093dac97873b561028577f2febd6663f7bf6a99b",
+      "witness_sha256": {
+        "lower": "e1315afbcd72e35ba45b4a4f517694a83fc70f53641bbbcac3e5ffa2d19aad01",
+        "upper": "8c419bc806f1f4afb0fb4121d34d25d5396d5da9705ab05f07cba199c2e43a96"
+      },
+      "quadrature": [
+        8,
+        8
+      ],
+      "dll_used": true,
+      "production_preserved": true
+    },
+    {
+      "case": "P03A",
+      "status": "FS_AVAILABLE_PARTIAL",
+      "native_seconds": 252.892343,
+      "workbook_sha256": "96ef92ce91197c1d8a1a0ff3513ec7f17fe51bde050e1f06907e115226f24200",
+      "witness_sha256": {
+        "lower": "7560d40149999c043182e67e7108d8663278b52b35dfc217e086d1da51a9cdf2",
+        "upper": "5c3574a9b1a09bfa8e459896e935b3b6632ae335125fcddbc6c10b51c25bfb05"
+      },
+      "quadrature": [
+        8,
+        8
+      ],
+      "dll_used": true,
+      "production_preserved": true
+    },
+    {
+      "case": "P03N",
+      "status": "FS_AVAILABLE_PARTIAL",
+      "native_seconds": 254.10996,
+      "workbook_sha256": "158a100aadda4e565af4108267db341e6a3caa1f179789c705eb8d8260d34187",
+      "witness_sha256": {
+        "lower": "6c242d477c1bc192ef0a4a85f65f7e9b95394dd9b9d4b6390fb42c9e76fc3a1d",
+        "upper": "5930a31174d2e7d9cff476aed7dad53e873b7ba289b5a96807a9b87a9485d6aa"
+      },
+      "quadrature": [
+        8,
+        8
+      ],
+      "dll_used": true,
+      "production_preserved": true
+    },
+    {
+      "case": "P04A",
+      "status": "PASS_TARGET",
+      "native_seconds": 336.181641,
+      "workbook_sha256": "6f5b29283ac18c5c07cbe2f59725c89b53ea96587ca0996570813f586f9ad309",
+      "witness_sha256": {
+        "lower": "7594ba1dcc3fb2d84d699dc309bfd11cf0a3ec8de2b46f7a86eed1769d6eb190",
+        "upper": "2b159e3f3e4fb057c6d8054ef5c06b8e881d41ded7122ba84c859c6d2ec3416b"
+      },
+      "quadrature": [
+        8,
+        8
+      ],
+      "dll_used": true,
+      "production_preserved": true
+    },
+    {
+      "case": "P04N",
+      "status": "PASS_TARGET",
+      "native_seconds": 310.336875,
+      "workbook_sha256": "945ec8d56e9364377d3a8ba7c442842bb8d6cd034f1bdafe62deb86c80069b1c",
+      "witness_sha256": {
+        "lower": "a2dd261e3896854c767365e13da9a2999f108fd0e0b427dfcfe1887a4cc7a13a",
+        "upper": "0b041539de1d9290c7f770d4f877f9e41b074ae41eec69aaccb33a4e2127ea49"
+      },
+      "quadrature": [
+        8,
+        8
+      ],
+      "dll_used": true,
+      "production_preserved": true
+    },
+    {
+      "case": "P05A",
+      "status": "FS_AVAILABLE_PARTIAL",
+      "native_seconds": 283.859588,
+      "workbook_sha256": "ae8d2b94a26e5ab2b9e294eb0eb79ce8ebb4d8f37e1fb7bdcc179f3475bf61da",
+      "witness_sha256": {
+        "lower": "e060e4a1a321563f25c34c0cba53821f212568fb2f278f839e998a6ba5127044",
+        "upper": "96a5bb1880aba98a4f98f675c0d6938b3edfe4995cf2d06c261895af26c17922"
+      },
+      "quadrature": [
+        8,
+        8
+      ],
+      "dll_used": true,
+      "production_preserved": true
+    },
+    {
+      "case": "P05N",
+      "status": "FS_AVAILABLE_PARTIAL",
+      "native_seconds": 552.866536,
+      "workbook_sha256": "c92a6dce80c2e3dc67f29a96fd3cf6421d2956453ba7a61117bde4035f32f1da",
+      "witness_sha256": {
+        "lower": "b23c19834b8f0fc5ebd0c2bf1ada9f149dd17cd0b0d56a38134f0948e5b1ceb5",
+        "upper": "b9af72c8efa73b26714490759feccead37dae1d1ba1a76e9f41b613a294952f1"
+      },
+      "quadrature": [
+        8,
+        8
+      ],
+      "dll_used": true,
+      "production_preserved": true
+    },
+    {
+      "case": "P07A",
+      "status": "PASS_TARGET",
+      "native_seconds": 547.532441,
+      "workbook_sha256": "3619965cff23df793fc6a03c677a1f7c5d11e3aead770b50ea952a13ce53b982",
+      "witness_sha256": {
+        "lower": "e683edd8354d099db386274afcf0aadf6f9779cbba5c90b200108a85095e9bbc",
+        "upper": "4e1e6d739dd4e5f0f26168120c1ca871cdebdde767074e5d5cf54b1740e7fd8a"
+      },
+      "quadrature": [
+        8,
+        8
+      ],
+      "dll_used": true,
+      "production_preserved": true
+    },
+    {
+      "case": "P07N",
+      "status": "FS_AVAILABLE_PARTIAL",
+      "native_seconds": 746.87111,
+      "workbook_sha256": "33fcfc7c55f293aedad00e75cb0b78f8d4774033b748647eeb67534111b5130c",
+      "witness_sha256": {
+        "lower": "4ead0556ae713ba86dc7a4c70976ba396ba23f725b062c41c254b8b9c0574b22",
+        "upper": "3ebcae1362f6639ad8e34e51a69fdfb8cb7792505fc6993f6ba6cf11abce9b80"
+      },
+      "quadrature": [
+        8,
+        8
+      ],
+      "dll_used": true,
+      "production_preserved": true
+    },
+    {
+      "case": "P08A",
+      "status": "FS_AVAILABLE_PARTIAL",
+      "native_seconds": 1375.33656,
+      "workbook_sha256": "73de281800103ed0c1857f04c0a6f3a994519c82a28b8db2e7cca7e883db5f9b",
+      "witness_sha256": {
+        "lower": "2f9a7cb9de77625b76a21df6ce22c30aff7c67b7cae661636737288677b829a0",
+        "upper": "f106cd40ad41cd484c822adae21146eb09e3ee8abbe88a7c3f186ffa7b2a2275"
+      },
+      "quadrature": [
+        4,
+        4
+      ],
+      "dll_used": true,
+      "production_preserved": true
+    },
+    {
+      "case": "P09A",
+      "status": "FS_AVAILABLE_PARTIAL",
+      "native_seconds": 1127.375623,
+      "workbook_sha256": "acc5ff68de8a509f04fd823a2f1c4dec10534271a3283007de48fb6f05ab8762",
+      "witness_sha256": {
+        "lower": "998a3390a18e86966d85a2721b666213f624fc63c160fb6a7d31dfed49d03f06",
+        "upper": "9af3115ba1a262548b4a299dcd7df3c99ee1ec1c472c613e6a43e6d1dbc47244"
+      },
+      "quadrature": [
+        4,
+        4
+      ],
+      "dll_used": true,
+      "production_preserved": true
+    },
+    {
+      "case": "P10A",
+      "status": "FS_AVAILABLE_PARTIAL",
+      "native_seconds": 989.995308,
+      "workbook_sha256": "38df9308fdc08d50a3eb80746fb75b7b8eeb4c9233aeffbd8087b3ac2ed41da1",
+      "witness_sha256": {
+        "lower": "40671864122eb8fa8a9ba2fe0ae2925c428c8140fe0b43694a5ffe73412be999",
+        "upper": "55e0ec3152400efaf22b619f64925a4a3190b07e4285e4130b878971539879e2"
+      },
+      "quadrature": [
+        4,
+        4
+      ],
+      "dll_used": true,
+      "production_preserved": true
+    },
+    {
+      "case": "D01A",
+      "status": "FS_AVAILABLE_PARTIAL",
+      "native_seconds": 1862.762136,
+      "workbook_sha256": "7ff79856df4a9bdf52811bebbed0998c6d99ae102942baf144d37f1fb8197584",
+      "witness_sha256": {
+        "lower": "3522c5bbe373f444b8e17a7903940695764edfecc202fb7773631bb8e31f9d85",
+        "upper": "b11bf91e6bd9e6847d279d17fb5de06096b5d22af3a9dfcfea314e2f1ffd0275"
+      },
+      "quadrature": [
+        8,
+        8
+      ],
+      "dll_used": true,
+      "production_preserved": true
+    },
+    {
+      "case": "D02A",
+      "status": "FS_AVAILABLE_PARTIAL",
+      "native_seconds": 2056.986049,
+      "workbook_sha256": "68e991e68f7d6e1b65f1a6517b147312bfb3765d470f8448980c3a035f6bd8d2",
+      "witness_sha256": {
+        "lower": "b45f1c3f40fd7cb32f1754c87b7e704602c33caa3881a7837e6f4469aaba3b65",
+        "upper": "738d8aa498934c7c7de72b15532661b816d65b394159769200761e5685d07039"
+      },
+      "quadrature": [
+        4,
+        8
+      ],
+      "dll_used": true,
+      "production_preserved": true
+    },
+    {
+      "case": "D03N",
+      "status": "FS_AVAILABLE_PARTIAL",
+      "native_seconds": 2035.130294,
+      "workbook_sha256": "83d639872e903155567629192aa9e910aea738d3f8b924304811d50ae564e032",
+      "witness_sha256": {
+        "lower": "ec2f4662c4ffd04c5d1b0ff1e6fa3690a8a7d280cc13480d00470d1aeedb483f",
+        "upper": "c3bdd1c85d9ef4fbe415dce113451eaef2362da4e496e1f39a8d2d7a77c5cb2c"
+      },
+      "quadrature": [
+        8,
+        8
+      ],
+      "dll_used": true,
+      "production_preserved": true
+    },
+    {
+      "case": "D04A",
+      "status": "PASS_TARGET",
+      "native_seconds": 322.292376,
+      "workbook_sha256": "e6736d2a17d64513bba9835405c0bae4f87c6b3bc34038f711438dc0ea10eae5",
+      "witness_sha256": {
+        "lower": "8a630cecb724e4e215029809372e0bd6eb2ab2244fbeb0f5c8cbbcc2f298e834",
+        "upper": "641bc2b1badf702b06305ac1c105f1621d51bc5b4603a8c25c3e3ae7051f3d57"
+      },
+      "quadrature": [
+        8,
+        8
+      ],
+      "dll_used": true,
+      "production_preserved": true
+    },
+    {
+      "case": "D05A",
+      "status": "PASS_TARGET",
+      "native_seconds": 363.771358,
+      "workbook_sha256": "c6fe1f855dc56e6889487b492f68b2623d7bac6ab32bd946b6372b5bfd67772d",
+      "witness_sha256": {
+        "lower": "2d9b862eb5082f19ef926e66e2a84dba00aa1ce9315ec26f34b93884f7480078",
+        "upper": "a0c35c9f896f72f3d03071fdd694561b1e9d0624903f161faf8b0966268c6469"
+      },
+      "quadrature": [
+        8,
+        8
+      ],
+      "dll_used": true,
+      "production_preserved": true
+    },
+    {
+      "case": "D06A",
+      "status": "PASS_TARGET",
+      "native_seconds": 321.343931,
+      "workbook_sha256": "7bfb9b50cdb0bab3f092d6b483387b773430e291604745a69e5a2fe11ebb5172",
+      "witness_sha256": {
+        "lower": "bfe1c7871e84a57c3032870bdca02aeb57d0ad7f2fb4897cfc08e1f184553d2a",
+        "upper": "b3f7a8edbd7f627bdedb49678f06aac9b691ce38c80f235d9cabce91b73541f6"
+      },
+      "quadrature": [
+        8,
+        8
+      ],
+      "dll_used": true,
+      "production_preserved": true
+    },
+    {
+      "case": "D07A",
+      "status": "FS_AVAILABLE_PARTIAL",
+      "native_seconds": 265.8232,
+      "workbook_sha256": "7a4ec0f557efe61c3f5d2ca66c0abc6b398d18ce23d1ab79cc41e186451fca90",
+      "witness_sha256": {
+        "lower": "19a9ab3ae1585525ea6d9cb6bba076a924f0dd62abf9568dd75ff7f4dd459ecf",
+        "upper": "a5190bd0c5263724c72a606cf7c09746f3b0709fecab3c21a03d1237b459e6e0"
+      },
+      "quadrature": [
+        8,
+        4
+      ],
+      "dll_used": true,
+      "production_preserved": true
+    },
+    {
+      "case": "D09A",
+      "status": "PASS_TARGET",
+      "native_seconds": 323.323682,
+      "workbook_sha256": "d0a77672f5208c712aa68f52ba9aeb0d04de33ac0c74ea84a335a8cae5eeda0b",
+      "witness_sha256": {
+        "lower": "8a630cecb724e4e215029809372e0bd6eb2ab2244fbeb0f5c8cbbcc2f298e834",
+        "upper": "641bc2b1badf702b06305ac1c105f1621d51bc5b4603a8c25c3e3ae7051f3d57"
+      },
+      "quadrature": [
+        8,
+        8
+      ],
+      "dll_used": true,
+      "production_preserved": true
+    },
+    {
+      "case": "P06N",
+      "status": "FS_AVAILABLE_PARTIAL",
+      "native_seconds": 6057.41818,
+      "workbook_sha256": "a6d0818be00a5955880b0a41b9582e3ad352c3eb997b7bb724adc2b201ed967a",
+      "witness_sha256": {
+        "lower": "2819d86d19eb9e1e571abb43179a9e7004c62eef053ae9ac9a86e539167a17bc",
+        "upper": "c77bf37ce82a072ef7353eb2c10f9fe5c0f6ed05537f2b16601084e9ce2bb39f"
+      },
+      "quadrature": [
+        8,
+        8
+      ],
+      "dll_used": true,
+      "production_preserved": true
+    },
+    {
+      "case": "P06A",
+      "status": "FS_AVAILABLE_PARTIAL",
+      "native_seconds": 6049.832389,
+      "workbook_sha256": "41cf3fc649cb944d0d8cd23b648f0680ff56e650dd4f86d5f2f27c8501e8ac97",
+      "witness_sha256": {
+        "lower": "0fcb8f496e68b03726d829c3cbf5a5ecf1ce38204fb0a9f011b0f45a8add47a5",
+        "upper": "d1bec261371ed4441061a0b4b1d210aa4d173d63d53f6b00009184878ba01ccf"
+      },
+      "quadrature": [
+        8,
+        8
+      ],
+      "dll_used": true,
+      "production_preserved": true
+    }
+  ]
+}
