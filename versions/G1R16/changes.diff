@@ -1,0 +1,726 @@
+17a18,19
+> ' #6: convergence = unrelaxed fixed-point change AND scaled free-node flux balance (independent of SRelax)
+> Public SResTol As Double, SLastResidual As Double, SLastFixDelta As Double
+23c25
+<     SKrMin = 0.0001: SBeta = 20#: SRelax = 0.5: STol = 0.000001: SMaxIt = 300: SGammaW = 9.81
+---
+>     SKrMin = 0.0001: SBeta = 20#: SRelax = 0.5: STol = 0.000001: SMaxIt = 300: SGammaW = 9.81: SResTol = 0.000001
+136a139
+>     Dim dfix As Double, res As Double, qs As Double, qi As Double, kr2 As Double, qr() As Double
+153a157,158
+>     If SResTol <= 0# Then SResTol = 0.000001
+>     SLastResidual = 0#: SLastFixDelta = 0#: ReDim qr(0 To SN - 1)
+195c200
+<         dmax = 0#
+---
+>         dmax = 0#: dfix = 0#
+198c203,206
+<             If Not fixed(i) Then hn = SHead(i) + SRelax * (hn - SHead(i))
+---
+>             If Not fixed(i) Then
+>                 If Abs(hn - SHead(i)) > dfix Then dfix = Abs(hn - SHead(i))   ' #6: before relaxation
+>                 hn = SHead(i) + SRelax * (hn - SHead(i))
+>             End If
+226,227c234,267
+<         SIterations = it: SLastDelta = dmax
+<         If dmax < STol And changed = 0 Then SConverged = True: Exit For
+---
+>         ' #6: flux balance of the accepted heads (kr re-evaluated at these heads), after seepage-face switching
+>         For i = 0 To SN - 1: qr(i) = 0#: Next i
+>         For e = 0 To SM - 1
+>             TriGeom e, area2, bb, cc
+>             p = 0#
+>             For i = 0 To 2: p = p + (SHead(STri(e, i)) - SXY(STri(e, i), 1)) / 3#: Next i
+>             If p >= 0# Then
+>                 kr2 = 1#
+>             Else
+>                 kr2 = Exp(SBeta * p)
+>                 If kr2 < SKrMin Then kr2 = SKrMin
+>             End If
+>             s = kr2 / (2# * area2)
+>             For i = 0 To 2
+>                 For j = 0 To 2
+>                     qr(STri(e, i)) = qr(STri(e, i)) + ElemK(e, i, j, s, bb, cc) * SHead(STri(e, j))
+>                 Next j
+>             Next i
+>         Next e
+>         qs = 0#: res = 0#
+>         For i = 0 To SN - 1
+>             If SBcType(i) = 1 Or SActive(i) Then qs = qs + Abs(qr(i))
+>             If SBcType(i) = 3 Then qs = qs + Abs(SBcVal(i))
+>         Next i
+>         If qs < 1E-300 Then qs = 1E-300
+>         For i = 0 To SN - 1
+>             If Not (SBcType(i) = 1 Or SActive(i)) Then
+>                 qi = qr(i)
+>                 If SBcType(i) = 3 Then qi = qi - SBcVal(i)
+>                 If Abs(qi) / qs > res Then res = Abs(qi) / qs
+>             End If
+>         Next i
+>         SIterations = it: SLastDelta = dmax: SLastFixDelta = dfix: SLastResidual = res
+>         If dfix < STol And res < SResTol And changed = 0 Then SConverged = True: Exit For
+283a324,326
+>     ws.Range("W1:X1").value = Array("緩和前変化量 [m]", SLastFixDelta)
+>     ws.Range("W2:X2").value = Array("釣合い残差（正規化）", SLastResidual)
+>     ws.Range("W3:X3").value = Array("収束条件", "緩和前変化量<" & STol & " かつ 残差<" & SResTol & " かつ 浸出面切替なし")
+346a390,404
+> 
+> ' ---- test (#6): 4-node linear problem, exact h2=28/3, h3=29/3 ----------------
+> Public Function RPX_SeepTestRelax(ByVal relax As Double) As String
+>     SN = 4: SM = 2: SNMat = 1
+>     ReDim SXY(0 To 3, 0 To 1): ReDim STri(0 To 1, 0 To 2): ReDim SMat(0 To 1)
+>     ReDim SKx(0 To 0): ReDim SKy(0 To 0): SKx(0) = 1#: SKy(0) = 1#
+>     ReDim SBcType(0 To 3): ReDim SBcVal(0 To 3)
+>     SXY(1, 0) = 1#: SXY(2, 0) = 1#: SXY(2, 1) = 1#: SXY(3, 1) = 1#
+>     STri(0, 0) = 0: STri(0, 1) = 1: STri(0, 2) = 2: STri(1, 0) = 0: STri(1, 1) = 2: STri(1, 2) = 3
+>     SBcType(0) = 1: SBcVal(0) = 10#: SBcType(1) = 1: SBcVal(1) = 9#
+>     RPX_SeepDefaults: SRelax = relax
+>     RPX_SeepSolve
+>     RPX_SeepTestRelax = "relax=" & relax & ";iters=" & SIterations & ";converged=" & SConverged & ";h2=" & SHead(2) & ";h3=" & SHead(3) & _
+>         ";err=" & Abs(SHead(2) - 28# / 3#) & ";dfix=" & SLastFixDelta & ";res=" & SLastResidual
+> End Function
+90c90
+<     If Err.Number <> 0 Then RPX_SeepLastMsg = RPX_SeepLastMsg & "ERR " & Err.Description
+---
+>     If err.number <> 0 Then RPX_SeepLastMsg = RPX_SeepLastMsg & "ERR " & err.description
+105c105
+<     Print #f, Format$(Now, "yyyy-mm-dd hh:nn:ss") & " " & text
+---
+>     Print #f, Format$(now, "yyyy-mm-dd hh:nn:ss") & " " & text
+107c107
+<     Err.Clear
+---
+>     err.Clear
+117c117
+<     For i = LBound(labels) To UBound(labels): ws.Range(address).Offset(0, i).Value2 = labels(i): Next i
+---
+>     For i = LBound(labels) To UBound(labels): ws.Range(address).offset(0, i).Value2 = labels(i): Next i
+119c119
+<         .Font.Bold = True: .Font.Color = RGB(255, 255, 255): .Interior.Color = RGB(38, 67, 91): .WrapText = True
+---
+>         .Font.Bold = True: .Font.Color = RGB(255, 255, 255): .interior.Color = RGB(38, 67, 91): .WrapText = True
+121c121
+<     ws.Rows(ws.Range(address).Row).RowHeight = 38
+---
+>     ws.rows(ws.Range(address).row).RowHeight = 38
+125c125
+<     Dim s As Shape
+---
+>     Dim s As shape
+127,128c127,128
+<     s.TextFrame2.TextRange.Text = label: s.TextFrame2.TextRange.Font.Size = 11: s.TextFrame2.TextRange.Font.Fill.ForeColor.RGB = RGB(255, 255, 255)
+<     s.Fill.ForeColor.RGB = RGB(36, 104, 130): s.Line.Visible = False: s.OnAction = macro
+---
+>     s.TextFrame2.TextRange.text = label: s.TextFrame2.TextRange.Font.size = 11: s.TextFrame2.TextRange.Font.fill.ForeColor.RGB = RGB(255, 255, 255)
+>     s.fill.ForeColor.RGB = RGB(36, 104, 130): s.line.Visible = False: s.OnAction = macro
+157c157
+<     Err.Clear
+---
+>     err.Clear
+190c190
+<                 If k >= 0 Then Set SettingCell = ws.Cells(ADV_FIRST + k, 3)
+---
+>                 If k >= 0 Then Set SettingCell = ws.cells(ADV_FIRST + k, 3)
+193c193
+<         Set SettingCell = ws.Cells(r, 14)
+---
+>         Set SettingCell = ws.cells(r, 14)
+209c209
+<             If StrComp(s, CStr(ws.Cells(3 + i, 26).Value2), vbBinaryCompare) = 0 Then RPX_SeepMode = i - 1: Exit Function
+---
+>             If StrComp(s, CStr(ws.cells(3 + i, 26).Value2), vbBinaryCompare) = 0 Then RPX_SeepMode = i - 1: Exit Function
+219,221c219,221
+<     ws.Cells(row, 1).Value2 = label: ws.Cells(row, 5).Value2 = note
+<     If keep.Exists(r) Then ws.Cells(row, 3).Value2 = keep(r) Else ws.Cells(row, 3).Value2 = value
+<     ws.Cells(row, 3).Interior.Color = RGB(243, 248, 251)
+---
+>     ws.cells(row, 1).Value2 = label: ws.cells(row, 5).Value2 = note
+>     If keep.Exists(r) Then ws.cells(row, 3).Value2 = keep(r) Else ws.cells(row, 3).Value2 = value
+>     ws.cells(row, 3).interior.Color = RGB(243, 248, 251)
+236c236
+<     fc.Interior.Color = RGB(217, 217, 217): fc.Font.Color = RGB(150, 150, 150)
+---
+>     fc.interior.Color = RGB(217, 217, 217): fc.Font.Color = RGB(150, 150, 150)
+261c261
+<         If CountRows(perm) > 200 Or CountRows(bnd) > 200 Or CountRows(wt) > 200 Then Err.Raise 5, , "旧配置の表が200行を超えるため自動移行できません（207行目以降を整理してから実行してください）。"
+---
+>         If CountRows(perm) > 200 Or CountRows(bnd) > 200 Or CountRows(wt) > 200 Then err.Raise 5, , "旧配置の表が200行を超えるため自動移行できません（207行目以降を整理してから実行してください）。"
+265c265
+<                 v = ws.Cells(CLng(r), 14).Value2
+---
+>                 v = ws.cells(CLng(r), 14).Value2
+270c270
+<             v = ws.Cells(ROW_MODE, 14).Value2: oldMode = 0
+---
+>             v = ws.cells(ROW_MODE, 14).Value2: oldMode = 0
+286c286
+<     For i = ws.Shapes.Count To 1 Step -1: ws.Shapes(i).Delete: Next i
+---
+>     For i = ws.Shapes.count To 1 Step -1: ws.Shapes(i).Delete: Next i
+288,290c288,290
+<     ws.Cells.FormatConditions.Delete
+<     ws.Cells.Validation.Delete
+<     Err.Clear
+---
+>     ws.cells.FormatConditions.Delete
+>     ws.cells.Validation.Delete
+>     err.Clear
+292,294c292,294
+<     ws.Cells.Clear
+<     ws.Columns.Hidden = False
+<     ws.Cells.Font.Name = "Yu Gothic": ws.Cells.Font.Size = 11
+---
+>     ws.cells.Clear
+>     ws.columns.Hidden = False
+>     ws.cells.Font.name = "Yu Gothic": ws.cells.Font.size = 11
+296,299c296,299
+<     For i = 1 To 4: ws.Cells(3 + i, 26).Value2 = ModeLabel(i): Next i
+<     ws.Range("Z3").Formula = "=IFERROR(MATCH($B$3,$Z$4:$Z$7,0),0)"
+<     ws.Range("A1").Value2 = "浸透流解析・水圧の入力": ws.Range("A1").Font.Size = 20: ws.Range("A1").Font.Bold = True
+<     ws.Rows(1).RowHeight = 34
+---
+>     For i = 1 To 4: ws.cells(3 + i, 26).Value2 = ModeLabel(i): Next i
+>     ws.Range("Z3").formula = "=IFERROR(MATCH($B$3,$Z$4:$Z$7,0),0)"
+>     ws.Range("A1").Value2 = "浸透流解析・水圧の入力": ws.Range("A1").Font.size = 20: ws.Range("A1").Font.Bold = True
+>     ws.rows(1).RowHeight = 34
+307c307
+<     ws.Range("B3:F3").Interior.Color = RGB(255, 242, 204): ws.Range("B3:F3").Font.Bold = True
+---
+>     ws.Range("B3:F3").interior.Color = RGB(255, 242, 204): ws.Range("B3:F3").Font.Bold = True
+314c314
+<     ws.Range("H3").Formula = "=IFERROR(INDEX($AA$4:$AA$7,MATCH($B$3,$Z$4:$Z$7,0)),$AA$3)"
+---
+>     ws.Range("H3").formula = "=IFERROR(INDEX($AA$4:$AA$7,MATCH($B$3,$Z$4:$Z$7,0)),$AA$3)"
+320c320
+<     ws.Range("B4,D4,F4").Interior.Color = RGB(243, 248, 251)
+---
+>     ws.Range("B4,D4,F4").interior.Color = RGB(243, 248, 251)
+331c331
+<     ws.Range("A7:C206,E7:K206,M7:N206,P7:Q206").Interior.Color = RGB(243, 248, 251)
+---
+>     ws.Range("A7:C206,E7:K206,M7:N206,P7:Q206").interior.Color = RGB(243, 248, 251)
+351c351
+<         .Font.Bold = True: .Font.Color = RGB(255, 255, 255): .Interior.Color = RGB(38, 67, 91)
+---
+>         .Font.Bold = True: .Font.Color = RGB(255, 255, 255): .interior.Color = RGB(38, 67, 91)
+368,371c368,371
+<     ws.Columns("A:C").ColumnWidth = 11: ws.Columns("D").ColumnWidth = 22
+<     ws.Columns("E:I").ColumnWidth = 9: ws.Columns("J").ColumnWidth = 14: ws.Columns("K").ColumnWidth = 16: ws.Columns("L").ColumnWidth = 22
+<     ws.Columns("M:N").ColumnWidth = 12: ws.Columns("O").ColumnWidth = 22
+<     ws.Columns("P:Q").ColumnWidth = 12: ws.Columns("R").ColumnWidth = 22
+---
+>     ws.columns("A:C").ColumnWidth = 11: ws.columns("D").ColumnWidth = 22
+>     ws.columns("E:I").ColumnWidth = 9: ws.columns("J").ColumnWidth = 14: ws.columns("K").ColumnWidth = 16: ws.columns("L").ColumnWidth = 22
+>     ws.columns("M:N").ColumnWidth = 12: ws.columns("O").ColumnWidth = 22
+>     ws.columns("P:Q").ColumnWidth = 12: ws.columns("R").ColumnWidth = 22
+373c373
+<     ws.Columns("Z:AA").Hidden = True
+---
+>     ws.columns("Z:AA").Hidden = True
+382,383c382,383
+<     If Err.Number <> 0 Then
+<         SeepMsg "浸透入力シートの作成に失敗しました：" & Err.Description, vbExclamation
+---
+>     If err.number <> 0 Then
+>         SeepMsg "浸透入力シートの作成に失敗しました：" & err.description, vbExclamation
+391,393c391,393
+<     ws.Range(ws.Cells(r, firstCol), ws.Cells(r, lastCol)).Interior.Color = RGB(255, 199, 206)
+<     If Len(CStr(ws.Cells(r, msgCol).Value2)) > 0 Then
+<         ws.Cells(r, msgCol).Value2 = ws.Cells(r, msgCol).Value2 & "／" & text
+---
+>     ws.Range(ws.cells(r, firstCol), ws.cells(r, lastCol)).interior.Color = RGB(255, 199, 206)
+>     If Len(CStr(ws.cells(r, msgCol).Value2)) > 0 Then
+>         ws.cells(r, msgCol).Value2 = ws.cells(r, msgCol).Value2 & "／" & text
+395c395
+<         ws.Cells(r, msgCol).Value2 = text
+---
+>         ws.cells(r, msgCol).Value2 = text
+402c402
+<     ok = False: v = ws.Cells(r, c).Value2
+---
+>     ok = False: v = ws.cells(r, c).Value2
+412c412
+<         If Len(CStr(ws.Cells(r, c).Value2)) > 0 Then RowUsed = True: Exit Function
+---
+>         If Len(CStr(ws.cells(r, c).Value2)) > 0 Then RowUsed = True: Exit Function
+428c428
+<     ws.Range("A7:C206,E7:K206,M7:N206,P7:Q206").Interior.Color = RGB(243, 248, 251)
+---
+>     ws.Range("A7:C206,E7:K206,M7:N206,P7:Q206").interior.Color = RGB(243, 248, 251)
+432c432
+<         ws.Range("B3").Interior.Color = RGB(255, 199, 206)
+---
+>         ws.Range("B3").interior.Color = RGB(255, 199, 206)
+435c435
+<     ws.Range("B3:F3").Interior.Color = RGB(255, 242, 204)
+---
+>     ws.Range("B3:F3").interior.Color = RGB(255, 242, 204)
+459c459
+<                 If Len(CStr(ws.Cells(r, 3).Value2)) > 0 Then
+---
+>                 If Len(CStr(ws.cells(r, 3).Value2)) > 0 Then
+471c471
+<                 If Len(CStr(ws.Cells(r, 5).Value2)) = 0 Then MarkRow ws, r, 5, 11, 12, "境界IDが空欄", n
+---
+>                 If Len(CStr(ws.cells(r, 5).Value2)) = 0 Then MarkRow ws, r, 5, 11, 12, "境界IDが空欄", n
+490,491c490,491
+<                 k = Trim$(CStr(ws.Cells(r, 10).Value2))
+<                 s = Trim$(CStr(ws.Cells(r, 11).Value2))
+---
+>                 k = Trim$(CStr(ws.cells(r, 10).Value2))
+>                 s = Trim$(CStr(ws.cells(r, 11).Value2))
+574c574
+<     failText = Err.Description
+---
+>     failText = err.description
+590c590
+<     Dim s As Shape
+---
+>     Dim s As shape
+592,593c592,593
+<     s.AlternativeText = PREVIEW_TAG: s.Line.ForeColor.RGB = col: s.Line.Weight = w
+<     If dash > 0 Then s.Line.DashStyle = dash
+---
+>     s.AlternativeText = PREVIEW_TAG: s.line.ForeColor.RGB = col: s.line.weight = w
+>     If dash > 0 Then s.line.DashStyle = dash
+597c597
+<     Dim s As Shape
+---
+>     Dim s As shape
+599,600c599,600
+<     s.AlternativeText = PREVIEW_TAG: s.Fill.Visible = False: s.Line.Visible = False
+<     s.TextFrame2.TextRange.Text = text: s.TextFrame2.TextRange.Font.Size = 9: s.TextFrame2.TextRange.Font.Fill.ForeColor.RGB = col
+---
+>     s.AlternativeText = PREVIEW_TAG: s.fill.Visible = False: s.line.Visible = False
+>     s.TextFrame2.TextRange.text = text: s.TextFrame2.TextRange.Font.size = 9: s.TextFrame2.TextRange.Font.fill.ForeColor.RGB = col
+620c620
+<     Dim ok As Boolean, ok2 As Boolean, x As Double, y As Double, px As Double, py As Double, havePrev As Boolean, sh As Shape, summary As String, bad As Long
+---
+>     Dim ok As Boolean, ok2 As Boolean, x As Double, y As Double, px As Double, py As Double, havePrev As Boolean, sh As shape, summary As String, bad As Long
+631c631
+<     For i = fig.Shapes.Count To 1 Step -1
+---
+>     For i = fig.Shapes.count To 1 Step -1
+641c641
+<     If xmax <= xmin Or ymax <= ymin Then Err.Raise 5, , "形状の範囲が不正です。"
+---
+>     If xmax <= xmin Or ymax <= ymin Then err.Raise 5, , "形状の範囲が不正です。"
+649c649
+<             PreviewLine fig, PX(DPXY(a, 0), xmin, f), PY(DPXY(a, 1), ymax, f), PX(DPXY(b, 0), xmin, f), PY(DPXY(b, 1), ymax, f), RGB(128, 128, 128), 0.75, 0
+---
+>             PreviewLine fig, PreviewX(DPXY(a, 0), xmin, f), PreviewY(DPXY(a, 1), ymax, f), PreviewX(DPXY(b, 0), xmin, f), PreviewY(DPXY(b, 1), ymax, f), RGB(128, 128, 128), 0.75, 0
+657,659c657,659
+<             If Len(CStr(ws.Cells(r, 5).Value2)) > 0 And CStr(ws.Cells(r, 12).Value2) = "" Then
+<                 region = regionMap(CLng(ws.Cells(r, 6).Value2)): sp = pointMap(CLng(ws.Cells(r, 7).Value2)): ep = pointMap(CLng(ws.Cells(r, 8).Value2))
+<                 k = Trim$(CStr(ws.Cells(r, 10).Value2)): s = Trim$(CStr(ws.Cells(r, 11).Value2))
+---
+>             If Len(CStr(ws.cells(r, 5).Value2)) > 0 And CStr(ws.cells(r, 12).Value2) = "" Then
+>                 region = regionMap(CLng(ws.cells(r, 6).Value2)): sp = pointMap(CLng(ws.cells(r, 7).Value2)): ep = pointMap(CLng(ws.cells(r, 8).Value2))
+>                 k = Trim$(CStr(ws.cells(r, 10).Value2)): s = Trim$(CStr(ws.cells(r, 11).Value2))
+668,669c668,669
+<                         PreviewLine fig, PX(DPXY(a, 0), xmin, f), PY(DPXY(a, 1), ymax, f), PX(DPXY(b, 0), xmin, f), PY(DPXY(b, 1), ymax, f), col, 3.5, 0
+<                         If stepCount = 1 Then PreviewText fig, PX(DPXY(a, 0), xmin, f) + 3, PY(DPXY(a, 1), ymax, f) - 14, ws.Cells(r, 5).Value2 & " " & k & IIf(Len(s) > 0, " " & s, ""), col
+---
+>                         PreviewLine fig, PreviewX(DPXY(a, 0), xmin, f), PreviewY(DPXY(a, 1), ymax, f), PreviewX(DPXY(b, 0), xmin, f), PreviewY(DPXY(b, 1), ymax, f), col, 3.5, 0
+>                         If stepCount = 1 Then PreviewText fig, PreviewX(DPXY(a, 0), xmin, f) + 3, PreviewY(DPXY(a, 1), ymax, f) - 14, ws.cells(r, 5).Value2 & " " & k & IIf(Len(s) > 0, " " & s, ""), col
+675c675
+<                         If ok Then PreviewLine fig, PX(DPXY(sp, 0), xmin, f), PY(y, ymax, f), PX(DPXY(ep, 0), xmin, f), PY(y, ymax, f), col, 1, 4
+---
+>                         If ok Then PreviewLine fig, PreviewX(DPXY(sp, 0), xmin, f), PreviewY(y, ymax, f), PreviewX(DPXY(ep, 0), xmin, f), PreviewY(y, ymax, f), col, 1, 4
+687c687
+<                 If havePrev Then PreviewLine fig, PX(px, xmin, f), PY(py, ymax, f), PX(x, xmin, f), PY(y, ymax, f), RGB(0, 112, 192), 2.25, 4
+---
+>                 If havePrev Then PreviewLine fig, PreviewX(px, xmin, f), PreviewY(py, ymax, f), PreviewX(x, xmin, f), PreviewY(y, ymax, f), RGB(0, 112, 192), 2.25, 4
+697,698c697,698
+<                 Set sh = fig.Shapes.AddShape(9, CSng(PX(x, xmin, f) - 4), CSng(PY(y, ymax, f) - 4), 8, 8)
+<                 sh.AlternativeText = PREVIEW_TAG: sh.Fill.ForeColor.RGB = RGB(220, 0, 0): sh.Line.Visible = False
+---
+>                 Set sh = fig.Shapes.AddShape(9, CSng(PreviewX(x, xmin, f) - 4), CSng(PreviewY(y, ymax, f) - 4), 8, 8)
+>                 sh.AlternativeText = PREVIEW_TAG: sh.fill.ForeColor.RGB = RGB(220, 0, 0): sh.line.Visible = False
+703c703
+<     fig.Shapes(fig.Shapes.Count).Width = 600
+---
+>     fig.Shapes(fig.Shapes.count).width = 600
+706c706
+<     failText = Err.Description
+---
+>     failText = err.description
+757c757
+<         v = ws.Cells(r, col).Value2
+---
+>         v = ws.cells(r, col).Value2
+790c790
+<         Case Else: Err.Raise 5, , "浸透境界の種別が不明です：" & text
+---
+>         Case Else: err.Raise 5, , "浸透境界の種別が不明です：" & text
+805c805
+<         If Abs(SBcVal(node) - value) > 0.000000001 Then Err.Raise 5, , "同じ節点に異なる水頭が指定されています（節点 x=" & SXY(node, 0) & ", y=" & SXY(node, 1) & "）。"
+---
+>         If Abs(SBcVal(node) - value) > 0.000000001 Then err.Raise 5, , "同じ節点に異なる水頭が指定されています（節点 x=" & sxy(node, 0) & ", y=" & sxy(node, 1) & "）。"
+819,820c819,820
+<     ReDim SXY(0 To SN - 1, 0 To 1): ReDim STri(0 To SM - 1, 0 To 2): ReDim SMat(0 To SM - 1)
+<     For i = 0 To SN - 1: SXY(i, 0) = RXY(i, 0): SXY(i, 1) = RXY(i, 1): Next i
+---
+>     ReDim sxy(0 To SN - 1, 0 To 1): ReDim STri(0 To SM - 1, 0 To 2): ReDim SMat(0 To SM - 1)
+>     For i = 0 To SN - 1: sxy(i, 0) = RXY(i, 0): sxy(i, 1) = RXY(i, 1): Next i
+840,841c840,841
+<     ReDim SXY(0 To SN - 1, 0 To 1): ReDim STri(0 To SM - 1, 0 To 2): ReDim SMat(0 To SM - 1)
+<     For i = 0 To SN - 1: SXY(i, 0) = RXY(i, 0): SXY(i, 1) = RXY(i, 1): Next i
+---
+>     ReDim sxy(0 To SN - 1, 0 To 1): ReDim STri(0 To SM - 1, 0 To 2): ReDim SMat(0 To SM - 1)
+>     For i = 0 To SN - 1: sxy(i, 0) = RXY(i, 0): sxy(i, 1) = RXY(i, 1): Next i
+849,851c849,851
+<         If Len(CStr(ws.Cells(r, 1).Value2)) > 0 Then
+<             id = CLng(ws.Cells(r, 1).Value2)
+<             If Not matMap.Exists(id) Then Err.Raise 5, , "浸透入力の材料ID " & id & " は材料データにありません。"
+---
+>         If Len(CStr(ws.cells(r, 1).Value2)) > 0 Then
+>             id = CLng(ws.cells(r, 1).Value2)
+>             If Not matMap.Exists(id) Then err.Raise 5, , "浸透入力の材料ID " & id & " は材料データにありません。"
+853,855c853,855
+<             SKx(i) = CDbl(ws.Cells(r, 2).Value2): SKy(i) = CDbl(ws.Cells(r, 3).Value2)
+<             If Len(CStr(ws.Cells(r, 3).Value2)) = 0 Then SKy(i) = SKx(i)
+<             If SKx(i) <= 0# Or SKy(i) <= 0# Then Err.Raise 5, , "材料ID " & id & " の透水係数は正の値にしてください。"
+---
+>             SKx(i) = CDbl(ws.cells(r, 2).Value2): SKy(i) = CDbl(ws.cells(r, 3).Value2)
+>             If Len(CStr(ws.cells(r, 3).Value2)) = 0 Then SKy(i) = SKx(i)
+>             If SKx(i) <= 0# Or SKy(i) <= 0# Then err.Raise 5, , "材料ID " & id & " の透水係数は正の値にしてください。"
+864c864
+<                 For Each key In matMap.Keys
+---
+>                 For Each key In matMap.keys
+867c867
+<                 Err.Raise 5, , "材料ID " & key & " の透水係数が未入力です（浸透入力 A:C）。"
+---
+>                 err.Raise 5, , "材料ID " & key & " の透水係数が未入力です（浸透入力 A:C）。"
+877,879c877,879
+<         If Len(CStr(ws.Cells(r, 5).Value2)) > 0 Then
+<             id = CLng(ws.Cells(r, 6).Value2)
+<             If Not regionMap.Exists(id) Then Err.Raise 5, , "浸透境界 " & ws.Cells(r, 5).Value2 & "：領域ID " & id & " は未定義です。"
+---
+>         If Len(CStr(ws.cells(r, 5).Value2)) > 0 Then
+>             id = CLng(ws.cells(r, 6).Value2)
+>             If Not regionMap.Exists(id) Then err.Raise 5, , "浸透境界 " & ws.cells(r, 5).Value2 & "：領域ID " & id & " は未定義です。"
+881c881
+<             id = CLng(ws.Cells(r, 7).Value2): If Not pointMap.Exists(id) Then Err.Raise 5, , "浸透境界の開始点 " & id & " は未定義です。"
+---
+>             id = CLng(ws.cells(r, 7).Value2): If Not pointMap.Exists(id) Then err.Raise 5, , "浸透境界の開始点 " & id & " は未定義です。"
+883c883
+<             id = CLng(ws.Cells(r, 8).Value2): If Not pointMap.Exists(id) Then Err.Raise 5, , "浸透境界の終了点 " & id & " は未定義です。"
+---
+>             id = CLng(ws.cells(r, 8).Value2): If Not pointMap.Exists(id) Then err.Raise 5, , "浸透境界の終了点 " & id & " は未定義です。"
+885c885
+<             kind = KindCode(CStr(ws.Cells(r, 10).Value2))
+---
+>             kind = KindCode(CStr(ws.cells(r, 10).Value2))
+887,888c887,888
+<             If RPX_WTIsUnknown(CStr(ws.Cells(r, 11).Value2)) Then
+<                 If Not SUnkReady Or unk >= SUnkCount Then Err.Raise 5, , "浸透境界 " & ws.Cells(r, 5).Value2 & " の値が未知数（?）です。水の与え方「地下水面に合うよう境界の水位を推定する」で実行してください。"
+---
+>             If RPX_WTIsUnknown(CStr(ws.cells(r, 11).Value2)) Then
+>                 If Not SUnkReady Or unk >= SUnkCount Then err.Raise 5, , "浸透境界 " & ws.cells(r, 5).Value2 & " の値が未知数（?）です。水の与え方「地下水面に合うよう境界の水位を推定する」で実行してください。"
+890,891c890,891
+<             ElseIf Len(CStr(ws.Cells(r, 11).Value2)) > 0 Then
+<                 value = CDbl(ws.Cells(r, 11).Value2)
+---
+>             ElseIf Len(CStr(ws.cells(r, 11).Value2)) > 0 Then
+>                 value = CDbl(ws.cells(r, 11).Value2)
+903c903
+<                                     If SXY(node, 1) <= value + 0.000000001 Then SetNodeBc node, 1, value, pri
+---
+>                                     If sxy(node, 1) <= value + 0.000000001 Then SetNodeBc node, 1, value, pri
+905c905
+<                                     If SXY(node, 1) <= value + 0.000000001 Then SetNodeBc node, 1, value, pri Else SetNodeBc node, 2, 0#, pri
+---
+>                                     If sxy(node, 1) <= value + 0.000000001 Then SetNodeBc node, 1, value, pri Else SetNodeBc node, 2, 0#, pri
+923c923
+<     If Not hasHead Then Err.Raise 5, , "水頭固定の境界がありません（水頭・水位を指定してください）。"
+---
+>     If Not hasHead Then err.Raise 5, , "水頭固定の境界がありません（水頭・水位を指定してください）。"
+929,930c929,930
+<     If SRelax <= 0# Or SRelax > 1# Then Err.Raise 5, , "緩和係数は0より大きく1以下にしてください。"
+<     If SKrMin <= 0# Or SKrMin >= 1# Then Err.Raise 5, , "krminは0より大きく1未満にしてください。"
+---
+>     If SRelax <= 0# Or SRelax > 1# Then err.Raise 5, , "緩和係数は0より大きく1以下にしてください。"
+>     If SKrMin <= 0# Or SKrMin >= 1# Then err.Raise 5, , "krminは0より大きく1未満にしてください。"
+974c974
+<     failText = Err.Description
+---
+>     failText = err.description
+991c991
+<             SeepMsg "浸透解析は最大反復回数で打ち切りました（最終変化量 " & Format(SLastDelta, "0.0E+00") & " m）。βを小さく、または緩和係数を小さくしてください。", vbExclamation
+---
+>             SeepMsg "浸透解析は収束しませんでした（" & SIterations & "回反復、緩和前変化量 " & Format(SLastFixDelta, "0.0E+00") & " m、釣合い残差 " & Format(SLastResidual, "0.0E+00") & "）。この結果は連成に使えません。β・メッシュ・境界条件を見直すか、最大反復回数を増やしてください（緩和係数を小さくしても収束判定は甘くなりません）。", vbExclamation
+1012c1012
+<         n = res.Cells(res.Rows.Count, 2).End(xlUp).Row - 1
+---
+>         n = res.cells(res.rows.count, 2).End(xlUp).row - 1
+1031c1031
+<     For i = ws.Shapes.Count To 1 Step -1
+---
+>     For i = ws.Shapes.count To 1 Step -1
+1037c1037
+<     Dim res As Worksheet, n As Long, data As Variant, i As Long, s As Shape
+---
+>     Dim res As Worksheet, n As Long, data As Variant, i As Long, s As shape
+1039c1039
+<     n = res.Cells(res.Rows.Count, 13).End(xlUp).Row - 1
+---
+>     n = res.cells(res.rows.count, 13).End(xlUp).row - 1
+1048c1048
+<             s.AlternativeText = "RPX_SEEP": s.Line.ForeColor.RGB = RGB(0, 112, 192): s.Line.Weight = 2.25
+---
+>             s.AlternativeText = "RPX_SEEP": s.line.ForeColor.RGB = RGB(0, 112, 192): s.line.weight = 2.25
+1086c1086
+<     Dim s As Shape, a As Long, b As Long, ff As FreeformBuilder
+---
+>     Dim s As shape, a As Long, b As Long, ff As FreeformBuilder
+1102,1103c1102,1103
+<                     s.AlternativeText = "RPX_VELOCITY": s.Line.Visible = False
+<                     s.Fill.ForeColor.RGB = RGB(237, 125, 49): s.Fill.Transparency = 0.85 - 0.7 * t
+---
+>                     s.AlternativeText = "RPX_VELOCITY": s.line.Visible = False
+>                     s.fill.ForeColor.RGB = RGB(237, 125, 49): s.fill.Transparency = 0.85 - 0.7 * t
+1131,1132c1131,1132
+< Private Function PX(ByVal x As Double, ByVal xmin As Double, ByVal factor As Double) As Double
+<     PX = 30# + factor * (x - xmin)
+---
+> Private Function PreviewX(ByVal x As Double, ByVal xmin As Double, ByVal factor As Double) As Double
+>     PreviewX = 30# + factor * (x - xmin)
+1134,1135c1134,1135
+< Private Function PY(ByVal y As Double, ByVal ymax As Double, ByVal factor As Double) As Double
+<     PY = 55# + factor * (ymax - y)
+---
+> Private Function PreviewY(ByVal y As Double, ByVal ymax As Double, ByVal factor As Double) As Double
+>     PreviewY = 55# + factor * (ymax - y)
+1140c1140
+<     Dim i As Long, j As Long, k As Long, n As Long, nz As Long, a As Long, b As Long, s As Shape
+---
+>     Dim i As Long, j As Long, k As Long, n As Long, nz As Long, a As Long, b As Long, s As shape
+1145c1145
+<     Dim dist() As Double, prev() As Long, done() As Boolean, src As Long, far As Long, pass As Long, pts() As Single, chain As Long
+---
+>     Dim dist() As Double, prev() As Long, Done() As Boolean, src As Long, far As Long, pass As Long, pts() As Single, chain As Long
+1190c1190
+<             Set s = ws.Shapes.AddLine(PX(RXY(a, 0), xmin, factor), PY(RXY(a, 1), ymax, factor), PX(RXY(b, 0), xmin, factor), PY(RXY(b, 1), ymax, factor))
+---
+>             Set s = ws.Shapes.AddLine(PreviewX(RXY(a, 0), xmin, factor), PreviewY(RXY(a, 1), ymax, factor), PreviewX(RXY(b, 0), xmin, factor), PreviewY(RXY(b, 1), ymax, factor))
+1192c1192
+<             s.AlternativeText = "RPX_VELOCITY": s.Line.ForeColor.RGB = RGB(150, 90, 200): s.Line.Weight = 1.5 + 1# * t
+---
+>             s.AlternativeText = "RPX_VELOCITY": s.line.ForeColor.RGB = RGB(150, 90, 200): s.line.weight = 1.5 + 1# * t
+1198c1198
+<     If ws.Name = "図" Then ws.Range("A5").Value2 = "すべり線：内部辺" & n & "本中" & nSel & "本表示（参照=" & Format(slipPct, "0%") & "分位点、しきい値" & thr & "×参照）。推定すべり面の節点数 " & chainCount & arcText
+---
+>     If ws.name = "図" Then ws.Range("A5").Value2 = "すべり線：内部辺" & n & "本中" & nSel & "本表示（参照=" & Format(slipPct, "0%") & "分位点、しきい値" & thr & "×参照）。推定すべり面の節点数 " & chainCount & arcText
+1248c1248
+<     Dim i As Long, k As Long, v As Long, w As Long, a As Long, b As Long, e As Long, m As Long, s As Shape
+---
+>     Dim i As Long, k As Long, v As Long, w As Long, a As Long, b As Long, e As Long, m As Long, s As shape
+1251c1251
+<     Dim dist() As Double, prev() As Long, avgLen As Double, nSelE As Long, radius As Double, dx As Double, dy As Double, dd As Double
+---
+>     Dim dist() As Double, prev() As Long, avgLen As Double, nSelE As Long, radius As Double, dx As Double, dy As Double, dD As Double
+1356c1356
+<         pts(k, 1) = CSng(PX(RXY(v, 0), xmin, factor)): pts(k, 2) = CSng(PY(RXY(v, 1), ymax, factor)): v = prev(v)
+---
+>         pts(k, 1) = CSng(PreviewX(RXY(v, 0), xmin, factor)): pts(k, 2) = CSng(PreviewY(RXY(v, 1), ymax, factor)): v = prev(v)
+1359,1360c1359,1360
+<     s.AlternativeText = "RPX_VELOCITY": s.Fill.Visible = False
+<     s.Line.ForeColor.RGB = RGB(84, 20, 120): s.Line.Weight = 3.5
+---
+>     s.AlternativeText = "RPX_VELOCITY": s.fill.Visible = False
+>     s.line.ForeColor.RGB = RGB(84, 20, 120): s.line.weight = 3.5
+1371c1371
+<     Dim t0 As Double, t1 As Double, tm As Double, sweep As Double, pts() As Single, s As Shape, nPts As Long, pi As Double
+---
+>     Dim t0 As Double, t1 As Double, tm As Double, sweep As Double, pts() As Single, s As shape, nPts As Long, pi As Double
+1382c1382
+<     If Abs(det) < 1E-12 Then Exit Sub
+---
+>     If Abs(det) < 0.000000000001 Then Exit Sub
+1402c1402
+<         pts(k + 1, 1) = CSng(PX(x, xmin, factor)): pts(k + 1, 2) = CSng(PY(y, ymax, factor))
+---
+>         pts(k + 1, 1) = CSng(PreviewX(x, xmin, factor)): pts(k + 1, 2) = CSng(PreviewY(y, ymax, factor))
+1405,1406c1405,1406
+<     s.AlternativeText = "RPX_VELOCITY": s.Fill.Visible = False
+<     s.Line.ForeColor.RGB = RGB(192, 0, 0): s.Line.Weight = 1.75: s.Line.DashStyle = 4
+---
+>     s.AlternativeText = "RPX_VELOCITY": s.fill.Visible = False
+>     s.line.ForeColor.RGB = RGB(192, 0, 0): s.line.weight = 1.75: s.line.DashStyle = 4
+1433c1433
+<     Dim lines(1 To 6) As String, n As Long, r As Long, i As Long, sh As Shape, bottom As Double, t As String, found As Range, startRow As Long
+---
+>     Dim lines(1 To 6) As String, n As Long, r As Long, i As Long, sh As shape, bottom As Double, t As String, found As Range, startRow As Long
+1436c1436
+<         t = CStr(ws.Cells(r, 1).Value2)
+---
+>         t = CStr(ws.cells(r, 1).Value2)
+1440c1440
+<     t = CStr(ws.Cells(1, 1).Value2)
+---
+>     t = CStr(ws.cells(1, 1).Value2)
+1443c1443
+<         If sh.Top + sh.Height > bottom Then bottom = sh.Top + sh.Height
+---
+>         If sh.top + sh.Height > bottom Then bottom = sh.top + sh.Height
+1446c1446
+<     Do While ws.Rows(startRow).Top < bottom + 10# And startRow < 5000
+---
+>     Do While ws.rows(startRow).top < bottom + 10# And startRow < 5000
+1451,1454c1451,1454
+<     If Not found Is Nothing Then ws.Range(ws.Cells(found.Row, 1), ws.Cells(found.Row + 8, 1)).ClearContents
+<     ws.Cells(startRow, 1).Value2 = LEGEND_MARK
+<     ws.Cells(startRow, 1).Font.Bold = True
+<     If Len(t) > 0 Then ws.Cells(startRow + 1, 1).Value2 = t: startRow = startRow + 1
+---
+>     If Not found Is Nothing Then ws.Range(ws.cells(found.row, 1), ws.cells(found.row + 8, 1)).ClearContents
+>     ws.cells(startRow, 1).Value2 = LEGEND_MARK
+>     ws.cells(startRow, 1).Font.Bold = True
+>     If Len(t) > 0 Then ws.cells(startRow + 1, 1).Value2 = t: startRow = startRow + 1
+1456c1456
+<         ws.Cells(startRow + i, 1).Value2 = lines(i)
+---
+>         ws.cells(startRow + i, 1).Value2 = lines(i)
+1458c1458
+<     ws.Range(ws.Cells(startRow - 1, 1), ws.Cells(startRow + n, 1)).Font.Color = RGB(0, 0, 0)
+---
+>     ws.Range(ws.cells(startRow - 1, 1), ws.cells(startRow + n, 1)).Font.Color = RGB(0, 0, 0)
+1461c1461
+<     Err.Clear
+---
+>     err.Clear
+1482c1482
+<     Err.Clear
+---
+>     err.Clear
+1521c1521
+<     lastOverlayError = "重ね描きエラー（" & stage & "）：" & Err.Number & " " & Err.Description
+---
+>     lastOverlayError = "重ね描きエラー（" & stage & "）：" & err.number & " " & err.description
+1529c1529
+<     Err.Clear
+---
+>     err.Clear
+1542c1542
+<     savedField = RUpperField: hadField = (Err.Number = 0): Err.Clear
+---
+>     savedField = RUpperField: hadField = (err.number = 0): err.Clear
+1579c1579
+<         For i = ws.Shapes.Count To 1 Step -1: ws.Shapes(i).Delete: Next i
+---
+>         For i = ws.Shapes.count To 1 Step -1: ws.Shapes(i).Delete: Next i
+1583c1583
+<         For i = 1 To ws.Shapes.Count
+---
+>         For i = 1 To ws.Shapes.count
+1586c1586
+<                 If ws.Shapes(i).Line.Weight >= 3.4 Then poly = poly + 1
+---
+>                 If ws.Shapes(i).line.weight >= 3.4 Then poly = poly + 1
+1598c1598
+<     msg = msg & "自己テスト失敗：" & Err.Number & " " & Err.Description & vbLf
+---
+>     msg = msg & "自己テスト失敗：" & err.number & " " & err.description & vbLf
+91c91
+<     SIterations = 0: SConverged = True: SLastDelta = 0#
+---
+>     SIterations = 0: SConverged = True: SLastDelta = 0#: SLastResidual = 0#: SLastFixDelta = 0#
+243a244
+>     If Not SConverged Then Exit Function   ' #6: an unconverged forward solve is a failed evaluation
+17a18,19
+> ' #6: convergence = unrelaxed fixed-point change AND scaled free-node flux balance (independent of SRelax)
+> Public SResTol As Double, SLastResidual As Double, SLastFixDelta As Double
+23c25
+<     SKrMin = 0.0001: SBeta = 20#: SRelax = 0.5: STol = 0.000001: SMaxIt = 300: SGammaW = 9.81
+---
+>     SKrMin = 0.0001: SBeta = 20#: SRelax = 0.5: STol = 0.000001: SMaxIt = 300: SGammaW = 9.81: SResTol = 0.000001
+136a139
+>     Dim dfix As Double, res As Double, qs As Double, qi As Double, kr2 As Double, qr() As Double
+153a157,158
+>     If SResTol <= 0# Then SResTol = 0.000001
+>     SLastResidual = 0#: SLastFixDelta = 0#: ReDim qr(0 To SN - 1)
+195c200
+<         dmax = 0#
+---
+>         dmax = 0#: dfix = 0#
+198c203,206
+<             If Not fixed(i) Then hn = SHead(i) + SRelax * (hn - SHead(i))
+---
+>             If Not fixed(i) Then
+>                 If Abs(hn - SHead(i)) > dfix Then dfix = Abs(hn - SHead(i))   ' #6: before relaxation
+>                 hn = SHead(i) + SRelax * (hn - SHead(i))
+>             End If
+226,227c234,267
+<         SIterations = it: SLastDelta = dmax
+<         If dmax < STol And changed = 0 Then SConverged = True: Exit For
+---
+>         ' #6: flux balance of the accepted heads (kr re-evaluated at these heads), after seepage-face switching
+>         For i = 0 To SN - 1: qr(i) = 0#: Next i
+>         For e = 0 To SM - 1
+>             TriGeom e, area2, bb, cc
+>             p = 0#
+>             For i = 0 To 2: p = p + (SHead(STri(e, i)) - SXY(STri(e, i), 1)) / 3#: Next i
+>             If p >= 0# Then
+>                 kr2 = 1#
+>             Else
+>                 kr2 = Exp(SBeta * p)
+>                 If kr2 < SKrMin Then kr2 = SKrMin
+>             End If
+>             s = kr2 / (2# * area2)
+>             For i = 0 To 2
+>                 For j = 0 To 2
+>                     qr(STri(e, i)) = qr(STri(e, i)) + ElemK(e, i, j, s, bb, cc) * SHead(STri(e, j))
+>                 Next j
+>             Next i
+>         Next e
+>         qs = 0#: res = 0#
+>         For i = 0 To SN - 1
+>             If SBcType(i) = 1 Or SActive(i) Then qs = qs + Abs(qr(i))
+>             If SBcType(i) = 3 Then qs = qs + Abs(SBcVal(i))
+>         Next i
+>         If qs < 1E-300 Then qs = 1E-300
+>         For i = 0 To SN - 1
+>             If Not (SBcType(i) = 1 Or SActive(i)) Then
+>                 qi = qr(i)
+>                 If SBcType(i) = 3 Then qi = qi - SBcVal(i)
+>                 If Abs(qi) / qs > res Then res = Abs(qi) / qs
+>             End If
+>         Next i
+>         SIterations = it: SLastDelta = dmax: SLastFixDelta = dfix: SLastResidual = res
+>         If dfix < STol And res < SResTol And changed = 0 Then SConverged = True: Exit For
+283a324,326
+>     ws.Range("W1:X1").value = Array("緩和前変化量 [m]", SLastFixDelta)
+>     ws.Range("W2:X2").value = Array("釣合い残差（正規化）", SLastResidual)
+>     ws.Range("W3:X3").value = Array("収束条件", "緩和前変化量<" & STol & " かつ 残差<" & SResTol & " かつ 浸出面切替なし")
+346c389,404
+< End Sub
+\ No newline at end of file
+---
+> End Sub
+> 
+> ' ---- test (#6): 4-node linear problem, exact h2=28/3, h3=29/3 ----------------
+> Public Function RPX_SeepTestRelax(ByVal relax As Double) As String
+>     SN = 4: SM = 2: SNMat = 1
+>     ReDim SXY(0 To 3, 0 To 1): ReDim STri(0 To 1, 0 To 2): ReDim SMat(0 To 1)
+>     ReDim SKx(0 To 0): ReDim SKy(0 To 0): SKx(0) = 1#: SKy(0) = 1#
+>     ReDim SBcType(0 To 3): ReDim SBcVal(0 To 3)
+>     SXY(1, 0) = 1#: SXY(2, 0) = 1#: SXY(2, 1) = 1#: SXY(3, 1) = 1#
+>     STri(0, 0) = 0: STri(0, 1) = 1: STri(0, 2) = 2: STri(1, 0) = 0: STri(1, 1) = 2: STri(1, 2) = 3
+>     SBcType(0) = 1: SBcVal(0) = 10#: SBcType(1) = 1: SBcVal(1) = 9#
+>     RPX_SeepDefaults: SRelax = relax
+>     RPX_SeepSolve
+>     RPX_SeepTestRelax = "relax=" & relax & ";iters=" & SIterations & ";converged=" & SConverged & ";h2=" & SHead(2) & ";h3=" & SHead(3) & _
+>         ";err=" & Abs(SHead(2) - 28# / 3#) & ";dfix=" & SLastFixDelta & ";res=" & SLastResidual
+> End Function
+991c991
+<             SeepMsg "浸透解析は最大反復回数で打ち切りました（最終変化量 " & Format(SLastDelta, "0.0E+00") & " m）。βを小さく、または緩和係数を小さくしてください。", vbExclamation
+---
+>             SeepMsg "浸透解析は収束しませんでした（" & SIterations & "回反復、緩和前変化量 " & Format(SLastFixDelta, "0.0E+00") & " m、釣合い残差 " & Format(SLastResidual, "0.0E+00") & "）。この結果は連成に使えません。β・メッシュ・境界条件を見直すか、最大反復回数を増やしてください（緩和係数を小さくしても収束判定は甘くなりません）。", vbExclamation
+91c91
+<     SIterations = 0: SConverged = True: SLastDelta = 0#
+---
+>     SIterations = 0: SConverged = True: SLastDelta = 0#: SLastResidual = 0#: SLastFixDelta = 0#
+243a244
+>     If Not SConverged Then Exit Function   ' #6: an unconverged forward solve is a failed evaluation

@@ -1,0 +1,17 @@
+09:16:44 own Excel pid=26788
+09:16:46 TestDam: iters=54 converged=True Q=2.4181 Dupuit=2.4000 err%=0.75 | x=0 y_fs=10.00 | x=5 y_fs=8.89 | x=10 y_fs=7.44 | x=15 y_fs=5.62 | x=20 y_fs=2.50
+09:16:46 TestRelax: relax=0.00000001;iters=300;converged=False;h2=9.99999800000299;h3=9.99999900000149;err=0.666664666669654;dfix=0.6666646733363;res=0.333332444445476
+09:16:46 TestRelax: relax=0.5;iters=21;converged=True;h2=9.33333365122477;h3=9.66666682561239;err=3.1789143998661E-07;dfix=6.35782877012048E-07;res=1.78813924334165E-07
+09:16:46 TestRelax: relax=1;iters=2;converged=True;h2=9.33333333333333;h3=9.66666666666667;err=5.9240806704608E-16;dfix=0;res=0
+09:16:48 WT selftest: 1) 無限斜面 θ=30°：max|u－γw×hw×cos2θ|（モード1）・max|u－γw×hw|（モード2）= 3.5E-14 kPa → 合格
+2) 逆解析：H1 推定 10.0000（真値10、誤差 0.000%）、RMS 1.0E-07 m、順解析 11 回 → 合格
+所要 2.2 秒
+09:16:49 relax row=212 value=0.5 D4=1 B3=水位・水頭の条件から計算する
+09:16:49 protected=False
+09:16:49 SetC ERR "5" 個の引数を指定して "InvokeMember" を呼び出し中に例外が発生しました: "HRESULT からの例外:0x800A03EC" sel=図 interactive=True ready=True
+09:16:49 set relax=1E-08
+09:16:55 SeepRunSilent(relax=1e-8): [浸透解析は収束しませんでした（300回反復、緩和前変化量 4.0E+00 m、釣合い残差 6.6E-02）。この結果は連成に使えません。β・メッシュ・境界条件を見直すか、最大反復回数を増やしてください（緩和係数を小さくしても収束判定は甘くなりません）。
+]
+09:16:55 result K1(iters)=300 K2(conv)=False W1=3.99673598761185 W2=0.0663309647302707
+09:16:57 coupled run A1=解析未完了：浸透連成：連成：浸透解析が収束していません。 B4=
+09:17:28 own Excel 26788 force-closed after quit

@@ -1,0 +1,55 @@
+09:50:59 own Excel pid=11836
+09:51:01 PASS compile
+09:51:03 PASS #1 output different_count : PASS;upper=601;lower=1000;final_model_exact=True;scenario=different_count
+09:51:06 PASS #1 output same_count : PASS;upper=601;lower=601;final_model_exact=True;scenario=same_count
+09:51:09 PASS #1 output same_owner : PASS;upper=601;lower=601;final_model_exact=True;scenario=same_owner
+09:51:11 PASS #1 output retained : PASS;upper=601;lower=1000;final_model_exact=True;scenario=retained
+09:51:11 PASS #1 guard model : ERROR 5:UPPER_OUTPUT_MODEL_MISMATCH
+09:51:11 PASS #1 guard field : ERROR 5:UPPER_OUTPUT_FIELD_MISMATCH
+09:51:11 PASS #1 guard shape : ERROR 5:UPPER_OUTPUT_FIELD_SHAPE
+09:51:12 PASS #1 guard q : ERROR 5:UPPER_OUTPUT_CONTEXT_MISMATCH
+09:51:12 PASS #1 guard factor : ERROR 5:UPPER_OUTPUT_CONTEXT_MISMATCH
+09:51:12 PASS #1 guard incomplete : ERROR 5:UPPER_OUTPUT_OWNER_INCOMPLETE
+09:51:12 PASS #1 guard epoch : ERROR 5:UPPER_OUTPUT_INPUT_MISMATCH
+09:51:12 PASS #2 token [5 CONIC_STEP_STALLED] expected=True actual=True
+09:51:12 PASS #2 token [5 CONIC_NOT_CONVERGED] expected=True actual=True
+09:51:12 PASS #2 token [5 NEWTON_FACTORIZATION_FAILED] expected=True actual=True
+09:51:12 PASS #2 token [5 NT_NONINTERIOR_POINT] expected=True actual=True
+09:51:12 PASS #2 token [5 NT_CORRECTOR_SINGULAR] expected=True actual=True
+09:51:12 PASS #2 token [5 NEWTON_FACTORIZATION_FAILED pivot=-1] expected=True actual=True
+09:51:12 PASS #2 token [5 NEWTON_FACTORIZATION_FAILED pivot=0] expected=True actual=True
+09:51:12 PASS #2 token [5 NEWTON_FACTORIZATION_FAILED pivot=123] expected=True actual=True
+09:51:12 PASS #2 token [5 NEWTON_FACTORIZATION_FAILED pivot=2147483647] expected=True actual=True
+09:51:12 PASS #2 token [5 NEWTON_FACTORIZATION_FAILED pivot=-2147483648] expected=True actual=True
+09:51:12 PASS #2 token [5 NEWTON_FACTORIZATION_FAILED pivot=] expected=False actual=False
+09:51:12 PASS #2 token [5 NEWTON_FACTORIZATION_FAILED pivot=2147483648] expected=False actual=False
+09:51:12 PASS #2 token [5 NEWTON_FACTORIZATION_FAILED pivot=-2147483649] expected=False actual=False
+09:51:12 PASS #2 token [5 NEWTON_FACTORIZATION_FAILED pivot=foo] expected=False actual=False
+09:51:12 PASS #2 token [5 NEWTON_FACTORIZATION_FAILED pivot=123 extra] expected=False actual=False
+09:51:12 PASS #2 token [5 NEWTON_FACTORIZATION_FAILED_SUFFIX pivot=123] expected=False actual=False
+09:51:12 PASS #2 token [5 prefix NEWTON_FACTORIZATION_FAILED pivot=123] expected=False actual=False
+09:51:12 PASS #2 token [5 NEWTON_FACTORIZATION_FAILED pivot=+123] expected=False actual=False
+09:51:12 PASS #2 token [5 NEWTON_FACTORIZATION_FAILED pivot=1.5] expected=False actual=False
+09:51:12 PASS #2 token [5 NEWTON_FACTORIZATION_FAILED pivot=1\n] expected=False actual=False
+09:51:12 PASS #2 token [5 UNKNOWN] expected=False actual=False
+09:51:12 PASS #2 token [5 RAW_YIELD_AUDIT_FAILED] expected=False actual=False
+09:51:12 PASS #2 token [5 NT_NONINTERIOR_POINT extra] expected=False actual=False
+09:51:12 PASS #2 token [7 NEWTON_FACTORIZATION_FAILED pivot=123] expected=False actual=False
+09:51:12 PASS #2 token [9 NEWTON_FACTORIZATION_FAILED pivot=123] expected=False actual=False
+09:51:12 PASS #2 token [18 NEWTON_FACTORIZATION_FAILED pivot=123] expected=False actual=False
+09:51:12 PASS #2 token [6 NEWTON_FACTORIZATION_FAILED pivot=123] expected=False actual=False
+09:51:12 PASS #2 token [1004 NEWTON_FACTORIZATION_FAILED pivot=123] expected=False actual=False
+09:51:12 PASS #2 cancel=True audit=False -> False
+09:51:12 PASS #2 cancel=False audit=True -> False
+09:51:13 PASS #2 solver normal : PASS;value=0.167340772038812;audit=1.83240267404017E-08;engine=LEGACY;rescues=0;hsd_calls=0;status=OPTIMAL
+09:51:14 PASS #2 solver factor : PASS;value=0.167340755769576;audit=1.51878731813326E-09;engine=HSD_RESCUE;rescues=1;hsd_calls=1;status=OPTIMAL
+09:51:14 PASS #2 solver memory : ERROR 7:OUT_OF_MEMORY;engine=LEGACY;rescues=0;hsd_calls=0
+09:51:15 PASS #2 solver subscript : ERROR 9:SUBSCRIPT;engine=LEGACY;rescues=0;hsd_calls=0
+09:51:15 PASS #2 solver cancel : ERROR 18:ANALYSIS_CANCELLED;engine=LEGACY;rescues=0;hsd_calls=0
+09:51:15 PASS #2 solver unknown : ERROR 5:UNKNOWN_FAILURE;engine=LEGACY;rescues=0;hsd_calls=0
+09:51:16 PASS #2 solver audit : ERROR 5:RAW_YIELD_AUDIT_FAILED;engine=LEGACY;rescues=0;hsd_calls=0
+09:51:16 PASS #2 solver model : ERROR 5:ROBUST_MODEL_MISMATCH;engine=LEGACY;rescues=0;hsd_calls=0
+09:51:16 PASS #2 solver hsd_failure : ERROR 7:HSD_TEST_MEMORY;engine=HSD_RESCUE;rescues=1;hsd_calls=1
+09:51:29 PASS roots : PASS;lower=1.56479461074022;upper=2.16424040585209;lower_calls=19;upper_calls=39;elements=20;audit=2.74812042523262E-09
+09:51:29 SUMMARY fail=0
+09:52:00 own Excel 11836 force-closed after quit
