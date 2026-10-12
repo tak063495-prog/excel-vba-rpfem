@@ -1,0 +1,18 @@
+{
+  "cases": 360,
+  "exact_factor_and_solution": 352,
+  "singular_identical": 8,
+  "failures": [],
+  "max_independent_backward_error": 8.626413736794503e-17,
+  "timing": {
+    "vba": {
+      "message": "rows=360;VBA_SELECTED;numeric=0;dd_numeric=0;backsolve=0;ordering=0;column_ordering=0;nt_bulk=0;g_bulk=0;gt_bulk=0;kkt_bulk=0;hsd_operator=0;corrector_bulk=0;hsd_lu=0;hsd_lu_solve=0",
+      "seconds": 6.667310199991334
+    },
+    "auto": {
+      "message": "rows=360;DLL_READY;numeric=0;dd_numeric=0;backsolve=0;ordering=0;column_ordering=0;nt_bulk=0;g_bulk=0;gt_bulk=0;kkt_bulk=0;hsd_operator=0;corrector_bulk=0;hsd_lu=360;hsd_lu_solve=352",
+      "seconds": 3.627599299972644
+    }
+  },
+  "dll_sha256": "6ff070d8c398a85d3c0ef038210c07d9ac93c6dd497cd57f4e3e2eafcbe23269"
+}

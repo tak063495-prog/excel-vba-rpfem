@@ -21,7 +21,19 @@ Excel VBAによる2次元RPFEM解析のソース、XLSM、検証資料です。
 
 **G1R15では、G1R14（定常浸透・間隙水圧の一方向連成）に、浸透入力シートの整理・地下水面からの水圧入力・水平震度法（地震）を追加した（実Excelで全回帰済み：連成OFF・kh=0でD03N・D07AのFsがG1R14と全桁一致）。G1R14では連成OFFでD03N・D07AのFsがG1R13と全桁一致した。G1R13の修復・制限は[G1R13報告](versions/G1R13/REPORT.md)、G1R12時点の25ケース結果（23/25取得・11/25目標達成）は[過去25ケース結果](validation/G1R12_native25_20261009/REPORT.md)を参照し、区別する。図の矢印は規準化された速度機構であり、変位量ではない。**
 
-## G1R16 — 浸透解析の収束判定修正（最新版）
+## G1R16 DLL_3 — 通常内点法・HSDの追加DLL化（最新版）
+
+2026年10月12日。NTスケーリング・補正・KKT組立・G/G転置積・HSDのDD原作用素・疎LUを、配列単位のループとしてDLLへ追加移植した版です。堤防例題は **DLL2 402.57秒 → DLL_3 338.56秒、15.90%短縮**。元VBAの同一PCの既存記録611.56秒比では **44.64%短縮・約1.81倍**です。VBAの長時間測定は再実行していません。
+
+- **[XLSM・DLL・ソース・検証資料の一式ZIP](https://github.com/tak063495-prog/excel-vba-rpfem/raw/refs/heads/main/downloads/RPFEM_G1R16_DLL_3_20261012.zip)**
+- [対応XLSM](https://github.com/tak063495-prog/excel-vba-rpfem/raw/refs/heads/main/versions/G1R16_DLL_3/delivery/RPFEM_20261012_G1R16_DLL_3_Levee_Checked.xlsm) / [DLL](https://github.com/tak063495-prog/excel-vba-rpfem/raw/refs/heads/main/versions/G1R16_DLL_3/delivery/rpfem_native_x64.dll)
+- [使い方](versions/G1R16_DLL_3/README.md) / [検証報告](versions/G1R16_DLL_3/REPORT.md) / [実装内容](versions/G1R16_DLL_3/IMPLEMENTATION_JA.md) / [導入・復旧](versions/G1R16_DLL_3/IMPORT_ROLLBACK_JA.md) / [差分](versions/G1R16_DLL_3/changes.diff)
+
+堤防のFs下界1.2244477290215・上界1.2343080287831916、53求解、603監査は実G1R16のVBA・DLL2記録と一致。HSD LUの360条件、NTの224入力、一括演算160組、HSD求解6組、C=5・φ=ψ=45と多層P06A/P06Nの固定Fs比較6組も検証しています。P06は97要素・q=2の固定点比較であり、フルメッシュの最終Fs探索や26ケース全再実行ではありません。
+
+ZIPの`delivery/`にあるXLSMとDLLを同じフォルダーへ置きます。DLL不在・旧DLLではVBAへ自動切替します。DLLだけを古いXLSMへ追加する方法ではDLL_3になりません。DLL交換前にExcelを終了してください。
+
+## G1R16 — 浸透解析の収束判定修正
 
 2026年10月12日。G1R15（VBA版）とG1R15 DLL2の両方に、Issue #6の修正（浸透解析で緩和係数が小さいと未収束の水頭を収束と誤判定する問題）を入れた版です。収束は「緩和前の水頭変化量」と「流量釣合い残差」の両方で判定し、未収束なら連成解析を実行しません。極限解析部とDLLは変更なし。
 

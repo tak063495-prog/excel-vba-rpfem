@@ -1,0 +1,12 @@
+{
+  "order": {
+    "exit_code": 0,
+    "result": "PASS 2835 allocation-failure points code207; 8 unknown exceptions code208; no leaks; cleanup after partial steps; invalid contracts rejected",
+    "source_sha256": "4ec1e7d9dd3f20be48eb402c37129a6f2c4abbf3c107b990b1032a75e3ca167f"
+  },
+  "lu": {
+    "exit_code": 0,
+    "result": "PASS 66 allocation-failure points code207; 8 unknown points code208; scoped context no leaks; partial-step cleanup; memory/order/storage/threshold rejection",
+    "source_sha256": "30d2747723772410638c310daf72cb61a438dbaf1b58ca0c268c9eed3e6188a0"
+  }
+}

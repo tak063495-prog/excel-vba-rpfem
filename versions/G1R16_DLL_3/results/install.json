@@ -1,0 +1,18 @@
+{
+  "compile": "PASS",
+  "security_unmodified": 1,
+  "modules": [
+    "RPX_Conic",
+    "RPX_HSDLu",
+    "RPX_Lower",
+    "RPX_LowerCache",
+    "RPX_Native",
+    "RPX_NativeBulk",
+    "RPX_NativeLU",
+    "RPX_Solve",
+    "RPX_Upper"
+  ],
+  "native_info": "DLL_READY;numeric=0;dd_numeric=0;backsolve=0;ordering=0;column_ordering=0;nt_bulk=0;g_bulk=0;gt_bulk=0;kkt_bulk=0;hsd_operator=0;corrector_bulk=0;hsd_lu=0;hsd_lu_solve=0",
+  "source_sha256": "ba21ead6ea0dbfba813fe2e4caa25c214a787f9ce98c533e3055f5e5cd656c4a",
+  "delivery_sha256": "086f78c7022838669a745252e2d1256d17c2ac98369dc3c0948874438d294f03"
+}

@@ -1,0 +1,22 @@
+{
+  "DLL_3": "6ff070d8c398a85d3c0ef038210c07d9ac93c6dd497cd57f4e3e2eafcbe23269",
+  "native_excel_compile": "PASS",
+  "NT_rows": 224,
+  "NT_success_bitwise": 174,
+  "bulk_cases_bitwise": 160,
+  "LU_cases": 360,
+  "LU_bitwise": 352,
+  "LU_singular_same": 8,
+  "HSD_solves_bitwise": 6,
+  "fixed_FEM_pairs_with_python_audit": 6,
+  "ordering_pairs_bitwise": 68,
+  "issue_assertions_PASS": 51,
+  "missing_and_old_DLL_HSD_fallback": "PASS",
+  "seep_regression": "PASS",
+  "full_levee_solves": 53,
+  "full_levee_audits_exact": 603,
+  "protected_original_files": 198,
+  "32bit_Excel": "NOT_RUN",
+  "full_P06_Fs_search": "NOT_RUN",
+  "prior_interrupted_native26_batch": "NOT_RESUMED"
+}

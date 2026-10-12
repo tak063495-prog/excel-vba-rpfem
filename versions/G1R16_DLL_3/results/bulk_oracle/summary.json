@@ -1,0 +1,25 @@
+{
+  "vba": {
+    "message": "rows=160;VBA_SELECTED;numeric=0;dd_numeric=0;backsolve=0;ordering=0;column_ordering=0;nt_bulk=0;g_bulk=0;gt_bulk=0;kkt_bulk=0;hsd_operator=0;corrector_bulk=0;hsd_lu=0;hsd_lu_solve=0",
+    "seconds": 1.87999280000804
+  },
+  "auto": {
+    "message": "rows=160;DLL_READY;numeric=0;dd_numeric=0;backsolve=0;ordering=40;column_ordering=0;nt_bulk=160;g_bulk=80;gt_bulk=40;kkt_bulk=160;hsd_operator=160;corrector_bulk=160;hsd_lu=0;hsd_lu_solve=0",
+    "seconds": 1.4434059000050183
+  },
+  "RPX_TestHSDPrecision": "PASS TwoSum; TwoProd; cancellation; division; large scale; zero; coef cache; muladd",
+  "TestNativeKernels": "PASS bitwise Double/DD/Schur; 3,70,270 rows; SPD/indefinite; chunk boundaries",
+  "TestNativePivot": "PASS singular pivot: VBA/DLL both reject at 0",
+  "TestNativeCancellation": "PASS cancellation 18 preserved",
+  "TestNativeShortBuffer": "PASS subscript error 9 before native pointer access",
+  "TestNativeOverflow": "PASS VBA/DLL both propagate overflow 6; no successful factor",
+  "TestNativeOrdering": "PASS 68 exact permutation/inverse pairs; symmetric and implicit normal graph; insertion/reinsertion/ties/disconnected; n>20000",
+  "TestOrderingCancellation": "PASS ordering cancellation 18 preserved",
+  "TestOrderingBadIndex": "PASS ordering invalid index 9 preserved; native feed not called",
+  "bytes_vba": 1239592,
+  "bytes_native": 1239592,
+  "different_bytes": 0,
+  "first_differences": [],
+  "exact": true,
+  "dll_sha256": "6ff070d8c398a85d3c0ef038210c07d9ac93c6dd497cd57f4e3e2eafcbe23269"
+}

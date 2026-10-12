@@ -1,0 +1,26 @@
+{
+  "protected_original_files": 198,
+  "protected_hashes_match": true,
+  "original_modules": 66,
+  "delivery_modules": 68,
+  "changed_existing_modules": [
+    "RPX_Conic",
+    "RPX_HSDLu",
+    "RPX_Lower",
+    "RPX_LowerCache",
+    "RPX_Native",
+    "RPX_Solve",
+    "RPX_Upper"
+  ],
+  "added_modules": [
+    "RPX_NativeBulk",
+    "RPX_NativeLU"
+  ],
+  "unchanged_existing_modules": 59,
+  "document_modules_unchanged": true,
+  "sources_match_saved_workbook": true,
+  "comparison": "case-insensitive VBA identifiers; exact string literals; IEEE754-equivalent VBE numeric formatting; excludes comments/attributes",
+  "cp932_crlf_strict_roundtrip": true,
+  "xlsm_sha256": "3bb7d87b6fbec14e9ea3d378e49e40355e05850a532f865cbd392531902ecdae",
+  "dll_sha256": "6ff070d8c398a85d3c0ef038210c07d9ac93c6dd497cd57f4e3e2eafcbe23269"
+}

@@ -1,0 +1,15 @@
+{
+  "modules": [
+    "RPX_Conic",
+    "RPX_HSDLu",
+    "RPX_Lower",
+    "RPX_LowerCache",
+    "RPX_Native",
+    "RPX_NativeBulk",
+    "RPX_NativeLU",
+    "RPX_Solve",
+    "RPX_Upper"
+  ],
+  "encoding": "CP932 strict round trip",
+  "line_endings": "CRLF"
+}

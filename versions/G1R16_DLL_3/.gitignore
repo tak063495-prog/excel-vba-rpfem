@@ -1,0 +1,20 @@
+# Build outputs, test workbook copies, diagnostic trials.
+native/*.obj
+delivery/*.lib
+delivery/*.exp
+tests/*.obj
+tests/*.exe
+tests/*.lib
+tests/*.exp
+tools/__pycache__/
+results/**/*.xlsm
+results/**/rpfem_native_x64.dll
+results/working_before_update_*
+results/compile_*
+results/fixed_fem/
+results/fixed_fem_verified/
+results/levee_native/
+results/levee_native_final/
+results/levee_native_checked/
+results/nt_oracle/nttrace*
+results/bulk_oracle/nttrace*
