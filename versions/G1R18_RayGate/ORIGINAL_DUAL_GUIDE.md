@@ -63,7 +63,7 @@ goal for a production case. Python or G1R18 results are not results of this
 separate variant.
 
 The ray-only harness replaces the five ordinary G1R18 modules and then these
-seven isolated overrides in a new owned workbook. It records both sets of source
+eight isolated overrides in a new owned workbook. It records both sets of source
 hashes. Its unit programs check literal equality-row dual restoration, independent
 stationarity and cone failures, nonfinite data, exact-zero costs, affine exclusion,
 mesh/load/epoch/solve/quadrature identity, positive normalization, lack of ray primal
@@ -72,6 +72,12 @@ requires an accepted original ray event and a q8 optimal physical negative endpo
 with a completed matching root. Run it serially after any production workbook
 owned by this task has finished, unless a separate small owned test instance is
 explicitly authorized. Parallel elapsed times are not a performance comparison.
+
+The eighth override is the optional same-Fs lower primal recovery described in
+[FIXED_LOWER_RECOVERY.md](FIXED_LOWER_RECOVERY.md). It is disabled by default.
+Its negative root sign uses a separate original free-load dual, never a
+fixed-load or affine dual. The DLL and original upper-ray acceptance remain
+unchanged.
 
 `ADAPT_C0_WEDGE_DEPTH` defaults to zero. A positive depth enables one optional
 upper candidate for a dry, gravity-only, single-region homogeneous soil with

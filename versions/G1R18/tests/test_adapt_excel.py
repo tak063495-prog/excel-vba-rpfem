@@ -46,6 +46,8 @@ def main():
     parser.add_argument("--quadrature-only", action="store_true")
     parser.add_argument("--ray-only", action="store_true")
     parser.add_argument("--ray-adapt-only", action="store_true")
+    parser.add_argument("--fixed-recovery-only", action="store_true")
+    parser.add_argument("--fixed-fs-only", action="store_true")
     parser.add_argument("--production-case", choices=("P06A", "P06N"))
     parser.add_argument("--target", type=int, default=1000)
     parser.add_argument("--cycles", type=int, default=8)
@@ -55,7 +57,9 @@ def main():
     parser.add_argument("--fan-rounds", type=int, default=1)
     parser.add_argument("--verify-folder", type=Path)
     args = parser.parse_args()
-    if args.ray_adapt_only:
+    if args.fixed_fs_only:
+        args.fixed_recovery_only = True
+    if args.ray_adapt_only or args.fixed_recovery_only:
         args.ray_only = True
     ray_root = ROOT.parent / "G1R18_RayGate"
     if args.verify_folder:
@@ -81,6 +85,8 @@ def main():
     record["harness_sha256"] = hashlib.sha256(Path(__file__).read_bytes()).hexdigest()
     if args.ray_only:
         record["probe_sha256"] = hashlib.sha256((ray_root / "tests/OriginalFarkasProbe.bas").read_bytes()).hexdigest()
+        if args.fixed_recovery_only:
+            record["fixed_probe_sha256"] = hashlib.sha256((ray_root / "tests/FixedLowerRecoveryProbe.bas").read_bytes()).hexdigest()
     book = None
     stop = threading.Event()
 
@@ -129,6 +135,33 @@ def main():
             module.AddFromString(source_text(file))
         if args.ray_only:
             book.VBProject.VBComponents("RPX_Fs").CodeModule.AddFromString('''
+Public Function RPX_FsProbeValue(ByVal factor As Double, ByVal mode As String, ByVal target As Double) As Double
+    RPX_FsProbeValue = FsValue(factor, mode, target)
+End Function
+Public Function RPX_LowerFsProbeDetail() As String
+    RPX_LowerFsProbeDetail = "status_a=" & lowerBracket.statusA & ";status_b=" & lowerBracket.statusB & ";guide_b=" & lowerBracket.originalGuideB & ";recovered_a=" & lowerBracket.recoveredWitnessA & ";a=" & lowerBracket.a & ";b=" & lowerBracket.b
+End Function
+Public Function RPX_LowerRootMetadataProbe(ByVal factor As Double) As Boolean
+    Dim saved As FsBracketState, a As Double, b As Double, number As Long, message As String
+    saved = lowerBracket
+    On Error GoTo Failed
+    lowerBracket.inputEpoch = saved.inputEpoch - 1
+    If RPX_ActualRootBracket("lower", a, b, factor) Then err.Raise 5, , "FOREIGN_ROOT_EPOCH_ACCEPTED"
+    lowerBracket = saved: lowerBracket.physicalKey = saved.physicalKey & "foreign"
+    If RPX_ActualRootBracket("lower", a, b, factor) Then err.Raise 5, , "FOREIGN_ROOT_MODEL_ACCEPTED"
+    lowerBracket = saved: lowerBracket.policy = saved.policy & "foreign"
+    If RPX_ActualRootBracket("lower", a, b, factor) Then err.Raise 5, , "FOREIGN_ROOT_POLICY_ACCEPTED"
+    lowerBracket = saved: lowerBracket.originalGuideB = False
+    If RPX_ActualRootBracket("lower", a, b, factor) Then err.Raise 5, , "RECOVERED_ROOT_WITHOUT_FREE_DUAL_ACCEPTED"
+    lowerBracket = saved: lowerBracket.b = saved.a + 0.002
+    If RPX_ActualRootBracket("lower", a, b, factor) Then err.Raise 5, , "WIDE_RECOVERED_ROOT_ACCEPTED"
+    lowerBracket = saved
+    RPX_LowerRootMetadataProbe = RPX_ActualRootBracket("lower", a, b, factor)
+    Exit Function
+Failed:
+    number = err.number: message = err.description: lowerBracket = saved
+    err.Raise number, "RPX_LowerRootMetadataProbe", message
+End Function
 Public Function RPX_FsProbeDetail() As String
     RPX_FsProbeDetail = "valid=" & upperBracket.valid & ";mesh=" & upperBracket.meshKey & ";current_mesh=" & FsMeshKey() & ";q=" & upperBracket.subdivisions & ";current_q=" & RSubdivisions & ";status_a=" & upperBracket.statusA & ";status_b=" & upperBracket.statusB & ";guide_a=" & upperBracket.originalGuideA & ";a=" & upperBracket.a & ";b=" & upperBracket.b & ";fa=" & upperBracket.fa & ";fb=" & upperBracket.fb
 End Function
@@ -144,6 +177,15 @@ End Function
             ray = book.VBProject.VBComponents.Add(1)
             ray.Name = "OriginalFarkasProbe"
             ray.CodeModule.AddFromString(source_text(ray_root / "tests/OriginalFarkasProbe.bas"))
+            if args.fixed_recovery_only:
+                fixed = book.VBProject.VBComponents.Add(1)
+                fixed.Name = "FixedLowerRecoveryProbe"
+                fixed.CodeModule.AddFromString(source_text(ray_root / "tests/FixedLowerRecoveryProbe.bas"))
+                if args.fixed_fs_only:
+                    fixed_fs = book.VBProject.VBComponents.Add(1)
+                    fixed_fs.Name = "FixedLowerFsProbeModule"
+                    fixed_fs.CodeModule.AddFromString(source_text(ray_root / "tests/FixedLowerFsProbe.bas"))
+                    record["fixed_fs_probe_sha256"] = hashlib.sha256((ray_root / "tests/FixedLowerFsProbe.bas").read_bytes()).hexdigest()
         book.Activate()
         book.VBProject.VBComponents("RPX_Adapt").CodeModule.CodePane.Show()
         control = app.VBE.CommandBars.FindControl(1, 578)
@@ -165,16 +207,42 @@ End Function
             probes = [("OriginalFarkasUnitProbe", ()), ("C0WedgeGeometryProbe", ()), ("C0WedgeNativeProbe", (str(folder / "c0_wedge_native.tsv"),))]
             if args.ray_adapt_only:
                 probes = [("C0WedgeAdaptProbe", (depth, inject, str(folder / label))) for depth, inject, label in [(0., False, "baseline.tsv"), (.01, False, "wedge.tsv"), (.01, True, "failure.tsv")]]
+            if args.fixed_recovery_only:
+                probes = [("FixedLowerRecoverySmallProbe", (str(folder / ("fixed_c0.tsv" if c0 else "fixed_cohesive.tsv")),c0)) for c0 in (False, True)]
+            if args.fixed_fs_only:
+                probes = [("FixedLowerFsProbe", (str(folder / "fixed_fs.tsv"),))]
             for name, values in probes:
                 started = time.perf_counter()
                 result = str(call(name, *values))
                 assert result.startswith("PASS;"), result
-                label = Path(values[-1]).stem if args.ray_adapt_only else name
+                label = Path(values[0]).stem if args.fixed_recovery_only else (Path(values[-1]).stem if args.ray_adapt_only else name)
                 record["runs"][label] = {"result": result, "seconds": time.perf_counter() - started}
                 print(name, result, flush=True)
                 save()
             native_logs = [read_log(p) for p in (folder / "RPFEM_logs").glob("*.tsv") if ".context." not in p.name]
-            if args.ray_adapt_only:
+            if args.fixed_recovery_only:
+                assert any("fixed_lower_recovery" in t and "accepted=True" in t for t in native_logs)
+                record["fixed_recovery_checks"] = "PASS;full_free_lambda_original_primal_and_field_gate;compiled_layout_cache_and_both_witnesses_retained;no_fixed_dual_or_root_capture"
+                if args.fixed_fs_only:
+                    record["fixed_recovery_checks"] = "PASS;positive_free_load_physical_witness;separate_original_free_load_negative_dual;fixed_dual_never_used;both_saved_bounds_fields_retained"
+                    import importlib.util
+                    spec = importlib.util.spec_from_file_location("lower_guide_replay", ray_root / "tests/replay_original_guide.py")
+                    replay = importlib.util.module_from_spec(spec); spec.loader.exec_module(replay)
+                    paths = sorted((folder / "RPFEM_logs").glob("*.original_lower_dual_*.bin"))
+                    assert paths, "No original FREE-lambda dual proof retained"
+                    duals = [replay.replay_dual(path, lower=True) for path in paths]
+                    spec = importlib.util.spec_from_file_location("lower_primal_replay", ROOT / "tests/test_python_witness_excel.py")
+                    primal = importlib.util.module_from_spec(spec); spec.loader.exec_module(primal)
+                    checked = primal.replay_original(folder, "lower", "fixed_fs.tsv.free_original.bin", "fixed_fs.tsv.free_field.bin")
+                    bounds = dict(part.split("=", 1) for part in result.split(";")[1:] if "=" in part)
+                    a, b = float(bounds["root_a"]), float(bounds["root_b"])
+                    assert a < b and b - a <= 1e-4 * max(1., (a + b) / 2)
+                    assert any(abs(row["fs"] - b) < 1e-13 for row in duals), "Root B lacks its own original dual proof"
+                    context = replay.context(folder / "fixed_fs.tsv.endpoint_context.tsv")
+                    assert context["q"] == [["8"]] and abs(replay.exact_float(context["fs"][0][0]) - a) < 1e-13
+                    record["independent_replay"] = dict(original_free_lower_duals=duals, original_physical_primal=checked, root_a=a, root_b=b, fixed_dual_used=False)
+                    (folder / "original_lower_evidence_replay.json").write_text(json.dumps(record["independent_replay"], indent=2) + "\n", encoding="utf-8")
+            elif args.ray_adapt_only:
                 assert any("upper_c0_wedge_end" in t and "accepted=True" in t for t in native_logs)
                 assert any("upper_c0_wedge_rejected" in t and "CONIC_NOT_CONVERGED" in t for t in native_logs)
                 record["ray_checks"] = "PASS;wedge_own_q8_root_original_field_gate;lower_exact_retained;failed_wedge_old_witnesses_retained"

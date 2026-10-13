@@ -1,15 +1,16 @@
 ' Optional immutable evidence for an accepted original dual guide, never a field.
-Private Sub CaptureOriginalGuide(ByRef candidate As RPX_HsdCandidateState)
+Private Sub CaptureOriginalGuide(ByRef candidate As RPX_HsdCandidateState, Optional ByVal lowerDual As Boolean = False)
     Dim enabled As Long, path As String, f As Integer, i As Long, p As Long, k As Long, j As Long, r As Long
     Dim value As Double, count As Long, number As Long, source As String, message As String
     enabled = CLng(RPX_Setting("ORIGINAL_FARKAS_CAPTURE", 0))
     If enabled <> 0 And enabled <> 1 Then err.Raise 5, "RPX_Conic", "INVALID_ORIGINAL_FARKAS_CAPTURE"
     If enabled = 0 Or Len(RPX_DiagPath) = 0 Then Exit Sub
     path = RPX_DiagPath & ".original_guide_solve_" & P4Solve & "_candidate_" & RPX_HSDCandidateId
+    If lowerDual Then path = RPX_DiagPath & ".original_lower_dual_solve_" & P4Solve & "_candidate_" & RPX_HSDCandidateId
     If Len(Dir$(path & ".bin")) > 0 Then err.Raise 5, "RPX_Conic", "ORIGINAL_GUIDE_CAPTURE_EXISTS"
     On Error GoTo Failed
     f = FreeFile: Open path & ".bin" For Binary Access Write As #f
-    RPX_ExchangeMagic f, "RG18F001"
+    If lowerDual Then RPX_ExchangeMagic f, "LG18D001" Else RPX_ExchangeMagic f, "RG18F001"
     Put #f, , XN: Put #f, , XM: Put #f, , XB: Put #f, , XS: Put #f, , RSubdivisions
     Put #f, , candidate.fs: Put #f, , OriginalFarkasStationarity: Put #f, , OriginalFarkasCone: Put #f, , OriginalFarkasSeparation
     For i = 0 To XN - 1: value = XOriginalCompiled.cost(i): Put #f, , value: Next i
@@ -40,4 +41,9 @@ Failed:
     number = err.number: source = err.source: message = err.description
     On Error Resume Next: Close #f: On Error GoTo 0
     err.Raise number, source, message
+End Sub
+Private Sub CaptureOriginalLowerDual(ByVal factor As Double)
+    Dim candidate As RPX_HsdCandidateState
+    candidate.fs = factor: candidate.y = xy: candidate.dual = XDual
+    Call CaptureOriginalGuide(candidate, True)
 End Sub

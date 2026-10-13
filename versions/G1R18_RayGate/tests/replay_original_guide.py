@@ -34,17 +34,22 @@ def exact_float(hex_value):
     return struct.unpack('<d', bytes.fromhex(hex_value))[0]
 
 
-def replay_dual(path):
-    reader = Reader(path, b'RG18F001')
+def replay_dual(path, lower=False):
+    reader = Reader(path, b'LG18D001' if lower else b'RG18F001')
     n, m, blocks, s, q = reader.read('5i')
     fs, recorded_stat, recorded_cone, recorded_sep = reader.read('4d')
     assert min(n, m, blocks, s) > 0 and q == 8 and fs > 0
     costs = [reader.read('d') for _ in range(n)]
-    assert all(value == 0 for value in costs), 'Nonzero original objective'
+    if lower:
+        assert costs.count(-1.) == 1 and all(value in (-1., 0.) for value in costs), 'Not the original free load cost'
+    else:
+        assert all(value == 0 for value in costs), 'Nonzero original objective'
     rows = []
     for _ in range(m):
         rhs, norm, normalized_y, raw_y = reader.read('4d')
-        assert norm > 0 and raw_y == normalized_y / norm
+        # Allow a few ulps across runtimes; the retained raw proof is audited below.
+        assert norm > 0 and math.isfinite(norm)
+        assert math.isclose(raw_y, normalized_y / norm, rel_tol=8e-16, abs_tol=0.)
         count = reader.read('i')
         assert 0 < count <= n
         values = [reader.read('id') for _ in range(count)]
@@ -63,7 +68,7 @@ def replay_dual(path):
     assert total == s
     z = [reader.read('d') for _ in range(s)]
     reader.finish()
-    stationarity = [[] for _ in range(n)]
+    stationarity = [[cost] for cost in costs]
     separation = []
     numeric = [fs, *costs, *z]
     for rhs, norm, normalized_y, raw_y, values in rows:
@@ -85,15 +90,19 @@ def replay_dual(path):
     assert all(math.isfinite(value) for value in numeric)
     stat = max(abs(math.fsum(values)) for values in stationarity)
     sep = math.fsum(separation)
-    assert stat <= 1e-7 and cone_error <= 1e-8 and sep >= 1.000001
-    assert abs(sep - 1.000003) <= 1e-7
+    assert stat <= 1e-7 and cone_error <= 1e-8
+    if lower:
+        assert -sep <= 1.000001 - 2e-6
+    else:
+        assert sep >= 1.000001 and abs(sep - 1.000003) <= 1e-7
     for value, recorded in [(stat, recorded_stat), (cone_error, recorded_cone), (sep, recorded_sep)]:
         assert abs(value - recorded) <= 2e-12 * (1 + abs(recorded))
     ctx = context(Path(path).with_suffix('.context.tsv'))
     assert exact_float(ctx['fs'][0][0]) == fs and ctx['q'] == [['8']]
     assert 'load_phase=reference_total' in next(iter(ctx))
     return {'path': str(path), 'fs': fs, 'q': q, 'stationarity': stat,
-            'cone': cone_error, 'separation': sep, 'positive_guide_only': True}
+            'cone': cone_error, 'separation': sep, 'lambda_cap': -sep if lower else None,
+            'positive_guide_only': not lower, 'negative_guide_only': lower}
 
 
 def replay_negative(prefix):

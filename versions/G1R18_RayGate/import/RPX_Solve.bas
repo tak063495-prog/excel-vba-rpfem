@@ -1764,10 +1764,13 @@ Private Function TryHsdCandidate(ByVal kind As String, ByVal divisor As Double, 
     RPX_HSDCommitCandidate candidate
     TryHsdCandidate = True
 End Function
-Private Sub OptimizeHSDCore(ByVal prepared As Boolean, ByVal auditMode As String)
+Private Sub OptimizeHSDCore(ByVal prepared As Boolean, ByVal auditMode As String, Optional ByVal recoverySeconds As Double = 0#)
     Dim i As Long, p As Long, j As Long, mu As Double, gap As Double, objective As Double, alpha As Double, mua As Double, sigma As Double, target As Double, correction As Double
     Dim solveStarted As Double, solveBudget As Double
     solveBudget = CDbl(RPX_Setting("HSD_SOLVE_SECONDS", 120))
+    If Not RPX_SchurFinite(recoverySeconds) Then err.Raise 5, "RPX_Solve", "HSD_RECOVERY_BUDGET_INVALID"
+    If recoverySeconds < 0# Or recoverySeconds > 600# Then err.Raise 5, "RPX_Solve", "HSD_RECOVERY_BUDGET_INVALID"
+    If recoverySeconds > 0# Then solveBudget = recoverySeconds
     If solveBudget <= 0# Or Not RPX_SchurFinite(solveBudget) Then err.Raise 5, "RPX_Solve", "HSD_SOLVE_BUDGET_INVALID"
     Dim representation As Double, operatorSetting As Double
     representation = CDbl(RPX_Setting("HSD_PROJECTIVE_NORMALIZATION", 1))
@@ -1928,7 +1931,7 @@ Failed:
     XStatus = RPX_DiagFailure(errorNumber, errorText)
     err.Raise errorNumber, errorSource, errorText
 End Sub
-Public Sub RPX_OptimizeHSD(Optional ByVal prepared As Boolean = False, Optional ByVal auditMode As String = "")
+Public Sub RPX_OptimizeHSD(Optional ByVal prepared As Boolean = False, Optional ByVal auditMode As String = "", Optional ByVal recoverySeconds As Double = 0#)
     Dim errorNumber As Long, errorText As String, errorSource As String, errorLine As Long
     On Error GoTo Failed
     XStatus = "RUNNING": RPX_AuditRejected = False
@@ -1936,7 +1939,7 @@ Public Sub RPX_OptimizeHSD(Optional ByVal prepared As Boolean = False, Optional 
     RPX_P4Begin
     RPX_SchurRelease
     RPX_SchurReset
-    Call OptimizeHSDCore(prepared, auditMode)
+    Call OptimizeHSDCore(prepared, auditMode, recoverySeconds)
     RPX_HLURelease
     RPX_NativeHLinearRelease
     Exit Sub

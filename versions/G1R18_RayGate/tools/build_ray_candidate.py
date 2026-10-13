@@ -1,5 +1,6 @@
 """Reproducible original-dual guide variant; G1R18 production is retained."""
 from pathlib import Path
+from fs_fixed_lower_connection import connect
 
 ROOT = Path(__file__).resolve().parents[1]
 BASE = ROOT.parent / 'G1R17' / 'src/vba'
@@ -33,8 +34,18 @@ def main():
     source = once(source, '            XEId(p) = keyIds(ki): XEVal(p) = row(keyIds(ki)) / valueScale: p = p + 1', '            XOriginalCompiled.values(p) = CDbl(row(keyIds(ki)))\n            XEId(p) = keyIds(ki): XEVal(p) = row(keyIds(ki)) / valueScale: p = p + 1')
     source = once(source, '    Set rawEq = Nothing: Set rawCones = Nothing: Set rawRhs = Nothing', '    XOriginalCompiled.ready = True\n    Set rawEq = Nothing: Set rawCones = Nothing: Set rawRhs = Nothing')
     source += '\n' + (ROOT / 'tools/original_dual_gate.bas.txt').read_text(encoding='utf-8')
+    source += '\n' + (ROOT / 'tools/original_lower_dual_gate.bas.txt').read_text(encoding='utf-8')
     source += '\n' + (ROOT / 'tools/original_dual_capture.bas.txt').read_text(encoding='utf-8')
+    source += '''
+Public Sub RPX_FixLowerLoad(ByVal value As Double)
+    If Not RPX_SchurFinite(value) Then err.Raise 5, "RPX_Conic", "FIXED_LOAD_NONFINITE"
+    If value <= 0# Or RLoadVariable < 0 Or RLoadVariable >= XN Then err.Raise 5, "RPX_Conic", "FIXED_LOAD_ARGUMENT"
+    Set objective = RPX_Row()
+    RPX_Equal RPX_Unit(RLoadVariable), value
+End Sub
+'''
     write('RPX_Conic', source)
+    write('RPX_FixedLowerRecovery', (ROOT / 'tools/fixed_lower_recovery.bas.txt').read_text(encoding='utf-8'))
 
     source = (BASE / 'RPX_LowerCache.bas').read_text(encoding='utf-8')
     source = once(source, 'Private savedRowNorm() As Double', 'Private savedRowNorm() As Double\nPrivate savedOriginal As RPX_OriginalCompiledData')
@@ -46,11 +57,20 @@ def main():
 
     source = (BASE / 'RPX_Solve.bas').read_text(encoding='utf-8')
     source = once(source, 'Public Sub RPX_ResetPreparedState()\n    RPX_NativeBulkReset', 'Public Sub RPX_ResetPreparedState()\n    RPX_ClearOriginalCompiled\n    RPX_NativeBulkReset')
+    source = once(source, 'Private Sub OptimizeHSDCore(ByVal prepared As Boolean, ByVal auditMode As String)', 'Private Sub OptimizeHSDCore(ByVal prepared As Boolean, ByVal auditMode As String, Optional ByVal recoverySeconds As Double = 0#)')
+    source = once(source, '    solveBudget = CDbl(RPX_Setting("HSD_SOLVE_SECONDS", 120))', '''    solveBudget = CDbl(RPX_Setting("HSD_SOLVE_SECONDS", 120))
+    If Not RPX_SchurFinite(recoverySeconds) Then err.Raise 5, "RPX_Solve", "HSD_RECOVERY_BUDGET_INVALID"
+    If recoverySeconds < 0# Or recoverySeconds > 600# Then err.Raise 5, "RPX_Solve", "HSD_RECOVERY_BUDGET_INVALID"
+    If recoverySeconds > 0# Then solveBudget = recoverySeconds''')
+    source = once(source, 'Public Sub RPX_OptimizeHSD(Optional ByVal prepared As Boolean = False, Optional ByVal auditMode As String = "")', 'Public Sub RPX_OptimizeHSD(Optional ByVal prepared As Boolean = False, Optional ByVal auditMode As String = "", Optional ByVal recoverySeconds As Double = 0#)')
+    source = once(source, '    Call OptimizeHSDCore(prepared, auditMode)', '    Call OptimizeHSDCore(prepared, auditMode, recoverySeconds)')
     write('RPX_Solve', source)
 
     source = (BASE / 'RPX_HSDCandidate.bas').read_text(encoding='utf-8')
     source = once(source, 'Public Sub RPX_HSDObservationBegin(ByVal mode As String)\n    Dim i As Long', 'Public Sub RPX_HSDObservationBegin(ByVal mode As String)\n    Dim i As Long\n    RPX_OriginalGuideClear')
     source += '\nPublic Function RPX_HSDGeometryEpoch() As Long\n    RPX_HSDGeometryEpoch = geometryEpoch\nEnd Function\n'
+    source = once(source, 'Public RPX_HSDProofX() As Double', (ROOT / 'tools/hsd_observation_snapshot.bas.txt').read_text(encoding='utf-8').split('Private Sub CopyObservationVector')[0] + '\nPublic RPX_HSDProofX() As Double')
+    source += '\nPrivate Sub CopyObservationVector' + (ROOT / 'tools/hsd_observation_snapshot.bas.txt').read_text(encoding='utf-8').split('Private Sub CopyObservationVector',1)[1]
     old = '    If Len(candidate.mode) = 0 Or candidate.kind = "PRIMAL_INFEASIBILITY_CERT" Then\n        candidate.physicalGate = True: candidate.valid = True: RPX_HSDValidateCandidate = True: Exit Function\n    End If'
     new = '''    If AFActive And candidate.kind <> "OPTIMAL_POINT" Then Exit Function
     If candidate.kind = "PRIMAL_INFEASIBILITY_CERT" And candidate.mode = "upper" And candidate.subdivisions = 8 Then
@@ -100,7 +120,7 @@ def main():
         If mode <> "upper" Or statusA <> "ORIGINAL_FARKAS_GUIDE" Or RSubdivisions <> 8 Then Exit Sub
     End If''')
     source = once(source, '        upperBracket.statusA = statusA: upperBracket.statusB = statusB', '        upperBracket.statusA = statusA: upperBracket.statusB = statusB\n        upperBracket.originalGuideA = (statusA = "ORIGINAL_FARKAS_GUIDE" And RSubdivisions = 8)')
-    write('RPX_Fs', source.rstrip() + '\n')
+    write('RPX_Fs', connect(source, once).rstrip() + '\n')
     accuracy = ROOT.parent / 'G1R18' / 'src/vba'
     source = (accuracy / 'RPX_AccuracyMesh.bas').read_text(encoding='utf-8')
     source += '\n' + (ROOT / 'tools/c0_slope_wedge_mesh.bas.txt').read_text(encoding='utf-8')

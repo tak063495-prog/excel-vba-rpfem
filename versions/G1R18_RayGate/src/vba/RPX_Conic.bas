@@ -31,6 +31,7 @@ End Type
 Public XOriginalCompiled As RPX_OriginalCompiledData
 Public OriginalFarkasStationarity As Double, OriginalFarkasCone As Double, OriginalFarkasSeparation As Double
 Public OriginalFarkasReason As String
+Public OriginalLowerDualReason As String, OriginalLowerDualCap As Double
 Private originalGuideReady As Boolean, originalGuideFs As Double, originalGuideQ As Long
 Private originalGuideEpoch As Long, originalGuideSolve As Long, originalGuideId As Long
 Private originalGuideModel As String, originalGuidePhase As String
@@ -854,7 +855,7 @@ Private Function OriginalDualNorm2(ByVal a As Double, ByVal b As Double) As Doub
     If largest = 0# Then Exit Function
     OriginalDualNorm2 = largest * Sqr((a / largest) ^ 2 + (b / largest) ^ 2)
 End Function
-Private Function OriginalDualAudit(ByRef y() As Double, ByRef z() As Double) As Boolean
+Private Function OriginalDualAudit(ByRef y() As Double, ByRef z() As Double, Optional ByVal includeCost As Boolean = False) As Boolean
     Dim stationarity() As Double, correction() As Double, rawY As Double
     Dim sep As Double, sepCorrection As Double, value As Double, normValue As Double
     Dim i As Long, p As Long, k As Long, r As Long, j As Long, first As Long
@@ -863,6 +864,12 @@ Private Function OriginalDualAudit(ByRef y() As Double, ByRef z() As Double) As 
     If LBound(y) <> 0 Or UBound(y) < XM - 1 Or UBound(y) > XM Then Exit Function
     If LBound(z) <> 0 Or UBound(z) <> XS - 1 Then Exit Function
     ReDim stationarity(0 To XN - 1): ReDim correction(0 To XN - 1)
+    If includeCost Then
+        For i = 0 To XN - 1
+            If Not RPX_SchurFinite(XOriginalCompiled.cost(i)) Then Exit Function
+            stationarity(i) = XOriginalCompiled.cost(i)
+        Next i
+    End If
     For i = 0 To XM - 1
         If Not RPX_SchurFinite(y(i)) Or Not RPX_SchurFinite(XEqRowNorm(i)) Then Exit Function
         If XEqRowNorm(i) <= 0# Then Exit Function
@@ -955,18 +962,61 @@ Public Function RPX_OriginalGuideCurrent(ByVal factor As Double) As Boolean
     RPX_OriginalGuideCurrent = True
 End Function
 
+' The opposite sign of a recovered lower witness needs the FREE-load dual.
+' No affine/fixed-load dual, objective scaling, or status alone is accepted.
+Public Function RPX_OriginalLowerDualGate(ByVal factor As Double, ByVal target As Double, Optional ByVal capture As Boolean = False) As Boolean
+    Dim i As Long, cap As Double
+    OriginalLowerDualReason = "SCOPE_REJECTED": OriginalLowerDualCap = 0#
+    On Error GoTo InvalidData
+    If XCancel Or AFActive Or Not RFsActive Or RSubdivisions <> 8 Or RR <> 0 Then Exit Function
+    If Not RRawAuditEnabled Or RPX_LoadPhase <> "reference_total" Or RPX_OrderMode <> "lower" Then Exit Function
+    If Not RPX_SchurFinite(factor) Or Not RPX_SchurFinite(target) Then Exit Function
+    If Not RPX_SchurFinite(RStrengthFactor) Or Not RPX_SchurFinite(XQScale) Then Exit Function
+    If factor <= 0# Or factor <> RStrengthFactor Or target <> 1.000001 Or XQScale <> 1# Then Exit Function
+    If Not XOriginalCompiled.ready Or XOriginalCompiled.affine Or XOriginalCompiled.modeName <> "lower" Then Exit Function
+    If XOriginalCompiled.inputEpoch <> RPX_InputEpoch Or XOriginalCompiled.subdivisions <> 8 Then Exit Function
+    If XOriginalCompiled.modelKey <> RPX_ExactModel() Or XOriginalCompiled.loadPhase <> RPX_LoadPhase Then Exit Function
+    If XOriginalCompiled.n <> XN Or XOriginalCompiled.m <> XM Or XOriginalCompiled.s <> XS Or XOriginalCompiled.b <> XB Then Exit Function
+    If RLoadVariable < 0 Or RLoadVariable >= XN Then Exit Function
+    If LBound(XOriginalCompiled.cost) <> 0 Or UBound(XOriginalCompiled.cost) <> XN - 1 Then Exit Function
+    If UBound(XOriginalCompiled.rhs) < XM - 1 Or UBound(XOriginalCompiled.values) < XEPtr(XM) - 1 Then Exit Function
+    For i = 0 To XN - 1
+        If Not RPX_SchurFinite(XOriginalCompiled.cost(i)) Or Not RPX_SchurFinite(XQ(i)) Then Exit Function
+        If i = RLoadVariable Then
+            If XOriginalCompiled.cost(i) <> -1# Or XQ(i) <> -1# Then Exit Function
+        Else
+            If XOriginalCompiled.cost(i) <> 0# Or XQ(i) <> 0# Then Exit Function
+        End If
+    Next i
+    OriginalLowerDualReason = "ORIGINAL_DUAL_REJECTED"
+    If Not OriginalDualAudit(xy, XDual, True) Then Exit Function
+    cap = -OriginalFarkasSeparation
+    If Not RPX_SchurFinite(cap) Or OriginalFarkasStationarity > 0.0000001 Or OriginalFarkasCone > 0.00000001 Then Exit Function
+    ' A strict margin avoids a sign from the numerical uncertainty of lambda.
+    If cap > target - 0.000002 Then Exit Function
+    OriginalLowerDualCap = cap: OriginalLowerDualReason = "ORIGINAL_FREE_LOAD_NEGATIVE_DUAL_GUIDE"
+    If capture Then Call CaptureOriginalLowerDual(factor)
+    RPX_DiagEvent "original_lower_dual_guide", "Fs=" & factor & ";q=8;stationarity=" & OriginalFarkasStationarity & ";cone=" & OriginalFarkasCone & ";lambda_cap=" & cap & ";fixed_dual_used=0;physical_bound=0"
+    RPX_OriginalLowerDualGate = True
+    Exit Function
+InvalidData:
+    If err.number <> 6 And err.number <> 9 Then err.Raise err.number, err.source, err.description
+    err.Clear: OriginalLowerDualReason = "INVALID_OR_NONFINITE_ORIGINAL_DUAL"
+End Function
+
 ' Optional immutable evidence for an accepted original dual guide, never a field.
-Private Sub CaptureOriginalGuide(ByRef candidate As RPX_HsdCandidateState)
+Private Sub CaptureOriginalGuide(ByRef candidate As RPX_HsdCandidateState, Optional ByVal lowerDual As Boolean = False)
     Dim enabled As Long, path As String, f As Integer, i As Long, p As Long, k As Long, j As Long, r As Long
     Dim value As Double, count As Long, number As Long, source As String, message As String
     enabled = CLng(RPX_Setting("ORIGINAL_FARKAS_CAPTURE", 0))
     If enabled <> 0 And enabled <> 1 Then err.Raise 5, "RPX_Conic", "INVALID_ORIGINAL_FARKAS_CAPTURE"
     If enabled = 0 Or Len(RPX_DiagPath) = 0 Then Exit Sub
     path = RPX_DiagPath & ".original_guide_solve_" & P4Solve & "_candidate_" & RPX_HSDCandidateId
+    If lowerDual Then path = RPX_DiagPath & ".original_lower_dual_solve_" & P4Solve & "_candidate_" & RPX_HSDCandidateId
     If Len(Dir$(path & ".bin")) > 0 Then err.Raise 5, "RPX_Conic", "ORIGINAL_GUIDE_CAPTURE_EXISTS"
     On Error GoTo Failed
     f = FreeFile: Open path & ".bin" For Binary Access Write As #f
-    RPX_ExchangeMagic f, "RG18F001"
+    If lowerDual Then RPX_ExchangeMagic f, "LG18D001" Else RPX_ExchangeMagic f, "RG18F001"
     Put #f, , XN: Put #f, , XM: Put #f, , XB: Put #f, , XS: Put #f, , RSubdivisions
     Put #f, , candidate.fs: Put #f, , OriginalFarkasStationarity: Put #f, , OriginalFarkasCone: Put #f, , OriginalFarkasSeparation
     For i = 0 To XN - 1: value = XOriginalCompiled.cost(i): Put #f, , value: Next i
@@ -997,4 +1047,16 @@ Failed:
     number = err.number: source = err.source: message = err.description
     On Error Resume Next: Close #f: On Error GoTo 0
     err.Raise number, source, message
+End Sub
+Private Sub CaptureOriginalLowerDual(ByVal factor As Double)
+    Dim candidate As RPX_HsdCandidateState
+    candidate.fs = factor: candidate.y = xy: candidate.dual = XDual
+    Call CaptureOriginalGuide(candidate, True)
+End Sub
+
+Public Sub RPX_FixLowerLoad(ByVal value As Double)
+    If Not RPX_SchurFinite(value) Then err.Raise 5, "RPX_Conic", "FIXED_LOAD_NONFINITE"
+    If value <= 0# Or RLoadVariable < 0 Or RLoadVariable >= XN Then err.Raise 5, "RPX_Conic", "FIXED_LOAD_ARGUMENT"
+    Set objective = RPX_Row()
+    RPX_Equal RPX_Unit(RLoadVariable), value
 End Sub

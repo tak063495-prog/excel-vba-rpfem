@@ -34,7 +34,7 @@ Private Function OriginalDualNorm2(ByVal a As Double, ByVal b As Double) As Doub
     If largest = 0# Then Exit Function
     OriginalDualNorm2 = largest * Sqr((a / largest) ^ 2 + (b / largest) ^ 2)
 End Function
-Private Function OriginalDualAudit(ByRef y() As Double, ByRef z() As Double) As Boolean
+Private Function OriginalDualAudit(ByRef y() As Double, ByRef z() As Double, Optional ByVal includeCost As Boolean = False) As Boolean
     Dim stationarity() As Double, correction() As Double, rawY As Double
     Dim sep As Double, sepCorrection As Double, value As Double, normValue As Double
     Dim i As Long, p As Long, k As Long, r As Long, j As Long, first As Long
@@ -43,6 +43,12 @@ Private Function OriginalDualAudit(ByRef y() As Double, ByRef z() As Double) As 
     If LBound(y) <> 0 Or UBound(y) < XM - 1 Or UBound(y) > XM Then Exit Function
     If LBound(z) <> 0 Or UBound(z) <> XS - 1 Then Exit Function
     ReDim stationarity(0 To XN - 1): ReDim correction(0 To XN - 1)
+    If includeCost Then
+        For i = 0 To XN - 1
+            If Not RPX_SchurFinite(XOriginalCompiled.cost(i)) Then Exit Function
+            stationarity(i) = XOriginalCompiled.cost(i)
+        Next i
+    End If
     For i = 0 To XM - 1
         If Not RPX_SchurFinite(y(i)) Or Not RPX_SchurFinite(XEqRowNorm(i)) Then Exit Function
         If XEqRowNorm(i) <= 0# Then Exit Function
