@@ -1,0 +1,44 @@
+Public Type RPX_HsdObservationSnapshot
+    mode As String
+    kind As String
+    candidateId As Long
+    context As String
+    geometry As Long
+    path As String
+    captured As Boolean
+    enabled As Boolean
+    tau As Double
+    kappa As Double
+    normalization As Double
+    x() As Double
+    y() As Double
+    slack() As Double
+    dual() As Double
+    proof() As Double
+End Type
+Private Sub CopyObservationVector(ByRef source() As Double, ByRef dest() As Double)
+    On Error GoTo Missing
+    If UBound(source) >= LBound(source) Then dest = source
+    Exit Sub
+Missing:
+    If err.number <> 9 Then err.Raise err.number, err.source, err.description
+    err.Clear: Erase dest
+End Sub
+Public Sub RPX_HSDObservationSave(ByRef state As RPX_HsdObservationSnapshot)
+    state.mode = RPX_HSDAuditMode: state.kind = RPX_HSDKind: state.candidateId = RPX_HSDCandidateId
+    state.context = contextKey: state.geometry = geometryEpoch: state.path = capturePath
+    state.captured = captured: state.enabled = captureEnabled
+    state.tau = savedTau: state.kappa = savedKappa: state.normalization = savedNormalization
+    CopyObservationVector savedX, state.x: CopyObservationVector savedY, state.y
+    CopyObservationVector savedSlack, state.slack: CopyObservationVector savedDual, state.dual
+    CopyObservationVector RPX_HSDProofX, state.proof
+End Sub
+Public Sub RPX_HSDObservationRestore(ByRef state As RPX_HsdObservationSnapshot)
+    RPX_HSDAuditMode = state.mode: RPX_HSDKind = state.kind: RPX_HSDCandidateId = state.candidateId
+    contextKey = state.context: geometryEpoch = state.geometry: capturePath = state.path
+    captured = state.captured: captureEnabled = state.enabled
+    savedTau = state.tau: savedKappa = state.kappa: savedNormalization = state.normalization
+    CopyObservationVector state.x, savedX: CopyObservationVector state.y, savedY
+    CopyObservationVector state.slack, savedSlack: CopyObservationVector state.dual, savedDual
+    CopyObservationVector state.proof, RPX_HSDProofX
+End Sub

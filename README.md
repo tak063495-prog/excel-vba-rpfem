@@ -1,8 +1,36 @@
-> Issue #8 修正候補（2026-10-13）: [静水圧収束判定の修正版・別名ブック・実Excel/Python/DLL検証](versions/G1R17_Issue8/README.md)。レビュー用の候補で、既存G1R17配布物は保全しています。
-
 # excel-vba-rpfem
 
 Excel VBAによる2次元RPFEM解析のソース、XLSM、検証資料です。
+
+**最新の改善版は [G1R18 Release](https://github.com/tak063495-prog/excel-vba-rpfem/releases/tag/G1R18) です。** [バージョン一覧](versions/README.md)から過去版も確認できます。
+
+## G1R18 — 最新の改善版（2026-10-14）
+
+- **[配布一式ZIP](https://github.com/tak063495-prog/excel-vba-rpfem/releases/download/G1R18/RPFEM_20261014_G1R18.zip)** / [XLSM](versions/G1R18/delivery/RPFEM_20261014_G1R18.xlsm) / [SHA-256](versions/G1R18/SHA256SUMS.txt)
+- [導入・設定・検証範囲](versions/G1R18/README_JA.md) / [VBAソース](versions/G1R18/src/vba) / [新DLLのソース・ビルド・数値検証](versions/G1R18/native/accuracy/README.md)
+- [今回の精度再監査](validation/accuracy_20261013/snapshots/20261014_progress7_audit/REPORT_JA.md) / [P06の継続課題 #11](https://github.com/tak063495-prog/excel-vba-rpfem/issues/11)
+
+適合細分化、別々の上下界場の保存、原q8監査と根の確認をVBAへ統合しました。
+追加DLLは、元の物理目的へ上限・下限を付けた二次目的による場の回復、
+平衡残差のLSMR補正、原双対制約の回復を実行します。補助目的の双対を根の証拠には使いません。
+精度回復は設定 `ACCURACY_DLL_RECOVERY=1` で有効にでき、既定値は0です。
+XLSMと同じフォルダーに、既存の `rpfem_native_x64.dll` と追加の
+`rpfem_accuracy_x64.dll` を置きます。実行時にPythonは必要ありません。
+
+Pythonの独立再監査では、旧表で精度目標未達だった16ケース中14ケースで、q8・両側の根区間・対称幅1%以下を確認しました。
+P06も旧G1R17の実Excel保存場から上下界幅を縮小しました。
+
+|ケース|G1R17 実Excel・旧保存場の幅|Python実験・最新保存場の幅|1%目標|
+|---|---:|---:|---|
+|P06A|8.612876%|1.261478%|未達・継続課題|
+|P06N|12.038014%|1.364711%|未達・継続課題|
+
+幅は `2*(上界-下界)/(上界+下界)`。[旧G1R17実測](docs/benchmarks/G1R17_native26_20261013/data/RESULTS.csv)と[最新保存場の再監査](validation/accuracy_20261013/snapshots/20261014_progress7_audit/REPORT_JA.md)を比較しています。
+最新値はPython実験の保存場を元のq8式で再監査した結果です。
+VBA/DLLの小規模数値回帰、Fs根探索、失敗時の場の保持、配布ブックの再読込みは合格しました。
+G1R18での本番規模のP06再現と1%達成は[Issue #11](https://github.com/tak063495-prog/excel-vba-rpfem/issues/11)で継続します。G1R18の速度比較は今回実施していません。
+
+Issue #8の水理修正も取り込み済みです。[水理修正の検証](versions/G1R17_Issue8/README.md)。
 
 剛塑性有限要素法による**極限解析の下界・上界**を求め、強度低減安全率Fsまたは極限荷重倍率を出力します。変位・沈下量を求める弾塑性解析ではありません。非関連流れ則の入力ではDavis等価関連モデルを使うため、結果の解析政策も確認してください。
 
@@ -16,14 +44,16 @@ Excel VBAによる2次元RPFEM解析のソース、XLSM、検証資料です。
 
 ### 最初の実行
 
-1. 下記のD03NまたはD07A設定済みXLSMをダウンロードし、ローカルの作業フォルダーへ別名で保存します。
+1. G1R18の配布ZIPを展開し、XLSMと2個のDLLを同じローカルフォルダーに置きます。配布ブックは標準斜面・未解析の状態なので、対象モデルの入力を確認します。
 2. 入手元・ハッシュを確認し、組織の規則に従ってそのファイルのマクロを実行できる状態にします。通常の解析にPythonやVBAプロジェクトアクセスの許可は不要です。
 3. 「実行案内」「材料データ」「設定」を確認し、「要素定義」の**「要素作成②」→「図を表示」→「解析」**を使います。「解析」は入力からメッシュを再生成するため、要素作成は形状の事前確認用です。
 4. 「解析結果」の下界・上界・区間幅・解析政策と、ログ末尾の判定を確認します。`PARTIAL_CERTIFIED`は目標未達を含みます。詳しい操作は[使い方](docs/USAGE_JA.md)を参照してください。
 
+追加の精度回復は「設定」の「精度重視の設定」ボタンで有効にできます。材料・解析政策・領域・荷重の入力を保持します。設定と検証範囲は[G1R18の導入手順](versions/G1R18/README_JA.md)を確認してください。
+
 **G1R15では、G1R14（定常浸透・間隙水圧の一方向連成）に、浸透入力シートの整理・地下水面からの水圧入力・水平震度法（地震）を追加した（実Excelで全回帰済み：連成OFF・kh=0でD03N・D07AのFsがG1R14と全桁一致）。G1R14では連成OFFでD03N・D07AのFsがG1R13と全桁一致した。G1R13の修復・制限は[G1R13報告](versions/G1R13/REPORT.md)、G1R12時点の25ケース結果（23/25取得・11/25目標達成）は[過去25ケース結果](validation/G1R12_native25_20261009/REPORT.md)を参照し、区別する。図の矢印は規準化された速度機構であり、変位量ではない。**
 
-## G1R17 最新DLL5 — 間隙水圧を含む26ケースの実測結果
+## G1R17・DLL5 — 前版の26ケース実測結果
 
 2026年10月12日〜13日に、同じG1R17コードで26ケースのFs探索・適応解析を実Excelで実行しました。**独立物理監査済みFs上下界は26/26ケースで取得、精度目標達成は10/26ケース**です。主解析時間の合計は **7時間46分7秒**。最長のP06Nは1時間40分57秒、P06Aは1時間40分50秒でした。
 
@@ -37,7 +67,7 @@ P06A・P06Nはq8上下界を取得しましたが、GAPは8.613%・12.038%で目
 
 条件を照合できた過去DLL2の10ケースでは、主時間合計比 **2.823倍**、保存上下界場は全ケースで両方ともビット一致しました。同一PCの各1回の測定による版全体の参考比です。DLLなしの26ケース全解析は再計測していません。
 
-## G1R17 — P06A・P06N粗メッシュ修復、VBA／DLL対応（最新コード）
+## G1R17 — 前版のP06A・P06N粗メッシュ修復、VBA／DLL対応
 
 2026年10月12日。c=0自由頂点からゼロ応力が伝わる鈍角要素の局所制約を、PythonのSOCP・LP双対と実Excelで特定し、VBAとDLL5の両方で修復しました。粗メッシュは243→245要素、追加節点は1つです。構成則・Davis変換・Fs定義・物理監査・求解許容差は維持しています。
 
@@ -105,7 +135,7 @@ ZIPの`delivery/`にあるXLSMとDLLを同じフォルダーへ置きます。DL
 2026年10月12日。G1R15のLDL・DD数値核と並べ替えをDLLへ移植した版です。堤防例題で **622.12秒（元VBAの既存記録）→443.89秒（前回DLL）→400.16秒（DLL2）**。元VBA比 **35.68%短縮・約1.55倍**、前回DLLから **9.85%短縮**でした。同じPCの既存記録との比較で、元VBAは再計測していません。
 
 - **[XLSM・DLL・ソース・検証結果の一式ZIPをダウンロード](https://github.com/tak063495-prog/excel-vba-rpfem/raw/refs/heads/main/downloads/RPFEM_G1R15_DLL2_Levee_Checked.zip)**
-- [最新DLL（rpfem_native_x64.dll）をダウンロード](https://github.com/tak063495-prog/excel-vba-rpfem/raw/refs/heads/main/versions/G1R15_DLL2/delivery/rpfem_native_x64.dll) / [対応XLSMをダウンロード](https://github.com/tak063495-prog/excel-vba-rpfem/raw/refs/heads/main/versions/G1R15_DLL2/delivery/RPFEM_20261012_G1R15_DLL2_Levee_Checked.xlsm)
+- [G1R15 DLL2（当時のrpfem_native_x64.dll）をダウンロード](https://github.com/tak063495-prog/excel-vba-rpfem/raw/refs/heads/main/versions/G1R15_DLL2/delivery/rpfem_native_x64.dll) / [対応XLSMをダウンロード](https://github.com/tak063495-prog/excel-vba-rpfem/raw/refs/heads/main/versions/G1R15_DLL2/delivery/RPFEM_20261012_G1R15_DLL2_Levee_Checked.xlsm)
 - [使い方](versions/G1R15_DLL2/README.md) / [検証報告](versions/G1R15_DLL2/REPORT.md) / [導入・復旧](versions/G1R15_DLL2/IMPORT_ROLLBACK_JA.md) / [VBAソース](versions/G1R15_DLL2/src/vba/) / [DLLのC・C++・ASMソースとライセンス](versions/G1R15_DLL2/native/) / [差分](versions/G1R15_DLL2/changes.diff) / [SHA-256](downloads/SHA256SUMS.txt)
 
 ZIPを展開し、`delivery/` のXLSMとDLLを同じフォルダーに置いてください。**DLLだけを元G1R15へ追加しても高速化経路には入りません。対応XLSMを使うか、導入手順でVBAを更新してください。** 前回DLL版を使っていたExcelは終了してから新しい版を開きます。DLL不在・読込不可・版不一致ではVBAへ自動切替します。

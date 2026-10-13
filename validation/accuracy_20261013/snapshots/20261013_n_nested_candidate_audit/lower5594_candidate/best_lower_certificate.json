@@ -1,0 +1,45 @@
+{
+  "case": "P06N",
+  "mode": "lower",
+  "q": 8,
+  "fs": 0.6764953237700042,
+  "mesh_id": "b31de7fbb890551ce272ad7b07fe6ff5b8454514e861e8d148128d783b4aa586",
+  "physical_model_id": "08cc8e73e85408e7a82cbe79b5716ef007cb917d00e021872c40e510b5d17525",
+  "elements": 5594,
+  "source": "audited nested additional angular fan",
+  "root_complete": false,
+  "mesh_path": "best_lower_mesh.npz",
+  "field_path": "best_lower_field.npz",
+  "audit": {
+    "objective": -1.000008439112098,
+    "value": 1.000008439112098,
+    "eq_error": 3.086420008457935e-13,
+    "cone_error": 0.0,
+    "audit": {
+      "pass": true,
+      "errors": {
+        "yield": 2.5950585704440643e-15,
+        "equilibrium": 3.3787728170864284e-10,
+        "internal_traction": 4.365952044338428e-13,
+        "boundary_traction": 3.952393967665557e-14
+      },
+      "load": 1.000008439112098,
+      "value": 1.000008439112098
+    },
+    "raw_lower_errors": {
+      "yield": 5.190117140888128e-14,
+      "equilibrium": 6.757545634172857e-09,
+      "internal_traction": 8.731904088676856e-12,
+      "boundary_traction": 7.904787935331115e-13
+    },
+    "physical_pass": true,
+    "witness": true,
+    "numerical_gate": false,
+    "case": "P06N",
+    "mode": "lower",
+    "q": 8,
+    "fs": 0.6764953237700042,
+    "mesh_id": "b31de7fbb890551ce272ad7b07fe6ff5b8454514e861e8d148128d783b4aa586",
+    "physical_model_id": "08cc8e73e85408e7a82cbe79b5716ef007cb917d00e021872c40e510b5d17525"
+  }
+}

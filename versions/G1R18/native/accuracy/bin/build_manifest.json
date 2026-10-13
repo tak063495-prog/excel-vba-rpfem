@@ -1,0 +1,18 @@
+{
+  "target": "x86_64-pc-windows-msvc",
+  "clarabel": "0.11.1",
+  "rustc": "rustc 1.85.0 (4d91de4e4 2025-02-17)\nbinary: rustc\ncommit-hash: 4d91de4e48198da2e33413efdcd9cd2cc0c46688\ncommit-date: 2025-02-17\nhost: x86_64-pc-windows-msvc\nrelease: 1.85.0\nLLVM version: 19.1.7",
+  "cargo": "cargo 1.85.0 (d73d2caf9 2024-12-31)",
+  "crt": "static; PE /Brepro enabled",
+  "source_sha256": {
+    "Cargo.toml": "b88d2d8cc4c64a53928c1a5b01743dcecc9c1ffe424dbcc4caa57115c5c64b28",
+    "Cargo.lock": "eef5af1333c7ef0f865111df5ab025ee66c3604f9618a7f48a87abf1cda23bce",
+    ".cargo\\config.toml": "f2513596c6fa1b07a4322ff110855fe6dca8b5aa6496157be2bf6ac65dcd29b6",
+    "rpfem_accuracy.h": "a88371ce9dae24fe04ed836ab4e2bea3ec019471953a488e0a10fb23e2d32f10",
+    "build.ps1": "8825407b40c44069d2dcdea40e39aedc03faccf7e137b0b5ea159440c0e5bdbd",
+    "src\\equality.rs": "bf6d55533a4d3b94f167d31ba49467850ff9171e30e14b3f768c57d5359836c0",
+    "src\\lib.rs": "6bc9cbd369fbfa06b41c326141fb7ca387cf5429d49ada2b9a6c6a4941f713d7"
+  },
+  "dll_sha256": "dc561a7b241ab2b57b7873ad06dc44cf0541ceea3bdf6c19e0940f8a05c45329",
+  "rust_tests_skipped": false
+}

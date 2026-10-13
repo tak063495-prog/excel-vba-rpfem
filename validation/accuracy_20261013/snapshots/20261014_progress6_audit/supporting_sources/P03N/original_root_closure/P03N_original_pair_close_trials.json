@@ -1,0 +1,61 @@
+[
+  {
+    "objective": 0.9999979912478523,
+    "value": 0.9999979912478487,
+    "eq_error": 1.677696435431313e-13,
+    "cone_error": 1.1090258825811804e-14,
+    "audit": {
+      "pass": true,
+      "errors": {
+        "flow": 0.0,
+        "boundary": 1.677696435431313e-13,
+        "jump": 1.1090258825811943e-14,
+        "work": 1.318944953254686e-13,
+        "objective": 3.552713678800501e-15
+      },
+      "dissipation": 0.9999979912478487,
+      "work": [
+        0.0,
+        1.000000000000132
+      ],
+      "value": 0.9999979912478487
+    },
+    "raw_lower_errors": {},
+    "physical_pass": true,
+    "witness": true,
+    "numerical_gate": false,
+    "case": "P03N",
+    "mode": "upper",
+    "q": 8,
+    "fs": 1.167378,
+    "mesh_id": "928a290d71a3f668bb878b198713bc7dffae50b6d409589cf62a9819cda5a778",
+    "physical_model_id": "53d1cc3320cf49fa54084ac607f2e924d6b4b83d70f040bdbb35fa4525db9a92",
+    "origin": "independently_reaudited_same_mesh_witness"
+  },
+  {
+    "accepted": true,
+    "dual_stationarity": 2.18147722108597e-12,
+    "dual_cone_error": 0.0,
+    "dual_objective": 1.0000199348035947,
+    "threshold": 1.000003,
+    "method": "original_dual_feasibility",
+    "scope": "discrete_root_search_only; no primal field or continuum bound",
+    "publishes_primal_bound": false,
+    "search_sign": 1,
+    "case": "P03N",
+    "mode": "upper",
+    "q": 8,
+    "fs": 1.16734,
+    "mesh_id": "928a290d71a3f668bb878b198713bc7dffae50b6d409589cf62a9819cda5a778",
+    "physical_model_id": "53d1cc3320cf49fa54084ac607f2e924d6b4b83d70f040bdbb35fa4525db9a92",
+    "policy": "hold_initial",
+    "physical_pass": false,
+    "witness": false,
+    "numerical_gate": false,
+    "value": 0.0,
+    "dual_guide_only": true,
+    "origin": "independently_reaudited_initial_original_dual",
+    "dual_proof_path": "P03N_original_pair_close_original_dual_guide_1.npz",
+    "dual_proof_sha256": "dd36bb3310eada211346962f24cb03d368dfd50efcfa83ef65d220a8987f9119"
+  }
+]

@@ -1,0 +1,2 @@
+results/**/*.xlsm
+results/**/rpfem_native_x64.dll

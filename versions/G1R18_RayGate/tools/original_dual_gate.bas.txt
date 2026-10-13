@@ -1,0 +1,142 @@
+' Strict discrete guide for full, zero-cost physical upper programs only.
+' The ray never supplies a physical velocity, a work witness, or a continuum bound.
+Public Sub RPX_OriginalGuideClear()
+    originalGuideReady = False: originalGuideModel = ""
+End Sub
+Public Sub RPX_ClearOriginalCompiled()
+    Dim blank As RPX_OriginalCompiledData
+    XOriginalCompiled = blank: RPX_OriginalGuideClear
+End Sub
+Public Function RPX_OriginalPhysicalZeroCostUpper() As Boolean
+    Dim e As Long, id As Long, j As Long
+    If AFActive Or RSubdivisions <> 8 Or RPX_LoadPhase <> "reference_total" Then Exit Function
+    If rn <= 0 Or re <= 0 Then Exit Function
+    For e = 0 To re - 1
+        If RRigidId(e) < 0 Then
+            If RMaterials(RMatId(e)).cohesion <> 0# Then Exit Function
+        End If
+        For j = 0 To 1: If RBody0(e, j) <> 0# Then Exit Function
+        Next j
+    Next e
+    For id = 0 To RNEdge - 1
+        For j = 0 To 1: If REdges(id).load0(j) <> 0# Then Exit Function
+        Next j
+    Next id
+    For id = 0 To RR - 1
+        For j = 0 To 2: If RRigids(id).load0(j) <> 0# Then Exit Function
+        Next j
+    Next id
+    RPX_OriginalPhysicalZeroCostUpper = True
+End Function
+Private Function OriginalDualNorm2(ByVal a As Double, ByVal b As Double) As Double
+    Dim largest As Double
+    largest = Abs(a): If Abs(b) > largest Then largest = Abs(b)
+    If largest = 0# Then Exit Function
+    OriginalDualNorm2 = largest * Sqr((a / largest) ^ 2 + (b / largest) ^ 2)
+End Function
+Private Function OriginalDualAudit(ByRef y() As Double, ByRef z() As Double, Optional ByVal includeCost As Boolean = False) As Boolean
+    Dim stationarity() As Double, correction() As Double, rawY As Double
+    Dim sep As Double, sepCorrection As Double, value As Double, normValue As Double
+    Dim i As Long, p As Long, k As Long, r As Long, j As Long, first As Long
+    On Error GoTo ArithmeticRejected
+    OriginalFarkasStationarity = 0#: OriginalFarkasCone = 0#: OriginalFarkasSeparation = 0#
+    If LBound(y) <> 0 Or UBound(y) < XM - 1 Or UBound(y) > XM Then Exit Function
+    If LBound(z) <> 0 Or UBound(z) <> XS - 1 Then Exit Function
+    ReDim stationarity(0 To XN - 1): ReDim correction(0 To XN - 1)
+    If includeCost Then
+        For i = 0 To XN - 1
+            If Not RPX_SchurFinite(XOriginalCompiled.cost(i)) Then Exit Function
+            stationarity(i) = XOriginalCompiled.cost(i)
+        Next i
+    End If
+    For i = 0 To XM - 1
+        If Not RPX_SchurFinite(y(i)) Or Not RPX_SchurFinite(XEqRowNorm(i)) Then Exit Function
+        If XEqRowNorm(i) <= 0# Then Exit Function
+        rawY = y(i) / XEqRowNorm(i)
+        If Not RPX_SchurFinite(rawY) Then Exit Function
+        AddCompensated sep, sepCorrection, -XOriginalCompiled.rhs(i) * rawY
+        For p = XEPtr(i) To XEPtr(i + 1) - 1
+            AddCompensated stationarity(XEId(p)), correction(XEId(p)), XOriginalCompiled.values(p) * rawY
+        Next p
+    Next i
+    For k = 0 To XB - 1
+        If XC(k).dimn <> 1 And XC(k).dimn <> 3 Then Exit Function
+        first = XC(k).first
+        For r = 0 To XC(k).dimn - 1
+            If Not RPX_SchurFinite(z(first + r)) Then Exit Function
+            AddCompensated sep, sepCorrection, -XC(k).offset(r) * z(first + r)
+            For j = 0 To XC(k).count - 1
+                AddCompensated stationarity(XC(k).ids(j)), correction(XC(k).ids(j)), -XC(k).coef(r, j) * z(first + r)
+            Next j
+        Next r
+        value = -z(first)
+        If XC(k).dimn = 3 Then value = value + OriginalDualNorm2(z(first + 1), z(first + 2))
+        If value > OriginalFarkasCone Then OriginalFarkasCone = value
+    Next k
+    For i = 0 To XN - 1
+        If Not RPX_SchurFinite(stationarity(i)) Then Exit Function
+        If Abs(stationarity(i)) > OriginalFarkasStationarity Then OriginalFarkasStationarity = Abs(stationarity(i))
+    Next i
+    If Not RPX_SchurFinite(sep) Or Not RPX_SchurFinite(OriginalFarkasCone) Then Exit Function
+    OriginalFarkasSeparation = sep: OriginalDualAudit = True
+    Exit Function
+ArithmeticRejected:
+    If err.number <> 6 And err.number <> 9 Then err.Raise err.number, err.source, err.description
+    err.Clear
+End Function
+Public Function RPX_OriginalFarkasGate(ByRef candidate As RPX_HsdCandidateState) As Boolean
+    Const SEP_GOAL As Double = 1.000003
+    Dim y() As Double, z() As Double, factor As Double, valueNormalization As Double, i As Long
+    RPX_OriginalGuideClear: OriginalFarkasReason = "scope"
+    On Error GoTo InvalidData
+    If candidate.kind <> "PRIMAL_INFEASIBILITY_CERT" Or candidate.mode <> "upper" Then Exit Function
+    If Not RFsActive Or Not candidate.numericalGate Or Not RPX_OriginalPhysicalZeroCostUpper() Then Exit Function
+    If AFActive Or Not XOriginalCompiled.ready Or XOriginalCompiled.affine Then Exit Function
+    If XOriginalCompiled.modeName <> "upper" Or XOriginalCompiled.subdivisions <> 8 Or candidate.subdivisions <> 8 Then Exit Function
+    If candidate.fs <> RStrengthFactor Or candidate.solveEpoch <> P4Solve Then Exit Function
+    If candidate.geometryEpoch <> RPX_HSDGeometryEpoch() Then Exit Function
+    If candidate.inputEpoch <> RPX_InputEpoch Or XOriginalCompiled.inputEpoch <> RPX_InputEpoch Then Exit Function
+    If XOriginalCompiled.n <> XN Or XOriginalCompiled.m <> XM Or XOriginalCompiled.s <> XS Or XOriginalCompiled.b <> XB Then Exit Function
+    If candidate.modelKey <> XOriginalCompiled.modelKey Or candidate.modelKey <> RPX_ExactModel() Then Exit Function
+    If candidate.loadPhase <> RPX_LoadPhase Or candidate.loadPhase <> XOriginalCompiled.loadPhase Then Exit Function
+    OriginalFarkasReason = "nonzero_original_cost"
+    If UBound(XOriginalCompiled.cost) <> XN - 1 Or UBound(XOriginalCompiled.rhs) < XM - 1 Or UBound(XOriginalCompiled.values) < XEPtr(XM) - 1 Then Exit Function
+    For i = 0 To XN - 1
+        If Not RPX_SchurFinite(XOriginalCompiled.cost(i)) Or XOriginalCompiled.cost(i) <> 0# Then Exit Function
+    Next i
+    OriginalFarkasReason = "raw_dual_or_separation"
+    y = candidate.y: z = candidate.dual
+    If Not OriginalDualAudit(y, z) Then Exit Function
+    If OriginalFarkasSeparation <= 0# Then Exit Function
+    factor = SEP_GOAL / OriginalFarkasSeparation
+    If Not RPX_SchurFinite(factor) Or factor <= 0# Then Exit Function
+    For i = 0 To UBound(y): y(i) = y(i) * factor: Next i
+    For i = 0 To UBound(z): z(i) = z(i) * factor: Next i
+    If Not OriginalDualAudit(y, z) Then Exit Function
+    If OriginalFarkasStationarity > 0.0000001 Or OriginalFarkasCone > 0.00000001 Then Exit Function
+    If OriginalFarkasSeparation < 1.000001 Or Abs(OriginalFarkasSeparation - SEP_GOAL) > 0.0000001 Then Exit Function
+    If Not RPX_SchurFinite(candidate.normalization) Or candidate.normalization <= 0# Then Exit Function
+    valueNormalization = candidate.normalization / factor
+    If Not RPX_SchurFinite(valueNormalization) Or valueNormalization <= 0# Then Exit Function
+    candidate.y = y: candidate.dual = z: candidate.normalization = valueNormalization
+    originalGuideReady = True: originalGuideFs = candidate.fs: originalGuideQ = candidate.subdivisions
+    originalGuideEpoch = candidate.inputEpoch: originalGuideSolve = candidate.solveEpoch
+    originalGuideId = RPX_HSDCandidateId: originalGuideModel = candidate.modelKey: originalGuidePhase = candidate.loadPhase
+    OriginalFarkasReason = "accepted_original_discrete_guide"
+    CaptureOriginalGuide candidate
+    RPX_DiagEvent "original_farkas_guide", "stationarity=" & OriginalFarkasStationarity & ";cone=" & OriginalFarkasCone & ";separation=" & OriginalFarkasSeparation & ";q=8;field_bound=0;original_row_dual_restored=1"
+    RPX_OriginalFarkasGate = True
+    Exit Function
+InvalidData:
+    If err.number <> 6 And err.number <> 9 Then err.Raise err.number, err.source, err.description
+    err.Clear: OriginalFarkasReason = "invalid_or_nonfinite_original_dual"
+End Function
+Public Function RPX_OriginalGuideCurrent(ByVal factor As Double) As Boolean
+    If Not RPX_SchurFinite(factor) Then Exit Function
+    If XStatus <> "ORIGINAL_FARKAS_GUIDE" Or Not originalGuideReady Or AFActive Or Not RFsActive Then Exit Function
+    If originalGuideFs <> factor Or factor <> RStrengthFactor Or originalGuideQ <> RSubdivisions Or RSubdivisions <> 8 Then Exit Function
+    If originalGuideEpoch <> RPX_InputEpoch Or originalGuideSolve <> P4Solve Or originalGuideId <> RPX_HSDCandidateId Then Exit Function
+    If originalGuideModel <> RPX_ExactModel() Or originalGuidePhase <> RPX_LoadPhase Then Exit Function
+    If Not RPX_OriginalPhysicalZeroCostUpper() Then Exit Function
+    RPX_OriginalGuideCurrent = True
+End Function

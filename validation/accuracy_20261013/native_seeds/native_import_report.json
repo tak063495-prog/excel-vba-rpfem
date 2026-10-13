@@ -1,0 +1,1503 @@
+[
+  {
+    "case": "P06A",
+    "sides": {
+      "lower": {
+        "accepted": true,
+        "source": {
+          "q": 8,
+          "fs": 0.8397999792049067,
+          "scale": 20.0,
+          "objective": 1.0001664356057467,
+          "source_sha256": "0fcb8f496e68b03726d829c3cbf5a5ecf1ce38204fb0a9f011b0f45a8add47a5"
+        },
+        "attempts": [
+          {
+            "fs": 0.8397999792049067,
+            "audit": {
+              "objective": -1.0001664356057467,
+              "value": 1.0001664356057467,
+              "eq_error": 5.995204332975845e-14,
+              "cone_error": 0.0,
+              "audit": {
+                "pass": true,
+                "errors": {
+                  "yield": 4.435960728152221e-14,
+                  "equilibrium": 1.0032863428932615e-11,
+                  "internal_traction": 7.754907827006718e-14,
+                  "boundary_traction": 5.0134577678068445e-14
+                },
+                "load": 1.0001664356057467,
+                "value": 1.0001664356057467
+              },
+              "raw_lower_errors": {
+                "yield": 8.871921456304443e-13,
+                "equilibrium": 2.006572685786523e-10,
+                "internal_traction": 1.5509815654013437e-12,
+                "boundary_traction": 1.002691553561369e-12
+              },
+              "physical_pass": true,
+              "witness": true,
+              "numerical_gate": false
+            }
+          }
+        ]
+      },
+      "upper": {
+        "accepted": true,
+        "source": {
+          "q": 8,
+          "fs": 0.9153859713305423,
+          "scale": 20.0,
+          "objective": 0.9999557442983772,
+          "source_sha256": "d1bec261371ed4441061a0b4b1d210aa4d173d63d53f6b00009184878ba01ccf"
+        },
+        "attempts": [
+          {
+            "fs": 0.9153859713305423,
+            "audit": {
+              "objective": 0.999955744298379,
+              "value": 0.999955744298377,
+              "eq_error": 9.604615878583273e-12,
+              "cone_error": 4.312058350955609e-13,
+              "audit": {
+                "pass": true,
+                "errors": {
+                  "flow": 2.619847816101999e-13,
+                  "jump": 1.7118363432940673e-13,
+                  "bonded_interface": 4.603476257279243e-12,
+                  "boundary": 9.604615878583273e-12,
+                  "work": 3.74218434018303e-11,
+                  "objective": 1.9984014443252818e-15
+                },
+                "dissipation": 0.999955744298377,
+                "work": [
+                  0.0,
+                  0.9999999999625782
+                ],
+                "value": 0.999955744298377
+              },
+              "raw_lower_errors": {},
+              "physical_pass": true,
+              "witness": true,
+              "numerical_gate": false
+            }
+          }
+        ]
+      }
+    }
+  },
+  {
+    "case": "P06N",
+    "sides": {
+      "lower": {
+        "accepted": true,
+        "source": {
+          "q": 8,
+          "fs": 0.6705083583412688,
+          "scale": 20.0,
+          "objective": 1.0001916182241943,
+          "source_sha256": "2819d86d19eb9e1e571abb43179a9e7004c62eef053ae9ac9a86e539167a17bc"
+        },
+        "attempts": [
+          {
+            "fs": 0.6705083583412688,
+            "audit": {
+              "objective": -1.0001916182241943,
+              "value": 1.0001916182241943,
+              "eq_error": 4.474198789239381e-14,
+              "cone_error": 0.0,
+              "audit": {
+                "pass": true,
+                "errors": {
+                  "yield": 3.39786469791691e-14,
+                  "equilibrium": 7.545963853772264e-12,
+                  "internal_traction": 5.795364188543317e-14,
+                  "boundary_traction": 3.753585013478832e-14
+                },
+                "load": 1.0001916182241943,
+                "value": 1.0001916182241943
+              },
+              "raw_lower_errors": {
+                "yield": 6.79572939583382e-13,
+                "equilibrium": 1.5091927707544528e-10,
+                "internal_traction": 1.1590728377086634e-12,
+                "boundary_traction": 7.507170026957664e-13
+              },
+              "physical_pass": true,
+              "witness": true,
+              "numerical_gate": false
+            }
+          }
+        ]
+      },
+      "upper": {
+        "accepted": true,
+        "source": {
+          "q": 8,
+          "fs": 0.7563936919252566,
+          "scale": 20.0,
+          "objective": 0.9999860824119692,
+          "source_sha256": "c77bf37ce82a072ef7353eb2c10f9fe5c0f6ed05537f2b16601084e9ce2bb39f"
+        },
+        "attempts": [
+          {
+            "fs": 0.7563936919252566,
+            "audit": {
+              "objective": 0.9999860824119674,
+              "value": 0.9999860824119697,
+              "eq_error": 1.81322789876877e-11,
+              "cone_error": 0.0,
+              "audit": {
+                "pass": true,
+                "errors": {
+                  "flow": 0.0,
+                  "jump": 0.0,
+                  "bonded_interface": 6.529544691887054e-12,
+                  "boundary": 1.81322789876877e-11,
+                  "work": 5.2688742258055754e-11,
+                  "objective": 2.3314683517128287e-15
+                },
+                "dissipation": 0.9999860824119697,
+                "work": [
+                  0.0,
+                  0.9999999999473113
+                ],
+                "value": 0.9999860824119697
+              },
+              "raw_lower_errors": {},
+              "physical_pass": true,
+              "witness": true,
+              "numerical_gate": false
+            }
+          }
+        ]
+      }
+    }
+  },
+  {
+    "case": "D01A",
+    "sides": {
+      "lower": {
+        "accepted": true,
+        "source": {
+          "q": 8,
+          "fs": 0.5773027250336507,
+          "scale": 1.0,
+          "objective": 1.0,
+          "source_sha256": "3522c5bbe373f444b8e17a7903940695764edfecc202fb7773631bb8e31f9d85"
+        },
+        "attempts": [
+          {
+            "fs": 0.5773027250336507,
+            "audit": {
+              "objective": -1.0,
+              "value": 1.0,
+              "eq_error": 2.1857284870918647e-09,
+              "cone_error": 0.0,
+              "audit": {
+                "pass": true,
+                "errors": {
+                  "yield": 1.5445080855900427e-09,
+                  "equilibrium": 4.22514023767917e-08,
+                  "internal_traction": 2.883399630171368e-10,
+                  "boundary_traction": 6.827312639820539e-10
+                },
+                "load": 1.0,
+                "value": 1.0
+              },
+              "raw_lower_errors": {
+                "yield": 1.5445080855900427e-09,
+                "equilibrium": 4.22514023767917e-08,
+                "internal_traction": 2.883399630171368e-10,
+                "boundary_traction": 6.827312639820539e-10
+              },
+              "physical_pass": true,
+              "witness": false,
+              "numerical_gate": false
+            }
+          },
+          {
+            "fs": 0.5772969520064003,
+            "audit": {
+              "objective": -1.0000012,
+              "value": 1.0000012,
+              "eq_error": 2.1857310406048214e-09,
+              "cone_error": 0.0,
+              "audit": {
+                "pass": true,
+                "errors": {
+                  "yield": 1.5445130091335215e-09,
+                  "equilibrium": 4.2251450338426366e-08,
+                  "internal_traction": 2.883404071063467e-10,
+                  "boundary_traction": 6.827320832595707e-10
+                },
+                "load": 1.0000012,
+                "value": 1.0000012
+              },
+              "raw_lower_errors": {
+                "yield": 1.5445130091335215e-09,
+                "equilibrium": 4.2251450338426366e-08,
+                "internal_traction": 2.883404071063467e-10,
+                "boundary_traction": 6.827320832595707e-10
+              },
+              "physical_pass": true,
+              "witness": true,
+              "numerical_gate": false
+            }
+          }
+        ]
+      },
+      "upper": {
+        "accepted": true,
+        "source": {
+          "q": 8,
+          "fs": 0.5975832375661093,
+          "scale": 1.0,
+          "objective": 0.0,
+          "source_sha256": "b11bf91e6bd9e6847d279d17fb5de06096b5d22af3a9dfcfea314e2f1ffd0275"
+        },
+        "attempts": [
+          {
+            "fs": 0.5975832375661093,
+            "audit": {
+              "objective": 0.0,
+              "value": 0.0,
+              "eq_error": 3.5306986501115745e-11,
+              "cone_error": 0.0,
+              "audit": {
+                "pass": true,
+                "errors": {
+                  "flow": 0.0,
+                  "jump": 0.0,
+                  "boundary": 1.2593805808043482e-17,
+                  "work": 9.89530235528946e-10,
+                  "objective": 0.0
+                },
+                "dissipation": 0.0,
+                "work": [
+                  0.0,
+                  0.9999999990104698
+                ],
+                "value": 0.0
+              },
+              "raw_lower_errors": {},
+              "physical_pass": true,
+              "witness": true,
+              "numerical_gate": false
+            }
+          }
+        ]
+      }
+    }
+  },
+  {
+    "case": "D02A",
+    "sides": {
+      "lower": {
+        "accepted": true,
+        "source": {
+          "q": 4,
+          "fs": 1.4999997500001465,
+          "scale": 1.0,
+          "objective": 1.0,
+          "source_sha256": "b45f1c3f40fd7cb32f1754c87b7e704602c33caa3881a7837e6f4469aaba3b65"
+        },
+        "attempts": [
+          {
+            "fs": 1.4999997500001465,
+            "audit": {
+              "objective": -1.0,
+              "value": 1.0,
+              "eq_error": 8.840529641673811e-09,
+              "cone_error": 0.0,
+              "audit": {
+                "pass": true,
+                "errors": {
+                  "yield": 5.136935186208826e-09,
+                  "equilibrium": 4.566863154309431e-08,
+                  "internal_traction": 3.631996732013872e-10,
+                  "boundary_traction": 2.4563043087233847e-09
+                },
+                "load": 1.0,
+                "value": 1.0
+              },
+              "raw_lower_errors": {
+                "yield": 5.136935186208826e-09,
+                "equilibrium": 4.566863154309431e-08,
+                "internal_traction": 3.631996732013872e-10,
+                "boundary_traction": 2.4563043087233847e-09
+              },
+              "physical_pass": true,
+              "witness": false,
+              "numerical_gate": false
+            }
+          },
+          {
+            "fs": 1.4999847500026466,
+            "audit": {
+              "objective": -1.0000012,
+              "value": 1.0000012,
+              "eq_error": 8.840540077770243e-09,
+              "cone_error": 0.0,
+              "audit": {
+                "pass": true,
+                "errors": {
+                  "yield": 5.136951199668247e-09,
+                  "equilibrium": 4.566868661015633e-08,
+                  "internal_traction": 3.6320010904099505e-10,
+                  "boundary_traction": 2.456307256288555e-09
+                },
+                "load": 1.0000012,
+                "value": 1.0000012
+              },
+              "raw_lower_errors": {
+                "yield": 5.136951199668247e-09,
+                "equilibrium": 4.566868661015633e-08,
+                "internal_traction": 3.6320010904099505e-10,
+                "boundary_traction": 2.456307256288555e-09
+              },
+              "physical_pass": true,
+              "witness": true,
+              "numerical_gate": false
+            }
+          }
+        ]
+      },
+      "upper": {
+        "accepted": true,
+        "source": {
+          "q": 8,
+          "fs": 1.571264919285243,
+          "scale": 1.0,
+          "objective": 0.0,
+          "source_sha256": "738d8aa498934c7c7de72b15532661b816d65b394159769200761e5685d07039"
+        },
+        "attempts": [
+          {
+            "fs": 1.571264919285243,
+            "audit": {
+              "objective": 0.0,
+              "value": 0.0,
+              "eq_error": 1.3812517319147788e-11,
+              "cone_error": 0.0,
+              "audit": {
+                "pass": true,
+                "errors": {
+                  "flow": 0.0,
+                  "jump": 0.0,
+                  "boundary": 2.0208242961120528e-19,
+                  "work": 8.614733815193176e-09,
+                  "objective": 0.0
+                },
+                "dissipation": 0.0,
+                "work": [
+                  0.0,
+                  0.9999999913852662
+                ],
+                "value": 0.0
+              },
+              "raw_lower_errors": {},
+              "physical_pass": true,
+              "witness": true,
+              "numerical_gate": false
+            }
+          }
+        ]
+      }
+    }
+  },
+  {
+    "case": "D03N",
+    "sides": {
+      "lower": {
+        "accepted": true,
+        "source": {
+          "q": 8,
+          "fs": 1.1179508407467074,
+          "scale": 1.0,
+          "objective": 1.0,
+          "source_sha256": "ec2f4662c4ffd04c5d1b0ff1e6fa3690a8a7d280cc13480d00470d1aeedb483f"
+        },
+        "attempts": [
+          {
+            "fs": 1.1179508407467074,
+            "audit": {
+              "objective": -1.0,
+              "value": 1.0,
+              "eq_error": 4.871343772805403e-09,
+              "cone_error": 0.0,
+              "audit": {
+                "pass": true,
+                "errors": {
+                  "yield": 2.8321115751941804e-09,
+                  "equilibrium": 2.5164510475406132e-08,
+                  "internal_traction": 4.315824205085584e-10,
+                  "boundary_traction": 1.3553126666917735e-09
+                },
+                "load": 1.0,
+                "value": 1.0
+              },
+              "raw_lower_errors": {
+                "yield": 2.8321115751941804e-09,
+                "equilibrium": 2.5164510475406132e-08,
+                "internal_traction": 4.315824205085584e-10,
+                "boundary_traction": 1.3553126666917735e-09
+              },
+              "physical_pass": true,
+              "witness": false,
+              "numerical_gate": false
+            }
+          },
+          {
+            "fs": 1.1179396612383,
+            "audit": {
+              "objective": -1.0000012,
+              "value": 1.0000012,
+              "eq_error": 4.871349545965131e-09,
+              "cone_error": 0.0,
+              "audit": {
+                "pass": true,
+                "errors": {
+                  "yield": 2.832117992328146e-09,
+                  "equilibrium": 2.5164540673472402e-08,
+                  "internal_traction": 4.31582938407463e-10,
+                  "boundary_traction": 1.3553142930669736e-09
+                },
+                "load": 1.0000012,
+                "value": 1.0000012
+              },
+              "raw_lower_errors": {
+                "yield": 2.832117992328146e-09,
+                "equilibrium": 2.5164540673472402e-08,
+                "internal_traction": 4.31582938407463e-10,
+                "boundary_traction": 1.3553142930669736e-09
+              },
+              "physical_pass": true,
+              "witness": true,
+              "numerical_gate": false
+            }
+          }
+        ]
+      },
+      "upper": {
+        "accepted": true,
+        "source": {
+          "q": 8,
+          "fs": 1.2119129823403816,
+          "scale": 1.0,
+          "objective": 0.0,
+          "source_sha256": "c3bdd1c85d9ef4fbe415dce113451eaef2362da4e496e1f39a8d2d7a77c5cb2c"
+        },
+        "attempts": [
+          {
+            "fs": 1.2119129823403816,
+            "audit": {
+              "objective": 0.0,
+              "value": 0.0,
+              "eq_error": 8.886208565858644e-11,
+              "cone_error": 0.0,
+              "audit": {
+                "pass": true,
+                "errors": {
+                  "flow": 0.0,
+                  "jump": 0.0,
+                  "boundary": 2.5242206178822114e-18,
+                  "work": 6.332993507385254e-08,
+                  "objective": 0.0
+                },
+                "dissipation": 0.0,
+                "work": [
+                  0.0,
+                  0.9999999366700649
+                ],
+                "value": 0.0
+              },
+              "raw_lower_errors": {},
+              "physical_pass": true,
+              "witness": true,
+              "numerical_gate": false
+            }
+          }
+        ]
+      }
+    }
+  },
+  {
+    "case": "D07A",
+    "sides": {
+      "lower": {
+        "accepted": true,
+        "source": {
+          "q": 8,
+          "fs": 1.2651420914772866,
+          "scale": 10.0,
+          "objective": 1.0001905902840325,
+          "source_sha256": "19a9ab3ae1585525ea6d9cb6bba076a924f0dd62abf9568dd75ff7f4dd459ecf"
+        },
+        "attempts": [
+          {
+            "fs": 1.2651420914772866,
+            "audit": {
+              "objective": -1.0001905902840325,
+              "value": 1.0001905902840325,
+              "eq_error": 1.554567585770883e-10,
+              "cone_error": 0.0,
+              "audit": {
+                "pass": true,
+                "errors": {
+                  "yield": 0.0,
+                  "equilibrium": 1.6019588988669398e-09,
+                  "internal_traction": 2.1984924991613752e-10,
+                  "boundary_traction": 5.559996907322784e-12
+                },
+                "load": 1.0001905902840325,
+                "value": 1.0001905902840325
+              },
+              "raw_lower_errors": {
+                "yield": 0.0,
+                "equilibrium": 1.6019588988669398e-08,
+                "internal_traction": 2.1984924991613752e-09,
+                "boundary_traction": 5.559996907322784e-11
+              },
+              "physical_pass": true,
+              "witness": true,
+              "numerical_gate": false
+            }
+          }
+        ]
+      },
+      "upper": {
+        "accepted": true,
+        "source": {
+          "q": 4,
+          "fs": 1.277577204587988,
+          "scale": 10.0,
+          "objective": 0.9996426937689363,
+          "source_sha256": "a5190bd0c5263724c72a606cf7c09746f3b0709fecab3c21a03d1237b459e6e0"
+        },
+        "attempts": [
+          {
+            "fs": 1.277577204587988,
+            "audit": {
+              "objective": 0.999642693768938,
+              "value": 0.9996426937689367,
+              "eq_error": 3.0994670159452384e-11,
+              "cone_error": 0.0,
+              "audit": {
+                "pass": true,
+                "errors": {
+                  "flow": 0.0,
+                  "jump": 0.0,
+                  "boundary": 3.0994670159452384e-11,
+                  "work": 7.845968319486474e-11,
+                  "objective": 1.3322676295501878e-15
+                },
+                "dissipation": 0.9996426937689367,
+                "work": [
+                  0.0,
+                  0.9999999999215403
+                ],
+                "value": 0.9996426937689367
+              },
+              "raw_lower_errors": {},
+              "physical_pass": true,
+              "witness": true,
+              "numerical_gate": false
+            }
+          }
+        ]
+      }
+    }
+  },
+  {
+    "case": "P01A",
+    "sides": {
+      "lower": {
+        "accepted": true,
+        "source": {
+          "q": 8,
+          "fs": 0.670003704164139,
+          "scale": 10.0,
+          "objective": 1.0001616122532424,
+          "source_sha256": "9d690f49380169bc93659f15f1d7c977d4f39033952a525aa1a5b1e4896509dd"
+        },
+        "attempts": [
+          {
+            "fs": 0.670003704164139,
+            "audit": {
+              "objective": -1.0001616122532424,
+              "value": 1.0001616122532424,
+              "eq_error": 5.4967363993796425e-11,
+              "cone_error": 0.0,
+              "audit": {
+                "pass": true,
+                "errors": {
+                  "yield": 0.0,
+                  "equilibrium": 4.954721077865543e-10,
+                  "boundary_traction": 2.0687097937911462e-12,
+                  "internal_traction": 7.773515164899436e-11
+                },
+                "load": 1.0001616122532424,
+                "value": 1.0001616122532424
+              },
+              "raw_lower_errors": {
+                "yield": 0.0,
+                "equilibrium": 4.954721077865543e-09,
+                "boundary_traction": 2.068709793791146e-11,
+                "internal_traction": 7.773515164899436e-10
+              },
+              "physical_pass": true,
+              "witness": true,
+              "numerical_gate": false
+            }
+          }
+        ]
+      },
+      "upper": {
+        "accepted": true,
+        "source": {
+          "q": 8,
+          "fs": 0.6799341966897774,
+          "scale": 10.0,
+          "objective": 0.9998907591325621,
+          "source_sha256": "3818066778a424585028764a185f13638404b941c3e57859aec46f731968f090"
+        },
+        "attempts": [
+          {
+            "fs": 0.6799341966897774,
+            "audit": {
+              "objective": 0.9998907591325614,
+              "value": 0.9998907591325628,
+              "eq_error": 6.02666704018896e-12,
+              "cone_error": 0.0,
+              "audit": {
+                "pass": true,
+                "errors": {
+                  "flow": 0.0,
+                  "boundary": 6.02666704018896e-12,
+                  "jump": 0.0,
+                  "work": 5.922140555725264e-11,
+                  "objective": 1.3322676295501878e-15
+                },
+                "dissipation": 0.9998907591325628,
+                "work": [
+                  0.0,
+                  0.9999999999407786
+                ],
+                "value": 0.9998907591325628
+              },
+              "raw_lower_errors": {},
+              "physical_pass": true,
+              "witness": true,
+              "numerical_gate": false
+            }
+          }
+        ]
+      }
+    }
+  },
+  {
+    "case": "P01N",
+    "sides": {
+      "lower": {
+        "accepted": true,
+        "source": {
+          "q": 8,
+          "fs": 0.6642932758545593,
+          "scale": 10.0,
+          "objective": 1.0001604303735447,
+          "source_sha256": "7ebec9c2b869f220b8e468fda0847311bd1d625fad32dc6c2a521e74d609b736"
+        },
+        "attempts": [
+          {
+            "fs": 0.6642932758545593,
+            "audit": {
+              "objective": -1.0001604303735447,
+              "value": 1.0001604303735447,
+              "eq_error": 7.502487520127943e-11,
+              "cone_error": 0.0,
+              "audit": {
+                "pass": true,
+                "errors": {
+                  "yield": 0.0,
+                  "equilibrium": 3.2422246554197898e-09,
+                  "boundary_traction": 3.172410634748829e-12,
+                  "internal_traction": 1.0610090583895726e-10
+                },
+                "load": 1.0001604303735447,
+                "value": 1.0001604303735447
+              },
+              "raw_lower_errors": {
+                "yield": 0.0,
+                "equilibrium": 3.24222465541979e-08,
+                "boundary_traction": 3.172410634748829e-11,
+                "internal_traction": 1.0610090583895726e-09
+              },
+              "physical_pass": true,
+              "witness": true,
+              "numerical_gate": false
+            }
+          }
+        ]
+      },
+      "upper": {
+        "accepted": true,
+        "source": {
+          "q": 8,
+          "fs": 0.6741943852536502,
+          "scale": 10.0,
+          "objective": 0.9998911158214373,
+          "source_sha256": "94e2023f214688c7d7cc14ff60507e6b91894bf72c9087ef445c23a0e7998500"
+        },
+        "attempts": [
+          {
+            "fs": 0.6741943852536502,
+            "audit": {
+              "objective": 0.999891115821439,
+              "value": 0.9998911158214366,
+              "eq_error": 1.1913414995214512e-11,
+              "cone_error": 0.0,
+              "audit": {
+                "pass": true,
+                "errors": {
+                  "flow": 0.0,
+                  "boundary": 1.1913414995214512e-11,
+                  "jump": 0.0,
+                  "work": 9.662481925687416e-11,
+                  "objective": 2.3314683517128287e-15
+                },
+                "dissipation": 0.9998911158214366,
+                "work": [
+                  0.0,
+                  0.9999999999033752
+                ],
+                "value": 0.9998911158214366
+              },
+              "raw_lower_errors": {},
+              "physical_pass": true,
+              "witness": true,
+              "numerical_gate": false
+            }
+          }
+        ]
+      }
+    }
+  },
+  {
+    "case": "P03A",
+    "sides": {
+      "lower": {
+        "accepted": true,
+        "source": {
+          "q": 8,
+          "fs": 1.1553169284451044,
+          "scale": 20.0,
+          "objective": 1.0000966206993236,
+          "source_sha256": "7560d40149999c043182e67e7108d8663278b52b35dfc217e086d1da51a9cdf2"
+        },
+        "attempts": [
+          {
+            "fs": 1.1553169284451044,
+            "audit": {
+              "objective": -1.0000966206993236,
+              "value": 1.0000966206993236,
+              "eq_error": 1.8932294620910284e-10,
+              "cone_error": 0.0,
+              "audit": {
+                "pass": true,
+                "errors": {
+                  "yield": 0.0,
+                  "equilibrium": 1.4948493345934288e-09,
+                  "boundary_traction": 1.7314539198774893e-11,
+                  "internal_traction": 2.6774316097544215e-10
+                },
+                "load": 1.0000966206993236,
+                "value": 1.0000966206993236
+              },
+              "raw_lower_errors": {
+                "yield": 0.0,
+                "equilibrium": 2.989698669186858e-08,
+                "boundary_traction": 3.4629078397549786e-10,
+                "internal_traction": 5.354863219508843e-09
+              },
+              "physical_pass": true,
+              "witness": true,
+              "numerical_gate": false
+            }
+          }
+        ]
+      },
+      "upper": {
+        "accepted": true,
+        "source": {
+          "q": 8,
+          "fs": 1.1741222483654132,
+          "scale": 20.0,
+          "objective": 0.9999303521703349,
+          "source_sha256": "5c3574a9b1a09bfa8e459896e935b3b6632ae335125fcddbc6c10b51c25bfb05"
+        },
+        "attempts": [
+          {
+            "fs": 1.1741222483654132,
+            "audit": {
+              "objective": 0.9999303521703378,
+              "value": 0.9999303521703348,
+              "eq_error": 1.6291321782922654e-10,
+              "cone_error": 0.0,
+              "audit": {
+                "pass": true,
+                "errors": {
+                  "flow": 0.0,
+                  "boundary": 1.6291321782922654e-10,
+                  "jump": 0.0,
+                  "work": 7.363998300036201e-12,
+                  "objective": 2.9976021664879227e-15
+                },
+                "dissipation": 0.9999303521703348,
+                "work": [
+                  0.0,
+                  0.999999999992636
+                ],
+                "value": 0.9999303521703348
+              },
+              "raw_lower_errors": {},
+              "physical_pass": true,
+              "witness": true,
+              "numerical_gate": false
+            }
+          }
+        ]
+      }
+    }
+  },
+  {
+    "case": "P03N",
+    "sides": {
+      "lower": {
+        "accepted": true,
+        "source": {
+          "q": 8,
+          "fs": 1.1520001000286129,
+          "scale": 20.0,
+          "objective": 1.000096098048719,
+          "source_sha256": "6c242d477c1bc192ef0a4a85f65f7e9b95394dd9b9d4b6390fb42c9e76fc3a1d"
+        },
+        "attempts": [
+          {
+            "fs": 1.1520001000286129,
+            "audit": {
+              "objective": -1.000096098048719,
+              "value": 1.000096098048719,
+              "eq_error": 1.8996748618604897e-10,
+              "cone_error": 0.0,
+              "audit": {
+                "pass": true,
+                "errors": {
+                  "yield": 0.0,
+                  "equilibrium": 1.4948864125730044e-09,
+                  "boundary_traction": 1.729890723714911e-11,
+                  "internal_traction": 2.686544320340545e-10
+                },
+                "load": 1.000096098048719,
+                "value": 1.000096098048719
+              },
+              "raw_lower_errors": {
+                "yield": 0.0,
+                "equilibrium": 2.989772825146009e-08,
+                "boundary_traction": 3.4597814474298225e-10,
+                "internal_traction": 5.37308864068109e-09
+              },
+              "physical_pass": true,
+              "witness": true,
+              "numerical_gate": false
+            }
+          }
+        ]
+      },
+      "upper": {
+        "accepted": true,
+        "source": {
+          "q": 8,
+          "fs": 1.1708578238454124,
+          "scale": 20.0,
+          "objective": 0.9999306398963902,
+          "source_sha256": "5930a31174d2e7d9cff476aed7dad53e873b7ba289b5a96807a9b87a9485d6aa"
+        },
+        "attempts": [
+          {
+            "fs": 1.1708578238454124,
+            "audit": {
+              "objective": 0.9999306398963919,
+              "value": 0.9999306398963916,
+              "eq_error": 1.603290685936984e-10,
+              "cone_error": 0.0,
+              "audit": {
+                "pass": true,
+                "errors": {
+                  "flow": 0.0,
+                  "boundary": 1.603290685936984e-10,
+                  "jump": 0.0,
+                  "work": 6.987410650083348e-12,
+                  "objective": 2.220446049250313e-16
+                },
+                "dissipation": 0.9999306398963916,
+                "work": [
+                  0.0,
+                  0.9999999999930126
+                ],
+                "value": 0.9999306398963916
+              },
+              "raw_lower_errors": {},
+              "physical_pass": true,
+              "witness": true,
+              "numerical_gate": false
+            }
+          }
+        ]
+      }
+    }
+  },
+  {
+    "case": "P05A",
+    "sides": {
+      "lower": {
+        "accepted": true,
+        "source": {
+          "q": 8,
+          "fs": 1.4650728061474296,
+          "scale": 16.8,
+          "objective": 1.0002742462672527,
+          "source_sha256": "e060e4a1a321563f25c34c0cba53821f212568fb2f278f839e998a6ba5127044"
+        },
+        "attempts": [
+          {
+            "fs": 1.4650728061474296,
+            "audit": {
+              "objective": -1.0002742462672527,
+              "value": 1.0002742462672527,
+              "eq_error": 6.091832593924096e-10,
+              "cone_error": 0.0,
+              "audit": {
+                "pass": true,
+                "errors": {
+                  "yield": 0.0,
+                  "equilibrium": 3.055469210977435e-10,
+                  "internal_traction": 8.615150814961225e-10,
+                  "boundary_traction": 4.3238701712970185e-12
+                },
+                "load": 1.0002742462672527,
+                "value": 1.0002742462672527
+              },
+              "raw_lower_errors": {
+                "yield": 0.0,
+                "equilibrium": 5.133188274442091e-09,
+                "internal_traction": 1.447345336913486e-08,
+                "boundary_traction": 7.264101887778991e-11
+              },
+              "physical_pass": true,
+              "witness": true,
+              "numerical_gate": false
+            }
+          }
+        ]
+      },
+      "upper": {
+        "accepted": true,
+        "source": {
+          "q": 8,
+          "fs": 1.4896715015368427,
+          "scale": 16.8,
+          "objective": 0.9999954013257453,
+          "source_sha256": "96a5bb1880aba98a4f98f675c0d6938b3edfe4995cf2d06c261895af26c17922"
+        },
+        "attempts": [
+          {
+            "fs": 1.4896715015368427,
+            "audit": {
+              "objective": 0.9999954013257459,
+              "value": 0.9999954013257455,
+              "eq_error": 4.73506266140955e-09,
+              "cone_error": 0.0,
+              "audit": {
+                "pass": true,
+                "errors": {
+                  "flow": 0.0,
+                  "jump": 0.0,
+                  "boundary": 3.172921995388667e-11,
+                  "bonded_interface": 6.6963898384675424e-09,
+                  "work": 1.3912626606327194e-10,
+                  "objective": 4.440892098500626e-16
+                },
+                "dissipation": 0.9999954013257455,
+                "work": [
+                  0.0,
+                  0.9999999998608737
+                ],
+                "value": 0.9999954013257455
+              },
+              "raw_lower_errors": {},
+              "physical_pass": true,
+              "witness": true,
+              "numerical_gate": false
+            }
+          }
+        ]
+      }
+    }
+  },
+  {
+    "case": "P05N",
+    "sides": {
+      "lower": {
+        "accepted": true,
+        "source": {
+          "q": 8,
+          "fs": 1.4590373977014948,
+          "scale": 16.8,
+          "objective": 1.0002665492170992,
+          "source_sha256": "b23c19834b8f0fc5ebd0c2bf1ada9f149dd17cd0b0d56a38134f0948e5b1ceb5"
+        },
+        "attempts": [
+          {
+            "fs": 1.4590373977014948,
+            "audit": {
+              "objective": -1.0002665492170992,
+              "value": 1.0002665492170992,
+              "eq_error": 6.129728946646651e-10,
+              "cone_error": 0.0,
+              "audit": {
+                "pass": true,
+                "errors": {
+                  "yield": 0.0,
+                  "equilibrium": 1.3029048950841116e-09,
+                  "internal_traction": 8.66874572125198e-10,
+                  "boundary_traction": 2.1894820293495386e-12
+                },
+                "load": 1.0002665492170992,
+                "value": 1.0002665492170992
+              },
+              "raw_lower_errors": {
+                "yield": 0.0,
+                "equilibrium": 2.1888802237413076e-08,
+                "internal_traction": 1.4563492811703328e-08,
+                "boundary_traction": 3.678329809307225e-11
+              },
+              "physical_pass": true,
+              "witness": true,
+              "numerical_gate": false
+            }
+          }
+        ]
+      },
+      "upper": {
+        "accepted": true,
+        "source": {
+          "q": 8,
+          "fs": 1.4760732287084188,
+          "scale": 16.8,
+          "objective": 0.9999947009058604,
+          "source_sha256": "b9af72c8efa73b26714490759feccead37dae1d1ba1a76e9f41b613a294952f1"
+        },
+        "attempts": [
+          {
+            "fs": 1.4760732287084188,
+            "audit": {
+              "objective": 0.9999947009058592,
+              "value": 0.9999947009058606,
+              "eq_error": 9.093124211604162e-09,
+              "cone_error": 0.0,
+              "audit": {
+                "pass": true,
+                "errors": {
+                  "flow": 0.0,
+                  "jump": 0.0,
+                  "boundary": 3.302613266904697e-10,
+                  "bonded_interface": 1.2859619584393764e-08,
+                  "work": 1.9902302028640406e-11,
+                  "objective": 1.4432899320127035e-15
+                },
+                "dissipation": 0.9999947009058606,
+                "work": [
+                  0.0,
+                  0.9999999999800977
+                ],
+                "value": 0.9999947009058606
+              },
+              "raw_lower_errors": {},
+              "physical_pass": true,
+              "witness": true,
+              "numerical_gate": false
+            }
+          }
+        ]
+      }
+    }
+  },
+  {
+    "case": "P07N",
+    "sides": {
+      "lower": {
+        "accepted": true,
+        "source": {
+          "q": 8,
+          "fs": 1.3257680282493587,
+          "scale": 10.0,
+          "objective": 1.0002094240240456,
+          "source_sha256": "4ead0556ae713ba86dc7a4c70976ba396ba23f725b062c41c254b8b9c0574b22"
+        },
+        "attempts": [
+          {
+            "fs": 1.3257680282493587,
+            "audit": {
+              "objective": -1.0002094240240456,
+              "value": 1.0002094240240456,
+              "eq_error": 4.184210755653339e-10,
+              "cone_error": 0.0,
+              "audit": {
+                "pass": true,
+                "errors": {
+                  "yield": 0.0,
+                  "equilibrium": 1.2571774732350605e-09,
+                  "internal_traction": 5.917366596719376e-10,
+                  "boundary_traction": 3.5921334797823313e-12
+                },
+                "load": 1.0002094240240456,
+                "value": 1.0002094240240456
+              },
+              "raw_lower_errors": {
+                "yield": 0.0,
+                "equilibrium": 1.2571774732350605e-08,
+                "internal_traction": 5.917366596719376e-09,
+                "boundary_traction": 3.592133479782331e-11
+              },
+              "physical_pass": true,
+              "witness": true,
+              "numerical_gate": false
+            }
+          }
+        ]
+      },
+      "upper": {
+        "accepted": true,
+        "source": {
+          "q": 8,
+          "fs": 1.3397480948715283,
+          "scale": 10.0,
+          "objective": 0.9998009801622023,
+          "source_sha256": "3ebcae1362f6639ad8e34e51a69fdfb8cb7792505fc6993f6ba6cf11abce9b80"
+        },
+        "attempts": [
+          {
+            "fs": 1.3397480948715283,
+            "audit": {
+              "objective": 0.9998009801622025,
+              "value": 0.9998009801622026,
+              "eq_error": 4.6396179772991526e-09,
+              "cone_error": 0.0,
+              "audit": {
+                "pass": true,
+                "errors": {
+                  "flow": 0.0,
+                  "jump": 0.0,
+                  "boundary": 4.6396179772991526e-09,
+                  "work": 3.6173575246323253e-10,
+                  "objective": 1.1102230246251565e-16
+                },
+                "dissipation": 0.9998009801622026,
+                "work": [
+                  0.0,
+                  0.9999999996382642
+                ],
+                "value": 0.9998009801622026
+              },
+              "raw_lower_errors": {},
+              "physical_pass": true,
+              "witness": true,
+              "numerical_gate": false
+            }
+          }
+        ]
+      }
+    }
+  },
+  {
+    "case": "P08A",
+    "sides": {
+      "lower": {
+        "accepted": true,
+        "source": {
+          "q": 4,
+          "fs": 1.4428188996601232,
+          "scale": 50.0,
+          "objective": 1.000001,
+          "source_sha256": "2f9a7cb9de77625b76a21df6ce22c30aff7c67b7cae661636737288677b829a0"
+        },
+        "attempts": [
+          {
+            "fs": 1.4428188996601232,
+            "audit": {
+              "objective": -1.000001,
+              "value": 1.000001,
+              "eq_error": 1.1463804211464534e-10,
+              "cone_error": 0.0,
+              "audit": {
+                "pass": true,
+                "errors": {
+                  "yield": 0.0,
+                  "equilibrium": 2.252231179333819e-10,
+                  "internal_traction": 1.6212275966154266e-10,
+                  "boundary_traction": 1.0010579130830307e-11
+                },
+                "load": 1.000001,
+                "value": 1.000001
+              },
+              "raw_lower_errors": {
+                "yield": 0.0,
+                "equilibrium": 1.1261155896669095e-08,
+                "internal_traction": 8.106137983077133e-09,
+                "boundary_traction": 5.005289565415153e-10
+              },
+              "physical_pass": true,
+              "witness": true,
+              "numerical_gate": false
+            }
+          }
+        ]
+      },
+      "upper": {
+        "accepted": true,
+        "source": {
+          "q": 4,
+          "fs": 1.4552607361808534,
+          "scale": 50.0,
+          "objective": 0.9999990000000099,
+          "source_sha256": "f106cd40ad41cd484c822adae21146eb09e3ee8abbe88a7c3f186ffa7b2a2275"
+        },
+        "attempts": [
+          {
+            "fs": 1.4552607361808534,
+            "audit": {
+              "objective": 0.9997297613732512,
+              "value": 0.9997297613732585,
+              "eq_error": 8.9811855868982e-12,
+              "cone_error": 1.1796119636642288e-16,
+              "audit": {
+                "pass": true,
+                "errors": {
+                  "flow": 3.550395719607857e-11,
+                  "epigraph": 0.0,
+                  "jump_normal": 1.2071014463791258e-11,
+                  "bonded_interface": 1.2701315693641746e-11,
+                  "boundary": 1.9840785298387115e-12,
+                  "work": 3.112754498602044e-11,
+                  "objective": 7.327471962526033e-15
+                },
+                "dissipation": 0.9997297613732585,
+                "work": [
+                  0.0,
+                  0.9999999999688725
+                ],
+                "value": 0.9997297613732585,
+                "epigraph_value": 0.9997297613732585,
+                "dissipation_certificate": "convex_norm_vertex_bound_and_Bernstein_jump_bound",
+                "quadrature": 8,
+                "auxiliary_variables": 79110
+              },
+              "raw_lower_errors": {},
+              "physical_pass": true,
+              "witness": true,
+              "numerical_gate": false
+            }
+          }
+        ]
+      }
+    }
+  },
+  {
+    "case": "P09A",
+    "sides": {
+      "lower": {
+        "accepted": true,
+        "source": {
+          "q": 4,
+          "fs": 0.9645406357821467,
+          "scale": 50.0,
+          "objective": 1.000001,
+          "source_sha256": "998a3390a18e86966d85a2721b666213f624fc63c160fb6a7d31dfed49d03f06"
+        },
+        "attempts": [
+          {
+            "fs": 0.9645406357821467,
+            "audit": {
+              "objective": -1.000001,
+              "value": 1.000001,
+              "eq_error": 3.6462148578220166e-10,
+              "cone_error": 0.0,
+              "audit": {
+                "pass": true,
+                "errors": {
+                  "yield": 0.0,
+                  "equilibrium": 2.1082707801767242e-10,
+                  "internal_traction": 5.156532978389805e-10,
+                  "boundary_traction": 4.985510310099718e-12
+                },
+                "load": 1.000001,
+                "value": 1.000001
+              },
+              "raw_lower_errors": {
+                "yield": 0.0,
+                "equilibrium": 1.0541353900883621e-08,
+                "internal_traction": 2.5782664891949025e-08,
+                "boundary_traction": 2.4927551550498587e-10
+              },
+              "physical_pass": true,
+              "witness": true,
+              "numerical_gate": false
+            }
+          }
+        ]
+      },
+      "upper": {
+        "accepted": true,
+        "source": {
+          "q": 4,
+          "fs": 0.9730500784564394,
+          "scale": 50.0,
+          "objective": 0.9999990000000051,
+          "source_sha256": "9af3115ba1a262548b4a299dcd7df3c99ee1ec1c472c613e6a43e6d1dbc47244"
+        },
+        "attempts": [
+          {
+            "fs": 0.9730500784564394,
+            "audit": {
+              "objective": 0.9996748438674861,
+              "value": 0.9996748438674954,
+              "eq_error": 1.1861637973925587e-11,
+              "cone_error": 2.1684043449710089e-16,
+              "audit": {
+                "pass": true,
+                "errors": {
+                  "flow": 3.938504069694614e-11,
+                  "epigraph": 0.0,
+                  "jump_normal": 1.4536608028414832e-11,
+                  "bonded_interface": 6.015622028288092e-12,
+                  "boundary": 1.0353983243178097e-12,
+                  "work": 2.1805335315150387e-11,
+                  "objective": 9.325873406851315e-15
+                },
+                "dissipation": 0.9996748438674954,
+                "work": [
+                  0.0,
+                  0.9999999999781947
+                ],
+                "value": 0.9996748438674954,
+                "epigraph_value": 0.9996748438674954,
+                "dissipation_certificate": "convex_norm_vertex_bound_and_Bernstein_jump_bound",
+                "quadrature": 8,
+                "auxiliary_variables": 79062
+              },
+              "raw_lower_errors": {},
+              "physical_pass": true,
+              "witness": true,
+              "numerical_gate": false
+            }
+          }
+        ]
+      }
+    }
+  },
+  {
+    "case": "P10A",
+    "sides": {
+      "lower": {
+        "accepted": true,
+        "source": {
+          "q": 4,
+          "fs": 1.997662491461876,
+          "scale": 75.0,
+          "objective": 1.000001,
+          "source_sha256": "40671864122eb8fa8a9ba2fe0ae2925c428c8140fe0b43694a5ffe73412be999"
+        },
+        "attempts": [
+          {
+            "fs": 1.997662491461876,
+            "audit": {
+              "objective": -1.000001,
+              "value": 1.000001,
+              "eq_error": 5.855760321082926e-11,
+              "cone_error": 0.0,
+              "audit": {
+                "pass": true,
+                "errors": {
+                  "yield": 0.0,
+                  "equilibrium": 9.295345049231685e-11,
+                  "internal_traction": 8.281297869672244e-11,
+                  "boundary_traction": 1.2204557326251344e-11
+                },
+                "load": 1.000001,
+                "value": 1.000001
+              },
+              "raw_lower_errors": {
+                "yield": 0.0,
+                "equilibrium": 6.9715087869237635e-09,
+                "internal_traction": 6.210973402254183e-09,
+                "boundary_traction": 9.153417994688508e-10
+              },
+              "physical_pass": true,
+              "witness": true,
+              "numerical_gate": false
+            }
+          }
+        ]
+      },
+      "upper": {
+        "accepted": true,
+        "source": {
+          "q": 4,
+          "fs": 2.036682630356508,
+          "scale": 75.0,
+          "objective": 0.999998999999982,
+          "source_sha256": "55e0ec3152400efaf22b619f64925a4a3190b07e4285e4130b878971539879e2"
+        },
+        "attempts": [
+          {
+            "fs": 2.036682630356508,
+            "audit": {
+              "objective": 0.9996061654612381,
+              "value": 0.9996061654612233,
+              "eq_error": 1.0895279129236441e-11,
+              "cone_error": 6.591949208711867e-17,
+              "audit": {
+                "pass": true,
+                "errors": {
+                  "flow": 4.186459281193658e-11,
+                  "epigraph": 0.0,
+                  "jump_normal": 1.3388185603655984e-11,
+                  "bonded_interface": 8.173592147076372e-13,
+                  "boundary": 2.1291700786749655e-12,
+                  "work": 3.726463582154338e-12,
+                  "objective": 1.4876988529977098e-14
+                },
+                "dissipation": 0.9996061654612233,
+                "work": [
+                  0.0,
+                  0.9999999999962735
+                ],
+                "value": 0.9996061654612233,
+                "epigraph_value": 0.9996061654612233,
+                "dissipation_certificate": "convex_norm_vertex_bound_and_Bernstein_jump_bound",
+                "quadrature": 8,
+                "auxiliary_variables": 79128
+              },
+              "raw_lower_errors": {},
+              "physical_pass": true,
+              "witness": true,
+              "numerical_gate": false
+            }
+          }
+        ]
+      }
+    }
+  }
+]

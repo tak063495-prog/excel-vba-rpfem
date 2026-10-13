@@ -1,0 +1,46 @@
+
+Public Sub RPX_EnsureG1R18Settings()
+    Dim ws As Worksheet
+    Set ws = RPX_Sheet("設定")
+    EnsureSettingRow ws, "C0_AUTO", "c0の自動補正", 0, "精度重視では0。元の材料を保持して計算します。", "0,1"
+    EnsureSettingRow ws, "ACCURACY_DLL_RECOVERY", "精度回復", 0, "0=通常、1=追加の候補を元の物理条件で再検証します。P06の1%目標は継続課題です。", "0,1"
+    EnsureSettingRow ws, "ACCURACY_DLL_SECONDS", "精度回復の時間 [秒]", 120, "追加候補1回の制限時間。既存の有効な場は失敗時にも保持します。", ""
+    EnsureSettingRow ws, "ACCURACY_DLL_DUAL_SECONDS", "根の反対側の検証 [秒]", 20, "根の反対側を独立に検証する1回の制限時間。", ""
+    EnsureSettingRow ws, "ACCURACY_DLL_ALPHA", "候補の変更量係数", 0.01, "元の場からの変更を抑える正の係数。", ""
+    EnsureSettingRow ws, "ACCURACY_DLL_EQUILIBRATE", "候補の自動平衡化", 0, "通常0。候補の監査条件は変わりません。", "0,1"
+    EnsureSettingRow ws, "ACCURACY_DLL_DUAL_EQUILIBRATE", "反対側の自動平衡化", 1, "通常1。反対側の監査条件は変わりません。", "0,1"
+    EnsureSettingRow ws, "ACCURACY_DLL_CONE_SCALING", "候補の円錐正規化", 0, "0=通常、1=円錐全体を共通の正係数で正規化。元の場で再検証します。", "0,1"
+    EnsureSettingRow ws, "ACCURACY_DLL_EQUALITY_RECOVERY", "下界の平衡回復", 1, "精度回復時に100/500/1000回までの原式補正候補を試します。", "0,1"
+    EnsureSettingRow ws, "LOWER_FIXED_RECOVERY", "下界の固定荷重回復", 0, "0=通常、1=同じFsで独立の固定荷重候補を試します。", "0,1"
+    EnsureSettingRow ws, "LOWER_FIXED_RECOVERY_SECONDS", "固定荷重回復 [秒]", 120, "固定荷重候補1回の制限時間。", ""
+    EnsureSettingRow ws, "ADAPT_ACCURACY_CAP", "精度改善の要素上限", 0, "0=設定された目標まで。追加の改善上限は目標以上、最大50000。", ""
+    EnsureSettingRow ws, "ADAPT_ACCURACY_ROUNDS", "追加の改善回数", 4, "要素上限までの追加改善回数。最大20。", ""
+    EnsureSettingRow ws, "ADAPT_LOWER_TARGET", "下界の一様細分化", 0, "0=無効。下界候補の初期要素目標。上界の保存場は別に保持します。", ""
+    EnsureSettingRow ws, "ADAPT_LOWER_FAN_ROUNDS", "下界の角度改善回数", 0, "c0自由境界の周囲を分割する追加候補の回数。", ""
+    EnsureSettingRow ws, "ADAPT_CERT_QUADRATURE", "保存場の積分次数", 0, "0=通常、8=各保存場の元メッシュで場と根を独立に再検証。", "0,2,4,8"
+    EnsureSettingRow ws, "ADAPT_C0_WEDGE_DEPTH", "c0斜面の上界候補 [m]", 0, "0=無効。対応する単一c0斜面で薄い領域を使う任意の深さ。", ""
+    EnsureSettingRow ws, "HSD_SOLVE_SECONDS", "既存解法の制限時間 [秒]", 120, "既存解法1回の制限時間。追加候補の制限時間は別に設定します。", ""
+    On Error Resume Next: ws.Shapes("G1R18_Accuracy_Preset").Delete: On Error GoTo 0
+    Button ws, "精度重視の設定", "RPX_AccuracyPreset", ws.Range("F4").Left, ws.Range("F4").Top, 180
+    ws.Shapes(ws.Shapes.count).name = "G1R18_Accuracy_Preset"
+End Sub
+Private Sub AccuracySet(ByVal key As String, ByVal value As Variant)
+    Dim ws As Worksheet, row As Long
+    Set ws = RPX_Sheet("設定")
+    For row = 4 To 1000
+        If CStr(ws.cells(row, 4).Value2) = key Then ws.cells(row, 2).Value2 = value: Exit Sub
+    Next row
+    err.Raise 5, "RPX_UI", "ACCURACY_SETTING_MISSING " & key
+End Sub
+Public Sub RPX_AccuracyPreset()
+    If RPX_Busy Then err.Raise 5, "RPX_UI", "ANALYSIS_IS_RUNNING"
+    RPX_InternalWrite = True
+    RPX_EnsureG1R18Settings
+    AccuracySet "MODE", "Fs": AccuracySet "TARGET", 1000: AccuracySet "QUADRATURE", 8: AccuracySet "FS_TOL", 0.0001: AccuracySet "GAP", 0.01
+    AccuracySet "ADAPT", 1: AccuracySet "CYCLES", 8: AccuracySet "RAW_LOWER_AUDIT", 1: AccuracySet "C0_AUTO", 0
+    AccuracySet "ADAPT_ACCURACY_CAP", 24000: AccuracySet "ADAPT_ACCURACY_ROUNDS", 8
+    AccuracySet "ADAPT_LOWER_TARGET", 4000: AccuracySet "ADAPT_LOWER_FAN_ROUNDS", 1: AccuracySet "ADAPT_CERT_QUADRATURE", 8
+    AccuracySet "ACCURACY_DLL_RECOVERY", 1: AccuracySet "ACCURACY_DLL_SECONDS", 120: AccuracySet "ACCURACY_DLL_DUAL_SECONDS", 20
+    AccuracySet "ACCURACY_DLL_CONE_SCALING", 1: AccuracySet "HSD_SOLVE_SECONDS", 300
+    RPX_InternalWrite = False: RPX_Invalidate
+End Sub

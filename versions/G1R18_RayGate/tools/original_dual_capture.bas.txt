@@ -1,0 +1,49 @@
+' Optional immutable evidence for an accepted original dual guide, never a field.
+Private Sub CaptureOriginalGuide(ByRef candidate As RPX_HsdCandidateState, Optional ByVal lowerDual As Boolean = False)
+    Dim enabled As Long, path As String, f As Integer, i As Long, p As Long, k As Long, j As Long, r As Long
+    Dim value As Double, count As Long, number As Long, source As String, message As String
+    enabled = CLng(RPX_Setting("ORIGINAL_FARKAS_CAPTURE", 0))
+    If enabled <> 0 And enabled <> 1 Then err.Raise 5, "RPX_Conic", "INVALID_ORIGINAL_FARKAS_CAPTURE"
+    If enabled = 0 Or Len(RPX_DiagPath) = 0 Then Exit Sub
+    path = RPX_DiagPath & ".original_guide_solve_" & P4Solve & "_candidate_" & RPX_HSDCandidateId
+    If lowerDual Then path = RPX_DiagPath & ".original_lower_dual_solve_" & P4Solve & "_candidate_" & RPX_HSDCandidateId
+    If Len(Dir$(path & ".bin")) > 0 Then err.Raise 5, "RPX_Conic", "ORIGINAL_GUIDE_CAPTURE_EXISTS"
+    On Error GoTo Failed
+    f = FreeFile: Open path & ".bin" For Binary Access Write As #f
+    If lowerDual Then RPX_ExchangeMagic f, "LG18D001" Else RPX_ExchangeMagic f, "RG18F001"
+    Put #f, , XN: Put #f, , XM: Put #f, , XB: Put #f, , XS: Put #f, , RSubdivisions
+    Put #f, , candidate.fs: Put #f, , OriginalFarkasStationarity: Put #f, , OriginalFarkasCone: Put #f, , OriginalFarkasSeparation
+    For i = 0 To XN - 1: value = XOriginalCompiled.cost(i): Put #f, , value: Next i
+    For i = 0 To XM - 1
+        value = XOriginalCompiled.rhs(i): Put #f, , value
+        value = XEqRowNorm(i): Put #f, , value
+        value = candidate.y(i): Put #f, , value
+        value = candidate.y(i) / XEqRowNorm(i): Put #f, , value
+        count = XEPtr(i + 1) - XEPtr(i): Put #f, , count
+        For p = XEPtr(i) To XEPtr(i + 1) - 1
+            Put #f, , XEId(p): value = XOriginalCompiled.values(p): Put #f, , value
+        Next p
+    Next i
+    For k = 0 To XB - 1
+        Put #f, , XC(k).dimn: Put #f, , XC(k).count: Put #f, , XC(k).first
+        For j = 0 To XC(k).count - 1: Put #f, , XC(k).ids(j): Next j
+        For r = 0 To XC(k).dimn - 1
+            value = XC(k).offset(r): Put #f, , value
+            For j = 0 To XC(k).count - 1: value = XC(k).coef(r, j): Put #f, , value: Next j
+        Next r
+    Next k
+    For i = 0 To XS - 1: value = candidate.dual(i): Put #f, , value: Next i
+    Close #f
+    RPX_ExportExchangeContext path & ".context.tsv"
+    RPX_DiagEvent "original_guide_capture", "path=" & path & ";original_program_and_dual=1;primal_field=0;physical_bound=0"
+    Exit Sub
+Failed:
+    number = err.number: source = err.source: message = err.description
+    On Error Resume Next: Close #f: On Error GoTo 0
+    err.Raise number, source, message
+End Sub
+Private Sub CaptureOriginalLowerDual(ByVal factor As Double)
+    Dim candidate As RPX_HsdCandidateState
+    candidate.fs = factor: candidate.y = xy: candidate.dual = XDual
+    Call CaptureOriginalGuide(candidate, True)
+End Sub

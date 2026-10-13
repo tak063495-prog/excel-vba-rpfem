@@ -1,0 +1,111 @@
+{
+  "case": "P03N",
+  "upper": {
+    "case": "P03N",
+    "mode": "upper",
+    "q": 8,
+    "fs": 1.167378,
+    "mesh_id": "928a290d71a3f668bb878b198713bc7dffae50b6d409589cf62a9819cda5a778",
+    "physical_model_id": "53d1cc3320cf49fa54084ac607f2e924d6b4b83d70f040bdbb35fa4525db9a92",
+    "elements": 13363,
+    "source": "P03N_original_pair_close",
+    "root_complete": true,
+    "mesh_path": "best_upper_mesh.npz",
+    "field_path": "best_upper_field.npz",
+    "audit": {
+      "objective": 0.9999979912478523,
+      "value": 0.9999979912478487,
+      "eq_error": 1.677696435431313e-13,
+      "cone_error": 1.1090258825811804e-14,
+      "audit": {
+        "pass": true,
+        "errors": {
+          "flow": 0.0,
+          "boundary": 1.677696435431313e-13,
+          "jump": 1.1090258825811943e-14,
+          "work": 1.318944953254686e-13,
+          "objective": 3.552713678800501e-15
+        },
+        "dissipation": 0.9999979912478487,
+        "work": [
+          0.0,
+          1.000000000000132
+        ],
+        "value": 0.9999979912478487
+      },
+      "raw_lower_errors": {},
+      "physical_pass": true,
+      "witness": true,
+      "numerical_gate": false,
+      "case": "P03N",
+      "mode": "upper",
+      "q": 8,
+      "fs": 1.167378,
+      "mesh_id": "928a290d71a3f668bb878b198713bc7dffae50b6d409589cf62a9819cda5a778",
+      "physical_model_id": "53d1cc3320cf49fa54084ac607f2e924d6b4b83d70f040bdbb35fa4525db9a92",
+      "origin": "independently_reaudited_same_mesh_witness",
+      "discrete_root_search": {
+        "mode": "upper",
+        "root_complete": true,
+        "bracket": [
+          1.16734,
+          1.167378
+        ],
+        "bracket_width": 3.799999999998249e-05,
+        "fs_tolerance": 0.0001,
+        "endpoint": 1.167378,
+        "trials": 2,
+        "seconds": 18.748072499991395,
+        "mesh_id": "928a290d71a3f668bb878b198713bc7dffae50b6d409589cf62a9819cda5a778",
+        "physical_model_id": "53d1cc3320cf49fa54084ac607f2e924d6b4b83d70f040bdbb35fa4525db9a92",
+        "elements": 13363,
+        "q": 8,
+        "case": "P03N",
+        "policy": "hold_initial",
+        "bracket_signs": [
+          1,
+          -1
+        ],
+        "opposite_numerical_endpoint_is_continuum_bound": false
+      }
+    }
+  },
+  "upper_only": true,
+  "one_percent_target_not_evaluated": true,
+  "root": {
+    "mode": "upper",
+    "root_complete": true,
+    "bracket": [
+      1.16734,
+      1.167378
+    ],
+    "bracket_width": 3.799999999998249e-05,
+    "fs_tolerance": 0.0001,
+    "endpoint": 1.167378,
+    "trials": 2,
+    "seconds": 18.748072499991395,
+    "mesh_id": "928a290d71a3f668bb878b198713bc7dffae50b6d409589cf62a9819cda5a778",
+    "physical_model_id": "53d1cc3320cf49fa54084ac607f2e924d6b4b83d70f040bdbb35fa4525db9a92",
+    "elements": 13363,
+    "q": 8,
+    "case": "P03N",
+    "policy": "hold_initial",
+    "bracket_signs": [
+      1,
+      -1
+    ],
+    "opposite_numerical_endpoint_is_continuum_bound": false
+  },
+  "implementation_hashes": {
+    "validation\\accuracy_20261013\\python\\accuracy_driver.py": "6fbc9761c37bd72046c4083ac8a40030999a74906bcc6b049ea18b5120e15c3c",
+    "validation\\accuracy_20261013\\python\\experiment_core.py": "9a9e60b6d69ba4008ea89608f433bb716b433436715c45566bd209418ee9238e",
+    "validation\\accuracy_20261013\\python\\reduction.py": "cbc32e1e0764e10e3f56f67b804b08867166aafbd32a64ddcbe481b18d083ca5",
+    "validation\\accuracy_20261013\\python\\zero_phi_transport.py": "a95589afd8ab9ca0a69829782ad36e2ba83b16e7fcbe74781b26dc03ea974c79",
+    "validation\\accuracy_20261013\\python\\mesh_accuracy.py": "9553fa8d1d6caa1ab49fff92bfece2b14da97348a3334181e0653c5dde81a860",
+    "validation\\accuracy_20261013\\python\\original_farkas.py": "58ccb3af92e92d6b466c8acab8040fa88582a2deb5588a18d0ce92d3135f3672",
+    "validation\\accuracy_20261013\\python\\original_dual.py": "c0025181b07b742b0d4608656489c3495b6ea90b4ed8084438420e8312b6467d",
+    "validation\\accuracy_20261013\\python\\vendor\\independent_audit.py": "79ea1b0e4e72b2a61a4110e6115e3f33929ae5990fb054e20f41d345a694f37b",
+    "validation\\accuracy_20261013\\python\\vendor\\model_support\\lower_assembly.py": "b3c482c8950205b32a5e38cd0f1e720e5efeb48491bbd8ff02b728ef54f51047",
+    "validation\\accuracy_20261013\\python\\vendor\\model_support\\upper_assembly.py": "d0e03aeb87dcc52ae8001b422d836064275850f22c8a69640ce722cb2213d065"
+  }
+}

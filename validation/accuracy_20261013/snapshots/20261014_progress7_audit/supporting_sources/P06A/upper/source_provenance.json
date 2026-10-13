@@ -1,0 +1,56 @@
+{
+  "case": "P06A",
+  "mode": "upper",
+  "q": 8,
+  "root": {
+    "mode": "upper",
+    "root_complete": true,
+    "bracket": [
+      0.85748,
+      0.85755
+    ],
+    "bracket_width": 7.00000000000145e-05,
+    "fs_tolerance": 0.0001,
+    "endpoint": 0.85755,
+    "trials": 2,
+    "seconds": 9.82632290001493,
+    "mesh_id": "27b06e20be73627245ba3f7e0bf4ffa3df883ec1bb2af10e103fca5caf489308",
+    "physical_model_id": "f67b757898e3bcc3f45c5ea9b5a8e290955fad53f5900c5cd8c31b9637d51875",
+    "elements": 12753,
+    "q": 8,
+    "case": "P06A",
+    "policy": "equal_reduced_phi",
+    "bracket_signs": [
+      1,
+      -1
+    ],
+    "opposite_numerical_endpoint_is_continuum_bound": false
+  },
+  "original_primal_source": "D:\\Work\\excel-vba-rpfem\\validation\\accuracy_20261013\\results\\a_upper12753_near_recenter\\P06A",
+  "original_dual_source": "D:\\Work\\excel-vba-rpfem\\validation\\accuracy_20261013\\results\\a_upper12753_original_dual_near\\P06A",
+  "source_files_sha256": {
+    "D:\\Work\\excel-vba-rpfem\\validation\\accuracy_20261013\\results\\a_upper12753_near_recenter\\P06A\\best_upper_certificate.json": "69605228bdfabebd142ec9f2823cf5b734869f733d3e156eb5a7dfcd24d52ae7",
+    "D:\\Work\\excel-vba-rpfem\\validation\\accuracy_20261013\\results\\a_upper12753_near_recenter\\P06A\\best_upper_mesh.npz": "a8c4a911d1c29783b063531f512bd87b706e4042d0453c01e66ebe2ff6f386ba",
+    "D:\\Work\\excel-vba-rpfem\\validation\\accuracy_20261013\\results\\a_upper12753_near_recenter\\P06A\\best_upper_field.npz": "1b97b2b0b46726f4d1e0e2b9c2120707511b6d0406f2935db7e92c1b0e4d5713",
+    "D:\\Work\\excel-vba-rpfem\\validation\\accuracy_20261013\\results\\a_upper12753_original_dual_near\\P06A\\audit.json": "a311a740a1885d3dbf64c87b3e4f8fcecc19b4bf0affad6faf2c5958f84d1b55",
+    "D:\\Work\\excel-vba-rpfem\\validation\\accuracy_20261013\\results\\a_upper12753_original_dual_near\\P06A\\original_mesh.npz": "a8c4a911d1c29783b063531f512bd87b706e4042d0453c01e66ebe2ff6f386ba",
+    "D:\\Work\\excel-vba-rpfem\\validation\\accuracy_20261013\\results\\a_upper12753_original_dual_near\\P06A\\original_dual_candidate.npz": "9a80b331bb40ba19673f3780dea3f49235aa04b3769f49f2b6f78a408b34ac34"
+  },
+  "implementation_sha256": {
+    "validation\\accuracy_20261013\\python\\accuracy_driver.py": "6fbc9761c37bd72046c4083ac8a40030999a74906bcc6b049ea18b5120e15c3c",
+    "validation\\accuracy_20261013\\python\\experiment_core.py": "9a9e60b6d69ba4008ea89608f433bb716b433436715c45566bd209418ee9238e",
+    "validation\\accuracy_20261013\\python\\reduction.py": "cbc32e1e0764e10e3f56f67b804b08867166aafbd32a64ddcbe481b18d083ca5",
+    "validation\\accuracy_20261013\\python\\zero_phi_transport.py": "a95589afd8ab9ca0a69829782ad36e2ba83b16e7fcbe74781b26dc03ea974c79",
+    "validation\\accuracy_20261013\\python\\mesh_accuracy.py": "9553fa8d1d6caa1ab49fff92bfece2b14da97348a3334181e0653c5dde81a860",
+    "validation\\accuracy_20261013\\python\\original_farkas.py": "58ccb3af92e92d6b466c8acab8040fa88582a2deb5588a18d0ce92d3135f3672",
+    "validation\\accuracy_20261013\\python\\original_dual.py": "c0025181b07b742b0d4608656489c3495b6ea90b4ed8084438420e8312b6467d",
+    "validation\\accuracy_20261013\\python\\vendor\\independent_audit.py": "79ea1b0e4e72b2a61a4110e6115e3f33929ae5990fb054e20f41d345a694f37b",
+    "validation\\accuracy_20261013\\python\\vendor\\model_support\\lower_assembly.py": "b3c482c8950205b32a5e38cd0f1e720e5efeb48491bbd8ff02b728ef54f51047",
+    "validation\\accuracy_20261013\\python\\vendor\\model_support\\upper_assembly.py": "d0e03aeb87dcc52ae8001b422d836064275850f22c8a69640ce722cb2213d065"
+  },
+  "candidate_code_sha256": "379e9e68a2a76f38961acda04c9be00122ea12a96e974d33f3898ba41ec7baa8",
+  "source_and_program_freeze_pass": true,
+  "field_or_root_flags_transferred": false,
+  "new_solver_used": false,
+  "dual_is_continuum_bound": false
+}

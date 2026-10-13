@@ -1,0 +1,3 @@
+* -text whitespace=-blank-at-eof,-blank-at-eol
+import/*.bas binary
+results/**/*.tsv binary

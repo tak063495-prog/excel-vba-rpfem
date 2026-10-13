@@ -1,0 +1,41 @@
+' The opposite sign of a recovered lower witness needs the FREE-load dual.
+' No affine/fixed-load dual, objective scaling, or status alone is accepted.
+Public Function RPX_OriginalLowerDualGate(ByVal factor As Double, ByVal target As Double, Optional ByVal capture As Boolean = False) As Boolean
+    Dim i As Long, cap As Double
+    OriginalLowerDualReason = "SCOPE_REJECTED": OriginalLowerDualCap = 0#
+    On Error GoTo InvalidData
+    If XCancel Or AFActive Or Not RFsActive Or RSubdivisions <> 8 Or RR <> 0 Then Exit Function
+    If Not RRawAuditEnabled Or RPX_LoadPhase <> "reference_total" Or RPX_OrderMode <> "lower" Then Exit Function
+    If Not RPX_SchurFinite(factor) Or Not RPX_SchurFinite(target) Then Exit Function
+    If Not RPX_SchurFinite(RStrengthFactor) Or Not RPX_SchurFinite(XQScale) Then Exit Function
+    If factor <= 0# Or factor <> RStrengthFactor Or target <> 1.000001 Or XQScale <> 1# Then Exit Function
+    If Not XOriginalCompiled.ready Or XOriginalCompiled.affine Or XOriginalCompiled.modeName <> "lower" Then Exit Function
+    If XOriginalCompiled.inputEpoch <> RPX_InputEpoch Or XOriginalCompiled.subdivisions <> 8 Then Exit Function
+    If XOriginalCompiled.modelKey <> RPX_ExactModel() Or XOriginalCompiled.loadPhase <> RPX_LoadPhase Then Exit Function
+    If XOriginalCompiled.n <> XN Or XOriginalCompiled.m <> XM Or XOriginalCompiled.s <> XS Or XOriginalCompiled.b <> XB Then Exit Function
+    If RLoadVariable < 0 Or RLoadVariable >= XN Then Exit Function
+    If LBound(XOriginalCompiled.cost) <> 0 Or UBound(XOriginalCompiled.cost) <> XN - 1 Then Exit Function
+    If UBound(XOriginalCompiled.rhs) < XM - 1 Or UBound(XOriginalCompiled.values) < XEPtr(XM) - 1 Then Exit Function
+    For i = 0 To XN - 1
+        If Not RPX_SchurFinite(XOriginalCompiled.cost(i)) Or Not RPX_SchurFinite(XQ(i)) Then Exit Function
+        If i = RLoadVariable Then
+            If XOriginalCompiled.cost(i) <> -1# Or XQ(i) <> -1# Then Exit Function
+        Else
+            If XOriginalCompiled.cost(i) <> 0# Or XQ(i) <> 0# Then Exit Function
+        End If
+    Next i
+    OriginalLowerDualReason = "ORIGINAL_DUAL_REJECTED"
+    If Not OriginalDualAudit(xy, XDual, True) Then Exit Function
+    cap = -OriginalFarkasSeparation
+    If Not RPX_SchurFinite(cap) Or OriginalFarkasStationarity > 0.0000001 Or OriginalFarkasCone > 0.00000001 Then Exit Function
+    ' A strict margin avoids a sign from the numerical uncertainty of lambda.
+    If cap > target - 0.000002 Then Exit Function
+    OriginalLowerDualCap = cap: OriginalLowerDualReason = "ORIGINAL_FREE_LOAD_NEGATIVE_DUAL_GUIDE"
+    If capture Then Call CaptureOriginalLowerDual(factor)
+    RPX_DiagEvent "original_lower_dual_guide", "Fs=" & factor & ";q=8;stationarity=" & OriginalFarkasStationarity & ";cone=" & OriginalFarkasCone & ";lambda_cap=" & cap & ";fixed_dual_used=0;physical_bound=0"
+    RPX_OriginalLowerDualGate = True
+    Exit Function
+InvalidData:
+    If err.number <> 6 And err.number <> 9 Then err.Raise err.number, err.source, err.description
+    err.Clear: OriginalLowerDualReason = "INVALID_OR_NONFINITE_ORIGINAL_DUAL"
+End Function

@@ -1,0 +1,157 @@
+{
+  "scope": "Small control-flow and original-model tests; no P06 production success claim",
+  "production_outputs_excluded": true,
+  "workbooks_and_unchanged_dll_excluded": true,
+  "runs": {
+    "adapt_excel_1791896088836241400": {
+      "status": "PASS",
+      "scope": "Angular fan geometry/material/body/boundary/cap integrity PASS"
+    },
+    "adapt_excel_1791896964526437200": {
+      "status": "PASS",
+      "scope": "Independent own q8 root/field checks and injected-side q retention PASS"
+    },
+    "adapt_excel_1791897436658252400": {
+      "status": "FAIL",
+      "scope": "Retained pre-fix lower layout regression failure"
+    },
+    "adapt_excel_1791898363593743200": {
+      "status": "PASS",
+      "scope": "Lower layout restore and independent lower uniform/fan improvement PASS"
+    },
+    "adapt_excel_1791900201404917400": {
+      "status": "FAIL",
+      "scope": "Retained nonfinite wedge depth preflight failure before finite/range split"
+    },
+    "adapt_excel_1791900420176397000": {
+      "status": "FAIL",
+      "scope": "Retained test-only root output compound-expression failure"
+    },
+    "adapt_excel_1791900646125391300": {
+      "status": "PASS",
+      "scope": "Upper wedge adoption/lower exact retention/injected failure rollback PASS"
+    },
+    "adapt_excel_1791901989652207900": {
+      "status": "PASS",
+      "scope": "Final original Farkas gate/capture/native q8 wedge and independent matrix replay PASS"
+    }
+  },
+  "files": {
+    "adapt_excel_1791896088836241400/summary.json": {
+      "sha256": "dda769d5e3c03d74d408e89f3ee53943abd7c730bc715b430d1673161bcd0fa4",
+      "bytes": 469
+    },
+    "adapt_excel_1791896964526437200/RPFEM_logs/20261013_220932_12980_analysis.tsv": {
+      "sha256": "5cc2f0fde784b9f85d33899427cf2752dd7d3b98da55b83d16475fb0fb2c845e",
+      "bytes": 358142
+    },
+    "adapt_excel_1791896964526437200/RPFEM_logs/20261013_220951_12980_analysis.tsv": {
+      "sha256": "bdeb67b64affbc993fbbecd88ddf4c9535aff4b7e135396f3b65994d01318390",
+      "bytes": 305986
+    },
+    "adapt_excel_1791896964526437200/summary.json": {
+      "sha256": "8389224e750d9a62eb142cfce72c4ccf6a8b67290dc6008b343705a66a91281c",
+      "bytes": 12589
+    },
+    "adapt_excel_1791897436658252400/RPFEM_logs/20261013_221724_12180_analysis.tsv": {
+      "sha256": "b5b928b29dd7deee0503fde7a23e0e3000471c34623349d2346c4669c6ce7545",
+      "bytes": 4895694
+    },
+    "adapt_excel_1791897436658252400/RPFEM_logs/20261013_222021_12180_analysis.tsv": {
+      "sha256": "a05fe5165c131fa2dfbf64e2c0fa9d4efc107c71f8d2c075c78993c3afdadc82",
+      "bytes": 6763526
+    },
+    "adapt_excel_1791897436658252400/summary.json": {
+      "sha256": "39bdf68f6f85a6bd01d5f7d81cf8ad5b1624bbbe1dc8aa656812b08895d62de9",
+      "bytes": 19187
+    },
+    "adapt_excel_1791898363593743200/RPFEM_logs/20261013_223251_14516_analysis.tsv": {
+      "sha256": "62633ece8e0f3419c448353e017cae47f70c5033c2035c700df29b87587c6e68",
+      "bytes": 4896552
+    },
+    "adapt_excel_1791898363593743200/RPFEM_logs/20261013_223604_14516_analysis.tsv": {
+      "sha256": "2a2864121d62ff65b5576f021a931b53ef7ecde7fef956e1f98de4d81f2382ed",
+      "bytes": 7494940
+    },
+    "adapt_excel_1791898363593743200/summary.json": {
+      "sha256": "477ca8dfccdd4ce7ed8fbee2643b205ecf3e84bd4a97385e8731227e78b3f7cd",
+      "bytes": 37387
+    },
+    "adapt_excel_1791900201404917400/summary.json": {
+      "sha256": "cd4812ad50e3f35db932c1bdd8e7f3cfe961fbe9f9b0265db8d8870dc50c89e1",
+      "bytes": 2407
+    },
+    "adapt_excel_1791900420176397000/RPFEM_logs/20261013_230711_13604_c0_wedge_native.tsv": {
+      "sha256": "5d99a1d6cf39a998a4673dbd3a0c2596d525c68913bce87f80e2ffd7255a85ff",
+      "bytes": 1211728
+    },
+    "adapt_excel_1791900420176397000/summary.json": {
+      "sha256": "c193bcaa70259318c70a67adf0a1d943cafadf3731251b0a1f3ec87324eea175",
+      "bytes": 2800
+    },
+    "adapt_excel_1791900646125391300/RPFEM_logs/20261013_231058_13620_analysis.tsv": {
+      "sha256": "9097b44d00a8be2682af586274f5ff9598afd60d2aed666e1cca1c4552f95641",
+      "bytes": 4976588
+    },
+    "adapt_excel_1791900646125391300/RPFEM_logs/20261013_231216_13620_analysis.tsv": {
+      "sha256": "bd803a9a3e72ce0beeff43c8505bcaf5e7ab2877b485ad6d082fdef462531bab",
+      "bytes": 6276002
+    },
+    "adapt_excel_1791900646125391300/RPFEM_logs/20261013_231335_13620_analysis.tsv": {
+      "sha256": "291b69640c446016c1aa511331cdd719b757054a5fc21cc0aab1260234de30e5",
+      "bytes": 4987520
+    },
+    "adapt_excel_1791900646125391300/summary.json": {
+      "sha256": "1d77dbc20819b0ab28fad8706e95e37db63ab50fb66ea7fa882b86dbc9fc18e5",
+      "bytes": 2657
+    },
+    "adapt_excel_1791901989652207900/c0_wedge_native.tsv.negative_context.tsv": {
+      "sha256": "c2a671e24f14ea5f7a8f6a95f67fd6ad7a271b13e17c715c5491c6c69e5eb9c4",
+      "bytes": 13444
+    },
+    "adapt_excel_1791901989652207900/c0_wedge_native.tsv.negative_field.bin": {
+      "sha256": "30eb457aa1808cd71d02ccb90747a89c46d5c68726617f2f31145004c7f78ea6",
+      "bytes": 780
+    },
+    "adapt_excel_1791901989652207900/c0_wedge_native.tsv.negative_program.bin": {
+      "sha256": "59d8b354cec5987b9f748b3986712d136f535a8fc9e7428a9797d32c6c513f0f",
+      "bytes": 34700
+    },
+    "adapt_excel_1791901989652207900/original_evidence_replay.json": {
+      "sha256": "9f783332434a03f2cdef9297ea03b1db0da5b611c6020772432f89f93241be3f",
+      "bytes": 1693
+    },
+    "adapt_excel_1791901989652207900/RPFEM_logs/20261013_233320_23516_c0_wedge_native.tsv": {
+      "sha256": "b838933f193845cf08b78e4562df2c5993cf9b511456a232695020a5cba725d0",
+      "bytes": 1223672
+    },
+    "adapt_excel_1791901989652207900/RPFEM_logs/20261013_233320_23516_c0_wedge_native.tsv.original_guide_solve_1_candidate_1.bin": {
+      "sha256": "e8f227bb3d0215c59d1e9e56129ae066735ed13b76f420910d90130ec5c413d2",
+      "bytes": 40848
+    },
+    "adapt_excel_1791901989652207900/RPFEM_logs/20261013_233320_23516_c0_wedge_native.tsv.original_guide_solve_1_candidate_1.context.tsv": {
+      "sha256": "3d61dc8db18d3803e796d5bc312d320afc19e0db5335232df0adbfbedfe29240",
+      "bytes": 13444
+    },
+    "adapt_excel_1791901989652207900/RPFEM_logs/20261013_233320_23516_c0_wedge_native.tsv.original_guide_solve_4_candidate_1.bin": {
+      "sha256": "f43b5ed4d431a297511058ee9fd2c3577c5044045262abc5b0f3be4d7e1c33ed",
+      "bytes": 40848
+    },
+    "adapt_excel_1791901989652207900/RPFEM_logs/20261013_233320_23516_c0_wedge_native.tsv.original_guide_solve_4_candidate_1.context.tsv": {
+      "sha256": "b50c67386d3c0f5a306d530f313fa58e09beab8ad480b84f280cca6da84a9670",
+      "bytes": 13444
+    },
+    "adapt_excel_1791901989652207900/RPFEM_logs/20261013_233320_23516_c0_wedge_native.tsv.original_guide_solve_7_candidate_1.bin": {
+      "sha256": "bdb5e41010d44ccb988a695ccd95a79e46274a3e0d27de57358fc64eef138066",
+      "bytes": 40848
+    },
+    "adapt_excel_1791901989652207900/RPFEM_logs/20261013_233320_23516_c0_wedge_native.tsv.original_guide_solve_7_candidate_1.context.tsv": {
+      "sha256": "263465cc53fc99c6cce0a9fbc796c0e3b953012b3c5653458134ed3bde329202",
+      "bytes": 13444
+    },
+    "adapt_excel_1791901989652207900/summary.json": {
+      "sha256": "a31bc49e9ff6bee394456c98e239df0258e5b0757c6821bd47a766de5cf53c6b",
+      "bytes": 4785
+    }
+  }
+}

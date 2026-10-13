@@ -1,0 +1,34 @@
+{
+  "objective": 0.0,
+  "value": 0.0,
+  "eq_error": 0.0,
+  "cone_error": 3.4491995555992285e-09,
+  "audit": {
+    "pass": true,
+    "errors": {
+      "flow": 1.3964009131593626e-09,
+      "jump": 0.0,
+      "boundary": 0.0,
+      "work": 0.0,
+      "objective": 0.0
+    },
+    "dissipation": 0.0,
+    "work": [
+      0.0,
+      1.0
+    ],
+    "value": 0.0
+  },
+  "raw_lower_errors": {},
+  "physical_pass": true,
+  "witness": true,
+  "numerical_gate": false,
+  "case": "D03N",
+  "mode": "upper",
+  "q": 8,
+  "fs": 1.1190905214404552,
+  "mesh_id": "627dc2971716dd4e82bffb575a3f40b01ac9076e1f424c8cf2d98c03d2047660",
+  "physical_model_id": "452103cf370382bbc1cf1fc833a631a5a96f55949d4a42292c6ed9bb7244c13c",
+  "origin": "explicit_constant_velocity_wedge_full_original_primal_audit",
+  "work_normalization": 3.439072249562719e-05
+}

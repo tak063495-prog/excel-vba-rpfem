@@ -1,0 +1,142 @@
+{
+  "case": "D02A",
+  "certificates": {
+    "upper": {
+      "case": "D02A",
+      "mode": "upper",
+      "q": 8,
+      "fs": 1.5000956876875935,
+      "mesh_id": "8e62aeb3154034ac4eeb10b3ebfb80997249e3dbffaaa4fa51ec539a324dce76",
+      "physical_model_id": "88804f72c1e9025c7ad0606e33e33d648b0f0532c402edf97fde7ca082f595ea",
+      "elements": 8,
+      "source": "D02A_wedge_upper",
+      "root_complete": true,
+      "mesh_path": "best_upper_mesh.npz",
+      "field_path": "best_upper_field.npz",
+      "audit": {
+        "objective": 0.0,
+        "value": 0.0,
+        "eq_error": 7.779150587583494e-18,
+        "cone_error": 0.0,
+        "audit": {
+          "pass": true,
+          "errors": {
+            "flow": 0.0,
+            "jump": 0.0,
+            "boundary": 1.0339757656912846e-25,
+            "work": 1.2789769243681803e-13,
+            "objective": 0.0
+          },
+          "dissipation": 0.0,
+          "work": [
+            0.0,
+            1.000000000000128
+          ],
+          "value": 0.0
+        },
+        "raw_lower_errors": {},
+        "physical_pass": true,
+        "witness": true,
+        "dual_objective": 5.768362921915632e-15,
+        "dual_stationarity": 5.606488835236727e-13,
+        "dual_cone_error": 0.0,
+        "dual_gap": 5.768362921915632e-15,
+        "numerical_gate": true,
+        "reduced_dual_objective": 5.768362921915632e-15,
+        "reduced_dual_stationarity": 5.60648883523663e-13,
+        "reduced_dual_cone_error": 0.0,
+        "reduced_dual_gap": 5.768362921915632e-15,
+        "reduced_numerical_gate": true,
+        "case": "D02A",
+        "elements": 8,
+        "fs": 1.5000956876875935,
+        "mode": "upper",
+        "q": 8,
+        "reduction": "affine",
+        "status": "Solved",
+        "iterations": 108,
+        "solver_seconds": 0.023789600003510714,
+        "build_seconds": 0.0012565000215545297,
+        "backend_solve_seconds": 0.0242629,
+        "audit_seconds": 0.003836599993519485,
+        "dual_restore": {
+          "method": "removed_equalities_lsmr",
+          "seconds": 0.0012880999711342156,
+          "lsmr_flag": 2,
+          "lsmr_iterations": 1
+        },
+        "assembly_seconds": 0.006973000010475516,
+        "transform_seconds": 0.023271099955309182,
+        "original_variables": 96,
+        "original_equalities": 13,
+        "variables": 84,
+        "equalities": 1,
+        "cones": 204,
+        "solver_reported_gap": 5.768362921915632e-15,
+        "settings_overrides": {
+          "equilibrate_enable": false,
+          "time_limit": 30.0
+        },
+        "max_iter": 350,
+        "early": false,
+        "callback_trigger": [],
+        "cone_scaling": false,
+        "primal_polish": {
+          "method": "original_equality_lsmr_then_full_physical_audit",
+          "accepted": true,
+          "lsmr_flag": 1,
+          "iterations": 2,
+          "correction_norm": 8.43819183853288e-10,
+          "seconds": 0.006040800013579428,
+          "before_raw": {},
+          "after_raw": {}
+        },
+        "end_to_end_seconds": 0.06645569996908307,
+        "attempts": [
+          {
+            "status": "Solved",
+            "physical_pass": true,
+            "witness": true,
+            "numerical_gate": true,
+            "end_to_end_seconds": 0.06645569996908307
+          }
+        ],
+        "original_dual_recovery_attempts": [
+          {
+            "dual_objective": 5.768362921915632e-15,
+            "dual_stationarity": 5.606488835236727e-13,
+            "dual_cone_error": 0.0,
+            "reduced_dual_objective": 5.768362921915632e-15,
+            "reduced_dual_stationarity": 5.60648883523663e-13,
+            "reduced_dual_cone_error": 0.0
+          }
+        ],
+        "search_sign": -1,
+        "discrete_root_search": {
+          "mode": "upper",
+          "root_complete": true,
+          "bracket": [
+            1.4999995939375936,
+            1.5000956876875935
+          ],
+          "bracket_width": 9.609374999985931e-05,
+          "fs_tolerance": 0.0001,
+          "endpoint": 1.5000956876875935,
+          "trials": 8,
+          "seconds": 0.6391815000097267,
+          "mesh_id": "8e62aeb3154034ac4eeb10b3ebfb80997249e3dbffaaa4fa51ec539a324dce76",
+          "physical_model_id": "88804f72c1e9025c7ad0606e33e33d648b0f0532c402edf97fde7ca082f595ea",
+          "elements": 8,
+          "q": 8,
+          "case": "D02A",
+          "policy": "equal_reduced_phi",
+          "bracket_signs": [
+            1,
+            -1
+          ],
+          "opposite_numerical_endpoint_is_continuum_bound": false
+        }
+      }
+    }
+  }
+}

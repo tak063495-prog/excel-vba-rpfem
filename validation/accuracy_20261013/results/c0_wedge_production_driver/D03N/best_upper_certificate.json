@@ -1,0 +1,164 @@
+{
+  "case": "D03N",
+  "mode": "upper",
+  "q": 8,
+  "fs": 1.1181295839404553,
+  "mesh_id": "627dc2971716dd4e82bffb575a3f40b01ac9076e1f424c8cf2d98c03d2047660",
+  "physical_model_id": "452103cf370382bbc1cf1fc833a631a5a96f55949d4a42292c6ed9bb7244c13c",
+  "elements": 8,
+  "source": "D03N_wedge_upper",
+  "root_complete": true,
+  "mesh_path": "best_upper_mesh.npz",
+  "field_path": "best_upper_field.npz",
+  "audit": {
+    "objective": 0.0,
+    "value": 0.0,
+    "eq_error": 9.422340295148213e-15,
+    "cone_error": 0.0,
+    "audit": {
+      "pass": true,
+      "errors": {
+        "flow": 0.0,
+        "jump": 0.0,
+        "boundary": 0.0,
+        "work": 6.786748940612597e-11,
+        "objective": 0.0
+      },
+      "dissipation": 0.0,
+      "work": [
+        0.0,
+        1.0000000000678675
+      ],
+      "value": 0.0
+    },
+    "raw_lower_errors": {},
+    "physical_pass": true,
+    "witness": true,
+    "dual_objective": 9.122108178243119e-15,
+    "dual_stationarity": 6.821472423976038e-16,
+    "dual_cone_error": 0.0,
+    "dual_gap": 9.122108178243119e-15,
+    "numerical_gate": true,
+    "reduced_dual_objective": 9.122108178243119e-15,
+    "reduced_dual_stationarity": 6.821472423976054e-16,
+    "reduced_dual_cone_error": 0.0,
+    "reduced_dual_gap": 9.122108178243119e-15,
+    "reduced_numerical_gate": true,
+    "case": "D03N",
+    "elements": 8,
+    "fs": 1.1181295839404553,
+    "mode": "upper",
+    "q": 8,
+    "reduction": "affine",
+    "status": "AlmostSolved",
+    "iterations": 175,
+    "solver_seconds": 0.036384399980306625,
+    "build_seconds": 0.001101300003938377,
+    "backend_solve_seconds": 0.0367377,
+    "audit_seconds": 0.005483300017658621,
+    "dual_restore": {
+      "method": "removed_equalities_lsmr",
+      "seconds": 0.0014939999673515558,
+      "lsmr_flag": 2,
+      "lsmr_iterations": 2
+    },
+    "assembly_seconds": 0.00795040000230074,
+    "transform_seconds": 0.01544129999820143,
+    "original_variables": 96,
+    "original_equalities": 13,
+    "variables": 84,
+    "equalities": 1,
+    "cones": 204,
+    "solver_reported_gap": 9.122108178243119e-15,
+    "settings_overrides": {
+      "equilibrate_enable": false,
+      "tol_gap_abs": 1e-13,
+      "tol_gap_rel": 1e-13,
+      "tol_feas": 1e-13,
+      "iterative_refinement_max_iter": 30,
+      "iterative_refinement_abstol": 1e-15,
+      "iterative_refinement_reltol": 1e-15,
+      "time_limit": 30.0
+    },
+    "max_iter": 350,
+    "early": false,
+    "callback_trigger": [],
+    "cone_scaling": true,
+    "primal_polish": {},
+    "end_to_end_seconds": 0.06785469996975735,
+    "attempts": [
+      {
+        "status": "NumericalError",
+        "physical_pass": false,
+        "witness": false,
+        "numerical_gate": false,
+        "end_to_end_seconds": 0.042365900066215545
+      },
+      {
+        "status": "AlmostPrimalInfeasible",
+        "physical_pass": false,
+        "witness": false,
+        "numerical_gate": false,
+        "end_to_end_seconds": 0.04744080000091344
+      },
+      {
+        "status": "AlmostSolved",
+        "physical_pass": true,
+        "witness": true,
+        "numerical_gate": true,
+        "end_to_end_seconds": 0.06785469996975735
+      }
+    ],
+    "original_dual_recovery_attempts": [
+      {
+        "dual_objective": 923168764.1555161,
+        "dual_stationarity": 33013060.863155656,
+        "dual_cone_error": 0.0,
+        "reduced_dual_objective": 923168764.1555161,
+        "reduced_dual_stationarity": 33013060.863155603,
+        "reduced_dual_cone_error": 0.0
+      },
+      {
+        "dual_objective": 0.999999999999835,
+        "dual_stationarity": 1.4209023012710917e-05,
+        "dual_cone_error": 0.0,
+        "reduced_dual_objective": 0.999999999999835,
+        "reduced_dual_stationarity": 1.4209023012634603e-05,
+        "reduced_dual_cone_error": 0.0
+      },
+      {
+        "dual_objective": 9.122108178243119e-15,
+        "dual_stationarity": 6.821472423976038e-16,
+        "dual_cone_error": 0.0,
+        "reduced_dual_objective": 9.122108178243119e-15,
+        "reduced_dual_stationarity": 6.821472423976054e-16,
+        "reduced_dual_cone_error": 0.0
+      }
+    ],
+    "search_sign": -1,
+    "discrete_root_search": {
+      "mode": "upper",
+      "root_complete": true,
+      "bracket": [
+        1.1180334901904552,
+        1.1181295839404553
+      ],
+      "bracket_width": 9.609375000008136e-05,
+      "fs_tolerance": 0.0001,
+      "endpoint": 1.1181295839404553,
+      "trials": 8,
+      "seconds": 0.7008804999641143,
+      "mesh_id": "627dc2971716dd4e82bffb575a3f40b01ac9076e1f424c8cf2d98c03d2047660",
+      "physical_model_id": "452103cf370382bbc1cf1fc833a631a5a96f55949d4a42292c6ed9bb7244c13c",
+      "elements": 8,
+      "q": 8,
+      "case": "D03N",
+      "policy": "hold_initial",
+      "bracket_signs": [
+        1,
+        -1
+      ],
+      "opposite_numerical_endpoint_is_continuum_bound": false
+    }
+  }
+}

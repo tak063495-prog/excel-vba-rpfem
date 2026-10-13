@@ -1,0 +1,9 @@
+{
+  "case": "P02A",
+  "target_met": false,
+  "root_complete": false,
+  "status": "NO_REAUDITED_PAIR",
+  "lower": null,
+  "upper": null,
+  "relative_width_symmetric": null
+}

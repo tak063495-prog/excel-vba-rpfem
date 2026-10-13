@@ -1,0 +1,70 @@
+{
+  "case": "P06A",
+  "mode": "lower",
+  "q": 8,
+  "fs": 0.8468,
+  "mesh_id": "e51df740d3bffec27452ea35cab79ffe6a5a2c41d3520cc933e46e219bada053",
+  "physical_model_id": "f67b757898e3bcc3f45c5ea9b5a8e290955fad53f5900c5cd8c31b9637d51875",
+  "elements": 22080,
+  "source": "P06A_lower_original_pair_close",
+  "root_complete": true,
+  "mesh_path": "best_lower_mesh.npz",
+  "field_path": "best_lower_field.npz",
+  "audit": {
+    "objective": -1.0000015000266633,
+    "value": 1.0000015000266633,
+    "eq_error": 1.5224865812513144e-10,
+    "cone_error": 3.2789476689387698e-09,
+    "audit": {
+      "pass": true,
+      "errors": {
+        "yield": 3.278947724449921e-09,
+        "equilibrium": 1.6870446151173724e-09,
+        "internal_traction": 2.153121014814019e-10,
+        "boundary_traction": 1.398511306760497e-10
+      },
+      "load": 1.0000015000266633,
+      "value": 1.0000015000266633
+    },
+    "raw_lower_errors": {
+      "yield": 6.557895448899842e-08,
+      "equilibrium": 3.374089230234745e-08,
+      "internal_traction": 4.306242029628038e-09,
+      "boundary_traction": 2.797022613520994e-09
+    },
+    "physical_pass": true,
+    "witness": true,
+    "numerical_gate": false,
+    "case": "P06A",
+    "mode": "lower",
+    "q": 8,
+    "fs": 0.8468,
+    "mesh_id": "e51df740d3bffec27452ea35cab79ffe6a5a2c41d3520cc933e46e219bada053",
+    "physical_model_id": "f67b757898e3bcc3f45c5ea9b5a8e290955fad53f5900c5cd8c31b9637d51875",
+    "origin": "independently_reaudited_same_mesh_witness",
+    "discrete_root_search": {
+      "mode": "lower",
+      "root_complete": true,
+      "bracket": [
+        0.8468,
+        0.84687
+      ],
+      "bracket_width": 7.00000000000145e-05,
+      "fs_tolerance": 0.0001,
+      "endpoint": 0.8468,
+      "trials": 2,
+      "seconds": 4.491827399993781,
+      "mesh_id": "e51df740d3bffec27452ea35cab79ffe6a5a2c41d3520cc933e46e219bada053",
+      "physical_model_id": "f67b757898e3bcc3f45c5ea9b5a8e290955fad53f5900c5cd8c31b9637d51875",
+      "elements": 22080,
+      "q": 8,
+      "case": "P06A",
+      "policy": "equal_reduced_phi",
+      "bracket_signs": [
+        1,
+        -1
+      ],
+      "opposite_numerical_endpoint_is_continuum_bound": false
+    }
+  }
+}

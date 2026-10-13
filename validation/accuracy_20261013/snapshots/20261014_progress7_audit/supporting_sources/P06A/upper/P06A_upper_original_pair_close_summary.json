@@ -1,0 +1,24 @@
+{
+  "mode": "upper",
+  "root_complete": true,
+  "bracket": [
+    0.85748,
+    0.85755
+  ],
+  "bracket_width": 7.00000000000145e-05,
+  "fs_tolerance": 0.0001,
+  "endpoint": 0.85755,
+  "trials": 2,
+  "seconds": 9.82632290001493,
+  "mesh_id": "27b06e20be73627245ba3f7e0bf4ffa3df883ec1bb2af10e103fca5caf489308",
+  "physical_model_id": "f67b757898e3bcc3f45c5ea9b5a8e290955fad53f5900c5cd8c31b9637d51875",
+  "elements": 12753,
+  "q": 8,
+  "case": "P06A",
+  "policy": "equal_reduced_phi",
+  "bracket_signs": [
+    1,
+    -1
+  ],
+  "opposite_numerical_endpoint_is_continuum_bound": false
+}

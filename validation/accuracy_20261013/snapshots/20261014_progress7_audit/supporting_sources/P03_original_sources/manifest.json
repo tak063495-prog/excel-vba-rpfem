@@ -1,0 +1,72 @@
+{
+  "scope": "P03 original full primal and independent original full dual; modified QP dual excluded",
+  "strict_interval_arithmetic_proof": false,
+  "entries": {
+    "P03A": {
+      "quadratic_dual_used_as_original_guide": false,
+      "root_from_independent_original_dual_and_fresh_original_primal": true,
+      "qp_center_exactly_equal_to_original_source_x": true,
+      "cached_original_guide_exactly_equal_to_independent_original_z": true,
+      "root_complete_from_own_q8_same_mesh_identity": true,
+      "qp_center_original_gate_failed": true,
+      "source_folders": {
+        "center": "D:\\Work\\excel-vba-rpfem\\validation\\accuracy_20261013\\results\\p03a_long_upper13325",
+        "original_dual": "D:\\Work\\excel-vba-rpfem\\validation\\accuracy_20261013\\results\\p03a_long_upper13325_positive"
+      }
+    },
+    "P03N": {
+      "quadratic_dual_used_as_original_guide": false,
+      "root_from_independent_original_dual_and_fresh_original_primal": true,
+      "qp_center_exactly_equal_to_original_source_x": true,
+      "cached_original_guide_exactly_equal_to_independent_original_z": true,
+      "root_complete_from_own_q8_same_mesh_identity": true,
+      "qp_center_original_gate_failed": true,
+      "source_folders": {
+        "center": "D:\\Work\\excel-vba-rpfem\\validation\\accuracy_20261013\\results\\p03n_long_upper13363_goal2",
+        "original_dual": "D:\\Work\\excel-vba-rpfem\\validation\\accuracy_20261013\\results\\p03n_long_upper13363"
+      }
+    }
+  },
+  "file_sha256": {
+    "P03A/center_original_audit.json": "d57742e2cafff7b24264cfaebb0d439bb7c36a0b445b975e094a9d828248637a",
+    "P03A/center_seed/audit.json": "d57742e2cafff7b24264cfaebb0d439bb7c36a0b445b975e094a9d828248637a",
+    "P03A/center_seed/original_candidate.npz": "82365cbf907f56966704b4fef6513e6322aca8999de384b64324b2227179e81e",
+    "P03A/center_seed/original_mesh.npz": "d68bab3765f8d1a0417960977069a81e009e58ce0785d9a64f8a66c340eb07a5",
+    "P03A/inverse_original_dual_audit.json": "7212755c210bb32c30e73a0428a8c4e4b089b9d9b8444390918e1e163445474c",
+    "P03A/original_root_closure/best_upper_certificate.json": "87927b863b9fc3374e0ec6ca6e26f5a3f29a20a2e9e62f0c7387fafb0bbbd7c5",
+    "P03A/original_root_closure/best_upper_field.npz": "e7781baef3e5a527dcff84260173cb0671ebbea65d5b27cdd7da1c354faa8770",
+    "P03A/original_root_closure/best_upper_mesh.npz": "d68bab3765f8d1a0417960977069a81e009e58ce0785d9a64f8a66c340eb07a5",
+    "P03A/original_root_closure/import_audit.json": "0e89f654b90ea6a9285a6d4103ba4970fdb17e087c2f30a1e1814e458b86b115",
+    "P03A/original_root_closure/P03A_original_pair_close_original_dual_guide_1.npz": "1869a21d461b032921d3216b602ada0c24e8188643c6c24f85f97b6d9b526372",
+    "P03A/original_root_closure/P03A_original_pair_close_summary.json": "8822b917aa6a276282162b348b1ed023c39990cef473becbbb424c47a6ab8a87",
+    "P03A/original_root_closure/P03A_original_pair_close_trials.json": "630e090ee0862c5ac3974f3265a5ab04763bd247d4cafc89fa5e252efa65c41d",
+    "P03A/original_root_closure/scratch_source.py": "06acc6d8705b223c3cc7f2c05aad2cd238482b3cca13d6e6c4422aae22a8023c",
+    "P03A/original_root_closure/source_provenance.json": "34693cf8e7421d12860ac1ffe19927549f4d72af64bab2b8de1a00916bba4efa",
+    "P03A/original_root_closure/summary.json": "92fa5358c7d8ad554211409048d7a25cec308a574f4f780a5e73918726de806e",
+    "P03A/qp/audit.json": "cbf408230e9cfdc2fd09b7be29669568c3d07648ab8abb363d8dac85d324bdb1",
+    "P03A/qp/original_candidate.npz": "b5aadc8b84b0260ab7d20fb10cb440f345a75a3dd01361b7f6fd92a3505951eb",
+    "P03A/qp/original_mesh.npz": "d68bab3765f8d1a0417960977069a81e009e58ce0785d9a64f8a66c340eb07a5",
+    "P03A/qp/scratch_source.py": "cfb4694840f088b90771c9f8e0eeb42c3d81e9685e3ce197d7bb5d081c0ba5d0",
+    "P03A/qp/source_candidate.npz": "82365cbf907f56966704b4fef6513e6322aca8999de384b64324b2227179e81e",
+    "P03N/center_original_audit.json": "ffcb2a56bc1ca743b8ce0d570cb23a3f7f74c65e15c3ff264d5e1df959633c5a",
+    "P03N/center_seed/audit.json": "ffcb2a56bc1ca743b8ce0d570cb23a3f7f74c65e15c3ff264d5e1df959633c5a",
+    "P03N/center_seed/original_candidate.npz": "aeb1fa33ec65599d70b35e218da2a4654ff4f2a91215ebf717dce8b0c8bfaeff",
+    "P03N/center_seed/original_mesh.npz": "c6a872489dfdb4a38619dd71ef5be0707da192d2cfa56d27fe1bdbd434d24ac9",
+    "P03N/inverse_original_dual_audit.json": "cd888d688da146c341e1f7824c17c706e87f8078e34cfa920f7b53b085776c22",
+    "P03N/original_root_closure/best_upper_certificate.json": "de3f058377dd584c7dd50c8b3e12f7ba8b6915ac6ac7566f55712099e2f4b08e",
+    "P03N/original_root_closure/best_upper_field.npz": "ce7a1160f4dbedc8b8e45705447538bc33b57a28783b68accbea326e396dcc76",
+    "P03N/original_root_closure/best_upper_mesh.npz": "c6a872489dfdb4a38619dd71ef5be0707da192d2cfa56d27fe1bdbd434d24ac9",
+    "P03N/original_root_closure/import_audit.json": "04389deda2f5301b61a97dac93e9104f31c466880de3b00e2504c2665da5baf4",
+    "P03N/original_root_closure/P03N_original_pair_close_original_dual_guide_1.npz": "dd36bb3310eada211346962f24cb03d368dfd50efcfa83ef65d220a8987f9119",
+    "P03N/original_root_closure/P03N_original_pair_close_summary.json": "2e59c0439de172865047083fc502fe47464bb3a948b2f06876d03a0167c667a9",
+    "P03N/original_root_closure/P03N_original_pair_close_trials.json": "ef1afd390184e79661ede3966f37105332957ba459b72cb174cca1221d95b1c6",
+    "P03N/original_root_closure/scratch_source.py": "06acc6d8705b223c3cc7f2c05aad2cd238482b3cca13d6e6c4422aae22a8023c",
+    "P03N/original_root_closure/source_provenance.json": "8119e9eaa8fc6855778f8485bd60e7ac37023d21550f349099945a513fc05f53",
+    "P03N/original_root_closure/summary.json": "15337e8a902ff0ef4374989c1062d095f4b68378a8a0b813c5e44aba86c55b64",
+    "P03N/qp/audit.json": "158d5c722c4664a0db42bc54c947b11dbd89297ab40a5d7e4f1bd145b2584870",
+    "P03N/qp/original_candidate.npz": "663ce628cd182cea1c3db6ff829243b794097362aa6416760ab906a727832a79",
+    "P03N/qp/original_mesh.npz": "c6a872489dfdb4a38619dd71ef5be0707da192d2cfa56d27fe1bdbd434d24ac9",
+    "P03N/qp/scratch_source.py": "cfb4694840f088b90771c9f8e0eeb42c3d81e9685e3ce197d7bb5d081c0ba5d0",
+    "P03N/qp/source_candidate.npz": "aeb1fa33ec65599d70b35e218da2a4654ff4f2a91215ebf717dce8b0c8bfaeff"
+  }
+}

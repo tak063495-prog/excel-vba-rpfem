@@ -1,0 +1,1035 @@
+{
+  "archive": "native_recovery_primal_evidence_20261014.zip",
+  "size": 43067560,
+  "sha256": "233c690d7f9eb5e92e462aa63c985dd816e7dc56a97ee1334b67642c3d26576c",
+  "files": {
+    "python_field_excel_1791903229682201900/audited_context.tsv": {
+      "size": 2726798,
+      "sha256": "49f8a88fe3c526a89edd513a5b706612f62b34443ac0493753acdcb16a445f1e"
+    },
+    "python_field_excel_1791903229682201900/audited_field.bin": {
+      "size": 805556,
+      "sha256": "ad5fb353696e69c6cbb6b0103a77ec6028b9599f91fb69388995de628a388106"
+    },
+    "python_field_excel_1791903229682201900/audited_native.bin": {
+      "size": 1151900,
+      "sha256": "2ec1f4f4a3da2258a9345a38f1553279919a9a26e7920f9bba1dc09b81dbc445"
+    },
+    "python_field_excel_1791903229682201900/audited_original.bin": {
+      "size": 10056316,
+      "sha256": "85a2c9f2dd7c2fe76025874270c4b11d9b88ee7386501bce37e0dcf86ebf4fa7"
+    },
+    "python_field_excel_1791903229682201900/independent_vba_matrix_replay.json": {
+      "size": 154,
+      "sha256": "d2b9971eb0ac687fb97e3ddaa9ebe93b96132b16a715db6cf1b2560f7ecd2822"
+    },
+    "python_field_excel_1791903229682201900/P06N_lower_source.bin": {
+      "size": 1151900,
+      "sha256": "08fb1157e9d8667f2d6167367a01fe8a81a7b884d550de4bcecdad5e869693b6"
+    },
+    "python_field_excel_1791903229682201900/P06N_lower_source.json": {
+      "size": 2509,
+      "sha256": "2290ac8292af98927e24b3844275468ae13059d0a47faa971a02ae2ab28ccd8d"
+    },
+    "python_field_excel_1791903229682201900/summary.json": {
+      "size": 6470,
+      "sha256": "d3abb20566c8a4086d95a63501b572e8ed7a553c1737a61de424c3d13e15085b"
+    },
+    "python_field_excel_1791903712492988200/audited_context.tsv": {
+      "size": 2954138,
+      "sha256": "3367effe5140be29ba21d3524c730f7db6de618d2a34f7fa885c0724b814807b"
+    },
+    "python_field_excel_1791903712492988200/audited_field.bin": {
+      "size": 586188,
+      "sha256": "3504a57b5603c372af3724e76a0d74c8b2ae99f037548ab59d2902df76d02a35"
+    },
+    "python_field_excel_1791903712492988200/audited_native.bin": {
+      "size": 955748,
+      "sha256": "0c0a88a820363cddab65b4e5e359ef44edc9861829935764c4efd518f676ed1d"
+    },
+    "python_field_excel_1791903712492988200/audited_original.bin": {
+      "size": 32667232,
+      "sha256": "cea4d691b5acff1153ea04f177d2650093c1b6ea400ec8185ae45a4c35af10a1"
+    },
+    "python_field_excel_1791903712492988200/audited_stages.tsv": {
+      "size": 140,
+      "sha256": "088591781f7316be3d4aa06b8ecbfd85bdcea9646b16197f1117ade9934bd0f9"
+    },
+    "python_field_excel_1791903712492988200/P06N_upper_source.bin": {
+      "size": 955748,
+      "sha256": "ed37eb01c086fce3170e11529042b505d1f7193e132c0cd66359c48de5b2d76c"
+    },
+    "python_field_excel_1791903712492988200/P06N_upper_source.json": {
+      "size": 2462,
+      "sha256": "4885ae160c5491819d7d4d136a9d6fa816290c6d9b999aba224bd583c77b1ade"
+    },
+    "python_field_excel_1791903712492988200/summary.json": {
+      "size": 6662,
+      "sha256": "e395d7f862272180ac1b3f76888083b7dc4ffa72305026e37020da6186110aa3"
+    },
+    "python_field_excel_1791903997288551900/audited_context.tsv": {
+      "size": 2738328,
+      "sha256": "a4eeb778620e6f3c1e8206b24d2ca6dab147a723f279b994378370de3a3fba06"
+    },
+    "python_field_excel_1791903997288551900/audited_field.bin": {
+      "size": 543276,
+      "sha256": "84c321db39ef27e8eae095a282ae1e97f8f5faacbf7a5e47a56effd78ac42393"
+    },
+    "python_field_excel_1791903997288551900/audited_native.bin": {
+      "size": 886072,
+      "sha256": "950e1db1942c8f151a05eb2cd8e429589100cfbdca9b578edc277667253eace1"
+    },
+    "python_field_excel_1791903997288551900/audited_original.bin": {
+      "size": 30124412,
+      "sha256": "2daf70fbd1aa5204cf2f58a2dd11068b34dea5417ec1efb0299963adcfb74027"
+    },
+    "python_field_excel_1791903997288551900/audited_stages.tsv": {
+      "size": 140,
+      "sha256": "088591781f7316be3d4aa06b8ecbfd85bdcea9646b16197f1117ade9934bd0f9"
+    },
+    "python_field_excel_1791903997288551900/P06A_upper_source.bin": {
+      "size": 886072,
+      "sha256": "5ed7998690292adc68bc7be99faaa2ee5f909825026e71eb8367ef24fc8959fd"
+    },
+    "python_field_excel_1791903997288551900/P06A_upper_source.json": {
+      "size": 2430,
+      "sha256": "34b463696b6315b059f311f45b19c4a8600326ae8a7d60f4d8838b38d5652c8c"
+    },
+    "python_field_excel_1791903997288551900/summary.json": {
+      "size": 6616,
+      "sha256": "62fbc658cb687b04a1db48fea95ea04abec774cd06ec73f82272e3b6a9ffe545"
+    },
+    "python_field_excel_1791904224800777700/audited_context.tsv": {
+      "size": 2953810,
+      "sha256": "036cb756b9fc8d207b1b1ba0029b116155c070d4664563e7c09a282036f14f04"
+    },
+    "python_field_excel_1791904224800777700/audited_field.bin": {
+      "size": 586188,
+      "sha256": "29ad18698f8ac167ddf82b594bdf8a7241190e4f35c6160d9fbd44f07e1f47b6"
+    },
+    "python_field_excel_1791904224800777700/audited_native.bin": {
+      "size": 955748,
+      "sha256": "b14cea59ab5e15dfc4070fe97d68c77e9e8a1b825221d61debfba80f06dc687a"
+    },
+    "python_field_excel_1791904224800777700/audited_original.bin": {
+      "size": 32675152,
+      "sha256": "7a76589c2addfeb238b31f34e9e39c4ff1532c5d9e6c55b3780c850059f80cef"
+    },
+    "python_field_excel_1791904224800777700/audited_stages.tsv": {
+      "size": 140,
+      "sha256": "088591781f7316be3d4aa06b8ecbfd85bdcea9646b16197f1117ade9934bd0f9"
+    },
+    "python_field_excel_1791904224800777700/P06N_upper_source.bin": {
+      "size": 955748,
+      "sha256": "0894b0aa2924dcd26a3d36fbf9e33842f3b7094f0b90f32a2655865f50d66be4"
+    },
+    "python_field_excel_1791904224800777700/P06N_upper_source.json": {
+      "size": 2676,
+      "sha256": "c635b7ea0dac0ded6b9f071351cd28e080b9bd199c55cf7aa302f4ad88d6cea5"
+    },
+    "python_field_excel_1791904224800777700/summary.json": {
+      "size": 6891,
+      "sha256": "c08f16875fa67d2c4897f133479c2944418b84aec73a5885e5710dc50b67d0b6"
+    },
+    "python_field_excel_1791905614894344800/audited_context.tsv": {
+      "size": 10244688,
+      "sha256": "8196a8c0acb0bd3212115379b623c57bd7201068afcfb8c7b1f756b00bec956f"
+    },
+    "python_field_excel_1791905614894344800/audited_field.bin": {
+      "size": 2994068,
+      "sha256": "1c8dea991fe120d36ed18684941133409777b788a1c954749d8d347167851b3a"
+    },
+    "python_field_excel_1791905614894344800/audited_native.bin": {
+      "size": 4262596,
+      "sha256": "61dab59cbe5f445f652eac4b030e3c301aaa07c66691c12f06388ae953d51554"
+    },
+    "python_field_excel_1791905614894344800/audited_original.bin": {
+      "size": 37363936,
+      "sha256": "4aa2b588cf0fe2e5d1daa58c5438fc0248aaaa59e65b28b3bd7150f5309bfc3b"
+    },
+    "python_field_excel_1791905614894344800/audited_stages.tsv": {
+      "size": 140,
+      "sha256": "088591781f7316be3d4aa06b8ecbfd85bdcea9646b16197f1117ade9934bd0f9"
+    },
+    "python_field_excel_1791905614894344800/P06A_lower_source.bin": {
+      "size": 4262596,
+      "sha256": "1daa0eda8b08d711b306e163de6af6c65e0b1dca5945be468483377cc3c03f40"
+    },
+    "python_field_excel_1791905614894344800/P06A_lower_source.json": {
+      "size": 2713,
+      "sha256": "2c6a88ae83769b93e22caf2f62eafdb20cd36f95b13d089dd723556ba5759b8f"
+    },
+    "python_field_excel_1791905614894344800/summary.json": {
+      "size": 7114,
+      "sha256": "53a1bcbab5eebe2405e1123e0bf26a137791d368276667ec2b1796bb6000b5ef"
+    },
+    "adapt_excel_1791904907321458900/fixed_lower_recovery.tsv": {
+      "size": 3573,
+      "sha256": "0506103c652a2da770876f9deed80d1229191d599f6499a579ef9081c39213e5"
+    },
+    "adapt_excel_1791904907321458900/RPFEM_logs/20261014_002154_7600_fixed_lower_recovery_small.tsv": {
+      "size": 68868,
+      "sha256": "004bf96c1e9bfdcda761a4cc150e5363b3a1de6356a51d6e88124d45eb2ce79b"
+    },
+    "adapt_excel_1791904907321458900/summary.json": {
+      "size": 2590,
+      "sha256": "c77eea5e58936dcb04a616587576599acb2a890c3fdfe263cdb5f9cf5b5c17b5"
+    },
+    "adapt_excel_1791907938957103600/fixed_fs.tsv": {
+      "size": 27193,
+      "sha256": "19c8ba2921cc05aae11afad0261a241836fd0ef4b90552838c48457c435bd6db"
+    },
+    "adapt_excel_1791907938957103600/RPFEM_logs/20261014_011226_8092_fixed_lower_fs_small.tsv": {
+      "size": 1151582,
+      "sha256": "70573429976d81fb378a8b812d87090dbb003e3dae60aa2a7c3e16b25480c9de"
+    },
+    "adapt_excel_1791907938957103600/RPFEM_logs/20261014_011226_8092_fixed_lower_fs_small.tsv.original_lower_dual_solve_10_candidate_0.bin": {
+      "size": 46004,
+      "sha256": "02184c51fc33879c9df0a0fb9fbd242d4b66d8a97372a167cabba91ccca58b21"
+    },
+    "adapt_excel_1791907938957103600/RPFEM_logs/20261014_011226_8092_fixed_lower_fs_small.tsv.original_lower_dual_solve_10_candidate_0.context.tsv": {
+      "size": 66176,
+      "sha256": "5bb4687e530c9f8cbaeb66977e323665dc9b1b17f54d1ab55952b1a344ac24f7"
+    },
+    "adapt_excel_1791907938957103600/RPFEM_logs/20261014_011226_8092_fixed_lower_fs_small.tsv.original_lower_dual_solve_11_candidate_0.bin": {
+      "size": 46004,
+      "sha256": "3356188853b98d74c8ecc6284e686783fd21b033a80c94890354cd04effa2161"
+    },
+    "adapt_excel_1791907938957103600/RPFEM_logs/20261014_011226_8092_fixed_lower_fs_small.tsv.original_lower_dual_solve_11_candidate_0.context.tsv": {
+      "size": 66176,
+      "sha256": "6377cc7b7fd9b0027e4c9fa9f1ee4727f0477f6f1faf4387773cb5b9f33d64f0"
+    },
+    "adapt_excel_1791907938957103600/RPFEM_logs/20261014_011226_8092_fixed_lower_fs_small.tsv.original_lower_dual_solve_12_candidate_0.bin": {
+      "size": 46004,
+      "sha256": "f5edf83de4713b597980d7deebfe1b5452d42e0a6191a2258052e3b6364401a5"
+    },
+    "adapt_excel_1791907938957103600/RPFEM_logs/20261014_011226_8092_fixed_lower_fs_small.tsv.original_lower_dual_solve_12_candidate_0.context.tsv": {
+      "size": 66176,
+      "sha256": "2b88bfaf5bfd208cd83ef08cdf827e6692127be269ea3d9fc52cb8cefea58ab0"
+    },
+    "adapt_excel_1791907938957103600/RPFEM_logs/20261014_011226_8092_fixed_lower_fs_small.tsv.original_lower_dual_solve_13_candidate_0.bin": {
+      "size": 46004,
+      "sha256": "c61063f18d320a7b21eda43342443e59532bc8723b800354735f4dd51c56cd5c"
+    },
+    "adapt_excel_1791907938957103600/RPFEM_logs/20261014_011226_8092_fixed_lower_fs_small.tsv.original_lower_dual_solve_13_candidate_0.context.tsv": {
+      "size": 66176,
+      "sha256": "5831d8a8d783e0b579f6bea638891b2dba672f1ac9cccfe129d4a83a1d2e3343"
+    },
+    "adapt_excel_1791907938957103600/RPFEM_logs/20261014_011226_8092_fixed_lower_fs_small.tsv.original_lower_dual_solve_14_candidate_0.bin": {
+      "size": 46004,
+      "sha256": "81b83d90b5a44245721690e1956cad07cff8ad0ecc79b41f45933c39839c1cbc"
+    },
+    "adapt_excel_1791907938957103600/RPFEM_logs/20261014_011226_8092_fixed_lower_fs_small.tsv.original_lower_dual_solve_14_candidate_0.context.tsv": {
+      "size": 66176,
+      "sha256": "14c65847c92f6f89a743ee3a6657cd752ee6003ca63f5a5d4d5a6326bd6c6e36"
+    },
+    "adapt_excel_1791907938957103600/RPFEM_logs/20261014_011226_8092_fixed_lower_fs_small.tsv.original_lower_dual_solve_15_candidate_0.bin": {
+      "size": 46004,
+      "sha256": "2b595aa1056db3664b7a6ad0f88e35dddba4deb628a77e1d3a58fc116ad28315"
+    },
+    "adapt_excel_1791907938957103600/RPFEM_logs/20261014_011226_8092_fixed_lower_fs_small.tsv.original_lower_dual_solve_15_candidate_0.context.tsv": {
+      "size": 66176,
+      "sha256": "d5c8d87f0026ebedd253960a590ef586301d013e2d0b8146cb2cb71fdef71e56"
+    },
+    "adapt_excel_1791907938957103600/RPFEM_logs/20261014_011226_8092_fixed_lower_fs_small.tsv.original_lower_dual_solve_16_candidate_0.bin": {
+      "size": 46004,
+      "sha256": "a4a16e94abbc1b81923eeb57849d8e62133725db054f40014206824e3f3ef752"
+    },
+    "adapt_excel_1791907938957103600/RPFEM_logs/20261014_011226_8092_fixed_lower_fs_small.tsv.original_lower_dual_solve_16_candidate_0.context.tsv": {
+      "size": 66176,
+      "sha256": "38e533f0390f1bfc1d0c609a3c74fdabf0e4ff6b6f47998d26454294af6e570e"
+    },
+    "adapt_excel_1791907938957103600/RPFEM_logs/20261014_011226_8092_fixed_lower_fs_small.tsv.original_lower_dual_solve_17_candidate_0.bin": {
+      "size": 46004,
+      "sha256": "4ea7c46bbb0b38819b511502c7618defd38e21473a190229fcf9f2fc593370ec"
+    },
+    "adapt_excel_1791907938957103600/RPFEM_logs/20261014_011226_8092_fixed_lower_fs_small.tsv.original_lower_dual_solve_17_candidate_0.context.tsv": {
+      "size": 66176,
+      "sha256": "9f6d980d70e560fed80b34b08a1f5b83d2d73499955c50747a11af786aaf161d"
+    },
+    "adapt_excel_1791907938957103600/RPFEM_logs/20261014_011226_8092_fixed_lower_fs_small.tsv.original_lower_dual_solve_18_candidate_0.bin": {
+      "size": 46004,
+      "sha256": "048c80b8a8ff8d599391a48a2277279e737b8edcaa537c52807d94ee0f7585c0"
+    },
+    "adapt_excel_1791907938957103600/RPFEM_logs/20261014_011226_8092_fixed_lower_fs_small.tsv.original_lower_dual_solve_18_candidate_0.context.tsv": {
+      "size": 66176,
+      "sha256": "241bf6c9dd449e25b4987249a3311dc58ee93a9cee26d3499078ce3768920e41"
+    },
+    "adapt_excel_1791907938957103600/RPFEM_logs/20261014_011226_8092_fixed_lower_fs_small.tsv.original_lower_dual_solve_19_candidate_0.bin": {
+      "size": 46004,
+      "sha256": "8ac7b50b3c8683bc1f84efc4f716da04928a4d7c899f661bf7cfa5dc7662e574"
+    },
+    "adapt_excel_1791907938957103600/RPFEM_logs/20261014_011226_8092_fixed_lower_fs_small.tsv.original_lower_dual_solve_19_candidate_0.context.tsv": {
+      "size": 66176,
+      "sha256": "8b2bb8bb6c563b7500f80de3c717ed008b53f2a94fc36c971bc8279840611671"
+    },
+    "adapt_excel_1791907938957103600/RPFEM_logs/20261014_011226_8092_fixed_lower_fs_small.tsv.original_lower_dual_solve_5_candidate_0.bin": {
+      "size": 46004,
+      "sha256": "cf62b9cd22d6d6bede59d2df43edacabae4e90d9a1bf533dd13d5c049b4ea0d6"
+    },
+    "adapt_excel_1791907938957103600/RPFEM_logs/20261014_011226_8092_fixed_lower_fs_small.tsv.original_lower_dual_solve_5_candidate_0.context.tsv": {
+      "size": 66176,
+      "sha256": "09fcf08aa286032352d44b2d3f28a63c63e2fa76c7d894b842a1799c790eaaf7"
+    },
+    "adapt_excel_1791907938957103600/RPFEM_logs/20261014_011226_8092_fixed_lower_fs_small.tsv.original_lower_dual_solve_8_candidate_0.bin": {
+      "size": 46004,
+      "sha256": "5cef826379faa4db0da7b325111bb736a525f7f5052fda5e0e88a82ab40bc980"
+    },
+    "adapt_excel_1791907938957103600/RPFEM_logs/20261014_011226_8092_fixed_lower_fs_small.tsv.original_lower_dual_solve_8_candidate_0.context.tsv": {
+      "size": 66176,
+      "sha256": "e28b5c34e22221a0d7e227c2601a74e249aac62fd5dd22f956701cda6a295241"
+    },
+    "adapt_excel_1791907938957103600/RPFEM_logs/20261014_011226_8092_fixed_lower_fs_small.tsv.original_lower_dual_solve_9_candidate_0.bin": {
+      "size": 46004,
+      "sha256": "b9a929b4eaabcdf6cdb7afdf3b48509e8ac92dda7890bada952c1da6c770c9e6"
+    },
+    "adapt_excel_1791907938957103600/RPFEM_logs/20261014_011226_8092_fixed_lower_fs_small.tsv.original_lower_dual_solve_9_candidate_0.context.tsv": {
+      "size": 66176,
+      "sha256": "d927971bbf3540eace2ddfbfe660323acf23201d895b77d9fb60fb68ba2f9d2d"
+    },
+    "adapt_excel_1791907938957103600/summary.json": {
+      "size": 2701,
+      "sha256": "e116aa75ceba13240c944298bb07cef4c597cc50d5130b4aa020fc68a62b6c46"
+    },
+    "adapt_excel_1791908292891767200/fixed_c0.tsv": {
+      "size": 7052,
+      "sha256": "f0b91103cd80192943500838aafb81a1a1670e50bb29a0d382993874c0f6d30a"
+    },
+    "adapt_excel_1791908292891767200/fixed_c0.tsv.free_field.bin": {
+      "size": 3476,
+      "sha256": "fb1104cd04910d98405543ce157b89e01c0cb8a29ff6d36bee932749866d2e32"
+    },
+    "adapt_excel_1791908292891767200/fixed_c0.tsv.free_original.bin": {
+      "size": 40084,
+      "sha256": "dffd0d5378816ef4db53fb6e81274d8f9fa634140457b0f5c438fa0730bd9b50"
+    },
+    "adapt_excel_1791908292891767200/fixed_cohesive.tsv": {
+      "size": 8956,
+      "sha256": "ed3866113b33662e2f562f604759adc8e37bb08aaed08e19b5326ec565b549f5"
+    },
+    "adapt_excel_1791908292891767200/fixed_cohesive.tsv.free_field.bin": {
+      "size": 2900,
+      "sha256": "70888438303bc196a9fcb757d1a0df26b7c472b0a3c77a28dfd4d0dac45d1411"
+    },
+    "adapt_excel_1791908292891767200/fixed_cohesive.tsv.free_original.bin": {
+      "size": 33628,
+      "sha256": "aef01c9d30b3ad2251f7b738af4eda8c36905266e286f7aaa5a98e0f20b98885"
+    },
+    "adapt_excel_1791908292891767200/RPFEM_logs/20261014_011820_6484_fixed_lower_recovery_small.tsv": {
+      "size": 348508,
+      "sha256": "adac58017b383c2128ff2b1160ce672127e4e3003e9f4b34c67d1f9fad17aa0b"
+    },
+    "adapt_excel_1791908292891767200/RPFEM_logs/20261014_011838_6484_fixed_lower_recovery_small.tsv": {
+      "size": 487288,
+      "sha256": "a82d4762eeff5737a0909c909e89e602e41b14aae19add4cb3d1be0f383ecb5c"
+    },
+    "adapt_excel_1791908292891767200/summary.json": {
+      "size": 3223,
+      "sha256": "7c807c602bbdab11ecb670b26a7724805fb27e7b1bda092653566cbb3c4f09e0"
+    },
+    "adapt_excel_1791908375927363000/c0_wedge_native.tsv": {
+      "size": 7372,
+      "sha256": "cdbcee0c1bde18ca71f98f5eca1a50e9ca14cb5a420b8708fd723fa264a7d0c6"
+    },
+    "adapt_excel_1791908375927363000/c0_wedge_native.tsv.negative_context.tsv": {
+      "size": 13444,
+      "sha256": "c2a671e24f14ea5f7a8f6a95f67fd6ad7a271b13e17c715c5491c6c69e5eb9c4"
+    },
+    "adapt_excel_1791908375927363000/c0_wedge_native.tsv.negative_field.bin": {
+      "size": 780,
+      "sha256": "30eb457aa1808cd71d02ccb90747a89c46d5c68726617f2f31145004c7f78ea6"
+    },
+    "adapt_excel_1791908375927363000/c0_wedge_native.tsv.negative_program.bin": {
+      "size": 34700,
+      "sha256": "59d8b354cec5987b9f748b3986712d136f535a8fc9e7428a9797d32c6c513f0f"
+    },
+    "adapt_excel_1791908375927363000/original_evidence_replay.json": {
+      "size": 1882,
+      "sha256": "f9afd6b3a506a05b8180a2777a3c423a592d4de3a2c82220560edf4a6fc4fbca"
+    },
+    "adapt_excel_1791908375927363000/RPFEM_logs/20261014_011942_4428_c0_wedge_native.tsv": {
+      "size": 1223310,
+      "sha256": "63b31d64cd99749a0fc1b1b91091db5972b8c1f9659c315f8d5982eb2aea04bf"
+    },
+    "adapt_excel_1791908375927363000/RPFEM_logs/20261014_011942_4428_c0_wedge_native.tsv.original_guide_solve_1_candidate_1.bin": {
+      "size": 40848,
+      "sha256": "e8f227bb3d0215c59d1e9e56129ae066735ed13b76f420910d90130ec5c413d2"
+    },
+    "adapt_excel_1791908375927363000/RPFEM_logs/20261014_011942_4428_c0_wedge_native.tsv.original_guide_solve_1_candidate_1.context.tsv": {
+      "size": 13444,
+      "sha256": "3d61dc8db18d3803e796d5bc312d320afc19e0db5335232df0adbfbedfe29240"
+    },
+    "adapt_excel_1791908375927363000/RPFEM_logs/20261014_011942_4428_c0_wedge_native.tsv.original_guide_solve_4_candidate_1.bin": {
+      "size": 40848,
+      "sha256": "f43b5ed4d431a297511058ee9fd2c3577c5044045262abc5b0f3be4d7e1c33ed"
+    },
+    "adapt_excel_1791908375927363000/RPFEM_logs/20261014_011942_4428_c0_wedge_native.tsv.original_guide_solve_4_candidate_1.context.tsv": {
+      "size": 13444,
+      "sha256": "b50c67386d3c0f5a306d530f313fa58e09beab8ad480b84f280cca6da84a9670"
+    },
+    "adapt_excel_1791908375927363000/RPFEM_logs/20261014_011942_4428_c0_wedge_native.tsv.original_guide_solve_7_candidate_1.bin": {
+      "size": 40848,
+      "sha256": "bdb5e41010d44ccb988a695ccd95a79e46274a3e0d27de57358fc64eef138066"
+    },
+    "adapt_excel_1791908375927363000/RPFEM_logs/20261014_011942_4428_c0_wedge_native.tsv.original_guide_solve_7_candidate_1.context.tsv": {
+      "size": 13444,
+      "sha256": "263465cc53fc99c6cce0a9fbc796c0e3b953012b3c5653458134ed3bde329202"
+    },
+    "adapt_excel_1791908375927363000/summary.json": {
+      "size": 5123,
+      "sha256": "a890ece9b0581af7e93c1fc8898b7860b75adb9af47a75f17307ca0c55d471cf"
+    },
+    "adapt_excel_1791910801411367300/fixed_fs.tsv": {
+      "size": 26139,
+      "sha256": "e734775a6ac294fa7ca486cabb13a220ed661e1ec753c6eeb285121d3437291c"
+    },
+    "adapt_excel_1791910801411367300/fixed_fs.tsv.endpoint_context.tsv": {
+      "size": 66176,
+      "sha256": "52d01c5b435e11f5be7b80a579756049a438b90c0a313272da7f485ad840ffd7"
+    },
+    "adapt_excel_1791910801411367300/fixed_fs.tsv.free_field.bin": {
+      "size": 2900,
+      "sha256": "37141d1549da3d4410a7f3d657ba956a3735c2f31acf9ba531c12110a7c03cba"
+    },
+    "adapt_excel_1791910801411367300/fixed_fs.tsv.free_original.bin": {
+      "size": 33628,
+      "sha256": "0462ff2102271d16c5334d4b0727264c3fb305e1a640a0ba31fb00257da1618b"
+    },
+    "adapt_excel_1791910801411367300/original_lower_evidence_replay.json": {
+      "size": 7173,
+      "sha256": "24d6372c1300b77641f002cc6da0cd1eacdc5c39588de1e79ff87ccbca4ab075"
+    },
+    "adapt_excel_1791910801411367300/RPFEM_logs/20261014_020010_9368_fixed_lower_fs_small.tsv": {
+      "size": 1030168,
+      "sha256": "df3947db374caf0085619cf31f21e6fccd73552258dffe6bacc679c7d0ce2890"
+    },
+    "adapt_excel_1791910801411367300/RPFEM_logs/20261014_020010_9368_fixed_lower_fs_small.tsv.original_lower_dual_solve_10_candidate_0.bin": {
+      "size": 46004,
+      "sha256": "3356188853b98d74c8ecc6284e686783fd21b033a80c94890354cd04effa2161"
+    },
+    "adapt_excel_1791910801411367300/RPFEM_logs/20261014_020010_9368_fixed_lower_fs_small.tsv.original_lower_dual_solve_10_candidate_0.context.tsv": {
+      "size": 66176,
+      "sha256": "6377cc7b7fd9b0027e4c9fa9f1ee4727f0477f6f1faf4387773cb5b9f33d64f0"
+    },
+    "adapt_excel_1791910801411367300/RPFEM_logs/20261014_020010_9368_fixed_lower_fs_small.tsv.original_lower_dual_solve_11_candidate_0.bin": {
+      "size": 46004,
+      "sha256": "f5edf83de4713b597980d7deebfe1b5452d42e0a6191a2258052e3b6364401a5"
+    },
+    "adapt_excel_1791910801411367300/RPFEM_logs/20261014_020010_9368_fixed_lower_fs_small.tsv.original_lower_dual_solve_11_candidate_0.context.tsv": {
+      "size": 66176,
+      "sha256": "2b88bfaf5bfd208cd83ef08cdf827e6692127be269ea3d9fc52cb8cefea58ab0"
+    },
+    "adapt_excel_1791910801411367300/RPFEM_logs/20261014_020010_9368_fixed_lower_fs_small.tsv.original_lower_dual_solve_12_candidate_0.bin": {
+      "size": 46004,
+      "sha256": "c61063f18d320a7b21eda43342443e59532bc8723b800354735f4dd51c56cd5c"
+    },
+    "adapt_excel_1791910801411367300/RPFEM_logs/20261014_020010_9368_fixed_lower_fs_small.tsv.original_lower_dual_solve_12_candidate_0.context.tsv": {
+      "size": 66176,
+      "sha256": "5831d8a8d783e0b579f6bea638891b2dba672f1ac9cccfe129d4a83a1d2e3343"
+    },
+    "adapt_excel_1791910801411367300/RPFEM_logs/20261014_020010_9368_fixed_lower_fs_small.tsv.original_lower_dual_solve_13_candidate_0.bin": {
+      "size": 46004,
+      "sha256": "81b83d90b5a44245721690e1956cad07cff8ad0ecc79b41f45933c39839c1cbc"
+    },
+    "adapt_excel_1791910801411367300/RPFEM_logs/20261014_020010_9368_fixed_lower_fs_small.tsv.original_lower_dual_solve_13_candidate_0.context.tsv": {
+      "size": 66176,
+      "sha256": "14c65847c92f6f89a743ee3a6657cd752ee6003ca63f5a5d4d5a6326bd6c6e36"
+    },
+    "adapt_excel_1791910801411367300/RPFEM_logs/20261014_020010_9368_fixed_lower_fs_small.tsv.original_lower_dual_solve_14_candidate_0.bin": {
+      "size": 46004,
+      "sha256": "2b595aa1056db3664b7a6ad0f88e35dddba4deb628a77e1d3a58fc116ad28315"
+    },
+    "adapt_excel_1791910801411367300/RPFEM_logs/20261014_020010_9368_fixed_lower_fs_small.tsv.original_lower_dual_solve_14_candidate_0.context.tsv": {
+      "size": 66176,
+      "sha256": "d5c8d87f0026ebedd253960a590ef586301d013e2d0b8146cb2cb71fdef71e56"
+    },
+    "adapt_excel_1791910801411367300/RPFEM_logs/20261014_020010_9368_fixed_lower_fs_small.tsv.original_lower_dual_solve_15_candidate_0.bin": {
+      "size": 46004,
+      "sha256": "a4a16e94abbc1b81923eeb57849d8e62133725db054f40014206824e3f3ef752"
+    },
+    "adapt_excel_1791910801411367300/RPFEM_logs/20261014_020010_9368_fixed_lower_fs_small.tsv.original_lower_dual_solve_15_candidate_0.context.tsv": {
+      "size": 66176,
+      "sha256": "38e533f0390f1bfc1d0c609a3c74fdabf0e4ff6b6f47998d26454294af6e570e"
+    },
+    "adapt_excel_1791910801411367300/RPFEM_logs/20261014_020010_9368_fixed_lower_fs_small.tsv.original_lower_dual_solve_16_candidate_0.bin": {
+      "size": 46004,
+      "sha256": "4ea7c46bbb0b38819b511502c7618defd38e21473a190229fcf9f2fc593370ec"
+    },
+    "adapt_excel_1791910801411367300/RPFEM_logs/20261014_020010_9368_fixed_lower_fs_small.tsv.original_lower_dual_solve_16_candidate_0.context.tsv": {
+      "size": 66176,
+      "sha256": "9f6d980d70e560fed80b34b08a1f5b83d2d73499955c50747a11af786aaf161d"
+    },
+    "adapt_excel_1791910801411367300/RPFEM_logs/20261014_020010_9368_fixed_lower_fs_small.tsv.original_lower_dual_solve_17_candidate_0.bin": {
+      "size": 46004,
+      "sha256": "048c80b8a8ff8d599391a48a2277279e737b8edcaa537c52807d94ee0f7585c0"
+    },
+    "adapt_excel_1791910801411367300/RPFEM_logs/20261014_020010_9368_fixed_lower_fs_small.tsv.original_lower_dual_solve_17_candidate_0.context.tsv": {
+      "size": 66176,
+      "sha256": "241bf6c9dd449e25b4987249a3311dc58ee93a9cee26d3499078ce3768920e41"
+    },
+    "adapt_excel_1791910801411367300/RPFEM_logs/20261014_020010_9368_fixed_lower_fs_small.tsv.original_lower_dual_solve_18_candidate_0.bin": {
+      "size": 46004,
+      "sha256": "8ac7b50b3c8683bc1f84efc4f716da04928a4d7c899f661bf7cfa5dc7662e574"
+    },
+    "adapt_excel_1791910801411367300/RPFEM_logs/20261014_020010_9368_fixed_lower_fs_small.tsv.original_lower_dual_solve_18_candidate_0.context.tsv": {
+      "size": 66176,
+      "sha256": "8b2bb8bb6c563b7500f80de3c717ed008b53f2a94fc36c971bc8279840611671"
+    },
+    "adapt_excel_1791910801411367300/RPFEM_logs/20261014_020010_9368_fixed_lower_fs_small.tsv.original_lower_dual_solve_21_candidate_0.bin": {
+      "size": 46004,
+      "sha256": "9bebf2013a0e2e7aa62865cbde24e76ee70443436233f6f6d7613c17d7a30e96"
+    },
+    "adapt_excel_1791910801411367300/RPFEM_logs/20261014_020010_9368_fixed_lower_fs_small.tsv.original_lower_dual_solve_21_candidate_0.context.tsv": {
+      "size": 66176,
+      "sha256": "b1d107c76797968d59120afc1a7f0d22a44e9d5a267b441a1fe8e76fa1684f12"
+    },
+    "adapt_excel_1791910801411367300/RPFEM_logs/20261014_020010_9368_fixed_lower_fs_small.tsv.original_lower_dual_solve_4_candidate_0.bin": {
+      "size": 46004,
+      "sha256": "cf62b9cd22d6d6bede59d2df43edacabae4e90d9a1bf533dd13d5c049b4ea0d6"
+    },
+    "adapt_excel_1791910801411367300/RPFEM_logs/20261014_020010_9368_fixed_lower_fs_small.tsv.original_lower_dual_solve_4_candidate_0.context.tsv": {
+      "size": 66176,
+      "sha256": "09fcf08aa286032352d44b2d3f28a63c63e2fa76c7d894b842a1799c790eaaf7"
+    },
+    "adapt_excel_1791910801411367300/RPFEM_logs/20261014_020010_9368_fixed_lower_fs_small.tsv.original_lower_dual_solve_7_candidate_0.bin": {
+      "size": 46004,
+      "sha256": "5cef826379faa4db0da7b325111bb736a525f7f5052fda5e0e88a82ab40bc980"
+    },
+    "adapt_excel_1791910801411367300/RPFEM_logs/20261014_020010_9368_fixed_lower_fs_small.tsv.original_lower_dual_solve_7_candidate_0.context.tsv": {
+      "size": 66176,
+      "sha256": "e28b5c34e22221a0d7e227c2601a74e249aac62fd5dd22f956701cda6a295241"
+    },
+    "adapt_excel_1791910801411367300/RPFEM_logs/20261014_020010_9368_fixed_lower_fs_small.tsv.original_lower_dual_solve_8_candidate_0.bin": {
+      "size": 46004,
+      "sha256": "b9a929b4eaabcdf6cdb7afdf3b48509e8ac92dda7890bada952c1da6c770c9e6"
+    },
+    "adapt_excel_1791910801411367300/RPFEM_logs/20261014_020010_9368_fixed_lower_fs_small.tsv.original_lower_dual_solve_8_candidate_0.context.tsv": {
+      "size": 66176,
+      "sha256": "d927971bbf3540eace2ddfbfe660323acf23201d895b77d9fb60fb68ba2f9d2d"
+    },
+    "adapt_excel_1791910801411367300/RPFEM_logs/20261014_020010_9368_fixed_lower_fs_small.tsv.original_lower_dual_solve_9_candidate_0.bin": {
+      "size": 46004,
+      "sha256": "02184c51fc33879c9df0a0fb9fbd242d4b66d8a97372a167cabba91ccca58b21"
+    },
+    "adapt_excel_1791910801411367300/RPFEM_logs/20261014_020010_9368_fixed_lower_fs_small.tsv.original_lower_dual_solve_9_candidate_0.context.tsv": {
+      "size": 66176,
+      "sha256": "5bb4687e530c9f8cbaeb66977e323665dc9b1b17f54d1ab55952b1a344ac24f7"
+    },
+    "adapt_excel_1791910801411367300/summary.json": {
+      "size": 10457,
+      "sha256": "e7b8f9aaa75f0a51c9ff3aebbf1c7922f0348f36d6a95e1d33e7168dcafa2876"
+    }
+  },
+  "runs": [
+    {
+      "directory": "python_field_excel_1791903229682201900",
+      "status": "PASS",
+      "pid": 12992,
+      "source_sha256": {
+        "versions\\G1R18\\src\\vba\\RPX_AccuracyMesh.bas": "edd305d25a500d23305648eef977007aad6acd4056def5ed6d0d41949727708c",
+        "versions\\G1R18\\src\\vba\\RPX_Adapt.bas": "3c01d098a69ed31526c15055b63f4a5a32d2af992eeb115b7ecae805f419f6f7",
+        "versions\\G1R18\\src\\vba\\RPX_Guard.bas": "9fd387b1a6ed1edfac0f2e0572142f81e54ee056c79f8391b34a3f38caa16fcc",
+        "versions\\G1R18\\src\\vba\\RPX_Seep.bas": "7549018ba8434c7c96ed6908e0ee0a30dbb0ed8c3b5d229786966f873ab385df",
+        "versions\\G1R18\\src\\vba\\RPX_SeepUI.bas": "baa15059460742473d92500208a18abf44ea325e4086ab94f271c5fae93bda53",
+        "versions\\G1R18_RayGate\\src\\vba\\RPX_AccuracyMesh.bas": "ec54485fb54a8ad6568a5b138c3db8f46ec7f397c3197d76117ba8c1d8c7d08f",
+        "versions\\G1R18_RayGate\\src\\vba\\RPX_Adapt.bas": "a41ee3c9c32993d24a9d2291a84f3fd8a43145f98927d03e39afbb2eae017742",
+        "versions\\G1R18_RayGate\\src\\vba\\RPX_Conic.bas": "6d929b51f3550f9e0635c31942cc538610ec7fa9c045868a67e17fd98779ff9f",
+        "versions\\G1R18_RayGate\\src\\vba\\RPX_Fs.bas": "4e6281fcd48225d194de83db886c58e25b2216c6f08f078d114e1abc238ff434",
+        "versions\\G1R18_RayGate\\src\\vba\\RPX_HSDCandidate.bas": "3d46f373a408d80ed3fb9a81b25bd9883b4897823a1453f6d3ad4d33ec64f68c",
+        "versions\\G1R18_RayGate\\src\\vba\\RPX_LowerCache.bas": "98fcad47f7fd081a7a8a0017ad52e8f29186447945fc790cb7968e3c3e35be80",
+        "versions\\G1R18_RayGate\\src\\vba\\RPX_Solve.bas": "661e25fa4cd5b3f8cbe848973bd4ee54c3aef0d34604cb912479ecb850760ce3",
+        "versions\\G1R18\\tests\\PythonWitnessProbe.bas": "2f7e01eae7a467b4771e78b9a4efde3b3aaf8d79b664729ee68920086a8350ce"
+      },
+      "source": {
+        "case": "P06N",
+        "mode": "lower",
+        "fs": 0.6767836604585639,
+        "q": 8,
+        "mesh_id": "b31de7fbb890551ce272ad7b07fe6ff5b8454514e861e8d148128d783b4aa586",
+        "physical_model_id": "08cc8e73e85408e7a82cbe79b5716ef007cb917d00e021872c40e510b5d17525",
+        "elements": 5594,
+        "output": "D:\\Work\\excel-vba-rpfem\\versions\\G1R18\\results\\python_field_excel_1791903229682201900\\P06N_lower_source.bin",
+        "binary_sha256": "08fb1157e9d8667f2d6167367a01fe8a81a7b884d550de4bcecdad5e869693b6",
+        "source_sha256": {
+          "D:\\Work\\excel-vba-rpfem\\validation\\accuracy_20261013\\results\\n_lower_anglefan5594_close\\P06N\\best_lower_mesh.npz": "98ee467c00c8d0257fadede56a0060c5eb9dd54751c7a9603c9593b545be104e",
+          "D:\\Work\\excel-vba-rpfem\\validation\\accuracy_20261013\\results\\n_lower_anglefan5594_close\\P06N\\best_lower_field.npz": "f77d6a306a14f0a9f553b14c559ce9ccdb5de43a6d615ae0c1e9f2c0f644771a",
+          "D:\\Work\\excel-vba-rpfem\\validation\\accuracy_20261013\\results\\n_lower_anglefan5594_close\\P06N\\best_lower_certificate.json": "a0534b1909757fd6056978bc00f166741aac86744f572d11bccd919e4953189c"
+        },
+        "source_code_sha256": {
+          "D:\\Work\\excel-vba-rpfem\\versions\\G1R18\\tests\\export_python_witness.py": "b529004df54bddd76c09eeda16fdec7519b03991df27124925c4bfb0d04c2cbf",
+          "D:\\Work\\excel-vba-rpfem\\validation\\accuracy_20261013\\python\\experiment_core.py": "da094f81552769e14f2b2058b6cc99007fd7e8d93a531d6033e1ea859f697325",
+          "D:\\Work\\excel-vba-rpfem\\validation\\accuracy_20261013\\python\\accuracy_driver.py": "6fbc9761c37bd72046c4083ac8a40030999a74906bcc6b049ea18b5120e15c3c"
+        },
+        "fresh_original_audit": {
+          "objective": -1.0000072858306948,
+          "value": 1.0000072858306948,
+          "eq_error": 8.484185576307368e-14,
+          "cone_error": 0.0,
+          "audit": {
+            "pass": true,
+            "errors": {
+              "yield": 0.0,
+              "equilibrium": 6.718892109347507e-11,
+              "internal_traction": 1.2001510896197942e-13,
+              "boundary_traction": 5.551115123125783e-17
+            },
+            "load": 1.0000072858306948,
+            "value": 1.0000072858306948
+          },
+          "raw_lower_errors": {
+            "yield": 0.0,
+            "equilibrium": 1.3437784218695015e-09,
+            "internal_traction": 2.4003021792395884e-12,
+            "boundary_traction": 1.1102230246251565e-15
+          },
+          "physical_pass": true,
+          "witness": true,
+          "numerical_gate": false
+        },
+        "scope": "primal field only; no solver status, dual, root, bracket, or precision result imported"
+      },
+      "results": null,
+      "purpose": "Completed audit/regression; no native precision achievement inferred"
+    },
+    {
+      "directory": "python_field_excel_1791903712492988200",
+      "status": "PASS",
+      "pid": 19716,
+      "source_sha256": {
+        "versions\\G1R18\\src\\vba\\RPX_AccuracyMesh.bas": "edd305d25a500d23305648eef977007aad6acd4056def5ed6d0d41949727708c",
+        "versions\\G1R18\\src\\vba\\RPX_Adapt.bas": "3c01d098a69ed31526c15055b63f4a5a32d2af992eeb115b7ecae805f419f6f7",
+        "versions\\G1R18\\src\\vba\\RPX_Guard.bas": "9fd387b1a6ed1edfac0f2e0572142f81e54ee056c79f8391b34a3f38caa16fcc",
+        "versions\\G1R18\\src\\vba\\RPX_Seep.bas": "7549018ba8434c7c96ed6908e0ee0a30dbb0ed8c3b5d229786966f873ab385df",
+        "versions\\G1R18\\src\\vba\\RPX_SeepUI.bas": "baa15059460742473d92500208a18abf44ea325e4086ab94f271c5fae93bda53",
+        "versions\\G1R18_RayGate\\src\\vba\\RPX_AccuracyMesh.bas": "ec54485fb54a8ad6568a5b138c3db8f46ec7f397c3197d76117ba8c1d8c7d08f",
+        "versions\\G1R18_RayGate\\src\\vba\\RPX_Adapt.bas": "a41ee3c9c32993d24a9d2291a84f3fd8a43145f98927d03e39afbb2eae017742",
+        "versions\\G1R18_RayGate\\src\\vba\\RPX_Conic.bas": "6d929b51f3550f9e0635c31942cc538610ec7fa9c045868a67e17fd98779ff9f",
+        "versions\\G1R18_RayGate\\src\\vba\\RPX_Fs.bas": "4e6281fcd48225d194de83db886c58e25b2216c6f08f078d114e1abc238ff434",
+        "versions\\G1R18_RayGate\\src\\vba\\RPX_HSDCandidate.bas": "3d46f373a408d80ed3fb9a81b25bd9883b4897823a1453f6d3ad4d33ec64f68c",
+        "versions\\G1R18_RayGate\\src\\vba\\RPX_LowerCache.bas": "98fcad47f7fd081a7a8a0017ad52e8f29186447945fc790cb7968e3c3e35be80",
+        "versions\\G1R18_RayGate\\src\\vba\\RPX_Solve.bas": "661e25fa4cd5b3f8cbe848973bd4ee54c3aef0d34604cb912479ecb850760ce3",
+        "versions\\G1R18\\tests\\PythonWitnessProbe.bas": "48adff76c69223271ad3f76f54e60a050b1609bba507ffb52ddd12ef1b9751db"
+      },
+      "source": {
+        "case": "P06N",
+        "mode": "upper",
+        "fs": 0.6914407501171215,
+        "q": 8,
+        "mesh_id": "ac54daa613bf3492792ef1592fbe534ebb04a15e3ff0edbc10730b4c49eafdd5",
+        "physical_model_id": "08cc8e73e85408e7a82cbe79b5716ef007cb917d00e021872c40e510b5d17525",
+        "elements": 6106,
+        "output": "D:\\Work\\excel-vba-rpfem\\versions\\G1R18\\results\\python_field_excel_1791903712492988200\\P06N_upper_source.bin",
+        "binary_sha256": "ed37eb01c086fce3170e11529042b505d1f7193e132c0cd66359c48de5b2d76c",
+        "source_sha256": {
+          "D:\\Work\\excel-vba-rpfem\\validation\\accuracy_20261013\\results\\n_flow6106_jump1_close\\P06N\\best_upper_mesh.npz": "d787a86d92f16580b57facb962b747893c571b2f0f353544e9726ba6e4decd7e",
+          "D:\\Work\\excel-vba-rpfem\\validation\\accuracy_20261013\\results\\n_flow6106_jump1_close\\P06N\\best_upper_field.npz": "4b92e3d4205e98f8c826129d1672d9f9340c96fc17d7c109ffafb5ac09c9bd88",
+          "D:\\Work\\excel-vba-rpfem\\validation\\accuracy_20261013\\results\\n_flow6106_jump1_close\\P06N\\best_upper_certificate.json": "6306f90d12ad787e75593afa0d10cc4caf1889a1cd6896c675f81e00ccda698a"
+        },
+        "source_code_sha256": {
+          "D:\\Work\\excel-vba-rpfem\\versions\\G1R18\\tests\\export_python_witness.py": "b529004df54bddd76c09eeda16fdec7519b03991df27124925c4bfb0d04c2cbf",
+          "D:\\Work\\excel-vba-rpfem\\validation\\accuracy_20261013\\python\\experiment_core.py": "9a9e60b6d69ba4008ea89608f433bb716b433436715c45566bd209418ee9238e",
+          "D:\\Work\\excel-vba-rpfem\\validation\\accuracy_20261013\\python\\accuracy_driver.py": "6fbc9761c37bd72046c4083ac8a40030999a74906bcc6b049ea18b5120e15c3c"
+        },
+        "fresh_original_audit": {
+          "objective": 0.9993533323355563,
+          "value": 0.9993533323355572,
+          "eq_error": 2.32314167902814e-13,
+          "cone_error": 1.3364310503471893e-10,
+          "audit": {
+            "pass": true,
+            "errors": {
+              "flow": 7.748088807310498e-11,
+              "jump": 4.964575473916321e-12,
+              "bonded_interface": 0.0,
+              "boundary": 0.0,
+              "work": 2.651434627409799e-12,
+              "objective": 8.881784197001252e-16
+            },
+            "dissipation": 0.9993533323355572,
+            "work": [
+              0.0,
+              1.0000000000026514
+            ],
+            "value": 0.9993533323355572
+          },
+          "raw_lower_errors": {},
+          "physical_pass": true,
+          "witness": true,
+          "numerical_gate": false
+        },
+        "scope": "primal field only; no solver status, dual, root, bracket, or precision result imported"
+      },
+      "results": null,
+      "purpose": "Completed audit/regression; no native precision achievement inferred"
+    },
+    {
+      "directory": "python_field_excel_1791903997288551900",
+      "status": "PASS",
+      "pid": 17596,
+      "source_sha256": {
+        "versions\\G1R18\\src\\vba\\RPX_AccuracyMesh.bas": "edd305d25a500d23305648eef977007aad6acd4056def5ed6d0d41949727708c",
+        "versions\\G1R18\\src\\vba\\RPX_Adapt.bas": "3c01d098a69ed31526c15055b63f4a5a32d2af992eeb115b7ecae805f419f6f7",
+        "versions\\G1R18\\src\\vba\\RPX_Guard.bas": "9fd387b1a6ed1edfac0f2e0572142f81e54ee056c79f8391b34a3f38caa16fcc",
+        "versions\\G1R18\\src\\vba\\RPX_Seep.bas": "7549018ba8434c7c96ed6908e0ee0a30dbb0ed8c3b5d229786966f873ab385df",
+        "versions\\G1R18\\src\\vba\\RPX_SeepUI.bas": "baa15059460742473d92500208a18abf44ea325e4086ab94f271c5fae93bda53",
+        "versions\\G1R18_RayGate\\src\\vba\\RPX_AccuracyMesh.bas": "ec54485fb54a8ad6568a5b138c3db8f46ec7f397c3197d76117ba8c1d8c7d08f",
+        "versions\\G1R18_RayGate\\src\\vba\\RPX_Adapt.bas": "a41ee3c9c32993d24a9d2291a84f3fd8a43145f98927d03e39afbb2eae017742",
+        "versions\\G1R18_RayGate\\src\\vba\\RPX_Conic.bas": "6d929b51f3550f9e0635c31942cc538610ec7fa9c045868a67e17fd98779ff9f",
+        "versions\\G1R18_RayGate\\src\\vba\\RPX_Fs.bas": "4e6281fcd48225d194de83db886c58e25b2216c6f08f078d114e1abc238ff434",
+        "versions\\G1R18_RayGate\\src\\vba\\RPX_HSDCandidate.bas": "3d46f373a408d80ed3fb9a81b25bd9883b4897823a1453f6d3ad4d33ec64f68c",
+        "versions\\G1R18_RayGate\\src\\vba\\RPX_LowerCache.bas": "98fcad47f7fd081a7a8a0017ad52e8f29186447945fc790cb7968e3c3e35be80",
+        "versions\\G1R18_RayGate\\src\\vba\\RPX_Solve.bas": "661e25fa4cd5b3f8cbe848973bd4ee54c3aef0d34604cb912479ecb850760ce3",
+        "versions\\G1R18\\tests\\PythonWitnessProbe.bas": "48adff76c69223271ad3f76f54e60a050b1609bba507ffb52ddd12ef1b9751db"
+      },
+      "source": {
+        "case": "P06A",
+        "mode": "upper",
+        "fs": 0.861,
+        "q": 8,
+        "mesh_id": "36326ef9a8e69f87f0f725109db5cc60760ebd65d89fca9d9874811b38ee7fbc",
+        "physical_model_id": "f67b757898e3bcc3f45c5ea9b5a8e290955fad53f5900c5cd8c31b9637d51875",
+        "elements": 5659,
+        "output": "D:\\Work\\excel-vba-rpfem\\versions\\G1R18\\results\\python_field_excel_1791903997288551900\\P06A_upper_source.bin",
+        "binary_sha256": "5ed7998690292adc68bc7be99faaa2ee5f909825026e71eb8367ef24fc8959fd",
+        "source_sha256": {
+          "D:\\Work\\excel-vba-rpfem\\validation\\accuracy_20261013\\results\\a_jump_flow5659\\P06A\\best_upper_mesh.npz": "cd2f9844b1ea14bf8e260a4fe8b141eca320d20d155ce57ecf29c14d34dd2ade",
+          "D:\\Work\\excel-vba-rpfem\\validation\\accuracy_20261013\\results\\a_jump_flow5659\\P06A\\best_upper_field.npz": "308382f51be79fe672fcd191be6d8aa1629a43bdfa6984e342c80c45f5fcaee4",
+          "D:\\Work\\excel-vba-rpfem\\validation\\accuracy_20261013\\results\\a_jump_flow5659\\P06A\\best_upper_certificate.json": "2f346ef72933b1f4e30e7fbdc3e6e564986ffece2a2392d57dba4252ce2b0c25"
+        },
+        "source_code_sha256": {
+          "D:\\Work\\excel-vba-rpfem\\versions\\G1R18\\tests\\export_python_witness.py": "b529004df54bddd76c09eeda16fdec7519b03991df27124925c4bfb0d04c2cbf",
+          "D:\\Work\\excel-vba-rpfem\\validation\\accuracy_20261013\\python\\experiment_core.py": "9a9e60b6d69ba4008ea89608f433bb716b433436715c45566bd209418ee9238e",
+          "D:\\Work\\excel-vba-rpfem\\validation\\accuracy_20261013\\python\\accuracy_driver.py": "6fbc9761c37bd72046c4083ac8a40030999a74906bcc6b049ea18b5120e15c3c"
+        },
+        "fresh_original_audit": {
+          "objective": 0.9918571159396856,
+          "value": 0.9918571159396885,
+          "eq_error": 1.2559397966072083e-14,
+          "cone_error": 1.343894046318886e-10,
+          "audit": {
+            "pass": true,
+            "errors": {
+              "flow": 8.479200937027718e-11,
+              "jump": 6.209734053642203e-12,
+              "bonded_interface": 0.0,
+              "boundary": 0.0,
+              "work": 1.3744561044859438e-13,
+              "objective": 2.886579864025407e-15
+            },
+            "dissipation": 0.9918571159396885,
+            "work": [
+              0.0,
+              0.9999999999998626
+            ],
+            "value": 0.9918571159396885
+          },
+          "raw_lower_errors": {},
+          "physical_pass": true,
+          "witness": true,
+          "numerical_gate": false
+        },
+        "scope": "primal field only; no solver status, dual, root, bracket, or precision result imported"
+      },
+      "results": null,
+      "purpose": "Completed audit/regression; no native precision achievement inferred"
+    },
+    {
+      "directory": "python_field_excel_1791904224800777700",
+      "status": "PASS",
+      "pid": 7052,
+      "source_sha256": {
+        "versions\\G1R18\\src\\vba\\RPX_AccuracyMesh.bas": "edd305d25a500d23305648eef977007aad6acd4056def5ed6d0d41949727708c",
+        "versions\\G1R18\\src\\vba\\RPX_Adapt.bas": "3c01d098a69ed31526c15055b63f4a5a32d2af992eeb115b7ecae805f419f6f7",
+        "versions\\G1R18\\src\\vba\\RPX_Guard.bas": "9fd387b1a6ed1edfac0f2e0572142f81e54ee056c79f8391b34a3f38caa16fcc",
+        "versions\\G1R18\\src\\vba\\RPX_Seep.bas": "7549018ba8434c7c96ed6908e0ee0a30dbb0ed8c3b5d229786966f873ab385df",
+        "versions\\G1R18\\src\\vba\\RPX_SeepUI.bas": "baa15059460742473d92500208a18abf44ea325e4086ab94f271c5fae93bda53",
+        "versions\\G1R18_RayGate\\src\\vba\\RPX_AccuracyMesh.bas": "ec54485fb54a8ad6568a5b138c3db8f46ec7f397c3197d76117ba8c1d8c7d08f",
+        "versions\\G1R18_RayGate\\src\\vba\\RPX_Adapt.bas": "a41ee3c9c32993d24a9d2291a84f3fd8a43145f98927d03e39afbb2eae017742",
+        "versions\\G1R18_RayGate\\src\\vba\\RPX_Conic.bas": "6d929b51f3550f9e0635c31942cc538610ec7fa9c045868a67e17fd98779ff9f",
+        "versions\\G1R18_RayGate\\src\\vba\\RPX_Fs.bas": "4e6281fcd48225d194de83db886c58e25b2216c6f08f078d114e1abc238ff434",
+        "versions\\G1R18_RayGate\\src\\vba\\RPX_HSDCandidate.bas": "3d46f373a408d80ed3fb9a81b25bd9883b4897823a1453f6d3ad4d33ec64f68c",
+        "versions\\G1R18_RayGate\\src\\vba\\RPX_LowerCache.bas": "98fcad47f7fd081a7a8a0017ad52e8f29186447945fc790cb7968e3c3e35be80",
+        "versions\\G1R18_RayGate\\src\\vba\\RPX_Solve.bas": "661e25fa4cd5b3f8cbe848973bd4ee54c3aef0d34604cb912479ecb850760ce3",
+        "versions\\G1R18\\tests\\PythonWitnessProbe.bas": "48adff76c69223271ad3f76f54e60a050b1609bba507ffb52ddd12ef1b9751db"
+      },
+      "source": {
+        "case": "P06N",
+        "mode": "upper",
+        "fs": 0.6914407501171215,
+        "q": 8,
+        "mesh_id": "87cdea024b90db6080d2fbdac23f74272ed2bf238abcb3f87cce5b7bd8ff6684",
+        "physical_model_id": "08cc8e73e85408e7a82cbe79b5716ef007cb917d00e021872c40e510b5d17525",
+        "elements": 6106,
+        "output": "D:\\Work\\excel-vba-rpfem\\versions\\G1R18\\results\\python_field_excel_1791904224800777700\\P06N_upper_source.bin",
+        "binary_sha256": "0894b0aa2924dcd26a3d36fbf9e33842f3b7094f0b90f32a2655865f50d66be4",
+        "original_field_vector_sha256": "85e6e595675bb2321154cd433b35bdf1fc60d752c0d10a7e418a8439eee38ed2",
+        "ignored_source_metadata": {
+          "root_complete": true,
+          "solver_status": "AlmostSolved",
+          "imported": false
+        },
+        "source_sha256": {
+          "D:\\Work\\excel-vba-rpfem\\validation\\accuracy_20261013\\results\\n_flow5_c1_close\\P06N\\best_upper_mesh.npz": "1c22f32fc4ffa06c38881617c00b1def68861d944c77f88e6c4892c89cb6a748",
+          "D:\\Work\\excel-vba-rpfem\\validation\\accuracy_20261013\\results\\n_flow5_c1_close\\P06N\\best_upper_field.npz": "975349c8b8058da899bca875a012be7c3e8cd8df40e6effc989a5aac9d139832",
+          "D:\\Work\\excel-vba-rpfem\\validation\\accuracy_20261013\\results\\n_flow5_c1_close\\P06N\\best_upper_certificate.json": "d5f965dbcffbf06f95bdb3761d2ec0585c777a9e5e578fb587ec90a96c730a82"
+        },
+        "source_code_sha256": {
+          "D:\\Work\\excel-vba-rpfem\\versions\\G1R18\\tests\\export_python_witness.py": "264d949330e09ef9b8fb35a224aeb5960af4413c87df4f7f405f79ac5ce899c3",
+          "D:\\Work\\excel-vba-rpfem\\validation\\accuracy_20261013\\python\\experiment_core.py": "9a9e60b6d69ba4008ea89608f433bb716b433436715c45566bd209418ee9238e",
+          "D:\\Work\\excel-vba-rpfem\\validation\\accuracy_20261013\\python\\accuracy_driver.py": "6fbc9761c37bd72046c4083ac8a40030999a74906bcc6b049ea18b5120e15c3c"
+        },
+        "fresh_original_audit": {
+          "objective": 0.9999985748291208,
+          "value": 0.9999985748291207,
+          "eq_error": 1.8041124150158794e-16,
+          "cone_error": 5.33910906597157e-08,
+          "audit": {
+            "pass": true,
+            "errors": {
+              "flow": 2.6056227397930343e-08,
+              "jump": 2.195016300520819e-11,
+              "bonded_interface": 0.0,
+              "boundary": 0.0,
+              "work": 1.887379141862766e-15,
+              "objective": 1.1102230246251565e-16
+            },
+            "dissipation": 0.9999985748291207,
+            "work": [
+              0.0,
+              0.9999999999999981
+            ],
+            "value": 0.9999985748291207
+          },
+          "raw_lower_errors": {},
+          "physical_pass": true,
+          "witness": true,
+          "numerical_gate": false
+        },
+        "scope": "primal field only; no solver status, dual, root, bracket, or precision result imported"
+      },
+      "results": null,
+      "purpose": "Completed audit/regression; no native precision achievement inferred"
+    },
+    {
+      "directory": "python_field_excel_1791905614894344800",
+      "status": "PASS",
+      "pid": 13112,
+      "source_sha256": {
+        "versions\\G1R18\\src\\vba\\RPX_AccuracyMesh.bas": "edd305d25a500d23305648eef977007aad6acd4056def5ed6d0d41949727708c",
+        "versions\\G1R18\\src\\vba\\RPX_Adapt.bas": "3c01d098a69ed31526c15055b63f4a5a32d2af992eeb115b7ecae805f419f6f7",
+        "versions\\G1R18\\src\\vba\\RPX_Guard.bas": "9fd387b1a6ed1edfac0f2e0572142f81e54ee056c79f8391b34a3f38caa16fcc",
+        "versions\\G1R18\\src\\vba\\RPX_Seep.bas": "7549018ba8434c7c96ed6908e0ee0a30dbb0ed8c3b5d229786966f873ab385df",
+        "versions\\G1R18\\src\\vba\\RPX_SeepUI.bas": "baa15059460742473d92500208a18abf44ea325e4086ab94f271c5fae93bda53",
+        "versions\\G1R18_RayGate\\src\\vba\\RPX_AccuracyMesh.bas": "ec54485fb54a8ad6568a5b138c3db8f46ec7f397c3197d76117ba8c1d8c7d08f",
+        "versions\\G1R18_RayGate\\src\\vba\\RPX_Adapt.bas": "a41ee3c9c32993d24a9d2291a84f3fd8a43145f98927d03e39afbb2eae017742",
+        "versions\\G1R18_RayGate\\src\\vba\\RPX_Conic.bas": "d7babfb907ee3a326aefe73546912b2ed25a586252af9bc04af434a9ae4d08f7",
+        "versions\\G1R18_RayGate\\src\\vba\\RPX_FixedLowerRecovery.bas": "8fbcdd6a54bb6513a75923341e6c1c9c424dec1b78842821ec1b105f697508f7",
+        "versions\\G1R18_RayGate\\src\\vba\\RPX_Fs.bas": "4e6281fcd48225d194de83db886c58e25b2216c6f08f078d114e1abc238ff434",
+        "versions\\G1R18_RayGate\\src\\vba\\RPX_HSDCandidate.bas": "3d46f373a408d80ed3fb9a81b25bd9883b4897823a1453f6d3ad4d33ec64f68c",
+        "versions\\G1R18_RayGate\\src\\vba\\RPX_LowerCache.bas": "98fcad47f7fd081a7a8a0017ad52e8f29186447945fc790cb7968e3c3e35be80",
+        "versions\\G1R18_RayGate\\src\\vba\\RPX_Solve.bas": "8d20065b0aaf97890bb84c64644ba034892d757dba33fe384de80fdc9769d141",
+        "versions\\G1R18\\tests\\PythonWitnessProbe.bas": "48adff76c69223271ad3f76f54e60a050b1609bba507ffb52ddd12ef1b9751db"
+      },
+      "source": {
+        "case": "P06A",
+        "mode": "lower",
+        "fs": 0.8458963353848571,
+        "q": 8,
+        "mesh_id": "c1f12ac5f5f72b13e57fd68516b829c3b153e6815de34704d2f2dedfe9251b91",
+        "physical_model_id": "f67b757898e3bcc3f45c5ea9b5a8e290955fad53f5900c5cd8c31b9637d51875",
+        "elements": 20792,
+        "output": "D:\\Work\\excel-vba-rpfem\\versions\\G1R18\\results\\python_field_excel_1791905614894344800\\P06A_lower_source.bin",
+        "binary_sha256": "1daa0eda8b08d711b306e163de6af6c65e0b1dca5945be468483377cc3c03f40",
+        "original_field_vector_sha256": "0628daa622f0983609aa104a7bf5dc3aef23584040a6d41daa69da27ad8af3d5",
+        "ignored_source_metadata": {
+          "root_complete": false,
+          "solver_status": "MaxTime",
+          "imported": false
+        },
+        "source_sha256": {
+          "D:\\Work\\excel-vba-rpfem\\validation\\accuracy_20261013\\results\\a_lower20792_close\\P06A\\best_lower_mesh.npz": "75582ade1c4033a34f33d0f33d85d634aa69e7bf2c6323fdf598955caafd6300",
+          "D:\\Work\\excel-vba-rpfem\\validation\\accuracy_20261013\\results\\a_lower20792_close\\P06A\\best_lower_field.npz": "62b3e10c0760a6a3ebded8dff56d7273dbfe89c1519eee9beffd1dad7ab3129e",
+          "D:\\Work\\excel-vba-rpfem\\validation\\accuracy_20261013\\results\\a_lower20792_close\\P06A\\best_lower_certificate.json": "4452397aa1cb4e3205cdb9dee61e7ad08faf925246f0067e2ccd97adc1b07340"
+        },
+        "source_code_sha256": {
+          "D:\\Work\\excel-vba-rpfem\\versions\\G1R18\\tests\\export_python_witness.py": "264d949330e09ef9b8fb35a224aeb5960af4413c87df4f7f405f79ac5ce899c3",
+          "D:\\Work\\excel-vba-rpfem\\validation\\accuracy_20261013\\python\\experiment_core.py": "9a9e60b6d69ba4008ea89608f433bb716b433436715c45566bd209418ee9238e",
+          "D:\\Work\\excel-vba-rpfem\\validation\\accuracy_20261013\\python\\accuracy_driver.py": "6fbc9761c37bd72046c4083ac8a40030999a74906bcc6b049ea18b5120e15c3c"
+        },
+        "fresh_original_audit": {
+          "objective": -1.0008585938511871,
+          "value": 1.0008585938511871,
+          "eq_error": 1.857320287151909e-12,
+          "cone_error": 0.0,
+          "audit": {
+            "pass": true,
+            "errors": {
+              "yield": 0.0,
+              "equilibrium": 1.0920805145540327e-09,
+              "internal_traction": 2.4352061166188488e-12,
+              "boundary_traction": 5.551115123125783e-17
+            },
+            "load": 1.0008585938511871,
+            "value": 1.0008585938511871
+          },
+          "raw_lower_errors": {
+            "yield": 0.0,
+            "equilibrium": 2.1841610291080655e-08,
+            "internal_traction": 4.8704122332376976e-11,
+            "boundary_traction": 1.1102230246251565e-15
+          },
+          "physical_pass": true,
+          "witness": true,
+          "numerical_gate": false
+        },
+        "scope": "primal field only; no solver status, dual, root, bracket, or precision result imported"
+      },
+      "results": null,
+      "purpose": "Completed audit/regression; no native precision achievement inferred"
+    },
+    {
+      "directory": "adapt_excel_1791904907321458900",
+      "status": "FAIL",
+      "pid": 7600,
+      "source_sha256": {
+        "versions\\G1R18\\src\\vba\\RPX_AccuracyMesh.bas": "edd305d25a500d23305648eef977007aad6acd4056def5ed6d0d41949727708c",
+        "versions\\G1R18\\src\\vba\\RPX_Adapt.bas": "3c01d098a69ed31526c15055b63f4a5a32d2af992eeb115b7ecae805f419f6f7",
+        "versions\\G1R18\\src\\vba\\RPX_Guard.bas": "9fd387b1a6ed1edfac0f2e0572142f81e54ee056c79f8391b34a3f38caa16fcc",
+        "versions\\G1R18\\src\\vba\\RPX_Seep.bas": "7549018ba8434c7c96ed6908e0ee0a30dbb0ed8c3b5d229786966f873ab385df",
+        "versions\\G1R18\\src\\vba\\RPX_SeepUI.bas": "baa15059460742473d92500208a18abf44ea325e4086ab94f271c5fae93bda53",
+        "versions\\G1R18_RayGate\\src\\vba\\RPX_AccuracyMesh.bas": "ec54485fb54a8ad6568a5b138c3db8f46ec7f397c3197d76117ba8c1d8c7d08f",
+        "versions\\G1R18_RayGate\\src\\vba\\RPX_Adapt.bas": "a41ee3c9c32993d24a9d2291a84f3fd8a43145f98927d03e39afbb2eae017742",
+        "versions\\G1R18_RayGate\\src\\vba\\RPX_Conic.bas": "d7babfb907ee3a326aefe73546912b2ed25a586252af9bc04af434a9ae4d08f7",
+        "versions\\G1R18_RayGate\\src\\vba\\RPX_FixedLowerRecovery.bas": "01b496cbffeb439d4424917c6e6c32a2ff553d6f1c78fe244cce1de3b21d37cb",
+        "versions\\G1R18_RayGate\\src\\vba\\RPX_Fs.bas": "4e6281fcd48225d194de83db886c58e25b2216c6f08f078d114e1abc238ff434",
+        "versions\\G1R18_RayGate\\src\\vba\\RPX_HSDCandidate.bas": "3d46f373a408d80ed3fb9a81b25bd9883b4897823a1453f6d3ad4d33ec64f68c",
+        "versions\\G1R18_RayGate\\src\\vba\\RPX_LowerCache.bas": "98fcad47f7fd081a7a8a0017ad52e8f29186447945fc790cb7968e3c3e35be80",
+        "versions\\G1R18_RayGate\\src\\vba\\RPX_Solve.bas": "661e25fa4cd5b3f8cbe848973bd4ee54c3aef0d34604cb912479ecb850760ce3"
+      },
+      "source": null,
+      "results": {},
+      "purpose": "Completed audit/regression; no native precision achievement inferred"
+    },
+    {
+      "directory": "adapt_excel_1791907938957103600",
+      "status": "FAIL",
+      "pid": 8092,
+      "source_sha256": {
+        "versions\\G1R18\\src\\vba\\RPX_AccuracyMesh.bas": "edd305d25a500d23305648eef977007aad6acd4056def5ed6d0d41949727708c",
+        "versions\\G1R18\\src\\vba\\RPX_Adapt.bas": "3c01d098a69ed31526c15055b63f4a5a32d2af992eeb115b7ecae805f419f6f7",
+        "versions\\G1R18\\src\\vba\\RPX_Guard.bas": "9fd387b1a6ed1edfac0f2e0572142f81e54ee056c79f8391b34a3f38caa16fcc",
+        "versions\\G1R18\\src\\vba\\RPX_Seep.bas": "7549018ba8434c7c96ed6908e0ee0a30dbb0ed8c3b5d229786966f873ab385df",
+        "versions\\G1R18\\src\\vba\\RPX_SeepUI.bas": "baa15059460742473d92500208a18abf44ea325e4086ab94f271c5fae93bda53",
+        "versions\\G1R18_RayGate\\src\\vba\\RPX_AccuracyMesh.bas": "ec54485fb54a8ad6568a5b138c3db8f46ec7f397c3197d76117ba8c1d8c7d08f",
+        "versions\\G1R18_RayGate\\src\\vba\\RPX_Adapt.bas": "a41ee3c9c32993d24a9d2291a84f3fd8a43145f98927d03e39afbb2eae017742",
+        "versions\\G1R18_RayGate\\src\\vba\\RPX_Conic.bas": "4b0efd03077e58f0c25d64c533551a5fabfc2ebedf2c869428ae935465b42ae3",
+        "versions\\G1R18_RayGate\\src\\vba\\RPX_FixedLowerRecovery.bas": "1cfc8ccc17d71e45645ab571d62ec1739029c87288a578a296a541ad2dbf14e8",
+        "versions\\G1R18_RayGate\\src\\vba\\RPX_Fs.bas": "f447fd67f1e29cd079adc7b63b1aee4c4063ee0ed64ca7501eddf9a445ee6582",
+        "versions\\G1R18_RayGate\\src\\vba\\RPX_HSDCandidate.bas": "db4aba8cf8c0f2f45ef21230aff5b757c57487cc8724e0bd0f6319a0711dc689",
+        "versions\\G1R18_RayGate\\src\\vba\\RPX_LowerCache.bas": "98fcad47f7fd081a7a8a0017ad52e8f29186447945fc790cb7968e3c3e35be80",
+        "versions\\G1R18_RayGate\\src\\vba\\RPX_Solve.bas": "8d20065b0aaf97890bb84c64644ba034892d757dba33fe384de80fdc9769d141"
+      },
+      "source": null,
+      "results": {},
+      "purpose": "Completed audit/regression; no native precision achievement inferred"
+    },
+    {
+      "directory": "adapt_excel_1791908292891767200",
+      "status": "PASS",
+      "pid": 6484,
+      "source_sha256": {
+        "versions\\G1R18\\src\\vba\\RPX_AccuracyMesh.bas": "edd305d25a500d23305648eef977007aad6acd4056def5ed6d0d41949727708c",
+        "versions\\G1R18\\src\\vba\\RPX_Adapt.bas": "3c01d098a69ed31526c15055b63f4a5a32d2af992eeb115b7ecae805f419f6f7",
+        "versions\\G1R18\\src\\vba\\RPX_Guard.bas": "9fd387b1a6ed1edfac0f2e0572142f81e54ee056c79f8391b34a3f38caa16fcc",
+        "versions\\G1R18\\src\\vba\\RPX_Seep.bas": "7549018ba8434c7c96ed6908e0ee0a30dbb0ed8c3b5d229786966f873ab385df",
+        "versions\\G1R18\\src\\vba\\RPX_SeepUI.bas": "baa15059460742473d92500208a18abf44ea325e4086ab94f271c5fae93bda53",
+        "versions\\G1R18_RayGate\\src\\vba\\RPX_AccuracyMesh.bas": "ec54485fb54a8ad6568a5b138c3db8f46ec7f397c3197d76117ba8c1d8c7d08f",
+        "versions\\G1R18_RayGate\\src\\vba\\RPX_Adapt.bas": "a41ee3c9c32993d24a9d2291a84f3fd8a43145f98927d03e39afbb2eae017742",
+        "versions\\G1R18_RayGate\\src\\vba\\RPX_Conic.bas": "4b0efd03077e58f0c25d64c533551a5fabfc2ebedf2c869428ae935465b42ae3",
+        "versions\\G1R18_RayGate\\src\\vba\\RPX_FixedLowerRecovery.bas": "601f59a7446d95775586200b8323afd245835f4dd944ce189fbc5c783c86c1e1",
+        "versions\\G1R18_RayGate\\src\\vba\\RPX_Fs.bas": "9fb4771017415cfa9d93a3aca86f5d36772e83fc439a8236082b80ac28687481",
+        "versions\\G1R18_RayGate\\src\\vba\\RPX_HSDCandidate.bas": "db4aba8cf8c0f2f45ef21230aff5b757c57487cc8724e0bd0f6319a0711dc689",
+        "versions\\G1R18_RayGate\\src\\vba\\RPX_LowerCache.bas": "98fcad47f7fd081a7a8a0017ad52e8f29186447945fc790cb7968e3c3e35be80",
+        "versions\\G1R18_RayGate\\src\\vba\\RPX_Solve.bas": "8d20065b0aaf97890bb84c64644ba034892d757dba33fe384de80fdc9769d141"
+      },
+      "source": null,
+      "results": {
+        "fixed_cohesive": {
+          "result": "PASS;elements=20;Fs=0.4;q=8;c0=False;lambda=1.000003;cache_before=True;both_retained_physical_gates=PASS;full_free_primal_gate=1;independent_witnesses_compiled_layout_cache_restored=1;pre_post_solve_failure_rollback=1;q4_status_nested_rejected=1;fixed_dual_used=0;root_created=0",
+          "seconds": 19.054461299965624
+        },
+        "fixed_c0": {
+          "result": "PASS;elements=24;Fs=0.4;q=8;c0=True;lambda=1.000003;cache_before=False;both_retained_physical_gates=PASS;full_free_primal_gate=1;independent_witnesses_compiled_layout_cache_restored=1;pre_post_solve_failure_rollback=1;q4_status_nested_rejected=1;fixed_dual_used=0;root_created=0",
+          "seconds": 20.935128499986604
+        }
+      },
+      "purpose": "Completed audit/regression; no native precision achievement inferred"
+    },
+    {
+      "directory": "adapt_excel_1791908375927363000",
+      "status": "PASS",
+      "pid": 4428,
+      "source_sha256": {
+        "versions\\G1R18\\src\\vba\\RPX_AccuracyMesh.bas": "edd305d25a500d23305648eef977007aad6acd4056def5ed6d0d41949727708c",
+        "versions\\G1R18\\src\\vba\\RPX_Adapt.bas": "3c01d098a69ed31526c15055b63f4a5a32d2af992eeb115b7ecae805f419f6f7",
+        "versions\\G1R18\\src\\vba\\RPX_Guard.bas": "9fd387b1a6ed1edfac0f2e0572142f81e54ee056c79f8391b34a3f38caa16fcc",
+        "versions\\G1R18\\src\\vba\\RPX_Seep.bas": "7549018ba8434c7c96ed6908e0ee0a30dbb0ed8c3b5d229786966f873ab385df",
+        "versions\\G1R18\\src\\vba\\RPX_SeepUI.bas": "baa15059460742473d92500208a18abf44ea325e4086ab94f271c5fae93bda53",
+        "versions\\G1R18_RayGate\\src\\vba\\RPX_AccuracyMesh.bas": "ec54485fb54a8ad6568a5b138c3db8f46ec7f397c3197d76117ba8c1d8c7d08f",
+        "versions\\G1R18_RayGate\\src\\vba\\RPX_Adapt.bas": "a41ee3c9c32993d24a9d2291a84f3fd8a43145f98927d03e39afbb2eae017742",
+        "versions\\G1R18_RayGate\\src\\vba\\RPX_Conic.bas": "4b0efd03077e58f0c25d64c533551a5fabfc2ebedf2c869428ae935465b42ae3",
+        "versions\\G1R18_RayGate\\src\\vba\\RPX_FixedLowerRecovery.bas": "601f59a7446d95775586200b8323afd245835f4dd944ce189fbc5c783c86c1e1",
+        "versions\\G1R18_RayGate\\src\\vba\\RPX_Fs.bas": "9fb4771017415cfa9d93a3aca86f5d36772e83fc439a8236082b80ac28687481",
+        "versions\\G1R18_RayGate\\src\\vba\\RPX_HSDCandidate.bas": "db4aba8cf8c0f2f45ef21230aff5b757c57487cc8724e0bd0f6319a0711dc689",
+        "versions\\G1R18_RayGate\\src\\vba\\RPX_LowerCache.bas": "98fcad47f7fd081a7a8a0017ad52e8f29186447945fc790cb7968e3c3e35be80",
+        "versions\\G1R18_RayGate\\src\\vba\\RPX_Solve.bas": "8d20065b0aaf97890bb84c64644ba034892d757dba33fe384de80fdc9769d141"
+      },
+      "source": null,
+      "results": {
+        "OriginalFarkasUnitProbe": {
+          "result": "PASS;raw_row_dual_mapping=1;normalization_reaudited=1;no_primal_field_capture=1;stationarity_cone_nonfinite_scope_identity_rejections=1;physical_bounds_unchanged=1;prepared_reset=1",
+          "seconds": 1.2185405000345781
+        },
+        "C0WedgeGeometryProbe": {
+          "result": "PASS;canonical_domain_area=1400;elements=8;boundary=6;original_vertices_material_body_faces=1;invalid_depth_cost_load_atomic_rejected=1",
+          "seconds": 0.5428368999855593
+        },
+        "C0WedgeNativeProbe": {
+          "result": "PASS;upper=1.50005035145014;q=8;elements=8;root_a=1.49992534722305;root_b=1.50005035145014;root=True;full_original_field_gate=PASS;analytical_hint_not_bound=1",
+          "seconds": 5.077338700008113
+        }
+      },
+      "purpose": "Completed audit/regression; no native precision achievement inferred"
+    },
+    {
+      "directory": "adapt_excel_1791910801411367300",
+      "status": "PASS",
+      "pid": 9368,
+      "source_sha256": {
+        "versions\\G1R18\\src\\vba\\RPX_AccuracyMesh.bas": "edd305d25a500d23305648eef977007aad6acd4056def5ed6d0d41949727708c",
+        "versions\\G1R18\\src\\vba\\RPX_Adapt.bas": "3c01d098a69ed31526c15055b63f4a5a32d2af992eeb115b7ecae805f419f6f7",
+        "versions\\G1R18\\src\\vba\\RPX_Guard.bas": "9fd387b1a6ed1edfac0f2e0572142f81e54ee056c79f8391b34a3f38caa16fcc",
+        "versions\\G1R18\\src\\vba\\RPX_Seep.bas": "7549018ba8434c7c96ed6908e0ee0a30dbb0ed8c3b5d229786966f873ab385df",
+        "versions\\G1R18\\src\\vba\\RPX_SeepUI.bas": "baa15059460742473d92500208a18abf44ea325e4086ab94f271c5fae93bda53",
+        "versions\\G1R18_RayGate\\src\\vba\\RPX_AccuracyMesh.bas": "ec54485fb54a8ad6568a5b138c3db8f46ec7f397c3197d76117ba8c1d8c7d08f",
+        "versions\\G1R18_RayGate\\src\\vba\\RPX_Adapt.bas": "a41ee3c9c32993d24a9d2291a84f3fd8a43145f98927d03e39afbb2eae017742",
+        "versions\\G1R18_RayGate\\src\\vba\\RPX_Conic.bas": "5db53c534182c93e7c6dccc98b458b40269f17933e5e5bdf9472de6a84cd180e",
+        "versions\\G1R18_RayGate\\src\\vba\\RPX_FixedLowerRecovery.bas": "601f59a7446d95775586200b8323afd245835f4dd944ce189fbc5c783c86c1e1",
+        "versions\\G1R18_RayGate\\src\\vba\\RPX_Fs.bas": "09008ea1f3bb7ee5058dcfd3a566f3938ae7076f2270cc9f709b2f26ca1d06d7",
+        "versions\\G1R18_RayGate\\src\\vba\\RPX_HSDCandidate.bas": "db4aba8cf8c0f2f45ef21230aff5b757c57487cc8724e0bd0f6319a0711dc689",
+        "versions\\G1R18_RayGate\\src\\vba\\RPX_LowerCache.bas": "98fcad47f7fd081a7a8a0017ad52e8f29186447945fc790cb7968e3c3e35be80",
+        "versions\\G1R18_RayGate\\src\\vba\\RPX_Solve.bas": "8d20065b0aaf97890bb84c64644ba034892d757dba33fe384de80fdc9769d141"
+      },
+      "source": null,
+      "results": {
+        "fixed_fs": {
+          "result": "PASS;elements=20;positive_sameFs_recovery=1;independent_free_lower_dual=1;root_a=1.37329120594012;root_b=1.37338254124177;root=TRUE;q=8;fixed_dual_used=0;both_saved_bounds_fields_retained=1;raw_stationarity_cone_nonfinite_cost_q_epoch_AF_rejected=1",
+          "seconds": 23.13125969999237
+        }
+      },
+      "purpose": "Completed audit/regression; no native precision achievement inferred"
+    }
+  ],
+  "excluded": "Workbooks, DLL copies, live production, duplicate tamper payloads",
+  "scope": "Original matrices/fields/duals and completed strict audits; physical proof only where stated"
+}

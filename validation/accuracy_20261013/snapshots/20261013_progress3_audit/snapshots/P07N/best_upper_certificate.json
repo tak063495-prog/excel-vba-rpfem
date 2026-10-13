@@ -1,0 +1,46 @@
+{
+  "case": "P07N",
+  "mode": "upper",
+  "q": 8,
+  "fs": 1.3397480948715283,
+  "mesh_id": "d2bd37b6a2d584f9d8e790da67c0314fe9d6b66974523ac15273fcd7e66a45c1",
+  "physical_model_id": "73f6d77e5a721ca5a4f74870e570b4ce0a9d4c24ecbe3f49cf71df611ecf06a6",
+  "elements": 998,
+  "source": "D:\\Work\\excel-vba-rpfem\\validation\\accuracy_20261013\\snapshots\\20261013_progress2_audit\\snapshots\\P07N\\best_upper_certificate.json",
+  "root_complete": false,
+  "mesh_path": "best_upper_mesh.npz",
+  "field_path": "best_upper_field.npz",
+  "audit": {
+    "objective": 0.9998009801622025,
+    "value": 0.9998009801622026,
+    "eq_error": 4.6396179772991526e-09,
+    "cone_error": 0.0,
+    "audit": {
+      "pass": true,
+      "errors": {
+        "flow": 0.0,
+        "jump": 0.0,
+        "boundary": 4.6396179772991526e-09,
+        "work": 3.6173575246323253e-10,
+        "objective": 1.1102230246251565e-16
+      },
+      "dissipation": 0.9998009801622026,
+      "work": [
+        0.0,
+        0.9999999996382642
+      ],
+      "value": 0.9998009801622026
+    },
+    "raw_lower_errors": {},
+    "physical_pass": true,
+    "witness": true,
+    "numerical_gate": false
+  },
+  "policy": "hold_initial",
+  "source_hashes": {
+    "D:\\Work\\excel-vba-rpfem\\docs\\benchmarks\\G1R17_native26_20261013\\data\\inputs\\P07N.json": "bad1e69be28a7088ff6e97b099d30acd4a4ce72ec9f33821e8907997253eaba3",
+    "D:\\Work\\excel-vba-rpfem\\validation\\accuracy_20261013\\snapshots\\20261013_progress2_audit\\snapshots\\P07N\\best_upper_certificate.json": "ca122ab4deeabe7e04c2d42c0d50e408dc95d58e061bb8c7b3bd59e5cd2b935a",
+    "D:\\Work\\excel-vba-rpfem\\validation\\accuracy_20261013\\snapshots\\20261013_progress2_audit\\snapshots\\P07N\\best_upper_mesh.npz": "c5b01d91541ff6252c2cae5ef029f2eef0c4e79efcb5c0a80c6c32a1692b5162",
+    "D:\\Work\\excel-vba-rpfem\\validation\\accuracy_20261013\\snapshots\\20261013_progress2_audit\\snapshots\\P07N\\best_upper_field.npz": "5430d7b3ada0f653e8b2327bc5f03ce8491bb1f01e468456b2edaa09924481c0"
+  }
+}

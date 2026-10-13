@@ -1,0 +1,13 @@
+{
+  "original_primal_source": "D:\\Work\\excel-vba-rpfem\\validation\\accuracy_20261013\\results\\p03n_centered_cap_qp13363",
+  "original_dual_source": "D:\\Work\\excel-vba-rpfem\\validation\\accuracy_20261013\\results\\p03n_long_upper13363",
+  "source_files_sha256": {
+    "D:\\Work\\excel-vba-rpfem\\validation\\accuracy_20261013\\results\\p03n_centered_cap_qp13363\\best_upper_mesh.npz": "c6a872489dfdb4a38619dd71ef5be0707da192d2cfa56d27fe1bdbd434d24ac9",
+    "D:\\Work\\excel-vba-rpfem\\validation\\accuracy_20261013\\results\\p03n_centered_cap_qp13363\\best_upper_field.npz": "ce7a1160f4dbedc8b8e45705447538bc33b57a28783b68accbea326e396dcc76",
+    "D:\\Work\\excel-vba-rpfem\\validation\\accuracy_20261013\\results\\p03n_centered_cap_qp13363\\best_upper_certificate.json": "ae909f1404b0f61dade1244b98b8ba888297d285fd219cb23c9c2fe9ac096878",
+    "D:\\Work\\excel-vba-rpfem\\validation\\accuracy_20261013\\results\\p03n_long_upper13363\\original_candidate.npz": "d1412ac9acc33262ea269285bc2b8a86131720ed7b8cf0326a45f2110af97c08",
+    "D:\\Work\\excel-vba-rpfem\\validation\\accuracy_20261013\\results\\p03n_long_upper13363\\original_mesh.npz": "c6a872489dfdb4a38619dd71ef5be0707da192d2cfa56d27fe1bdbd434d24ac9",
+    "D:\\Work\\excel-vba-rpfem\\validation\\accuracy_20261013\\results\\p03n_long_upper13363\\audit.json": "cd888d688da146c341e1f7824c17c706e87f8078e34cfa920f7b53b085776c22"
+  },
+  "field_or_root_flags_transferred": false
+}

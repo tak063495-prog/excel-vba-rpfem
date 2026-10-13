@@ -1,0 +1,24 @@
+Public OriginalEqualityError As Double, OriginalConeError As Double, OriginalCandidateObjective As Double
+Public Type RPX_OriginalCompiledData
+    ready As Boolean
+    n As Long
+    m As Long
+    s As Long
+    b As Long
+    modeName As String
+    subdivisions As Long
+    inputEpoch As Long
+    affine As Boolean
+    modelKey As String
+    loadPhase As String
+    values() As Double
+    rhs() As Double
+    cost() As Double
+End Type
+Public XOriginalCompiled As RPX_OriginalCompiledData
+Public OriginalFarkasStationarity As Double, OriginalFarkasCone As Double, OriginalFarkasSeparation As Double
+Public OriginalFarkasReason As String
+Public OriginalLowerDualReason As String, OriginalLowerDualCap As Double
+Private originalGuideReady As Boolean, originalGuideFs As Double, originalGuideQ As Long
+Private originalGuideEpoch As Long, originalGuideSolve As Long, originalGuideId As Long
+Private originalGuideModel As String, originalGuidePhase As String

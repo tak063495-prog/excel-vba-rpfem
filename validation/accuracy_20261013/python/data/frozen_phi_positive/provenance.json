@@ -1,0 +1,20 @@
+{
+  "scope": "Unmodified frozen phi>0 assembly/audit plus saved primal field and original exact prolongation reference",
+  "source_archive": "RPFEM_Experiment_History_and_Adoption_20261013.zip",
+  "cases": [
+    {
+      "case": "P06A",
+      "original_field": "01_Initial_Experiments/results/P06A_M0_upper_endpoint.npz",
+      "source_sha256": "e02b9f902aa912c06dbadd298d13ce8e0a5aa75e877c1cfca458a707f6c3f157",
+      "source_mesh_id": "ee2bc027f95d18ca7fe0ff2588d5cf0662fb57ac48ee5fff79266bd43ac1a073",
+      "child_mesh_id": "eac54c5d38ef7a27584e6c52ca669c197b4d26a5f029a79adad020a6bcc82ecb"
+    },
+    {
+      "case": "P06N",
+      "original_field": "01_Initial_Experiments/results/P06N_M0_upper_endpoint.npz",
+      "source_sha256": "75f1ee6ad50cc1d12801fb5bc48c9a761ad8cfdc75e1fd8f2276fd1eba5fd59e",
+      "source_mesh_id": "57a4df385a3534894039f2cd05a898a5c16dd9d23e5f5da46d848ffd5d2b34f4",
+      "child_mesh_id": "d0704cbbfdf37f9d35cd67f19835301d387ee9d7d46c7e04fe6a22725b9cd772"
+    }
+  ]
+}

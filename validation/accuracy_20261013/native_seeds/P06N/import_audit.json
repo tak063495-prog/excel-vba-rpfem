@@ -1,0 +1,168 @@
+{
+  "case": "P06N",
+  "certificates": {
+    "lower": {
+      "case": "P06N",
+      "mode": "lower",
+      "q": 8,
+      "fs": 0.6705083583412688,
+      "mesh_id": "2f483c516770f01ed93ca59629b4431610dd8999b4ee0045d3a8086fcc08d85c",
+      "physical_model_id": "08cc8e73e85408e7a82cbe79b5716ef007cb917d00e021872c40e510b5d17525",
+      "elements": 1000,
+      "source": "native26 independent re-audit",
+      "root_complete": false,
+      "mesh_path": "best_lower_mesh.npz",
+      "field_path": "best_lower_field.npz",
+      "audit": {
+        "objective": -1.0001916182241943,
+        "value": 1.0001916182241943,
+        "eq_error": 4.474198789239381e-14,
+        "cone_error": 0.0,
+        "audit": {
+          "pass": true,
+          "errors": {
+            "yield": 3.39786469791691e-14,
+            "equilibrium": 7.545963853772264e-12,
+            "internal_traction": 5.795364188543317e-14,
+            "boundary_traction": 3.753585013478832e-14
+          },
+          "load": 1.0001916182241943,
+          "value": 1.0001916182241943
+        },
+        "raw_lower_errors": {
+          "yield": 6.79572939583382e-13,
+          "equilibrium": 1.5091927707544528e-10,
+          "internal_traction": 1.1590728377086634e-12,
+          "boundary_traction": 7.507170026957664e-13
+        },
+        "physical_pass": true,
+        "witness": true,
+        "numerical_gate": false,
+        "native_import": {
+          "source": {
+            "q": 8,
+            "fs": 0.6705083583412688,
+            "scale": 20.0,
+            "objective": 1.0001916182241943,
+            "source_sha256": "2819d86d19eb9e1e571abb43179a9e7004c62eef053ae9ac9a86e539167a17bc"
+          },
+          "attempts": [
+            {
+              "fs": 0.6705083583412688,
+              "audit": {
+                "objective": -1.0001916182241943,
+                "value": 1.0001916182241943,
+                "eq_error": 4.474198789239381e-14,
+                "cone_error": 0.0,
+                "audit": {
+                  "pass": true,
+                  "errors": {
+                    "yield": 3.39786469791691e-14,
+                    "equilibrium": 7.545963853772264e-12,
+                    "internal_traction": 5.795364188543317e-14,
+                    "boundary_traction": 3.753585013478832e-14
+                  },
+                  "load": 1.0001916182241943,
+                  "value": 1.0001916182241943
+                },
+                "raw_lower_errors": {
+                  "yield": 6.79572939583382e-13,
+                  "equilibrium": 1.5091927707544528e-10,
+                  "internal_traction": 1.1590728377086634e-12,
+                  "boundary_traction": 7.507170026957664e-13
+                },
+                "physical_pass": true,
+                "witness": true,
+                "numerical_gate": false
+              }
+            }
+          ],
+          "root_flags_reused": false
+        }
+      }
+    },
+    "upper": {
+      "case": "P06N",
+      "mode": "upper",
+      "q": 8,
+      "fs": 0.7563936919252566,
+      "mesh_id": "2f483c516770f01ed93ca59629b4431610dd8999b4ee0045d3a8086fcc08d85c",
+      "physical_model_id": "08cc8e73e85408e7a82cbe79b5716ef007cb917d00e021872c40e510b5d17525",
+      "elements": 1000,
+      "source": "native26 independent re-audit",
+      "root_complete": false,
+      "mesh_path": "best_upper_mesh.npz",
+      "field_path": "best_upper_field.npz",
+      "audit": {
+        "objective": 0.9999860824119674,
+        "value": 0.9999860824119697,
+        "eq_error": 1.81322789876877e-11,
+        "cone_error": 0.0,
+        "audit": {
+          "pass": true,
+          "errors": {
+            "flow": 0.0,
+            "jump": 0.0,
+            "bonded_interface": 6.529544691887054e-12,
+            "boundary": 1.81322789876877e-11,
+            "work": 5.2688742258055754e-11,
+            "objective": 2.3314683517128287e-15
+          },
+          "dissipation": 0.9999860824119697,
+          "work": [
+            0.0,
+            0.9999999999473113
+          ],
+          "value": 0.9999860824119697
+        },
+        "raw_lower_errors": {},
+        "physical_pass": true,
+        "witness": true,
+        "numerical_gate": false,
+        "native_import": {
+          "source": {
+            "q": 8,
+            "fs": 0.7563936919252566,
+            "scale": 20.0,
+            "objective": 0.9999860824119692,
+            "source_sha256": "c77bf37ce82a072ef7353eb2c10f9fe5c0f6ed05537f2b16601084e9ce2bb39f"
+          },
+          "attempts": [
+            {
+              "fs": 0.7563936919252566,
+              "audit": {
+                "objective": 0.9999860824119674,
+                "value": 0.9999860824119697,
+                "eq_error": 1.81322789876877e-11,
+                "cone_error": 0.0,
+                "audit": {
+                  "pass": true,
+                  "errors": {
+                    "flow": 0.0,
+                    "jump": 0.0,
+                    "bonded_interface": 6.529544691887054e-12,
+                    "boundary": 1.81322789876877e-11,
+                    "work": 5.2688742258055754e-11,
+                    "objective": 2.3314683517128287e-15
+                  },
+                  "dissipation": 0.9999860824119697,
+                  "work": [
+                    0.0,
+                    0.9999999999473113
+                  ],
+                  "value": 0.9999860824119697
+                },
+                "raw_lower_errors": {},
+                "physical_pass": true,
+                "witness": true,
+                "numerical_gate": false
+              }
+            }
+          ],
+          "root_flags_reused": false
+        }
+      }
+    }
+  },
+  "scope": "Native26 original physical re-audit; no inherited root completion"
+}

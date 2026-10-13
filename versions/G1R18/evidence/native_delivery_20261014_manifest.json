@@ -1,0 +1,935 @@
+{
+  "scope": "Immutable original-model, ownership and control-flow evidence; no P06 achievement claim",
+  "p06_target_complete": false,
+  "source_revision_scope": "Exact source SHA retained per run; final UI-only C0_AUTO row addition is validated by distribution reopen/preset test",
+  "curation_utc": "2026-10-13T20:21:36.545222+00:00",
+  "workbooks_and_dlls_excluded": true,
+  "running_results_excluded": true,
+  "runs": {
+    "accuracy_native_excel_1791922835484062900": {
+      "scope": "Final source and DLL: primal QP, original dual, weighted LSMR, q4/affine/cost/epoch/nonfinite/cancel rejection; full-vector independent replay PASS",
+      "original_summary_status": "PASS",
+      "owned_pid": 15772,
+      "owned_pid_absent_at_curation": true,
+      "original_summary_preserved": true
+    },
+    "accuracy_native_excel_1791922223453183700": {
+      "scope": "Final numerical source: both signed own-mesh q8 roots, exact IEEE endpoint proof binding, metadata tamper rejection, rejected near-root candidates preserve original fields PASS",
+      "original_summary_status": "PASS",
+      "owned_pid": 14720,
+      "owned_pid_absent_at_curation": true,
+      "original_summary_preserved": true
+    },
+    "accuracy_native_excel_1791922073463615300": {
+      "scope": "Retained harness failure: VBA roots passed but display CStr rounding differed from raw Double; no solver or physical gate relaxation; superseded by exact IEEE endpoint harness",
+      "original_summary_status": "FAIL",
+      "owned_pid": 7176,
+      "owned_pid_absent_at_curation": true,
+      "original_summary_preserved": true
+    },
+    "adapt_excel_1791921968183961700": {
+      "scope": "Default additional recovery OFF and injected continuation failure: identical original q2 bounds/fields/roots PASS",
+      "original_summary_status": "PASS",
+      "owned_pid": 6484,
+      "owned_pid_absent_at_curation": true,
+      "original_summary_preserved": true
+    },
+    "adapt_excel_1791899136075878600": {
+      "scope": "Completed historical G1R18 baseline P06A PARTIAL_CERTIFIED, 9.5611 percent, E898/q8; no new accuracy DLL; P06 target unmet",
+      "original_summary_status": "PASS",
+      "owned_pid": 11152,
+      "owned_pid_absent_at_curation": true,
+      "original_summary_preserved": true
+    }
+  },
+  "files": {
+    "accuracy_native_excel_1791922073463615300/RPFEM_logs/20261014_050759_7176_accuracy_fs_small.tsv": {
+      "bytes": 3594878,
+      "sha256": "5e95a2e8976f973dd701563ae2414c0087fa8b1af703628c0e610e48f986d768"
+    },
+    "accuracy_native_excel_1791922073463615300/RPFEM_logs/20261014_050759_7176_accuracy_fs_small.tsv.accuracy_dual_solve_37_3_lower.bin": {
+      "bytes": 39372,
+      "sha256": "c67a7ef31dbfa68de8e0eff1abcc1a81786c4aa7c9c5a8e18bfc728222d88e56"
+    },
+    "accuracy_native_excel_1791922073463615300/RPFEM_logs/20261014_050759_7176_accuracy_fs_small.tsv.accuracy_dual_solve_37_3_lower.bin.context.tsv": {
+      "bytes": 66148,
+      "sha256": "2b068cfb78c44aaf85901adfb2588fa305ace0dc0175467d5cd013752fddfc7a"
+    },
+    "accuracy_native_excel_1791922073463615300/RPFEM_logs/20261014_050759_7176_accuracy_fs_small.tsv.accuracy_dual_solve_38_4_upper.bin": {
+      "bytes": 94652,
+      "sha256": "a64434ccddeb63b5adc395ee205ce347e89b75fbe735740afbd52b086960a915"
+    },
+    "accuracy_native_excel_1791922073463615300/RPFEM_logs/20261014_050759_7176_accuracy_fs_small.tsv.accuracy_dual_solve_38_4_upper.bin.context.tsv": {
+      "bytes": 36300,
+      "sha256": "5d5a8100b8c3e7f0c527b99f91aa1ecaf91710ab24fc76fe377ffeba975816fc"
+    },
+    "accuracy_native_excel_1791922073463615300/RPFEM_logs/20261014_050759_7176_accuracy_fs_small.tsv.accuracy_dual_solve_3_2_lower.bin": {
+      "bytes": 39372,
+      "sha256": "5e2611d6a04ed855104d4c26f647aac9223c0f3c766f51d57489c8aa877107d4"
+    },
+    "accuracy_native_excel_1791922073463615300/RPFEM_logs/20261014_050759_7176_accuracy_fs_small.tsv.accuracy_dual_solve_3_2_lower.bin.context.tsv": {
+      "bytes": 66148,
+      "sha256": "b0ab0bb37878d267ae9d5dffbb643fb60a4108b02e09ff65909fa7e3aa408f23"
+    },
+    "accuracy_native_excel_1791922073463615300/RPFEM_logs/20261014_050759_7176_accuracy_fs_small.tsv.accuracy_dual_solve_40_5_upper.bin": {
+      "bytes": 94652,
+      "sha256": "2972a7c19be78f32af16117421e7fc230babff8b23cda74c172859f6794e3b42"
+    },
+    "accuracy_native_excel_1791922073463615300/RPFEM_logs/20261014_050759_7176_accuracy_fs_small.tsv.accuracy_dual_solve_40_5_upper.bin.context.tsv": {
+      "bytes": 36300,
+      "sha256": "d0f1b3088b54ba15a5249079a889dc8b2455a8060e10c71f8abd6675eba4c6b8"
+    },
+    "accuracy_native_excel_1791922073463615300/RPFEM_logs/20261014_050759_7176_accuracy_fs_small.tsv.accuracy_dual_solve_41_6_upper.bin": {
+      "bytes": 94652,
+      "sha256": "55a753acc4d66bb24305fb093f29292249c471fc2311c390535320ad0a29b81e"
+    },
+    "accuracy_native_excel_1791922073463615300/RPFEM_logs/20261014_050759_7176_accuracy_fs_small.tsv.accuracy_dual_solve_41_6_upper.bin.context.tsv": {
+      "bytes": 36300,
+      "sha256": "3bdbb64af25eccd192413f6aeed7dba993f1715e3c858db9cd4b1fa38bf812bd"
+    },
+    "accuracy_native_excel_1791922073463615300/RPFEM_logs/20261014_050759_7176_accuracy_fs_small.tsv.accuracy_dual_solve_42_7_upper.bin": {
+      "bytes": 94652,
+      "sha256": "636abc93be1020f65ec226e20d125ad90bee1b8c68971a4c88c5e359915e2790"
+    },
+    "accuracy_native_excel_1791922073463615300/RPFEM_logs/20261014_050759_7176_accuracy_fs_small.tsv.accuracy_dual_solve_42_7_upper.bin.context.tsv": {
+      "bytes": 36300,
+      "sha256": "0baa1b9498155052c74a0f794452b2e7c54905432d534f37d8b52d612a9670b1"
+    },
+    "accuracy_native_excel_1791922073463615300/RPFEM_logs/20261014_050759_7176_accuracy_fs_small.tsv.accuracy_dual_solve_43_8_upper.bin": {
+      "bytes": 94652,
+      "sha256": "6d6bc803f15341c1d8847dfdca19cd865d399321f4f98044634497ce07dcdb8b"
+    },
+    "accuracy_native_excel_1791922073463615300/RPFEM_logs/20261014_050759_7176_accuracy_fs_small.tsv.accuracy_dual_solve_43_8_upper.bin.context.tsv": {
+      "bytes": 36300,
+      "sha256": "f683671567b8364ea1614a8834b779ca78ced437b11d7ecf8625c0e1875d23bf"
+    },
+    "accuracy_native_excel_1791922073463615300/RPFEM_logs/20261014_050759_7176_accuracy_fs_small.tsv.accuracy_dual_solve_44_9_upper.bin": {
+      "bytes": 94652,
+      "sha256": "14d9ab75de206c55e2d8162b51c2dca91c989d844c7029873c1f95a48ecb8e13"
+    },
+    "accuracy_native_excel_1791922073463615300/RPFEM_logs/20261014_050759_7176_accuracy_fs_small.tsv.accuracy_dual_solve_44_9_upper.bin.context.tsv": {
+      "bytes": 36300,
+      "sha256": "1efbbe8e801be05dc11d29a6493ab9570cf5b0e9eb038661e15e11d26cde7171"
+    },
+    "accuracy_native_excel_1791922073463615300/RPFEM_logs/20261014_050759_7176_accuracy_fs_small.tsv.accuracy_dual_solve_45_10_upper.bin": {
+      "bytes": 94652,
+      "sha256": "f30a3513bff161ef57ecf01828d9f6a00d0f33f6e0705f59f76724f290c23e54"
+    },
+    "accuracy_native_excel_1791922073463615300/RPFEM_logs/20261014_050759_7176_accuracy_fs_small.tsv.accuracy_dual_solve_45_10_upper.bin.context.tsv": {
+      "bytes": 36300,
+      "sha256": "689a79dee377087bf463e10c444b7fae3869b56904060a8c45d6a56bf78fb17b"
+    },
+    "accuracy_native_excel_1791922073463615300/RPFEM_logs/20261014_050759_7176_accuracy_fs_small.tsv.accuracy_dual_solve_46_11_upper.bin": {
+      "bytes": 94652,
+      "sha256": "8f607791b942b07005a4364dd29cf548fe2efc918bdaf1a44366074a85762eea"
+    },
+    "accuracy_native_excel_1791922073463615300/RPFEM_logs/20261014_050759_7176_accuracy_fs_small.tsv.accuracy_dual_solve_46_11_upper.bin.context.tsv": {
+      "bytes": 36300,
+      "sha256": "198e18a76800c747afe239420e6e5220414aba5068b0f27e91ffba1cf51cb0c5"
+    },
+    "accuracy_native_excel_1791922073463615300/RPFEM_logs/20261014_050759_7176_accuracy_fs_small.tsv.accuracy_dual_solve_47_12_upper.bin": {
+      "bytes": 94652,
+      "sha256": "89c0e91aa4b3702ad6938af8790040934297713096de9baff9c6b8611d0c34d2"
+    },
+    "accuracy_native_excel_1791922073463615300/RPFEM_logs/20261014_050759_7176_accuracy_fs_small.tsv.accuracy_dual_solve_47_12_upper.bin.context.tsv": {
+      "bytes": 36300,
+      "sha256": "eb8fea4e04ed78239c9154aa2363cc6f6b0efd333bb277610902c5ae849c2daa"
+    },
+    "accuracy_native_excel_1791922073463615300/RPFEM_logs/20261014_050759_7176_accuracy_fs_small.tsv.accuracy_dual_solve_48_13_upper.bin": {
+      "bytes": 94652,
+      "sha256": "9588dee617e6abaff6b656ba1ac3c1a7a842e9d62904467ac1f20f35b217cb47"
+    },
+    "accuracy_native_excel_1791922073463615300/RPFEM_logs/20261014_050759_7176_accuracy_fs_small.tsv.accuracy_dual_solve_48_13_upper.bin.context.tsv": {
+      "bytes": 36300,
+      "sha256": "b2286c44909fe71f5ca8547b7c5a9d22bb73be1d50746551f8677e9aae025813"
+    },
+    "accuracy_native_excel_1791922073463615300/RPFEM_logs/20261014_050759_7176_accuracy_fs_small.tsv.accuracy_dual_solve_49_14_upper.bin": {
+      "bytes": 94652,
+      "sha256": "4156c26bf18426e9208602f21de782614f6272de8a76b3502513f4bc11e70535"
+    },
+    "accuracy_native_excel_1791922073463615300/RPFEM_logs/20261014_050759_7176_accuracy_fs_small.tsv.accuracy_dual_solve_49_14_upper.bin.context.tsv": {
+      "bytes": 36300,
+      "sha256": "d3595278d99bfb243ee825088ea9e7c66052b9bee99ef932b172801260068b47"
+    },
+    "accuracy_native_excel_1791922073463615300/RPFEM_logs/20261014_050759_7176_accuracy_fs_small.tsv.accuracy_dual_solve_50_15_upper.bin": {
+      "bytes": 94652,
+      "sha256": "74f322a212e350cd81ec19ec5e2ea326fc91ac56273081e2c3b65b2acff1ae3b"
+    },
+    "accuracy_native_excel_1791922073463615300/RPFEM_logs/20261014_050759_7176_accuracy_fs_small.tsv.accuracy_dual_solve_50_15_upper.bin.context.tsv": {
+      "bytes": 36300,
+      "sha256": "fb856ca1b73284a295e744f7a7ccdb5fd23766676d38e249347b6726747f092c"
+    },
+    "accuracy_native_excel_1791922073463615300/RPFEM_logs/20261014_050759_7176_accuracy_fs_small.tsv.accuracy_dual_solve_51_16_upper.bin": {
+      "bytes": 94652,
+      "sha256": "d894a6ea11895878c05690a305864d83646fc943f656ba926ec93164121cf30d"
+    },
+    "accuracy_native_excel_1791922073463615300/RPFEM_logs/20261014_050759_7176_accuracy_fs_small.tsv.accuracy_dual_solve_51_16_upper.bin.context.tsv": {
+      "bytes": 36300,
+      "sha256": "eee841b24563eb13251bad24d32ebb3afecb416d1b14ceb75adddb17b03f363c"
+    },
+    "accuracy_native_excel_1791922073463615300/RPFEM_logs/20261014_050759_7176_accuracy_fs_small.tsv.accuracy_dual_solve_52_17_upper.bin": {
+      "bytes": 94652,
+      "sha256": "1dd457759aff585ca7f5cbc0dc9a2c502469f0344551d1ec58aaed708724d514"
+    },
+    "accuracy_native_excel_1791922073463615300/RPFEM_logs/20261014_050759_7176_accuracy_fs_small.tsv.accuracy_dual_solve_52_17_upper.bin.context.tsv": {
+      "bytes": 36300,
+      "sha256": "4ac370b114d723fb13136aea948cf0516a5e8fc004f24300a5f51ca43489dc28"
+    },
+    "accuracy_native_excel_1791922073463615300/RPFEM_logs/20261014_050759_7176_accuracy_fs_small.tsv.accuracy_dual_solve_53_18_upper.bin": {
+      "bytes": 94652,
+      "sha256": "ddc64c1f52dfb2da1898cfb1ec4d7a1a74008394b61bb27463c1ad5b96170bba"
+    },
+    "accuracy_native_excel_1791922073463615300/RPFEM_logs/20261014_050759_7176_accuracy_fs_small.tsv.accuracy_dual_solve_53_18_upper.bin.context.tsv": {
+      "bytes": 36300,
+      "sha256": "afb52ed4e5cd27147c8f1ad895600397024547dab0bde9f05fbbfedeb10c0e3a"
+    },
+    "accuracy_native_excel_1791922073463615300/RPFEM_logs/20261014_050759_7176_accuracy_fs_small.tsv.accuracy_dual_solve_54_19_upper.bin": {
+      "bytes": 94652,
+      "sha256": "5bb6ccfd77602df4ef6c5ba7aa84cc92d29c786beaac1d0fae268bef0baadba1"
+    },
+    "accuracy_native_excel_1791922073463615300/RPFEM_logs/20261014_050759_7176_accuracy_fs_small.tsv.accuracy_dual_solve_54_19_upper.bin.context.tsv": {
+      "bytes": 36300,
+      "sha256": "c109cb6aaf79ec0c57f31bcac645c4a01a8e5063a6ac3bf7d15d4949f8464e1e"
+    },
+    "accuracy_native_excel_1791922073463615300/RPFEM_logs/20261014_050759_7176_accuracy_fs_small.tsv.accuracy_dual_solve_55_20_upper.bin": {
+      "bytes": 94652,
+      "sha256": "80365f79b2b2b4b99a4c2fa92d3b94c0a42a093d3d6cbd5a4956216fc80d2d9e"
+    },
+    "accuracy_native_excel_1791922073463615300/RPFEM_logs/20261014_050759_7176_accuracy_fs_small.tsv.accuracy_dual_solve_55_20_upper.bin.context.tsv": {
+      "bytes": 36300,
+      "sha256": "4ca62279d51dd7b044eb4c8def849e23c3eb6abb158d1ba2e0cac505ec889d8c"
+    },
+    "accuracy_native_excel_1791922073463615300/RPFEM_logs/20261014_050759_7176_accuracy_fs_small.tsv.accuracy_dual_solve_56_21_upper.bin": {
+      "bytes": 94652,
+      "sha256": "5d388bf341bbfdc8127ead27c6017fe2a382cacd5e6806dd9ea6b26c8623e6f5"
+    },
+    "accuracy_native_excel_1791922073463615300/RPFEM_logs/20261014_050759_7176_accuracy_fs_small.tsv.accuracy_dual_solve_56_21_upper.bin.context.tsv": {
+      "bytes": 36300,
+      "sha256": "3408a95a55935106286dc78b26e423061914b96b14b699aa48791a713a03542c"
+    },
+    "accuracy_native_excel_1791922073463615300/RPFEM_logs/20261014_050759_7176_accuracy_fs_small.tsv.accuracy_dual_solve_57_22_upper.bin": {
+      "bytes": 94652,
+      "sha256": "d5231e3493e521b7eb3b30d63d76973537c1353ecc8d5054c7bc6b80ef64f983"
+    },
+    "accuracy_native_excel_1791922073463615300/RPFEM_logs/20261014_050759_7176_accuracy_fs_small.tsv.accuracy_dual_solve_57_22_upper.bin.context.tsv": {
+      "bytes": 36300,
+      "sha256": "bd841695185c7b1d9a2a6ebb60d5348f3bb4160444b11fcc4015a7997b77d780"
+    },
+    "accuracy_native_excel_1791922073463615300/RPFEM_logs/20261014_050759_7176_accuracy_fs_small.tsv.accuracy_dual_solve_58_23_upper.bin": {
+      "bytes": 94652,
+      "sha256": "0c7aba28506f5376f283675ca58674cb4b23ec82d1d3f21220f5cdfa5c3211f6"
+    },
+    "accuracy_native_excel_1791922073463615300/RPFEM_logs/20261014_050759_7176_accuracy_fs_small.tsv.accuracy_dual_solve_58_23_upper.bin.context.tsv": {
+      "bytes": 36300,
+      "sha256": "95a18997da8400b827890890b825b1407e4a8435445c5319cf8bcfc87cb8102b"
+    },
+    "accuracy_native_excel_1791922073463615300/RPFEM_logs/20261014_050759_7176_accuracy_fs_small.tsv.accuracy_dual_solve_59_24_upper.bin": {
+      "bytes": 94652,
+      "sha256": "7371ab163484f29c3d8eb94cb4fb73afbb8bc1d9e53c6ac678a4772b865bbd4a"
+    },
+    "accuracy_native_excel_1791922073463615300/RPFEM_logs/20261014_050759_7176_accuracy_fs_small.tsv.accuracy_dual_solve_59_24_upper.bin.context.tsv": {
+      "bytes": 36300,
+      "sha256": "27a9546ddc0a6ff7614c3c98966c5699dc4696b9343b9967e26df4a71165841d"
+    },
+    "accuracy_native_excel_1791922073463615300/RPFEM_logs/20261014_050759_7176_accuracy_fs_small.tsv.accuracy_dual_solve_60_25_upper.bin": {
+      "bytes": 94652,
+      "sha256": "a60aa59558174c548e5556202f69deef3fce8ef8dd8ca6a78d3edc34065f593d"
+    },
+    "accuracy_native_excel_1791922073463615300/RPFEM_logs/20261014_050759_7176_accuracy_fs_small.tsv.accuracy_dual_solve_60_25_upper.bin.context.tsv": {
+      "bytes": 36300,
+      "sha256": "df54d360d93c36ad4d39c99c3fa3c46608605f91af794270139da0cc9de775c1"
+    },
+    "accuracy_native_excel_1791922073463615300/RPFEM_logs/20261014_050759_7176_accuracy_fs_small.tsv.accuracy_dual_solve_61_26_upper.bin": {
+      "bytes": 94652,
+      "sha256": "edfb4bf0cdceb882eba6c0369e533bb1c298f35c66634870aeb62a6e6076a586"
+    },
+    "accuracy_native_excel_1791922073463615300/RPFEM_logs/20261014_050759_7176_accuracy_fs_small.tsv.accuracy_dual_solve_61_26_upper.bin.context.tsv": {
+      "bytes": 36300,
+      "sha256": "53eb0ab24e91bd8a2ee629b79d82a46967f273b3bf7c9e2f7a503635ea778df2"
+    },
+    "accuracy_native_excel_1791922073463615300/RPFEM_logs/20261014_050759_7176_accuracy_fs_small.tsv.accuracy_dual_solve_62_27_upper.bin": {
+      "bytes": 94652,
+      "sha256": "585d6c5817941aa87f745046e65e7f6950d8ad7dc1deae305a3b95952e6e3c9a"
+    },
+    "accuracy_native_excel_1791922073463615300/RPFEM_logs/20261014_050759_7176_accuracy_fs_small.tsv.accuracy_dual_solve_62_27_upper.bin.context.tsv": {
+      "bytes": 36300,
+      "sha256": "01fea78a6a72d3334a4dc15f287c96c3589f9476bc2fbbbeb86f88f14b7b46ce"
+    },
+    "accuracy_native_excel_1791922073463615300/RPFEM_logs/20261014_050759_7176_accuracy_fs_small.tsv.accuracy_dual_solve_63_28_upper.bin": {
+      "bytes": 94652,
+      "sha256": "cae6645d88a50e1a45a44dab85bcaa8021948f957b65b165950acbce612e0eb2"
+    },
+    "accuracy_native_excel_1791922073463615300/RPFEM_logs/20261014_050759_7176_accuracy_fs_small.tsv.accuracy_dual_solve_63_28_upper.bin.context.tsv": {
+      "bytes": 36300,
+      "sha256": "ac2e4cf536535d58221200ad88ee1565070e4434d78ed8e902a1d08ecd638833"
+    },
+    "accuracy_native_excel_1791922073463615300/RPFEM_logs/20261014_050759_7176_accuracy_fs_small.tsv.accuracy_dual_solve_64_29_upper.bin": {
+      "bytes": 94652,
+      "sha256": "917eba3cb5acca507c832fb317293abf37abdfca38dda422e39fc0e3d9e22992"
+    },
+    "accuracy_native_excel_1791922073463615300/RPFEM_logs/20261014_050759_7176_accuracy_fs_small.tsv.accuracy_dual_solve_64_29_upper.bin.context.tsv": {
+      "bytes": 36300,
+      "sha256": "3e4b96e6dcb4ff9def4df1f4c23edde409eb023633cca1b4ae5fbc4cd79845b9"
+    },
+    "accuracy_native_excel_1791922073463615300/RPFEM_logs/20261014_050759_7176_accuracy_fs_small.tsv.accuracy_dual_solve_65_30_upper.bin": {
+      "bytes": 94652,
+      "sha256": "77ff523d8b2c7db94d0b30b343fe04af60a9eaaaf7d01d3747a7c57f7140bfba"
+    },
+    "accuracy_native_excel_1791922073463615300/RPFEM_logs/20261014_050759_7176_accuracy_fs_small.tsv.accuracy_dual_solve_65_30_upper.bin.context.tsv": {
+      "bytes": 36300,
+      "sha256": "bde8a04eeea4f4747f63e83aff428418b9a30434f3651f3c881c3f2a617f1693"
+    },
+    "accuracy_native_excel_1791922073463615300/RPFEM_logs/20261014_050759_7176_accuracy_fs_small.tsv.accuracy_dual_solve_66_31_upper.bin": {
+      "bytes": 94652,
+      "sha256": "cac6da2f2e4f654e89ed6880a8699e059568d22aecbf97ab7cfe61fcce97b9ac"
+    },
+    "accuracy_native_excel_1791922073463615300/RPFEM_logs/20261014_050759_7176_accuracy_fs_small.tsv.accuracy_dual_solve_66_31_upper.bin.context.tsv": {
+      "bytes": 36300,
+      "sha256": "4bf3bfbf6095dfa4171c377864180fddbad9c9e4369b287dd8e555764420e210"
+    },
+    "accuracy_native_excel_1791922073463615300/RPFEM_logs/20261014_050759_7176_accuracy_fs_small.tsv.accuracy_dual_solve_67_32_upper.bin": {
+      "bytes": 94652,
+      "sha256": "af5959df1194f89cbfae098cad6179ca4ebbfd5371269bb07ea3b72694220f53"
+    },
+    "accuracy_native_excel_1791922073463615300/RPFEM_logs/20261014_050759_7176_accuracy_fs_small.tsv.accuracy_dual_solve_67_32_upper.bin.context.tsv": {
+      "bytes": 36300,
+      "sha256": "6be1b47933e696d8426cfd186d116e33903b3d7b78894cf6ead002bd4c7bacf7"
+    },
+    "accuracy_native_excel_1791922073463615300/RPFEM_logs/20261014_050759_7176_accuracy_fs_small.tsv.accuracy_dual_solve_68_33_upper.bin": {
+      "bytes": 94652,
+      "sha256": "f195ebb76c6485eb4a29f7bcb5500d34c07c35dfea1daf40f68e4f9761e57dab"
+    },
+    "accuracy_native_excel_1791922073463615300/RPFEM_logs/20261014_050759_7176_accuracy_fs_small.tsv.accuracy_dual_solve_68_33_upper.bin.context.tsv": {
+      "bytes": 36300,
+      "sha256": "8ddf4892d8c9e58a63bd518a3db3f314330803479bde91c844e7277812038723"
+    },
+    "accuracy_native_excel_1791922073463615300/RPFEM_logs/20261014_050759_7176_accuracy_fs_small.tsv.accuracy_dual_solve_69_34_upper.bin": {
+      "bytes": 94652,
+      "sha256": "2027d01108e748fb79f6d7ee5d0d7b86d949fd782933f1e7c391947a0f774ece"
+    },
+    "accuracy_native_excel_1791922073463615300/RPFEM_logs/20261014_050759_7176_accuracy_fs_small.tsv.accuracy_dual_solve_69_34_upper.bin.context.tsv": {
+      "bytes": 36300,
+      "sha256": "f3eb95780ccf06a6e3dd46fff7f3c670fe47dcdc135f4861357eae96c71bee5d"
+    },
+    "accuracy_native_excel_1791922073463615300/RPFEM_logs/20261014_050759_7176_accuracy_fs_small.tsv.accuracy_dual_solve_70_35_upper.bin": {
+      "bytes": 94652,
+      "sha256": "88333d59288bcd755f99aa1c089588247762049e9fc0b98fd670b2b791878735"
+    },
+    "accuracy_native_excel_1791922073463615300/RPFEM_logs/20261014_050759_7176_accuracy_fs_small.tsv.accuracy_dual_solve_70_35_upper.bin.context.tsv": {
+      "bytes": 36300,
+      "sha256": "e59c989351c59be16f27ab4ae8ee4278ddb466d0a503a7fa51383eb4db995b83"
+    },
+    "accuracy_native_excel_1791922073463615300/RPFEM_logs/20261014_050759_7176_accuracy_fs_small.tsv.accuracy_dual_solve_71_36_upper.bin": {
+      "bytes": 94652,
+      "sha256": "f55e9a8e1d8312db856578f4f35d52d39149689724297845f2225bfa4d727227"
+    },
+    "accuracy_native_excel_1791922073463615300/RPFEM_logs/20261014_050759_7176_accuracy_fs_small.tsv.accuracy_dual_solve_71_36_upper.bin.context.tsv": {
+      "bytes": 36300,
+      "sha256": "dfeff983d43badca14f34ab2df0170c74962f07cbd44008ec540320c7212c4d3"
+    },
+    "accuracy_native_excel_1791922073463615300/RPFEM_logs/20261014_050759_7176_accuracy_fs_small.tsv.accuracy_dual_solve_72_37_upper.bin": {
+      "bytes": 94652,
+      "sha256": "20d7b3ae1510e08268d7c186533e79b14555d1306ca0ec45764efd4a8544879e"
+    },
+    "accuracy_native_excel_1791922073463615300/RPFEM_logs/20261014_050759_7176_accuracy_fs_small.tsv.accuracy_dual_solve_72_37_upper.bin.context.tsv": {
+      "bytes": 36300,
+      "sha256": "e8d0ec8d4879b3caa1c4a0e84401861a7363c48a4eadd61d22cab2c0e7f89311"
+    },
+    "accuracy_native_excel_1791922073463615300/RPFEM_logs/20261014_050759_7176_accuracy_fs_small.tsv.accuracy_dual_solve_73_38_upper.bin": {
+      "bytes": 94652,
+      "sha256": "0eb51dd67c46f01678896da6873c3eb8f8994f818cb3921edeb8f70cc4e6932f"
+    },
+    "accuracy_native_excel_1791922073463615300/RPFEM_logs/20261014_050759_7176_accuracy_fs_small.tsv.accuracy_dual_solve_73_38_upper.bin.context.tsv": {
+      "bytes": 36300,
+      "sha256": "1b4f3af2e6315edb35e745d5d7f9ceee7364c6e7918ddf125b32b106abf50fdb"
+    },
+    "accuracy_native_excel_1791922073463615300/RPFEM_logs/20261014_050759_7176_accuracy_fs_small.tsv.accuracy_primal_solve_2_1_lower.bin": {
+      "bytes": 37028,
+      "sha256": "cb712020c462b7dafe5f5686e0080604804bc85e570719a03dd2134df28dfcaa"
+    },
+    "accuracy_native_excel_1791922073463615300/RPFEM_logs/20261014_050759_7176_accuracy_fs_small.tsv.accuracy_primal_solve_2_1_lower.bin.context.tsv": {
+      "bytes": 66148,
+      "sha256": "65ec0b6c98831101d525460eb66ab3432356f67de4ae7781dada8f3d4a06dce0"
+    },
+    "accuracy_native_excel_1791922073463615300/RPFEM_logs/20261014_050759_7176_accuracy_fs_small.tsv.original_lower_dual_solve_10_candidate_0.bin": {
+      "bytes": 46004,
+      "sha256": "c9952384a658dead710b5571d0f6dca9de7e8064c8cee2800b4ce6005a7baf8f"
+    },
+    "accuracy_native_excel_1791922073463615300/RPFEM_logs/20261014_050759_7176_accuracy_fs_small.tsv.original_lower_dual_solve_10_candidate_0.context.tsv": {
+      "bytes": 66148,
+      "sha256": "ef18f61986fd17ea69c342014476b32c35e6d839af0ccf5760ea96fed67e3e76"
+    },
+    "accuracy_native_excel_1791922073463615300/RPFEM_logs/20261014_050759_7176_accuracy_fs_small.tsv.original_lower_dual_solve_11_candidate_0.bin": {
+      "bytes": 46004,
+      "sha256": "d1bd074326836972979d1a385ab313a13eb3b4981cf23b9b1a7a1b5fb0bd22f9"
+    },
+    "accuracy_native_excel_1791922073463615300/RPFEM_logs/20261014_050759_7176_accuracy_fs_small.tsv.original_lower_dual_solve_11_candidate_0.context.tsv": {
+      "bytes": 66148,
+      "sha256": "2b068cfb78c44aaf85901adfb2588fa305ace0dc0175467d5cd013752fddfc7a"
+    },
+    "accuracy_native_excel_1791922073463615300/RPFEM_logs/20261014_050759_7176_accuracy_fs_small.tsv.original_lower_dual_solve_37_candidate_0.bin": {
+      "bytes": 46004,
+      "sha256": "d1bd074326836972979d1a385ab313a13eb3b4981cf23b9b1a7a1b5fb0bd22f9"
+    },
+    "accuracy_native_excel_1791922073463615300/RPFEM_logs/20261014_050759_7176_accuracy_fs_small.tsv.original_lower_dual_solve_37_candidate_0.context.tsv": {
+      "bytes": 66148,
+      "sha256": "2b068cfb78c44aaf85901adfb2588fa305ace0dc0175467d5cd013752fddfc7a"
+    },
+    "accuracy_native_excel_1791922073463615300/RPFEM_logs/20261014_050759_7176_accuracy_fs_small.tsv.original_lower_dual_solve_7_candidate_0.bin": {
+      "bytes": 46004,
+      "sha256": "ab18e33e461ba5405d1bd62288ab40c55aef2d7558da76f1c6ff83bd380d1a71"
+    },
+    "accuracy_native_excel_1791922073463615300/RPFEM_logs/20261014_050759_7176_accuracy_fs_small.tsv.original_lower_dual_solve_7_candidate_0.context.tsv": {
+      "bytes": 66148,
+      "sha256": "de82f64c9d5a5ff2508151403293491b1ce5e688d1e6db5201f9c84dd1f78919"
+    },
+    "accuracy_native_excel_1791922073463615300/RPFEM_logs/20261014_050759_7176_accuracy_fs_small.tsv.original_lower_dual_solve_8_candidate_0.bin": {
+      "bytes": 46004,
+      "sha256": "7f13a448ce1259a64c67c89512d0944c998df6ee822b6729f40af314dc25dea2"
+    },
+    "accuracy_native_excel_1791922073463615300/RPFEM_logs/20261014_050759_7176_accuracy_fs_small.tsv.original_lower_dual_solve_8_candidate_0.context.tsv": {
+      "bytes": 66148,
+      "sha256": "8456366cc7ed55bc363f155e698db627a539e82fc0567721d3bc847180797bac"
+    },
+    "accuracy_native_excel_1791922073463615300/RPFEM_logs/20261014_050759_7176_accuracy_fs_small.tsv.original_lower_dual_solve_9_candidate_0.bin": {
+      "bytes": 46004,
+      "sha256": "7e303c2b2c72bcf93cd5730c39cc9fc17af3073a9ec5297f5e264af8ea4ee77f"
+    },
+    "accuracy_native_excel_1791922073463615300/RPFEM_logs/20261014_050759_7176_accuracy_fs_small.tsv.original_lower_dual_solve_9_candidate_0.context.tsv": {
+      "bytes": 66148,
+      "sha256": "ccb93aba82640a1804885e3c136862d66c4f34d0e19d82667095c33fa82bffe0"
+    },
+    "accuracy_native_excel_1791922073463615300/fs_probe.tsv": {
+      "bytes": 96758,
+      "sha256": "8f2cd96f5bab98e2f6811f5fbe580583856adb496babe41dfcdf13844a54adc2"
+    },
+    "accuracy_native_excel_1791922073463615300/root_lower_recovered.bin": {
+      "bytes": 37028,
+      "sha256": "8eb30bf4a5cd417c1568bbbdf6ebcd618b4e56574ee4b8d84f10bd543ea7f87d"
+    },
+    "accuracy_native_excel_1791922073463615300/root_lower_recovered.bin.context.tsv": {
+      "bytes": 66148,
+      "sha256": "04dd92a8ed3536d5b81d7b27d8f35a22ce4d5a70ffc84defa82a939e32bd64c8"
+    },
+    "accuracy_native_excel_1791922073463615300/root_upper_recovered.bin": {
+      "bytes": 91172,
+      "sha256": "46f3ae89e2c518f3a3d9a4ce149f836acbcacb703e30ca505a808d537bf6f880"
+    },
+    "accuracy_native_excel_1791922073463615300/root_upper_recovered.bin.context.tsv": {
+      "bytes": 36300,
+      "sha256": "7b4cdc2a2f723b51d4dc566b6eaa1659848af4fa52495703e462aa4b9fb9c5e1"
+    },
+    "accuracy_native_excel_1791922073463615300/summary.json": {
+      "bytes": 24731,
+      "sha256": "1a222076f4e1f7b642644d4956e03c1797d23f1f4c910901b8631a53c1bc56c5"
+    },
+    "accuracy_native_excel_1791922223453183700/RPFEM_logs/20261014_051028_14720_accuracy_fs_small.tsv": {
+      "bytes": 3595044,
+      "sha256": "f214048730d2e9f2fd99b86425f1366b9770ebdd9259715b8b410ff0bfce6916"
+    },
+    "accuracy_native_excel_1791922223453183700/RPFEM_logs/20261014_051028_14720_accuracy_fs_small.tsv.accuracy_dual_solve_37_3_lower.bin": {
+      "bytes": 39372,
+      "sha256": "c67a7ef31dbfa68de8e0eff1abcc1a81786c4aa7c9c5a8e18bfc728222d88e56"
+    },
+    "accuracy_native_excel_1791922223453183700/RPFEM_logs/20261014_051028_14720_accuracy_fs_small.tsv.accuracy_dual_solve_37_3_lower.bin.context.tsv": {
+      "bytes": 66148,
+      "sha256": "2b068cfb78c44aaf85901adfb2588fa305ace0dc0175467d5cd013752fddfc7a"
+    },
+    "accuracy_native_excel_1791922223453183700/RPFEM_logs/20261014_051028_14720_accuracy_fs_small.tsv.accuracy_dual_solve_38_4_upper.bin": {
+      "bytes": 94652,
+      "sha256": "a64434ccddeb63b5adc395ee205ce347e89b75fbe735740afbd52b086960a915"
+    },
+    "accuracy_native_excel_1791922223453183700/RPFEM_logs/20261014_051028_14720_accuracy_fs_small.tsv.accuracy_dual_solve_38_4_upper.bin.context.tsv": {
+      "bytes": 36300,
+      "sha256": "5d5a8100b8c3e7f0c527b99f91aa1ecaf91710ab24fc76fe377ffeba975816fc"
+    },
+    "accuracy_native_excel_1791922223453183700/RPFEM_logs/20261014_051028_14720_accuracy_fs_small.tsv.accuracy_dual_solve_3_2_lower.bin": {
+      "bytes": 39372,
+      "sha256": "5e2611d6a04ed855104d4c26f647aac9223c0f3c766f51d57489c8aa877107d4"
+    },
+    "accuracy_native_excel_1791922223453183700/RPFEM_logs/20261014_051028_14720_accuracy_fs_small.tsv.accuracy_dual_solve_3_2_lower.bin.context.tsv": {
+      "bytes": 66148,
+      "sha256": "b0ab0bb37878d267ae9d5dffbb643fb60a4108b02e09ff65909fa7e3aa408f23"
+    },
+    "accuracy_native_excel_1791922223453183700/RPFEM_logs/20261014_051028_14720_accuracy_fs_small.tsv.accuracy_dual_solve_40_5_upper.bin": {
+      "bytes": 94652,
+      "sha256": "2972a7c19be78f32af16117421e7fc230babff8b23cda74c172859f6794e3b42"
+    },
+    "accuracy_native_excel_1791922223453183700/RPFEM_logs/20261014_051028_14720_accuracy_fs_small.tsv.accuracy_dual_solve_40_5_upper.bin.context.tsv": {
+      "bytes": 36300,
+      "sha256": "d0f1b3088b54ba15a5249079a889dc8b2455a8060e10c71f8abd6675eba4c6b8"
+    },
+    "accuracy_native_excel_1791922223453183700/RPFEM_logs/20261014_051028_14720_accuracy_fs_small.tsv.accuracy_dual_solve_41_6_upper.bin": {
+      "bytes": 94652,
+      "sha256": "55a753acc4d66bb24305fb093f29292249c471fc2311c390535320ad0a29b81e"
+    },
+    "accuracy_native_excel_1791922223453183700/RPFEM_logs/20261014_051028_14720_accuracy_fs_small.tsv.accuracy_dual_solve_41_6_upper.bin.context.tsv": {
+      "bytes": 36300,
+      "sha256": "3bdbb64af25eccd192413f6aeed7dba993f1715e3c858db9cd4b1fa38bf812bd"
+    },
+    "accuracy_native_excel_1791922223453183700/RPFEM_logs/20261014_051028_14720_accuracy_fs_small.tsv.accuracy_dual_solve_42_7_upper.bin": {
+      "bytes": 94652,
+      "sha256": "636abc93be1020f65ec226e20d125ad90bee1b8c68971a4c88c5e359915e2790"
+    },
+    "accuracy_native_excel_1791922223453183700/RPFEM_logs/20261014_051028_14720_accuracy_fs_small.tsv.accuracy_dual_solve_42_7_upper.bin.context.tsv": {
+      "bytes": 36300,
+      "sha256": "0baa1b9498155052c74a0f794452b2e7c54905432d534f37d8b52d612a9670b1"
+    },
+    "accuracy_native_excel_1791922223453183700/RPFEM_logs/20261014_051028_14720_accuracy_fs_small.tsv.accuracy_dual_solve_43_8_upper.bin": {
+      "bytes": 94652,
+      "sha256": "6d6bc803f15341c1d8847dfdca19cd865d399321f4f98044634497ce07dcdb8b"
+    },
+    "accuracy_native_excel_1791922223453183700/RPFEM_logs/20261014_051028_14720_accuracy_fs_small.tsv.accuracy_dual_solve_43_8_upper.bin.context.tsv": {
+      "bytes": 36300,
+      "sha256": "f683671567b8364ea1614a8834b779ca78ced437b11d7ecf8625c0e1875d23bf"
+    },
+    "accuracy_native_excel_1791922223453183700/RPFEM_logs/20261014_051028_14720_accuracy_fs_small.tsv.accuracy_dual_solve_44_9_upper.bin": {
+      "bytes": 94652,
+      "sha256": "14d9ab75de206c55e2d8162b51c2dca91c989d844c7029873c1f95a48ecb8e13"
+    },
+    "accuracy_native_excel_1791922223453183700/RPFEM_logs/20261014_051028_14720_accuracy_fs_small.tsv.accuracy_dual_solve_44_9_upper.bin.context.tsv": {
+      "bytes": 36300,
+      "sha256": "1efbbe8e801be05dc11d29a6493ab9570cf5b0e9eb038661e15e11d26cde7171"
+    },
+    "accuracy_native_excel_1791922223453183700/RPFEM_logs/20261014_051028_14720_accuracy_fs_small.tsv.accuracy_dual_solve_45_10_upper.bin": {
+      "bytes": 94652,
+      "sha256": "f30a3513bff161ef57ecf01828d9f6a00d0f33f6e0705f59f76724f290c23e54"
+    },
+    "accuracy_native_excel_1791922223453183700/RPFEM_logs/20261014_051028_14720_accuracy_fs_small.tsv.accuracy_dual_solve_45_10_upper.bin.context.tsv": {
+      "bytes": 36300,
+      "sha256": "689a79dee377087bf463e10c444b7fae3869b56904060a8c45d6a56bf78fb17b"
+    },
+    "accuracy_native_excel_1791922223453183700/RPFEM_logs/20261014_051028_14720_accuracy_fs_small.tsv.accuracy_dual_solve_46_11_upper.bin": {
+      "bytes": 94652,
+      "sha256": "8f607791b942b07005a4364dd29cf548fe2efc918bdaf1a44366074a85762eea"
+    },
+    "accuracy_native_excel_1791922223453183700/RPFEM_logs/20261014_051028_14720_accuracy_fs_small.tsv.accuracy_dual_solve_46_11_upper.bin.context.tsv": {
+      "bytes": 36300,
+      "sha256": "198e18a76800c747afe239420e6e5220414aba5068b0f27e91ffba1cf51cb0c5"
+    },
+    "accuracy_native_excel_1791922223453183700/RPFEM_logs/20261014_051028_14720_accuracy_fs_small.tsv.accuracy_dual_solve_47_12_upper.bin": {
+      "bytes": 94652,
+      "sha256": "89c0e91aa4b3702ad6938af8790040934297713096de9baff9c6b8611d0c34d2"
+    },
+    "accuracy_native_excel_1791922223453183700/RPFEM_logs/20261014_051028_14720_accuracy_fs_small.tsv.accuracy_dual_solve_47_12_upper.bin.context.tsv": {
+      "bytes": 36300,
+      "sha256": "eb8fea4e04ed78239c9154aa2363cc6f6b0efd333bb277610902c5ae849c2daa"
+    },
+    "accuracy_native_excel_1791922223453183700/RPFEM_logs/20261014_051028_14720_accuracy_fs_small.tsv.accuracy_dual_solve_48_13_upper.bin": {
+      "bytes": 94652,
+      "sha256": "9588dee617e6abaff6b656ba1ac3c1a7a842e9d62904467ac1f20f35b217cb47"
+    },
+    "accuracy_native_excel_1791922223453183700/RPFEM_logs/20261014_051028_14720_accuracy_fs_small.tsv.accuracy_dual_solve_48_13_upper.bin.context.tsv": {
+      "bytes": 36300,
+      "sha256": "b2286c44909fe71f5ca8547b7c5a9d22bb73be1d50746551f8677e9aae025813"
+    },
+    "accuracy_native_excel_1791922223453183700/RPFEM_logs/20261014_051028_14720_accuracy_fs_small.tsv.accuracy_dual_solve_49_14_upper.bin": {
+      "bytes": 94652,
+      "sha256": "4156c26bf18426e9208602f21de782614f6272de8a76b3502513f4bc11e70535"
+    },
+    "accuracy_native_excel_1791922223453183700/RPFEM_logs/20261014_051028_14720_accuracy_fs_small.tsv.accuracy_dual_solve_49_14_upper.bin.context.tsv": {
+      "bytes": 36300,
+      "sha256": "d3595278d99bfb243ee825088ea9e7c66052b9bee99ef932b172801260068b47"
+    },
+    "accuracy_native_excel_1791922223453183700/RPFEM_logs/20261014_051028_14720_accuracy_fs_small.tsv.accuracy_dual_solve_50_15_upper.bin": {
+      "bytes": 94652,
+      "sha256": "74f322a212e350cd81ec19ec5e2ea326fc91ac56273081e2c3b65b2acff1ae3b"
+    },
+    "accuracy_native_excel_1791922223453183700/RPFEM_logs/20261014_051028_14720_accuracy_fs_small.tsv.accuracy_dual_solve_50_15_upper.bin.context.tsv": {
+      "bytes": 36300,
+      "sha256": "fb856ca1b73284a295e744f7a7ccdb5fd23766676d38e249347b6726747f092c"
+    },
+    "accuracy_native_excel_1791922223453183700/RPFEM_logs/20261014_051028_14720_accuracy_fs_small.tsv.accuracy_dual_solve_51_16_upper.bin": {
+      "bytes": 94652,
+      "sha256": "d894a6ea11895878c05690a305864d83646fc943f656ba926ec93164121cf30d"
+    },
+    "accuracy_native_excel_1791922223453183700/RPFEM_logs/20261014_051028_14720_accuracy_fs_small.tsv.accuracy_dual_solve_51_16_upper.bin.context.tsv": {
+      "bytes": 36300,
+      "sha256": "eee841b24563eb13251bad24d32ebb3afecb416d1b14ceb75adddb17b03f363c"
+    },
+    "accuracy_native_excel_1791922223453183700/RPFEM_logs/20261014_051028_14720_accuracy_fs_small.tsv.accuracy_dual_solve_52_17_upper.bin": {
+      "bytes": 94652,
+      "sha256": "1dd457759aff585ca7f5cbc0dc9a2c502469f0344551d1ec58aaed708724d514"
+    },
+    "accuracy_native_excel_1791922223453183700/RPFEM_logs/20261014_051028_14720_accuracy_fs_small.tsv.accuracy_dual_solve_52_17_upper.bin.context.tsv": {
+      "bytes": 36300,
+      "sha256": "4ac370b114d723fb13136aea948cf0516a5e8fc004f24300a5f51ca43489dc28"
+    },
+    "accuracy_native_excel_1791922223453183700/RPFEM_logs/20261014_051028_14720_accuracy_fs_small.tsv.accuracy_dual_solve_53_18_upper.bin": {
+      "bytes": 94652,
+      "sha256": "ddc64c1f52dfb2da1898cfb1ec4d7a1a74008394b61bb27463c1ad5b96170bba"
+    },
+    "accuracy_native_excel_1791922223453183700/RPFEM_logs/20261014_051028_14720_accuracy_fs_small.tsv.accuracy_dual_solve_53_18_upper.bin.context.tsv": {
+      "bytes": 36300,
+      "sha256": "afb52ed4e5cd27147c8f1ad895600397024547dab0bde9f05fbbfedeb10c0e3a"
+    },
+    "accuracy_native_excel_1791922223453183700/RPFEM_logs/20261014_051028_14720_accuracy_fs_small.tsv.accuracy_dual_solve_54_19_upper.bin": {
+      "bytes": 94652,
+      "sha256": "5bb6ccfd77602df4ef6c5ba7aa84cc92d29c786beaac1d0fae268bef0baadba1"
+    },
+    "accuracy_native_excel_1791922223453183700/RPFEM_logs/20261014_051028_14720_accuracy_fs_small.tsv.accuracy_dual_solve_54_19_upper.bin.context.tsv": {
+      "bytes": 36300,
+      "sha256": "c109cb6aaf79ec0c57f31bcac645c4a01a8e5063a6ac3bf7d15d4949f8464e1e"
+    },
+    "accuracy_native_excel_1791922223453183700/RPFEM_logs/20261014_051028_14720_accuracy_fs_small.tsv.accuracy_dual_solve_55_20_upper.bin": {
+      "bytes": 94652,
+      "sha256": "80365f79b2b2b4b99a4c2fa92d3b94c0a42a093d3d6cbd5a4956216fc80d2d9e"
+    },
+    "accuracy_native_excel_1791922223453183700/RPFEM_logs/20261014_051028_14720_accuracy_fs_small.tsv.accuracy_dual_solve_55_20_upper.bin.context.tsv": {
+      "bytes": 36300,
+      "sha256": "4ca62279d51dd7b044eb4c8def849e23c3eb6abb158d1ba2e0cac505ec889d8c"
+    },
+    "accuracy_native_excel_1791922223453183700/RPFEM_logs/20261014_051028_14720_accuracy_fs_small.tsv.accuracy_dual_solve_56_21_upper.bin": {
+      "bytes": 94652,
+      "sha256": "5d388bf341bbfdc8127ead27c6017fe2a382cacd5e6806dd9ea6b26c8623e6f5"
+    },
+    "accuracy_native_excel_1791922223453183700/RPFEM_logs/20261014_051028_14720_accuracy_fs_small.tsv.accuracy_dual_solve_56_21_upper.bin.context.tsv": {
+      "bytes": 36300,
+      "sha256": "3408a95a55935106286dc78b26e423061914b96b14b699aa48791a713a03542c"
+    },
+    "accuracy_native_excel_1791922223453183700/RPFEM_logs/20261014_051028_14720_accuracy_fs_small.tsv.accuracy_dual_solve_57_22_upper.bin": {
+      "bytes": 94652,
+      "sha256": "d5231e3493e521b7eb3b30d63d76973537c1353ecc8d5054c7bc6b80ef64f983"
+    },
+    "accuracy_native_excel_1791922223453183700/RPFEM_logs/20261014_051028_14720_accuracy_fs_small.tsv.accuracy_dual_solve_57_22_upper.bin.context.tsv": {
+      "bytes": 36300,
+      "sha256": "bd841695185c7b1d9a2a6ebb60d5348f3bb4160444b11fcc4015a7997b77d780"
+    },
+    "accuracy_native_excel_1791922223453183700/RPFEM_logs/20261014_051028_14720_accuracy_fs_small.tsv.accuracy_dual_solve_58_23_upper.bin": {
+      "bytes": 94652,
+      "sha256": "0c7aba28506f5376f283675ca58674cb4b23ec82d1d3f21220f5cdfa5c3211f6"
+    },
+    "accuracy_native_excel_1791922223453183700/RPFEM_logs/20261014_051028_14720_accuracy_fs_small.tsv.accuracy_dual_solve_58_23_upper.bin.context.tsv": {
+      "bytes": 36300,
+      "sha256": "95a18997da8400b827890890b825b1407e4a8435445c5319cf8bcfc87cb8102b"
+    },
+    "accuracy_native_excel_1791922223453183700/RPFEM_logs/20261014_051028_14720_accuracy_fs_small.tsv.accuracy_dual_solve_59_24_upper.bin": {
+      "bytes": 94652,
+      "sha256": "7371ab163484f29c3d8eb94cb4fb73afbb8bc1d9e53c6ac678a4772b865bbd4a"
+    },
+    "accuracy_native_excel_1791922223453183700/RPFEM_logs/20261014_051028_14720_accuracy_fs_small.tsv.accuracy_dual_solve_59_24_upper.bin.context.tsv": {
+      "bytes": 36300,
+      "sha256": "27a9546ddc0a6ff7614c3c98966c5699dc4696b9343b9967e26df4a71165841d"
+    },
+    "accuracy_native_excel_1791922223453183700/RPFEM_logs/20261014_051028_14720_accuracy_fs_small.tsv.accuracy_dual_solve_60_25_upper.bin": {
+      "bytes": 94652,
+      "sha256": "a60aa59558174c548e5556202f69deef3fce8ef8dd8ca6a78d3edc34065f593d"
+    },
+    "accuracy_native_excel_1791922223453183700/RPFEM_logs/20261014_051028_14720_accuracy_fs_small.tsv.accuracy_dual_solve_60_25_upper.bin.context.tsv": {
+      "bytes": 36300,
+      "sha256": "df54d360d93c36ad4d39c99c3fa3c46608605f91af794270139da0cc9de775c1"
+    },
+    "accuracy_native_excel_1791922223453183700/RPFEM_logs/20261014_051028_14720_accuracy_fs_small.tsv.accuracy_dual_solve_61_26_upper.bin": {
+      "bytes": 94652,
+      "sha256": "edfb4bf0cdceb882eba6c0369e533bb1c298f35c66634870aeb62a6e6076a586"
+    },
+    "accuracy_native_excel_1791922223453183700/RPFEM_logs/20261014_051028_14720_accuracy_fs_small.tsv.accuracy_dual_solve_61_26_upper.bin.context.tsv": {
+      "bytes": 36300,
+      "sha256": "53eb0ab24e91bd8a2ee629b79d82a46967f273b3bf7c9e2f7a503635ea778df2"
+    },
+    "accuracy_native_excel_1791922223453183700/RPFEM_logs/20261014_051028_14720_accuracy_fs_small.tsv.accuracy_dual_solve_62_27_upper.bin": {
+      "bytes": 94652,
+      "sha256": "585d6c5817941aa87f745046e65e7f6950d8ad7dc1deae305a3b95952e6e3c9a"
+    },
+    "accuracy_native_excel_1791922223453183700/RPFEM_logs/20261014_051028_14720_accuracy_fs_small.tsv.accuracy_dual_solve_62_27_upper.bin.context.tsv": {
+      "bytes": 36300,
+      "sha256": "01fea78a6a72d3334a4dc15f287c96c3589f9476bc2fbbbeb86f88f14b7b46ce"
+    },
+    "accuracy_native_excel_1791922223453183700/RPFEM_logs/20261014_051028_14720_accuracy_fs_small.tsv.accuracy_dual_solve_63_28_upper.bin": {
+      "bytes": 94652,
+      "sha256": "cae6645d88a50e1a45a44dab85bcaa8021948f957b65b165950acbce612e0eb2"
+    },
+    "accuracy_native_excel_1791922223453183700/RPFEM_logs/20261014_051028_14720_accuracy_fs_small.tsv.accuracy_dual_solve_63_28_upper.bin.context.tsv": {
+      "bytes": 36300,
+      "sha256": "ac2e4cf536535d58221200ad88ee1565070e4434d78ed8e902a1d08ecd638833"
+    },
+    "accuracy_native_excel_1791922223453183700/RPFEM_logs/20261014_051028_14720_accuracy_fs_small.tsv.accuracy_dual_solve_64_29_upper.bin": {
+      "bytes": 94652,
+      "sha256": "917eba3cb5acca507c832fb317293abf37abdfca38dda422e39fc0e3d9e22992"
+    },
+    "accuracy_native_excel_1791922223453183700/RPFEM_logs/20261014_051028_14720_accuracy_fs_small.tsv.accuracy_dual_solve_64_29_upper.bin.context.tsv": {
+      "bytes": 36300,
+      "sha256": "3e4b96e6dcb4ff9def4df1f4c23edde409eb023633cca1b4ae5fbc4cd79845b9"
+    },
+    "accuracy_native_excel_1791922223453183700/RPFEM_logs/20261014_051028_14720_accuracy_fs_small.tsv.accuracy_dual_solve_65_30_upper.bin": {
+      "bytes": 94652,
+      "sha256": "77ff523d8b2c7db94d0b30b343fe04af60a9eaaaf7d01d3747a7c57f7140bfba"
+    },
+    "accuracy_native_excel_1791922223453183700/RPFEM_logs/20261014_051028_14720_accuracy_fs_small.tsv.accuracy_dual_solve_65_30_upper.bin.context.tsv": {
+      "bytes": 36300,
+      "sha256": "bde8a04eeea4f4747f63e83aff428418b9a30434f3651f3c881c3f2a617f1693"
+    },
+    "accuracy_native_excel_1791922223453183700/RPFEM_logs/20261014_051028_14720_accuracy_fs_small.tsv.accuracy_dual_solve_66_31_upper.bin": {
+      "bytes": 94652,
+      "sha256": "cac6da2f2e4f654e89ed6880a8699e059568d22aecbf97ab7cfe61fcce97b9ac"
+    },
+    "accuracy_native_excel_1791922223453183700/RPFEM_logs/20261014_051028_14720_accuracy_fs_small.tsv.accuracy_dual_solve_66_31_upper.bin.context.tsv": {
+      "bytes": 36300,
+      "sha256": "4bf3bfbf6095dfa4171c377864180fddbad9c9e4369b287dd8e555764420e210"
+    },
+    "accuracy_native_excel_1791922223453183700/RPFEM_logs/20261014_051028_14720_accuracy_fs_small.tsv.accuracy_dual_solve_67_32_upper.bin": {
+      "bytes": 94652,
+      "sha256": "af5959df1194f89cbfae098cad6179ca4ebbfd5371269bb07ea3b72694220f53"
+    },
+    "accuracy_native_excel_1791922223453183700/RPFEM_logs/20261014_051028_14720_accuracy_fs_small.tsv.accuracy_dual_solve_67_32_upper.bin.context.tsv": {
+      "bytes": 36300,
+      "sha256": "6be1b47933e696d8426cfd186d116e33903b3d7b78894cf6ead002bd4c7bacf7"
+    },
+    "accuracy_native_excel_1791922223453183700/RPFEM_logs/20261014_051028_14720_accuracy_fs_small.tsv.accuracy_dual_solve_68_33_upper.bin": {
+      "bytes": 94652,
+      "sha256": "f195ebb76c6485eb4a29f7bcb5500d34c07c35dfea1daf40f68e4f9761e57dab"
+    },
+    "accuracy_native_excel_1791922223453183700/RPFEM_logs/20261014_051028_14720_accuracy_fs_small.tsv.accuracy_dual_solve_68_33_upper.bin.context.tsv": {
+      "bytes": 36300,
+      "sha256": "8ddf4892d8c9e58a63bd518a3db3f314330803479bde91c844e7277812038723"
+    },
+    "accuracy_native_excel_1791922223453183700/RPFEM_logs/20261014_051028_14720_accuracy_fs_small.tsv.accuracy_dual_solve_69_34_upper.bin": {
+      "bytes": 94652,
+      "sha256": "2027d01108e748fb79f6d7ee5d0d7b86d949fd782933f1e7c391947a0f774ece"
+    },
+    "accuracy_native_excel_1791922223453183700/RPFEM_logs/20261014_051028_14720_accuracy_fs_small.tsv.accuracy_dual_solve_69_34_upper.bin.context.tsv": {
+      "bytes": 36300,
+      "sha256": "f3eb95780ccf06a6e3dd46fff7f3c670fe47dcdc135f4861357eae96c71bee5d"
+    },
+    "accuracy_native_excel_1791922223453183700/RPFEM_logs/20261014_051028_14720_accuracy_fs_small.tsv.accuracy_dual_solve_70_35_upper.bin": {
+      "bytes": 94652,
+      "sha256": "88333d59288bcd755f99aa1c089588247762049e9fc0b98fd670b2b791878735"
+    },
+    "accuracy_native_excel_1791922223453183700/RPFEM_logs/20261014_051028_14720_accuracy_fs_small.tsv.accuracy_dual_solve_70_35_upper.bin.context.tsv": {
+      "bytes": 36300,
+      "sha256": "e59c989351c59be16f27ab4ae8ee4278ddb466d0a503a7fa51383eb4db995b83"
+    },
+    "accuracy_native_excel_1791922223453183700/RPFEM_logs/20261014_051028_14720_accuracy_fs_small.tsv.accuracy_dual_solve_71_36_upper.bin": {
+      "bytes": 94652,
+      "sha256": "f55e9a8e1d8312db856578f4f35d52d39149689724297845f2225bfa4d727227"
+    },
+    "accuracy_native_excel_1791922223453183700/RPFEM_logs/20261014_051028_14720_accuracy_fs_small.tsv.accuracy_dual_solve_71_36_upper.bin.context.tsv": {
+      "bytes": 36300,
+      "sha256": "dfeff983d43badca14f34ab2df0170c74962f07cbd44008ec540320c7212c4d3"
+    },
+    "accuracy_native_excel_1791922223453183700/RPFEM_logs/20261014_051028_14720_accuracy_fs_small.tsv.accuracy_dual_solve_72_37_upper.bin": {
+      "bytes": 94652,
+      "sha256": "20d7b3ae1510e08268d7c186533e79b14555d1306ca0ec45764efd4a8544879e"
+    },
+    "accuracy_native_excel_1791922223453183700/RPFEM_logs/20261014_051028_14720_accuracy_fs_small.tsv.accuracy_dual_solve_72_37_upper.bin.context.tsv": {
+      "bytes": 36300,
+      "sha256": "e8d0ec8d4879b3caa1c4a0e84401861a7363c48a4eadd61d22cab2c0e7f89311"
+    },
+    "accuracy_native_excel_1791922223453183700/RPFEM_logs/20261014_051028_14720_accuracy_fs_small.tsv.accuracy_dual_solve_73_38_upper.bin": {
+      "bytes": 94652,
+      "sha256": "0eb51dd67c46f01678896da6873c3eb8f8994f818cb3921edeb8f70cc4e6932f"
+    },
+    "accuracy_native_excel_1791922223453183700/RPFEM_logs/20261014_051028_14720_accuracy_fs_small.tsv.accuracy_dual_solve_73_38_upper.bin.context.tsv": {
+      "bytes": 36300,
+      "sha256": "1b4f3af2e6315edb35e745d5d7f9ceee7364c6e7918ddf125b32b106abf50fdb"
+    },
+    "accuracy_native_excel_1791922223453183700/RPFEM_logs/20261014_051028_14720_accuracy_fs_small.tsv.accuracy_primal_solve_2_1_lower.bin": {
+      "bytes": 37028,
+      "sha256": "cb712020c462b7dafe5f5686e0080604804bc85e570719a03dd2134df28dfcaa"
+    },
+    "accuracy_native_excel_1791922223453183700/RPFEM_logs/20261014_051028_14720_accuracy_fs_small.tsv.accuracy_primal_solve_2_1_lower.bin.context.tsv": {
+      "bytes": 66148,
+      "sha256": "65ec0b6c98831101d525460eb66ab3432356f67de4ae7781dada8f3d4a06dce0"
+    },
+    "accuracy_native_excel_1791922223453183700/RPFEM_logs/20261014_051028_14720_accuracy_fs_small.tsv.original_lower_dual_solve_10_candidate_0.bin": {
+      "bytes": 46004,
+      "sha256": "c9952384a658dead710b5571d0f6dca9de7e8064c8cee2800b4ce6005a7baf8f"
+    },
+    "accuracy_native_excel_1791922223453183700/RPFEM_logs/20261014_051028_14720_accuracy_fs_small.tsv.original_lower_dual_solve_10_candidate_0.context.tsv": {
+      "bytes": 66148,
+      "sha256": "ef18f61986fd17ea69c342014476b32c35e6d839af0ccf5760ea96fed67e3e76"
+    },
+    "accuracy_native_excel_1791922223453183700/RPFEM_logs/20261014_051028_14720_accuracy_fs_small.tsv.original_lower_dual_solve_11_candidate_0.bin": {
+      "bytes": 46004,
+      "sha256": "d1bd074326836972979d1a385ab313a13eb3b4981cf23b9b1a7a1b5fb0bd22f9"
+    },
+    "accuracy_native_excel_1791922223453183700/RPFEM_logs/20261014_051028_14720_accuracy_fs_small.tsv.original_lower_dual_solve_11_candidate_0.context.tsv": {
+      "bytes": 66148,
+      "sha256": "2b068cfb78c44aaf85901adfb2588fa305ace0dc0175467d5cd013752fddfc7a"
+    },
+    "accuracy_native_excel_1791922223453183700/RPFEM_logs/20261014_051028_14720_accuracy_fs_small.tsv.original_lower_dual_solve_37_candidate_0.bin": {
+      "bytes": 46004,
+      "sha256": "d1bd074326836972979d1a385ab313a13eb3b4981cf23b9b1a7a1b5fb0bd22f9"
+    },
+    "accuracy_native_excel_1791922223453183700/RPFEM_logs/20261014_051028_14720_accuracy_fs_small.tsv.original_lower_dual_solve_37_candidate_0.context.tsv": {
+      "bytes": 66148,
+      "sha256": "2b068cfb78c44aaf85901adfb2588fa305ace0dc0175467d5cd013752fddfc7a"
+    },
+    "accuracy_native_excel_1791922223453183700/RPFEM_logs/20261014_051028_14720_accuracy_fs_small.tsv.original_lower_dual_solve_7_candidate_0.bin": {
+      "bytes": 46004,
+      "sha256": "ab18e33e461ba5405d1bd62288ab40c55aef2d7558da76f1c6ff83bd380d1a71"
+    },
+    "accuracy_native_excel_1791922223453183700/RPFEM_logs/20261014_051028_14720_accuracy_fs_small.tsv.original_lower_dual_solve_7_candidate_0.context.tsv": {
+      "bytes": 66148,
+      "sha256": "de82f64c9d5a5ff2508151403293491b1ce5e688d1e6db5201f9c84dd1f78919"
+    },
+    "accuracy_native_excel_1791922223453183700/RPFEM_logs/20261014_051028_14720_accuracy_fs_small.tsv.original_lower_dual_solve_8_candidate_0.bin": {
+      "bytes": 46004,
+      "sha256": "7f13a448ce1259a64c67c89512d0944c998df6ee822b6729f40af314dc25dea2"
+    },
+    "accuracy_native_excel_1791922223453183700/RPFEM_logs/20261014_051028_14720_accuracy_fs_small.tsv.original_lower_dual_solve_8_candidate_0.context.tsv": {
+      "bytes": 66148,
+      "sha256": "8456366cc7ed55bc363f155e698db627a539e82fc0567721d3bc847180797bac"
+    },
+    "accuracy_native_excel_1791922223453183700/RPFEM_logs/20261014_051028_14720_accuracy_fs_small.tsv.original_lower_dual_solve_9_candidate_0.bin": {
+      "bytes": 46004,
+      "sha256": "7e303c2b2c72bcf93cd5730c39cc9fc17af3073a9ec5297f5e264af8ea4ee77f"
+    },
+    "accuracy_native_excel_1791922223453183700/RPFEM_logs/20261014_051028_14720_accuracy_fs_small.tsv.original_lower_dual_solve_9_candidate_0.context.tsv": {
+      "bytes": 66148,
+      "sha256": "ccb93aba82640a1804885e3c136862d66c4f34d0e19d82667095c33fa82bffe0"
+    },
+    "accuracy_native_excel_1791922223453183700/fs_probe.tsv": {
+      "bytes": 96738,
+      "sha256": "6a85831fe9b9ae8be4ac6ac3494cdc5f878bff851d329ba650f84931d42d7469"
+    },
+    "accuracy_native_excel_1791922223453183700/own_root_endpoints.bin": {
+      "bytes": 40,
+      "sha256": "08e2aa2a01f897da12927105a288292686814a36372c7810e5370edd88f8e4b0"
+    },
+    "accuracy_native_excel_1791922223453183700/root_lower_recovered.bin": {
+      "bytes": 37028,
+      "sha256": "8eb30bf4a5cd417c1568bbbdf6ebcd618b4e56574ee4b8d84f10bd543ea7f87d"
+    },
+    "accuracy_native_excel_1791922223453183700/root_lower_recovered.bin.context.tsv": {
+      "bytes": 66148,
+      "sha256": "04dd92a8ed3536d5b81d7b27d8f35a22ce4d5a70ffc84defa82a939e32bd64c8"
+    },
+    "accuracy_native_excel_1791922223453183700/root_upper_recovered.bin": {
+      "bytes": 91172,
+      "sha256": "46f3ae89e2c518f3a3d9a4ce149f836acbcacb703e30ca505a808d537bf6f880"
+    },
+    "accuracy_native_excel_1791922223453183700/root_upper_recovered.bin.context.tsv": {
+      "bytes": 36300,
+      "sha256": "7b4cdc2a2f723b51d4dc566b6eaa1659848af4fa52495703e462aa4b9fb9c5e1"
+    },
+    "accuracy_native_excel_1791922223453183700/summary.json": {
+      "bytes": 25206,
+      "sha256": "619711f41043027e20d11f5e7f253e54678f574f598fa1094d1bb599df827e38"
+    },
+    "accuracy_native_excel_1791922835484062900/RPFEM_logs/20261014_052041_15772_accuracy_native_small.tsv": {
+      "bytes": 399118,
+      "sha256": "756d357b4970820b225993bd79b231553e43b3e53fec97f476e94c90045f693a"
+    },
+    "accuracy_native_excel_1791922835484062900/RPFEM_logs/20261014_052041_15772_accuracy_native_small.tsv.accuracy_dual_solve_2_2_lower.bin": {
+      "bytes": 39372,
+      "sha256": "5e2611d6a04ed855104d4c26f647aac9223c0f3c766f51d57489c8aa877107d4"
+    },
+    "accuracy_native_excel_1791922835484062900/RPFEM_logs/20261014_052041_15772_accuracy_native_small.tsv.accuracy_dual_solve_2_2_lower.bin.context.tsv": {
+      "bytes": 66148,
+      "sha256": "b0ab0bb37878d267ae9d5dffbb643fb60a4108b02e09ff65909fa7e3aa408f23"
+    },
+    "accuracy_native_excel_1791922835484062900/RPFEM_logs/20261014_052041_15772_accuracy_native_small.tsv.accuracy_dual_solve_5_4_upper.bin": {
+      "bytes": 94652,
+      "sha256": "7cda8eb5b0389f77f6167bf65e189427ebd89991697e7edb94dc23e7c8cde8ae"
+    },
+    "accuracy_native_excel_1791922835484062900/RPFEM_logs/20261014_052041_15772_accuracy_native_small.tsv.accuracy_dual_solve_5_4_upper.bin.context.tsv": {
+      "bytes": 36300,
+      "sha256": "121548dcdac07aa010c8148a34fe2abac795d1629685e3ec72d605a0d4696080"
+    },
+    "accuracy_native_excel_1791922835484062900/RPFEM_logs/20261014_052041_15772_accuracy_native_small.tsv.accuracy_primal_solve_1_1_lower.bin": {
+      "bytes": 37028,
+      "sha256": "cb712020c462b7dafe5f5686e0080604804bc85e570719a03dd2134df28dfcaa"
+    },
+    "accuracy_native_excel_1791922835484062900/RPFEM_logs/20261014_052041_15772_accuracy_native_small.tsv.accuracy_primal_solve_1_1_lower.bin.context.tsv": {
+      "bytes": 66148,
+      "sha256": "65ec0b6c98831101d525460eb66ab3432356f67de4ae7781dada8f3d4a06dce0"
+    },
+    "accuracy_native_excel_1791922835484062900/RPFEM_logs/20261014_052041_15772_accuracy_native_small.tsv.accuracy_primal_solve_3_3_upper.bin": {
+      "bytes": 91172,
+      "sha256": "560f72632f2ee451c540ca552f94ece75cfc3ae882fa1f147166376ce79c4602"
+    },
+    "accuracy_native_excel_1791922835484062900/RPFEM_logs/20261014_052041_15772_accuracy_native_small.tsv.accuracy_primal_solve_3_3_upper.bin.context.tsv": {
+      "bytes": 36300,
+      "sha256": "2dacaa9b8c19b3c447aa395bf83733cdd2cf7219b455f7194fc8a231fbd88b6b"
+    },
+    "accuracy_native_excel_1791922835484062900/lower_lsmr_recovered.bin": {
+      "bytes": 37028,
+      "sha256": "c4be7dbdccb1b6cd442271c34b0cf20dbe468cf58aa4cfe669e07f5ca04142bb"
+    },
+    "accuracy_native_excel_1791922835484062900/lower_original.bin": {
+      "bytes": 37028,
+      "sha256": "5501dd1e194790bbe9aaf41dc2c1d4a66586ae47bfa53fc6c9c29c98d831e9e8"
+    },
+    "accuracy_native_excel_1791922835484062900/lower_recovered.bin": {
+      "bytes": 37028,
+      "sha256": "cb712020c462b7dafe5f5686e0080604804bc85e570719a03dd2134df28dfcaa"
+    },
+    "accuracy_native_excel_1791922835484062900/native_probe.tsv": {
+      "bytes": 12056,
+      "sha256": "9f34f119db42030973f573839961b426c6f5633c126fccf6acee4d4504123e35"
+    },
+    "accuracy_native_excel_1791922835484062900/summary.json": {
+      "bytes": 8859,
+      "sha256": "a6d9473d9c206ba0858b5826312cbe500d057f258eaa238779f9e7b0e8441a34"
+    },
+    "accuracy_native_excel_1791922835484062900/upper_recovered.bin": {
+      "bytes": 91172,
+      "sha256": "560f72632f2ee451c540ca552f94ece75cfc3ae882fa1f147166376ce79c4602"
+    },
+    "adapt_excel_1791899136075878600/P06A_lower.bin": {
+      "bytes": 188204,
+      "sha256": "c0924f461b1425e048fd42652d380e2684c20c6371122c1d4321370caf083f84"
+    },
+    "adapt_excel_1791899136075878600/P06A_upper.bin": {
+      "bytes": 145092,
+      "sha256": "3762ed7ca8c8fdc325763ec89a1c3c802c5e65857639f8efec779d7285e2f561"
+    },
+    "adapt_excel_1791899136075878600/RPFEM_logs/20261013_224817_11152_analysis.tsv": {
+      "bytes": 50943964,
+      "sha256": "9e406f8b497387e62b2dacdf4e753516fc27580084b6d24d6e02095d59c73638"
+    },
+    "adapt_excel_1791899136075878600/production.tsv": {
+      "bytes": 1559216,
+      "sha256": "164384b632637becccd1030ec59f3b564df985b940060af5c52b4fa6eb6a22fa"
+    },
+    "adapt_excel_1791899136075878600/production_metadata_final.json": {
+      "bytes": 2089,
+      "sha256": "a97426edffecec8e1154490532df266d0df18ad908f45de2c628795c5a5a7be1"
+    },
+    "adapt_excel_1791899136075878600/production_metadata_live.json": {
+      "bytes": 11708,
+      "sha256": "2994cf6c6c62a5fd9abd4e3274861cb564b99926bd6442c4b4e61ab59df2a3c1"
+    },
+    "adapt_excel_1791899136075878600/summary.json": {
+      "bytes": 2032,
+      "sha256": "3b82f0c23ff7a465b15b46ab968a637f808a42122a458d1036ee13af0d4e3b7a"
+    },
+    "adapt_excel_1791921968183961700/RPFEM_logs/20261014_050613_6484_analysis.tsv": {
+      "bytes": 895372,
+      "sha256": "00a10ad749dda1898b79dc77b108e667db4039a9a8e1872797ceb7b2c4711e40"
+    },
+    "adapt_excel_1791921968183961700/RPFEM_logs/20261014_050624_6484_analysis.tsv": {
+      "bytes": 898718,
+      "sha256": "fc762b54bcf933d59fe1538ac4dd288d634c92085883ac14afd4781597d42442"
+    },
+    "adapt_excel_1791921968183961700/disabled.tsv": {
+      "bytes": 25754,
+      "sha256": "27a992a69a6ac2a5442c78036cf2d8c82507050d36b20331651f7bc933605679"
+    },
+    "adapt_excel_1791921968183961700/injected_failure.tsv": {
+      "bytes": 25833,
+      "sha256": "18da1276e9614651a97774cce48fb319bf4cc5bddb9444364d843f208b03402e"
+    },
+    "adapt_excel_1791921968183961700/summary.json": {
+      "bytes": 42838,
+      "sha256": "0c70ca4eb4cea598a3200fd5eb8b2269d7fdcb91012f06c7acda98d8e082106c"
+    },
+    "release/SOURCE_MANIFEST.json": {
+      "bytes": 13425,
+      "sha256": "4af9a4e8e12a04f480fd5da61bdb62eb57385252f73bdf2a198951a42d554726"
+    },
+    "release/delivery/WORKBOOK_VALIDATION.json": {
+      "bytes": 14875,
+      "sha256": "ecb3e825fd4e608c05f0ae710375f5289dd33e5e2f8e1ce9f2b88b687c4df148"
+    },
+    "release/delivery/ZIP_VALIDATION.json": {
+      "bytes": 289,
+      "sha256": "3261f959e2fcc078f1eda326ee9f7e28f4a1ca5ae73a7faa7aa447131b82c43a"
+    },
+    "reviews/final2_original_program_binding.json": {
+      "bytes": 3634,
+      "sha256": "f59718cd4ef6d43433d7e1f4018f919ece57f69801e2831510f02361bc475cb3"
+    }
+  }
+}

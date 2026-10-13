@@ -1,0 +1,9 @@
+{
+  "case": "D08A",
+  "target_met": false,
+  "root_complete": false,
+  "status": "COUPLED_PORE_SNAPSHOT_REQUIRED",
+  "lower": null,
+  "upper": null,
+  "relative_width_symmetric": null
+}

@@ -1,0 +1,229 @@
+{
+  "archive": "native_p03_primal_evidence_20261014.zip",
+  "size": 37548838,
+  "sha256": "91abb9d68aed5ae6f1a5267b927d773591899c3c76adca040b2894c2f6cfab4f",
+  "files": {
+    "python_field_excel_1791908825521159200/audited_context.tsv": {
+      "size": 6492484,
+      "sha256": "02ae7321a33901fb79dc8fceb25b6ecb979cc4cfc6e1551301f4a7a4414bb34e"
+    },
+    "python_field_excel_1791908825521159200/audited_field.bin": {
+      "size": 1279212,
+      "sha256": "fa0b68bd50080c0fb02167050851922479958f31f264fbbe779f9e791280c149"
+    },
+    "python_field_excel_1791908825521159200/audited_native.bin": {
+      "size": 2084928,
+      "sha256": "c18b79a622fe751cf858f1e5883a00e0228e62c3568db00437402dd9badc6622"
+    },
+    "python_field_excel_1791908825521159200/audited_original.bin": {
+      "size": 73843936,
+      "sha256": "958900567f3c46fd6bc5ae17b3fc6ea881b20a6d17537dfc74a1f1366761128d"
+    },
+    "python_field_excel_1791908825521159200/audited_stages.tsv": {
+      "size": 140,
+      "sha256": "088591781f7316be3d4aa06b8ecbfd85bdcea9646b16197f1117ade9934bd0f9"
+    },
+    "python_field_excel_1791908825521159200/P03A_upper_source.bin": {
+      "size": 2084928,
+      "sha256": "83ccf747d28c5152ea9e97233aefad78b120cc57cf02af30558aafc7f40b0d86"
+    },
+    "python_field_excel_1791908825521159200/P03A_upper_source.json": {
+      "size": 2686,
+      "sha256": "762227b69a969bced32c0d3714ff2b89b3ea5dc063480a45c8b1200c876b48be"
+    },
+    "python_field_excel_1791908825521159200/summary.json": {
+      "size": 7130,
+      "sha256": "d4e1296be2a6bf24b48db9e0b7b88c552960f8878a4b2ce37336f9721dd644b6"
+    },
+    "python_field_excel_1791910355270646900/audited_context.tsv": {
+      "size": 6511198,
+      "sha256": "e227340914582c4f2f66e22191fc75e191822c8e6ef11617b4f31e2ff0a58bf4"
+    },
+    "python_field_excel_1791910355270646900/audited_field.bin": {
+      "size": 1282860,
+      "sha256": "da21afc08cb112a7672a4daaa919b6a8b8a51f090f358be9d614509a8dd6e681"
+    },
+    "python_field_excel_1791910355270646900/audited_native.bin": {
+      "size": 2090856,
+      "sha256": "e60f11d3b7197ec8acda055bb752788812f30a40ae119f8622e264d48c4a854c"
+    },
+    "python_field_excel_1791910355270646900/audited_original.bin": {
+      "size": 74055064,
+      "sha256": "85f5c930c820651ec6bc32bbd76d4b6f83eb11c603b8703703952188db3a0c96"
+    },
+    "python_field_excel_1791910355270646900/audited_stages.tsv": {
+      "size": 140,
+      "sha256": "088591781f7316be3d4aa06b8ecbfd85bdcea9646b16197f1117ade9934bd0f9"
+    },
+    "python_field_excel_1791910355270646900/P03N_upper_source.bin": {
+      "size": 2090856,
+      "sha256": "8de5b0f0b34df571709ac85316788e96a63066798f1f1883dad564e21f71fe8e"
+    },
+    "python_field_excel_1791910355270646900/P03N_upper_source.json": {
+      "size": 2685,
+      "sha256": "c0ef6749f2c4971bcee47ee48de74256651a77804fd618efa7e7f3702d2843ca"
+    },
+    "python_field_excel_1791910355270646900/summary.json": {
+      "size": 7134,
+      "sha256": "6232ca215a27516346616f4e40f7119daa83f8e2ddd8e93aecdab702a3289850"
+    }
+  },
+  "runs": [
+    {
+      "directory": "python_field_excel_1791908825521159200",
+      "status": "PASS",
+      "pid": 9180,
+      "source_sha256": {
+        "versions\\G1R18\\src\\vba\\RPX_AccuracyMesh.bas": "edd305d25a500d23305648eef977007aad6acd4056def5ed6d0d41949727708c",
+        "versions\\G1R18\\src\\vba\\RPX_Adapt.bas": "3c01d098a69ed31526c15055b63f4a5a32d2af992eeb115b7ecae805f419f6f7",
+        "versions\\G1R18\\src\\vba\\RPX_Guard.bas": "9fd387b1a6ed1edfac0f2e0572142f81e54ee056c79f8391b34a3f38caa16fcc",
+        "versions\\G1R18\\src\\vba\\RPX_Seep.bas": "7549018ba8434c7c96ed6908e0ee0a30dbb0ed8c3b5d229786966f873ab385df",
+        "versions\\G1R18\\src\\vba\\RPX_SeepUI.bas": "baa15059460742473d92500208a18abf44ea325e4086ab94f271c5fae93bda53",
+        "versions\\G1R18_RayGate\\src\\vba\\RPX_AccuracyMesh.bas": "ec54485fb54a8ad6568a5b138c3db8f46ec7f397c3197d76117ba8c1d8c7d08f",
+        "versions\\G1R18_RayGate\\src\\vba\\RPX_Adapt.bas": "a41ee3c9c32993d24a9d2291a84f3fd8a43145f98927d03e39afbb2eae017742",
+        "versions\\G1R18_RayGate\\src\\vba\\RPX_Conic.bas": "5db53c534182c93e7c6dccc98b458b40269f17933e5e5bdf9472de6a84cd180e",
+        "versions\\G1R18_RayGate\\src\\vba\\RPX_FixedLowerRecovery.bas": "601f59a7446d95775586200b8323afd245835f4dd944ce189fbc5c783c86c1e1",
+        "versions\\G1R18_RayGate\\src\\vba\\RPX_Fs.bas": "09008ea1f3bb7ee5058dcfd3a566f3938ae7076f2270cc9f709b2f26ca1d06d7",
+        "versions\\G1R18_RayGate\\src\\vba\\RPX_HSDCandidate.bas": "db4aba8cf8c0f2f45ef21230aff5b757c57487cc8724e0bd0f6319a0711dc689",
+        "versions\\G1R18_RayGate\\src\\vba\\RPX_LowerCache.bas": "98fcad47f7fd081a7a8a0017ad52e8f29186447945fc790cb7968e3c3e35be80",
+        "versions\\G1R18_RayGate\\src\\vba\\RPX_Solve.bas": "8d20065b0aaf97890bb84c64644ba034892d757dba33fe384de80fdc9769d141",
+        "versions\\G1R18\\tests\\PythonWitnessProbe.bas": "48adff76c69223271ad3f76f54e60a050b1609bba507ffb52ddd12ef1b9751db"
+      },
+      "source": {
+        "case": "P03A",
+        "mode": "upper",
+        "fs": 1.17069,
+        "q": 8,
+        "mesh_id": "c8bf888f3e4942bd031da63e8021fddc58c9ea360245d0228209e9c04b8213f7",
+        "physical_model_id": "2fcdebce70cb9505953c365112d2a62d8dd9887de869dde406d312530a121786",
+        "elements": 13325,
+        "output": "D:\\Work\\excel-vba-rpfem\\versions\\G1R18\\results\\python_field_excel_1791908825521159200\\P03A_upper_source.bin",
+        "binary_sha256": "83ccf747d28c5152ea9e97233aefad78b120cc57cf02af30558aafc7f40b0d86",
+        "original_field_vector_sha256": "7bafc848dd70307fc48efe18f5b089ba5526bedd9743db4028a1420f68412734",
+        "ignored_source_metadata": {
+          "root_complete": true,
+          "solver_status": null,
+          "imported": false
+        },
+        "source_sha256": {
+          "D:\\Work\\excel-vba-rpfem\\validation\\accuracy_20261013\\snapshots\\20261014_progress6_audit\\snapshots\\P03A\\best_upper_mesh.npz": "d68bab3765f8d1a0417960977069a81e009e58ce0785d9a64f8a66c340eb07a5",
+          "D:\\Work\\excel-vba-rpfem\\validation\\accuracy_20261013\\snapshots\\20261014_progress6_audit\\snapshots\\P03A\\best_upper_field.npz": "e7781baef3e5a527dcff84260173cb0671ebbea65d5b27cdd7da1c354faa8770",
+          "D:\\Work\\excel-vba-rpfem\\validation\\accuracy_20261013\\snapshots\\20261014_progress6_audit\\snapshots\\P03A\\best_upper_certificate.json": "fb5c471e5d74f996f7041d22880fddfaab0efb54fd71890cc09c342e365499ad"
+        },
+        "source_code_sha256": {
+          "D:\\Work\\excel-vba-rpfem\\versions\\G1R18\\tests\\export_python_witness.py": "264d949330e09ef9b8fb35a224aeb5960af4413c87df4f7f405f79ac5ce899c3",
+          "D:\\Work\\excel-vba-rpfem\\validation\\accuracy_20261013\\python\\experiment_core.py": "9a9e60b6d69ba4008ea89608f433bb716b433436715c45566bd209418ee9238e",
+          "D:\\Work\\excel-vba-rpfem\\validation\\accuracy_20261013\\python\\accuracy_driver.py": "6fbc9761c37bd72046c4083ac8a40030999a74906bcc6b049ea18b5120e15c3c"
+        },
+        "fresh_original_audit": {
+          "objective": 0.9999512292625519,
+          "value": 0.9999512292625524,
+          "eq_error": 1.8017959916900032e-14,
+          "cone_error": 4.737781212858662e-15,
+          "audit": {
+            "pass": true,
+            "errors": {
+              "flow": 0.0,
+              "boundary": 1.8017959916900032e-14,
+              "jump": 4.7377812128586655e-15,
+              "work": 2.930988785010413e-14,
+              "objective": 5.551115123125783e-16
+            },
+            "dissipation": 0.9999512292625524,
+            "work": [
+              0.0,
+              1.0000000000000293
+            ],
+            "value": 0.9999512292625524
+          },
+          "raw_lower_errors": {},
+          "physical_pass": true,
+          "witness": true,
+          "numerical_gate": false
+        },
+        "scope": "primal field only; no solver status, dual, root, bracket, or precision result imported"
+      },
+      "results": null,
+      "purpose": "Completed audit/regression; no native precision achievement inferred"
+    },
+    {
+      "directory": "python_field_excel_1791910355270646900",
+      "status": "PASS",
+      "pid": 1844,
+      "source_sha256": {
+        "versions\\G1R18\\src\\vba\\RPX_AccuracyMesh.bas": "edd305d25a500d23305648eef977007aad6acd4056def5ed6d0d41949727708c",
+        "versions\\G1R18\\src\\vba\\RPX_Adapt.bas": "3c01d098a69ed31526c15055b63f4a5a32d2af992eeb115b7ecae805f419f6f7",
+        "versions\\G1R18\\src\\vba\\RPX_Guard.bas": "9fd387b1a6ed1edfac0f2e0572142f81e54ee056c79f8391b34a3f38caa16fcc",
+        "versions\\G1R18\\src\\vba\\RPX_Seep.bas": "7549018ba8434c7c96ed6908e0ee0a30dbb0ed8c3b5d229786966f873ab385df",
+        "versions\\G1R18\\src\\vba\\RPX_SeepUI.bas": "baa15059460742473d92500208a18abf44ea325e4086ab94f271c5fae93bda53",
+        "versions\\G1R18_RayGate\\src\\vba\\RPX_AccuracyMesh.bas": "ec54485fb54a8ad6568a5b138c3db8f46ec7f397c3197d76117ba8c1d8c7d08f",
+        "versions\\G1R18_RayGate\\src\\vba\\RPX_Adapt.bas": "a41ee3c9c32993d24a9d2291a84f3fd8a43145f98927d03e39afbb2eae017742",
+        "versions\\G1R18_RayGate\\src\\vba\\RPX_Conic.bas": "5db53c534182c93e7c6dccc98b458b40269f17933e5e5bdf9472de6a84cd180e",
+        "versions\\G1R18_RayGate\\src\\vba\\RPX_FixedLowerRecovery.bas": "601f59a7446d95775586200b8323afd245835f4dd944ce189fbc5c783c86c1e1",
+        "versions\\G1R18_RayGate\\src\\vba\\RPX_Fs.bas": "09008ea1f3bb7ee5058dcfd3a566f3938ae7076f2270cc9f709b2f26ca1d06d7",
+        "versions\\G1R18_RayGate\\src\\vba\\RPX_HSDCandidate.bas": "db4aba8cf8c0f2f45ef21230aff5b757c57487cc8724e0bd0f6319a0711dc689",
+        "versions\\G1R18_RayGate\\src\\vba\\RPX_LowerCache.bas": "98fcad47f7fd081a7a8a0017ad52e8f29186447945fc790cb7968e3c3e35be80",
+        "versions\\G1R18_RayGate\\src\\vba\\RPX_Solve.bas": "8d20065b0aaf97890bb84c64644ba034892d757dba33fe384de80fdc9769d141",
+        "versions\\G1R18\\tests\\PythonWitnessProbe.bas": "48adff76c69223271ad3f76f54e60a050b1609bba507ffb52ddd12ef1b9751db"
+      },
+      "source": {
+        "case": "P03N",
+        "mode": "upper",
+        "fs": 1.167378,
+        "q": 8,
+        "mesh_id": "928a290d71a3f668bb878b198713bc7dffae50b6d409589cf62a9819cda5a778",
+        "physical_model_id": "53d1cc3320cf49fa54084ac607f2e924d6b4b83d70f040bdbb35fa4525db9a92",
+        "elements": 13363,
+        "output": "D:\\Work\\excel-vba-rpfem\\versions\\G1R18\\results\\python_field_excel_1791910355270646900\\P03N_upper_source.bin",
+        "binary_sha256": "8de5b0f0b34df571709ac85316788e96a63066798f1f1883dad564e21f71fe8e",
+        "original_field_vector_sha256": "dcc3b360d58570be3b09e4866cd7366769edc89837877bd0214189739d83e2f3",
+        "ignored_source_metadata": {
+          "root_complete": true,
+          "solver_status": null,
+          "imported": false
+        },
+        "source_sha256": {
+          "D:\\Work\\excel-vba-rpfem\\validation\\accuracy_20261013\\snapshots\\20261014_progress6_audit\\snapshots\\P03N\\best_upper_mesh.npz": "c6a872489dfdb4a38619dd71ef5be0707da192d2cfa56d27fe1bdbd434d24ac9",
+          "D:\\Work\\excel-vba-rpfem\\validation\\accuracy_20261013\\snapshots\\20261014_progress6_audit\\snapshots\\P03N\\best_upper_field.npz": "ce7a1160f4dbedc8b8e45705447538bc33b57a28783b68accbea326e396dcc76",
+          "D:\\Work\\excel-vba-rpfem\\validation\\accuracy_20261013\\snapshots\\20261014_progress6_audit\\snapshots\\P03N\\best_upper_certificate.json": "ccae4cdaca6547e14502245c8c00efd685a1b5eff8e6b9366a9fd4d4c578c72b"
+        },
+        "source_code_sha256": {
+          "D:\\Work\\excel-vba-rpfem\\versions\\G1R18\\tests\\export_python_witness.py": "264d949330e09ef9b8fb35a224aeb5960af4413c87df4f7f405f79ac5ce899c3",
+          "D:\\Work\\excel-vba-rpfem\\validation\\accuracy_20261013\\python\\experiment_core.py": "9a9e60b6d69ba4008ea89608f433bb716b433436715c45566bd209418ee9238e",
+          "D:\\Work\\excel-vba-rpfem\\validation\\accuracy_20261013\\python\\accuracy_driver.py": "6fbc9761c37bd72046c4083ac8a40030999a74906bcc6b049ea18b5120e15c3c"
+        },
+        "fresh_original_audit": {
+          "objective": 0.9999979912478523,
+          "value": 0.9999979912478487,
+          "eq_error": 1.677696435431313e-13,
+          "cone_error": 1.1090258825811804e-14,
+          "audit": {
+            "pass": true,
+            "errors": {
+              "flow": 0.0,
+              "boundary": 1.677696435431313e-13,
+              "jump": 1.1090258825811943e-14,
+              "work": 1.318944953254686e-13,
+              "objective": 3.552713678800501e-15
+            },
+            "dissipation": 0.9999979912478487,
+            "work": [
+              0.0,
+              1.000000000000132
+            ],
+            "value": 0.9999979912478487
+          },
+          "raw_lower_errors": {},
+          "physical_pass": true,
+          "witness": true,
+          "numerical_gate": false
+        },
+        "scope": "primal field only; no solver status, dual, root, bracket, or precision result imported"
+      },
+      "results": null,
+      "purpose": "Completed audit/regression; no native precision achievement inferred"
+    }
+  ],
+  "excluded": "Workbooks, DLL copies, live production, duplicate tamper payloads",
+  "scope": "Original matrices/fields/duals and completed strict audits; physical proof only where stated"
+}

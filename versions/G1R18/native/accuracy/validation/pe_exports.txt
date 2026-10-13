@@ -1,0 +1,37 @@
+Microsoft (R) COFF/PE Dumper Version 14.44.35227.0
+Copyright (C) Microsoft Corporation.  All rights reserved.
+
+
+Dump of file D:\Work\excel-vba-rpfem\versions\G1R18\native\accuracy\bin\rpfem_accuracy_x64.dll
+
+File Type: DLL
+
+  Section contains the following exports for rpfem_accuracy_x64.dll
+
+    00000000 characteristics
+    3BA09EFB time date stamp
+        0.00 version
+           1 ordinal base
+           9 number of functions
+           9 number of names
+
+    ordinal hint RVA      name
+
+          1    0 00064BB0 rpfem_accuracy_abi_version
+          2    1 00067240 rpfem_accuracy_cancel
+          3    2 00064C50 rpfem_accuracy_create
+          4    3 00064BC0 rpfem_accuracy_default_settings
+          5    4 00067A30 rpfem_accuracy_destroy
+          6    5 00062DE0 rpfem_accuracy_equalities
+          7    6 00066E80 rpfem_accuracy_poll
+          8    7 000673D0 rpfem_accuracy_result
+          9    8 000665A0 rpfem_accuracy_start
+
+  Summary
+
+        2000 .data
+        1000 .fptable
+        7000 .pdata
+       3A000 .rdata
+        3000 .reloc
+       FA000 .text
