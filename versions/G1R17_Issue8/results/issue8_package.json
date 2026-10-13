@@ -1,0 +1,44 @@
+﻿[
+    {
+        "source_match":  true,
+        "reopened_hydro":  "True;1;1.77635683940025E-15;9.79591835535186E-03;10;10;10",
+        "other_modules_equivalent":  true,
+        "case":  "P06A",
+        "casing_only_changes":  [
+                                    "RPX_FactorFree",
+                                    "RPX_Seismic",
+                                    "RPX_SeepWT",
+                                    "RPX_LDL",
+                                    "RPX_Conic",
+                                    "RPX_NativeSolver",
+                                    "RPX_Schur",
+                                    "RPX_Solve",
+                                    "RPX_NativeMesh"
+                                ],
+        "module_count":  71,
+        "sha256":  "d3fc154732d07b64a4df87a1d93ddefbba314b663d5a49155a32970053f6138f",
+        "source_sha256":  "d3b6dc0648b899c1958cdc64b14f41ab663f26ed3b2a985091df7c511ab51d24",
+        "compile":  "PASS"
+    },
+    {
+        "source_match":  true,
+        "reopened_hydro":  "True;1;1.77635683940025E-15;9.79591835535186E-03;10;10;10",
+        "other_modules_equivalent":  true,
+        "case":  "P06N",
+        "casing_only_changes":  [
+                                    "RPX_FactorFree",
+                                    "RPX_Seismic",
+                                    "RPX_SeepWT",
+                                    "RPX_LDL",
+                                    "RPX_Conic",
+                                    "RPX_NativeSolver",
+                                    "RPX_Schur",
+                                    "RPX_Solve",
+                                    "RPX_NativeMesh"
+                                ],
+        "module_count":  71,
+        "sha256":  "4d85c3c3ffe9f69f512b0df8b23364b42cb98677e70e893c68db18370c7537f0",
+        "source_sha256":  "dcbfdcfb2d4bbcf382f07d237e77d7122185ebe91c4fce59935cb751f04e2fda",
+        "compile":  "PASS"
+    }
+]

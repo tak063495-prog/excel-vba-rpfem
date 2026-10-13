@@ -1,0 +1,9 @@
+{
+  "abi": "0x00170005",
+  "exports_equal": true,
+  "exports_count": 94,
+  "source_unchanged": true,
+  "compiler_regression_cases": 120,
+  "original_sha256": "72aaf9bfccc0acc186eb69cdcbabd93b27f7ce245ceac574193ba6602c675323",
+  "rebuilt_sha256": "d7c31b5139a121fde825b8dc57df329bd1ba3f674b2780820b3e34448406925b"
+}
