@@ -1,8 +1,26 @@
-> Issue #8 修正候補（2026-10-13）: [静水圧収束判定の修正版・別名ブック・実Excel/Python/DLL検証](versions/G1R17_Issue8/README.md)。レビュー用の候補で、既存G1R17配布物は保全しています。
+> Issue #8 の水理修正をG1R18へ取り込み、既存G1R17配布物も保全しています。[水理修正の検証](versions/G1R17_Issue8/README.md)。
 
 # excel-vba-rpfem
 
 Excel VBAによる2次元RPFEM解析のソース、XLSM、検証資料です。
+
+## G1R18 — 精度回復のVBA・DLL実装（2026-10-14）
+
+- [配布一式ZIP](versions/G1R18/delivery/RPFEM_20261014_G1R18.zip) / [XLSM](versions/G1R18/delivery/RPFEM_20261014_G1R18.xlsm)
+- [導入・設定・検証範囲](versions/G1R18/README_JA.md) / [VBAソース](versions/G1R18/src/vba) / [新DLLのソース・ビルド・数値検証](versions/G1R18/native/accuracy/README.md)
+- [今回の精度再監査](validation/accuracy_20261013/snapshots/20261014_progress7_audit/REPORT_JA.md) / [P06の継続課題 #11](https://github.com/tak063495-prog/excel-vba-rpfem/issues/11)
+
+適合細分化、別々の上下界場の保存、原q8監査と根の確認をVBAへ統合しました。
+追加DLLは、元の物理目的へ上限・下限を付けた二次目的による場の回復、
+平衡残差のLSMR補正、原双対制約の回復を実行します。補助目的の双対を根の証拠には使いません。
+精度回復は設定 `ACCURACY_DLL_RECOVERY=1` で有効にでき、既定値は0です。
+XLSMと同じフォルダーに、既存の `rpfem_native_x64.dll` と追加の
+`rpfem_accuracy_x64.dll` を置きます。実行時にPythonは必要ありません。
+
+Pythonの独立再監査では、旧1%未達16ケース中14ケースで対称幅1%以下を確認しました。
+P06Aは上下界幅1.261478%、P06Nは1.364711%で未達を保持しています。
+G1R18のVBA/DLL本番規模でのP06精度確認もIssue #11に残します。
+幅は `2*(上界-下界)/(上界+下界)`。G1R18の速度比較は今回実施していません。
 
 剛塑性有限要素法による**極限解析の下界・上界**を求め、強度低減安全率Fsまたは極限荷重倍率を出力します。変位・沈下量を求める弾塑性解析ではありません。非関連流れ則の入力ではDavis等価関連モデルを使うため、結果の解析政策も確認してください。
 
