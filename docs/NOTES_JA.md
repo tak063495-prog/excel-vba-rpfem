@@ -1,6 +1,8 @@
-# 注意事項と不具合時の確認 — G1R13 / G1R12
+# 注意事項と不具合時の確認 — G1R18と過去版の記録
 
 [README](../README.md) / [使い方](USAGE_JA.md) / [解析の原理](PRINCIPLES_JA.md)
+
+G1R18の現在の設定・検証範囲は[G1R18の導入手順](../versions/G1R18/README_JA.md)を参照してください。P06の1%達成と本番規模のVBA/DLL再現は[Issue #11](https://github.com/tak063495-prog/excel-vba-rpfem/issues/11)に残しています。以下の版名を付けた試験結果・制限は、その版の歴史的記録です。「両端OPTIMAL」など過去版の判定をG1R18へそのまま適用せず、G1R18では元の物理場と原双対証明の独立監査を確認します。
 
 ## G1R13での修復と制限
 
