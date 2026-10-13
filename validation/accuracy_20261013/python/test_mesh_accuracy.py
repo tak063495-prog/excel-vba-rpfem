@@ -81,6 +81,9 @@ class AngularFanTests(unittest.TestCase):
         for fs in (0., -1., np.nan, np.inf):
             with self.subTest(fs=fs), self.assertRaises(ValueError):
                 lower_stress_score(mesh, field, fs)
+        for background in (-.01, 1.01, np.nan, np.inf):
+            with self.subTest(background=background), self.assertRaises(ValueError):
+                lower_stress_score(mesh, field, .8, proximity_background=background)
 
     def test_stress_indicator_handles_zero_stress_and_finite_variation(self):
         for case in ('P06A', 'P06N'):
@@ -97,6 +100,11 @@ class AngularFanTests(unittest.TestCase):
             self.assertTrue(np.all(score >= 0))
             self.assertGreater(float(score.sum()), 0.)
             self.assertFalse(metadata['certificate'])
+            emphasized, metadata = lower_stress_score(mesh, field, .8, True, proximity_background=0)
+            unweighted = lower_stress_score(mesh, field, .8, proximity_background=1)
+            self.assertEqual(metadata['proximity_background'], 0)
+            self.assertTrue(np.all(emphasized <= score + 1e-12))
+            self.assertTrue(np.all(score <= unweighted + 1e-12))
 
     def test_stress_selected_refinement_preserves_original_material_segments(self):
         mesh, rec = core.load_case('P06A')

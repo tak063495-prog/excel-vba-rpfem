@@ -35,6 +35,8 @@ P06Nを含む非関連入力は既存Davis等価関連モデルであり、直�
   離散根の案内だけに使う。主場・上下界の合否は変更しない。
 - 既に元の原式で符号が確定した点では回復求解を終える。再監査済みの保存場を
   同じメッシュ・同じFsの根符号として使い、同じ点の再求解を省く。
+- 不明な点では、元の双対制約を直接解く回復も試す。元のstationarity・cone・目的値を
+  再監査できた場合に限って離散根の逆符号に使い、主場の上下界を作らない。
 - 摩擦角0の上界に、非圧縮条件と保守的な散逸エピグラフを追加。
   φ>0の旧行列・監査とのビット一致と、純せん断の解析解を確認。
 - φ=ψ=0かつ固定荷重0の上界では不変の行列を保持し、Fs依存の価格だけ更新。
@@ -56,6 +58,8 @@ python -X utf8 validation/accuracy_20261013/python/accuracy_driver.py --case P06
 python -X utf8 validation/accuracy_20261013/python/run_suite.py --output validation/accuracy_20261013/suite_results --cycles 8 --max-elements 12000
 python -X utf8 validation/accuracy_20261013/python/import_native.py --archive downloads/RPFEM_G1R17_Native26_20261012.zip --output validation/accuracy_20261013/native_seeds --cases P06A P06N P01A P01N P03A P03N P05A P05N P07N D01A D02A D03N D07A P08A P09A P10A
 python -X utf8 validation/accuracy_20261013/python/combine_seeds.py --cases P06A P06N --sources validation/accuracy_20261013/native_seeds validation/accuracy_20261013/seeds validation/accuracy_20261013/results --output validation/accuracy_20261013/combined_seeds
+python -X utf8 validation/accuracy_20261013/python/lower_accuracy_driver.py --case P06A --seed validation/accuracy_20261013/native_seeds/P06A --method uniform --output validation/accuracy_20261013/results/lower_uniform --rounds 1 --max-elements 24000
+python -X utf8 validation/accuracy_20261013/python/report_accuracy.py --sources validation/accuracy_20261013/native_seeds validation/accuracy_20261013/results --output validation/accuracy_20261013/snapshots/new_audit
 python -X utf8 -m unittest discover -s validation/accuracy_20261013/tests -v
 python -X utf8 -m unittest discover -s validation/accuracy_20261013/python -p test_mesh_accuracy.py -v
 python -X utf8 validation/accuracy_20261013/python/check_zero_phi.py
@@ -76,3 +80,7 @@ python -X utf8 validation/accuracy_20261013/python/check_zero_phi.py
 細分化する実験。`--recheck`指定時の初段は両側の元メッシュの根を再確認する。
 `run_suite.py --seed-root 保存場親フォルダ --parallel 2 --fan-lower`で各ケースを
 その保存場から計算できる。科学計算ライブラリは各プロセス1スレッドに制限する。
+`lower_accuracy_driver.py --method stress_fan --proximity-background 0`で降伏に近い
+応力場を重くした指標も比較できる。指標は細分化候補を選ぶだけで精度の証明にはしない。
+採用点は`best_<side>_certificate.json`とそのmesh/fieldへ保存する。各段階の計算中も
+再監査・集約可能だが、根が未完了の点を1%達成とは数えない。

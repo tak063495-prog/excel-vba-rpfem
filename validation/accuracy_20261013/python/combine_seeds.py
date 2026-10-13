@@ -17,8 +17,13 @@ def run(case, sources, output):
         elif (folder/'import_audit.json').exists():
             metadata=json.loads((folder/'import_audit.json').read_text(encoding='utf8'))['certificates']
         else:
-            continue
+            metadata={}
+            if not any((folder/f'best_{mode}_certificate.json').exists() for mode in ['lower','upper']):
+                continue
         for mode in ['lower','upper']:
+            certificate_path=folder/f'best_{mode}_certificate.json'
+            if certificate_path.exists():
+                metadata[mode]=json.loads(certificate_path.read_text(encoding='utf8'))
             if mode not in metadata:
                 continue
             old=metadata[mode]

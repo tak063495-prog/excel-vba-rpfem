@@ -4,7 +4,7 @@ import experiment_core as core
 from experiment_core import np, topology
 
 
-def lower_stress_score(mesh, field, fs, with_metadata=False):
+def lower_stress_score(mesh, field, fs, with_metadata=False, proximity_background=.1):
     """Rank lower-mesh refinements by stress variation near the yield surface.
 
     This is a mesh-selection heuristic, not an error estimate or certificate.
@@ -17,6 +17,8 @@ def lower_stress_score(mesh, field, fs, with_metadata=False):
         raise ValueError('A finite lower stress field on this mesh is required')
     if not np.isfinite(fs) or fs <= 0:
         raise ValueError('A finite positive strength factor is required')
+    if not np.isfinite(proximity_background) or not 0 <= proximity_background <= 1:
+        raise ValueError('The yield-proximity background must be finite and between zero and one')
     sigma = field[:-1].reshape(-1, 6, 3)
     area, _, edges = topology(mesh)
     reference = max(float(np.sqrt(np.mean(np.sum(sigma*sigma, axis=2)))), 1e-12)
@@ -27,7 +29,8 @@ def lower_stress_score(mesh, field, fs, with_metadata=False):
         cap = 2 * cohesion * np.cos(phi)
         margin = cap - np.hypot(values[:, 0] - values[:, 1], 2*values[:, 2]) - np.sin(phi)*(values[:, 0]+values[:, 1])
         proximity[e] = np.mean(np.exp(-8*np.maximum(margin, 0)/(reference+cap)))
-    score = area * variation * (.1 + .9*proximity)
+    proximity_weight = proximity_background + (1-proximity_background)*proximity
+    score = area * variation * proximity_weight
     edge_score = np.zeros(len(mesh.tri))
     for edge in edges:
         e, f = edge.elements
@@ -35,7 +38,7 @@ def lower_stress_score(mesh, field, fs, with_metadata=False):
             continue
         jump = sigma[e, edge.loc[0]] - sigma[f, edge.loc[1]]
         variation_jump = float(np.mean(np.sum(jump*jump, axis=1))) / reference**2
-        term = .25 * (area[e]+area[f])/2 * variation_jump * (.1+.9*(proximity[e]+proximity[f])/2)
+        term = .25 * (area[e]+area[f])/2 * variation_jump * (proximity_weight[e]+proximity_weight[f])/2
         edge_score[e] += term/2
         edge_score[f] += term/2
     score += edge_score
@@ -44,6 +47,7 @@ def lower_stress_score(mesh, field, fs, with_metadata=False):
     if with_metadata:
         return score, {'method': 'Bernstein_stress_variation_yield_proximity_and_same_material_jumps',
                        'certificate': False, 'fs': float(fs), 'stress_reference': reference,
+                       'proximity_background': float(proximity_background),
                        'variation': variation.tolist(), 'yield_proximity': proximity.tolist(),
                        'edge_score': edge_score.tolist(), 'score': score.tolist()}
     return score

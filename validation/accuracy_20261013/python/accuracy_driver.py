@@ -22,6 +22,8 @@ ACCURATE = {'equilibrate_enable': False}
 SOURCE_HASHES={str(p.relative_to(REPO)):hashlib.sha256(p.read_bytes()).hexdigest()
     for p in [Path(__file__),Path(core.__file__),Path(__file__).with_name('reduction.py'),
               Path(__file__).with_name('zero_phi_transport.py'),Path(__file__).with_name('mesh_accuracy.py'),
+              Path(__file__).with_name('original_farkas.py'),
+              Path(__file__).with_name('original_dual.py'),
               Path(__file__).parent/'vendor/independent_audit.py',
               Path(__file__).parent/'vendor/model_support/upper_assembly.py']}
 
@@ -60,9 +62,11 @@ class Certificate:
         stem = folder / f'best_{self.mode}'
         save_mesh(stem.with_name(stem.name + '_mesh.npz'), self.mesh)
         np.savez_compressed(stem.with_name(stem.name + '_field.npz'), x=self.field, fs=self.fs, mode=self.mode, q=8)
-        return {'case':self.mesh.provenance['case'],'mode':self.mode,'q':8,'fs': self.fs, 'mesh_id': self.mesh.mesh_id, 'physical_model_id': self.mesh.physical_model_id,
+        metadata={'case':self.mesh.provenance['case'],'mode':self.mode,'q':8,'fs': self.fs, 'mesh_id': self.mesh.mesh_id, 'physical_model_id': self.mesh.physical_model_id,
                 'elements': len(self.mesh.tri), 'source': self.source, 'root_complete': self.root_complete,
                 'mesh_path': stem.name + '_mesh.npz', 'field_path': stem.name + '_field.npz', 'audit': self.result}
+        write(folder/f'best_{self.mode}_certificate.json',metadata)
+        return metadata
 
 
 def finite(*values):
@@ -147,6 +151,23 @@ def search(mesh, mode, initial, folder, label, tolerance=1e-4, seconds=120, init
                     result=merged
                     result['dual_from_recovery_at_same_fs']=True
                     break
+        original=getattr(prepared,'original',None)
+        if mode=='upper' and sign(result,mode) is None and original is not None and np.all(original[-1]==0):
+            from original_farkas import solve_original_farkas
+            evidence=solve_original_farkas(prepared,seconds=min(seconds,30.))
+            result['original_farkas_recovery']=evidence
+            if evidence['accepted']:
+                result.update({key:evidence[key] for key in ['dual_objective','dual_stationarity','dual_cone_error']})
+                result['numerical_gate']=False
+                result['dual_from_original_farkas_at_same_fs']=True
+        if sign(result,mode) is None and original is not None:
+            from original_dual import solve_original_dual
+            evidence=solve_original_dual(prepared,seconds=min(seconds,30.))
+            result['original_dual_feasibility_recovery']=evidence
+            if evidence['accepted']:
+                result.update({key:evidence[key] for key in ['dual_objective','dual_stationarity','dual_cone_error']})
+                result['numerical_gate']=False
+                result['dual_from_original_dual_feasibility_at_same_fs']=True
         if mode=='lower' and not result.get('witness') and sign(result,mode)!=-1 and result.get('value',0)>=.98:
             # A feasibility solve avoids maximizing a nearly singular load
             # variable. Its failure is UNKNOWN; success is only a primal bound.
@@ -256,6 +277,10 @@ def search(mesh, mode, initial, folder, label, tolerance=1e-4, seconds=120, init
 
 
 def run(args):
+    if (not finite(args.tolerance,args.theta,args.solve_seconds) or
+            not 0<args.tolerance<=1e-4 or not 0<args.theta<=1 or
+            args.solve_seconds<=0 or args.cycles<0 or args.max_elements<=0):
+        raise ValueError('Accuracy profile requires a finite final Fs tolerance at most 1e-4 and valid refinement budgets')
     mesh, rec = load_model(args.case)
     folder = args.output.resolve() / args.case
     folder.mkdir(parents=True, exist_ok=True)
@@ -342,6 +367,11 @@ def run(args):
                     bracket = initial
                 warm=best.get(mode)
                 if warm is not None and warm.mesh.mesh_id!=solve_mesh.mesh_id:warm=None
+                if warm is None and mode=='upper' and mode in best and velocity is not None:
+                    transported=evaluate(Prepared(solve_mesh,best[mode].fs,mode,8),velocity)
+                    if transported['witness']:
+                        warm=Certificate(mode,best[mode].fs,solve_mesh,velocity.copy(),transported,
+                            'independently audited prolonged upper velocity',False)
                 candidate, summary = search(solve_mesh, mode, bracket, folder / label / mode, label + '_' + mode, args.tolerance, args.solve_seconds,warm)
                 row[mode] = summary
                 if mode == 'upper' and candidate is not None:

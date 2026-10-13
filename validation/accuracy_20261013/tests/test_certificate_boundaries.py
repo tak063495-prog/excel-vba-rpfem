@@ -242,6 +242,13 @@ class SearchBoundaryTests(unittest.TestCase):
 
 
 class SeedBoundaryTests(unittest.TestCase):
+    def test_accuracy_profile_cannot_relax_or_nonfinite_the_final_tolerance(self):
+        for tolerance in [0.,-1e-4,1.00001e-4,np.nan,np.inf]:
+            args=SimpleNamespace(tolerance=tolerance,theta=.6,solve_seconds=1.,cycles=0,max_elements=100)
+            with self.subTest(tolerance=tolerance),patch.object(driver,'load_model') as load,self.assertRaisesRegex(ValueError,'final Fs tolerance'):
+                driver.run(args)
+            load.assert_not_called()
+
     def run_seed(self, mutate=None, recheck=False, candidates=None, resume=False, field_mode=None, field_q=None):
         lower, upper = mesh("lower"), mesh("upper")
         meta = {"case": "P06A", "history": [], "lower": root_metadata("lower", 1., lower),

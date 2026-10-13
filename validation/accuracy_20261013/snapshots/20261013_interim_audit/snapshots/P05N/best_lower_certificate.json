@@ -1,0 +1,46 @@
+{
+  "case": "P05N",
+  "mode": "lower",
+  "q": 8,
+  "fs": 1.4590373977014948,
+  "mesh_id": "1666b078cf11bb359f8500a7800c914becab8799e9470ce9e309a4da270578d5",
+  "physical_model_id": "28588532516b34fed88e9376a2eeb3e4f4cbb52cab0924d6cfe6861776e72de2",
+  "elements": 997,
+  "source": "D:\\Work\\excel-vba-rpfem\\validation\\accuracy_20261013\\native_seeds\\P05N\\import_audit.json",
+  "root_complete": false,
+  "mesh_path": "best_lower_mesh.npz",
+  "field_path": "best_lower_field.npz",
+  "audit": {
+    "objective": -1.0002665492170992,
+    "value": 1.0002665492170992,
+    "eq_error": 6.129728946646651e-10,
+    "cone_error": 0.0,
+    "audit": {
+      "pass": true,
+      "errors": {
+        "yield": 0.0,
+        "equilibrium": 1.3029048950841116e-09,
+        "internal_traction": 8.66874572125198e-10,
+        "boundary_traction": 2.1894820293495386e-12
+      },
+      "load": 1.0002665492170992,
+      "value": 1.0002665492170992
+    },
+    "raw_lower_errors": {
+      "yield": 0.0,
+      "equilibrium": 2.1888802237413076e-08,
+      "internal_traction": 1.4563492811703328e-08,
+      "boundary_traction": 3.678329809307225e-11
+    },
+    "physical_pass": true,
+    "witness": true,
+    "numerical_gate": false
+  },
+  "policy": "hold_initial",
+  "source_hashes": {
+    "D:\\Work\\excel-vba-rpfem\\docs\\benchmarks\\G1R17_native26_20261013\\data\\inputs\\P05N.json": "00c0f0343591fd462869feb282b56a4d34bddb9de4570d77888235ea8c99b328",
+    "D:\\Work\\excel-vba-rpfem\\validation\\accuracy_20261013\\native_seeds\\P05N\\import_audit.json": "3e6628484b1914a0872226162d7aaa7e5d272ecffd002be1e9460f51403eace6",
+    "D:\\Work\\excel-vba-rpfem\\validation\\accuracy_20261013\\native_seeds\\P05N\\best_lower_mesh.npz": "f106927b2036f40a4649ab37843c09977d891c904ac4a5fd6afefb47493dc8b0",
+    "D:\\Work\\excel-vba-rpfem\\validation\\accuracy_20261013\\native_seeds\\P05N\\best_lower_field.npz": "103ac27ab517c07235a75d9e684b9059935c261d8300320471fd26b324cc3829"
+  }
+}
