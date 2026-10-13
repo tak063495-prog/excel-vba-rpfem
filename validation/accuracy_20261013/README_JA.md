@@ -37,6 +37,12 @@ P06Nを含む非関連入力は既存Davis等価関連モデルであり、直�
   長時間の補正を省略する。固定荷重・変更した上界目的の双対はこの判定へ使わない。
 - 下界の固定荷重倍率による実行可能場の回復。成功場だけを端点に使い、その双対を
   荷重最大化問題の逆符号へ転用しない。
+- `upper_proximal_candidate.py`は、保存ベクトルからの変更を小さくする二次目的と、
+  元の散逸目的の上限0.999998を組み合わせて上界の物理場を回復する。
+  原E/b/G/h/目的/配置のSHA一致と全原q8監査を要求する。補助目的の双対は専用の
+  `modified_dual`に保存し、原双対や根符号へ使用しない。case・mesh・model・q・Fsを
+  照合し、入力ファイルと実行コードを計算前に固定する。旧Fsの場を中心として使う
+  場合も、新Fsでの適合や根完了を移送しない。成功候補の根は未完了のまま保存する。
 - c=0自由頂点の角度分割を下界側に限定して試す `--fan-lower`。
 - 単一のc=0材料で六頂点の斜面を構成する場合、元の多角形・外周条件・重力を保つ
   薄いすべり領域を上界メッシュへ追加する `c0_slope_wedge_driver.py`。
@@ -77,6 +83,7 @@ python -X utf8 validation/accuracy_20261013/python/combine_seeds.py --cases P06A
 python -X utf8 validation/accuracy_20261013/python/lower_accuracy_driver.py --case P06A --seed validation/accuracy_20261013/native_seeds/P06A --method uniform --output validation/accuracy_20261013/results/lower_uniform --rounds 1 --max-elements 24000
 python -X utf8 validation/accuracy_20261013/python/c0_slope_wedge_driver.py --case D02A --depth .01 --output validation/accuracy_20261013/results/c0_wedge
 python -X utf8 validation/accuracy_20261013/python/c0_slope_wedge_driver.py --case D03N --depth .01 --output validation/accuracy_20261013/results/c0_wedge
+python -X utf8 validation/accuracy_20261013/python/upper_proximal_candidate.py --case P03A --seed validation/accuracy_20261013/snapshots/20261014_progress6_audit/supporting_sources/P03A/center_seed --output validation/accuracy_20261013/results/p03a_proximal_replay --alpha .01 --seconds 600
 python -X utf8 validation/accuracy_20261013/python/report_accuracy.py --sources validation/accuracy_20261013/native_seeds validation/accuracy_20261013/results --output validation/accuracy_20261013/snapshots/new_audit
 python -X utf8 -m unittest discover -s validation/accuracy_20261013/tests -v
 python -X utf8 -m unittest discover -s validation/accuracy_20261013/python -p test_*.py -v
@@ -113,9 +120,12 @@ python -X utf8 validation/accuracy_20261013/python/check_zero_phi.py
 `0.002*max(1,Fs)`から始め、必要な側だけ符号探索を広げる。
 `run_suite.py --skip-seed-recheck`は保存根の同一性検証を省かず、初期の再求解だけを省く。
 
-途中の独立再監査は `snapshots/20261013_progress5_audit/REPORT_JA.md` と
-`COMPARISON_26.csv`に保存した。以前未達だった16ケースのうち12ケースで、幅1%と
-両側根完了を確認した。P06A/P06Nと残る未完了ケースの計算・VBA本番確認は継続中。
+途中の独立再監査は `snapshots/20261014_progress6_audit/REPORT_JA.md` と
+`COMPARISON_26.csv`に保存した。以前未達だった16ケースのうち14ケースで、幅1%と
+両側根完了を確認した。P03Aは0.997594%、P03Nは0.999855%。両者の上界は二次目的で
+回復した物理場と、別の元の最適化問題の双対全ベクトルから根を確定した。
+`supporting_sources`に元の中心・新しい物理場・補助双対・独立した原双対・根の
+全証拠を保存した。補助双対は不使用。P06A/P06Nの改善・VBA本番確認は継続中。
 P07Nは0.689432%、薄いすべり領域の候補を使ったD02Aは0.006664%、D03Nは0.008988%。
 今回のc=0上界候補は、材料界面を持つP06へ適用しない。
 `zero_phi_signed_transport.py`とcapped feasibilityのrayは比較用であり、

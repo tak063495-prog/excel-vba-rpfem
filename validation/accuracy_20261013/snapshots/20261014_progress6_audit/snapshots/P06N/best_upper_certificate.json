@@ -1,0 +1,71 @@
+{
+  "case": "P06N",
+  "mode": "upper",
+  "q": 8,
+  "fs": 0.6914407501171215,
+  "mesh_id": "87cdea024b90db6080d2fbdac23f74272ed2bf238abcb3f87cce5b7bd8ff6684",
+  "physical_model_id": "08cc8e73e85408e7a82cbe79b5716ef007cb917d00e021872c40e510b5d17525",
+  "elements": 6106,
+  "source": "D:\\Work\\excel-vba-rpfem\\validation\\accuracy_20261013\\results\\n_flow5_c1_close\\P06N\\best_upper_certificate.json",
+  "root_complete": true,
+  "mesh_path": "best_upper_mesh.npz",
+  "field_path": "best_upper_field.npz",
+  "audit": {
+    "objective": 0.9999985748291208,
+    "value": 0.9999985748291207,
+    "eq_error": 1.8041124150158794e-16,
+    "cone_error": 5.33910906597157e-08,
+    "audit": {
+      "pass": true,
+      "errors": {
+        "flow": 2.6056227397930343e-08,
+        "jump": 2.195016300520819e-11,
+        "bonded_interface": 0.0,
+        "boundary": 0.0,
+        "work": 1.887379141862766e-15,
+        "objective": 1.1102230246251565e-16
+      },
+      "dissipation": 0.9999985748291207,
+      "work": [
+        0.0,
+        0.9999999999999981
+      ],
+      "value": 0.9999985748291207
+    },
+    "raw_lower_errors": {},
+    "physical_pass": true,
+    "witness": true,
+    "numerical_gate": false,
+    "discrete_root_search": {
+      "mode": "upper",
+      "root_complete": true,
+      "bracket": [
+        0.6914126000936972,
+        0.6914407501171215
+      ],
+      "bracket_width": 2.815002342426709e-05,
+      "fs_tolerance": 0.0001,
+      "endpoint": 0.6914407501171215,
+      "trials": 4,
+      "seconds": 886.1810650000116,
+      "mesh_id": "87cdea024b90db6080d2fbdac23f74272ed2bf238abcb3f87cce5b7bd8ff6684",
+      "physical_model_id": "08cc8e73e85408e7a82cbe79b5716ef007cb917d00e021872c40e510b5d17525",
+      "elements": 6106,
+      "q": 8,
+      "case": "P06N",
+      "policy": "hold_initial",
+      "bracket_signs": [
+        1,
+        -1
+      ],
+      "opposite_numerical_endpoint_is_continuum_bound": false
+    }
+  },
+  "policy": "hold_initial",
+  "source_hashes": {
+    "D:\\Work\\excel-vba-rpfem\\docs\\benchmarks\\G1R17_native26_20261013\\data\\inputs\\P06N.json": "389bf6c3c29d49e509a1ea0f270ca0fae3594910da0cb8dd594edfea9cefec2b",
+    "D:\\Work\\excel-vba-rpfem\\validation\\accuracy_20261013\\results\\n_flow5_c1_close\\P06N\\best_upper_certificate.json": "d5f965dbcffbf06f95bdb3761d2ec0585c777a9e5e578fb587ec90a96c730a82",
+    "D:\\Work\\excel-vba-rpfem\\validation\\accuracy_20261013\\results\\n_flow5_c1_close\\P06N\\best_upper_mesh.npz": "1c22f32fc4ffa06c38881617c00b1def68861d944c77f88e6c4892c89cb6a748",
+    "D:\\Work\\excel-vba-rpfem\\validation\\accuracy_20261013\\results\\n_flow5_c1_close\\P06N\\best_upper_field.npz": "975349c8b8058da899bca875a012be7c3e8cd8df40e6effc989a5aac9d139832"
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "case": "P06A",
+  "mode": "upper",
+  "q": 8,
+  "fs": 0.85815,
+  "mesh_id": "36326ef9a8e69f87f0f725109db5cc60760ebd65d89fca9d9874811b38ee7fbc",
+  "physical_model_id": "f67b757898e3bcc3f45c5ea9b5a8e290955fad53f5900c5cd8c31b9637d51875",
+  "elements": 5659,
+  "source": "D:\\Work\\excel-vba-rpfem\\validation\\accuracy_20261013\\results\\a_latest_combined\\P06A\\best_upper_certificate.json",
+  "root_complete": false,
+  "mesh_path": "best_upper_mesh.npz",
+  "field_path": "best_upper_field.npz",
+  "audit": {
+    "objective": 0.9995243620554887,
+    "value": 0.9995243620554887,
+    "eq_error": 3.9745984281580604e-14,
+    "cone_error": 9.401420468323174e-11,
+    "audit": {
+      "pass": true,
+      "errors": {
+        "flow": 5.943591434918874e-11,
+        "jump": 3.815190858308397e-12,
+        "bonded_interface": 0.0,
+        "boundary": 0.0,
+        "work": 4.636291350834654e-13,
+        "objective": 0.0
+      },
+      "dissipation": 0.9995243620554887,
+      "work": [
+        0.0,
+        1.0000000000004636
+      ],
+      "value": 0.9995243620554887
+    },
+    "raw_lower_errors": {},
+    "physical_pass": true,
+    "witness": true,
+    "numerical_gate": false
+  },
+  "policy": "equal_reduced_phi",
+  "source_hashes": {
+    "D:\\Work\\excel-vba-rpfem\\docs\\benchmarks\\G1R17_native26_20261013\\data\\inputs\\P06A.json": "723491feaccb2c8b64c191dccf0564416816e09d3c2fe4c297e06c7505cf3215",
+    "D:\\Work\\excel-vba-rpfem\\validation\\accuracy_20261013\\results\\a_latest_combined\\P06A\\best_upper_certificate.json": "280f61abd5316dc194a4e5201276c7ba8867658a0b8ef8f802a383ecb41ac3b7",
+    "D:\\Work\\excel-vba-rpfem\\validation\\accuracy_20261013\\results\\a_latest_combined\\P06A\\best_upper_mesh.npz": "cd2f9844b1ea14bf8e260a4fe8b141eca320d20d155ce57ecf29c14d34dd2ade",
+    "D:\\Work\\excel-vba-rpfem\\validation\\accuracy_20261013\\results\\a_latest_combined\\P06A\\best_upper_field.npz": "4e19b6ef9d5b9d8c0755966f5012d6dad5ec7b2eae46f85b722c16046bdfd4e9",
+    "D:\\Work\\excel-vba-rpfem\\validation\\accuracy_20261013\\results\\a_jump_export\\P06A\\import_audit.json": "67b77d649d9d1927165c855f894b0831d5ee421aabd454e7255adcc9595b0b76"
+  }
+}
