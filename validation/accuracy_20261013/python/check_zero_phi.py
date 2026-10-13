@@ -113,6 +113,8 @@ def friction_regression():
     module=importlib.util.module_from_spec(spec);module.__package__='model_support';sys.modules[spec.name]=module;spec.loader.exec_module(module)
     spec2=importlib.util.spec_from_file_location('frozen_audit',FROZEN/'independent_audit.py')
     oldaudit=importlib.util.module_from_spec(spec2);spec2.loader.exec_module(oldaudit)
+    spec3=importlib.util.spec_from_file_location('frozen_prolong',FROZEN/'prolong.py')
+    oldprolong=importlib.util.module_from_spec(spec3);spec3.loader.exec_module(oldprolong)
     rows=[]
     for case in ['P06A','P06N']:
         m,rec=core.load_case(case)
@@ -128,9 +130,14 @@ def friction_regression():
         assert a==b,(a,b)
         child=core.uniform_refine(m,rec)
         assert np.array_equal(child.xy,d['child_xy']) and np.array_equal(child.tri,d['child_tri']) and np.array_equal(child.material_id,d['child_material_id'])
-        assert np.array_equal(d['prolonged_x'],core.prolong(m,child,x,'upper'))
+        current_prolong=core.prolong(m,child,x,'upper')
+        assert np.array_equal(oldprolong.prolong(m,child,x,'upper'),current_prolong)
+        # Saved LAPACK/BLAS rounding is platform-dependent. The algorithm
+        # comparison above remains bitwise on the same host and environment.
+        assert np.allclose(d['prolonged_x'],current_prolong,rtol=5e-14,atol=5e-14)
         rows.append({'case':case,'matrices_bitwise_identical':True,'audits_identical':True,
-                     'prolongation_bitwise_identical':True})
+                     'prolongation_bitwise_identical':True,
+                     'saved_prolongation_max_difference':float(np.max(np.abs(d['prolonged_x']-current_prolong)))})
     return rows
 
 def prolonged_clay_check():

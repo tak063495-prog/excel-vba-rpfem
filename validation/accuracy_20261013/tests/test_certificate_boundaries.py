@@ -224,6 +224,22 @@ class SearchBoundaryTests(unittest.TestCase):
         self.assertFalse(summary["root_complete"])
         self.assertGreater(len(attempts), 2)
 
+    def test_isolated_unknown_midpoint_can_close_with_independently_valid_quarters(self):
+        def callback(fs):
+            if abs(fs-1.)<1e-12:
+                return result(value=np.nan,witness=False,physical=False)
+            if fs<1.:
+                return result(value=np.nan,witness=False,physical=False,
+                    dual_stationarity=0.,dual_cone_error=0.,dual_objective=1.+(1.-fs))
+            return result(value=.999998-(fs-1.),numerical=True)
+        certificate,summary,attempts=self.search(callback)
+        self.assertIn(1.,attempts)
+        self.assertTrue(any(abs(fs-.95)<1e-14 for fs in attempts))
+        self.assertTrue(certificate.root_complete)
+        self.assertLess(summary['bracket'][0],1.)
+        self.assertGreater(summary['bracket'][1],1.)
+        self.assertLessEqual(summary['bracket_width'],1e-4)
+
 
 class SeedBoundaryTests(unittest.TestCase):
     def run_seed(self, mutate=None, recheck=False, candidates=None, resume=False, field_mode=None, field_q=None):

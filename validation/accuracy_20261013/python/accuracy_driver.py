@@ -164,7 +164,8 @@ def search(mesh, mode, initial, folder, label, tolerance=1e-4, seconds=120, init
                     if 'dual' in key:del witness[key]
                 witness['fixed_load_feasibility_only']=True
                 result,field=witness,wx
-        result.update(attempts=attempts, search_sign=sign(result, mode), fs=fs)
+        result.update(attempts=attempts, original_dual_recovery_attempts=dual_evidence,
+                      search_sign=sign(result, mode), fs=fs)
         cache[fs] = result, field
         trials.append(result)
         if result['witness'] and (best is None or (fs > best.fs if mode == 'lower' else fs < best.fs)):
@@ -222,8 +223,14 @@ def search(mesh, mode, initial, folder, label, tolerance=1e-4, seconds=120, init
             fs = float(np.clip(fs, lo + .2 * (hi - lo), hi - .2 * (hi - lo)))
             result, _ = point(fs)
             if sign(result, mode) is None:
-                result, _ = point((lo + hi) / 2)
-                fs = (lo + hi) / 2
+                # Isolated numerical failures near a face transition need not
+                # erase a signed bracket. Probe bounded interior alternatives;
+                # each sign still requires the unchanged original audit.
+                for alternative in [(lo+hi)/2,lo+.25*(hi-lo),lo+.75*(hi-lo)]:
+                    result,_=point(alternative)
+                    fs=alternative
+                    if sign(result,mode) is not None:
+                        break
             s = sign(result, mode)
             if s is None:
                 break
