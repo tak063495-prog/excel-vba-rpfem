@@ -1,0 +1,961 @@
+[
+  {
+    "objective": 0.0,
+    "value": 0.0,
+    "eq_error": 0.0,
+    "cone_error": 4.0877890410496805e-09,
+    "audit": {
+      "pass": true,
+      "errors": {
+        "flow": 1.253923730631703e-09,
+        "jump": 5.4569682106375694e-12,
+        "boundary": 0.0,
+        "work": 0.0,
+        "objective": 0.0
+      },
+      "dissipation": 0.0,
+      "work": [
+        0.0,
+        1.0
+      ],
+      "value": 0.0
+    },
+    "raw_lower_errors": {},
+    "physical_pass": true,
+    "witness": true,
+    "numerical_gate": false,
+    "case": "D02A",
+    "mode": "upper",
+    "q": 8,
+    "fs": 1.5008003751875936,
+    "mesh_id": "8e62aeb3154034ac4eeb10b3ebfb80997249e3dbffaaa4fa51ec539a324dce76",
+    "physical_model_id": "88804f72c1e9025c7ad0606e33e33d648b0f0532c402edf97fde7ca082f595ea",
+    "origin": "independently_reaudited_same_mesh_witness",
+    "work_normalization": 4.612082752806143e-05,
+    "search_sign": -1
+  },
+  {
+    "objective": 0.0,
+    "value": 0.0,
+    "eq_error": 0.0001389268479330573,
+    "cone_error": 1.023977762589035e-12,
+    "audit": {
+      "pass": false,
+      "errors": {
+        "flow": 5.683284071628984e-13,
+        "jump": 8.486270725792623e-14,
+        "boundary": 0.0,
+        "work": 0.9999999999568372,
+        "objective": 0.0
+      },
+      "dissipation": 0.0,
+      "work": [
+        0.0,
+        4.3162773471618526e-11
+      ],
+      "value": 0.0
+    },
+    "raw_lower_errors": {},
+    "physical_pass": false,
+    "witness": false,
+    "dual_objective": 1.9999999999996276,
+    "dual_stationarity": 2.685838218496883e-10,
+    "dual_cone_error": 0.0,
+    "dual_gap": 1.9999999999996276,
+    "numerical_gate": false,
+    "reduced_dual_objective": 1.9999999999996276,
+    "reduced_dual_stationarity": 2.685835998050834e-10,
+    "reduced_dual_cone_error": 0.0,
+    "reduced_dual_gap": 1.9999999999996276,
+    "reduced_numerical_gate": false,
+    "case": "D02A",
+    "elements": 8,
+    "fs": 1.4987503751875935,
+    "mode": "upper",
+    "q": 8,
+    "reduction": "affine",
+    "status": "PrimalInfeasible",
+    "iterations": 15,
+    "solver_seconds": 0.003948800032958388,
+    "build_seconds": 0.0010343999601900578,
+    "backend_solve_seconds": 0.0043968,
+    "audit_seconds": 0.004428700020071119,
+    "dual_restore": {
+      "method": "removed_equalities_lsmr",
+      "seconds": 0.0024068999919109046,
+      "lsmr_flag": 1,
+      "lsmr_iterations": 1
+    },
+    "assembly_seconds": 0.011421100003644824,
+    "transform_seconds": 0.014534599962644279,
+    "original_variables": 96,
+    "original_equalities": 13,
+    "variables": 84,
+    "equalities": 1,
+    "cones": 204,
+    "solver_reported_gap": null,
+    "settings_overrides": {
+      "equilibrate_enable": false,
+      "time_limit": 30.0
+    },
+    "max_iter": 350,
+    "early": false,
+    "callback_trigger": [],
+    "cone_scaling": false,
+    "primal_polish": {
+      "method": "original_equality_lsmr_then_full_physical_audit",
+      "accepted": false,
+      "lsmr_flag": 1,
+      "iterations": 2,
+      "correction_norm": 0.000140788436564006,
+      "seconds": 0.004182500008028001,
+      "before_raw": {},
+      "after_raw": {}
+    },
+    "original_dual_ray_rescaling": {
+      "factor": 2.0,
+      "accepted": true,
+      "before": {
+        "objective": 0.9999999999998138,
+        "stationarity": 1.3429191092484416e-10,
+        "cone_error": 0.0
+      },
+      "after": {
+        "objective": 1.9999999999996276,
+        "stationarity": 2.685838218496883e-10,
+        "cone_error": 0.0
+      },
+      "scope": "DISCRETE_UPPER_INFEASIBILITY_GUIDE_ONLY"
+    },
+    "end_to_end_seconds": 0.04195699997944757,
+    "attempts": [
+      {
+        "status": "PrimalInfeasible",
+        "physical_pass": false,
+        "witness": false,
+        "numerical_gate": false,
+        "end_to_end_seconds": 0.04195699997944757
+      }
+    ],
+    "original_dual_recovery_attempts": [
+      {
+        "dual_objective": 1.9999999999996276,
+        "dual_stationarity": 2.685838218496883e-10,
+        "dual_cone_error": 0.0,
+        "reduced_dual_objective": 1.9999999999996276,
+        "reduced_dual_stationarity": 2.685835998050834e-10,
+        "reduced_dual_cone_error": 0.0
+      }
+    ],
+    "search_sign": 1
+  },
+  {
+    "objective": 0.0,
+    "value": 0.0,
+    "eq_error": 0.00013892684797724042,
+    "cone_error": 1.0792613418393561e-12,
+    "audit": {
+      "pass": false,
+      "errors": {
+        "flow": 5.987285486454459e-13,
+        "jump": 1.806490830424787e-13,
+        "boundary": 0.0,
+        "work": 1.0000000002748686,
+        "objective": 0.0
+      },
+      "dissipation": 0.0,
+      "work": [
+        0.0,
+        -2.748686741590037e-10
+      ],
+      "value": 0.0
+    },
+    "raw_lower_errors": {},
+    "physical_pass": false,
+    "witness": false,
+    "dual_objective": 1.9999999999992006,
+    "dual_stationarity": 5.762523791474905e-10,
+    "dual_cone_error": 0.0,
+    "dual_gap": 1.9999999999992006,
+    "numerical_gate": false,
+    "reduced_dual_objective": 1.9999999999992006,
+    "reduced_dual_stationarity": 5.762526011920954e-10,
+    "reduced_dual_cone_error": 0.0,
+    "reduced_dual_gap": 1.9999999999992006,
+    "reduced_numerical_gate": false,
+    "case": "D02A",
+    "elements": 8,
+    "fs": 1.4997753751875935,
+    "mode": "upper",
+    "q": 8,
+    "reduction": "affine",
+    "status": "PrimalInfeasible",
+    "iterations": 16,
+    "solver_seconds": 0.003486400004476309,
+    "build_seconds": 0.0012181000201962888,
+    "backend_solve_seconds": 0.0039349,
+    "audit_seconds": 0.004467999970074743,
+    "dual_restore": {
+      "method": "removed_equalities_lsmr",
+      "seconds": 0.002336700039450079,
+      "lsmr_flag": 1,
+      "lsmr_iterations": 1
+    },
+    "assembly_seconds": 0.010701799998059869,
+    "transform_seconds": 0.017549299984239042,
+    "original_variables": 96,
+    "original_equalities": 13,
+    "variables": 84,
+    "equalities": 1,
+    "cones": 204,
+    "solver_reported_gap": null,
+    "settings_overrides": {
+      "equilibrate_enable": false,
+      "time_limit": 30.0
+    },
+    "max_iter": 350,
+    "early": false,
+    "callback_trigger": [],
+    "cone_scaling": false,
+    "primal_polish": {
+      "method": "original_equality_lsmr_then_full_physical_audit",
+      "accepted": false,
+      "lsmr_flag": 1,
+      "iterations": 2,
+      "correction_norm": 0.00014078843660878117,
+      "seconds": 0.004533100000116974,
+      "before_raw": {},
+      "after_raw": {}
+    },
+    "original_dual_ray_rescaling": {
+      "factor": 2.0,
+      "accepted": true,
+      "before": {
+        "objective": 0.9999999999996003,
+        "stationarity": 2.8812618957374525e-10,
+        "cone_error": 0.0
+      },
+      "after": {
+        "objective": 1.9999999999992006,
+        "stationarity": 5.762523791474905e-10,
+        "cone_error": 0.0
+      },
+      "scope": "DISCRETE_UPPER_INFEASIBILITY_GUIDE_ONLY"
+    },
+    "end_to_end_seconds": 0.044293400016613305,
+    "attempts": [
+      {
+        "status": "PrimalInfeasible",
+        "physical_pass": false,
+        "witness": false,
+        "numerical_gate": false,
+        "end_to_end_seconds": 0.044293400016613305
+      }
+    ],
+    "original_dual_recovery_attempts": [
+      {
+        "dual_objective": 1.9999999999992006,
+        "dual_stationarity": 5.762523791474905e-10,
+        "dual_cone_error": 0.0,
+        "reduced_dual_objective": 1.9999999999992006,
+        "reduced_dual_stationarity": 5.762526011920954e-10,
+        "reduced_dual_cone_error": 0.0
+      }
+    ],
+    "search_sign": 1
+  },
+  {
+    "objective": 0.0,
+    "value": 0.0,
+    "eq_error": 7.358768271386457e-13,
+    "cone_error": 0.0,
+    "audit": {
+      "pass": true,
+      "errors": {
+        "flow": 0.0,
+        "jump": 0.0,
+        "boundary": 0.0,
+        "work": 5.296897143125534e-09,
+        "objective": 0.0
+      },
+      "dissipation": 0.0,
+      "work": [
+        0.0,
+        1.0000000052968971
+      ],
+      "value": 0.0
+    },
+    "raw_lower_errors": {},
+    "physical_pass": true,
+    "witness": true,
+    "dual_objective": 2.3154798719280446e-11,
+    "dual_stationarity": 1.3538336410607132e-14,
+    "dual_cone_error": 0.0,
+    "dual_gap": 2.3154798719280446e-11,
+    "numerical_gate": true,
+    "reduced_dual_objective": 2.3154798719280446e-11,
+    "reduced_dual_stationarity": 1.3538336410605954e-14,
+    "reduced_dual_cone_error": 0.0,
+    "reduced_dual_gap": 2.3154798719280446e-11,
+    "reduced_numerical_gate": true,
+    "case": "D02A",
+    "elements": 8,
+    "fs": 1.5002878751875937,
+    "mode": "upper",
+    "q": 8,
+    "reduction": "affine",
+    "status": "Solved",
+    "iterations": 39,
+    "solver_seconds": 0.008571500016842037,
+    "build_seconds": 0.0008646000060252845,
+    "backend_solve_seconds": 0.0089443,
+    "audit_seconds": 0.005773400014732033,
+    "dual_restore": {
+      "method": "removed_equalities_lsmr",
+      "seconds": 0.002039099985267967,
+      "lsmr_flag": 2,
+      "lsmr_iterations": 2
+    },
+    "assembly_seconds": 0.009498000028543174,
+    "transform_seconds": 0.02292359998682514,
+    "original_variables": 96,
+    "original_equalities": 13,
+    "variables": 84,
+    "equalities": 1,
+    "cones": 204,
+    "solver_reported_gap": 2.3154798719280446e-11,
+    "settings_overrides": {
+      "equilibrate_enable": false,
+      "time_limit": 30.0
+    },
+    "max_iter": 350,
+    "early": false,
+    "callback_trigger": [],
+    "cone_scaling": false,
+    "primal_polish": {},
+    "end_to_end_seconds": 0.049670200038235635,
+    "attempts": [
+      {
+        "status": "Solved",
+        "physical_pass": true,
+        "witness": true,
+        "numerical_gate": true,
+        "end_to_end_seconds": 0.049670200038235635
+      }
+    ],
+    "original_dual_recovery_attempts": [
+      {
+        "dual_objective": 2.3154798719280446e-11,
+        "dual_stationarity": 1.3538336410607132e-14,
+        "dual_cone_error": 0.0,
+        "reduced_dual_objective": 2.3154798719280446e-11,
+        "reduced_dual_stationarity": 1.3538336410605954e-14,
+        "reduced_dual_cone_error": 0.0
+      }
+    ],
+    "search_sign": -1
+  },
+  {
+    "objective": 0.0,
+    "value": 0.0,
+    "eq_error": 0.00013879968926356172,
+    "cone_error": 1.4469477137574932e-07,
+    "audit": {
+      "pass": false,
+      "errors": {
+        "flow": 8.026104656156023e-08,
+        "jump": 4.472498092646785e-09,
+        "boundary": 0.0,
+        "work": 0.9990847076905693,
+        "objective": 0.0
+      },
+      "dissipation": 0.0,
+      "work": [
+        0.0,
+        0.0009152923094306493
+      ],
+      "value": 0.0
+    },
+    "raw_lower_errors": {},
+    "physical_pass": false,
+    "witness": false,
+    "dual_objective": 1.0,
+    "dual_stationarity": 3.92323181727722e-06,
+    "dual_cone_error": 0.0,
+    "dual_gap": 1.0,
+    "numerical_gate": false,
+    "reduced_dual_objective": 1.0,
+    "reduced_dual_stationarity": 3.923231817277203e-06,
+    "reduced_dual_cone_error": 0.0,
+    "reduced_dual_gap": 1.0,
+    "reduced_numerical_gate": false,
+    "case": "D02A",
+    "elements": 8,
+    "fs": 1.5000316251875936,
+    "mode": "upper",
+    "q": 8,
+    "reduction": "affine",
+    "status": "AlmostPrimalInfeasible",
+    "iterations": 29,
+    "solver_seconds": 0.008390999981202185,
+    "build_seconds": 0.0018939999863505363,
+    "backend_solve_seconds": 0.0091594,
+    "audit_seconds": 0.006429300003219396,
+    "dual_restore": {
+      "method": "removed_equalities_lsmr",
+      "seconds": 0.002305600035469979,
+      "lsmr_flag": 2,
+      "lsmr_iterations": 2
+    },
+    "assembly_seconds": 0.011005999986082315,
+    "transform_seconds": 0.02674290002323687,
+    "original_variables": 96,
+    "original_equalities": 13,
+    "variables": 84,
+    "equalities": 1,
+    "cones": 204,
+    "solver_reported_gap": null,
+    "settings_overrides": {
+      "equilibrate_enable": false,
+      "time_limit": 30.0
+    },
+    "max_iter": 350,
+    "early": false,
+    "callback_trigger": [],
+    "cone_scaling": false,
+    "primal_polish": {
+      "method": "original_equality_lsmr_then_full_physical_audit",
+      "accepted": false,
+      "lsmr_flag": 1,
+      "iterations": 2,
+      "correction_norm": 0.00014065957399683347,
+      "seconds": 0.005169499956537038,
+      "before_raw": {},
+      "after_raw": {}
+    },
+    "original_dual_ray_rescaling": {
+      "factor": 2.0,
+      "accepted": false,
+      "before": {
+        "objective": 1.0,
+        "stationarity": 3.92323181727722e-06,
+        "cone_error": 0.0
+      },
+      "after": {
+        "objective": 2.0,
+        "stationarity": 7.84646363455444e-06,
+        "cone_error": 0.0
+      },
+      "scope": "DISCRETE_UPPER_INFEASIBILITY_GUIDE_ONLY"
+    },
+    "end_to_end_seconds": 0.06193829997209832,
+    "original_farkas_recovery": {
+      "accepted": false,
+      "dual_stationarity": 9.255788350745033e-08,
+      "dual_cone_error": 6.045463870685882e-07,
+      "dual_objective": 1.0000029955881182,
+      "normalization_error": 4.411881748822566e-09,
+      "target": 1.000003,
+      "method": "original_cone_farkas_feasibility",
+      "scope": "discrete_root_search_only",
+      "publishes_primal_bound": false,
+      "reason": "ORIGINAL_RAW_FARKAS_GATE_REJECTED",
+      "status": "AlmostSolved",
+      "iterations": 30,
+      "settings": {
+        "equilibrate_enable": false,
+        "time_limit": 30.0
+      },
+      "max_iter": 350,
+      "build_seconds": 0.0026655999827198684,
+      "seconds": 0.015058599994517863,
+      "fs": 1.5000316251875936,
+      "mode": "upper",
+      "q": 8,
+      "mesh_id": "8e62aeb3154034ac4eeb10b3ebfb80997249e3dbffaaa4fa51ec539a324dce76",
+      "physical_model_id": "88804f72c1e9025c7ad0606e33e33d648b0f0532c402edf97fde7ca082f595ea",
+      "case": "D02A"
+    },
+    "original_dual_feasibility_recovery": {
+      "accepted": false,
+      "dual_stationarity": 1.7297389744843787e-05,
+      "dual_cone_error": 1.348972821909316e-07,
+      "dual_objective": 2.101868219698044,
+      "threshold": 1.000003,
+      "method": "original_dual_feasibility",
+      "scope": "discrete_root_search_only",
+      "publishes_primal_bound": false,
+      "reason": "ORIGINAL_RAW_DUAL_GATE_REJECTED",
+      "status": "AlmostSolved",
+      "iterations": 47,
+      "settings": {
+        "equilibrate_enable": true,
+        "time_limit": 30.0
+      },
+      "max_iter": 350,
+      "build_seconds": 0.0018844999722205102,
+      "seconds": 0.01351969997631386,
+      "fs": 1.5000316251875936,
+      "mode": "upper",
+      "q": 8,
+      "mesh_id": "8e62aeb3154034ac4eeb10b3ebfb80997249e3dbffaaa4fa51ec539a324dce76",
+      "physical_model_id": "88804f72c1e9025c7ad0606e33e33d648b0f0532c402edf97fde7ca082f595ea",
+      "case": "D02A",
+      "auxiliary_regularization": 0.0,
+      "equality_scale": false
+    },
+    "attempts": [
+      {
+        "status": "AlmostPrimalInfeasible",
+        "physical_pass": false,
+        "witness": false,
+        "numerical_gate": false,
+        "end_to_end_seconds": 0.06193829997209832
+      },
+      {
+        "status": "InsufficientProgress",
+        "physical_pass": false,
+        "witness": false,
+        "numerical_gate": false,
+        "end_to_end_seconds": 0.05885830003535375
+      },
+      {
+        "status": "MaxIterations",
+        "physical_pass": false,
+        "witness": false,
+        "numerical_gate": false,
+        "end_to_end_seconds": 0.11148790002334863
+      },
+      {
+        "status": "AlmostPrimalInfeasible",
+        "physical_pass": false,
+        "witness": false,
+        "numerical_gate": false,
+        "end_to_end_seconds": 0.0852553000440821
+      }
+    ],
+    "original_dual_recovery_attempts": [
+      {
+        "dual_objective": 1.0,
+        "dual_stationarity": 3.92323181727722e-06,
+        "dual_cone_error": 0.0,
+        "reduced_dual_objective": 1.0,
+        "reduced_dual_stationarity": 3.923231817277203e-06,
+        "reduced_dual_cone_error": 0.0
+      },
+      {
+        "dual_objective": 935349709.9820555,
+        "dual_stationarity": 53342761.74443138,
+        "dual_cone_error": 0.0,
+        "reduced_dual_objective": 935349709.9820555,
+        "reduced_dual_stationarity": 53342761.74443132,
+        "reduced_dual_cone_error": 0.0
+      },
+      {
+        "dual_objective": 4015779.91994954,
+        "dual_stationarity": 16.22856468124337,
+        "dual_cone_error": 0.0,
+        "reduced_dual_objective": 4015779.91994954,
+        "reduced_dual_stationarity": 16.22856468124337,
+        "reduced_dual_cone_error": 0.0
+      },
+      {
+        "dual_objective": 0.9999999999999999,
+        "dual_stationarity": 9.006777344414249e-06,
+        "dual_cone_error": 0.0,
+        "reduced_dual_objective": 0.9999999999999999,
+        "reduced_dual_stationarity": 9.00677734438915e-06,
+        "reduced_dual_cone_error": 0.0
+      }
+    ],
+    "search_sign": null
+  },
+  {
+    "objective": 0.0,
+    "value": 0.0,
+    "eq_error": 0.0001389268480523472,
+    "cone_error": 2.0136990561351777e-12,
+    "audit": {
+      "pass": false,
+      "errors": {
+        "flow": 1.1170490126320777e-12,
+        "jump": 4.336826051663676e-13,
+        "boundary": 0.0,
+        "work": 1.0000000008154897,
+        "objective": 0.0
+      },
+      "dissipation": 0.0,
+      "work": [
+        0.0,
+        -8.154896741718577e-10
+      ],
+      "value": 0.0
+    },
+    "raw_lower_errors": {},
+    "physical_pass": false,
+    "witness": false,
+    "dual_objective": 1.9999999999982867,
+    "dual_stationarity": 1.5907199399249501e-09,
+    "dual_cone_error": 0.0,
+    "dual_gap": 1.9999999999982867,
+    "numerical_gate": false,
+    "reduced_dual_objective": 1.9999999999982867,
+    "reduced_dual_stationarity": 1.5907199399389262e-09,
+    "reduced_dual_cone_error": 0.0,
+    "reduced_dual_gap": 1.9999999999982867,
+    "reduced_numerical_gate": false,
+    "case": "D02A",
+    "elements": 8,
+    "fs": 1.4999035001875936,
+    "mode": "upper",
+    "q": 8,
+    "reduction": "affine",
+    "status": "AlmostPrimalInfeasible",
+    "iterations": 16,
+    "solver_seconds": 0.004637999983970076,
+    "build_seconds": 0.0011821999796666205,
+    "backend_solve_seconds": 0.0050234,
+    "audit_seconds": 0.0044433000148274004,
+    "dual_restore": {
+      "method": "removed_equalities_lsmr",
+      "seconds": 0.0013788999640382826,
+      "lsmr_flag": 1,
+      "lsmr_iterations": 1
+    },
+    "assembly_seconds": 0.011762199981603771,
+    "transform_seconds": 0.02601259999210015,
+    "original_variables": 96,
+    "original_equalities": 13,
+    "variables": 84,
+    "equalities": 1,
+    "cones": 204,
+    "solver_reported_gap": null,
+    "settings_overrides": {
+      "equilibrate_enable": false,
+      "time_limit": 30.0
+    },
+    "max_iter": 350,
+    "early": false,
+    "callback_trigger": [],
+    "cone_scaling": false,
+    "primal_polish": {
+      "method": "original_equality_lsmr_then_full_physical_audit",
+      "accepted": false,
+      "lsmr_flag": 1,
+      "iterations": 2,
+      "correction_norm": 0.00014078843668489433,
+      "seconds": 0.005281699995975941,
+      "before_raw": {},
+      "after_raw": {}
+    },
+    "original_dual_ray_rescaling": {
+      "factor": 2.0,
+      "accepted": true,
+      "before": {
+        "objective": 0.9999999999991434,
+        "stationarity": 7.953599699624751e-10,
+        "cone_error": 0.0
+      },
+      "after": {
+        "objective": 1.9999999999982867,
+        "stationarity": 1.5907199399249501e-09,
+        "cone_error": 0.0
+      },
+      "scope": "DISCRETE_UPPER_INFEASIBILITY_GUIDE_ONLY"
+    },
+    "end_to_end_seconds": 0.05469889991218224,
+    "attempts": [
+      {
+        "status": "AlmostPrimalInfeasible",
+        "physical_pass": false,
+        "witness": false,
+        "numerical_gate": false,
+        "end_to_end_seconds": 0.05469889991218224
+      }
+    ],
+    "original_dual_recovery_attempts": [
+      {
+        "dual_objective": 1.9999999999982867,
+        "dual_stationarity": 1.5907199399249501e-09,
+        "dual_cone_error": 0.0,
+        "reduced_dual_objective": 1.9999999999982867,
+        "reduced_dual_stationarity": 1.5907199399389262e-09,
+        "reduced_dual_cone_error": 0.0
+      }
+    ],
+    "search_sign": 1
+  },
+  {
+    "objective": 0.0,
+    "value": 0.0,
+    "eq_error": 7.779150587583494e-18,
+    "cone_error": 0.0,
+    "audit": {
+      "pass": true,
+      "errors": {
+        "flow": 0.0,
+        "jump": 0.0,
+        "boundary": 1.0339757656912846e-25,
+        "work": 1.2789769243681803e-13,
+        "objective": 0.0
+      },
+      "dissipation": 0.0,
+      "work": [
+        0.0,
+        1.000000000000128
+      ],
+      "value": 0.0
+    },
+    "raw_lower_errors": {},
+    "physical_pass": true,
+    "witness": true,
+    "dual_objective": 5.768362921915632e-15,
+    "dual_stationarity": 5.606488835236727e-13,
+    "dual_cone_error": 0.0,
+    "dual_gap": 5.768362921915632e-15,
+    "numerical_gate": true,
+    "reduced_dual_objective": 5.768362921915632e-15,
+    "reduced_dual_stationarity": 5.60648883523663e-13,
+    "reduced_dual_cone_error": 0.0,
+    "reduced_dual_gap": 5.768362921915632e-15,
+    "reduced_numerical_gate": true,
+    "case": "D02A",
+    "elements": 8,
+    "fs": 1.5000956876875935,
+    "mode": "upper",
+    "q": 8,
+    "reduction": "affine",
+    "status": "Solved",
+    "iterations": 108,
+    "solver_seconds": 0.023789600003510714,
+    "build_seconds": 0.0012565000215545297,
+    "backend_solve_seconds": 0.0242629,
+    "audit_seconds": 0.003836599993519485,
+    "dual_restore": {
+      "method": "removed_equalities_lsmr",
+      "seconds": 0.0012880999711342156,
+      "lsmr_flag": 2,
+      "lsmr_iterations": 1
+    },
+    "assembly_seconds": 0.006973000010475516,
+    "transform_seconds": 0.023271099955309182,
+    "original_variables": 96,
+    "original_equalities": 13,
+    "variables": 84,
+    "equalities": 1,
+    "cones": 204,
+    "solver_reported_gap": 5.768362921915632e-15,
+    "settings_overrides": {
+      "equilibrate_enable": false,
+      "time_limit": 30.0
+    },
+    "max_iter": 350,
+    "early": false,
+    "callback_trigger": [],
+    "cone_scaling": false,
+    "primal_polish": {
+      "method": "original_equality_lsmr_then_full_physical_audit",
+      "accepted": true,
+      "lsmr_flag": 1,
+      "iterations": 2,
+      "correction_norm": 8.43819183853288e-10,
+      "seconds": 0.006040800013579428,
+      "before_raw": {},
+      "after_raw": {}
+    },
+    "end_to_end_seconds": 0.06645569996908307,
+    "attempts": [
+      {
+        "status": "Solved",
+        "physical_pass": true,
+        "witness": true,
+        "numerical_gate": true,
+        "end_to_end_seconds": 0.06645569996908307
+      }
+    ],
+    "original_dual_recovery_attempts": [
+      {
+        "dual_objective": 5.768362921915632e-15,
+        "dual_stationarity": 5.606488835236727e-13,
+        "dual_cone_error": 0.0,
+        "reduced_dual_objective": 5.768362921915632e-15,
+        "reduced_dual_stationarity": 5.60648883523663e-13,
+        "reduced_dual_cone_error": 0.0
+      }
+    ],
+    "search_sign": -1
+  },
+  {
+    "objective": 0.0,
+    "value": 0.0,
+    "eq_error": 0.016022947185931686,
+    "cone_error": 38056.665529790764,
+    "audit": {
+      "pass": false,
+      "errors": {
+        "flow": 21110.043793358152,
+        "jump": 0.002099945298346651,
+        "boundary": 0.0,
+        "work": 115.33369844359868,
+        "objective": 0.0
+      },
+      "dissipation": 0.0,
+      "work": [
+        0.0,
+        -114.33369844359868
+      ],
+      "value": 0.0
+    },
+    "raw_lower_errors": {},
+    "physical_pass": false,
+    "witness": false,
+    "dual_objective": 1.000003000710163,
+    "dual_stationarity": 8.913909798042663e-11,
+    "dual_cone_error": 0.0,
+    "dual_gap": 92786737.58950278,
+    "numerical_gate": false,
+    "reduced_dual_objective": 92786737.58950278,
+    "reduced_dual_stationarity": 19541644.96998889,
+    "reduced_dual_cone_error": 0.0,
+    "reduced_dual_gap": 92786737.58950278,
+    "reduced_numerical_gate": false,
+    "case": "D02A",
+    "elements": 8,
+    "fs": 1.4999995939375936,
+    "mode": "upper",
+    "q": 8,
+    "reduction": "affine",
+    "status": "NumericalError",
+    "iterations": 28,
+    "solver_seconds": 0.004679700010456145,
+    "build_seconds": 0.0007227000314742327,
+    "backend_solve_seconds": 0.0049707,
+    "audit_seconds": 0.003951999999117106,
+    "dual_restore": {
+      "method": "removed_equalities_lsmr",
+      "seconds": 0.001341800030786544,
+      "lsmr_flag": 2,
+      "lsmr_iterations": 2
+    },
+    "assembly_seconds": 0.010170800029300153,
+    "transform_seconds": 0.014549799961969256,
+    "original_variables": 96,
+    "original_equalities": 13,
+    "variables": 84,
+    "equalities": 1,
+    "cones": 204,
+    "solver_reported_gap": 92786737.58950278,
+    "settings_overrides": {
+      "equilibrate_enable": false,
+      "time_limit": 30.0
+    },
+    "max_iter": 350,
+    "early": false,
+    "callback_trigger": [],
+    "cone_scaling": false,
+    "primal_polish": {
+      "method": "original_equality_lsmr_then_full_physical_audit",
+      "accepted": false,
+      "lsmr_flag": 1,
+      "iterations": 2,
+      "correction_norm": 0.016237651087728944,
+      "seconds": 0.005065699981059879,
+      "before_raw": {},
+      "after_raw": {}
+    },
+    "end_to_end_seconds": 0.040482500044163316,
+    "original_farkas_recovery": {
+      "accepted": true,
+      "dual_stationarity": 8.913909798042663e-11,
+      "dual_cone_error": 0.0,
+      "dual_objective": 1.000003000710163,
+      "normalization_error": 7.101630394856784e-10,
+      "target": 1.000003,
+      "method": "original_cone_farkas_feasibility",
+      "scope": "discrete_root_search_only",
+      "publishes_primal_bound": false,
+      "positive_sign": 1,
+      "status": "AlmostSolved",
+      "iterations": 20,
+      "settings": {
+        "equilibrate_enable": false,
+        "time_limit": 30.0
+      },
+      "max_iter": 350,
+      "build_seconds": 0.001585699967108667,
+      "seconds": 0.009134499996434897,
+      "fs": 1.4999995939375936,
+      "mode": "upper",
+      "q": 8,
+      "mesh_id": "8e62aeb3154034ac4eeb10b3ebfb80997249e3dbffaaa4fa51ec539a324dce76",
+      "physical_model_id": "88804f72c1e9025c7ad0606e33e33d648b0f0532c402edf97fde7ca082f595ea",
+      "case": "D02A"
+    },
+    "dual_from_original_farkas_at_same_fs": true,
+    "attempts": [
+      {
+        "status": "NumericalError",
+        "physical_pass": false,
+        "witness": false,
+        "numerical_gate": false,
+        "end_to_end_seconds": 0.040482500044163316
+      },
+      {
+        "status": "AlmostPrimalInfeasible",
+        "physical_pass": false,
+        "witness": false,
+        "numerical_gate": false,
+        "end_to_end_seconds": 0.042291700025089085
+      },
+      {
+        "status": "AlmostPrimalInfeasible",
+        "physical_pass": false,
+        "witness": false,
+        "numerical_gate": false,
+        "end_to_end_seconds": 0.04146679997211322
+      },
+      {
+        "status": "AlmostPrimalInfeasible",
+        "physical_pass": false,
+        "witness": false,
+        "numerical_gate": false,
+        "end_to_end_seconds": 0.04904279991751537
+      }
+    ],
+    "original_dual_recovery_attempts": [
+      {
+        "dual_objective": 92786737.58950278,
+        "dual_stationarity": 19541644.96998889,
+        "dual_cone_error": 0.0,
+        "reduced_dual_objective": 92786737.58950278,
+        "reduced_dual_stationarity": 19541644.96998889,
+        "reduced_dual_cone_error": 0.0
+      },
+      {
+        "dual_objective": 0.9999999999986711,
+        "dual_stationarity": 6.664516794715844e-07,
+        "dual_cone_error": 0.0,
+        "reduced_dual_objective": 0.9999999999986711,
+        "reduced_dual_stationarity": 6.664516794715992e-07,
+        "reduced_dual_cone_error": 0.0
+      },
+      {
+        "dual_objective": 1.0,
+        "dual_stationarity": 6.808272799853753e-07,
+        "dual_cone_error": 0.0,
+        "reduced_dual_objective": 1.0,
+        "reduced_dual_stationarity": 6.808272799853745e-07,
+        "reduced_dual_cone_error": 0.0
+      },
+      {
+        "dual_objective": 0.9999999999999999,
+        "dual_stationarity": 1.5781294466416339e-06,
+        "dual_cone_error": 0.0,
+        "reduced_dual_objective": 0.9999999999999999,
+        "reduced_dual_stationarity": 1.578129446608398e-06,
+        "reduced_dual_cone_error": 0.0
+      }
+    ],
+    "search_sign": 1
+  }
+]

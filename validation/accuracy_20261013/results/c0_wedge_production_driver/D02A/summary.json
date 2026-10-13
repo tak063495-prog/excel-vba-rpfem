@@ -1,0 +1,226 @@
+{
+  "case": "D02A",
+  "upper_only": true,
+  "one_percent_target_not_evaluated": true,
+  "root": {
+    "mode": "upper",
+    "root_complete": true,
+    "bracket": [
+      1.4999995939375936,
+      1.5000956876875935
+    ],
+    "bracket_width": 9.609374999985931e-05,
+    "fs_tolerance": 0.0001,
+    "endpoint": 1.5000956876875935,
+    "trials": 8,
+    "seconds": 0.6391815000097267,
+    "mesh_id": "8e62aeb3154034ac4eeb10b3ebfb80997249e3dbffaaa4fa51ec539a324dce76",
+    "physical_model_id": "88804f72c1e9025c7ad0606e33e33d648b0f0532c402edf97fde7ca082f595ea",
+    "elements": 8,
+    "q": 8,
+    "case": "D02A",
+    "policy": "equal_reduced_phi",
+    "bracket_signs": [
+      1,
+      -1
+    ],
+    "opposite_numerical_endpoint_is_continuum_bound": false
+  },
+  "mesh_change": {
+    "method": "homogeneous_c0_thin_slope_wedge",
+    "depth": 0.01,
+    "elements": 8,
+    "same_physical_model": true,
+    "source_outline": [
+      [
+        0.0,
+        0.0
+      ],
+      [
+        70.0,
+        0.0
+      ],
+      [
+        70.0,
+        10.0
+      ],
+      [
+        50.0,
+        10.0
+      ],
+      [
+        20.0,
+        30.0
+      ],
+      [
+        0.0,
+        30.0
+      ]
+    ],
+    "source_materials": [
+      [
+        1,
+        0.0,
+        45.0,
+        20.0,
+        45.0
+      ]
+    ],
+    "original_area": 1400.0,
+    "candidate_area": 1400.0,
+    "boundary_conditions_reconstructed_from_original": true,
+    "physical_model_id": "88804f72c1e9025c7ad0606e33e33d648b0f0532c402edf97fde7ca082f595ea",
+    "mesh_id": "8e62aeb3154034ac4eeb10b3ebfb80997249e3dbffaaa4fa51ec539a324dce76",
+    "analytical_wedge_threshold_candidate_only": 1.5007503751875935,
+    "analytical_threshold_is_a_published_bound": false
+  },
+  "implementation_hashes": {
+    "validation\\accuracy_20261013\\python\\accuracy_driver.py": "1e1eeb4391ba67598a93c8163513e9e76ae4f950aeeee7830f233765ed08cb10",
+    "validation\\accuracy_20261013\\python\\experiment_core.py": "3cc27df6d75a2c4b1e385e2e5ceddb95ed670b4a827b1507569b39674f55a0c6",
+    "validation\\accuracy_20261013\\python\\reduction.py": "cbc32e1e0764e10e3f56f67b804b08867166aafbd32a64ddcbe481b18d083ca5",
+    "validation\\accuracy_20261013\\python\\zero_phi_transport.py": "a95589afd8ab9ca0a69829782ad36e2ba83b16e7fcbe74781b26dc03ea974c79",
+    "validation\\accuracy_20261013\\python\\mesh_accuracy.py": "9553fa8d1d6caa1ab49fff92bfece2b14da97348a3334181e0653c5dde81a860",
+    "validation\\accuracy_20261013\\python\\original_farkas.py": "58ccb3af92e92d6b466c8acab8040fa88582a2deb5588a18d0ce92d3135f3672",
+    "validation\\accuracy_20261013\\python\\original_dual.py": "c0025181b07b742b0d4608656489c3495b6ea90b4ed8084438420e8312b6467d",
+    "validation\\accuracy_20261013\\python\\vendor\\independent_audit.py": "79ea1b0e4e72b2a61a4110e6115e3f33929ae5990fb054e20f41d345a694f37b",
+    "validation\\accuracy_20261013\\python\\vendor\\model_support\\upper_assembly.py": "d0e03aeb87dcc52ae8001b422d836064275850f22c8a69640ce722cb2213d065",
+    "validation\\accuracy_20261013\\python\\c0_slope_wedge_driver.py": "bd70baaba33fe74204dd74989738358080c5e7b5829624756c4fce05cb52c4f7"
+  },
+  "upper": {
+    "case": "D02A",
+    "mode": "upper",
+    "q": 8,
+    "fs": 1.5000956876875935,
+    "mesh_id": "8e62aeb3154034ac4eeb10b3ebfb80997249e3dbffaaa4fa51ec539a324dce76",
+    "physical_model_id": "88804f72c1e9025c7ad0606e33e33d648b0f0532c402edf97fde7ca082f595ea",
+    "elements": 8,
+    "source": "D02A_wedge_upper",
+    "root_complete": true,
+    "mesh_path": "best_upper_mesh.npz",
+    "field_path": "best_upper_field.npz",
+    "audit": {
+      "objective": 0.0,
+      "value": 0.0,
+      "eq_error": 7.779150587583494e-18,
+      "cone_error": 0.0,
+      "audit": {
+        "pass": true,
+        "errors": {
+          "flow": 0.0,
+          "jump": 0.0,
+          "boundary": 1.0339757656912846e-25,
+          "work": 1.2789769243681803e-13,
+          "objective": 0.0
+        },
+        "dissipation": 0.0,
+        "work": [
+          0.0,
+          1.000000000000128
+        ],
+        "value": 0.0
+      },
+      "raw_lower_errors": {},
+      "physical_pass": true,
+      "witness": true,
+      "dual_objective": 5.768362921915632e-15,
+      "dual_stationarity": 5.606488835236727e-13,
+      "dual_cone_error": 0.0,
+      "dual_gap": 5.768362921915632e-15,
+      "numerical_gate": true,
+      "reduced_dual_objective": 5.768362921915632e-15,
+      "reduced_dual_stationarity": 5.60648883523663e-13,
+      "reduced_dual_cone_error": 0.0,
+      "reduced_dual_gap": 5.768362921915632e-15,
+      "reduced_numerical_gate": true,
+      "case": "D02A",
+      "elements": 8,
+      "fs": 1.5000956876875935,
+      "mode": "upper",
+      "q": 8,
+      "reduction": "affine",
+      "status": "Solved",
+      "iterations": 108,
+      "solver_seconds": 0.023789600003510714,
+      "build_seconds": 0.0012565000215545297,
+      "backend_solve_seconds": 0.0242629,
+      "audit_seconds": 0.003836599993519485,
+      "dual_restore": {
+        "method": "removed_equalities_lsmr",
+        "seconds": 0.0012880999711342156,
+        "lsmr_flag": 2,
+        "lsmr_iterations": 1
+      },
+      "assembly_seconds": 0.006973000010475516,
+      "transform_seconds": 0.023271099955309182,
+      "original_variables": 96,
+      "original_equalities": 13,
+      "variables": 84,
+      "equalities": 1,
+      "cones": 204,
+      "solver_reported_gap": 5.768362921915632e-15,
+      "settings_overrides": {
+        "equilibrate_enable": false,
+        "time_limit": 30.0
+      },
+      "max_iter": 350,
+      "early": false,
+      "callback_trigger": [],
+      "cone_scaling": false,
+      "primal_polish": {
+        "method": "original_equality_lsmr_then_full_physical_audit",
+        "accepted": true,
+        "lsmr_flag": 1,
+        "iterations": 2,
+        "correction_norm": 8.43819183853288e-10,
+        "seconds": 0.006040800013579428,
+        "before_raw": {},
+        "after_raw": {}
+      },
+      "end_to_end_seconds": 0.06645569996908307,
+      "attempts": [
+        {
+          "status": "Solved",
+          "physical_pass": true,
+          "witness": true,
+          "numerical_gate": true,
+          "end_to_end_seconds": 0.06645569996908307
+        }
+      ],
+      "original_dual_recovery_attempts": [
+        {
+          "dual_objective": 5.768362921915632e-15,
+          "dual_stationarity": 5.606488835236727e-13,
+          "dual_cone_error": 0.0,
+          "reduced_dual_objective": 5.768362921915632e-15,
+          "reduced_dual_stationarity": 5.60648883523663e-13,
+          "reduced_dual_cone_error": 0.0
+        }
+      ],
+      "search_sign": -1,
+      "discrete_root_search": {
+        "mode": "upper",
+        "root_complete": true,
+        "bracket": [
+          1.4999995939375936,
+          1.5000956876875935
+        ],
+        "bracket_width": 9.609374999985931e-05,
+        "fs_tolerance": 0.0001,
+        "endpoint": 1.5000956876875935,
+        "trials": 8,
+        "seconds": 0.6391815000097267,
+        "mesh_id": "8e62aeb3154034ac4eeb10b3ebfb80997249e3dbffaaa4fa51ec539a324dce76",
+        "physical_model_id": "88804f72c1e9025c7ad0606e33e33d648b0f0532c402edf97fde7ca082f595ea",
+        "elements": 8,
+        "q": 8,
+        "case": "D02A",
+        "policy": "equal_reduced_phi",
+        "bracket_signs": [
+          1,
+          -1
+        ],
+        "opposite_numerical_endpoint_is_continuum_bound": false
+      }
+    }
+  }
+}

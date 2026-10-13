@@ -1,0 +1,48 @@
+{
+  "method": "homogeneous_c0_thin_slope_wedge",
+  "depth": 0.01,
+  "elements": 8,
+  "same_physical_model": true,
+  "source_outline": [
+    [
+      0.0,
+      0.0
+    ],
+    [
+      70.0,
+      0.0
+    ],
+    [
+      70.0,
+      10.0
+    ],
+    [
+      50.0,
+      10.0
+    ],
+    [
+      20.0,
+      30.0
+    ],
+    [
+      0.0,
+      30.0
+    ]
+  ],
+  "source_materials": [
+    [
+      1,
+      0.0,
+      45.0,
+      20.0,
+      45.0
+    ]
+  ],
+  "original_area": 1400.0,
+  "candidate_area": 1400.0,
+  "boundary_conditions_reconstructed_from_original": true,
+  "physical_model_id": "88804f72c1e9025c7ad0606e33e33d648b0f0532c402edf97fde7ca082f595ea",
+  "mesh_id": "8e62aeb3154034ac4eeb10b3ebfb80997249e3dbffaaa4fa51ec539a324dce76",
+  "analytical_wedge_threshold_candidate_only": 1.5007503751875935,
+  "analytical_threshold_is_a_published_bound": false
+}
