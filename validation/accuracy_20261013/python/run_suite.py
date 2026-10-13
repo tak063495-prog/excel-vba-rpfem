@@ -14,6 +14,8 @@ parser.add_argument('--cycles', type=int, default=8)
 parser.add_argument('--max-elements', type=int, default=12000)
 parser.add_argument('--cases', nargs='*')
 parser.add_argument('--seed-root',type=Path)
+parser.add_argument('--skip-seed-recheck',action='store_true',
+                    help='Continue stored witnesses; the driver still validates every retained root identity')
 parser.add_argument('--fan-lower',action='store_true')
 parser.add_argument('--parallel',type=int,default=1)
 args = parser.parse_args()
@@ -27,7 +29,8 @@ def run_case(case):
                '--case', case, '--output', str(args.output.resolve()), '--cycles', str(args.cycles),
                '--max-elements', str(args.max_elements)]
     if args.seed_root and (args.seed_root/case/'best_lower_field.npz').exists() and (args.seed_root/case/'best_upper_field.npz').exists():
-        command += ['--seed',str((args.seed_root/case).resolve()),'--recheck']
+        command += ['--seed',str((args.seed_root/case).resolve())]
+        if not args.skip_seed_recheck:command.append('--recheck')
     if args.fan_lower:
         command.append('--fan-lower')
     with (args.output / (case + '.log')).open('w', encoding='utf8') as log:

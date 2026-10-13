@@ -288,15 +288,32 @@ def settings(overrides=None,max_iter=250):
     for k,v in (overrides or {}).items():setattr(s,k,v)
     return s
 
+def cone_row_scales(matrix,dimensions):
+    """One positive Frobenius multiplier per original cone block.
+
+    Row slicing a CSC matrix once per small cone scans every column. Sum the
+    squares in CSR once instead, then aggregate the contiguous cone rows.
+    This changes neither the cone nor the original-program audit.
+    """
+    dimensions=np.asarray(dimensions,dtype=np.int64)
+    if dimensions.ndim!=1 or np.any(dimensions<=0) or int(dimensions.sum())!=matrix.shape[0]:
+        raise ValueError('Positive cone dimensions must cover the matrix rows')
+    if len(dimensions)==0:return np.ones(matrix.shape[0])
+    rows=matrix.tocsr()
+    squares=np.asarray(rows.multiply(rows).sum(axis=1)).ravel()
+    starts=np.r_[0,np.cumsum(dimensions[:-1])]
+    norms=np.sqrt(np.add.reduceat(squares,starts))
+    multipliers=np.ones(len(dimensions))
+    active=norms>1e-10
+    multipliers[active]=1/norms[active]
+    return np.repeat(multipliers,dimensions)
+
+
 def solve(pr,overrides=None,max_iter=250,duals=True,save=None,early=False,early_primal_limit=1e-5,cone_scaling=False,primal_polish=False):
     row_scale=np.ones(pr.A.shape[0])
     if cone_scaling:
-        Er,br,Gr,hr,dr,cr=pr.reduced;start=0
-        for dimension in dr:
-            block=Gr[start:start+dimension]
-            norm=float(np.sqrt(block.multiply(block).sum()))
-            if norm>1e-10:row_scale[len(br)+start:len(br)+start+dimension]=1/norm
-            start+=dimension
+        Er,br,Gr,hr,dr,cr=pr.reduced
+        row_scale[len(br):]=cone_row_scales(Gr,dr)
     AA=(sparse.diags(row_scale)@pr.A).tocsc() if cone_scaling else pr.A
     bb=row_scale*pr.rhs if cone_scaling else pr.rhs
     t=time.perf_counter();s=clarabel.DefaultSolver(sparse.csc_matrix((len(pr.cost),len(pr.cost))),pr.cost,AA,bb,pr.cones,settings(overrides,max_iter))
