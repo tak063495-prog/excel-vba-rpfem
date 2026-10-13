@@ -1,0 +1,27 @@
+{
+  "objective": 0.9999985748291208,
+  "value": 0.9999985748291207,
+  "eq_error": 1.8041124150158794e-16,
+  "cone_error": 5.33910906597157e-08,
+  "audit": {
+    "pass": true,
+    "errors": {
+      "flow": 2.6056227397930343e-08,
+      "jump": 2.195016300520819e-11,
+      "bonded_interface": 0.0,
+      "boundary": 0.0,
+      "work": 1.887379141862766e-15,
+      "objective": 1.1102230246251565e-16
+    },
+    "dissipation": 0.9999985748291207,
+    "work": [
+      0.0,
+      0.9999999999999981
+    ],
+    "value": 0.9999985748291207
+  },
+  "raw_lower_errors": {},
+  "physical_pass": true,
+  "witness": true,
+  "numerical_gate": false
+}

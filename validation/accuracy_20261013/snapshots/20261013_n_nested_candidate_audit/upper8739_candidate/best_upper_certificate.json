@@ -1,0 +1,46 @@
+{
+  "case": "P06N",
+  "mode": "upper",
+  "q": 8,
+  "fs": 0.6914407501171215,
+  "mesh_id": "44c89fcad8854b4b5ef36f061999d3033613a1e5b7193b2e2ef4a8eb0a8b7fbc",
+  "physical_model_id": "08cc8e73e85408e7a82cbe79b5716ef007cb917d00e021872c40e510b5d17525",
+  "elements": 8739,
+  "source": "audited nested upper candidate",
+  "root_complete": false,
+  "mesh_path": "best_upper_mesh.npz",
+  "field_path": "best_upper_field.npz",
+  "audit": {
+    "objective": 0.9999985748291206,
+    "value": 0.9999985748291176,
+    "eq_error": 3.8189794274752994e-13,
+    "cone_error": 5.3571511671179906e-08,
+    "audit": {
+      "pass": true,
+      "errors": {
+        "flow": 2.6143425202462822e-08,
+        "jump": 2.195016300520819e-11,
+        "bonded_interface": 5.400852500759406e-13,
+        "boundary": 2.524354896707238e-29,
+        "work": 2.7755575615628914e-15,
+        "objective": 2.9976021664879227e-15
+      },
+      "dissipation": 0.9999985748291176,
+      "work": [
+        0.0,
+        0.9999999999999972
+      ],
+      "value": 0.9999985748291176
+    },
+    "raw_lower_errors": {},
+    "physical_pass": true,
+    "witness": true,
+    "numerical_gate": false,
+    "case": "P06N",
+    "mode": "upper",
+    "q": 8,
+    "fs": 0.6914407501171215,
+    "mesh_id": "44c89fcad8854b4b5ef36f061999d3033613a1e5b7193b2e2ef4a8eb0a8b7fbc",
+    "physical_model_id": "08cc8e73e85408e7a82cbe79b5716ef007cb917d00e021872c40e510b5d17525"
+  }
+}

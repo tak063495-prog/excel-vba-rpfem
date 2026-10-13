@@ -1,0 +1,100 @@
+{
+  "case": "P06N",
+  "certificates": {
+    "lower": {
+      "case": "P06N",
+      "mode": "lower",
+      "q": 8,
+      "fs": 0.6764953237700042,
+      "mesh_id": "b31de7fbb890551ce272ad7b07fe6ff5b8454514e861e8d148128d783b4aa586",
+      "physical_model_id": "08cc8e73e85408e7a82cbe79b5716ef007cb917d00e021872c40e510b5d17525",
+      "elements": 5594,
+      "source": "audited nested additional angular fan",
+      "root_complete": false,
+      "mesh_path": "best_lower_mesh.npz",
+      "field_path": "best_lower_field.npz",
+      "audit": {
+        "objective": -1.000008439112098,
+        "value": 1.000008439112098,
+        "eq_error": 3.086420008457935e-13,
+        "cone_error": 0.0,
+        "audit": {
+          "pass": true,
+          "errors": {
+            "yield": 2.5950585704440643e-15,
+            "equilibrium": 3.3787728170864284e-10,
+            "internal_traction": 4.365952044338428e-13,
+            "boundary_traction": 3.952393967665557e-14
+          },
+          "load": 1.000008439112098,
+          "value": 1.000008439112098
+        },
+        "raw_lower_errors": {
+          "yield": 5.190117140888128e-14,
+          "equilibrium": 6.757545634172857e-09,
+          "internal_traction": 8.731904088676856e-12,
+          "boundary_traction": 7.904787935331115e-13
+        },
+        "physical_pass": true,
+        "witness": true,
+        "numerical_gate": false,
+        "case": "P06N",
+        "mode": "lower",
+        "q": 8,
+        "fs": 0.6764953237700042,
+        "mesh_id": "b31de7fbb890551ce272ad7b07fe6ff5b8454514e861e8d148128d783b4aa586",
+        "physical_model_id": "08cc8e73e85408e7a82cbe79b5716ef007cb917d00e021872c40e510b5d17525"
+      }
+    }
+  },
+  "mesh_change": {
+    "method": "c0_zero_vertex_angular_fan",
+    "scope": "star",
+    "zero_vertices": [
+      2,
+      3,
+      82,
+      83,
+      84,
+      85,
+      549,
+      572,
+      641,
+      931,
+      951,
+      2087,
+      2218,
+      2219,
+      2222
+    ],
+    "split_elements": 86,
+    "elements_before": 5422,
+    "elements_after": 5594,
+    "root_complete": false,
+    "geometry_audit": {
+      "pass": true,
+      "existing_coordinates_bitwise_equal": true,
+      "material_and_body_mapping_equal": true,
+      "parent_area_error": 1.734723475976807e-18,
+      "boundary_and_interface_length_error": 0.0,
+      "source_protected_edges": 361,
+      "child_protected_edges": 361,
+      "boundary_loads_unchanged": true,
+      "tolerance": 1e-09
+    },
+    "source_sha256": {
+      "validation\\accuracy_20261013\\python\\accuracy_driver.py": "1e1eeb4391ba67598a93c8163513e9e76ae4f950aeeee7830f233765ed08cb10",
+      "validation\\accuracy_20261013\\python\\experiment_core.py": "3cc27df6d75a2c4b1e385e2e5ceddb95ed670b4a827b1507569b39674f55a0c6",
+      "validation\\accuracy_20261013\\python\\reduction.py": "cbc32e1e0764e10e3f56f67b804b08867166aafbd32a64ddcbe481b18d083ca5",
+      "validation\\accuracy_20261013\\python\\zero_phi_transport.py": "a95589afd8ab9ca0a69829782ad36e2ba83b16e7fcbe74781b26dc03ea974c79",
+      "validation\\accuracy_20261013\\python\\mesh_accuracy.py": "9553fa8d1d6caa1ab49fff92bfece2b14da97348a3334181e0653c5dde81a860",
+      "validation\\accuracy_20261013\\python\\original_farkas.py": "58ccb3af92e92d6b466c8acab8040fa88582a2deb5588a18d0ce92d3135f3672",
+      "validation\\accuracy_20261013\\python\\original_dual.py": "c0025181b07b742b0d4608656489c3495b6ea90b4ed8084438420e8312b6467d",
+      "validation\\accuracy_20261013\\python\\vendor\\independent_audit.py": "79ea1b0e4e72b2a61a4110e6115e3f33929ae5990fb054e20f41d345a694f37b",
+      "validation\\accuracy_20261013\\python\\vendor\\model_support\\upper_assembly.py": "d0e03aeb87dcc52ae8001b422d836064275850f22c8a69640ce722cb2213d065",
+      "D:\\Work\\rpfem-n-continuation\\prepare_lower_fan.py": "77236b36f8faf7dee7546ab41b64bccd028fceabaf51c78e6acd0899e6b8549a",
+      "D:\\Work\\excel-vba-rpfem\\validation\\accuracy_20261013\\python\\mesh_accuracy.py": "9553fa8d1d6caa1ab49fff92bfece2b14da97348a3334181e0653c5dde81a860",
+      "D:\\Work\\excel-vba-rpfem\\validation\\accuracy_20261013\\python\\upper_directional_candidate.py": "a2ca13fff3c2a1a97f10207a4e728a33edf4b5761808322189eeaa933ebe9939"
+    }
+  }
+}

@@ -9,3 +9,6 @@ versions/G1R14/** -text
 versions/G1R15_DLL2/** -text
 # Numerical fixtures use byte hashes; checkout must not convert JSON newlines.
 validation/accuracy_20261013/python/data/frozen_upper_interpolation/** -text
+# Preserve curated candidate evidence and its recorded input byte hashes.
+validation/accuracy_20261013/snapshots/20261013_n_nested_candidate_audit/** -text
+validation/accuracy_20261013/python/upper_directional_candidate.py -text

@@ -1,0 +1,26 @@
+{
+  "objective": -1.000008439112098,
+  "value": 1.000008439112098,
+  "eq_error": 3.71508379615193e-14,
+  "cone_error": 0.0,
+  "audit": {
+    "pass": true,
+    "errors": {
+      "yield": 0.0,
+      "equilibrium": 1.3073986337985843e-11,
+      "internal_traction": 5.256906021600116e-14,
+      "boundary_traction": 5.551115123125783e-17
+    },
+    "load": 1.000008439112098,
+    "value": 1.000008439112098
+  },
+  "raw_lower_errors": {
+    "yield": 0.0,
+    "equilibrium": 2.6147972675971687e-10,
+    "internal_traction": 1.0513812043200232e-12,
+    "boundary_traction": 1.1102230246251565e-15
+  },
+  "physical_pass": true,
+  "witness": true,
+  "numerical_gate": false
+}
