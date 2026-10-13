@@ -121,6 +121,10 @@ def main():
         book = app.Workbooks.Open(str(path), UpdateLinks=0)
         module_files = list(sorted((ROOT / "src/vba").glob("*.bas")))
         if args.ray_only:
+            # The retained RayGate candidate predates the additive accuracy ABI.
+            # Its own Conic type and Fs module must remain a coherent snapshot.
+            module_files = [p for p in module_files if p.stem not in {"RPX_AccuracyNative", "RPX_Upper"}]
+            module_files += [BASE / "src/vba/RPX_Upper.bas"]
             module_files += list(sorted((ray_root / "src/vba").glob("*.bas")))
         record["source_sha256"] = {str(p.relative_to(ROOT.parents[1])): hashlib.sha256(p.read_bytes()).hexdigest() for p in module_files}
         for file in module_files:

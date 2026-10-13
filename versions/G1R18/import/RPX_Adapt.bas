@@ -1480,6 +1480,64 @@ Private Sub CaptureWitnessLowerLayout(ByRef state As RPX_MeshState)
     Set state.lowerReactions = CopyWitnessReactions(RReactions)
 End Sub
 
+' An independently solved upper mesh; the retained lower witness never changes.
+Private Sub ContinueUpperC0Wedge(ByVal mode As String)
+    Dim baseline As RPX_MeshState, pending As RPX_MeshState
+    Dim depth As Double, savedQ As Long, savedTol As Double, oldIncomplete As Boolean
+    Dim field() As Double, eta() As Double, upper As Double, objective As Double, hint As Double
+    Dim a As Double, b As Double, accepted As Boolean, i As Long, number As Long, source As String, message As String
+    depth = CDbl(RPX_Setting("ADAPT_C0_WEDGE_DEPTH", 0))
+    If Not RPX_SchurFinite(depth) Then err.Raise 5, "RPX_Adapt", "INVALID_ADAPT_C0_WEDGE_DEPTH"
+    If depth < 0# Then err.Raise 5, "RPX_Adapt", "INVALID_ADAPT_C0_WEDGE_DEPTH"
+    If depth = 0# Or mode <> "Fs" Then Exit Sub
+    If Not currentPairValid Or Not RBestLower.complete Or Not RBestUpper.complete Then Exit Sub
+    CloneState baseline, RCurrent
+    savedQ = RSubdivisions: savedTol = RFsTolerance: oldIncomplete = RFsSearchIncomplete
+    On Error GoTo CandidateFailed
+    meshStage = "band_regions": Call RPX_ReadInputs
+    If Not RPX_C0SlopeWedgeMesh(depth) Then GoTo CandidateDone
+    Call RPX_TotalReferenceLoads
+    RSubdivisions = 8: RFsTolerance = CDbl(RPX_Setting("FS_TOL", 0.0001))
+    If RFsTolerance <= 0# Or RFsTolerance > 0.0001 Then err.Raise 5, "RPX_Adapt", "C0_WEDGE_ROOT_TOLERANCE"
+    hint = RPX_C0SlopeWedgeHint(depth)
+    meshStage = "evaluate": RPX_DiagCandidate "upper_c0_wedge": RPX_TestHook "upper_c0_wedge"
+    RFsActive = True: RFsCalls = 0
+    RFsSearchIncomplete = False: RFsLargestRootBracket = 0#: RFsSearchNote = ""
+    upper = RPX_FsEndpoint("upper", hint + 0.00005, 0.002 / hint)
+    objective = XObjective: accepted = False
+    ReDim field(0 To 12 * re + 3 * RR - 1)
+    For i = 0 To UBound(field): field(i) = xx(i): Next i
+    RUpperField = field: RUpperFs = upper: Erase RLowerField
+    ReDim eta(0 To re - 1)
+    If Not RFsSearchIncomplete And RPX_ActualRootBracket("upper", a, b, upper) Then
+        If b - a <= RFsTolerance * WorksheetFunction.Max(1#, (a + b) / 2#) And upper >= RBestLower.value And upper <= RBestUpper.value Then
+            If SaveState(pending, field, eta, upper, RBestLower.value, upper, "upper_c0_wedge", "upper", objective) Then
+                If pending.upperRootValid And Not pending.searchIncomplete Then
+                    CloneState RBestUpper, pending: RPX_CertFromAdapt "upper": accepted = True
+                End If
+            End If
+        End If
+    End If
+    adaptFsCallsTotal = adaptFsCallsTotal + RFsCalls
+    RPX_DiagEvent "upper_c0_wedge_end", "accepted=" & accepted & ";upper=" & upper & ";q=8;elements=" & re & ";root_a=" & a & ";root_b=" & b & ";lower_mesh_unchanged=1"
+CandidateDone:
+    RFsActive = False: RFsTolerance = savedTol: DTarget = adaptFinalTarget
+    Call RPX_RestoreWitnessState(baseline): CloneState RCurrent, baseline
+    RSubdivisions = savedQ: RFsSearchIncomplete = oldIncomplete
+    Call RestoreFinalBounds(mode): Exit Sub
+CandidateFailed:
+    number = err.number: source = err.source: message = err.description
+    On Error GoTo 0
+    RPX_ErrorEvidence number, source, message, 0, meshStage
+    If number = 18 Or XCancel Then err.Raise 18, source, "ANALYSIS_CANCELLED"
+    If Not RPX_Recoverable(number, message, meshStage, True) Then err.Raise number, source, message
+    RPX_DiagEvent "upper_c0_wedge_rejected", "old_own_witnesses_kept=1;message=" & message
+    On Error GoTo RestoreFailed: GoTo CandidateDone
+RestoreFailed:
+    number = err.number: source = err.source: message = err.description
+    On Error GoTo 0: err.Raise number, source, "C0_WEDGE_RESTORE_FAILED " & message
+End Sub
+
 Public Sub RPX_RunAdapt(ByVal mode As String)
     Dim cycle As Long, cycles As Long, targetGap As Double, previousGap As Double, gain As Double
     Dim startTarget As Long, maxElements As Long
@@ -1509,6 +1567,7 @@ Public Sub RPX_RunAdapt(ByVal mode As String)
     adaptFinalTarget = DTarget
     adaptAccuracyCap = CLng(RPX_Setting("ADAPT_ACCURACY_CAP", adaptFinalTarget))
     adaptAccuracyRounds = CLng(RPX_Setting("ADAPT_ACCURACY_ROUNDS", 4))
+    If adaptAccuracyCap = 0 Then adaptAccuracyCap = adaptFinalTarget
     If adaptAccuracyCap < adaptFinalTarget Or adaptAccuracyCap > 50000 Then err.Raise 5, "RPX_Adapt", "INVALID_ADAPT_ACCURACY_CAP"
     If adaptAccuracyRounds < 0 Or adaptAccuracyRounds > 20 Then err.Raise 5, "RPX_Adapt", "INVALID_ADAPT_ACCURACY_ROUNDS"
     startTarget = AdaptStartTarget(adaptFinalTarget)
@@ -1726,6 +1785,7 @@ FinalCandidateDone:
     Call ContinueAccuracy(mode, targetGap)
     Call RestoreFinalBounds(mode)
     Call ContinueLowerAngularFan(mode)
+    Call ContinueUpperC0Wedge(mode)
     Call RecheckIndependentQuadrature(mode)
     RPX_TestHook "final_accept"
     On Error GoTo 0
