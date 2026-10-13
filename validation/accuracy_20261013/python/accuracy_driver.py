@@ -93,7 +93,32 @@ def sign(result, mode):
     return None
 
 
-def search(mesh, mode, initial, folder, label, tolerance=1e-4, seconds=120, initial_witness=None):
+def audit_initial_dual_guide(mesh, mode, guide):
+    """Reassemble and re-audit an original vector; never create a primal field."""
+    required = {'case': mesh.provenance['case'], 'mode': mode, 'q': 8,
+                'mesh_id': mesh.mesh_id, 'physical_model_id': mesh.physical_model_id,
+                'policy': mesh.provenance['psi_policy']}
+    if any(guide.get(key) != value for key, value in required.items()):
+        raise ValueError('An initial original dual guide has different model or mesh identity')
+    fs = guide.get('fs')
+    if not finite(fs) or not isinstance(fs, (int, float, np.integer, np.floating)) or fs <= 0:
+        raise ValueError('An initial original dual guide requires a finite positive Fs')
+    prepared = Prepared(mesh, float(fs), mode, 8, reduction='none')
+    from original_dual import audit_original_dual
+    dual = np.asarray(guide.get('dual'), dtype=float).copy()
+    evidence = audit_original_dual(prepared, dual)
+    if not evidence['accepted']:
+        raise ValueError('The unchanged original dual gate rejected the initial guide: '+evidence.get('reason', ''))
+    result = dict(evidence, case=required['case'], mode=mode, q=8, fs=float(fs),
+        mesh_id=mesh.mesh_id, physical_model_id=mesh.physical_model_id, policy=required['policy'],
+        physical_pass=False, witness=False, numerical_gate=False, value=0.,
+        dual_guide_only=True, origin='independently_reaudited_initial_original_dual',
+        scope='discrete_root_search_only; no primal field or continuum bound')
+    return float(fs), result, dual
+
+
+def search(mesh, mode, initial, folder, label, tolerance=1e-4, seconds=120, initial_witness=None,
+           initial_dual_guides=None):
     folder.mkdir(parents=True, exist_ok=True)
     refresh = LowerRefresh(mesh, 'affine') if mode == 'lower' else None
     if mode=='upper' and np.all(mesh.materials[:,1:3]==0) and not np.any(mesh.body[:,:,0]):
@@ -112,6 +137,20 @@ def search(mesh, mode, initial, folder, label, tolerance=1e-4, seconds=120, init
         cache[initial_witness.fs]=(result,initial_witness.field.copy())
         trials.append(result)
         best=Certificate(mode,initial_witness.fs,mesh,initial_witness.field.copy(),result,label)
+    for number, guide in enumerate(initial_dual_guides or []):
+        fs, result, dual = audit_initial_dual_guide(mesh, mode, guide)
+        if fs in cache:
+            raise ValueError('An initial dual guide conflicts with a stored physical witness')
+        proof_path = folder/(label+f'_original_dual_guide_{number+1}.npz')
+        np.savez_compressed(proof_path, dual=dual, fs=fs, mode=mode, q=8,
+            case=mesh.provenance['case'], mesh_id=mesh.mesh_id,
+            physical_model_id=mesh.physical_model_id, policy=mesh.provenance['psi_policy'])
+        result.update(dual_proof_path=proof_path.name,
+                      dual_proof_sha256=hashlib.sha256(proof_path.read_bytes()).hexdigest())
+        cache[fs] = result, None
+        trials.append(result)
+    if initial_dual_guides:
+        write(folder/(label+'_trials.json'), trials)
 
     def point(fs):
         nonlocal best
@@ -239,7 +278,7 @@ def search(mesh, mode, initial, folder, label, tolerance=1e-4, seconds=120, init
             if hi - lo <= tolerance * max(1., (hi + lo) / 2):
                 complete = True
                 break
-            denominator = hr['value'] - lr['value']
+            denominator = 0. if hr.get('dual_guide_only') or lr.get('dual_guide_only') else hr['value'] - lr['value']
             fs = (lo + hi) / 2 if denominator == 0 or not finite(denominator,lr['value'],hr['value']) else lo + (target - lr['value']) * (hi - lo) / denominator
             fs = float(np.clip(fs, lo + .2 * (hi - lo), hi - .2 * (hi - lo)))
             result, _ = point(fs)

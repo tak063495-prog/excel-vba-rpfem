@@ -89,6 +89,12 @@ python -X utf8 validation/accuracy_20261013/python/check_zero_phi.py
 再開時はcase、物理モデル、メッシュ、側、q、政策、Fs、根の符号・順序・幅を照合する。
 条件が一致しない根情報は未完了へ降格し、元物理監査を通る場だけを再利用する。
 
+`search(..., initial_dual_guides=[...])`では、case・mode・q・policy・Fs・mesh・modelと
+元の双対全ベクトルを指定できる。原プログラムを再組立してstat/cone/分離余裕を
+再監査した逆符号点だけを初期の根探索に使い、全ベクトルNPZとSHA256を保存する。
+この点はphysical/witnessをfalseとして保存し、主場・連続体上下界を生成しない。
+双対点の間は二分探索を使う。保存された物理場と同じFsの競合は拒否する。
+
 `--upper-only`は上下界の保存場がある時に、下界側の証拠を保持して上界メッシュだけを
 細分化する実験。`--recheck`指定時の初段は両側の元メッシュの根を再確認する。
 `run_suite.py --seed-root 保存場親フォルダ --parallel 2 --fan-lower`で各ケースを
