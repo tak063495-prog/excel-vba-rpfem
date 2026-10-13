@@ -1,8 +1,10 @@
 # 精度改善の数値実験（2026-10-13）
 
 G1R17とIssue #8を基盤に、P06A/P06Nと最新26ケース表の未達ケースを
-同じ物理モデルで計算する。実験結果は計算中の候補であり、全ケースの1%達成を
-意味しない。VBA候補の実装と実Excel検証は [G1R18](../../versions/G1R18/ADAPT_CONTINUATION.md)。
+同じ物理モデルで計算する。全ケースの1%達成を意味しない。2026-10-14の依頼により、
+P06A/P06Nの未達を [Issue #11](https://github.com/tak063495-prog/excel-vba-rpfem/issues/11)
+に残し、現在の改善をG1R18のVBA/DLL実装として提出する。
+VBAの実装と実Excel検証は [G1R18](../../versions/G1R18/ADAPT_CONTINUATION.md)。
 
 ## 判定
 
@@ -120,12 +122,15 @@ python -X utf8 validation/accuracy_20261013/python/check_zero_phi.py
 `0.002*max(1,Fs)`から始め、必要な側だけ符号探索を広げる。
 `run_suite.py --skip-seed-recheck`は保存根の同一性検証を省かず、初期の再求解だけを省く。
 
-途中の独立再監査は `snapshots/20261014_progress6_audit/REPORT_JA.md` と
+提出時の独立再監査は `snapshots/20261014_progress7_audit/REPORT_JA.md` と
 `COMPARISON_26.csv`に保存した。以前未達だった16ケースのうち14ケースで、幅1%と
 両側根完了を確認した。P03Aは0.997594%、P03Nは0.999855%。両者の上界は二次目的で
 回復した物理場と、別の元の最適化問題の双対全ベクトルから根を確定した。
 `supporting_sources`に元の中心・新しい物理場・補助双対・独立した原双対・根の
-全証拠を保存した。補助双対は不使用。P06A/P06Nの改善・VBA本番確認は継続中。
+全証拠を保存した。補助双対は根の案内に使わない。
+P06Aの下界0.8468・上界0.85755、幅1.261478%、P06Nの下界0.678279841819045・
+上界0.6876、幅1.364711%。両側の元q8物理場と同一性・根区間を確認したが、1%未達である。
+この保存結果をVBA/DLL本番規模の精度達成と取り違えない。
 P07Nは0.689432%、薄いすべり領域の候補を使ったD02Aは0.006664%、D03Nは0.008988%。
 今回のc=0上界候補は、材料界面を持つP06へ適用しない。
 `zero_phi_signed_transport.py`とcapped feasibilityのrayは比較用であり、

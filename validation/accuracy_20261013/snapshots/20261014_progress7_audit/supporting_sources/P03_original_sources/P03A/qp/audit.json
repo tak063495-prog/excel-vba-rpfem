@@ -1,0 +1,69 @@
+{
+  "case": "P03A",
+  "fs": 1.17069,
+  "q": 8,
+  "mesh_id": "c8bf888f3e4942bd031da63e8021fddc58c9ea360245d0228209e9c04b8213f7",
+  "physical_model_id": "2fcdebce70cb9505953c365112d2a62d8dd9887de869dde406d312530a121786",
+  "source": "D:\\Work\\excel-vba-rpfem\\validation\\accuracy_20261013\\results\\p03a_long_upper13325",
+  "source_sha256": {
+    "validation\\accuracy_20261013\\python\\accuracy_driver.py": "6fbc9761c37bd72046c4083ac8a40030999a74906bcc6b049ea18b5120e15c3c",
+    "validation\\accuracy_20261013\\python\\experiment_core.py": "9a9e60b6d69ba4008ea89608f433bb716b433436715c45566bd209418ee9238e",
+    "validation\\accuracy_20261013\\python\\reduction.py": "cbc32e1e0764e10e3f56f67b804b08867166aafbd32a64ddcbe481b18d083ca5",
+    "validation\\accuracy_20261013\\python\\zero_phi_transport.py": "a95589afd8ab9ca0a69829782ad36e2ba83b16e7fcbe74781b26dc03ea974c79",
+    "validation\\accuracy_20261013\\python\\mesh_accuracy.py": "9553fa8d1d6caa1ab49fff92bfece2b14da97348a3334181e0653c5dde81a860",
+    "validation\\accuracy_20261013\\python\\original_farkas.py": "58ccb3af92e92d6b466c8acab8040fa88582a2deb5588a18d0ce92d3135f3672",
+    "validation\\accuracy_20261013\\python\\original_dual.py": "c0025181b07b742b0d4608656489c3495b6ea90b4ed8084438420e8312b6467d",
+    "validation\\accuracy_20261013\\python\\vendor\\independent_audit.py": "79ea1b0e4e72b2a61a4110e6115e3f33929ae5990fb054e20f41d345a694f37b",
+    "validation\\accuracy_20261013\\python\\vendor\\model_support\\lower_assembly.py": "b3c482c8950205b32a5e38cd0f1e720e5efeb48491bbd8ff02b728ef54f51047",
+    "validation\\accuracy_20261013\\python\\vendor\\model_support\\upper_assembly.py": "d0e03aeb87dcc52ae8001b422d836064275850f22c8a69640ce722cb2213d065"
+  },
+  "config": {
+    "equilibrate_enable": false,
+    "time_limit": 600.0,
+    "tol_gap_abs": 1e-13,
+    "tol_gap_rel": 1e-13,
+    "tol_feas": 1e-13,
+    "iterative_refinement_max_iter": 30,
+    "iterative_refinement_abstol": 1e-15,
+    "iterative_refinement_reltol": 1e-15
+  },
+  "alpha": 0.01,
+  "cap": 0.9999979999999999,
+  "status": "AlmostSolved",
+  "iterations": 120,
+  "seconds": 439.19450049998704,
+  "original_audit": {
+    "objective": 0.9999512292625519,
+    "value": 0.9999512292625524,
+    "eq_error": 1.8017959916900032e-14,
+    "cone_error": 4.737781212858662e-15,
+    "audit": {
+      "pass": true,
+      "errors": {
+        "flow": 0.0,
+        "boundary": 1.8017959916900032e-14,
+        "jump": 4.7377812128586655e-15,
+        "work": 2.930988785010413e-14,
+        "objective": 5.551115123125783e-16
+      },
+      "dissipation": 0.9999512292625524,
+      "work": [
+        0.0,
+        1.0000000000000293
+      ],
+      "value": 0.9999512292625524
+    },
+    "raw_lower_errors": {},
+    "physical_pass": true,
+    "witness": true,
+    "numerical_gate": false,
+    "case": "P03A",
+    "mode": "upper",
+    "q": 8,
+    "fs": 1.17069,
+    "mesh_id": "c8bf888f3e4942bd031da63e8021fddc58c9ea360245d0228209e9c04b8213f7",
+    "physical_model_id": "2fcdebce70cb9505953c365112d2a62d8dd9887de869dde406d312530a121786"
+  },
+  "root_complete": false,
+  "modified_dual_is_original_root_guide": false
+}

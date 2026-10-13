@@ -1,0 +1,65 @@
+{
+  "case": "P06N",
+  "mode": "upper",
+  "q": 8,
+  "fs": 0.6876,
+  "mesh_id": "b7e51076e7e4821cbf5087f2174984e1057757c9602ed7c45a802d8f6b7cf24b",
+  "physical_model_id": "08cc8e73e85408e7a82cbe79b5716ef007cb917d00e021872c40e510b5d17525",
+  "elements": 27917,
+  "source": "P06N_upper_saved_original_guide_close",
+  "root_complete": true,
+  "mesh_path": "best_upper_mesh.npz",
+  "field_path": "best_upper_field.npz",
+  "audit": {
+    "objective": 0.9999979998201272,
+    "value": 0.9999979998201293,
+    "eq_error": 1.9341608870071525e-09,
+    "cone_error": 9.064037016664691e-10,
+    "audit": {
+      "pass": true,
+      "errors": {
+        "flow": 5.26453014314184e-10,
+        "jump": 3.970003528195975e-10,
+        "bonded_interface": 2.1054214256472945e-09,
+        "boundary": 1.775836608952331e-09,
+        "work": 2.2036758196009032e-08,
+        "objective": 2.1094237467877974e-15
+      },
+      "dissipation": 0.9999979998201293,
+      "work": [
+        0.0,
+        1.0000000220367582
+      ],
+      "value": 0.9999979998201293
+    },
+    "raw_lower_errors": {},
+    "physical_pass": true,
+    "witness": true,
+    "numerical_gate": false,
+    "origin": "independently_reaudited_same_mesh_witness",
+    "discrete_root_search": {
+      "mode": "upper",
+      "root_complete": true,
+      "bracket": [
+        0.687501,
+        0.6876
+      ],
+      "bracket_width": 9.899999999996023e-05,
+      "fs_tolerance": 0.0001,
+      "endpoint": 0.6876,
+      "trials": 2,
+      "seconds": 20.50505040003918,
+      "mesh_id": "b7e51076e7e4821cbf5087f2174984e1057757c9602ed7c45a802d8f6b7cf24b",
+      "physical_model_id": "08cc8e73e85408e7a82cbe79b5716ef007cb917d00e021872c40e510b5d17525",
+      "elements": 27917,
+      "q": 8,
+      "case": "P06N",
+      "policy": "hold_initial",
+      "bracket_signs": [
+        1,
+        -1
+      ],
+      "opposite_numerical_endpoint_is_continuum_bound": false
+    }
+  }
+}

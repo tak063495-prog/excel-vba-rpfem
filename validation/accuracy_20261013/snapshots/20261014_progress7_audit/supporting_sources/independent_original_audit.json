@@ -1,0 +1,285 @@
+{
+  "scope": "Fresh original q8 primal and own-mesh root audit; saved original full duals audited when present",
+  "entries": [
+    {
+      "case": "P06A",
+      "mode": "lower",
+      "fs": 0.8468,
+      "mesh_id": "e51df740d3bffec27452ea35cab79ffe6a5a2c41d3520cc933e46e219bada053",
+      "physical_model_id": "f67b757898e3bcc3f45c5ea9b5a8e290955fad53f5900c5cd8c31b9637d51875",
+      "policy": "equal_reduced_phi",
+      "original_primal": {
+        "objective": -1.0000015000266633,
+        "value": 1.0000015000266633,
+        "eq_error": 1.5224865812513144e-10,
+        "cone_error": 3.2789476689387698e-09,
+        "audit": {
+          "pass": true,
+          "errors": {
+            "yield": 3.278947724449921e-09,
+            "equilibrium": 1.6870446151173724e-09,
+            "internal_traction": 2.153121014814019e-10,
+            "boundary_traction": 1.398511306760497e-10
+          },
+          "load": 1.0000015000266633,
+          "value": 1.0000015000266633
+        },
+        "raw_lower_errors": {
+          "yield": 6.557895448899842e-08,
+          "equilibrium": 3.374089230234745e-08,
+          "internal_traction": 4.306242029628038e-09,
+          "boundary_traction": 2.797022613520994e-09
+        },
+        "physical_pass": true,
+        "witness": true,
+        "numerical_gate": false
+      },
+      "modern_identity_and_signed_root_pass": true,
+      "stored_original_guides": [
+        {
+          "file": "D:\\Work\\excel-vba-rpfem\\validation\\accuracy_20261013\\results\\a_lower22080_root_complete\\P06A\\P06A_lower_original_pair_close_original_dual_guide_1.npz",
+          "fs": 0.84687,
+          "audit": {
+            "accepted": true,
+            "dual_stationarity": 1.2415356257719444e-13,
+            "dual_cone_error": 0.0,
+            "dual_objective": -0.9999979993127404,
+            "threshold": -0.9999979999999999,
+            "method": "original_dual_feasibility",
+            "scope": "discrete_root_search_only; no primal field or continuum bound",
+            "publishes_primal_bound": false,
+            "search_sign": -1,
+            "case": "P06A",
+            "mode": "lower",
+            "q": 8,
+            "fs": 0.84687,
+            "mesh_id": "e51df740d3bffec27452ea35cab79ffe6a5a2c41d3520cc933e46e219bada053",
+            "physical_model_id": "f67b757898e3bcc3f45c5ea9b5a8e290955fad53f5900c5cd8c31b9637d51875",
+            "policy": "equal_reduced_phi",
+            "physical_pass": false,
+            "witness": false,
+            "numerical_gate": false,
+            "value": 0.0,
+            "dual_guide_only": true,
+            "origin": "independently_reaudited_initial_original_dual"
+          }
+        }
+      ],
+      "saved_full_negative_dual_pending": false,
+      "input_hashes": {
+        "D:\\Work\\excel-vba-rpfem\\validation\\accuracy_20261013\\results\\a_lower22080_root_complete\\P06A\\best_lower_certificate.json": "b97191815d6268dfa694443f601ad170971ec2de45683ad0aa51d160925e051d",
+        "D:\\Work\\excel-vba-rpfem\\validation\\accuracy_20261013\\results\\a_lower22080_root_complete\\P06A\\best_lower_mesh.npz": "86ca5173fae84ee0173d7428d33f222e150ddba511bcc52558fc5085bf1ffdf7",
+        "D:\\Work\\excel-vba-rpfem\\validation\\accuracy_20261013\\results\\a_lower22080_root_complete\\P06A\\best_lower_field.npz": "902c6f855b2eeeffbe1d25276559f1faf8bd1d17b09d53a3349921f92e180c96",
+        "D:\\Work\\excel-vba-rpfem\\validation\\accuracy_20261013\\results\\a_lower22080_root_complete\\P06A\\P06A_lower_original_pair_close_original_dual_guide_1.npz": "d6a067afd25e7a1a46eefc814c5bb296f504c25060ea53a3f6b388dc91d23b0e"
+      },
+      "input_hashes_unchanged": true
+    },
+    {
+      "case": "P06A",
+      "mode": "upper",
+      "fs": 0.85755,
+      "mesh_id": "27b06e20be73627245ba3f7e0bf4ffa3df883ec1bb2af10e103fca5caf489308",
+      "physical_model_id": "f67b757898e3bcc3f45c5ea9b5a8e290955fad53f5900c5cd8c31b9637d51875",
+      "policy": "equal_reduced_phi",
+      "original_primal": {
+        "objective": 0.9999979999316824,
+        "value": 0.9999979999316774,
+        "eq_error": 5.9424389020623636e-09,
+        "cone_error": 5.073178321879368e-09,
+        "audit": {
+          "pass": true,
+          "errors": {
+            "flow": 9.03132973701133e-10,
+            "jump": 5.0731785087958225e-09,
+            "bonded_interface": 4.296602054075069e-09,
+            "boundary": 5.3696982717754776e-09,
+            "work": 6.770602523076263e-08,
+            "objective": 4.9960036108132044e-15
+          },
+          "dissipation": 0.9999979999316774,
+          "work": [
+            0.0,
+            1.0000000677060252
+          ],
+          "value": 0.9999979999316774
+        },
+        "raw_lower_errors": {},
+        "physical_pass": true,
+        "witness": true,
+        "numerical_gate": false
+      },
+      "modern_identity_and_signed_root_pass": true,
+      "stored_original_guides": [
+        {
+          "file": "D:\\Work\\excel-vba-rpfem\\validation\\accuracy_20261013\\results\\a_upper12753_root_complete\\P06A\\P06A_upper_original_pair_close_original_dual_guide_1.npz",
+          "fs": 0.85748,
+          "audit": {
+            "accepted": true,
+            "dual_stationarity": 8.561094810815079e-09,
+            "dual_cone_error": 1.2404355576401789e-10,
+            "dual_objective": 1.0000030003266447,
+            "threshold": 1.000003,
+            "method": "original_dual_feasibility",
+            "scope": "discrete_root_search_only; no primal field or continuum bound",
+            "publishes_primal_bound": false,
+            "search_sign": 1,
+            "case": "P06A",
+            "mode": "upper",
+            "q": 8,
+            "fs": 0.85748,
+            "mesh_id": "27b06e20be73627245ba3f7e0bf4ffa3df883ec1bb2af10e103fca5caf489308",
+            "physical_model_id": "f67b757898e3bcc3f45c5ea9b5a8e290955fad53f5900c5cd8c31b9637d51875",
+            "policy": "equal_reduced_phi",
+            "physical_pass": false,
+            "witness": false,
+            "numerical_gate": false,
+            "value": 0.0,
+            "dual_guide_only": true,
+            "origin": "independently_reaudited_initial_original_dual"
+          }
+        }
+      ],
+      "saved_full_negative_dual_pending": false,
+      "input_hashes": {
+        "D:\\Work\\excel-vba-rpfem\\validation\\accuracy_20261013\\results\\a_upper12753_root_complete\\P06A\\best_upper_certificate.json": "ef2b534612f806b5fc89f0a3bb59abdcc91e38777e4a2ddacf4945149675fae3",
+        "D:\\Work\\excel-vba-rpfem\\validation\\accuracy_20261013\\results\\a_upper12753_root_complete\\P06A\\best_upper_mesh.npz": "a8c4a911d1c29783b063531f512bd87b706e4042d0453c01e66ebe2ff6f386ba",
+        "D:\\Work\\excel-vba-rpfem\\validation\\accuracy_20261013\\results\\a_upper12753_root_complete\\P06A\\best_upper_field.npz": "1b97b2b0b46726f4d1e0e2b9c2120707511b6d0406f2935db7e92c1b0e4d5713",
+        "D:\\Work\\excel-vba-rpfem\\validation\\accuracy_20261013\\results\\a_upper12753_root_complete\\P06A\\P06A_upper_original_pair_close_original_dual_guide_1.npz": "07cdc574d51d327e79741b12d4e81a905a99216494d2037a856a2986324a6473"
+      },
+      "input_hashes_unchanged": true
+    },
+    {
+      "case": "P06N",
+      "mode": "lower",
+      "fs": 0.678279841819045,
+      "mesh_id": "4a473caa0f4c62f3fdf757961fcb1e89a872e7546cbce0881fb9402f8a92b4ee",
+      "physical_model_id": "08cc8e73e85408e7a82cbe79b5716ef007cb917d00e021872c40e510b5d17525",
+      "policy": "hold_initial",
+      "original_primal": {
+        "objective": -1.000041407870486,
+        "value": 1.000041407870486,
+        "eq_error": 1.2110090708006283e-11,
+        "cone_error": 0.0,
+        "audit": {
+          "pass": true,
+          "errors": {
+            "yield": 0.0,
+            "equilibrium": 4.083631210960448e-10,
+            "internal_traction": 5.620226506408699e-13,
+            "boundary_traction": 5.551115123125783e-17
+          },
+          "load": 1.000041407870486,
+          "value": 1.000041407870486
+        },
+        "raw_lower_errors": {
+          "yield": 0.0,
+          "equilibrium": 8.167262421920896e-09,
+          "internal_traction": 1.1240453012817397e-11,
+          "boundary_traction": 1.1102230246251565e-15
+        },
+        "physical_pass": true,
+        "witness": true,
+        "numerical_gate": false
+      },
+      "modern_identity_and_signed_root_pass": true,
+      "stored_original_guides": [],
+      "saved_full_negative_dual_pending": true,
+      "input_hashes": {
+        "D:\\Work\\excel-vba-rpfem\\validation\\accuracy_20261013\\results\\n_lower11201_c0band_close\\P06N\\best_lower_certificate.json": "149ea96542afd75896d27bc1929116919c2028bf67af907b9998016ac9a30468",
+        "D:\\Work\\excel-vba-rpfem\\validation\\accuracy_20261013\\results\\n_lower11201_c0band_close\\P06N\\best_lower_mesh.npz": "4abcd08e2616fea9fb51c9b219c17007ef7b32b0f42c261f41264933d4fdcb30",
+        "D:\\Work\\excel-vba-rpfem\\validation\\accuracy_20261013\\results\\n_lower11201_c0band_close\\P06N\\best_lower_field.npz": "3ddc8254652940f6066c59128b5a168057885502f6947584b348a238a478374c"
+      },
+      "input_hashes_unchanged": true
+    },
+    {
+      "case": "P06N",
+      "mode": "upper",
+      "fs": 0.6876,
+      "mesh_id": "b7e51076e7e4821cbf5087f2174984e1057757c9602ed7c45a802d8f6b7cf24b",
+      "physical_model_id": "08cc8e73e85408e7a82cbe79b5716ef007cb917d00e021872c40e510b5d17525",
+      "policy": "hold_initial",
+      "original_primal": {
+        "objective": 0.9999979998201272,
+        "value": 0.9999979998201293,
+        "eq_error": 1.9341608870071525e-09,
+        "cone_error": 9.064037016664691e-10,
+        "audit": {
+          "pass": true,
+          "errors": {
+            "flow": 5.26453014314184e-10,
+            "jump": 3.970003528195975e-10,
+            "bonded_interface": 2.1054214256472945e-09,
+            "boundary": 1.775836608952331e-09,
+            "work": 2.2036758196009032e-08,
+            "objective": 2.1094237467877974e-15
+          },
+          "dissipation": 0.9999979998201293,
+          "work": [
+            0.0,
+            1.0000000220367582
+          ],
+          "value": 0.9999979998201293
+        },
+        "raw_lower_errors": {},
+        "physical_pass": true,
+        "witness": true,
+        "numerical_gate": false
+      },
+      "modern_identity_and_signed_root_pass": true,
+      "stored_original_guides": [
+        {
+          "file": "D:\\Work\\excel-vba-rpfem\\validation\\accuracy_20261013\\results\\n_jump27917_fs6876_coordinate_close\\P06N\\P06N_upper_saved_original_guide_close_original_dual_guide_1.npz",
+          "fs": 0.687501,
+          "audit": {
+            "accepted": true,
+            "dual_stationarity": 5.2035926200008804e-11,
+            "dual_cone_error": 0.0,
+            "dual_objective": 1.0000030000054276,
+            "threshold": 1.000003,
+            "method": "original_dual_feasibility",
+            "scope": "discrete_root_search_only; no primal field or continuum bound",
+            "publishes_primal_bound": false,
+            "search_sign": 1,
+            "case": "P06N",
+            "mode": "upper",
+            "q": 8,
+            "fs": 0.687501,
+            "mesh_id": "b7e51076e7e4821cbf5087f2174984e1057757c9602ed7c45a802d8f6b7cf24b",
+            "physical_model_id": "08cc8e73e85408e7a82cbe79b5716ef007cb917d00e021872c40e510b5d17525",
+            "policy": "hold_initial",
+            "physical_pass": false,
+            "witness": false,
+            "numerical_gate": false,
+            "value": 0.0,
+            "dual_guide_only": true,
+            "origin": "independently_reaudited_initial_original_dual"
+          }
+        }
+      ],
+      "saved_full_negative_dual_pending": false,
+      "input_hashes": {
+        "D:\\Work\\excel-vba-rpfem\\validation\\accuracy_20261013\\results\\n_jump27917_fs6876_coordinate_close\\P06N\\best_upper_certificate.json": "31244d51db368e975a3bf6ed731dd7d9f1cc8ec7c33534933bf922c470921fd4",
+        "D:\\Work\\excel-vba-rpfem\\validation\\accuracy_20261013\\results\\n_jump27917_fs6876_coordinate_close\\P06N\\best_upper_mesh.npz": "6d70f13299a01b3bce74fc73902f44d5104632258833aae816e5efe7a1d11f98",
+        "D:\\Work\\excel-vba-rpfem\\validation\\accuracy_20261013\\results\\n_jump27917_fs6876_coordinate_close\\P06N\\best_upper_field.npz": "be7fdc2a6c84a23d4e0696de3b3b1e28eb359139dedc78b4c1180aea19cd1749",
+        "D:\\Work\\excel-vba-rpfem\\validation\\accuracy_20261013\\results\\n_jump27917_fs6876_coordinate_close\\P06N\\P06N_upper_saved_original_guide_close_original_dual_guide_1.npz": "2864053b5bd0ef9f6ede42d19d04f0e29e675c2c69e02cc281657bb4b742572d"
+      },
+      "input_hashes_unchanged": true
+    }
+  ],
+  "implementation_hashes": {
+    "D:\\Work\\excel-vba-rpfem\\validation\\accuracy_20261013\\python\\accuracy_driver.py": "6fbc9761c37bd72046c4083ac8a40030999a74906bcc6b049ea18b5120e15c3c",
+    "D:\\Work\\excel-vba-rpfem\\validation\\accuracy_20261013\\python\\experiment_core.py": "9a9e60b6d69ba4008ea89608f433bb716b433436715c45566bd209418ee9238e",
+    "D:\\Work\\excel-vba-rpfem\\validation\\accuracy_20261013\\python\\reduction.py": "cbc32e1e0764e10e3f56f67b804b08867166aafbd32a64ddcbe481b18d083ca5",
+    "D:\\Work\\excel-vba-rpfem\\validation\\accuracy_20261013\\python\\zero_phi_transport.py": "a95589afd8ab9ca0a69829782ad36e2ba83b16e7fcbe74781b26dc03ea974c79",
+    "D:\\Work\\excel-vba-rpfem\\validation\\accuracy_20261013\\python\\mesh_accuracy.py": "9553fa8d1d6caa1ab49fff92bfece2b14da97348a3334181e0653c5dde81a860",
+    "D:\\Work\\excel-vba-rpfem\\validation\\accuracy_20261013\\python\\original_farkas.py": "58ccb3af92e92d6b466c8acab8040fa88582a2deb5588a18d0ce92d3135f3672",
+    "D:\\Work\\excel-vba-rpfem\\validation\\accuracy_20261013\\python\\original_dual.py": "c0025181b07b742b0d4608656489c3495b6ea90b4ed8084438420e8312b6467d",
+    "D:\\Work\\excel-vba-rpfem\\validation\\accuracy_20261013\\python\\vendor\\independent_audit.py": "79ea1b0e4e72b2a61a4110e6115e3f33929ae5990fb054e20f41d345a694f37b",
+    "D:\\Work\\excel-vba-rpfem\\validation\\accuracy_20261013\\python\\vendor\\model_support\\lower_assembly.py": "b3c482c8950205b32a5e38cd0f1e720e5efeb48491bbd8ff02b728ef54f51047",
+    "D:\\Work\\excel-vba-rpfem\\validation\\accuracy_20261013\\python\\vendor\\model_support\\upper_assembly.py": "d0e03aeb87dcc52ae8001b422d836064275850f22c8a69640ce722cb2213d065"
+  },
+  "implementation_unchanged": true,
+  "modified_qp_duals_used": false,
+  "new_solver_used": false,
+  "strict_interval_arithmetic_proof": false
+}

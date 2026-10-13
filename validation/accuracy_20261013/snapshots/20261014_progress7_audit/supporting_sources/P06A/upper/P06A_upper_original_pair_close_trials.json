@@ -1,0 +1,62 @@
+[
+  {
+    "objective": 0.9999979999316824,
+    "value": 0.9999979999316774,
+    "eq_error": 5.9424389020623636e-09,
+    "cone_error": 5.073178321879368e-09,
+    "audit": {
+      "pass": true,
+      "errors": {
+        "flow": 9.03132973701133e-10,
+        "jump": 5.0731785087958225e-09,
+        "bonded_interface": 4.296602054075069e-09,
+        "boundary": 5.3696982717754776e-09,
+        "work": 6.770602523076263e-08,
+        "objective": 4.9960036108132044e-15
+      },
+      "dissipation": 0.9999979999316774,
+      "work": [
+        0.0,
+        1.0000000677060252
+      ],
+      "value": 0.9999979999316774
+    },
+    "raw_lower_errors": {},
+    "physical_pass": true,
+    "witness": true,
+    "numerical_gate": false,
+    "case": "P06A",
+    "mode": "upper",
+    "q": 8,
+    "fs": 0.85755,
+    "mesh_id": "27b06e20be73627245ba3f7e0bf4ffa3df883ec1bb2af10e103fca5caf489308",
+    "physical_model_id": "f67b757898e3bcc3f45c5ea9b5a8e290955fad53f5900c5cd8c31b9637d51875",
+    "origin": "independently_reaudited_same_mesh_witness"
+  },
+  {
+    "accepted": true,
+    "dual_stationarity": 8.561094810815079e-09,
+    "dual_cone_error": 1.2404355576401789e-10,
+    "dual_objective": 1.0000030003266447,
+    "threshold": 1.000003,
+    "method": "original_dual_feasibility",
+    "scope": "discrete_root_search_only; no primal field or continuum bound",
+    "publishes_primal_bound": false,
+    "search_sign": 1,
+    "case": "P06A",
+    "mode": "upper",
+    "q": 8,
+    "fs": 0.85748,
+    "mesh_id": "27b06e20be73627245ba3f7e0bf4ffa3df883ec1bb2af10e103fca5caf489308",
+    "physical_model_id": "f67b757898e3bcc3f45c5ea9b5a8e290955fad53f5900c5cd8c31b9637d51875",
+    "policy": "equal_reduced_phi",
+    "physical_pass": false,
+    "witness": false,
+    "numerical_gate": false,
+    "value": 0.0,
+    "dual_guide_only": true,
+    "origin": "independently_reaudited_initial_original_dual",
+    "dual_proof_path": "P06A_upper_original_pair_close_original_dual_guide_1.npz",
+    "dual_proof_sha256": "07cdc574d51d327e79741b12d4e81a905a99216494d2037a856a2986324a6473"
+  }
+]

@@ -1,0 +1,98 @@
+{
+  "case": "P06N",
+  "mode": "lower",
+  "q": 8,
+  "fs": 0.678279841819045,
+  "mesh_id": "4a473caa0f4c62f3fdf757961fcb1e89a872e7546cbce0881fb9402f8a92b4ee",
+  "physical_model_id": "08cc8e73e85408e7a82cbe79b5716ef007cb917d00e021872c40e510b5d17525",
+  "fresh_original_q8_audit": {
+    "objective": -1.000041407870486,
+    "value": 1.000041407870486,
+    "eq_error": 1.2110090708006283e-11,
+    "cone_error": 0.0,
+    "audit": {
+      "pass": true,
+      "errors": {
+        "yield": 0.0,
+        "equilibrium": 4.083631210960448e-10,
+        "internal_traction": 5.620226506408699e-13,
+        "boundary_traction": 5.551115123125783e-17
+      },
+      "load": 1.000041407870486,
+      "value": 1.000041407870486
+    },
+    "raw_lower_errors": {
+      "yield": 0.0,
+      "equilibrium": 8.167262421920896e-09,
+      "internal_traction": 1.1240453012817397e-11,
+      "boundary_traction": 1.1102230246251565e-15
+    },
+    "physical_pass": true,
+    "witness": true,
+    "numerical_gate": false
+  },
+  "exact_root_identity_pass": true,
+  "modern_signed_root_pass": true,
+  "root_complete": true,
+  "root": {
+    "mode": "lower",
+    "root_complete": true,
+    "bracket": [
+      0.678279841819045,
+      0.6783698418190449
+    ],
+    "bracket_width": 8.999999999992347e-05,
+    "fs_tolerance": 0.0001,
+    "endpoint": 0.678279841819045,
+    "trials": 14,
+    "seconds": 3810.571863099991,
+    "mesh_id": "4a473caa0f4c62f3fdf757961fcb1e89a872e7546cbce0881fb9402f8a92b4ee",
+    "physical_model_id": "08cc8e73e85408e7a82cbe79b5716ef007cb917d00e021872c40e510b5d17525",
+    "elements": 11201,
+    "q": 8,
+    "case": "P06N",
+    "policy": "hold_initial",
+    "bracket_signs": [
+      1,
+      -1
+    ],
+    "opposite_numerical_endpoint_is_continuum_bound": false
+  },
+  "original_full_dual_guide_audit": null,
+  "input_sha256_before": {
+    "D:\\Work\\excel-vba-rpfem\\validation\\accuracy_20261013\\results\\n_lower11201_c0band_close\\P06N\\best_lower_mesh.npz": "4abcd08e2616fea9fb51c9b219c17007ef7b32b0f42c261f41264933d4fdcb30",
+    "D:\\Work\\excel-vba-rpfem\\validation\\accuracy_20261013\\results\\n_lower11201_c0band_close\\P06N\\best_lower_field.npz": "3ddc8254652940f6066c59128b5a168057885502f6947584b348a238a478374c",
+    "D:\\Work\\excel-vba-rpfem\\validation\\accuracy_20261013\\results\\n_lower11201_c0band_close\\P06N\\best_lower_certificate.json": "149ea96542afd75896d27bc1929116919c2028bf67af907b9998016ac9a30468"
+  },
+  "input_sha256_after": {
+    "D:\\Work\\excel-vba-rpfem\\validation\\accuracy_20261013\\results\\n_lower11201_c0band_close\\P06N\\best_lower_mesh.npz": "4abcd08e2616fea9fb51c9b219c17007ef7b32b0f42c261f41264933d4fdcb30",
+    "D:\\Work\\excel-vba-rpfem\\validation\\accuracy_20261013\\results\\n_lower11201_c0band_close\\P06N\\best_lower_field.npz": "3ddc8254652940f6066c59128b5a168057885502f6947584b348a238a478374c",
+    "D:\\Work\\excel-vba-rpfem\\validation\\accuracy_20261013\\results\\n_lower11201_c0band_close\\P06N\\best_lower_certificate.json": "149ea96542afd75896d27bc1929116919c2028bf67af907b9998016ac9a30468"
+  },
+  "input_hashes_unchanged": true,
+  "source_sha256_before": {
+    "D:\\Work\\excel-vba-rpfem\\validation\\accuracy_20261013\\python\\accuracy_driver.py": "6fbc9761c37bd72046c4083ac8a40030999a74906bcc6b049ea18b5120e15c3c",
+    "D:\\Work\\excel-vba-rpfem\\validation\\accuracy_20261013\\python\\experiment_core.py": "9a9e60b6d69ba4008ea89608f433bb716b433436715c45566bd209418ee9238e",
+    "D:\\Work\\excel-vba-rpfem\\validation\\accuracy_20261013\\python\\reduction.py": "cbc32e1e0764e10e3f56f67b804b08867166aafbd32a64ddcbe481b18d083ca5",
+    "D:\\Work\\excel-vba-rpfem\\validation\\accuracy_20261013\\python\\zero_phi_transport.py": "a95589afd8ab9ca0a69829782ad36e2ba83b16e7fcbe74781b26dc03ea974c79",
+    "D:\\Work\\excel-vba-rpfem\\validation\\accuracy_20261013\\python\\mesh_accuracy.py": "9553fa8d1d6caa1ab49fff92bfece2b14da97348a3334181e0653c5dde81a860",
+    "D:\\Work\\excel-vba-rpfem\\validation\\accuracy_20261013\\python\\original_farkas.py": "58ccb3af92e92d6b466c8acab8040fa88582a2deb5588a18d0ce92d3135f3672",
+    "D:\\Work\\excel-vba-rpfem\\validation\\accuracy_20261013\\python\\original_dual.py": "c0025181b07b742b0d4608656489c3495b6ea90b4ed8084438420e8312b6467d",
+    "D:\\Work\\excel-vba-rpfem\\validation\\accuracy_20261013\\python\\vendor\\independent_audit.py": "79ea1b0e4e72b2a61a4110e6115e3f33929ae5990fb054e20f41d345a694f37b",
+    "D:\\Work\\excel-vba-rpfem\\validation\\accuracy_20261013\\python\\vendor\\model_support\\lower_assembly.py": "b3c482c8950205b32a5e38cd0f1e720e5efeb48491bbd8ff02b728ef54f51047",
+    "D:\\Work\\excel-vba-rpfem\\validation\\accuracy_20261013\\python\\vendor\\model_support\\upper_assembly.py": "d0e03aeb87dcc52ae8001b422d836064275850f22c8a69640ce722cb2213d065"
+  },
+  "source_sha256_after": {
+    "D:\\Work\\excel-vba-rpfem\\validation\\accuracy_20261013\\python\\accuracy_driver.py": "6fbc9761c37bd72046c4083ac8a40030999a74906bcc6b049ea18b5120e15c3c",
+    "D:\\Work\\excel-vba-rpfem\\validation\\accuracy_20261013\\python\\experiment_core.py": "9a9e60b6d69ba4008ea89608f433bb716b433436715c45566bd209418ee9238e",
+    "D:\\Work\\excel-vba-rpfem\\validation\\accuracy_20261013\\python\\reduction.py": "cbc32e1e0764e10e3f56f67b804b08867166aafbd32a64ddcbe481b18d083ca5",
+    "D:\\Work\\excel-vba-rpfem\\validation\\accuracy_20261013\\python\\zero_phi_transport.py": "a95589afd8ab9ca0a69829782ad36e2ba83b16e7fcbe74781b26dc03ea974c79",
+    "D:\\Work\\excel-vba-rpfem\\validation\\accuracy_20261013\\python\\mesh_accuracy.py": "9553fa8d1d6caa1ab49fff92bfece2b14da97348a3334181e0653c5dde81a860",
+    "D:\\Work\\excel-vba-rpfem\\validation\\accuracy_20261013\\python\\original_farkas.py": "58ccb3af92e92d6b466c8acab8040fa88582a2deb5588a18d0ce92d3135f3672",
+    "D:\\Work\\excel-vba-rpfem\\validation\\accuracy_20261013\\python\\original_dual.py": "c0025181b07b742b0d4608656489c3495b6ea90b4ed8084438420e8312b6467d",
+    "D:\\Work\\excel-vba-rpfem\\validation\\accuracy_20261013\\python\\vendor\\independent_audit.py": "79ea1b0e4e72b2a61a4110e6115e3f33929ae5990fb054e20f41d345a694f37b",
+    "D:\\Work\\excel-vba-rpfem\\validation\\accuracy_20261013\\python\\vendor\\model_support\\lower_assembly.py": "b3c482c8950205b32a5e38cd0f1e720e5efeb48491bbd8ff02b728ef54f51047",
+    "D:\\Work\\excel-vba-rpfem\\validation\\accuracy_20261013\\python\\vendor\\model_support\\upper_assembly.py": "d0e03aeb87dcc52ae8001b422d836064275850f22c8a69640ce722cb2213d065"
+  },
+  "audited_at": 1791918655.9532924
+}

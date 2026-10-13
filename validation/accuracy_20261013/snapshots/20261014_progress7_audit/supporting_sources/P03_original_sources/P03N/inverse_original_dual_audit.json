@@ -1,0 +1,113 @@
+{
+  "case": "P03N",
+  "fs": 1.16734,
+  "q": 8,
+  "mesh_id": "928a290d71a3f668bb878b198713bc7dffae50b6d409589cf62a9819cda5a778",
+  "physical_model_id": "53d1cc3320cf49fa54084ac607f2e924d6b4b83d70f040bdbb35fa4525db9a92",
+  "source_sha256": {
+    "validation\\accuracy_20261013\\python\\accuracy_driver.py": "705a5a04dbbf31215458d9a951d47e1bedc3efbf536864befacebb9eff0f398e",
+    "validation\\accuracy_20261013\\python\\experiment_core.py": "3cc27df6d75a2c4b1e385e2e5ceddb95ed670b4a827b1507569b39674f55a0c6",
+    "validation\\accuracy_20261013\\python\\reduction.py": "cbc32e1e0764e10e3f56f67b804b08867166aafbd32a64ddcbe481b18d083ca5",
+    "validation\\accuracy_20261013\\python\\zero_phi_transport.py": "a95589afd8ab9ca0a69829782ad36e2ba83b16e7fcbe74781b26dc03ea974c79",
+    "validation\\accuracy_20261013\\python\\mesh_accuracy.py": "9553fa8d1d6caa1ab49fff92bfece2b14da97348a3334181e0653c5dde81a860",
+    "validation\\accuracy_20261013\\python\\original_farkas.py": "58ccb3af92e92d6b466c8acab8040fa88582a2deb5588a18d0ce92d3135f3672",
+    "validation\\accuracy_20261013\\python\\original_dual.py": "c0025181b07b742b0d4608656489c3495b6ea90b4ed8084438420e8312b6467d",
+    "validation\\accuracy_20261013\\python\\vendor\\independent_audit.py": "79ea1b0e4e72b2a61a4110e6115e3f33929ae5990fb054e20f41d345a694f37b",
+    "validation\\accuracy_20261013\\python\\vendor\\model_support\\upper_assembly.py": "d0e03aeb87dcc52ae8001b422d836064275850f22c8a69640ce722cb2213d065"
+  },
+  "result": {
+    "objective": 1.0000199348036216,
+    "value": 1.0000199348036216,
+    "eq_error": 5.47201173262124e-14,
+    "cone_error": 1.6122398756203642e-07,
+    "audit": {
+      "pass": true,
+      "errors": {
+        "flow": 1.2015952900885758e-08,
+        "boundary": 0.0,
+        "jump": 8.92466676488941e-10,
+        "work": 5.756506382681437e-13,
+        "objective": 0.0
+      },
+      "dissipation": 1.0000199348036216,
+      "work": [
+        0.0,
+        0.9999999999994243
+      ],
+      "value": 1.0000199348036216
+    },
+    "raw_lower_errors": {},
+    "physical_pass": false,
+    "witness": false,
+    "dual_objective": 1.0000199348035947,
+    "dual_stationarity": 2.18147722108597e-12,
+    "dual_cone_error": 0.0,
+    "dual_gap": 2.6867397195928788e-14,
+    "numerical_gate": false,
+    "reduced_dual_objective": 1.0000199348035947,
+    "reduced_dual_stationarity": 2.1825874441105952e-12,
+    "reduced_dual_cone_error": 0.0,
+    "reduced_dual_gap": 2.6867397195928788e-14,
+    "reduced_numerical_gate": false,
+    "case": "P03N",
+    "elements": 13363,
+    "fs": 1.16734,
+    "mode": "upper",
+    "q": 8,
+    "reduction": "affine",
+    "status": "AlmostSolved",
+    "iterations": 55,
+    "solver_seconds": 297.60740470001474,
+    "build_seconds": 2.6689524999819696,
+    "backend_solve_seconds": 299.342001,
+    "audit_seconds": 9.009847600013018,
+    "dual_restore": {
+      "method": "removed_equalities_lsmr",
+      "seconds": 0.6582991000032052,
+      "lsmr_flag": 2,
+      "lsmr_iterations": 4
+    },
+    "assembly_seconds": 17.148664799984545,
+    "transform_seconds": 34.42895319999661,
+    "original_variables": 160356,
+    "original_equalities": 205,
+    "variables": 160154,
+    "equalities": 1,
+    "cones": 439877,
+    "solver_reported_gap": 2.4646951146678475e-14,
+    "settings_overrides": {
+      "equilibrate_enable": false,
+      "time_limit": 600.0,
+      "tol_gap_abs": 1e-13,
+      "tol_gap_rel": 1e-13,
+      "tol_feas": 1e-13,
+      "iterative_refinement_max_iter": 30,
+      "iterative_refinement_abstol": 1e-15,
+      "iterative_refinement_reltol": 1e-15
+    },
+    "max_iter": 350,
+    "early": false,
+    "callback_trigger": [],
+    "cone_scaling": true,
+    "primal_polish": {
+      "method": "original_equality_lsmr_then_full_physical_audit",
+      "skipped": true,
+      "accepted": false,
+      "reason": "STRICT_ORIGINAL_INVERSE_DUAL_GUIDE",
+      "raw_original_dual_evidence": {
+        "verified": true,
+        "scope": "discrete_inverse_sign_only; primal unchanged",
+        "dual_stationarity": 2.18147722108597e-12,
+        "dual_cone_error": 0.0,
+        "dual_objective": 1.0000199348035947,
+        "reason": "STRICT_ORIGINAL_INVERSE_DUAL_GUIDE"
+      },
+      "primal_unchanged": true,
+      "seconds": 0.0
+    },
+    "end_to_end_seconds": 361.5221218999941
+  },
+  "search_sign": 1,
+  "root_complete": false,
+  "input_mesh_sha256": "c6a872489dfdb4a38619dd71ef5be0707da192d2cfa56d27fe1bdbd434d24ac9"
+}
