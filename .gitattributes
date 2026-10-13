@@ -7,3 +7,5 @@ validation/G1R12_native25_20261009/** -text
 versions/G1R13/** -text
 versions/G1R14/** -text
 versions/G1R15_DLL2/** -text
+# Numerical fixtures use byte hashes; checkout must not convert JSON newlines.
+validation/accuracy_20261013/python/data/frozen_upper_interpolation/** -text
