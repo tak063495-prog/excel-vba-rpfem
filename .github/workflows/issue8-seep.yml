@@ -1,0 +1,15 @@
+name: Issue 8 seepage regression
+on:
+  pull_request:
+  push:
+    branches: ["fix/issue8-seep-roundoff"]
+jobs:
+  python-mirror:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.14"
+      - run: python versions/G1R17_Issue8/tests/verify_issue8.py
+      - run: python versions/G1R17_Issue8/tests/verify_issue8_package.py

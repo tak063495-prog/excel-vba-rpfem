@@ -1,3 +1,5 @@
+> Issue #8 修正候補（2026-10-13）: [静水圧収束判定の修正版・別名ブック・実Excel/Python/DLL検証](versions/G1R17_Issue8/README.md)。レビュー用の候補で、既存G1R17配布物は保全しています。
+
 # excel-vba-rpfem
 
 Excel VBAによる2次元RPFEM解析のソース、XLSM、検証資料です。
