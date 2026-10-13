@@ -4,6 +4,23 @@ from scipy import sparse
 from .schema import topology
 from .upper_assembly import strength,reduced_cohesion
 
+
+class Program(tuple):
+    """Keep the six-output API while retaining exact original row multipliers."""
+    def __new__(cls,eq,rhs,G,h,dims,zero,row_norm):
+        result=super().__new__(cls,(eq,rhs,G,h,dims,zero))
+        result.eq,result.rhs,result.G,result.h,result.dims,result.zero=eq,rhs,G,h,dims,zero
+        result.row_norm=np.asarray(row_norm,dtype=float).copy()
+        if (result.row_norm.shape!=(eq.shape[0],) or
+                not np.isfinite(result.row_norm).all() or np.any(result.row_norm<=0)):
+            raise ValueError('Original equality row norms must be finite and positive')
+        result.row_norm.setflags(write=False)
+        return result
+
+    def __reduce__(self):
+        return type(self),(*self,self.row_norm)
+
+
 def assemble_lower(mesh,fs,fixed_load=None):
     area,grad,edges=topology(mesh);ne=len(mesh.tri);n=18*ne+1;load=n-1
     zero=np.zeros((ne,6),dtype=bool)
@@ -56,4 +73,4 @@ def assemble_lower(mesh,fs,fixed_load=None):
             for j,value in row.items():ii.append(i);jj.append(j);vv.append(value)
         return sparse.coo_matrix((vv,(ii,jj)),shape=(len(rows),n)).tocsc()
     A=matrix(eq);norm=np.sqrt(np.asarray(A.power(2).sum(axis=1)).ravel());A=sparse.diags(1/norm)@A;b=np.asarray(rhs)/norm
-    return A.tocsc(),b,matrix(cones),np.array(offset),[3]*(len(cones)//3),zero
+    return Program(A.tocsc(),b,matrix(cones),np.array(offset),[3]*(len(cones)//3),zero,norm)

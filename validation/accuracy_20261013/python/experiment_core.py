@@ -166,18 +166,28 @@ def prolong(parent,child,x,mode,q=8):
             N=np.column_stack([a*(2*a-1),b*(2*b-1),c*(2*c-1),4*a*b,4*b*c,4*c*a]);result.append(N@values[e])
     return np.r_[np.array(result).ravel(),x[-1]] if mode=='lower' else complete_upper_velocity(child,np.array(result).ravel(),q)
 
-def program(m,fs,mode,q=8,fixed_load=None):
+def program(m,fs,mode,q=8,fixed_load=None,include_row_norm=False):
     if mode=='lower':
-        E,b,G,h,dims,zero=assemble_lower(m,fs,fixed_load)
+        assembled=assemble_lower(m,fs,fixed_load)
+        E,b,G,h,dims,zero=assembled
+        row_norm=assembled.row_norm
         cost=np.zeros(E.shape[1]);cost[-1]=-1. if fixed_load is None else 0.
     else:
         p=assemble_upper(m,fs,q);E,b,G,h,dims,cost=p.eq,p.rhs,p.G,np.zeros(p.G.shape[0]),p.dims,p.objective
-    return E.tocsc(),np.asarray(b),G.tocsc(),np.asarray(h),list(dims),cost
+        row_norm=p.row_norm
+    result=E.tocsc(),np.asarray(b),G.tocsc(),np.asarray(h),list(dims),cost
+    return (result,row_norm) if include_row_norm else result
 
 class Prepared:
     def __init__(self,m,fs,mode,q=8,reduction='none',fixed_load=None):
         self.m,self.fs,self.mode,self.q,self.kind=m,fs,mode,q,reduction
-        t=time.perf_counter();self.original=program(m,fs,mode,q,fixed_load);self.assembly_seconds=time.perf_counter()-t
+        t=time.perf_counter()
+        if mode=='lower':
+            self.original,self.original_row_norm=program(m,fs,mode,q,fixed_load,include_row_norm=True)
+        else:
+            self.original=program(m,fs,mode,q,fixed_load)
+            self.original_row_norm=None
+        self.assembly_seconds=time.perf_counter()-t
         E,b,G,h,dims,cost=self.original;self.T=None;self.off=np.zeros(len(cost));self.cone_ids=np.arange(len(dims));self.stats=[]
         # Bind this physical optimization objective and layout before any
         # auxiliary feasibility program can copy and change this preparation.
@@ -343,6 +353,71 @@ def cone_row_scales(matrix,dimensions):
     return np.repeat(multipliers,dimensions)
 
 
+def polish_primal(pr,source,dual=None,before=None):
+    """Try lower physical row weights, then retain the original recovery path.
+
+    A positive diagonal scaling changes only the correction search. Every
+    candidate must pass the uncondensed program and the independent original
+    physics audit. Failed corrections never replace or mutate the source.
+    """
+    source=np.asarray(source,dtype=float)
+    E,b,*_=pr.original
+    if source.shape!=(E.shape[1],) or not np.isfinite(source).all():
+        raise ValueError('Primal recovery requires a finite original-program field')
+    before=evaluate(pr,source,dual) if before is None else before
+    if before['physical_pass']:
+        return {'accepted':False,'skipped':True,'reason':'SOURCE_ALREADY_PHYSICAL','seconds':0.},before,source
+    started=time.perf_counter()
+    weighted={'attempted':False,'accepted':False,'stages':[]}
+    row_norm=getattr(pr,'original_row_norm',None)
+    if pr.mode=='lower' and row_norm is not None:
+        row_norm=np.asarray(row_norm,dtype=float)
+        if row_norm.shape==(len(b),) and np.isfinite(row_norm).all() and np.all(row_norm>0):
+            matrix=(sparse.diags(row_norm)@E).tocsc()
+            rhs=row_norm*(b-E@source)
+            if np.isfinite(matrix.data).all() and np.isfinite(rhs).all():
+                weighted.update(attempted=True,method='original_lower_physical_equality_row_weights',
+                    minimum_row_weight=float(np.min(row_norm)),
+                    maximum_row_weight=float(np.max(row_norm)))
+                correction=np.zeros(E.shape[1]);iterations=0
+                for budget in [100,500,1000]:
+                    stage_budget=budget-iterations
+                    tick=time.perf_counter()
+                    step=lsmr(matrix,rhs,atol=1e-15,btol=1e-15,maxiter=stage_budget,x0=correction)
+                    correction=step[0];iterations+=step[2]
+                    candidate=source+correction
+                    result=evaluate(pr,candidate,dual)
+                    weighted['stages'].append({'cumulative_budget':budget,'iterations':iterations,
+                        'lsmr_flag':step[1],'seconds':time.perf_counter()-tick,
+                        'physical_pass':result['physical_pass'],'witness':result['witness'],
+                        'value':result['value'],'eq_error':result['eq_error'],'cone_error':result['cone_error'],
+                        'raw_lower_errors':result['raw_lower_errors'],
+                        'correction_norm':float(np.linalg.norm(correction))})
+                    if result['physical_pass']:
+                        weighted['accepted']=True
+                        return {'method':'lower_physical_row_lsmr_then_full_original_audit','accepted':True,
+                            'lsmr_flag':step[1],'iterations':iterations,'correction_norm':float(np.linalg.norm(correction)),
+                            'seconds':time.perf_counter()-started,'before_raw':before.get('raw_lower_errors'),
+                            'after_raw':result.get('raw_lower_errors'),'weighted_lower_recovery':weighted},result,candidate
+                    if step[1] in (0,1,2,4,5) and step[2]<stage_budget:
+                        weighted['converged_without_physical_certificate']=True
+                        break
+            else:weighted['reason']='NONFINITE_WEIGHTED_CORRECTION_PROGRAM'
+        else:weighted['reason']='INVALID_ORIGINAL_ROW_NORMS'
+    # The previous unweighted recovery starts from the unchanged source,
+    # retaining its full original 10000-iteration budget on every failure.
+    correction=lsmr(E,b-E@source,atol=1e-15,btol=1e-15,maxiter=10000)
+    candidate=source+correction[0];result=evaluate(pr,candidate,dual)
+    accepted=bool(result['physical_pass'])
+    record={'method':'original_equality_lsmr_then_full_physical_audit','accepted':accepted,
+        'lsmr_flag':correction[1],'iterations':correction[2],
+        'correction_norm':float(np.linalg.norm(correction[0])),
+        'seconds':time.perf_counter()-started,'before_raw':before.get('raw_lower_errors'),
+        'after_raw':result.get('raw_lower_errors')}
+    if pr.mode=='lower':record.update(weighted_lower_recovery=weighted,fallback_from_unchanged_source=True)
+    return record,result if accepted else before,candidate if accepted else source
+
+
 def solve(pr,overrides=None,max_iter=250,duals=True,save=None,early=False,early_primal_limit=1e-5,cone_scaling=False,primal_polish=False):
     row_scale=np.ones(pr.A.shape[0])
     if cone_scaling:
@@ -373,16 +448,7 @@ def solve(pr,overrides=None,max_iter=250,duals=True,save=None,early=False,early_
                     'accepted':False,'reason':'STRICT_ORIGINAL_INVERSE_DUAL_GUIDE','raw_original_dual_evidence':guide,
                     'primal_unchanged':True,'seconds':0.}
         else:
-            t=time.perf_counter();E,b,*_=pr.original
-            correction=lsmr(E,b-E@x,atol=1e-15,btol=1e-15,maxiter=10000)
-            candidate=x+correction[0];rr=evaluate(pr,candidate,z)
-            accepted=bool(rr['physical_pass'])
-            polish={'method':'original_equality_lsmr_then_full_physical_audit','accepted':accepted,
-                    'lsmr_flag':correction[1],'iterations':correction[2],
-                    'correction_norm':float(np.linalg.norm(correction[0])),
-                    'seconds':time.perf_counter()-t,'before_raw':r.get('raw_lower_errors'),
-                    'after_raw':rr.get('raw_lower_errors')}
-            if accepted:r,x=rr,candidate
+            polish,r,x=polish_primal(pr,x,z,r)
     # For a strictly zero-cost upper program, a feasible Farkas ray can be
     # multiplied by a positive scalar without changing its original-program
     # meaning. Clarabel commonly normalizes its separation to one, just below

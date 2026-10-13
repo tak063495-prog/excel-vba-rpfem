@@ -25,6 +25,7 @@ SOURCE_HASHES={str(p.relative_to(REPO)):hashlib.sha256(p.read_bytes()).hexdigest
               Path(__file__).with_name('original_farkas.py'),
               Path(__file__).with_name('original_dual.py'),
               Path(__file__).parent/'vendor/independent_audit.py',
+              Path(__file__).parent/'vendor/model_support/lower_assembly.py',
               Path(__file__).parent/'vendor/model_support/upper_assembly.py']}
 
 
@@ -91,6 +92,21 @@ def sign(result, mode):
     if mode == 'upper' and result['dual_objective'] >= target + 2e-6:
         return 1
     return None
+
+
+def physical_attempt_rank(result, mode):
+    """Prefer the better admissible objective only after all existing gates.
+
+    A low-quality first admissible iterate must not hide a later iterate that
+    permits fixed-load recovery. Values from rejected fields have no rank.
+    This selection never promotes a field or supplies a numerical root sign.
+    """
+    if mode not in ('lower','upper'):
+        raise ValueError('Lower or upper mode required')
+    admissible=bool(result.get('physical_pass') and finite(result.get('value')))
+    quality=float(result['value'])*(1 if mode=='lower' else -1) if admissible else 0.
+    return (bool(result.get('witness')),bool(result.get('physical_pass')),
+            sign(result,mode) is not None,bool(result.get('numerical_gate')),quality)
 
 
 def audit_initial_dual_guide(mesh, mode, guide):
@@ -174,7 +190,7 @@ def search(mesh, mode, initial, folder, label, tolerance=1e-4, seconds=120, init
             attempts.append({k: result[k] for k in ['status', 'physical_pass', 'witness', 'numerical_gate', 'end_to_end_seconds']})
             dual_evidence.append({k: result.get(k) for k in ['dual_objective','dual_stationarity','dual_cone_error',
                                     'reduced_dual_objective','reduced_dual_stationarity','reduced_dual_cone_error']})
-            rank = (result['witness'], result['physical_pass'], sign(result, mode) is not None, result['numerical_gate'])
+            rank = physical_attempt_rank(result,mode)
             if chosen is None or rank > chosen[0]:
                 chosen = rank, result, field
             if sign(result,mode) is not None:
