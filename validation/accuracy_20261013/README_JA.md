@@ -25,7 +25,11 @@ P06Nを含む非関連入力は既存Davis等価関連モデルであり、直�
 - 既存のひずみ速度・速度ジャンプによる適合細分化を継続。
 - 同一点での回復設定を比較し、物理監査済みの場を優先して保持。
 - 各SOCの全行に同じ正倍率を掛ける正規化。双対を元の倍率へ戻して監査。
+- SOC正規化の倍率をCSRの行平方和から一括計算。従来のFrobenius倍率と実際の
+  下界・上界行列で照合し、元の物理監査を維持した。
 - 元の釣合い行列への残差補正後、降伏を含む原物理条件を再監査。補正だけで合格にしない。
+- 元目的の双対が許容内で逆符号を確定した点では、上下界証拠にならない主場の
+  長時間の補正を省略する。固定荷重・変更した上界目的の双対はこの判定へ使わない。
 - 下界の固定荷重倍率による実行可能場の回復。成功場だけを端点に使い、その双対を
   荷重最大化問題の逆符号へ転用しない。
 - c=0自由頂点の角度分割を下界側に限定して試す `--fan-lower`。
@@ -41,6 +45,10 @@ P06Nを含む非関連入力は既存Davis等価関連モデルであり、直�
   φ>0の旧行列・監査とのビット一致と、純せん断の解析解を確認。
 - φ=ψ=0かつ固定荷重0の上界では不変の行列を保持し、Fs依存の価格だけ更新。
   強度比例による場の移送も別に実験し、新Fsでの再監査を必須にした。
+- `upper_geometry_driver.py`で同材内の流れに合わせた辺入れ替えを比較する。
+  外部・材料境界、座標、材別面積と荷重を保ち、旧証拠は元メッシュへ保存する。
+  非入れ子のP2補間は局所座標と内部側の親選択で評価する。補間だけでは採用せず、
+  全原監査を通った場だけを初期証拠にできる。通常の`core.prolong`は変更していない。
 
 求解設定は [Clarabelの公式設定](https://clarabel.org/stable/api_settings/)を使用する。
 求解器の主方式を置換するVBA/DLL実装ではなく、Pythonでの比較・回復実験である。
@@ -61,7 +69,7 @@ python -X utf8 validation/accuracy_20261013/python/combine_seeds.py --cases P06A
 python -X utf8 validation/accuracy_20261013/python/lower_accuracy_driver.py --case P06A --seed validation/accuracy_20261013/native_seeds/P06A --method uniform --output validation/accuracy_20261013/results/lower_uniform --rounds 1 --max-elements 24000
 python -X utf8 validation/accuracy_20261013/python/report_accuracy.py --sources validation/accuracy_20261013/native_seeds validation/accuracy_20261013/results --output validation/accuracy_20261013/snapshots/new_audit
 python -X utf8 -m unittest discover -s validation/accuracy_20261013/tests -v
-python -X utf8 -m unittest discover -s validation/accuracy_20261013/python -p test_mesh_accuracy.py -v
+python -X utf8 -m unittest discover -s validation/accuracy_20261013/python -p test_*.py -v
 python -X utf8 validation/accuracy_20261013/python/check_zero_phi.py
 ```
 
@@ -84,3 +92,13 @@ python -X utf8 validation/accuracy_20261013/python/check_zero_phi.py
 応力場を重くした指標も比較できる。指標は細分化候補を選ぶだけで精度の証明にはしない。
 採用点は`best_<side>_certificate.json`とそのmesh/fieldへ保存する。各段階の計算中も
 再監査・集約可能だが、根が未完了の点を1%達成とは数えない。
+
+下界CLIの`--initial-span`は正で有限の幅を指定する。省略時は保存Fsの近傍
+`0.002*max(1,Fs)`から始め、必要な側だけ符号探索を広げる。
+`run_suite.py --skip-seed-recheck`は保存根の同一性検証を省かず、初期の再求解だけを省く。
+
+途中の独立再監査は `snapshots/20261013_progress3_audit/REPORT_JA.md` と
+`COMPARISON_26.csv`に保存した。以前未達だった16ケースのうち9ケースで、幅1%と
+両側根完了を確認した。P06A/P06Nと残る未完了ケースの計算・VBA本番確認は継続中。
+`zero_phi_signed_transport.py`とcapped feasibilityのrayは比較用であり、
+後者の追加制約を含む双対を元の根符号へ転用しない。

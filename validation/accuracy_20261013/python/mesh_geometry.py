@@ -110,6 +110,8 @@ def interpolate_velocity(parent, child, velocity, q=8):
     At old jumps the child-centroid direction chooses the incident parent
     triangle. Interpolation alone never implies admissibility. The caller must
     audit all original constraints and complete upper epigraphs at this q.
+    Among candidate incident elements, choose the most interior probe. A
+    first tolerated match can select the opposite side on very thin elements.
     """
     velocity=np.asarray(velocity,dtype=float)
     if velocity.ndim!=1 or len(velocity)<12*len(parent.tri) or not np.isfinite(velocity).all():
@@ -117,8 +119,7 @@ def interpolate_velocity(parent, child, velocity, q=8):
     if parent.physical_model_id != child.physical_model_id:raise ValueError('Physical model changed')
     source=velocity[:12*len(parent.tri)].reshape(-1,6,2)
     vertices=parent.xy[parent.tri]
-    matrix=np.concatenate([vertices.transpose(0,2,1),np.ones((len(vertices),1,3))],axis=1)
-    inverse=np.linalg.inv(matrix)
+    from precision_interpolation import local_barycentric,sample_p2
     centroids=vertices.mean(axis=1);tree=cKDTree(centroids)
     target=child.xy[child.tri]
     points=np.concatenate([target,(target+np.roll(target,-1,axis=1))/2],axis=1)
@@ -129,16 +130,21 @@ def interpolate_velocity(parent, child, velocity, q=8):
     by_material={int(mid):np.flatnonzero(parent.material_id==mid) for mid in np.unique(parent.material_id)}
     for e in range(len(child.tri)):
         for k,point in enumerate(points[e]):
-            probe=point+1e-7*(target_centroids[e]-point)
             candidates=neighbors[e,k]
             candidates=candidates[parent.material_id[candidates]==child.material_id[e]]
-            selected=None
+            selected=None;best_interior=-np.inf
             for ids in [candidates,by_material[int(child.material_id[e])]]:
-                bary=np.einsum('nij,j->ni',inverse[ids],np.r_[probe,1.])
-                inside=np.flatnonzero(np.min(bary,axis=1)>=-5e-10)
-                if len(inside):selected=int(ids[inside[0]]);break
+                if not len(ids):continue
+                at_point=local_barycentric(vertices[ids],np.broadcast_to(point,(len(ids),2)))
+                at_center=local_barycentric(vertices[ids],np.broadcast_to(target_centroids[e],(len(ids),2)))
+                # The barycentric map is affine. Probe in barycentric space
+                # to retain the intended side without adding a tiny offset to
+                # large global coordinates.
+                bary=at_point+np.longdouble('1e-7')*(at_center-at_point)
+                interior=np.min(bary,axis=1);j=int(np.argmax(interior))
+                if interior[j]>=-5e-10 and interior[j]>best_interior:
+                    selected=int(ids[j]);best_interior=interior[j]
+                if best_interior>=0:break
             if selected is None:raise ValueError('Target velocity node lies outside the same-material parent domain')
-            a,b,c=inverse[selected]@np.r_[point,1.]
-            nodal=np.array([a*(2*a-1),b*(2*b-1),c*(2*c-1),4*a*b,4*b*c,4*c*a])
-            output[e,k]=nodal@source[selected]
+            output[e,k]=sample_p2(source[selected],local_barycentric(vertices[selected],point))
     return core.complete_upper_velocity(child,output.ravel(),q)

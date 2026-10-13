@@ -34,10 +34,22 @@ class LowerDriverTests(unittest.TestCase):
             core.write(seed/'import_audit.json', {'case':'P06A','certificates':{'lower':{
                 'fs':fs,'mesh_id':mesh.mesh_id,'physical_model_id':mesh.physical_model_id}}})
             args = Namespace(case='P06A',seed=seed,method='uniform',output=folder/'output',rounds=0,
-                             max_elements=24000,theta=.6,proximity_background=.1,tolerance=1e-4,solve_seconds=120)
+                             max_elements=24000,theta=.6,proximity_background=.1,tolerance=1e-4,solve_seconds=120,initial_span=.002)
             with self.assertRaisesRegex(ValueError, 'physical gate rejected'):
                 run(args)
             self.assertFalse((folder/'output').exists())
+
+    def test_initial_span_must_be_finite_and_positive_before_reading_a_seed(self):
+        with TemporaryDirectory(prefix='rpfem_initial_span_test_') as directory:
+            folder=Path(directory)
+            for span in (0.,-1.,np.nan,np.inf):
+                with self.subTest(span=span):
+                    args=Namespace(case='P06A',seed=folder/'absent_seed',method='uniform',
+                                   output=folder/'output',rounds=1,max_elements=24000,theta=.6,
+                                   proximity_background=.1,tolerance=1e-4,solve_seconds=120,initial_span=span)
+                    with self.assertRaisesRegex(ValueError,'initial span'):
+                        run(args)
+                    self.assertFalse((folder/'output').exists())
 
 
 if __name__ == '__main__':

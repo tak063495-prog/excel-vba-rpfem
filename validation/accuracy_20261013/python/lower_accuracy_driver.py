@@ -63,8 +63,8 @@ def publish(folder, case, certificate, history):
 
 
 def run(args):
-    if args.rounds < 0 or args.max_elements <= 0 or not driver.finite(args.theta,args.tolerance,args.solve_seconds,args.proximity_background) or not 0 < args.theta <= 1 or not 0 < args.tolerance <= 1e-4 or args.solve_seconds <= 0 or not 0 <= args.proximity_background <= 1:
-        raise ValueError('Rounds, element cap, marking fraction, tolerance, or solve budget is invalid')
+    if args.rounds < 0 or args.max_elements <= 0 or not driver.finite(args.theta,args.tolerance,args.solve_seconds,args.proximity_background,args.initial_span) or not 0 < args.theta <= 1 or not 0 < args.tolerance <= 1e-4 or args.solve_seconds <= 0 or not 0 <= args.proximity_background <= 1 or args.initial_span <= 0:
+        raise ValueError('Rounds, element cap, marking fraction, tolerance, solve budget, or initial span is invalid')
     _, record = driver.load_model(args.case)
     seed = args.seed.resolve()
     metadata = seed_metadata(seed)
@@ -110,7 +110,10 @@ def run(args):
                                   'independently audited polynomial prolongation', False)
         publish(round_folder, args.case, warm, [])
         print('WARM_LOWER', args.case, number, len(child.tri), fs, warm_result['value'], flush=True)
-        candidate, root = driver.search(child, 'lower', (fs, fs+.035), round_folder, label,
+        # Begin beside the proven endpoint. If refinement improves farther,
+        # search expands the positive side while retaining every witness.
+        span=args.initial_span*max(1.,fs)
+        candidate, root = driver.search(child, 'lower', (fs, fs+span), round_folder, label,
                          args.tolerance, args.solve_seconds, initial_witness=warm)
         candidate = candidate or warm
         row = {'round': number, 'method': args.method, 'elements': len(child.tri), 'refinement': change,
@@ -137,4 +140,6 @@ if __name__ == '__main__':
                         help='Stress-score weight away from yield: zero emphasizes yielded regions; default .1')
     parser.add_argument('--tolerance', type=float, default=1e-4)
     parser.add_argument('--solve-seconds', type=float, default=120)
+    parser.add_argument('--initial-span',type=float,default=.002,
+                        help='Initial distance above the proven Fs, scaled by max(1,Fs); expand only as needed')
     run(parser.parse_args())

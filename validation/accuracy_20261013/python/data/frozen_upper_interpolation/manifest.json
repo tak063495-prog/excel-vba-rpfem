@@ -1,0 +1,18 @@
+{
+  "case": "P06N",
+  "fs": 0.6952250450157371,
+  "source_elements": 2914,
+  "child_elements": 6398,
+  "source_value": 0.9999414444462437,
+  "legacy_method": "global-coordinate 3x3 inverse P2 sampling from mesh_geometry.interpolate_velocity before local determinant correction",
+  "legacy_raw_cone_error": 4.035455428857633e-07,
+  "legacy_physical_pass": false,
+  "physical_tolerance": 1e-07,
+  "sha256": {
+    "child_mesh.npz": "98b7f698fd3db971ce81c8bbda12f7237b2037c3dc3af1c5af387960503135b8",
+    "legacy_global_inverse_field.npz": "578a7b9347cf50162d4ce8ff48311c8c4b154202748a993d3a390382c1dda9c7",
+    "P06N.json": "389bf6c3c29d49e509a1ea0f270ca0fae3594910da0cb8dd594edfea9cefec2b",
+    "source_field.npz": "5b6412b8e0d18b09c422e3d95fa8014dc52767030ce233c265ff9f66e98c9fad",
+    "source_mesh.npz": "706f63b6de630c9c71e3fd70543f80654a4162a8981dd4642822506360cd7eab"
+  }
+}

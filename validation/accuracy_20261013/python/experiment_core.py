@@ -179,6 +179,11 @@ class Prepared:
         self.m,self.fs,self.mode,self.q,self.kind=m,fs,mode,q,reduction
         t=time.perf_counter();self.original=program(m,fs,mode,q,fixed_load);self.assembly_seconds=time.perf_counter()-t
         E,b,G,h,dims,cost=self.original;self.T=None;self.off=np.zeros(len(cost));self.cone_ids=np.arange(len(dims));self.stats=[]
+        # Bind this physical optimization objective and layout before any
+        # auxiliary feasibility program can copy and change this preparation.
+        self.physical_original_objective=cost.copy()
+        self.physical_original_objective.setflags(write=False)
+        self.physical_original_layout=(E.shape,G.shape,len(b),len(h),tuple(dims))
         t=time.perf_counter()
         if reduction=='zero':
             er=E.tocsr();single=np.flatnonzero(np.diff(er.indptr)==1)
@@ -288,6 +293,35 @@ def settings(overrides=None,max_iter=250):
     for k,v in (overrides or {}).items():setattr(s,k,v)
     return s
 
+def inverse_dual_guide(pr,result):
+    """Verify an original optimization dual that excludes a primal bound.
+
+    This guide screens a discrete root only. Fixed-load lower and modified
+    upper feasibility objectives cannot suppress physical witness recovery.
+    """
+    E,b,G,h,dims,cost=pr.original
+    values=[result.get(key) for key in ('dual_stationarity','dual_cone_error','dual_objective')]
+    try:finite=bool(np.isfinite(np.asarray(values,dtype=float)).all())
+    except (TypeError,ValueError):finite=False
+    evidence={'verified':False,'scope':'discrete_inverse_sign_only; primal unchanged'}
+    if not finite:return dict(evidence,reason='NONFINITE_OR_MISSING_ORIGINAL_DUAL')
+    stationarity,cone,objective=map(float,values)
+    evidence.update(dual_stationarity=stationarity,dual_cone_error=cone,dual_objective=objective)
+    if stationarity<0 or cone<0 or stationarity>1e-7 or cone>1e-8:
+        return dict(evidence,reason='ORIGINAL_RAW_DUAL_GATE_REJECTED')
+    if pr.mode=='lower':
+        expected=np.zeros(18*len(pr.m.tri)+1);expected[-1]=-1.
+        if not np.array_equal(cost,expected):return dict(evidence,reason='LOWER_FREE_LOAD_OBJECTIVE_AND_LAYOUT_REQUIRED')
+        verified=-objective<=LOWER_TARGET-2e-6
+    elif pr.mode=='upper':
+        layout=(E.shape,G.shape,len(b),len(h),tuple(dims))
+        if layout!=getattr(pr,'physical_original_layout',None) or not np.array_equal(cost,getattr(pr,'physical_original_objective',None)):
+            return dict(evidence,reason='ORIGINAL_UPPER_OBJECTIVE_AND_LAYOUT_REQUIRED')
+        verified=objective>=UPPER_TARGET+2e-6
+    else:return dict(evidence,reason='LOWER_OR_UPPER_ONLY')
+    evidence.update(verified=bool(verified),reason='STRICT_ORIGINAL_INVERSE_DUAL_GUIDE' if verified else 'NO_INVERSE_SEPARATION')
+    return evidence
+
 def cone_row_scales(matrix,dimensions):
     """One positive Frobenius multiplier per original cone block.
 
@@ -333,16 +367,22 @@ def solve(pr,overrides=None,max_iter=250,duals=True,save=None,early=False,early_
     t=time.perf_counter();r=evaluate(pr,x,z);au_time=time.perf_counter()-t
     polish={}
     if primal_polish and not r['physical_pass'] and np.isfinite(x).all():
-        t=time.perf_counter();E,b,*_=pr.original
-        correction=lsmr(E,b-E@x,atol=1e-15,btol=1e-15,maxiter=10000)
-        candidate=x+correction[0];rr=evaluate(pr,candidate,z)
-        accepted=bool(rr['physical_pass'])
-        polish={'method':'original_equality_lsmr_then_full_physical_audit','accepted':accepted,
-                'lsmr_flag':correction[1],'iterations':correction[2],
-                'correction_norm':float(np.linalg.norm(correction[0])),
-                'seconds':time.perf_counter()-t,'before_raw':r.get('raw_lower_errors'),
-                'after_raw':rr.get('raw_lower_errors')}
-        if accepted:r,x=rr,candidate
+        guide=inverse_dual_guide(pr,r)
+        if guide['verified']:
+            polish={'method':'original_equality_lsmr_then_full_physical_audit','skipped':True,
+                    'accepted':False,'reason':'STRICT_ORIGINAL_INVERSE_DUAL_GUIDE','raw_original_dual_evidence':guide,
+                    'primal_unchanged':True,'seconds':0.}
+        else:
+            t=time.perf_counter();E,b,*_=pr.original
+            correction=lsmr(E,b-E@x,atol=1e-15,btol=1e-15,maxiter=10000)
+            candidate=x+correction[0];rr=evaluate(pr,candidate,z)
+            accepted=bool(rr['physical_pass'])
+            polish={'method':'original_equality_lsmr_then_full_physical_audit','accepted':accepted,
+                    'lsmr_flag':correction[1],'iterations':correction[2],
+                    'correction_norm':float(np.linalg.norm(correction[0])),
+                    'seconds':time.perf_counter()-t,'before_raw':r.get('raw_lower_errors'),
+                    'after_raw':rr.get('raw_lower_errors')}
+            if accepted:r,x=rr,candidate
     # For a strictly zero-cost upper program, a feasible Farkas ray can be
     # multiplied by a positive scalar without changing its original-program
     # meaning. Clarabel commonly normalizes its separation to one, just below

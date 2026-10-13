@@ -14,7 +14,8 @@ import experiment_core as core
 from mesh_geometry import flow_metric_flip, interpolate_velocity
 
 SOURCE_HASHES=dict(driver.SOURCE_HASHES)
-for source in [Path(__file__),Path(__file__).with_name('mesh_geometry.py')]:
+for source in [Path(__file__),Path(__file__).with_name('mesh_geometry.py'),
+               Path(__file__).with_name('precision_interpolation.py')]:
     SOURCE_HASHES[str(source.resolve().relative_to(driver.REPO))]=hashlib.sha256(source.read_bytes()).hexdigest()
 
 
