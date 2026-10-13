@@ -1,0 +1,65 @@
+# 精度改善の数値実験（2026-10-13）
+
+G1R17とIssue #8を基盤に、P06A/P06Nと最新26ケース表の未達ケースを
+同じ物理モデルで計算する。実験結果は計算中の候補であり、全ケースの1%達成を
+意味しない。VBA候補の実装と実Excel検証は [G1R18](../../versions/G1R18/ADAPT_CONTINUATION.md)。
+
+## 判定
+
+各上下端点は、元の材料・荷重・境界・界面上の応力または速度場を独立に再監査する。
+原式の釣合い・降伏・境界残差の許容値1e-7、下界荷重倍率1.000001以上、上界仕事比
+0.999999以下を維持する。丸め誤差を包む厳密区間演算の証明ではない。
+P06Nを含む非関連入力は既存Davis等価関連モデルであり、直接非関連モデルとの誤差は別。
+
+資料の相対幅 `(U-L)/U` と、VBAの対称相対幅 `2(U-L)/(U+L)` を両方保存する。
+本CLIの目標達成には対称相対幅1%以下、q8、各端点の元メッシュでの根幅
+`1e-4*max(1, bracket_midpoint)` 以下を要求する。
+
+同じ物理モデルなら上下界のメッシュは異なってよい。新しい試行が失敗しても
+既存の最大下界・最小上界をその元メッシュとともに保持する。最適化の停止状態や
+監査不合格の値から連続体端点を作らない。原プログラムの有限・許容内の双対場は
+離散根の反対符号を案内するだけで、連続体の証拠場にはしない。
+
+## 実装した候補
+
+- 既存のひずみ速度・速度ジャンプによる適合細分化を継続。
+- 同一点での回復設定を比較し、物理監査済みの場を優先して保持。
+- 各SOCの全行に同じ正倍率を掛ける正規化。双対を元の倍率へ戻して監査。
+- 元の釣合い行列への残差補正後、降伏を含む原物理条件を再監査。補正だけで合格にしない。
+- 下界の固定荷重倍率による実行可能場の回復。成功場だけを端点に使い、その双対を
+  荷重最大化問題の逆符号へ転用しない。
+- c=0自由頂点の角度分割を下界側に限定して試す `--fan-lower`。
+- 摩擦角0の上界に、非圧縮条件と保守的な散逸エピグラフを追加。
+  φ>0の旧行列・監査とのビット一致と、純せん断の解析解を確認。
+- φ=ψ=0かつ固定荷重0の上界では不変の行列を保持し、Fs依存の価格だけ更新。
+  強度比例による場の移送も別に実験し、新Fsでの再監査を必須にした。
+
+求解設定は [Clarabelの公式設定](https://clarabel.org/stable/api_settings/)を使用する。
+求解器の主方式を置換するVBA/DLL実装ではなく、Pythonでの比較・回復実験である。
+
+## 再実行
+
+リポジトリのルートから、Python3.12/3.13と上記requirementsを使う。Windowsでは
+`python -X utf8` を指定する。全ケース入力と初期メッシュはリポジトリ内のG1R17資料を
+読み、外部Excelブックなしで実験できる。浸透モデルを乾燥モデルへ置き換える操作は拒否する。
+
+```text
+python -X utf8 -m pip install -r validation/accuracy_20261013/requirements.txt
+python -X utf8 validation/accuracy_20261013/python/accuracy_driver.py --case P06N --seed validation/accuracy_20261013/seeds/P06N --output validation/accuracy_20261013/results --cycles 8 --max-elements 12000 --fan-lower
+python -X utf8 validation/accuracy_20261013/python/accuracy_driver.py --case P06N --resume --recheck --output validation/accuracy_20261013/results --cycles 0
+python -X utf8 validation/accuracy_20261013/python/run_suite.py --output validation/accuracy_20261013/suite_results --cycles 8 --max-elements 12000
+python -X utf8 -m unittest discover -s validation/accuracy_20261013/tests -v
+python -X utf8 -m unittest discover -s validation/accuracy_20261013/python -p test_mesh_accuracy.py -v
+python -X utf8 validation/accuracy_20261013/python/check_zero_phi.py
+```
+
+`seeds`は添付の監査済み最良場をWindowsで再監査したもの。外部の試行履歴ZIPを
+再取り込みする場合は `import_history.py --history 展開先 --output 新しい保存先` を使う。
+元の添付ファイルと保存済み履歴は変更しない。
+
+各ケースの`summary.json`に端点、メッシュ/モデルID、元の証拠場、原監査、根の判定、
+各段階の履歴がある。各根の`*_trials.json`には不合格・未完了も残す。Python/科学計算
+ライブラリの時間とVBA/DLLの実測時間を同じものとして扱わない。
+
+再開時はcase、物理モデル、メッシュ、側、q、政策、Fs、根の符号・順序・幅を照合する。
+条件が一致しない根情報は未完了へ降格し、元物理監査を通る場だけを再利用する。

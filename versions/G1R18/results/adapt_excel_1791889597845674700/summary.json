@@ -1,0 +1,21 @@
+{
+  "status": "PASS",
+  "pid": 13180,
+  "prior_pids": [],
+  "output": "D:\\Work\\excel-vba-rpfem\\versions\\G1R18\\results\\adapt_excel_1791889597845674700",
+  "runs": {
+    "disabled": {
+      "result": "PASS;lower=1.36116470940989;upper=1.50828188339831;lower_elements=67;upper_elements=67;current_elements=67;incomplete=True;physical_gates=PASS",
+      "seconds": 15.25238989997888
+    },
+    "injected_failure": {
+      "result": "PASS;lower=1.36116470940989;upper=1.50828188339831;lower_elements=67;upper_elements=67;current_elements=67;incomplete=True;physical_gates=PASS",
+      "seconds": 15.638208899996243
+    }
+  },
+  "dialogs": [],
+  "excel_version": "16.0",
+  "automation_security": 1,
+  "compile": "PASS",
+  "failure_checks": "PASS;exact_baseline_retained;both_original_field_gates;failed_trial_not_accepted"
+}

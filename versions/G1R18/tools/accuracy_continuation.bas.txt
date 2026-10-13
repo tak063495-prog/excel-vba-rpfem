@@ -1,0 +1,74 @@
+' Optional continuation after the ordinary budget, using the requested final
+' quadrature and Fs tolerance. Every candidate still enters Evaluate/FieldGate.
+Private Sub ContinueAccuracy(ByVal mode As String, ByVal targetGap As Double)
+    Dim baseline As RPX_MeshState
+    Dim round As Long, cap As Long, stalls As Long, attemptedRounds As Long
+    Dim beforeGap As Double, afterGap As Double, gain As Double
+    Dim number As Long, source As String, message As String, errorLine As Long
+    Dim useIndicator As Boolean, refined As Boolean
+    If adaptAccuracyRounds = 0 Or adaptAccuracyCap <= adaptFinalTarget Then Exit Sub
+    RPX_DiagEvent "accuracy_begin", "cap=" & adaptAccuracyCap & ";rounds=" & adaptAccuracyRounds & ";quadrature=" & RSubdivisions & ";fs_tolerance=" & RFsTolerance
+    adaptCoarseSearch = False
+    For round = 1 To adaptAccuracyRounds
+        If XCancel Then err.Raise 18, , "ANALYSIS_CANCELLED"
+        If RPX_TargetMet(mode, RBestLower.value, RBestUpper.value, currentPairValid) Then Exit For
+        If Not currentPairValid Or RCurrent.elements <= 0 Then Exit For
+        CloneState baseline, RCurrent
+        If baseline.elements >= adaptAccuracyCap Then Exit For
+        cap = CLng(baseline.elements * AdaptRobustRefineGrowth)
+        If cap <= baseline.elements Then cap = baseline.elements + 1
+        If cap > adaptAccuracyCap Then cap = adaptAccuracyCap
+        beforeGap = GapRatio(RBestLower.value, RBestUpper.value)
+        attemptedRounds = round
+        useIndicator = (stalls > 0)
+        RPX_DiagEvent "accuracy_action", "round=" & round & ";baseline_elements=" & baseline.elements & ";cap=" & cap & ";weight=" & IIf(useIndicator, "boundgap", "kinematic")
+        On Error GoTo CandidateFailed
+        RPX_DiagBegin dpMesh
+        refined = TryShearRefine(baseline, cap, False, useIndicator)
+        RPX_DiagEnd dpMesh
+        If Not refined Then
+            On Error GoTo 0
+            RPX_RestoreState baseline: CloneState RCurrent, baseline
+            RPX_DiagEvent "accuracy_stop", "reason=no_admissible_refinement;round=" & round
+            Exit For
+        End If
+        meshStage = "evaluate"
+        Call Evaluate(mode, "accuracy_" & round)
+        If Not AcceptCandidate(baseline, RCurrent) Then
+            RPX_RestoreState baseline: CloneState RCurrent, baseline
+            RPX_DiagEvent "accuracy_rollback", "round=" & round & ";reason=pair_worsened;best_side_witnesses_kept=1"
+        End If
+        Call RestoreFinalBounds(mode)
+        afterGap = GapRatio(RBestLower.value, RBestUpper.value)
+        gain = 0#: If beforeGap > 0# Then gain = (beforeGap - afterGap) / beforeGap
+        If gain <= 0.000001 Then stalls = stalls + 1 Else stalls = 0
+        RPX_DiagEvent "accuracy_round", "round=" & round & ";elements=" & RCurrent.elements & ";gap=" & afterGap & ";gain=" & gain & ";stalls=" & stalls
+        On Error GoTo 0
+        If stalls >= 2 Then
+            RPX_DiagEvent "accuracy_stop", "reason=stalled_after_indicator_retry;round=" & round
+            Exit For
+        End If
+    Next round
+    RPX_DiagEvent "accuracy_end", "attempted_rounds=" & attemptedRounds & ";elements=" & RCurrent.elements & ";gap=" & GapRatio(RBestLower.value, RBestUpper.value)
+    Exit Sub
+CandidateFailed:
+    number = err.number: source = err.source: message = err.description: errorLine = Erl
+    On Error GoTo 0
+    RPX_ErrorEvidence number, source, message, errorLine, meshStage
+    If number = 18 Or XCancel Then err.Raise 18, source, "ANALYSIS_CANCELLED"
+    If InStr(1, message, "HSD_STABLE_UNAVAILABLE_MEMORY", vbBinaryCompare) = 1 Then err.Raise number, source, message
+    If Not RPX_Recoverable(number, message, meshStage, True) Then err.Raise number, source, message
+    ' Restore the complete baseline; never convert an UNKNOWN into a bound.
+    On Error GoTo RestoreFailed
+    RPX_DiagEnd dpMesh
+    RPX_RestoreState baseline: CloneState RCurrent, baseline
+    currentPairValid = True
+    RFsSearchIncomplete = True
+    RPX_DiagEvent "accuracy_stop", "reason=numerical_or_geometry_failure;round=" & round & ";old_witnesses_kept=1;message=" & message
+    On Error GoTo 0
+    Exit Sub
+RestoreFailed:
+    number = err.number: source = err.source: message = err.description
+    On Error GoTo 0
+    err.Raise number, source, "ADAPT_RESTORE_FAILED " & message
+End Sub

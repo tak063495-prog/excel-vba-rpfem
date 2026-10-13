@@ -1,0 +1,2 @@
+import/*.bas -text
+src/vba/*.bas text eol=crlf

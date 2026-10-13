@@ -1,0 +1,7 @@
+{
+  "status": "PASS",
+  "scope": "Reinspect retained real Excel runs; no rerun or source change",
+  "previous_harness_error": "'utf-8' codec can't decode byte 0xff in position 0: invalid start byte",
+  "continuation_log": "D:\\Work\\excel-vba-rpfem\\versions\\G1R18\\results\\adapt_excel_1791889206667774900\\RPFEM_logs\\20261013_200024_22064_analysis.tsv",
+  "continuation_checks": "PASS;enabled_only;completed_round;final_tolerance_preserved"
+}

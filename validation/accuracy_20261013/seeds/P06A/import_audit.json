@@ -1,0 +1,127 @@
+{
+  "case": "P06A",
+  "certificates": {
+    "lower": {
+      "case": "P06A",
+      "mode": "lower",
+      "q": 8,
+      "fs": 0.8200429950519522,
+      "mesh_id": "6432018e21db1bd4653b70524622dc96ccac9602722c5380df6528b1a977c943",
+      "physical_model_id": "f67b757898e3bcc3f45c5ea9b5a8e290955fad53f5900c5cd8c31b9637d51875",
+      "elements": 515,
+      "source": "P06A_extra_kinematic_lower",
+      "root_complete": true,
+      "mesh_path": "best_lower_mesh.npz",
+      "field_path": "best_lower_field.npz",
+      "audit": {
+        "objective": -1.000108390872411,
+        "value": 1.000108390872411,
+        "eq_error": 1.4990786390001176e-13,
+        "cone_error": 1.2809575622441116e-10,
+        "audit": {
+          "pass": true,
+          "errors": {
+            "yield": 1.2809575622441116e-10,
+            "equilibrium": 2.7284841053187847e-11,
+            "internal_traction": 1.8041124150158794e-13,
+            "boundary_traction": 5.551115123125783e-17
+          },
+          "load": 1.000108390872411,
+          "value": 1.000108390872411
+        },
+        "raw_lower_errors": {
+          "yield": 2.5619151244882232e-09,
+          "equilibrium": 5.456968210637569e-10,
+          "internal_traction": 3.6082248300317588e-12,
+          "boundary_traction": 1.1102230246251565e-15
+        },
+        "physical_pass": true,
+        "witness": true,
+        "numerical_gate": false,
+        "discrete_root_search": {
+          "root_complete": true,
+          "endpoint": 0.8200429950519522,
+          "bracket": [
+            0.8200429950519522,
+            0.8200795989030717
+          ],
+          "bracket_width": 3.6603851119476616e-05,
+          "fs_tolerance": 0.0001,
+          "bracket_signs": [
+            1,
+            -1
+          ],
+          "q": 8,
+          "mode": "lower",
+          "case": "P06A",
+          "policy": "equal_reduced_phi",
+          "mesh_id": "6432018e21db1bd4653b70524622dc96ccac9602722c5380df6528b1a977c943",
+          "physical_model_id": "f67b757898e3bcc3f45c5ea9b5a8e290955fad53f5900c5cd8c31b9637d51875",
+          "source": "P06A_extra_kinematic_lower_summary.json"
+        }
+      }
+    },
+    "upper": {
+      "case": "P06A",
+      "mode": "upper",
+      "q": 8,
+      "fs": 0.8848801404175659,
+      "mesh_id": "6432018e21db1bd4653b70524622dc96ccac9602722c5380df6528b1a977c943",
+      "physical_model_id": "f67b757898e3bcc3f45c5ea9b5a8e290955fad53f5900c5cd8c31b9637d51875",
+      "elements": 515,
+      "source": "P06A_extra_kinematic_upper",
+      "root_complete": true,
+      "mesh_path": "best_upper_mesh.npz",
+      "field_path": "best_upper_field.npz",
+      "audit": {
+        "objective": 0.9998321174348354,
+        "value": 0.9998321174348401,
+        "eq_error": 2.095545958979983e-15,
+        "cone_error": 1.1941911197995753e-10,
+        "audit": {
+          "pass": true,
+          "errors": {
+            "flow": 7.41028070866259e-11,
+            "jump": 1.5054097895528914e-11,
+            "bonded_interface": 0.0,
+            "boundary": 0.0,
+            "work": 2.2648549702353193e-14,
+            "objective": 4.773959005888173e-15
+          },
+          "dissipation": 0.9998321174348401,
+          "work": [
+            0.0,
+            1.0000000000000226
+          ],
+          "value": 0.9998321174348401
+        },
+        "raw_lower_errors": {},
+        "physical_pass": true,
+        "witness": true,
+        "numerical_gate": false,
+        "discrete_root_search": {
+          "root_complete": true,
+          "endpoint": 0.8848801404175659,
+          "bracket": [
+            0.8847948305766458,
+            0.8848801404175659
+          ],
+          "bracket_width": 8.530984092014471e-05,
+          "fs_tolerance": 0.0001,
+          "bracket_signs": [
+            1,
+            -1
+          ],
+          "q": 8,
+          "mode": "upper",
+          "case": "P06A",
+          "policy": "equal_reduced_phi",
+          "mesh_id": "6432018e21db1bd4653b70524622dc96ccac9602722c5380df6528b1a977c943",
+          "physical_model_id": "f67b757898e3bcc3f45c5ea9b5a8e290955fad53f5900c5cd8c31b9637d51875",
+          "source": "P06A_extra_kinematic_upper_summary.json"
+        }
+      }
+    }
+  },
+  "scope": "Independent Windows re-audit of archived fields; not a new root search"
+}

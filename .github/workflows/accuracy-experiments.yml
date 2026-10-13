@@ -1,0 +1,20 @@
+name: Audited accuracy experiments
+on:
+  pull_request:
+    paths:
+      - 'validation/accuracy_20261013/**'
+      - 'versions/G1R18/**'
+      - '.github/workflows/accuracy-experiments.yml'
+  workflow_dispatch:
+jobs:
+  python-certificates:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: '3.13'
+      - run: python -X utf8 -m pip install -r validation/accuracy_20261013/requirements.txt
+      - run: python -X utf8 -m unittest discover -s validation/accuracy_20261013/tests -v
+      - run: python -X utf8 -m unittest discover -s validation/accuracy_20261013/python -p test_mesh_accuracy.py -v
+      - run: python -X utf8 validation/accuracy_20261013/python/check_zero_phi.py

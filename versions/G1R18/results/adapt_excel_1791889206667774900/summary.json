@@ -1,0 +1,21 @@
+{
+  "status": "FAIL",
+  "pid": 22064,
+  "prior_pids": [],
+  "output": "D:\\Work\\excel-vba-rpfem\\versions\\G1R18\\results\\adapt_excel_1791889206667774900",
+  "runs": {
+    "disabled": {
+      "result": "PASS;lower=1.36116470940989;upper=1.50828188339831;lower_elements=67;upper_elements=67;current_elements=67;incomplete=True;physical_gates=PASS",
+      "seconds": 14.173128900001757
+    },
+    "continued": {
+      "result": "PASS;lower=1.38841098742785;upper=1.4720504229966;lower_elements=142;upper_elements=142;current_elements=142;incomplete=True;physical_gates=PASS",
+      "seconds": 36.381870799988974
+    }
+  },
+  "dialogs": [],
+  "excel_version": "16.0",
+  "automation_security": 1,
+  "compile": "PASS",
+  "error": "'utf-8' codec can't decode byte 0xff in position 0: invalid start byte"
+}
