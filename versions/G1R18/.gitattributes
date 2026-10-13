@@ -1,2 +1,3 @@
-import/*.bas -text
+import/*.bas binary
 src/vba/*.bas text eol=crlf
+results/**/*.tsv binary

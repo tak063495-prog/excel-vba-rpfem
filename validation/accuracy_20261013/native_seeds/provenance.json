@@ -1,0 +1,6 @@
+{
+  "archive": "downloads/RPFEM_G1R17_Native26_20261012.zip",
+  "archive_sha256": "3b65c2f3c2ed20283ae9f052321785a7547988391895cfea37e475082e4f6d62",
+  "scope": "Independent original physical re-audit, current q8, no native root flags reused",
+  "command": "python -X utf8 validation/accuracy_20261013/python/import_native.py --archive downloads/RPFEM_G1R17_Native26_20261012.zip --output validation/accuracy_20261013/native_seeds --cases P06A P06N D01A D02A D03N D07A P01A P01N P03A P03N P05A P05N P07N P08A P09A P10A"
+}

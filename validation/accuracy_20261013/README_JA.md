@@ -29,6 +29,12 @@ P06Nを含む非関連入力は既存Davis等価関連モデルであり、直�
 - 下界の固定荷重倍率による実行可能場の回復。成功場だけを端点に使い、その双対を
   荷重最大化問題の逆符号へ転用しない。
 - c=0自由頂点の角度分割を下界側に限定して試す `--fan-lower`。
+- 同じモデルのnative26保存場を独立再監査し、履歴の最良場と組み合わせる。
+  nativeの成功表示や根完了フラグは引き継がない。旧qの上界も現在のq8散逸で再監査する。
+- 目的関数が厳密に0の上界で、元の双対を正倍率で再監査した不可能性rayを
+  離散根の案内だけに使う。主場・上下界の合否は変更しない。
+- 既に元の原式で符号が確定した点では回復求解を終える。再監査済みの保存場を
+  同じメッシュ・同じFsの根符号として使い、同じ点の再求解を省く。
 - 摩擦角0の上界に、非圧縮条件と保守的な散逸エピグラフを追加。
   φ>0の旧行列・監査とのビット一致と、純せん断の解析解を確認。
 - φ=ψ=0かつ固定荷重0の上界では不変の行列を保持し、Fs依存の価格だけ更新。
@@ -48,6 +54,8 @@ python -X utf8 -m pip install -r validation/accuracy_20261013/requirements.txt
 python -X utf8 validation/accuracy_20261013/python/accuracy_driver.py --case P06N --seed validation/accuracy_20261013/seeds/P06N --output validation/accuracy_20261013/results --cycles 8 --max-elements 12000 --fan-lower
 python -X utf8 validation/accuracy_20261013/python/accuracy_driver.py --case P06N --resume --recheck --output validation/accuracy_20261013/results --cycles 0
 python -X utf8 validation/accuracy_20261013/python/run_suite.py --output validation/accuracy_20261013/suite_results --cycles 8 --max-elements 12000
+python -X utf8 validation/accuracy_20261013/python/import_native.py --archive downloads/RPFEM_G1R17_Native26_20261012.zip --output validation/accuracy_20261013/native_seeds --cases P06A P06N P01A P01N P03A P03N P05A P05N P07N D01A D02A D03N D07A P08A P09A P10A
+python -X utf8 validation/accuracy_20261013/python/combine_seeds.py --cases P06A P06N --sources validation/accuracy_20261013/native_seeds validation/accuracy_20261013/seeds validation/accuracy_20261013/results --output validation/accuracy_20261013/combined_seeds
 python -X utf8 -m unittest discover -s validation/accuracy_20261013/tests -v
 python -X utf8 -m unittest discover -s validation/accuracy_20261013/python -p test_mesh_accuracy.py -v
 python -X utf8 validation/accuracy_20261013/python/check_zero_phi.py
@@ -63,3 +71,8 @@ python -X utf8 validation/accuracy_20261013/python/check_zero_phi.py
 
 再開時はcase、物理モデル、メッシュ、側、q、政策、Fs、根の符号・順序・幅を照合する。
 条件が一致しない根情報は未完了へ降格し、元物理監査を通る場だけを再利用する。
+
+`--upper-only`は上下界の保存場がある時に、下界側の証拠を保持して上界メッシュだけを
+細分化する実験。`--recheck`指定時の初段は両側の元メッシュの根を再確認する。
+`run_suite.py --seed-root 保存場親フォルダ --parallel 2 --fan-lower`で各ケースを
+その保存場から計算できる。科学計算ライブラリは各プロセス1スレッドに制限する。

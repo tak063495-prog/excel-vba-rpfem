@@ -4,6 +4,51 @@ import experiment_core as core
 from experiment_core import np, topology
 
 
+def lower_stress_score(mesh, field, fs, with_metadata=False):
+    """Rank lower-mesh refinements by stress variation near the yield surface.
+
+    This is a mesh-selection heuristic, not an error estimate or certificate.
+    It combines variation of the six quadratic Bernstein controls with yield
+    proximity and same-material stress jumps. New bounds still require the
+    full original physical audit and their own root search.
+    """
+    field = np.asarray(field, dtype=float)
+    if field.shape != (18 * len(mesh.tri) + 1,) or not np.isfinite(field).all():
+        raise ValueError('A finite lower stress field on this mesh is required')
+    if not np.isfinite(fs) or fs <= 0:
+        raise ValueError('A finite positive strength factor is required')
+    sigma = field[:-1].reshape(-1, 6, 3)
+    area, _, edges = topology(mesh)
+    reference = max(float(np.sqrt(np.mean(np.sum(sigma*sigma, axis=2)))), 1e-12)
+    variation = np.mean(np.sum((sigma - sigma.mean(axis=1)[:, None])**2, axis=2), axis=1) / reference**2
+    proximity = np.zeros(len(mesh.tri))
+    for e, values in enumerate(sigma):
+        cohesion, phi = core.audit_strength(mesh, e, fs)
+        cap = 2 * cohesion * np.cos(phi)
+        margin = cap - np.hypot(values[:, 0] - values[:, 1], 2*values[:, 2]) - np.sin(phi)*(values[:, 0]+values[:, 1])
+        proximity[e] = np.mean(np.exp(-8*np.maximum(margin, 0)/(reference+cap)))
+    score = area * variation * (.1 + .9*proximity)
+    edge_score = np.zeros(len(mesh.tri))
+    for edge in edges:
+        e, f = edge.elements
+        if f < 0 or mesh.material_id[e] != mesh.material_id[f]:
+            continue
+        jump = sigma[e, edge.loc[0]] - sigma[f, edge.loc[1]]
+        variation_jump = float(np.mean(np.sum(jump*jump, axis=1))) / reference**2
+        term = .25 * (area[e]+area[f])/2 * variation_jump * (.1+.9*(proximity[e]+proximity[f])/2)
+        edge_score[e] += term/2
+        edge_score[f] += term/2
+    score += edge_score
+    if not np.isfinite(score).all():
+        raise ValueError('Nonfinite stress refinement score')
+    if with_metadata:
+        return score, {'method': 'Bernstein_stress_variation_yield_proximity_and_same_material_jumps',
+                       'certificate': False, 'fs': float(fs), 'stress_reference': reference,
+                       'variation': variation.tolist(), 'yield_proximity': proximity.tolist(),
+                       'edge_score': edge_score.tolist(), 'score': score.tolist()}
+    return score
+
+
 def angular_fan_refine(mesh, rec, scope='star'):
     """Split triangles incident to physical zero-stress c=0 boundary vertices.
 

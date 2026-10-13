@@ -1,0 +1,138 @@
+{
+  "case": "P06N",
+  "certificates": {
+    "lower": {
+      "case": "P06N",
+      "mode": "lower",
+      "q": 8,
+      "fs": 0.6705083583412688,
+      "mesh_id": "2f483c516770f01ed93ca59629b4431610dd8999b4ee0045d3a8086fcc08d85c",
+      "physical_model_id": "08cc8e73e85408e7a82cbe79b5716ef007cb917d00e021872c40e510b5d17525",
+      "elements": 1000,
+      "source": "D:\\Work\\excel-vba-rpfem\\validation\\accuracy_20261013\\native_seeds\\P06N",
+      "root_complete": false,
+      "mesh_path": "best_lower_mesh.npz",
+      "field_path": "best_lower_field.npz",
+      "audit": {
+        "objective": -1.0001916182241943,
+        "value": 1.0001916182241943,
+        "eq_error": 4.474198789239381e-14,
+        "cone_error": 0.0,
+        "audit": {
+          "pass": true,
+          "errors": {
+            "yield": 3.39786469791691e-14,
+            "equilibrium": 7.545963853772264e-12,
+            "internal_traction": 5.795364188543317e-14,
+            "boundary_traction": 3.753585013478832e-14
+          },
+          "load": 1.0001916182241943,
+          "value": 1.0001916182241943
+        },
+        "raw_lower_errors": {
+          "yield": 6.79572939583382e-13,
+          "equilibrium": 1.5091927707544528e-10,
+          "internal_traction": 1.1590728377086634e-12,
+          "boundary_traction": 7.507170026957664e-13
+        },
+        "physical_pass": true,
+        "witness": true,
+        "numerical_gate": false
+      }
+    },
+    "upper": {
+      "case": "P06N",
+      "mode": "upper",
+      "q": 8,
+      "fs": 0.6952250450157371,
+      "mesh_id": "e6ea79b19d4c29fe4a13ab9a0e19d211f639f841f7ba94bc571b41843d50ecdb",
+      "physical_model_id": "08cc8e73e85408e7a82cbe79b5716ef007cb917d00e021872c40e510b5d17525",
+      "elements": 2914,
+      "source": "D:\\Work\\excel-vba-rpfem\\validation\\accuracy_20261013\\results\\P06N",
+      "root_complete": true,
+      "mesh_path": "best_upper_mesh.npz",
+      "field_path": "best_upper_field.npz",
+      "audit": {
+        "objective": 0.9999414444462444,
+        "value": 0.9999414444462437,
+        "eq_error": 3.469446951953614e-16,
+        "cone_error": 3.227220283721636e-08,
+        "audit": {
+          "pass": true,
+          "errors": {
+            "flow": 1.5704602565896372e-08,
+            "jump": 6.526385315261568e-12,
+            "bonded_interface": 0.0,
+            "boundary": 0.0,
+            "work": 3.3306690738754696e-15,
+            "objective": 7.771561172376096e-16
+          },
+          "dissipation": 0.9999414444462437,
+          "work": [
+            0.0,
+            0.9999999999999967
+          ],
+          "value": 0.9999414444462437
+        },
+        "raw_lower_errors": {},
+        "physical_pass": true,
+        "witness": true,
+        "numerical_gate": false,
+        "discrete_root_search": {
+          "mode": "upper",
+          "root_complete": true,
+          "bracket": [
+            0.6952011443499839,
+            0.6952250450157371
+          ],
+          "bracket_width": 2.3900665753195938e-05,
+          "fs_tolerance": 0.0001,
+          "endpoint": 0.6952250450157371,
+          "trials": 8,
+          "seconds": 1594.5340409000055,
+          "opposite_numerical_endpoint_is_continuum_bound": false
+        }
+      }
+    }
+  },
+  "candidates": [
+    {
+      "source": "D:\\Work\\excel-vba-rpfem\\validation\\accuracy_20261013\\native_seeds\\P06N",
+      "mode": "lower",
+      "fs": 0.6705083583412688,
+      "witness": true
+    },
+    {
+      "source": "D:\\Work\\excel-vba-rpfem\\validation\\accuracy_20261013\\native_seeds\\P06N",
+      "mode": "upper",
+      "fs": 0.7563936919252566,
+      "witness": true
+    },
+    {
+      "source": "D:\\Work\\excel-vba-rpfem\\validation\\accuracy_20261013\\results\\P06N",
+      "mode": "lower",
+      "fs": 0.6617637157006723,
+      "witness": true
+    },
+    {
+      "source": "D:\\Work\\excel-vba-rpfem\\validation\\accuracy_20261013\\results\\P06N",
+      "mode": "upper",
+      "fs": 0.6952250450157371,
+      "witness": true
+    },
+    {
+      "source": "D:\\Work\\excel-vba-rpfem\\validation\\accuracy_20261013\\seeds\\P06N",
+      "mode": "lower",
+      "fs": 0.6617637157006723,
+      "witness": true
+    },
+    {
+      "source": "D:\\Work\\excel-vba-rpfem\\validation\\accuracy_20261013\\seeds\\P06N",
+      "mode": "upper",
+      "fs": 0.7014168847296636,
+      "witness": true
+    }
+  ],
+  "relative_width_symmetric": 0.03619547799550651,
+  "scope": "Original physical fields re-audited; driver must validate retained root metadata"
+}

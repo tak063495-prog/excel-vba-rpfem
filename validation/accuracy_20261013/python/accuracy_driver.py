@@ -8,6 +8,7 @@ import argparse
 from dataclasses import dataclass
 from pathlib import Path
 import json
+import hashlib
 import platform
 import struct
 import time
@@ -18,6 +19,11 @@ REPO = Path(__file__).resolve().parents[3]
 CATALOG = REPO / 'docs/benchmarks/G1R17_native26_20261013/data/inputs'
 GEOMETRY = REPO / 'versions/G1R17/results/geometry25'
 ACCURATE = {'equilibrate_enable': False}
+SOURCE_HASHES={str(p.relative_to(REPO)):hashlib.sha256(p.read_bytes()).hexdigest()
+    for p in [Path(__file__),Path(core.__file__),Path(__file__).with_name('reduction.py'),
+              Path(__file__).with_name('zero_phi_transport.py'),Path(__file__).with_name('mesh_accuracy.py'),
+              Path(__file__).parent/'vendor/independent_audit.py',
+              Path(__file__).parent/'vendor/model_support/upper_assembly.py']}
 
 
 def load_model(case):
@@ -171,6 +177,9 @@ def search(mesh, mode, initial, folder, label, tolerance=1e-4, seconds=120, init
     lo, hi = map(float, initial)
     if not finite(lo,hi) or not 0<lo<hi:
         raise ValueError('An initial bracket must have finite positive, ordered endpoints')
+    if initial_witness is not None and lo<initial_witness.fs<hi:
+        if mode=='lower':lo=initial_witness.fs
+        else:hi=initial_witness.fs
     lr, _ = point(lo)
     hr, _ = point(hi)
     if sign(lr,mode) is None or sign(hr,mode) is None:
@@ -247,6 +256,8 @@ def run(args):
     velocity = None
     if args.resume and (folder/'summary.json').exists():
         args.seed=folder
+    if getattr(args,'upper_only',False) and not args.seed:
+        raise ValueError('Upper-only refinement requires independently audited lower and upper seeds')
     seed_meta = {}
     if args.seed:
         if (args.seed/'summary.json').exists():
@@ -305,7 +316,8 @@ def run(args):
             label = f'{args.case}_C{cycle}'
             save_mesh(folder / (label + '_mesh.npz'), mesh)
             row = {'cycle': cycle, 'elements': len(mesh.tri), 'refinement': refinement}
-            for mode in ['lower', 'upper']:
+            modes=['lower','upper'] if not getattr(args,'upper_only',False) or (args.recheck and step==0) else ['upper']
+            for mode in modes:
                 solve_mesh=best[mode].mesh if args.recheck and step==0 and mode in best else mesh
                 if args.fan_lower and mode=='lower' and not (args.recheck and step==0):
                     from mesh_accuracy import angular_fan_refine
@@ -345,6 +357,8 @@ def run(args):
                       'floating_tolerance_certificate': True, 'strict_interval_arithmetic_proof': False,
                       'environment': {'python': platform.python_version(), 'platform': platform.platform(),
                                       'numpy': np.__version__, 'threads': 1}, 'history': history}
+            report['environment']['source_sha256']=SOURCE_HASHES
+            report['environment']['clarabel']=core.clarabel.__version__
             write(folder / 'summary.json', report)
             print('BOUNDS', args.case, len(mesh.tri), lb, ub, width, flush=True)
             if report['target_met']:
@@ -360,6 +374,7 @@ if __name__ == '__main__':
     parser.add_argument('--resume', action='store_true')
     parser.add_argument('--recheck', action='store_true',help='Re-solve each retained side on its own witness mesh first')
     parser.add_argument('--fan-lower',action='store_true',help='One angle-space split on each proposed lower mesh; retain independent witnesses')
+    parser.add_argument('--upper-only',action='store_true',help='Retain the independent lower witness while refining only the upper mesh after recheck')
     parser.add_argument('--output', type=Path, required=True)
     parser.add_argument('--cycles', type=int, default=8)
     parser.add_argument('--max-elements', type=int, default=12000)

@@ -8,7 +8,9 @@ import experiment_core as core
 from experiment_core import np
 
 def require_reference_phi_zero(mesh):
-    if not np.all(mesh.materials[:,1:3]==0) or not np.all(mesh.rigid_id<0):
+    if mesh.load_phase!='reference_total':
+        raise ValueError('Phi=0 scaling requires the reference_total load phase')
+    if not np.all(mesh.materials[:,1:3]==0) or not np.all(mesh.rigid_id<0) or any(b.get('rigid',-1)>=0 for b in mesh.boundary.values()):
         raise ValueError('Transport requires only soil with phi=psi=0')
     if np.any(mesh.body[:,:,0]!=0) or any(np.any(np.asarray(b['loads'])[:,0]!=0) for b in mesh.boundary.values()):
         raise ValueError('Transport requires zero fixed body and boundary loads')

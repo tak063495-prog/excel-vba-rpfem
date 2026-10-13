@@ -3,7 +3,7 @@ import unittest
 from collections import Counter
 import experiment_core as core
 from experiment_core import np, topology
-from mesh_accuracy import angular_fan_refine
+from mesh_accuracy import angular_fan_refine, lower_stress_score
 
 
 def interface_edges(mesh):
@@ -68,6 +68,62 @@ class AngularFanTests(unittest.TestCase):
         mesh, rec = core.load_case('P06A')
         with self.assertRaises(ValueError):
             angular_fan_refine(mesh, rec, 'all')
+
+    def test_stress_indicator_rejects_wrong_mesh_shape_and_nonfinite_data(self):
+        mesh, _ = core.load_case('P06A')
+        field = np.zeros(18 * len(mesh.tri) + 1)
+        with self.assertRaises(ValueError):
+            lower_stress_score(mesh, field[:-1], .8)
+        bad = field.copy()
+        bad[12] = np.nan
+        with self.assertRaises(ValueError):
+            lower_stress_score(mesh, bad, .8)
+        for fs in (0., -1., np.nan, np.inf):
+            with self.subTest(fs=fs), self.assertRaises(ValueError):
+                lower_stress_score(mesh, field, fs)
+
+    def test_stress_indicator_handles_zero_stress_and_finite_variation(self):
+        for case in ('P06A', 'P06N'):
+            mesh, _ = core.load_case(case)
+            field = np.zeros(18 * len(mesh.tri) + 1)
+            score = lower_stress_score(mesh, field, .8)
+            self.assertTrue(np.isfinite(score).all())
+            np.testing.assert_array_equal(score, np.zeros(len(mesh.tri)))
+            # This varied field tests selection only; it is not a certificate.
+            field[:-1] = np.sin(np.arange(len(field)-1)/13)
+            score, metadata = lower_stress_score(mesh, field, .8, with_metadata=True)
+            self.assertEqual(score.shape, (len(mesh.tri),))
+            self.assertTrue(np.isfinite(score).all())
+            self.assertTrue(np.all(score >= 0))
+            self.assertGreater(float(score.sum()), 0.)
+            self.assertFalse(metadata['certificate'])
+
+    def test_stress_selected_refinement_preserves_original_material_segments(self):
+        mesh, rec = core.load_case('P06A')
+        field = np.r_[np.sin(np.arange(18*len(mesh.tri))/13), 1.]
+        score = lower_stress_score(mesh, field, .8)
+        child, _ = core.local_refine(mesh, rec, score)
+        parents = np.asarray(child.provenance['parent_element_ids'])
+        np.testing.assert_array_equal(child.material_id, mesh.material_id[parents])
+        area, _, _ = topology(mesh)
+        ca, _, _ = topology(child)
+        np.testing.assert_allclose(np.bincount(child.material_id, weights=ca), np.bincount(mesh.material_id, weights=area), atol=1e-10)
+        original = interface_edges(mesh)
+        lengths = {edge: 0. for edge in original}
+        for a, b in interface_edges(child):
+            points = child.xy[[a, b]]
+            matches = []
+            for edge in original:
+                origin, end = mesh.xy[list(edge)]
+                direction = end-origin
+                parameters = (points-origin)@direction/(direction@direction)
+                crosses = direction[0]*(points[:,1]-origin[1])-direction[1]*(points[:,0]-origin[0])
+                if np.all(parameters >= -1e-10) and np.all(parameters <= 1+1e-10) and np.max(np.abs(crosses)) < 1e-9:
+                    matches.append(edge)
+            self.assertEqual(len(matches), 1)
+            lengths[matches[0]] += float(np.linalg.norm(points[1]-points[0]))
+        for edge, length in lengths.items():
+            self.assertAlmostEqual(length, float(np.linalg.norm(mesh.xy[edge[1]]-mesh.xy[edge[0]])), places=9)
 
 
 if __name__ == '__main__':

@@ -326,10 +326,41 @@ def solve(pr,overrides=None,max_iter=250,duals=True,save=None,early=False,early_
                 'seconds':time.perf_counter()-t,'before_raw':r.get('raw_lower_errors'),
                 'after_raw':rr.get('raw_lower_errors')}
         if accepted:r,x=rr,candidate
-    # An exact affine elimination has its own discrete dual. Restoring an
-    # uncondensed dual with LSMR may be inaccurate even when this reduced dual
-    # is valid. It screens discrete roots only; continuum bounds still require
-    # an independently audited, uncondensed primal field.
+    # For a strictly zero-cost upper program, a feasible Farkas ray can be
+    # multiplied by a positive scalar without changing its original-program
+    # meaning. Clarabel commonly normalizes its separation to one, just below
+    # the driver's positive root margin. Re-audit the doubled, restored ray in
+    # the uncondensed program; it supplies a discrete root guide only.
+    ray_rescaling={}
+    if (duals and pr.mode=='upper' and
+            str(sol.status) in ('PrimalInfeasible','AlmostPrimalInfeasible') and
+            np.all(pr.original[-1]==0) and z is not None and
+            np.isfinite(z).all() and np.isfinite(canonical_z).all()):
+        E0,b0,G0,h0,dims0,cost0=pr.original
+        def ray_metrics(original_z):
+            y0,zc0=original_z[:len(b0)],original_z[len(b0):]
+            return {'objective':-float(b0@y0+h0@zc0),
+                    'stationarity':float(np.max(np.abs(cost0+E0.T@y0-G0.T@zc0),initial=0)),
+                    'cone_error':cone_error(zc0,dims0)}
+        with np.errstate(over='ignore',invalid='ignore'):
+            before=ray_metrics(z);candidate_z=2*z;candidate_canonical=2*canonical_z
+            after=ray_metrics(candidate_z) if (np.isfinite(candidate_z).all() and
+                np.isfinite(candidate_canonical).all()) else None
+        accepted=bool(after is not None and all(math.isfinite(v) for v in before.values()) and
+            all(math.isfinite(v) for v in after.values()) and
+            after['stationarity']<=1e-7 and after['cone_error']<=1e-8 and
+            after['objective']>before['objective'])
+        ray_rescaling={'factor':2.,'accepted':accepted,'before':before,'after':after,
+            'scope':'DISCRETE_UPPER_INFEASIBILITY_GUIDE_ONLY'}
+        if accepted:
+            z,canonical_z=candidate_z,candidate_canonical
+            r.update(dual_objective=after['objective'],dual_stationarity=after['stationarity'],
+                     dual_cone_error=after['cone_error'],
+                     dual_gap=abs(float(cost0@x)-after['objective']),numerical_gate=False)
+    # Reduced dual metrics are diagnostic. An elimination can have a valid
+    # reduced dual even when restoration leaves an original-program defect;
+    # only the fully restored and audited original dual can guide root search.
+    # A published continuum bound still requires an audited primal field.
     Er,br,Gr,hr,dr,cr=pr.reduced;zr=canonical_z;yr=zr[:len(br)];zc=zr[len(br):]
     reduced_dual=-float(br@yr+hr@zc)+pr.objective_offset
     reduced_stationarity=float(np.max(np.abs(cr+Er.T@yr-Gr.T@zc),initial=0))
@@ -346,6 +377,7 @@ def solve(pr,overrides=None,max_iter=250,duals=True,save=None,early=False,early_
              variables=len(pr.cost),equalities=len(pr.reduced[1]),cones=len(pr.reduced[4]),
              solver_reported_gap=abs(sol.obj_val-sol.obj_val_dual),settings_overrides=overrides or {},max_iter=max_iter,
              early=early,callback_trigger=trigger,cone_scaling=cone_scaling,primal_polish=polish)
+    if ray_rescaling:r['original_dual_ray_rescaling']=ray_rescaling
     r['end_to_end_seconds']=pr.assembly_seconds+pr.transform_seconds+build+wall+au_time+rest.get('seconds',0)+polish.get('seconds',0)
     if save:
         np.savez_compressed(save,x=x,z=z if z is not None else np.array([]),xr=np.asarray(sol.x),zr=canonical_z,fs=pr.fs,mode=pr.mode,q=pr.q)

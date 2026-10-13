@@ -159,4 +159,3 @@ def affine_reduce_tracked(E,b,G,h,dims,cost,max_sweeps=12):
     E,b=clean_equalities(E,b)
     if stats:stats[-1]['retained_original_cones']=original_cone_ids.tolist()
     return E,b,G,h,dims,T,offset,stats,history,final_keep
-
