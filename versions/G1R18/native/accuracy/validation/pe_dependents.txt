@@ -1,0 +1,24 @@
+Microsoft (R) COFF/PE Dumper Version 14.44.35227.0
+Copyright (C) Microsoft Corporation.  All rights reserved.
+
+
+Dump of file D:\Work\excel-vba-rpfem\versions\G1R18\native\accuracy\bin\rpfem_accuracy_x64.dll
+
+File Type: DLL
+
+  Image has the following dependencies:
+
+    kernel32.dll
+    api-ms-win-core-synch-l1-2-0.dll
+    bcryptprimitives.dll
+    KERNEL32.dll
+    ntdll.dll
+
+  Summary
+
+        2000 .data
+        1000 .fptable
+        7000 .pdata
+       3A000 .rdata
+        3000 .reloc
+       FA000 .text

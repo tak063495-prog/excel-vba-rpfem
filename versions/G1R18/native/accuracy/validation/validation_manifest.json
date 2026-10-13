@@ -1,0 +1,12 @@
+{
+  "dll_sha256": "dc561a7b241ab2b57b7873ad06dc44cf0541ceea3bdf6c19e0940f8a05c45329",
+  "clarabel": "0.11.1",
+  "target": "x86_64-pc-windows-msvc",
+  "independent_qa_sha256": "26533a5f29a4eafde01bf32776d3fead6e8df3915f36332cadffd81867cf6fd7",
+  "pe_inspection_source": "C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.44.35207\\bin\\Hostx64\\x64\\dumpbin.exe",
+  "static_crt_imports_verified": true,
+  "scope": "Small actual original q8 programs and FFI guards; P06 remains outstanding",
+  "physical_audits_independent": true,
+  "solver_status_is_proof": false,
+  "modified_qp_constraint_dual_is_original_guide": false
+}

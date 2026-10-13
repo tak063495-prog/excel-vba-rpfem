@@ -1,0 +1,396 @@
+{
+  "dll": "D:\\Work\\excel-vba-rpfem\\versions\\G1R18\\native\\accuracy\\bin\\rpfem_accuracy_x64.dll",
+  "protected_sha256": {
+    "D:\\Work\\excel-vba-rpfem\\versions\\G1R18\\native\\accuracy\\bin\\rpfem_accuracy_x64.dll": "dc561a7b241ab2b57b7873ad06dc44cf0541ceea3bdf6c19e0940f8a05c45329",
+    "D:\\Work\\excel-vba-rpfem\\versions\\G1R18\\native\\accuracy\\src\\lib.rs": "6bc9cbd369fbfa06b41c326141fb7ca387cf5429d49ada2b9a6c6a4941f713d7",
+    "D:\\Work\\excel-vba-rpfem\\versions\\G1R18\\native\\accuracy\\src\\equality.rs": "bf6d55533a4d3b94f167d31ba49467850ff9171e30e14b3f768c57d5359836c0",
+    "D:\\Work\\excel-vba-rpfem\\versions\\G1R18\\native\\accuracy\\LICENSE_LSMR.txt": "a309d67b10dfcc2ac0233582262fb6c9afb7c4cd33d2b6f6fb75f33400f36b73",
+    "D:\\Work\\excel-vba-rpfem\\versions\\G1R18\\native\\accuracy\\rpfem_accuracy.h": "a88371ce9dae24fe04ed836ab4e2bea3ec019471953a488e0a10fb23e2d32f10",
+    "D:\\Work\\excel-vba-rpfem\\versions\\G1R18\\native\\accuracy\\Cargo.toml": "b88d2d8cc4c64a53928c1a5b01743dcecc9c1ffe424dbcc4caa57115c5c64b28",
+    "D:\\Work\\excel-vba-rpfem\\versions\\G1R18\\native\\accuracy\\Cargo.lock": "eef5af1333c7ef0f865111df5ab025ee66c3604f9618a7f48a87abf1cda23bce",
+    "D:\\Work\\excel-vba-rpfem\\versions\\G1R18\\tests\\test_accuracy_native_ffi.py": "f155573169a4bfe153f8ead4ca5d3654e0b3c35b9a583aa89e59fa5572aa2bb5",
+    "D:\\Work\\excel-vba-rpfem\\validation\\accuracy_20261013\\python\\experiment_core.py": "9a9e60b6d69ba4008ea89608f433bb716b433436715c45566bd209418ee9238e",
+    "D:\\Work\\excel-vba-rpfem\\validation\\accuracy_20261013\\python\\original_dual.py": "c0025181b07b742b0d4608656489c3495b6ea90b4ed8084438420e8312b6467d",
+    "D:\\Work\\excel-vba-rpfem\\validation\\accuracy_20261013\\python\\vendor\\independent_audit.py": "79ea1b0e4e72b2a61a4110e6115e3f33929ae5990fb054e20f41d345a694f37b",
+    "D:\\Work\\excel-vba-rpfem\\validation\\accuracy_20261013\\python\\c0_slope_wedge_driver.py": "bd70baaba33fe74204dd74989738358080c5e7b5829624756c4fce05cb52c4f7",
+    "D:\\Work\\excel-vba-rpfem\\validation\\accuracy_20261013\\python\\vendor\\model_support\\lower_assembly.py": "b3c482c8950205b32a5e38cd0f1e720e5efeb48491bbd8ff02b728ef54f51047",
+    "D:\\Work\\excel-vba-rpfem\\validation\\accuracy_20261013\\python\\vendor\\model_support\\upper_assembly.py": "d0e03aeb87dcc52ae8001b422d836064275850f22c8a69640ce722cb2213d065",
+    "D:\\Work\\excel-vba-rpfem\\docs\\benchmarks\\G1R17_native26_20261013\\data\\inputs\\D02A.json": "97c4f88a81575120452a427fdc80621a630a0abf4f09d5da119b3a64f6512a5b"
+  },
+  "protected_sha256_after": {
+    "D:\\Work\\excel-vba-rpfem\\versions\\G1R18\\native\\accuracy\\bin\\rpfem_accuracy_x64.dll": "dc561a7b241ab2b57b7873ad06dc44cf0541ceea3bdf6c19e0940f8a05c45329",
+    "D:\\Work\\excel-vba-rpfem\\versions\\G1R18\\native\\accuracy\\src\\lib.rs": "6bc9cbd369fbfa06b41c326141fb7ca387cf5429d49ada2b9a6c6a4941f713d7",
+    "D:\\Work\\excel-vba-rpfem\\versions\\G1R18\\native\\accuracy\\src\\equality.rs": "bf6d55533a4d3b94f167d31ba49467850ff9171e30e14b3f768c57d5359836c0",
+    "D:\\Work\\excel-vba-rpfem\\versions\\G1R18\\native\\accuracy\\LICENSE_LSMR.txt": "a309d67b10dfcc2ac0233582262fb6c9afb7c4cd33d2b6f6fb75f33400f36b73",
+    "D:\\Work\\excel-vba-rpfem\\versions\\G1R18\\native\\accuracy\\rpfem_accuracy.h": "a88371ce9dae24fe04ed836ab4e2bea3ec019471953a488e0a10fb23e2d32f10",
+    "D:\\Work\\excel-vba-rpfem\\versions\\G1R18\\native\\accuracy\\Cargo.toml": "b88d2d8cc4c64a53928c1a5b01743dcecc9c1ffe424dbcc4caa57115c5c64b28",
+    "D:\\Work\\excel-vba-rpfem\\versions\\G1R18\\native\\accuracy\\Cargo.lock": "eef5af1333c7ef0f865111df5ab025ee66c3604f9618a7f48a87abf1cda23bce",
+    "D:\\Work\\excel-vba-rpfem\\versions\\G1R18\\tests\\test_accuracy_native_ffi.py": "f155573169a4bfe153f8ead4ca5d3654e0b3c35b9a583aa89e59fa5572aa2bb5",
+    "D:\\Work\\excel-vba-rpfem\\validation\\accuracy_20261013\\python\\experiment_core.py": "9a9e60b6d69ba4008ea89608f433bb716b433436715c45566bd209418ee9238e",
+    "D:\\Work\\excel-vba-rpfem\\validation\\accuracy_20261013\\python\\original_dual.py": "c0025181b07b742b0d4608656489c3495b6ea90b4ed8084438420e8312b6467d",
+    "D:\\Work\\excel-vba-rpfem\\validation\\accuracy_20261013\\python\\vendor\\independent_audit.py": "79ea1b0e4e72b2a61a4110e6115e3f33929ae5990fb054e20f41d345a694f37b",
+    "D:\\Work\\excel-vba-rpfem\\validation\\accuracy_20261013\\python\\c0_slope_wedge_driver.py": "bd70baaba33fe74204dd74989738358080c5e7b5829624756c4fce05cb52c4f7",
+    "D:\\Work\\excel-vba-rpfem\\validation\\accuracy_20261013\\python\\vendor\\model_support\\lower_assembly.py": "b3c482c8950205b32a5e38cd0f1e720e5efeb48491bbd8ff02b728ef54f51047",
+    "D:\\Work\\excel-vba-rpfem\\validation\\accuracy_20261013\\python\\vendor\\model_support\\upper_assembly.py": "d0e03aeb87dcc52ae8001b422d836064275850f22c8a69640ce722cb2213d065",
+    "D:\\Work\\excel-vba-rpfem\\docs\\benchmarks\\G1R17_native26_20261013\\data\\inputs\\D02A.json": "97c4f88a81575120452a427fdc80621a630a0abf4f09d5da119b3a64f6512a5b"
+  },
+  "sources_unchanged": true,
+  "scope": "small original q8 and ABI; no solver-status bound adoption",
+  "fixtures": [
+    {
+      "name": "raw_lower_physical_equality_correction",
+      "before_original_gate": {
+        "objective": -187.96302462671912,
+        "value": 187.96302462671912,
+        "eq_error": 0.00010000000000007437,
+        "cone_error": 0.0,
+        "audit": {
+          "pass": false,
+          "errors": {
+            "yield": 0.0,
+            "equilibrium": 0.00019999999999936274,
+            "boundary_traction": 0.00010000000000007437
+          },
+          "load": 187.96302462671912,
+          "value": 187.96302462671912
+        },
+        "raw_lower_errors": {
+          "yield": 0.0,
+          "equilibrium": 0.00019999999999936274,
+          "boundary_traction": 0.00010000000000007437
+        },
+        "physical_pass": false,
+        "witness": false,
+        "numerical_gate": false
+      },
+      "after_original_gate": {
+        "objective": -187.9630246267191,
+        "value": 187.9630246267191,
+        "eq_error": 1.4210854715202004e-14,
+        "cone_error": 0.0,
+        "audit": {
+          "pass": true,
+          "errors": {
+            "yield": 0.0,
+            "equilibrium": 8.526512829121202e-14,
+            "boundary_traction": 2.2892611872883867e-20
+          },
+          "load": 187.9630246267191,
+          "value": 187.9630246267191
+        },
+        "raw_lower_errors": {
+          "yield": 0.0,
+          "equilibrium": 8.526512829121202e-14,
+          "boundary_traction": 2.2892611872883867e-20
+        },
+        "physical_pass": true,
+        "witness": true,
+        "numerical_gate": false
+      },
+      "native_istop_metadata": 1,
+      "publishes_bound": false
+    },
+    {
+      "name": "lsmr_overdetermined_consistent",
+      "max_x_difference": 4.440892098500626e-16,
+      "native_istop_metadata": 1,
+      "native_iterations": 3,
+      "publishes_bound": false
+    },
+    {
+      "name": "lsmr_underdetermined_nonzero_initial",
+      "max_x_difference": 1.1102230246251565e-16,
+      "native_istop_metadata": 1,
+      "native_iterations": 3,
+      "publishes_bound": false
+    },
+    {
+      "name": "lsmr_rank_deficient_inconsistent",
+      "max_x_difference": 0.0,
+      "native_istop_metadata": 2,
+      "native_iterations": 2,
+      "publishes_bound": false
+    },
+    {
+      "name": "lsmr_overdetermined_inconsistent",
+      "max_x_difference": 4.440892098500626e-16,
+      "native_istop_metadata": 2,
+      "native_iterations": 4,
+      "publishes_bound": false
+    },
+    {
+      "name": "lsmr_zero_matrix_nonzero_rhs",
+      "max_x_difference": 0.0,
+      "native_istop_metadata": 0,
+      "native_iterations": 0,
+      "publishes_bound": false
+    },
+    {
+      "name": "lsmr_empty_rows",
+      "max_x_difference": 0.0,
+      "native_istop_metadata": 0,
+      "native_iterations": 0,
+      "publishes_bound": false
+    },
+    {
+      "name": "modified_proximal_qp_original_audit",
+      "physical": {
+        "objective": -234.95377311049361,
+        "value": 234.95377311049361,
+        "eq_error": 2.1316282072803006e-14,
+        "cone_error": 0.0,
+        "audit": {
+          "pass": true,
+          "errors": {
+            "yield": 0.0,
+            "equilibrium": 1.1368683772161603e-13,
+            "boundary_traction": 7.113033239334664e-15
+          },
+          "load": 234.95377311049361,
+          "value": 234.95377311049361
+        },
+        "raw_lower_errors": {
+          "yield": 0.0,
+          "equilibrium": 1.1368683772161603e-13,
+          "boundary_traction": 7.113033239334664e-15
+        },
+        "physical_pass": true,
+        "witness": true,
+        "numerical_gate": false
+      },
+      "auxiliary_dual_original_gate": {
+        "accepted": false,
+        "dual_stationarity": 0.9999999232709609,
+        "dual_cone_error": 0.0,
+        "dual_objective": -4.6591190641738434e-05,
+        "threshold": -0.9999979999999999,
+        "method": "original_dual_feasibility",
+        "scope": "discrete_root_search_only",
+        "publishes_primal_bound": false,
+        "reason": "ORIGINAL_RAW_DUAL_GATE_REJECTED"
+      },
+      "auxiliary_dual_adopted": false,
+      "publishes_bound": false
+    },
+    {
+      "name": "original_D02A_eight_triangle_wedge",
+      "mode": "upper",
+      "fs": 1.5017503751875938,
+      "q": 8,
+      "elements": 8,
+      "n": 96,
+      "m": 265,
+      "original_nonzero_h": false,
+      "native_status_metadata": 1,
+      "native_original_audit": {
+        "objective": 0.0,
+        "value": 0.0,
+        "eq_error": 1.6618452481670993e-15,
+        "cone_error": 0.0,
+        "audit": {
+          "pass": true,
+          "errors": {
+            "flow": 0.0,
+            "jump": 0.0,
+            "boundary": 1.6618452481670993e-15,
+            "work": 2.865263581952604e-12,
+            "objective": 0.0
+          },
+          "dissipation": 0.0,
+          "work": [
+            0.0,
+            1.0000000000028653
+          ],
+          "value": 0.0
+        },
+        "raw_lower_errors": {},
+        "physical_pass": true,
+        "witness": true,
+        "dual_objective": 2.9429554364133384e-14,
+        "dual_stationarity": 2.2648588446877938e-15,
+        "dual_cone_error": 0.0,
+        "dual_gap": 2.9429554364133384e-14,
+        "numerical_gate": true
+      },
+      "python_original_audit": {
+        "objective": 0.0,
+        "value": 0.0,
+        "eq_error": 6.106580940905908e-16,
+        "cone_error": 0.0,
+        "audit": {
+          "pass": true,
+          "errors": {
+            "flow": 0.0,
+            "jump": 0.0,
+            "boundary": 6.106580940905908e-16,
+            "work": 2.362554596402333e-13,
+            "objective": 0.0
+          },
+          "dissipation": 0.0,
+          "work": [
+            0.0,
+            1.0000000000002363
+          ],
+          "value": 0.0
+        },
+        "raw_lower_errors": {},
+        "physical_pass": true,
+        "witness": true,
+        "dual_objective": 3.217474486303348e-14,
+        "dual_stationarity": 2.379989820825881e-15,
+        "dual_cone_error": 0.0,
+        "dual_gap": 3.217474486303348e-14,
+        "numerical_gate": true
+      },
+      "publishes_bound": false
+    },
+    {
+      "name": "real_cohesive_triangle_lower",
+      "mode": "lower",
+      "fs": 0.01,
+      "q": 8,
+      "elements": 1,
+      "n": 19,
+      "m": 36,
+      "original_nonzero_h": true,
+      "native_status_metadata": 4,
+      "native_original_audit": {
+        "objective": -234.95378078339888,
+        "value": 234.95378078339888,
+        "eq_error": 1.4210854715202004e-14,
+        "cone_error": 8.284928298962768e-11,
+        "audit": {
+          "pass": true,
+          "errors": {
+            "yield": 8.284928298962768e-11,
+            "equilibrium": 7.965656413873892e-16,
+            "boundary_traction": 1.1273186949127267e-16
+          },
+          "load": 234.95378078339888,
+          "value": 234.95378078339888
+        },
+        "raw_lower_errors": {
+          "yield": 8.284928298962768e-11,
+          "equilibrium": 7.965656413873892e-16,
+          "boundary_traction": 1.1273186949127267e-16
+        },
+        "physical_pass": true,
+        "witness": true,
+        "dual_objective": -234.95378078341287,
+        "dual_stationarity": 4.440892098500626e-15,
+        "dual_cone_error": 0.0,
+        "dual_gap": 1.3983481039758772e-11,
+        "numerical_gate": true
+      },
+      "python_original_audit": {
+        "objective": -234.95378078339914,
+        "value": 234.95378078339914,
+        "eq_error": 2.842170943040401e-14,
+        "cone_error": 6.153300091682468e-11,
+        "audit": {
+          "pass": true,
+          "errors": {
+            "yield": 6.153300091682468e-11,
+            "equilibrium": 5.684341886080802e-14,
+            "boundary_traction": 1.758648844170086e-16
+          },
+          "load": 234.95378078339914,
+          "value": 234.95378078339914
+        },
+        "raw_lower_errors": {
+          "yield": 6.153300091682468e-11,
+          "equilibrium": 5.684341886080802e-14,
+          "boundary_traction": 1.758648844170086e-16
+        },
+        "physical_pass": true,
+        "witness": true,
+        "dual_objective": -234.95378078341432,
+        "dual_stationarity": 4.6629367034256575e-15,
+        "dual_cone_error": 0.0,
+        "dual_gap": 1.517719283583574e-11,
+        "numerical_gate": true
+      },
+      "publishes_bound": false
+    },
+    {
+      "name": "real_cohesive_triangle_upper",
+      "mode": "upper",
+      "fs": 100.0,
+      "q": 8,
+      "elements": 1,
+      "n": 57,
+      "m": 145,
+      "original_nonzero_h": false,
+      "native_status_metadata": 1,
+      "native_original_audit": {
+        "objective": 0.08775790266065953,
+        "value": 0.0877579026606587,
+        "eq_error": 4.440892098500626e-16,
+        "cone_error": 5.115907697472721e-13,
+        "audit": {
+          "pass": true,
+          "errors": {
+            "flow": 7.105427357601002e-15,
+            "epigraph": 5.115907697472721e-13,
+            "boundary": 4.262589928465452e-18,
+            "work": 0.0,
+            "objective": 1.3877787807814457e-17
+          },
+          "dissipation": 0.0877579026606587,
+          "work": [
+            0.0,
+            1.0
+          ],
+          "value": 0.0877579026606587,
+          "epigraph_value": 0.08775790266065954,
+          "dissipation_certificate": "convex_norm_vertex_bound_and_Bernstein_jump_bound",
+          "quadrature": 8,
+          "auxiliary_variables": 45
+        },
+        "raw_lower_errors": {},
+        "physical_pass": true,
+        "witness": true,
+        "dual_objective": 0.08775790266066176,
+        "dual_stationarity": 5.854691731421724e-18,
+        "dual_cone_error": 0.0,
+        "dual_gap": 2.2343238370581275e-15,
+        "numerical_gate": true
+      },
+      "python_original_audit": {
+        "objective": 0.08775790266066005,
+        "value": 0.08775790266065872,
+        "eq_error": 9.810522116028736e-18,
+        "cone_error": 1.1262102361797588e-12,
+        "audit": {
+          "pass": true,
+          "errors": {
+            "flow": 1.9944621793236635e-17,
+            "epigraph": 1.1226575225009583e-12,
+            "boundary": 9.810522116028736e-18,
+            "work": 0.0,
+            "objective": 0.0
+          },
+          "dissipation": 0.08775790266065872,
+          "work": [
+            0.0,
+            1.0
+          ],
+          "value": 0.08775790266065872,
+          "epigraph_value": 0.08775790266066005,
+          "dissipation_certificate": "convex_norm_vertex_bound_and_Bernstein_jump_bound",
+          "quadrature": 8,
+          "auxiliary_variables": 45
+        },
+        "raw_lower_errors": {},
+        "physical_pass": true,
+        "witness": true,
+        "dual_objective": 0.08775790266066022,
+        "dual_stationarity": 7.562310153086393e-18,
+        "dual_cone_error": 0.0,
+        "dual_gap": 1.6653345369377348e-16,
+        "numerical_gate": true
+      },
+      "publishes_bound": false
+    }
+  ]
+}

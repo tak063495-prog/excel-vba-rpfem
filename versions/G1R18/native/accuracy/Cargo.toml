@@ -1,0 +1,18 @@
+[package]
+name = "rpfem_accuracy_x64"
+version = "1.0.0"
+edition = "2021"
+rust-version = "1.85"
+license = "Apache-2.0"
+description = "Owned asynchronous Clarabel bridge; original audits remain independent"
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+
+[dependencies]
+clarabel = { version = "=0.11.1", features = ["faer-sparse"] }
+
+[profile.release]
+panic = "unwind"
+lto = "thin"
+codegen-units = 1

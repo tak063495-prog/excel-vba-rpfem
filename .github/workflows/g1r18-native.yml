@@ -1,0 +1,31 @@
+name: G1R18 native accuracy bridge
+on:
+  pull_request:
+    paths:
+      - 'versions/G1R18/**'
+      - 'validation/accuracy_20261013/python/**'
+      - '.github/workflows/g1r18-native.yml'
+  workflow_dispatch:
+jobs:
+  native-accuracy:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: '3.13'
+      - name: Install pinned Rust compiler
+        run: rustup toolchain install 1.85.0 --profile minimal
+      - name: Build and test the locked native solver
+        shell: pwsh
+        working-directory: versions/G1R18/native/accuracy
+        run: |
+          cargo +1.85.0 build --release --locked --target x86_64-pc-windows-msvc
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          cargo +1.85.0 test --release --locked --target x86_64-pc-windows-msvc
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          New-Item -ItemType Directory -Path bin -Force | Out-Null
+          Copy-Item -LiteralPath target/x86_64-pc-windows-msvc/release/rpfem_accuracy_x64.dll -Destination bin/rpfem_accuracy_x64.dll -Force
+      - run: python -X utf8 -m pip install -r validation/accuracy_20261013/requirements.txt
+      - name: Check native ABI, cancellation and original q8 numerical parity
+        run: python -X utf8 -m unittest discover -s versions/G1R18/tests -p test_accuracy_native_ffi.py -v

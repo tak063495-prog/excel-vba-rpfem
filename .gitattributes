@@ -15,3 +15,4 @@ validation/accuracy_20261013/python/upper_directional_candidate.py -text
 validation/accuracy_20261013/snapshots/20261014_progress6_audit/** -text
 validation/accuracy_20261013/python/upper_proximal_candidate.py -text
 validation/accuracy_20261013/snapshots/20261014_progress7_audit/** -text
+versions/G1R18/native/accuracy/** -text
