@@ -48,6 +48,9 @@ Public Type RPX_MeshState
     gravity As String
     factor As Double
     originalModel As String
+    lowerStressStart() As Long
+    lowerLoadVariable As Long
+    lowerReactions As Object
 End Type
 Public RBestUpper As RPX_MeshState, RBestLower As RPX_MeshState
 Public RAdaptHistory As Collection
@@ -162,6 +165,7 @@ Private Function SaveState(ByRef state As RPX_MeshState, ByRef field() As Double
     pending.phase = RPX_LoadPhase: pending.gravity = RGravityMode
     pending.factor = RStrengthFactor: If Len(side) > 0 Then pending.factor = factor
     pending.originalModel = RPX_ExactModel(): pending.complete = True
+    CaptureWitnessLowerLayout pending
     ReDim tmpXY(0 To rn - 1, 0 To 1)
     For i = 0 To rn - 1
         tmpXY(i, 0) = RXY(i, 0)
@@ -221,6 +225,8 @@ Private Sub CloneState(ByRef dst As RPX_MeshState, ByRef src As RPX_MeshState)
         Set pending.boundary = RPX_Row()
         For Each key In src.boundary.keys: pending.boundary(key) = src.boundary(key): Next key
         pending.phase = src.phase: pending.gravity = src.gravity: pending.factor = src.factor: pending.originalModel = src.originalModel
+        pending.lowerStressStart = src.lowerStressStart: pending.lowerLoadVariable = src.lowerLoadVariable
+        Set pending.lowerReactions = CopyWitnessReactions(src.lowerReactions)
     End If
     ReDim tmpXY(0 To src.nodes - 1, 0 To 1)
     For i = 0 To src.nodes - 1
@@ -298,6 +304,8 @@ Public Sub RPX_RestoreWitnessState(ByRef state As RPX_MeshState)
     rn = state.nodes: re = state.elements: RM = state.materialN: RR = state.rigidN
     RXY = state.xy: RTri = state.triangles: RMaterials = state.materials: RRigids = state.rigids
     RMatId = state.materialId: RRigidId = state.rigidId: RBody0 = state.body0: RBody1 = state.body1
+    RStressStart = state.lowerStressStart: RLoadVariable = state.lowerLoadVariable
+    Set RReactions = CopyWitnessReactions(state.lowerReactions)
     RStressScale = state.stressScale: RStrengthFactor = state.factor: RSubdivisions = state.q
     RGravityMode = state.gravity: RPX_LoadPhase = state.phase
     Set RBoundary = RPX_Row(): Set RConstraints = RPX_Row()
@@ -1291,6 +1299,187 @@ RestoreFailed:
     err.Raise number, source, "ADAPT_RESTORE_FAILED " & message
 End Sub
 
+' The lower candidate owns its new mesh and root. The upper witness is unchanged.
+Private Sub ContinueLowerAngularFan(ByVal mode As String)
+    Dim baseline As RPX_MeshState, seed As RPX_MeshState
+    Dim parent() As Long, field() As Double, eta() As Double
+    Dim rounds As Long, round As Long, cap As Long, savedQ As Long, savedTol As Double, uniformTarget As Long
+    Dim lower As Double, objective As Double, accepted As Boolean, oldIncomplete As Boolean
+    Dim number As Long, source As String, message As String, errorLine As Long, i As Long
+    rounds = CLng(RPX_Setting("ADAPT_LOWER_FAN_ROUNDS", 0))
+    uniformTarget = CLng(RPX_Setting("ADAPT_LOWER_TARGET", 0))
+    If rounds < 0 Or rounds > 4 Then err.Raise 5, "RPX_Adapt", "INVALID_ADAPT_LOWER_FAN_ROUNDS"
+    If uniformTarget <> 0 And (uniformTarget < 16 Or uniformTarget > adaptAccuracyCap) Then err.Raise 5, "RPX_Adapt", "INVALID_ADAPT_LOWER_TARGET"
+    If (rounds = 0 And uniformTarget = 0) Or mode <> "Fs" Then Exit Sub
+    If Not currentPairValid Or Not RBestLower.complete Or Not RBestUpper.complete Then Exit Sub
+    CloneState baseline, RCurrent
+    savedQ = RSubdivisions: savedTol = RFsTolerance: oldIncomplete = RFsSearchIncomplete
+    cap = adaptAccuracyCap
+    On Error GoTo CandidateFailed
+    For round = IIf(uniformTarget > 0, 0, 1) To rounds
+        If XCancel Then err.Raise 18, , "ANALYSIS_CANCELLED"
+        CloneState seed, RBestLower
+        Call RPX_RestoreWitnessState(seed)
+        If round = 0 Then
+            meshStage = "band_regions"
+            Call RPX_ReadInputs: DTarget = uniformTarget
+            Call RPX_GenerateMesh
+            DTarget = adaptFinalTarget
+            If re > cap Then Exit For
+            Call RPX_TotalReferenceLoads
+            RPX_DiagEvent "lower_uniform_candidate", "target=" & uniformTarget & ";elements=" & re & ";upper_mesh_unchanged=1;certificate=0"
+        Else
+            If re >= cap Then Exit For
+            meshStage = "refine"
+            If Not RPX_AngularFanMesh(cap, parent) Then Exit For
+        End If
+        ' Fresh q-specific original-program root; old signs never cross meshes.
+        RSubdivisions = savedQ: RFsTolerance = savedTol
+        RPX_DiagCandidate "lower_angular_fan_" & round
+        RPX_TestHook "lower_angular_fan_" & round
+        meshStage = "evaluate": RFsActive = True: RFsCalls = 0
+        RFsSearchIncomplete = False: RFsLargestRootBracket = 0#: RFsSearchNote = ""
+        lower = RPX_FsEndpoint("lower", seed.value, AdaptFsHintRatio)
+        RLowerFs = lower: objective = XObjective: field = xx: RLowerField = field
+        ' No upper field from another mesh may enter this candidate payload.
+        Erase RUpperField
+        ReDim eta(0 To re - 1)
+        accepted = False
+        If lower >= RBestLower.value And lower <= RBestUpper.value Then
+            If SaveState(RBestLower, field, eta, lower, lower, RBestUpper.value, "lower_angular_fan_" & round, "lower", objective) Then
+                RPX_CertFromAdapt "lower": accepted = True
+            End If
+        End If
+        adaptFsCallsTotal = adaptFsCallsTotal + RFsCalls: RFsActive = False
+        RPX_DiagEvent "lower_angular_fan_end", "round=" & round & ";accepted=" & IIf(accepted, "1", "0") & ";fs=" & lower & ";own_elements=" & re & ";own_q=" & RSubdivisions & ";root_incomplete=" & RFsSearchIncomplete & ";upper_mesh_unchanged=1"
+        If Not accepted And (round > 0 Or rounds = 0) Then Exit For
+    Next round
+CandidateDone:
+    RFsActive = False: RSubdivisions = savedQ: RFsTolerance = savedTol: DTarget = adaptFinalTarget
+    Call RPX_RestoreWitnessState(baseline): CloneState RCurrent, baseline
+    RSubdivisions = savedQ: RFsSearchIncomplete = oldIncomplete
+    Call RestoreFinalBounds(mode)
+    Exit Sub
+CandidateFailed:
+    number = err.number: source = err.source: message = err.description: errorLine = Erl
+    On Error GoTo 0
+    RPX_ErrorEvidence number, source, message, errorLine, meshStage
+    If number = 18 Or XCancel Then err.Raise 18, source, "ANALYSIS_CANCELLED"
+    If InStr(1, message, "HSD_STABLE_UNAVAILABLE_MEMORY", vbBinaryCompare) = 1 Then err.Raise number, source, message
+    If Not RPX_Recoverable(number, message, meshStage, True) Then err.Raise number, source, message
+    RPX_DiagEvent "lower_angular_fan_rejected", "round=" & round & ";old_witnesses_kept=1;message=" & message
+    On Error GoTo RestoreFailed
+    GoTo CandidateDone
+RestoreFailed:
+    number = err.number: source = err.source: message = err.description
+    On Error GoTo 0
+    err.Raise number, source, "ANGULAR_FAN_RESTORE_FAILED " & message
+End Sub
+
+' Precision profiles recertify each side on its own immutable mesh.
+' A changed quadrature never inherits a root bracket or a field certificate.
+Private Function RecheckOwnQuadrature(ByVal side As String, ByVal q As Long) As Boolean
+    Dim seed As RPX_MeshState, pending As RPX_MeshState
+    Dim field() As Double, eta() As Double, value As Double, objective As Double
+    Dim rootA As Double, rootB As Double, bracketScale As Double, i As Long
+    Dim number As Long, source As String, message As String, errorLine As Long
+    If side = "lower" Then CloneState seed, RBestLower Else CloneState seed, RBestUpper
+    Call RPX_RestoreWitnessState(seed)
+    RSubdivisions = q
+    RProgramKind = "": RPX_ResetPreparedState: RPX_LowerCacheReset: RPX_FsBracketReset
+    meshStage = "evaluate"
+    On Error GoTo CandidateFailed
+    RPX_DiagCandidate "own_q" & q & "_" & side
+    RPX_TestHook "own_quadrature_" & side
+    RFsActive = True: RFsCalls = 0
+    RFsSearchIncomplete = False: RFsLargestRootBracket = 0#: RFsSearchNote = ""
+    value = RPX_FsEndpoint(side, seed.value, AdaptFsHintRatio): objective = XObjective
+    If side = "lower" Then
+        field = xx: RLowerField = field: RLowerFs = value: Erase RUpperField
+    Else
+        ReDim field(0 To 12 * re + 3 * RR - 1)
+        For i = 0 To UBound(field): field(i) = xx(i): Next i
+        RUpperField = field: RUpperFs = value
+    End If
+    adaptFsCallsTotal = adaptFsCallsTotal + RFsCalls: RFsActive = False
+    If RFsSearchIncomplete Then GoTo Rejected
+    If Not RPX_ActualRootBracket(side, rootA, rootB, value) Then GoTo Rejected
+    bracketScale = (rootA + rootB) / 2#: If bracketScale < 1# Then bracketScale = 1#
+    If rootB - rootA > RFsTolerance * bracketScale Then GoTo Rejected
+    ReDim eta(0 To re - 1)
+    If side = "lower" Then
+        If value > RBestUpper.value Then GoTo Rejected
+        If Not SaveState(pending, field, eta, value, value, RBestUpper.value, "own_q" & q & "_lower", side, objective) Then GoTo Rejected
+        If Not pending.lowerRootValid Or pending.searchIncomplete Then GoTo Rejected
+        CloneState RBestLower, pending
+    Else
+        If value < RBestLower.value Then GoTo Rejected
+        If Not SaveState(pending, field, eta, value, RBestLower.value, value, "own_q" & q & "_upper", side, objective) Then GoTo Rejected
+        If Not pending.upperRootValid Or pending.searchIncomplete Then GoTo Rejected
+        CloneState RBestUpper, pending
+    End If
+    RPX_CertFromAdapt side
+    RPX_DiagEvent "own_quadrature_accept", "side=" & side & ";q=" & q & ";fs=" & value & ";elements=" & re & ";root_a=" & rootA & ";root_b=" & rootB & ";original_field_gate=1;old_root_promoted=0"
+    RecheckOwnQuadrature = True
+    Exit Function
+Rejected:
+    RPX_DiagEvent "own_quadrature_rejected", "side=" & side & ";q=" & q & ";old_witness_and_q_kept=1;reason=root_or_field_not_certified"
+    Exit Function
+CandidateFailed:
+    number = err.number: source = err.source: message = err.description: errorLine = Erl
+    On Error GoTo 0
+    RPX_ErrorEvidence number, source, message, errorLine, meshStage
+    If number = 18 Or XCancel Then err.Raise 18, source, "ANALYSIS_CANCELLED"
+    If InStr(1, message, "HSD_STABLE_UNAVAILABLE_MEMORY", vbBinaryCompare) = 1 Then err.Raise number, source, message
+    If Not RPX_Recoverable(number, message, meshStage, True) Then err.Raise number, source, message
+    RPX_DiagEvent "own_quadrature_rejected", "side=" & side & ";q=" & q & ";old_witness_and_q_kept=1;message=" & message
+End Function
+
+Private Sub RecheckIndependentQuadrature(ByVal mode As String)
+    Dim baseline As RPX_MeshState, q As Long, savedQ As Long, savedTol As Double
+    Dim lowerOK As Boolean, upperOK As Boolean
+    q = CLng(RPX_Setting("ADAPT_CERT_QUADRATURE", 0))
+    If q <> 0 And q <> 2 And q <> 4 And q <> 8 Then err.Raise 5, "RPX_Adapt", "INVALID_ADAPT_CERT_QUADRATURE"
+    If mode <> "Fs" Or q = 0 Then Exit Sub
+    If Not currentPairValid Or Not RBestLower.complete Or Not RBestUpper.complete Then Exit Sub
+    CloneState baseline, RCurrent
+    savedQ = RSubdivisions: savedTol = RFsTolerance
+    lowerOK = RecheckOwnQuadrature("lower", q)
+    RFsTolerance = savedTol
+    upperOK = RecheckOwnQuadrature("upper", q)
+    RFsActive = False: RFsTolerance = savedTol
+    Call RPX_RestoreWitnessState(baseline): CloneState RCurrent, baseline
+    RSubdivisions = savedQ
+    RFsSearchIncomplete = False
+    Call RestoreFinalBounds(mode)
+    If RBestLower.q <> q Or RBestUpper.q <> q Or Not lowerOK Or Not upperOK Then
+        RFsSearchIncomplete = True
+        RFsSearchNote = "INDEPENDENT_QUADRATURE_NOT_COMPLETE"
+    End If
+End Sub
+
+' Field auditing uses lower stress/load/reaction indices, not just geometry.
+' Keep that layout with the immutable witness so another mesh cannot supply it.
+Private Function CopyWitnessReactions(ByVal reactions As Object) As Collection
+    Dim result As New Collection, item As Variant
+    If Not reactions Is Nothing Then
+        For Each item In reactions
+            result.Add Array(item(0), item(1), item(2), item(3), item(4))
+        Next item
+    End If
+    Set CopyWitnessReactions = result
+End Function
+Private Sub CaptureWitnessLowerLayout(ByRef state As RPX_MeshState)
+    Dim starts() As Long, e As Long, variables As Long
+    ReDim starts(0 To re - 1)
+    For e = 0 To re - 1
+        starts(e) = -1
+        If RRigidId(e) < 0 Then starts(e) = variables: variables = variables + 18
+    Next e
+    state.lowerStressStart = starts: state.lowerLoadVariable = variables
+    Set state.lowerReactions = CopyWitnessReactions(RReactions)
+End Sub
+
 Public Sub RPX_RunAdapt(ByVal mode As String)
     Dim cycle As Long, cycles As Long, targetGap As Double, previousGap As Double, gain As Double
     Dim startTarget As Long, maxElements As Long
@@ -1536,6 +1725,8 @@ FinalCandidateDone:
     Call RestoreFinalBounds(mode)
     Call ContinueAccuracy(mode, targetGap)
     Call RestoreFinalBounds(mode)
+    Call ContinueLowerAngularFan(mode)
+    Call RecheckIndependentQuadrature(mode)
     RPX_TestHook "final_accept"
     On Error GoTo 0
     If route = "pilot" And Not pilotFallbackUsed Then

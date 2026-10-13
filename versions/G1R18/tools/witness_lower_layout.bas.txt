@@ -1,0 +1,21 @@
+' Field auditing uses lower stress/load/reaction indices, not just geometry.
+' Keep that layout with the immutable witness so another mesh cannot supply it.
+Private Function CopyWitnessReactions(ByVal reactions As Object) As Collection
+    Dim result As New Collection, item As Variant
+    If Not reactions Is Nothing Then
+        For Each item In reactions
+            result.Add Array(item(0), item(1), item(2), item(3), item(4))
+        Next item
+    End If
+    Set CopyWitnessReactions = result
+End Function
+Private Sub CaptureWitnessLowerLayout(ByRef state As RPX_MeshState)
+    Dim starts() As Long, e As Long, variables As Long
+    ReDim starts(0 To re - 1)
+    For e = 0 To re - 1
+        starts(e) = -1
+        If RRigidId(e) < 0 Then starts(e) = variables: variables = variables + 18
+    Next e
+    state.lowerStressStart = starts: state.lowerLoadVariable = variables
+    Set state.lowerReactions = CopyWitnessReactions(RReactions)
+End Sub

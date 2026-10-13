@@ -1,0 +1,81 @@
+' Precision profiles recertify each side on its own immutable mesh.
+' A changed quadrature never inherits a root bracket or a field certificate.
+Private Function RecheckOwnQuadrature(ByVal side As String, ByVal q As Long) As Boolean
+    Dim seed As RPX_MeshState, pending As RPX_MeshState
+    Dim field() As Double, eta() As Double, value As Double, objective As Double
+    Dim rootA As Double, rootB As Double, bracketScale As Double, i As Long
+    Dim number As Long, source As String, message As String, errorLine As Long
+    If side = "lower" Then CloneState seed, RBestLower Else CloneState seed, RBestUpper
+    Call RPX_RestoreWitnessState(seed)
+    RSubdivisions = q
+    RProgramKind = "": RPX_ResetPreparedState: RPX_LowerCacheReset: RPX_FsBracketReset
+    meshStage = "evaluate"
+    On Error GoTo CandidateFailed
+    RPX_DiagCandidate "own_q" & q & "_" & side
+    RPX_TestHook "own_quadrature_" & side
+    RFsActive = True: RFsCalls = 0
+    RFsSearchIncomplete = False: RFsLargestRootBracket = 0#: RFsSearchNote = ""
+    value = RPX_FsEndpoint(side, seed.value, AdaptFsHintRatio): objective = XObjective
+    If side = "lower" Then
+        field = xx: RLowerField = field: RLowerFs = value: Erase RUpperField
+    Else
+        ReDim field(0 To 12 * re + 3 * RR - 1)
+        For i = 0 To UBound(field): field(i) = xx(i): Next i
+        RUpperField = field: RUpperFs = value
+    End If
+    adaptFsCallsTotal = adaptFsCallsTotal + RFsCalls: RFsActive = False
+    If RFsSearchIncomplete Then GoTo Rejected
+    If Not RPX_ActualRootBracket(side, rootA, rootB, value) Then GoTo Rejected
+    bracketScale = (rootA + rootB) / 2#: If bracketScale < 1# Then bracketScale = 1#
+    If rootB - rootA > RFsTolerance * bracketScale Then GoTo Rejected
+    ReDim eta(0 To re - 1)
+    If side = "lower" Then
+        If value > RBestUpper.value Then GoTo Rejected
+        If Not SaveState(pending, field, eta, value, value, RBestUpper.value, "own_q" & q & "_lower", side, objective) Then GoTo Rejected
+        If Not pending.lowerRootValid Or pending.searchIncomplete Then GoTo Rejected
+        CloneState RBestLower, pending
+    Else
+        If value < RBestLower.value Then GoTo Rejected
+        If Not SaveState(pending, field, eta, value, RBestLower.value, value, "own_q" & q & "_upper", side, objective) Then GoTo Rejected
+        If Not pending.upperRootValid Or pending.searchIncomplete Then GoTo Rejected
+        CloneState RBestUpper, pending
+    End If
+    RPX_CertFromAdapt side
+    RPX_DiagEvent "own_quadrature_accept", "side=" & side & ";q=" & q & ";fs=" & value & ";elements=" & re & ";root_a=" & rootA & ";root_b=" & rootB & ";original_field_gate=1;old_root_promoted=0"
+    RecheckOwnQuadrature = True
+    Exit Function
+Rejected:
+    RPX_DiagEvent "own_quadrature_rejected", "side=" & side & ";q=" & q & ";old_witness_and_q_kept=1;reason=root_or_field_not_certified"
+    Exit Function
+CandidateFailed:
+    number = err.number: source = err.source: message = err.description: errorLine = Erl
+    On Error GoTo 0
+    RPX_ErrorEvidence number, source, message, errorLine, meshStage
+    If number = 18 Or XCancel Then err.Raise 18, source, "ANALYSIS_CANCELLED"
+    If InStr(1, message, "HSD_STABLE_UNAVAILABLE_MEMORY", vbBinaryCompare) = 1 Then err.Raise number, source, message
+    If Not RPX_Recoverable(number, message, meshStage, True) Then err.Raise number, source, message
+    RPX_DiagEvent "own_quadrature_rejected", "side=" & side & ";q=" & q & ";old_witness_and_q_kept=1;message=" & message
+End Function
+
+Private Sub RecheckIndependentQuadrature(ByVal mode As String)
+    Dim baseline As RPX_MeshState, q As Long, savedQ As Long, savedTol As Double
+    Dim lowerOK As Boolean, upperOK As Boolean
+    q = CLng(RPX_Setting("ADAPT_CERT_QUADRATURE", 0))
+    If q <> 0 And q <> 2 And q <> 4 And q <> 8 Then err.Raise 5, "RPX_Adapt", "INVALID_ADAPT_CERT_QUADRATURE"
+    If mode <> "Fs" Or q = 0 Then Exit Sub
+    If Not currentPairValid Or Not RBestLower.complete Or Not RBestUpper.complete Then Exit Sub
+    CloneState baseline, RCurrent
+    savedQ = RSubdivisions: savedTol = RFsTolerance
+    lowerOK = RecheckOwnQuadrature("lower", q)
+    RFsTolerance = savedTol
+    upperOK = RecheckOwnQuadrature("upper", q)
+    RFsActive = False: RFsTolerance = savedTol
+    Call RPX_RestoreWitnessState(baseline): CloneState RCurrent, baseline
+    RSubdivisions = savedQ
+    RFsSearchIncomplete = False
+    Call RestoreFinalBounds(mode)
+    If RBestLower.q <> q Or RBestUpper.q <> q Or Not lowerOK Or Not upperOK Then
+        RFsSearchIncomplete = True
+        RFsSearchNote = "INDEPENDENT_QUADRATURE_NOT_COMPLETE"
+    End If
+End Sub

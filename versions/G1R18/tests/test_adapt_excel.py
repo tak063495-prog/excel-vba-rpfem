@@ -2,6 +2,7 @@
 from pathlib import Path
 import argparse
 import gc
+import hashlib
 import json
 import shutil
 import threading
@@ -40,8 +41,23 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--compile-only", action="store_true")
     parser.add_argument("--failure-only", action="store_true")
+    parser.add_argument("--fan-only", action="store_true")
+    parser.add_argument("--fan-geometry-only", action="store_true")
+    parser.add_argument("--quadrature-only", action="store_true")
+    parser.add_argument("--ray-only", action="store_true")
+    parser.add_argument("--ray-adapt-only", action="store_true")
+    parser.add_argument("--production-case", choices=("P06A", "P06N"))
+    parser.add_argument("--target", type=int, default=1000)
+    parser.add_argument("--cycles", type=int, default=8)
+    parser.add_argument("--accuracy-cap", type=int, default=24000)
+    parser.add_argument("--accuracy-rounds", type=int, default=8)
+    parser.add_argument("--lower-target", type=int, default=4000)
+    parser.add_argument("--fan-rounds", type=int, default=1)
     parser.add_argument("--verify-folder", type=Path)
     args = parser.parse_args()
+    if args.ray_adapt_only:
+        args.ray_only = True
+    ray_root = ROOT.parent / "G1R18_RayGate"
     if args.verify_folder:
         folder = args.verify_folder.resolve()
         evidence = json.loads((folder / "summary.json").read_text(encoding="utf-8"))
@@ -61,6 +77,10 @@ def main():
     pid = win32process.GetWindowThreadProcessId(app.Hwnd)[1]
     assert pid not in prior, "Refusing to use an existing Excel process"
     record = {"status": "RUNNING", "pid": pid, "prior_pids": sorted(prior), "output": str(folder), "runs": {}, "dialogs": []}
+    record["dll_sha256"] = hashlib.sha256((folder / "rpfem_native_x64.dll").read_bytes()).hexdigest()
+    record["harness_sha256"] = hashlib.sha256(Path(__file__).read_bytes()).hexdigest()
+    if args.ray_only:
+        record["probe_sha256"] = hashlib.sha256((ray_root / "tests/OriginalFarkasProbe.bas").read_bytes()).hexdigest()
     book = None
     stop = threading.Event()
 
@@ -77,7 +97,7 @@ def main():
                     text = win32gui.GetWindowText(item)
                     if text:
                         texts.append(text)
-                    if text in ("OK", "&OK"):
+                    if text in ("OK", "&OK") or (win32gui.GetWindowText(hwnd) == "Microsoft Visual Basic" and ("(&E)" in text or text == "&End")):
                         buttons.append(item)
                 win32gui.EnumChildWindows(hwnd, child, None)
                 if buttons:
@@ -93,13 +113,37 @@ def main():
         record["excel_version"] = app.Version
         record["automation_security"] = app.AutomationSecurity
         book = app.Workbooks.Open(str(path), UpdateLinks=0)
-        for name in ("RPX_Adapt", "RPX_Seep", "RPX_SeepUI"):
-            module = book.VBProject.VBComponents(name).CodeModule
+        module_files = list(sorted((ROOT / "src/vba").glob("*.bas")))
+        if args.ray_only:
+            module_files += list(sorted((ray_root / "src/vba").glob("*.bas")))
+        record["source_sha256"] = {str(p.relative_to(ROOT.parents[1])): hashlib.sha256(p.read_bytes()).hexdigest() for p in module_files}
+        for file in module_files:
+            name = file.stem
+            try:
+                component = book.VBProject.VBComponents(name)
+            except Exception:
+                component = book.VBProject.VBComponents.Add(1)
+                component.Name = name
+            module = component.CodeModule
             module.DeleteLines(1, module.CountOfLines)
-            module.AddFromString(source_text(ROOT / "src/vba" / (name + ".bas")))
+            module.AddFromString(source_text(file))
+        if args.ray_only:
+            book.VBProject.VBComponents("RPX_Fs").CodeModule.AddFromString('''
+Public Function RPX_FsProbeDetail() As String
+    RPX_FsProbeDetail = "valid=" & upperBracket.valid & ";mesh=" & upperBracket.meshKey & ";current_mesh=" & FsMeshKey() & ";q=" & upperBracket.subdivisions & ";current_q=" & RSubdivisions & ";status_a=" & upperBracket.statusA & ";status_b=" & upperBracket.statusB & ";guide_a=" & upperBracket.originalGuideA & ";a=" & upperBracket.a & ";b=" & upperBracket.b & ";fa=" & upperBracket.fa & ";fb=" & upperBracket.fb
+End Function
+''')
         probe = book.VBProject.VBComponents.Add(1)
         probe.Name = "AdaptAccuracyProbe"
         probe.CodeModule.AddFromString(source_text(ROOT / "tests/AdaptAccuracyProbe.bas"))
+        export = book.VBProject.VBComponents.Add(1)
+        export.Name = "AccuracyExport"
+        export_text = source_text(ROOT.parents[1] / "validation/G1R12_native25_20261009/scripts/tests/BatchEvidence.bas")
+        export.CodeModule.AddFromString(export_text.replace("Private Sub BatchState(", "Public Sub BatchState("))
+        if args.ray_only:
+            ray = book.VBProject.VBComponents.Add(1)
+            ray.Name = "OriginalFarkasProbe"
+            ray.CodeModule.AddFromString(source_text(ray_root / "tests/OriginalFarkasProbe.bas"))
         book.Activate()
         book.VBProject.VBComponents("RPX_Adapt").CodeModule.CodePane.Show()
         control = app.VBE.CommandBars.FindControl(1, 578)
@@ -116,16 +160,106 @@ def main():
         print("G1R18 adaptive and Issue8 candidate compile PASS", flush=True)
         save()
         call = lambda name, *values: app.Run("'" + book.Name + "'!" + name, *values)
-        if not args.compile_only:
-            cases = [("disabled", 64, 0, False), ("injected_failure", 256, 2, True)] if args.failure_only else [("disabled", 64, 0, False), ("continued", 256, 2, False)]
+        if args.ray_only:
+            record["variant"] = "G1R18_RayGate"
+            probes = [("OriginalFarkasUnitProbe", ()), ("C0WedgeGeometryProbe", ()), ("C0WedgeNativeProbe", (str(folder / "c0_wedge_native.tsv"),))]
+            if args.ray_adapt_only:
+                probes = [("C0WedgeAdaptProbe", (depth, inject, str(folder / label))) for depth, inject, label in [(0., False, "baseline.tsv"), (.01, False, "wedge.tsv"), (.01, True, "failure.tsv")]]
+            for name, values in probes:
+                started = time.perf_counter()
+                result = str(call(name, *values))
+                assert result.startswith("PASS;"), result
+                label = Path(values[-1]).stem if args.ray_adapt_only else name
+                record["runs"][label] = {"result": result, "seconds": time.perf_counter() - started}
+                print(name, result, flush=True)
+                save()
+            native_logs = [read_log(p) for p in (folder / "RPFEM_logs").glob("*.tsv") if ".context." not in p.name]
+            if args.ray_adapt_only:
+                assert any("upper_c0_wedge_end" in t and "accepted=True" in t for t in native_logs)
+                assert any("upper_c0_wedge_rejected" in t and "CONIC_NOT_CONVERGED" in t for t in native_logs)
+                record["ray_checks"] = "PASS;wedge_own_q8_root_original_field_gate;lower_exact_retained;failed_wedge_old_witnesses_retained"
+            else:
+                assert len(native_logs) == 1, "Missing unique native original guide trace"
+                assert "original_farkas_guide" in native_logs[0], "Native root did not exercise original Farkas acceptance"
+                assert "ORIGINAL_FARKAS_GUIDE" in native_logs[0], "No committed original guide status"
+                assert "root_width=" in native_logs[0], "Missing original endpoint bracket"
+                import importlib.util
+                specification = importlib.util.spec_from_file_location("replay_original_guide", ray_root / "tests/replay_original_guide.py")
+                replay = importlib.util.module_from_spec(specification)
+                specification.loader.exec_module(replay)
+                record["independent_replay"] = replay.verify_folder(folder)
+                record["ray_checks"] = "PASS;native_original_dual_gate;negative_original_field_gate;separate_q8_root;no_continuum_ray_capture"
+        elif args.production_case:
+            data = ROOT.parents[1] / "validation/accuracy_20261013/python/data" / (args.production_case + ".json")
+            inputs = json.loads(data.read_text(encoding="utf-8"))
+            record["case"] = args.production_case
+            record["input_record_sha256"] = hashlib.sha256(data.read_bytes()).hexdigest()
+            record["source_sha256"] = {p.name: hashlib.sha256(p.read_bytes()).hexdigest() for p in (ROOT / "src/vba").glob("*.bas")}
+            record["dll_sha256"] = hashlib.sha256((folder / "rpfem_native_x64.dll").read_bytes()).hexdigest()
+            call("RPX_Setup")
+            for sheet, ranges in [("要素定義", [("A", "C", "points", 7), ("E", "H", "regions", 7), ("J", "T", "faces", 7)]), ("材料データ", [("A", "E", "materials", 5)])]:
+                ws = book.Worksheets(sheet)
+                ws.Range("A7:T1006" if sheet == "要素定義" else "A5:Q1004").ClearContents()
+                for col, last, key, first in ranges:
+                    rows = tuple(tuple(row) for row in inputs[key])
+                    rng = ws.Range(f"{col}{first}:{last}{first + len(rows) - 1}")
+                    rng.Value2 = rows
+                    assert rng.Value2 == rows, key
+            settings = {**inputs["settings"], "TARGET": args.target, "CYCLES": args.cycles,
+                        "QUADRATURE": 8, "FS_TOL": .0001, "GAP": .01, "ADAPT": 1,
+                        "ADAPT_MESH_POLICY": "ROBUST_REFINE", "ADAPT_ACCURACY_CAP": args.accuracy_cap,
+                        "ADAPT_ACCURACY_ROUNDS": args.accuracy_rounds, "ADAPT_LOWER_TARGET": args.lower_target,
+                        "ADAPT_LOWER_FAN_ROUNDS": args.fan_rounds, "ADAPT_CERT_QUADRATURE": 8,
+                        "HSD_SOLVE_SECONDS": 300, "TEST_INJECTION": 0}
+            ws = book.Worksheets("設定")
+            for key, value in settings.items():
+                slots = {str(ws.Cells(r, 4).Value2): r for r in range(4, 1000) if ws.Cells(r, 4).Value2}
+                row = slots.get(key)
+                if row is None:
+                    row = next(r for r in range(4, 1000) if not ws.Cells(r, 4).Value2 and not ws.Cells(r, 2).Value2)
+                    ws.Cells(row, 4).Value2 = key
+                ws.Cells(row, 2).Value2 = value
+            book.Worksheets("浸透入力").Range("D4").Value2 = 0
+            record["settings"] = settings
+            definition = str(call("AccuracyExport.BatchDefinition")).split("\t")
+            assert list(map(int, definition[:3])) == [len(inputs[key]) for key in ("points", "regions", "faces")]
+            assert definition[-1] == inputs["settings"]["ANALYSIS_POLICY"]
+            assert abs(float(definition[3]) - inputs["source_case"]["area"]) < 1e-8
+            record["native_definition"] = definition
+            save()
+            result = str(call("AccuracyProductionRun", str(folder / "production.tsv"), str(folder / args.production_case)))
+            record["production_result"] = result
+            record["precision_target_met"] = result.startswith("AUDITED;") and ";target_met=True;" in result
+            print(result, flush=True)
+            assert not result.startswith("FAIL;"), result
+        elif not args.compile_only:
+            if args.quadrature_only:
+                result = str(call("AccuracyQGuardProbe"))
+                assert result.startswith("PASS;"), result
+                record["quadrature_guard"] = result
+                print(result, flush=True)
+            if args.fan_only or args.fan_geometry_only:
+                result = str(call("AccuracyFanGeometryProbe"))
+                assert result.startswith("PASS;"), result
+                record["fan_geometry"] = result
+                print(result, flush=True)
+                save()
+            if args.fan_geometry_only:
+                cases = []
+            elif args.fan_only:
+                cases = [("fan_disabled", 256, 0, False), ("fan_enabled", 256, 0, False)]
+            elif args.quadrature_only:
+                cases = [("q8_complete", 64, 0, False), ("q8_injected_failure", 64, 0, False)]
+            else:
+                cases = [("disabled", 64, 0, False), ("injected_failure", 256, 2, True)] if args.failure_only else [("disabled", 64, 0, False), ("continued", 256, 2, False)]
             for label, cap, rounds, inject_failure in cases:
                 trace = folder / (label + ".tsv")
                 print("START", label, flush=True)
                 started = time.perf_counter()
-                result = str(call("AccuracyProbeRun", cap, rounds, str(trace), inject_failure))
+                result = str(call("AccuracyProbeRun", cap, rounds, str(trace), inject_failure, label == "fan_enabled", args.fan_only, 8 if args.quadrature_only else 0, label == "q8_injected_failure"))
                 assert result.startswith("PASS;"), result
                 record["runs"][label] = {"result": result, "seconds": time.perf_counter() - started}
-                print("END", label, result, flush=True)
+                print("END", label, result.split(";upper_identity=", 1)[0], flush=True)
                 save()
             book.Save()
             if args.failure_only:
@@ -136,7 +270,25 @@ def main():
                 assert any("reason=numerical_or_geometry_failure" in log and "CONIC_NOT_CONVERGED" in log for log in logs)
                 assert not any("\taccuracy_round\t" in log for log in logs), "Failed trial was counted as an accepted refinement"
                 record["failure_checks"] = "PASS;exact_baseline_retained;both_original_field_gates;failed_trial_not_accepted"
-            else:
+            elif args.fan_only:
+                values = lambda label: dict(item.split("=", 1) for item in record["runs"][label]["result"].split(";")[1:])
+                before, after = values("fan_disabled"), values("fan_enabled")
+                assert (before["upper"], before["upper_elements"], before["upper_identity"]) == (after["upper"], after["upper_elements"], after["upper_identity"]), "Independent upper witness changed in lower fan trial"
+                logs = [read_log(p) for p in (folder / "RPFEM_logs").glob("*.tsv")]
+                assert any("angular_fan_candidate" in log for log in logs)
+                assert any("lower_angular_fan_end" in log for log in logs), "Lower candidate root/audit did not finish"
+                record["fan_checks"] = "PASS;geometry_payload_integrity;lower_original_gate;independent_upper_exactly_retained"
+            elif args.quadrature_only:
+                values = lambda label: dict(item.split("=", 1) for item in record["runs"][label]["result"].split(";")[1:])
+                complete, failed = values("q8_complete"), values("q8_injected_failure")
+                assert complete["lower_q"] == complete["upper_q"] == "8"
+                assert complete["lower_root"] == complete["upper_root"] == "True"
+                assert failed["lower_q"] == "2" and failed["upper_q"] == "8" and failed["incomplete"] == "True"
+                logs = [read_log(p) for p in (folder / "RPFEM_logs").glob("*.tsv")]
+                assert any("own_quadrature_accept" in log for log in logs)
+                assert any("own_quadrature_rejected" in log and "CONIC_NOT_CONVERGED" in log for log in logs)
+                record["quadrature_checks"] = "PASS;independent_q8_original_roots_and_fields;failure_keeps_original_lower_q;precision_target_guard"
+            elif not args.fan_geometry_only:
                 record.update(verify_logs(folder))
         book.Save()
         record["status"] = "PASS"
@@ -153,7 +305,7 @@ def main():
         book = None
         app = None
         gc.collect()
-    print(json.dumps(record, ensure_ascii=False), flush=True)
+    print(json.dumps({key: value for key, value in record.items() if key != "runs"}, ensure_ascii=False), flush=True)
 
 
 if __name__ == "__main__":

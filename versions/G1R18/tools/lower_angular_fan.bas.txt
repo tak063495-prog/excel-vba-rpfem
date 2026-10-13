@@ -1,0 +1,76 @@
+' The lower candidate owns its new mesh and root. The upper witness is unchanged.
+Private Sub ContinueLowerAngularFan(ByVal mode As String)
+    Dim baseline As RPX_MeshState, seed As RPX_MeshState
+    Dim parent() As Long, field() As Double, eta() As Double
+    Dim rounds As Long, round As Long, cap As Long, savedQ As Long, savedTol As Double, uniformTarget As Long
+    Dim lower As Double, objective As Double, accepted As Boolean, oldIncomplete As Boolean
+    Dim number As Long, source As String, message As String, errorLine As Long, i As Long
+    rounds = CLng(RPX_Setting("ADAPT_LOWER_FAN_ROUNDS", 0))
+    uniformTarget = CLng(RPX_Setting("ADAPT_LOWER_TARGET", 0))
+    If rounds < 0 Or rounds > 4 Then err.Raise 5, "RPX_Adapt", "INVALID_ADAPT_LOWER_FAN_ROUNDS"
+    If uniformTarget <> 0 And (uniformTarget < 16 Or uniformTarget > adaptAccuracyCap) Then err.Raise 5, "RPX_Adapt", "INVALID_ADAPT_LOWER_TARGET"
+    If (rounds = 0 And uniformTarget = 0) Or mode <> "Fs" Then Exit Sub
+    If Not currentPairValid Or Not RBestLower.complete Or Not RBestUpper.complete Then Exit Sub
+    CloneState baseline, RCurrent
+    savedQ = RSubdivisions: savedTol = RFsTolerance: oldIncomplete = RFsSearchIncomplete
+    cap = adaptAccuracyCap
+    On Error GoTo CandidateFailed
+    For round = IIf(uniformTarget > 0, 0, 1) To rounds
+        If XCancel Then err.Raise 18, , "ANALYSIS_CANCELLED"
+        CloneState seed, RBestLower
+        Call RPX_RestoreWitnessState(seed)
+        If round = 0 Then
+            meshStage = "band_regions"
+            Call RPX_ReadInputs: DTarget = uniformTarget
+            Call RPX_GenerateMesh
+            DTarget = adaptFinalTarget
+            If re > cap Then Exit For
+            Call RPX_TotalReferenceLoads
+            RPX_DiagEvent "lower_uniform_candidate", "target=" & uniformTarget & ";elements=" & re & ";upper_mesh_unchanged=1;certificate=0"
+        Else
+            If re >= cap Then Exit For
+            meshStage = "refine"
+            If Not RPX_AngularFanMesh(cap, parent) Then Exit For
+        End If
+        ' Fresh q-specific original-program root; old signs never cross meshes.
+        RSubdivisions = savedQ: RFsTolerance = savedTol
+        RPX_DiagCandidate "lower_angular_fan_" & round
+        RPX_TestHook "lower_angular_fan_" & round
+        meshStage = "evaluate": RFsActive = True: RFsCalls = 0
+        RFsSearchIncomplete = False: RFsLargestRootBracket = 0#: RFsSearchNote = ""
+        lower = RPX_FsEndpoint("lower", seed.value, AdaptFsHintRatio)
+        RLowerFs = lower: objective = XObjective: field = xx: RLowerField = field
+        ' No upper field from another mesh may enter this candidate payload.
+        Erase RUpperField
+        ReDim eta(0 To re - 1)
+        accepted = False
+        If lower >= RBestLower.value And lower <= RBestUpper.value Then
+            If SaveState(RBestLower, field, eta, lower, lower, RBestUpper.value, "lower_angular_fan_" & round, "lower", objective) Then
+                RPX_CertFromAdapt "lower": accepted = True
+            End If
+        End If
+        adaptFsCallsTotal = adaptFsCallsTotal + RFsCalls: RFsActive = False
+        RPX_DiagEvent "lower_angular_fan_end", "round=" & round & ";accepted=" & IIf(accepted, "1", "0") & ";fs=" & lower & ";own_elements=" & re & ";own_q=" & RSubdivisions & ";root_incomplete=" & RFsSearchIncomplete & ";upper_mesh_unchanged=1"
+        If Not accepted And (round > 0 Or rounds = 0) Then Exit For
+    Next round
+CandidateDone:
+    RFsActive = False: RSubdivisions = savedQ: RFsTolerance = savedTol: DTarget = adaptFinalTarget
+    Call RPX_RestoreWitnessState(baseline): CloneState RCurrent, baseline
+    RSubdivisions = savedQ: RFsSearchIncomplete = oldIncomplete
+    Call RestoreFinalBounds(mode)
+    Exit Sub
+CandidateFailed:
+    number = err.number: source = err.source: message = err.description: errorLine = Erl
+    On Error GoTo 0
+    RPX_ErrorEvidence number, source, message, errorLine, meshStage
+    If number = 18 Or XCancel Then err.Raise 18, source, "ANALYSIS_CANCELLED"
+    If InStr(1, message, "HSD_STABLE_UNAVAILABLE_MEMORY", vbBinaryCompare) = 1 Then err.Raise number, source, message
+    If Not RPX_Recoverable(number, message, meshStage, True) Then err.Raise number, source, message
+    RPX_DiagEvent "lower_angular_fan_rejected", "round=" & round & ";old_witnesses_kept=1;message=" & message
+    On Error GoTo RestoreFailed
+    GoTo CandidateDone
+RestoreFailed:
+    number = err.number: source = err.source: message = err.description
+    On Error GoTo 0
+    err.Raise number, source, "ANGULAR_FAN_RESTORE_FAILED " & message
+End Sub
