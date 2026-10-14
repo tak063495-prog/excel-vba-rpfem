@@ -1,0 +1,47 @@
+{
+  "status": "PASS",
+  "base": {
+    "final_hit": true,
+    "original_q": 4,
+    "factor": 1.15,
+    "gates": {
+      "original_dual": false,
+      "accuracy_export": false,
+      "fixed_recovery": false
+    },
+    "after_repeat_saved_q": 4,
+    "after_repeat_gates": {
+      "original_dual": false,
+      "accuracy_export": false,
+      "fixed_recovery": false
+    },
+    "q8_fresh_gates": {
+      "original_dual": true,
+      "accuracy_export": true,
+      "fixed_recovery": true
+    },
+    "q8_q8_hit": true
+  },
+  "fixed": {
+    "final_hit": false,
+    "original_q": 8,
+    "factor": 1.15,
+    "gates": {
+      "original_dual": true,
+      "accuracy_export": true,
+      "fixed_recovery": true
+    },
+    "after_repeat_saved_q": 8,
+    "after_repeat_gates": {
+      "original_dual": true,
+      "accuracy_export": true,
+      "fixed_recovery": true
+    },
+    "q8_fresh_gates": {
+      "original_dual": true,
+      "accuracy_export": true,
+      "fixed_recovery": true
+    },
+    "q8_q8_hit": true
+  }
+}

@@ -1,0 +1,85 @@
+--- ../G1R18/src/vba/RPX_Fs.bas	2026-10-14 11:34:39.334120615 +0900
++++ src/vba/RPX_Fs.bas	2026-10-14 17:55:36.302476379 +0900
+@@ -151,6 +151,13 @@
+     On Error GoTo Failed
+     RPX_SchurDeactivate
+     prepared = (RProgramKind = mode)
++    If prepared And mode = "lower" And XOriginalCompiled.ready Then
++        ' Issue #12: never reuse original-program evidence compiled at another quadrature.
++        If XOriginalCompiled.subdivisions <> RSubdivisions Or XOriginalCompiled.inputEpoch <> RPX_InputEpoch Then
++            RPX_DiagEvent "lower_prepared_drop", "reason=original_evidence;cached_q=" & XOriginalCompiled.subdivisions & ";q=" & RSubdivisions
++            prepared = False: RProgramKind = ""
++        End If
++    End If
+     RStrengthFactor = strengthFactor
+     If mode = "lower" And Not prepared Then
+         cacheHit = RPX_LowerCacheMatch()
+--- ../G1R18/src/vba/RPX_LowerCache.bas	2026-10-14 11:34:39.334120615 +0900
++++ src/vba/RPX_LowerCache.bas	2026-10-14 17:55:36.302476379 +0900
+@@ -35,6 +35,17 @@
+     RPX_BuildModelProfile profile
+     Eligible = RPX_CanUseFeature("LOWER_MODEL_CACHE", profile, reason)
+ End Function
++' Issue #12: the lower matrices do not depend on RSubdivisions, but the retained
++' original-program evidence (XOriginalCompiled) does. A cached program is reused only
++' when that evidence belongs to the current quadrature and input epoch.
++Private Function EvidenceMismatch(ByRef original As RPX_OriginalCompiledData) As String
++    If Not original.ready Then Exit Function
++    If original.subdivisions <> RSubdivisions Then
++        EvidenceMismatch = "quadrature;cached_q=" & original.subdivisions & ";q=" & RSubdivisions
++    ElseIf original.inputEpoch <> RPX_InputEpoch Then
++        EvidenceMismatch = "input_epoch;cached_epoch=" & original.inputEpoch & ";epoch=" & RPX_InputEpoch
++    End If
++End Function
+ Public Function RPX_LowerExactIdentity() As String
+     Dim parts() As String, e As Long, k As Long, j As Long, i As Long, n As Long
+     ' Model identity includes exact scale, loads and raw/reference_total phase.
+@@ -88,6 +99,9 @@
+     ElseIf cacheKey <> RPX_LowerExactIdentity() Then
+         reason = "model_identity"
+         Call RPX_LowerCacheReset
++    ElseIf Len(EvidenceMismatch(savedOriginal)) > 0 Then
++        reason = "original_evidence_" & EvidenceMismatch(savedOriginal)
++        Call RPX_LowerCacheReset
+     Else
+         RPX_LowerCacheMatch = True
+     End If
+@@ -100,11 +114,22 @@
+     started = Timer: key = RPX_LowerExactIdentity()
+     If cacheValid Then
+         If cacheKey = key Then
+-            RPX_DiagEvent "lower_cache_keep", "bytes=" & cacheBytes & ";seconds=" & SecondsSince(started)
++            ' Same matrices: refresh the retained evidence so it never stays at an older q/epoch.
++            If XOriginalCompiled.ready And Len(EvidenceMismatch(XOriginalCompiled)) = 0 Then savedOriginal = XOriginalCompiled
++            If Len(EvidenceMismatch(savedOriginal)) > 0 Then
++                RPX_DiagEvent "lower_cache_drop", "reason=original_evidence_" & EvidenceMismatch(savedOriginal)
++                Call RPX_LowerCacheReset
++                Exit Sub
++            End If
++            RPX_DiagEvent "lower_cache_keep", "bytes=" & cacheBytes & ";seconds=" & SecondsSince(started) & ";original_q=" & savedOriginal.subdivisions
+             Exit Sub
+         End If
+     End If
+     Call RPX_LowerCacheReset
++    If Len(EvidenceMismatch(XOriginalCompiled)) > 0 Then
++        RPX_DiagEvent "lower_cache_bypass", "reason=original_evidence_" & EvidenceMismatch(XOriginalCompiled)
++        Exit Sub
++    End If
+     ' Conservative retained-payload estimate including array/UDT and key overhead.
+     bytes = 2# * Len(key) + 8# * XN + 12# * (UBound(XEId) + 1#)
+     bytes = bytes + 20# * (XM + 1#) + 16# * (XN + XM) + 4#
+@@ -149,6 +174,7 @@
+     RPX_TestHook "lower_cache_restore"
+     If Not cacheValid Then err.Raise 5, "RPX_LowerCache", "LOWER_CACHE_NOT_VALID"
+     If cacheKey <> RPX_LowerExactIdentity() Then err.Raise 5, "RPX_LowerCache", "LOWER_CACHE_IDENTITY_CHANGED"
++    If Len(EvidenceMismatch(savedOriginal)) > 0 Then err.Raise 5, "RPX_LowerCache", "LOWER_CACHE_EVIDENCE_STALE"
+     RPX_CapacityCheck "lower_cache_restore", cacheBytes
+     Call RPX_LDLRelease
+     Call RPX_ResetPreparedState
+@@ -173,5 +199,5 @@
+     RPX_TestHook "lower_cache_restore_commit"
+     If cacheKey <> RPX_LowerExactIdentity() Then err.Raise 5, "RPX_LowerCache", "LOWER_CACHE_IDENTITY_CHANGED"
+     Call RPX_DiagCounts
+-    RPX_DiagEvent "lower_cache_restore", "bytes=" & cacheBytes & ";seconds=" & SecondsSince(started) & ";prepared=1;cold_start=1;symbolic=rebuilt"
++    RPX_DiagEvent "lower_cache_restore", "bytes=" & cacheBytes & ";seconds=" & SecondsSince(started) & ";prepared=1;cold_start=1;symbolic=rebuilt;original_q=" & XOriginalCompiled.subdivisions
+ End Sub

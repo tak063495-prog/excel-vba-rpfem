@@ -1,0 +1,54 @@
+﻿{
+    "name":  "RPFEM_base-std-fixed-cache0",
+    "book":  "C:\\Users\\link_\\Desktop\\RPFEM_G1R18_Issue12_20261014\\matrix\\base_std_fixed_cache0\\RPFEM_base-std-fixed-cache0_20261014_1811.xlsm",
+    "source_sha256":  "6b280c0310ad09e8bc3efcbb4d467a35bebd8a3c69d1576da94f211520543ec7",
+    "settings":  "TARGET=512,CYCLES=1,ADAPT=1,QUADRATURE=8,RAW_LOWER_AUDIT=1,LOWER_MODEL_CACHE=0,ACCURACY_DLL_RECOVERY=0,LOWER_FIXED_RECOVERY=1",
+    "model":  "",
+    "excel_pid":  1936,
+    "native":  "DLL_READY;numeric=0;dd_numeric=0;backsolve=0;ordering=0;column_ordering=0;nt_bulk=0;g_bulk=0;gt_bulk=0;kkt_bulk=0;hsd_operator=0;corrector_bulk=0;bulk_job_steps=0;hsd_lu=0;hsd_lu_solve=0;solver_vector_calls=0;hsd_jobs=0;hsd_job_steps=0;krylov_jobs=0;krylov_steps=0;refine_jobs=0;refine_steps=0;input_compare_calls=0;schur_jobs=0;schur_steps=0;schur_native_bytes=0;meshfan_jobs=0;meshfan_steps=0",
+    "seconds":  105.89092529999999,
+    "terminal":  "上下界を取得（目標区間幅またはFs探索許容差は未達）",
+    "lower":  1.3951690029037862,
+    "upper":  1.4130621737462,
+    "state":  "last_error=;lower=1.39516900290379;upper=1.4130621737462;lower_q=8;upper_q=8;lower_complete=True;upper_complete=True;lower_root=True;upper_root=True;lower_elements=327;upper_elements=327;pair_complete=True;search_incomplete=True;original_ready=False;original_q=0;original_mode=;q_now=8;input_epoch=1",
+    "result_sheet":  [
+                         "上下界を取得（目標区間幅またはFs探索許容差は未達） |  |  | ",
+                         "adaptive mesh: conventional |  |  | ",
+                         "結果 | 下界 | 上界 | ",
+                         "強度低減安全率 Fs [-] | 1.39516900290379 | 1.4130621737462 | ",
+                         "解析政策 | LEGACY_DAVIS_CLIP |  | ",
+                         "区間幅 / 中点 | 0.0127433745420909 |  | ",
+                         "要素数 | 327 | 327 | ",
+                         "計算時間 [秒] | 105 |  | ",
+                         "Fs探索の最終ブラケット幅 | 0.000113009544904452 |  | ",
+                         "上下界は現在の解析領域・境界条件に対する値です。領域寸法の影響は別途確認してください。 |  |  | ",
+                         "証明済みの端点を保持：ADAPT_GAP_TARGET_NOT_MET |  |  | ",
+                         "採用メッシュ | final | final | ",
+                         "診断ログ | C:\\Users\\link_\\Desktop\\RPFEM_G1R18_Issue12_20261014\\matrix\\base_std_fixed_cache0\\RPFEM_logs\\20261014_181139_1936_analysis.tsv |  | ",
+                         "Stage | Elements | Nodes | Lower",
+                         "coarse_0 | 272 | 163 | 1.3736784391028",
+                         "adapt_1_band | 272 | 163 | 1.39387455672475",
+                         "band_refine | 327 | 191 | 1.39430582722304",
+                         "final | 327 | 191 | 1.39516900290379"
+                     ],
+    "log":  "20261014_181139_1936_analysis.tsv",
+    "cache_lookup_hits":  0,
+    "cache_lookup_miss":  4,
+    "cache_evidence_invalidations":  0,
+    "cache_stores":  0,
+    "cache_restores":  0,
+    "restore_original_q":  [
+
+                           ],
+    "hsd_not_converged":  0,
+    "original_lower_dual_guide":  4,
+    "prepared_drops":  0,
+    "final_eval":  [
+                       "label=final;coarse=False;fs_tolerance=0.0001;quadrature=8;elements=327;nodes=191"
+                   ],
+    "run_end":  [
+                    "status=PARTIAL_CERTIFIED;solve_count=45;sampled_peak_private_bytes=320344064;logging_seconds_before_run_end=2.2708229999987;message=ADAPT_GAP_TARGET_NOT_MET"
+                ],
+    "status":  "DONE",
+    "output_sha256":  "b8d31f6d5e474dacf60bf4d21473eb0373fd02b34f3acdebe73a27b5847897dc"
+}

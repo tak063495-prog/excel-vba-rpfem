@@ -1,0 +1,13 @@
+﻿{
+    "excel_pid":  10940,
+    "base_sha256":  "6b280c0310ad09e8bc3efcbb4d467a35bebd8a3c69d1576da94f211520543ec7",
+    "module_count":  74,
+    "compile":  "PASS",
+    "reopen":  "PASS",
+    "source_match":  true,
+    "casing_only":  [
+
+                    ],
+    "sha256":  "5cd46b28edb5a4fa8c0b939f7aa70606adfd7f5bff124195849c1c59a730f97e",
+    "status":  "PASS"
+}
