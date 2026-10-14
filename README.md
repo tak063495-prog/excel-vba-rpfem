@@ -4,6 +4,12 @@ Excel VBAによる2次元RPFEM解析のソース、XLSM、検証資料です。
 
 **最新の改善版は [G1R18 Release](https://github.com/tak063495-prog/excel-vba-rpfem/releases/tag/G1R18) です。** [バージョン一覧](versions/README.md)から過去版も確認できます。
 
+## G1R18 Issue #12 修正版（2026-10-14）
+
+- **[配布一式ZIP](downloads/RPFEM_G1R18_Issue12_20261014.zip)** / [修正内容と検証](versions/G1R18_Issue12/README.md) / [SHA-256](downloads/SHA256SUMS.txt)
+- `LOWER_MODEL_CACHE=1` で、粗探索q4の原プログラム情報が最終q8に残り、精度回復・固定荷重回復の負側下界が `HSD_NOT_CONVERGED` で拒否される不具合を修正しました。qが異なるキャッシュは無効化してq8で再構築します。q8監査ゲートは維持しています。
+- 実Excelで、修正版のキャッシュ有効時の結果がキャッシュ無効時と全桁一致し、既定設定（標準斜面・D07A）はG1R18と全桁一致しました。DLLはG1R18と同一です。
+
 ## G1R18 — 最新の改善版（2026-10-14）
 
 - **[配布一式ZIP](https://github.com/tak063495-prog/excel-vba-rpfem/releases/download/G1R18/RPFEM_20261014_G1R18.zip)** / [XLSM](versions/G1R18/delivery/RPFEM_20261014_G1R18.xlsm) / [SHA-256](versions/G1R18/SHA256SUMS.txt)

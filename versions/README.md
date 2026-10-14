@@ -5,6 +5,7 @@
 |版・記録|位置付け|案内|
 |---|---|---|
 |G1R18・2026-10-14|現在の精度改善版。P06の1%目標は継続課題|[配布・設定・検証範囲](G1R18/README_JA.md) / [ZIP](https://github.com/tak063495-prog/excel-vba-rpfem/releases/download/G1R18/RPFEM_20261014_G1R18.zip) / [SHA-256](G1R18/SHA256SUMS.txt)|
+|G1R18 Issue #12・2026-10-14|下界キャッシュの証拠メタデータ修正（`LOWER_MODEL_CACHE=1` 時）|[修正と検証](G1R18_Issue12/README.md) / [ZIP](../downloads/RPFEM_G1R18_Issue12_20261014.zip)|
 |G1R17|前版。P06粗メッシュ修復と実Excelでの26ケース実測|[版の説明](G1R17/README.md) / [26ケース実測](../docs/benchmarks/G1R17_native26_20261013/README.md)|
 |G1R17 Issue #8|水理収束判定の修正。G1R18へ取り込み済み|[水理修正と検証](G1R17_Issue8/README.md)|
 |G1R16 DLL5|過去のDLL高速化・回帰確認|[配布と検証](G1R16_DLL5/README.md)|
