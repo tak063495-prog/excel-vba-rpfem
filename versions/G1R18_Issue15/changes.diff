@@ -1,0 +1,41 @@
+--- G1R18/src/vba/RPX_SeepUI.bas	2026-10-14 11:34:39.338120615 +0900
++++ G1R18_Issue15/src/vba/RPX_SeepUI.bas	2026-10-15 20:04:25.429840464 +0900
+@@ -943,6 +943,8 @@
+     Application.ScreenUpdating = False
+     On Error GoTo ErrHandler
+     Application.StatusBar = "浸透解析：メッシュ生成中…"
++    ' #15: 再解析を始めた時点で前回の浸透結果を連成に使えなくする（成功時はRPX_SeepWriteResultsがK2/K9を書き直す）
++    RPX_SeepInvalidateResult
+     Call RPX_ReadInputs
+     mode = RPX_SeepMode(ws)
+     If ValidateInputs(ws, mode, failText) > 0 Then
+@@ -975,6 +977,7 @@
+     Resume Finish
+ Finish:
+     On Error Resume Next
++    If Len(failText) > 0 Then RPX_SeepInvalidateResult   ' #15: 結果出力後の例外でも旧/途中の結果を連成に渡さない
+     RestoreState st
+     SUnkReady = False
+     RPX_WaterSuspend = False
+@@ -994,6 +997,21 @@
+         End If
+     End If
+ End Sub
++
++' #15: 浸透結果の連成利用資格（K2=収束フラグ）を取り消す。表示用の値は残し、L2で「過去の結果」と分かるようにする。
++' RPX_Water.LoadSeepResult はK2=Trueでなければ冷読込・暖キャッシュとも拒否するため、K2=Falseだけで連成は止まる。
++Private Sub RPX_SeepInvalidateResult()
++    Dim res As Worksheet
++    On Error Resume Next
++    Set res = OptionalSheet("浸透結果")
++    If res Is Nothing Then Exit Sub
++    If VarType(res.Range("K2").Value2) = vbBoolean Then
++        If CBool(res.Range("K2").Value2) Then
++            res.Range("K2").Value2 = False
++            res.Range("L2").Value2 = "直近の浸透解析が未完了・失敗のため連成に使えません（過去の結果）"
++        End If
++    End If
++End Sub
+ 
+ ' ---------------------------------------------------------------- drawing
+ ' 図シートの座標変換（RPX_DrawCore と同じ規則：左30pt、上55pt、幅780pt/高さ460pt、縦横比1:1）
