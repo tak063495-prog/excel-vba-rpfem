@@ -1,0 +1,39 @@
+﻿{
+    "excel_version":  "16.0",
+    "excel_pid":  26260,
+    "base_sha256":  "5cd46b28edb5a4fa8c0b939f7aa70606adfd7f5bff124195849c1c59a730f97e",
+    "baseline":  {
+                     "validation/cold":  "initial=ACCEPTED(downstream:浸透連成：インデックスが有効範囲にありません。);msg=浸透解析に失敗しました：入力に問題があります（浸透入力の赤い行・確認欄）。透水係数（A:C）が未入力。水理境界（E:K）が未入力。 ;K2=True,K9=20261015200612-4-2,L2=;after=ACCEPTED(downstream:浸透連成：インデックスが有効範囲にありません。)",
+                     "validation/warm":  "initial=ACCEPTED(downstream:浸透連成：インデックスが有効範囲にありません。);msg=浸透解析に失敗しました：入力に問題があります（浸透入力の赤い行・確認欄）。透水係数（A:C）が未入力。水理境界（E:K）が未入力。 ;K2=True,K9=20261015200612-4-2,L2=;after=ACCEPTED(downstream:浸透連成：インデックスが有効範囲にありません。)",
+                     "unconverged/cold":  "initial=ACCEPTED(downstream:浸透連成：インデックスが有効範囲にありません。);msg=;K2=False,K9=20261015200613-4-2,L2=;after=REJECTED:浸透連成：連成：浸透解析が収束していません。",
+                     "unconverged/warm":  "initial=ACCEPTED(downstream:浸透連成：インデックスが有効範囲にありません。);msg=;K2=False,K9=20261015200613-4-2,L2=;after=REJECTED:浸透連成：連成：浸透解析が収束していません。",
+                     "success/cold":  "initial=ACCEPTED(downstream:浸透連成：インデックスが有効範囲にありません。);msg=;K2=True,K9=20261015200615-4-2,L2=;after=ACCEPTED(downstream:浸透連成：インデックスが有効範囲にありません。)",
+                     "success/warm":  "initial=ACCEPTED(downstream:浸透連成：インデックスが有効範囲にありません。);msg=;K2=True,K9=20261015200616-4-2,L2=;after=ACCEPTED(downstream:浸透連成：インデックスが有効範囲にありません。)"
+                 },
+    "patched":  {
+                    "validation/cold":  "initial=ACCEPTED(downstream:浸透連成：インデックスが有効範囲にありません。);msg=浸透解析に失敗しました：入力に問題があります（浸透入力の赤い行・確認欄）。透水係数（A:C）が未入力。水理境界（E:K）が未入力。 ;K2=False,K9=20261015200620-4-2,L2=直近の浸透解析が未完了・失敗のため連成に使えません（過去の結果）;after=REJECTED:浸透連成：連成：浸透解析が収束していません。",
+                    "validation/warm":  "initial=ACCEPTED(downstream:浸透連成：インデックスが有効範囲にありません。);msg=浸透解析に失敗しました：入力に問題があります（浸透入力の赤い行・確認欄）。透水係数（A:C）が未入力。水理境界（E:K）が未入力。 ;K2=False,K9=20261015200620-4-2,L2=直近の浸透解析が未完了・失敗のため連成に使えません（過去の結果）;after=REJECTED:浸透連成：連成：浸透解析が収束していません。",
+                    "unconverged/cold":  "initial=ACCEPTED(downstream:浸透連成：インデックスが有効範囲にありません。);msg=;K2=False,K9=20261015200621-4-2,L2=;after=REJECTED:浸透連成：連成：浸透解析が収束していません。",
+                    "unconverged/warm":  "initial=ACCEPTED(downstream:浸透連成：インデックスが有効範囲にありません。);msg=;K2=False,K9=20261015200621-4-2,L2=;after=REJECTED:浸透連成：連成：浸透解析が収束していません。",
+                    "success/cold":  "initial=ACCEPTED(downstream:浸透連成：インデックスが有効範囲にありません。);msg=;K2=True,K9=20261015200623-4-2,L2=;after=ACCEPTED(downstream:浸透連成：インデックスが有効範囲にありません。)",
+                    "success/warm":  "initial=ACCEPTED(downstream:浸透連成：インデックスが有効範囲にありません。);msg=;K2=True,K9=20261015200624-4-2,L2=;after=ACCEPTED(downstream:浸透連成：インデックスが有効範囲にありません。)"
+                },
+    "delivery":  {
+                     "compile":  "PASS",
+                     "reopen":  "PASS",
+                     "source_match":  true,
+                     "casing_only":  [
+                                         "RPX_Conic",
+                                         "RPX_FactorFree",
+                                         "RPX_LDL",
+                                         "RPX_NativeMesh",
+                                         "RPX_NativeSolver",
+                                         "RPX_Schur",
+                                         "RPX_SeepWT",
+                                         "RPX_Seismic",
+                                         "RPX_Solve"
+                                     ],
+                     "sha256":  "647b818642294d4490d2ec52f4ea93cdc4b6f55d7c10e19b661da043460f35aa"
+                 },
+    "status":  "PASS"
+}
