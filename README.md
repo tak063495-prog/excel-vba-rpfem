@@ -2,7 +2,16 @@
 
 Excel VBAによる2次元RPFEM解析のソース、XLSM、検証資料です。
 
-**最新の改善版は [G1R18 Release](https://github.com/tak063495-prog/excel-vba-rpfem/releases/tag/G1R18) です。** [バージョン一覧](versions/README.md)から過去版も確認できます。
+**最新の改善版は [G1R19 Release](https://github.com/tak063495-prog/excel-vba-rpfem/releases/tag/G1R19) です。** [バージョン一覧](versions/README.md)から過去版も確認できます。
+
+## G1R19 — 2%基準・高速化・単一DLL（2026-10-15）
+
+- **[配布ZIP](https://github.com/tak063495-prog/excel-vba-rpfem/releases/download/G1R19/RPFEM_20261015_G1R19.zip)** / [導入・設定](versions/G1R19/README_JA.md) / [回帰・速度計測](versions/G1R19/TEST_RESULTS.md) / [SHA-256](versions/G1R19/SHA256SUMS.txt)
+- ブックと同じフォルダーに置くDLLは **`rpfem_native_x64.dll`の1個**です。従来演算と精度回復を静的に統合し、両方のAPIを保持しています。[統合DLLのソース・回帰](versions/G1R19/native/unified/README.md)
+- 原問題をDLLへ先に渡す経路と、同一計算内の検証済みq8場・根を再監査して最終再探索を省く経路を追加しました。条件が合わない場合は従来経路へ戻ります。
+- ユーザー判断により、合格基準を対称上下界幅 **2%以下**へ変更し、1%を狙う追加実験を停止しました。保存済みPython場のP06A **1.261478%**・P06N **1.364711%**は新基準に合格します。本番計算の初期状態からの自動再現とは区別します。[方針変更・課題 #11](https://github.com/tak063495-prog/excel-vba-rpfem/issues/11)
+
+「設定」の「2%・速度優先の設定」で利用できます。物理監査の誤差基準と根幅条件を保持し、Issue #12・#15の修正も含みます。過去版の配布物と数値証拠は保全しています。
 
 ## G1R18 Issue #12 修正版（2026-10-14）
 
@@ -10,7 +19,7 @@ Excel VBAによる2次元RPFEM解析のソース、XLSM、検証資料です。
 - `LOWER_MODEL_CACHE=1` で、粗探索q4の原プログラム情報が最終q8に残り、精度回復・固定荷重回復の負側下界が `HSD_NOT_CONVERGED` で拒否される不具合を修正しました。qが異なるキャッシュは無効化してq8で再構築します。q8監査ゲートは維持しています。
 - 実Excelで、修正版のキャッシュ有効時の結果がキャッシュ無効時と全桁一致し、既定設定（標準斜面・D07A）はG1R18と全桁一致しました。DLLはG1R18と同一です。
 
-## G1R18 — 最新の改善版（2026-10-14）
+## G1R18 — 前版の精度改善（2026-10-14）
 
 - **[配布一式ZIP](https://github.com/tak063495-prog/excel-vba-rpfem/releases/download/G1R18/RPFEM_20261014_G1R18.zip)** / [XLSM](versions/G1R18/delivery/RPFEM_20261014_G1R18.xlsm) / [SHA-256](versions/G1R18/SHA256SUMS.txt)
 - [導入・設定・検証範囲](versions/G1R18/README_JA.md) / [VBAソース](versions/G1R18/src/vba) / [新DLLのソース・ビルド・数値検証](versions/G1R18/native/accuracy/README.md)
@@ -34,7 +43,7 @@ P06も旧G1R17の実Excel保存場から上下界幅を縮小しました。
 幅は `2*(上界-下界)/(上界+下界)`。[旧G1R17実測](docs/benchmarks/G1R17_native26_20261013/data/RESULTS.csv)と[最新保存場の再監査](validation/accuracy_20261013/snapshots/20261014_progress7_audit/REPORT_JA.md)を比較しています。
 最新値はPython実験の保存場を元のq8式で再監査した結果です。
 VBA/DLLの小規模数値回帰、Fs根探索、失敗時の場の保持、配布ブックの再読込みは合格しました。
-G1R18での本番規模のP06再現と1%達成は[Issue #11](https://github.com/tak063495-prog/excel-vba-rpfem/issues/11)で継続します。G1R18の速度比較は今回実施していません。
+上表の1%判定は当時の記録です。2026-10-15からは2%を合格基準とし、1%を狙う追加実験を停止しました。本番規模の確認などは[Issue #11](https://github.com/tak063495-prog/excel-vba-rpfem/issues/11)で区別して管理します。G1R18の速度比較は当時実施していません。
 
 Issue #8の水理修正も取り込み済みです。[水理修正の検証](versions/G1R17_Issue8/README.md)。
 
@@ -50,12 +59,12 @@ Issue #8の水理修正も取り込み済みです。[水理修正の検証](ver
 
 ### 最初の実行
 
-1. G1R18の配布ZIPを展開し、XLSMと2個のDLLを同じローカルフォルダーに置きます。配布ブックは標準斜面・未解析の状態なので、対象モデルの入力を確認します。
+1. G1R19の配布ZIPを展開し、XLSMと1個のDLLを同じローカルフォルダーに置きます。配布ブックは標準斜面・未解析の状態なので、対象モデルの入力を確認します。
 2. 入手元・ハッシュを確認し、組織の規則に従ってそのファイルのマクロを実行できる状態にします。通常の解析にPythonやVBAプロジェクトアクセスの許可は不要です。
 3. 「実行案内」「材料データ」「設定」を確認し、「要素定義」の**「要素作成②」→「図を表示」→「解析」**を使います。「解析」は入力からメッシュを再生成するため、要素作成は形状の事前確認用です。
 4. 「解析結果」の下界・上界・区間幅・解析政策と、ログ末尾の判定を確認します。`PARTIAL_CERTIFIED`は目標未達を含みます。詳しい操作は[使い方](docs/USAGE_JA.md)を参照してください。
 
-追加の精度回復は「設定」の「精度重視の設定」ボタンで有効にできます。材料・解析政策・領域・荷重の入力を保持します。設定と検証範囲は[G1R18の導入手順](versions/G1R18/README_JA.md)を確認してください。
+2%基準の高速化経路は「設定」の「2%・速度優先の設定」ボタンで有効にできます。材料・解析政策・領域・荷重の入力を保持します。設定と検証範囲は[G1R19の導入手順](versions/G1R19/README_JA.md)を確認してください。
 
 **G1R15では、G1R14（定常浸透・間隙水圧の一方向連成）に、浸透入力シートの整理・地下水面からの水圧入力・水平震度法（地震）を追加した（実Excelで全回帰済み：連成OFF・kh=0でD03N・D07AのFsがG1R14と全桁一致）。G1R14では連成OFFでD03N・D07AのFsがG1R13と全桁一致した。G1R13の修復・制限は[G1R13報告](versions/G1R13/REPORT.md)、G1R12時点の25ケース結果（23/25取得・11/25目標達成）は[過去25ケース結果](validation/G1R12_native25_20261009/REPORT.md)を参照し、区別する。図の矢印は規準化された速度機構であり、変位量ではない。**
 

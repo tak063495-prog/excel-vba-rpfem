@@ -1,0 +1,63 @@
+# upper F=1 77417.34
+# upper elements 0/451 77417.35
+# upper elements 256/451 77418.93
+# upper edges 0/709 77420.06
+# upper edges 512/709 77421.82
+# compile arrays 77422.53
+# ordering 5854 77422.62
+# ordering complete 77422.84
+# symbolic factorization 77422.87
+# symbolic complete 200569 77422.92
+# HSD 0 residual=8.2E+01 gap=1.3E+04 77422.98
+# HSD 1 residual=4.6E+00 gap=8.8E+01 77424.29
+# HSD 2 residual=2.1E+00 gap=3.4E+01 77425
+# HSD 3 residual=5.3E-01 gap=7.7E+00 77425.74
+# HSD 4 residual=2.0E-01 gap=3.3E+00 77426.5
+# HSD 5 residual=1.3E-01 gap=3.2E+00 77427.27
+# HSD 6 residual=1.4E-01 gap=5.7E+00 77427.99
+# HSD 7 residual=1.4E-01 gap=7.1E+00 77428.81
+# HSD 8 residual=1.3E-01 gap=6.9E+00 77429.63
+# HSD 9 residual=9.9E-02 gap=5.2E+00 77430.47
+# HSD 10 residual=7.9E-02 gap=4.1E+00 77431.31
+# HSD 11 residual=5.8E-02 gap=3.0E+00 77432.09
+# HSD 12 residual=4.3E-02 gap=2.2E+00 77432.91
+# HSD 13 residual=2.3E-02 gap=1.2E+00 77433.72
+# HSD 14 residual=9.6E-03 gap=4.8E-01 77434.49
+# HSD 15 residual=4.5E-03 gap=2.3E-01 77435.31
+# HSD 16 residual=1.6E-03 gap=8.1E-02 77436.05
+# HSD 17 residual=6.4E-04 gap=3.2E-02 77436.76
+# HSD 18 residual=3.9E-04 gap=2.0E-02 77437.49
+# HSD 19 residual=2.0E-04 gap=9.9E-03 77438.18
+# HSD 20 residual=1.8E-04 gap=9.1E-03 77438.91
+# HSD 21 residual=4.6E-05 gap=2.3E-03 77439.65
+# HSD 22 residual=2.5E-05 gap=1.3E-03 77440.37
+# HSD 23 residual=1.1E-05 gap=5.4E-04 77441.1
+# HSD 24 residual=5.4E-06 gap=2.7E-04 77441.8
+# HSD 25 residual=1.2E-06 gap=6.0E-05 77442.52
+# HSD 26 residual=1.3E-07 gap=6.3E-06 77443.24
+# HSD 27 residual=3.7E-09 gap=1.8E-07 77443.96
+# HSD 28 residual=1.7E-09 gap=9.1E-08 77444.72
+# HSD 29 residual=7.7E-10 gap=4.5E-08 77445.51
+# HSD 30 residual=3.4E-10 gap=2.3E-08 77446.36
+# triangulation 0/258 77447.33
+# triangulation 256/258 77447.42
+# zero stress fan eligibility 0 77447.48
+# native mesh fan nodes 0 77447.48
+# native mesh fan nodes 256 77447.49
+# native mesh fan elements 0 77447.5
+# native mesh fan elements 256 77447.51
+# native mesh fan edges 0 77447.52
+# native mesh fan edges 256 77447.52
+# native mesh fan edges 512 77447.53
+# native zero stress fan planning 77447.54
+# zero stress fan insertion 0 77447.55
+# zero stress fan insertion 256 77447.55
+# zero stress fan eligibility 0 77447.58
+# native mesh fan nodes 0 77447.59
+# native mesh fan nodes 256 77447.59
+# native mesh fan elements 0 77447.6
+# native mesh fan elements 256 77447.62
+# native mesh fan edges 0 77447.63
+# native mesh fan edges 256 77447.63
+# native mesh fan edges 512 77447.64
+# native zero stress fan planning 77447.66

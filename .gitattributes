@@ -17,3 +17,5 @@ validation/accuracy_20261013/python/upper_proximal_candidate.py -text
 validation/accuracy_20261013/snapshots/20261014_progress7_audit/** -text
 versions/G1R18/native/accuracy/** -text
 versions/G1R18_Issue15/** -text
+# G1R19 source/import pairs, unified DLL and regression evidence use byte hashes.
+versions/G1R19/** -text

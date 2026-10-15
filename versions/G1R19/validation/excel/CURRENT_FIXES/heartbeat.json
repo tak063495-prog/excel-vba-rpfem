@@ -1,0 +1,33 @@
+{
+  "run_token": "3d210406d7704a29ad068da49992f122",
+  "pid": 5824,
+  "process_creation_time": 1792067488.9159532,
+  "time_unix": 1792067503.4671876,
+  "rss_bytes": 365903872,
+  "peak_observed_rss_bytes": 376233984,
+  "cpu_seconds": 13.203125,
+  "available_ram_bytes": 36038135808,
+  "ready_checkpoints": 0,
+  "events": {
+    "lower_cache_lookup": 6,
+    "lower_cache_store": 2,
+    "cache_original_evidence_drop": 2,
+    "lower_prepared_drop": 1,
+    "lower_cache_restore": 1,
+    "lower_cache_keep": 1
+  },
+  "last_events": [
+    "2026-10-15 21:31:36\t0.007179\t0\t\t\t0\tlower_cache_lookup\t230080512\t234332160\t343773184\thit=0;reason=empty;seconds=0\r",
+    "2026-10-15 21:31:37\t0.536966\t1\t\tlower\t0.4\tlower_cache_store\t255254528\t262815744\t372940800\tengine=20260927_p3b;bytes=269688;seconds=0.0078125;xn=361;xm=294;xb=120\r",
+    "2026-10-15 21:31:37\t0.548484\t1\t\tlower\t0.4\tlower_cache_lookup\t255299584\t262815744\t372985856\thit=1;reason=;seconds=0\r",
+    "2026-10-15 21:31:37\t0.550780\t1\t\tlower\t0.4\tlower_cache_lookup\t255303680\t262815744\t372989952\thit=0;reason=original_evidence_quadrature;cached_q=4;q=8;seconds=0\r",
+    "2026-10-15 21:31:37\t0.550808\t1\t\tlower\t0.4\tlower_prepared_drop\t255303680\t262815744\t372989952\treason=original_evidence;cached_q=4;q=8\r",
+    "2026-10-15 21:31:37\t0.551454\t1\t\tlower\t0.4\tlower_cache_lookup\t255303680\t262815744\t372989952\thit=0;reason=empty;seconds=0\r",
+    "2026-10-15 21:31:37\t1.029803\t2\t\tlower\t0.4\tlower_cache_store\t259760128\t262815744\t377856000\tengine=20260927_p3b;bytes=269688;seconds=0.015625;xn=361;xm=294;xb=120\r",
+    "2026-10-15 21:31:37\t1.043008\t2\t\tlower\t0.4\tlower_cache_lookup\t259760128\t262815744\t377856000\thit=1;reason=;seconds=0\r",
+    "2026-10-15 21:31:37\t1.063881\t3\t\tlower\t0.4\tlower_cache_restore\t259760128\t262815744\t377856000\tbytes=269688;seconds=0.0234375;prepared=1;cold_start=1;symbolic=rebuilt;original_q=8\r",
+    "2026-10-15 21:31:37\t1.258986\t3\t\tlower\t0.4\tlower_cache_keep\t259956736\t262815744\t378089472\tbytes=269688;seconds=0;original_q=8\r",
+    "2026-10-15 21:31:37\t1.273478\t3\t\tlower\t0.4\tlower_cache_lookup\t259956736\t262815744\t378089472\thit=1;reason=;seconds=0.0078125\r"
+  ],
+  "resource_advisory": false
+}

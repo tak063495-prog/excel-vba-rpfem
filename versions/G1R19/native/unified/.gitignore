@@ -1,0 +1,5 @@
+accuracy/target/
+obj/
+bin/*.lib
+bin/*.exp
+bin/*.pdb

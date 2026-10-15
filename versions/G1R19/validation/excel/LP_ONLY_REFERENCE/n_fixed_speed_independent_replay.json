@@ -1,0 +1,16 @@
+{
+  "scope": "P06N fixed Fs1 upper, original-LP-only pre-helper source; terminal test in same harness failed independently at invalid test-only GAP2",
+  "source_summary_sha256": "de44521de3ca52e3d87d753bbb53a5616b7106c62e8bfc6d9638fa8205e29bbe",
+  "proof_path": "D:\\Work\\excel-vba-rpfem\\versions\\G1R18_Speed2pct\\results\\direct_excel_1792065854260060600\\RPFEM_logs\\20261015_210601_18688_direct_fixed_original_lp.tsv.accuracy_primal_solve_12_3_upper.bin",
+  "proof_sha256": "b1ab66088518781856ee5b6bee206cc3531ea751c81ed831d9888f70eca35732",
+  "independent_full_original_replay": {
+    "variables": 5412,
+    "rows": 16521,
+    "nonzeros": 162070,
+    "q": 8,
+    "fs": 1.0,
+    "raw_equality_or_stationarity": 1.3132495908966026e-11,
+    "raw_cone": 3.357751316203501e-08,
+    "original_objective": 0.8365379764993435
+  }
+}

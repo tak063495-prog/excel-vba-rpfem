@@ -1,0 +1,4 @@
+# Owned Excel runs retain full local evidence; curated reports are published.
+results/
+# Large raw regression evidence is attached to the GitHub Release.
+delivery/*_Regression_Evidence.zip

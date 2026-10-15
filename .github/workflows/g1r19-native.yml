@@ -1,0 +1,42 @@
+name: G1R19 unified native regression
+on:
+  pull_request:
+    paths:
+      - 'versions/G1R19/src/vba/**'
+      - 'versions/G1R19/import/**'
+      - 'versions/G1R19/SOURCE_MANIFEST.json'
+      - 'versions/G1R19/delivery/**'
+      - 'versions/G1R19/tools/package_release.py'
+      - 'versions/G1R19/native/unified/**'
+      - '!versions/G1R19/native/unified/validation/**'
+      - '!versions/G1R19/native/unified/bin/**'
+      - 'versions/G1R19/tests/**'
+      - 'versions/G1R17/native/**'
+      - 'versions/G1R18/native/accuracy/**'
+      - 'versions/G1R18/tests/test_accuracy_native_ffi.py'
+      - 'validation/accuracy_20261013/python/**'
+      - '.github/workflows/g1r19-native.yml'
+  workflow_dispatch:
+jobs:
+  unified-native:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: '3.13'
+      - name: Install pinned Rust compiler
+        run: rustup toolchain install 1.85.0 --profile minimal
+      - name: Build the single DLL and run Rust tests
+        shell: pwsh
+        run: |
+          ./versions/G1R19/native/unified/build.ps1 -CargoHome "$env:USERPROFILE/.cargo" -RustupHome "$env:USERPROFILE/.rustup"
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+      - name: Install numerical regression dependencies
+        run: python -X utf8 -m pip install -r validation/accuracy_20261013/requirements.txt
+      - name: Verify both ABIs, original arithmetic and q8 recovery
+        run: python -X utf8 versions/G1R19/native/unified/tests/verify_unified.py --dll versions/G1R19/native/unified/bin/rpfem_native_x64.dll --output versions/G1R19/native/unified/validation/ci
+      - name: Run the same regressions against the published DLL
+        run: python -X utf8 versions/G1R19/native/unified/tests/verify_unified.py --dll versions/G1R19/delivery/rpfem_native_x64.dll --output versions/G1R19/native/unified/validation/published
+      - name: Check source provenance and the published one-DLL package
+        run: python -X utf8 versions/G1R19/tests/test_source_integrity.py

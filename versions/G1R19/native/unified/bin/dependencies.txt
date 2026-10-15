@@ -1,0 +1,23 @@
+
+Dump of file D:\Work\excel-vba-rpfem\versions\G1R19\native\unified\bin\rpfem_native_x64.dll
+
+File Type: DLL
+
+  Image has the following dependencies:
+
+    oleaut32.dll
+    kernel32.dll
+    KERNEL32.dll
+    OLEAUT32.dll
+    api-ms-win-core-synch-l1-2-0.dll
+    ntdll.dll
+    bcryptprimitives.dll
+
+  Summary
+
+        3000 .data
+        1000 .fptable
+        9000 .pdata
+       42000 .rdata
+        3000 .reloc
+      126000 .text

@@ -1,0 +1,775 @@
+{
+  "pass_all": true,
+  "dll": "D:\\Work\\excel-vba-rpfem\\versions\\G1R19\\native\\unified\\bin\\rpfem_native_x64.dll",
+  "dll_sha256": "66da1a21be43cd2b3a3bfbaa9d13aad5fb1fd1960e1bf2507cc4e1cfa9ebe70b",
+  "legacy_abi": "0x00170005",
+  "accuracy_abi": 1,
+  "legacy_exports": 94,
+  "accuracy_exports": 9,
+  "total_exports": 103,
+  "pe": {
+    "machine": "AMD64",
+    "exports": [
+      "rpfem_accuracy_abi_version",
+      "rpfem_accuracy_cancel",
+      "rpfem_accuracy_create",
+      "rpfem_accuracy_default_settings",
+      "rpfem_accuracy_destroy",
+      "rpfem_accuracy_equalities",
+      "rpfem_accuracy_poll",
+      "rpfem_accuracy_result",
+      "rpfem_accuracy_start",
+      "rpx_abi",
+      "rpx_backsolve",
+      "rpx_bulk_ready",
+      "rpx_bulk_step",
+      "rpx_compile_bytes",
+      "rpx_compile_counts",
+      "rpx_compile_create",
+      "rpx_compile_destroy",
+      "rpx_compile_export",
+      "rpx_compile_live_handles",
+      "rpx_compile_order_begin",
+      "rpx_compile_permute_begin",
+      "rpx_compile_signature",
+      "rpx_compile_slots",
+      "rpx_compile_step",
+      "rpx_corrector",
+      "rpx_dd_backsolve",
+      "rpx_dd_numeric",
+      "rpx_dd_test",
+      "rpx_exact_spans",
+      "rpx_factor_step",
+      "rpx_gproduct",
+      "rpx_gtadd",
+      "rpx_hdd_assemble",
+      "rpx_hdd_step",
+      "rpx_hlinear_begin",
+      "rpx_hlinear_create",
+      "rpx_hlinear_destroy",
+      "rpx_hlinear_live_handles",
+      "rpx_hlinear_result",
+      "rpx_hlinear_step",
+      "rpx_hoperator",
+      "rpx_kkt_cones",
+      "rpx_kkt_diagonal",
+      "rpx_kkt_init",
+      "rpx_kkt_scale",
+      "rpx_krylov_begin",
+      "rpx_krylov_bytes",
+      "rpx_krylov_create",
+      "rpx_krylov_destroy",
+      "rpx_krylov_givens",
+      "rpx_krylov_live_handles",
+      "rpx_krylov_result",
+      "rpx_krylov_step",
+      "rpx_lu_backsolve",
+      "rpx_lu_create",
+      "rpx_lu_destroy",
+      "rpx_lu_export",
+      "rpx_lu_finish",
+      "rpx_lu_input",
+      "rpx_lu_live_handles",
+      "rpx_lu_metrics",
+      "rpx_lu_retained_solve",
+      "rpx_lu_step",
+      "rpx_meshfan_create",
+      "rpx_meshfan_destroy",
+      "rpx_meshfan_live_handles",
+      "rpx_meshfan_result",
+      "rpx_meshfan_step",
+      "rpx_nt_scalar_test",
+      "rpx_nt_test",
+      "rpx_nt_trace",
+      "rpx_numeric",
+      "rpx_order_create",
+      "rpx_order_destroy",
+      "rpx_order_feed",
+      "rpx_order_start",
+      "rpx_order_step",
+      "rpx_refine_begin",
+      "rpx_refine_create",
+      "rpx_refine_destroy",
+      "rpx_refine_live_handles",
+      "rpx_refine_result",
+      "rpx_refine_step",
+      "rpx_scaling",
+      "rpx_schur_bytes",
+      "rpx_schur_create",
+      "rpx_schur_destroy",
+      "rpx_schur_factor_begin",
+      "rpx_schur_factor_commit",
+      "rpx_schur_factor_result",
+      "rpx_schur_factor_step",
+      "rpx_schur_finite",
+      "rpx_schur_live_handles",
+      "rpx_schur_solve_begin",
+      "rpx_schur_solve_result",
+      "rpx_schur_solve_step",
+      "rpx_snapshot_compare",
+      "rpx_solver_cones",
+      "rpx_solver_residual",
+      "rpx_solver_update",
+      "rpx_solver_vectors",
+      "rpx_test_controlword",
+      "rpx_vector_step"
+    ],
+    "imports": [
+      "KERNEL32.dll",
+      "OLEAUT32.dll",
+      "api-ms-win-core-synch-l1-2-0.dll",
+      "bcryptprimitives.dll",
+      "kernel32.dll",
+      "ntdll.dll",
+      "oleaut32.dll"
+    ]
+  },
+  "numeric": {
+    "dense_spd_and_indefinite_factor_backsolve_cases": 120,
+    "bitwise_exact": true,
+    "cases": [
+      {
+        "case": 0,
+        "double_double": false,
+        "bitwise_exact": true
+      },
+      {
+        "case": 0,
+        "double_double": true,
+        "bitwise_exact": true
+      },
+      {
+        "case": 1,
+        "double_double": false,
+        "bitwise_exact": true
+      },
+      {
+        "case": 1,
+        "double_double": true,
+        "bitwise_exact": true
+      },
+      {
+        "case": 2,
+        "double_double": false,
+        "bitwise_exact": true
+      },
+      {
+        "case": 2,
+        "double_double": true,
+        "bitwise_exact": true
+      },
+      {
+        "case": 3,
+        "double_double": false,
+        "bitwise_exact": true
+      },
+      {
+        "case": 3,
+        "double_double": true,
+        "bitwise_exact": true
+      },
+      {
+        "case": 4,
+        "double_double": false,
+        "bitwise_exact": true
+      },
+      {
+        "case": 4,
+        "double_double": true,
+        "bitwise_exact": true
+      },
+      {
+        "case": 5,
+        "double_double": false,
+        "bitwise_exact": true
+      },
+      {
+        "case": 5,
+        "double_double": true,
+        "bitwise_exact": true
+      },
+      {
+        "case": 6,
+        "double_double": false,
+        "bitwise_exact": true
+      },
+      {
+        "case": 6,
+        "double_double": true,
+        "bitwise_exact": true
+      },
+      {
+        "case": 7,
+        "double_double": false,
+        "bitwise_exact": true
+      },
+      {
+        "case": 7,
+        "double_double": true,
+        "bitwise_exact": true
+      },
+      {
+        "case": 8,
+        "double_double": false,
+        "bitwise_exact": true
+      },
+      {
+        "case": 8,
+        "double_double": true,
+        "bitwise_exact": true
+      },
+      {
+        "case": 9,
+        "double_double": false,
+        "bitwise_exact": true
+      },
+      {
+        "case": 9,
+        "double_double": true,
+        "bitwise_exact": true
+      },
+      {
+        "case": 10,
+        "double_double": false,
+        "bitwise_exact": true
+      },
+      {
+        "case": 10,
+        "double_double": true,
+        "bitwise_exact": true
+      },
+      {
+        "case": 11,
+        "double_double": false,
+        "bitwise_exact": true
+      },
+      {
+        "case": 11,
+        "double_double": true,
+        "bitwise_exact": true
+      },
+      {
+        "case": 12,
+        "double_double": false,
+        "bitwise_exact": true
+      },
+      {
+        "case": 12,
+        "double_double": true,
+        "bitwise_exact": true
+      },
+      {
+        "case": 13,
+        "double_double": false,
+        "bitwise_exact": true
+      },
+      {
+        "case": 13,
+        "double_double": true,
+        "bitwise_exact": true
+      },
+      {
+        "case": 14,
+        "double_double": false,
+        "bitwise_exact": true
+      },
+      {
+        "case": 14,
+        "double_double": true,
+        "bitwise_exact": true
+      },
+      {
+        "case": 15,
+        "double_double": false,
+        "bitwise_exact": true
+      },
+      {
+        "case": 15,
+        "double_double": true,
+        "bitwise_exact": true
+      },
+      {
+        "case": 16,
+        "double_double": false,
+        "bitwise_exact": true
+      },
+      {
+        "case": 16,
+        "double_double": true,
+        "bitwise_exact": true
+      },
+      {
+        "case": 17,
+        "double_double": false,
+        "bitwise_exact": true
+      },
+      {
+        "case": 17,
+        "double_double": true,
+        "bitwise_exact": true
+      },
+      {
+        "case": 18,
+        "double_double": false,
+        "bitwise_exact": true
+      },
+      {
+        "case": 18,
+        "double_double": true,
+        "bitwise_exact": true
+      },
+      {
+        "case": 19,
+        "double_double": false,
+        "bitwise_exact": true
+      },
+      {
+        "case": 19,
+        "double_double": true,
+        "bitwise_exact": true
+      },
+      {
+        "case": 20,
+        "double_double": false,
+        "bitwise_exact": true
+      },
+      {
+        "case": 20,
+        "double_double": true,
+        "bitwise_exact": true
+      },
+      {
+        "case": 21,
+        "double_double": false,
+        "bitwise_exact": true
+      },
+      {
+        "case": 21,
+        "double_double": true,
+        "bitwise_exact": true
+      },
+      {
+        "case": 22,
+        "double_double": false,
+        "bitwise_exact": true
+      },
+      {
+        "case": 22,
+        "double_double": true,
+        "bitwise_exact": true
+      },
+      {
+        "case": 23,
+        "double_double": false,
+        "bitwise_exact": true
+      },
+      {
+        "case": 23,
+        "double_double": true,
+        "bitwise_exact": true
+      },
+      {
+        "case": 24,
+        "double_double": false,
+        "bitwise_exact": true
+      },
+      {
+        "case": 24,
+        "double_double": true,
+        "bitwise_exact": true
+      },
+      {
+        "case": 25,
+        "double_double": false,
+        "bitwise_exact": true
+      },
+      {
+        "case": 25,
+        "double_double": true,
+        "bitwise_exact": true
+      },
+      {
+        "case": 26,
+        "double_double": false,
+        "bitwise_exact": true
+      },
+      {
+        "case": 26,
+        "double_double": true,
+        "bitwise_exact": true
+      },
+      {
+        "case": 27,
+        "double_double": false,
+        "bitwise_exact": true
+      },
+      {
+        "case": 27,
+        "double_double": true,
+        "bitwise_exact": true
+      },
+      {
+        "case": 28,
+        "double_double": false,
+        "bitwise_exact": true
+      },
+      {
+        "case": 28,
+        "double_double": true,
+        "bitwise_exact": true
+      },
+      {
+        "case": 29,
+        "double_double": false,
+        "bitwise_exact": true
+      },
+      {
+        "case": 29,
+        "double_double": true,
+        "bitwise_exact": true
+      },
+      {
+        "case": 30,
+        "double_double": false,
+        "bitwise_exact": true
+      },
+      {
+        "case": 30,
+        "double_double": true,
+        "bitwise_exact": true
+      },
+      {
+        "case": 31,
+        "double_double": false,
+        "bitwise_exact": true
+      },
+      {
+        "case": 31,
+        "double_double": true,
+        "bitwise_exact": true
+      },
+      {
+        "case": 32,
+        "double_double": false,
+        "bitwise_exact": true
+      },
+      {
+        "case": 32,
+        "double_double": true,
+        "bitwise_exact": true
+      },
+      {
+        "case": 33,
+        "double_double": false,
+        "bitwise_exact": true
+      },
+      {
+        "case": 33,
+        "double_double": true,
+        "bitwise_exact": true
+      },
+      {
+        "case": 34,
+        "double_double": false,
+        "bitwise_exact": true
+      },
+      {
+        "case": 34,
+        "double_double": true,
+        "bitwise_exact": true
+      },
+      {
+        "case": 35,
+        "double_double": false,
+        "bitwise_exact": true
+      },
+      {
+        "case": 35,
+        "double_double": true,
+        "bitwise_exact": true
+      },
+      {
+        "case": 36,
+        "double_double": false,
+        "bitwise_exact": true
+      },
+      {
+        "case": 36,
+        "double_double": true,
+        "bitwise_exact": true
+      },
+      {
+        "case": 37,
+        "double_double": false,
+        "bitwise_exact": true
+      },
+      {
+        "case": 37,
+        "double_double": true,
+        "bitwise_exact": true
+      },
+      {
+        "case": 38,
+        "double_double": false,
+        "bitwise_exact": true
+      },
+      {
+        "case": 38,
+        "double_double": true,
+        "bitwise_exact": true
+      },
+      {
+        "case": 39,
+        "double_double": false,
+        "bitwise_exact": true
+      },
+      {
+        "case": 39,
+        "double_double": true,
+        "bitwise_exact": true
+      },
+      {
+        "case": 40,
+        "double_double": false,
+        "bitwise_exact": true
+      },
+      {
+        "case": 40,
+        "double_double": true,
+        "bitwise_exact": true
+      },
+      {
+        "case": 41,
+        "double_double": false,
+        "bitwise_exact": true
+      },
+      {
+        "case": 41,
+        "double_double": true,
+        "bitwise_exact": true
+      },
+      {
+        "case": 42,
+        "double_double": false,
+        "bitwise_exact": true
+      },
+      {
+        "case": 42,
+        "double_double": true,
+        "bitwise_exact": true
+      },
+      {
+        "case": 43,
+        "double_double": false,
+        "bitwise_exact": true
+      },
+      {
+        "case": 43,
+        "double_double": true,
+        "bitwise_exact": true
+      },
+      {
+        "case": 44,
+        "double_double": false,
+        "bitwise_exact": true
+      },
+      {
+        "case": 44,
+        "double_double": true,
+        "bitwise_exact": true
+      },
+      {
+        "case": 45,
+        "double_double": false,
+        "bitwise_exact": true
+      },
+      {
+        "case": 45,
+        "double_double": true,
+        "bitwise_exact": true
+      },
+      {
+        "case": 46,
+        "double_double": false,
+        "bitwise_exact": true
+      },
+      {
+        "case": 46,
+        "double_double": true,
+        "bitwise_exact": true
+      },
+      {
+        "case": 47,
+        "double_double": false,
+        "bitwise_exact": true
+      },
+      {
+        "case": 47,
+        "double_double": true,
+        "bitwise_exact": true
+      },
+      {
+        "case": 48,
+        "double_double": false,
+        "bitwise_exact": true
+      },
+      {
+        "case": 48,
+        "double_double": true,
+        "bitwise_exact": true
+      },
+      {
+        "case": 49,
+        "double_double": false,
+        "bitwise_exact": true
+      },
+      {
+        "case": 49,
+        "double_double": true,
+        "bitwise_exact": true
+      },
+      {
+        "case": 50,
+        "double_double": false,
+        "bitwise_exact": true
+      },
+      {
+        "case": 50,
+        "double_double": true,
+        "bitwise_exact": true
+      },
+      {
+        "case": 51,
+        "double_double": false,
+        "bitwise_exact": true
+      },
+      {
+        "case": 51,
+        "double_double": true,
+        "bitwise_exact": true
+      },
+      {
+        "case": 52,
+        "double_double": false,
+        "bitwise_exact": true
+      },
+      {
+        "case": 52,
+        "double_double": true,
+        "bitwise_exact": true
+      },
+      {
+        "case": 53,
+        "double_double": false,
+        "bitwise_exact": true
+      },
+      {
+        "case": 53,
+        "double_double": true,
+        "bitwise_exact": true
+      },
+      {
+        "case": 54,
+        "double_double": false,
+        "bitwise_exact": true
+      },
+      {
+        "case": 54,
+        "double_double": true,
+        "bitwise_exact": true
+      },
+      {
+        "case": 55,
+        "double_double": false,
+        "bitwise_exact": true
+      },
+      {
+        "case": 55,
+        "double_double": true,
+        "bitwise_exact": true
+      },
+      {
+        "case": 56,
+        "double_double": false,
+        "bitwise_exact": true
+      },
+      {
+        "case": 56,
+        "double_double": true,
+        "bitwise_exact": true
+      },
+      {
+        "case": 57,
+        "double_double": false,
+        "bitwise_exact": true
+      },
+      {
+        "case": 57,
+        "double_double": true,
+        "bitwise_exact": true
+      },
+      {
+        "case": 58,
+        "double_double": false,
+        "bitwise_exact": true
+      },
+      {
+        "case": 58,
+        "double_double": true,
+        "bitwise_exact": true
+      },
+      {
+        "case": 59,
+        "double_double": false,
+        "bitwise_exact": true
+      },
+      {
+        "case": 59,
+        "double_double": true,
+        "bitwise_exact": true
+      }
+    ],
+    "double_double_arithmetic_and_errors": [
+      {
+        "operation": 0,
+        "code": 0,
+        "bitwise_exact": true
+      },
+      {
+        "operation": 1,
+        "code": 0,
+        "bitwise_exact": true
+      },
+      {
+        "operation": 2,
+        "code": 0,
+        "bitwise_exact": true
+      },
+      {
+        "operation": 3,
+        "code": 0,
+        "bitwise_exact": true
+      },
+      {
+        "operation": 3,
+        "code": 203,
+        "bitwise_exact": true
+      },
+      {
+        "operation": 2,
+        "code": 202,
+        "bitwise_exact": true
+      }
+    ]
+  },
+  "compiler_cases": 120,
+  "fan_regression": "actual geometry/guards/100 cancelled handles",
+  "accuracy_ffi_unittest_exit_code": 0,
+  "original_artifacts_unchanged": true,
+  "protected_sha256": {
+    "D:\\Work\\excel-vba-rpfem\\versions\\G1R19\\native\\unified\\bin\\rpfem_native_x64.dll": "66da1a21be43cd2b3a3bfbaa9d13aad5fb1fd1960e1bf2507cc4e1cfa9ebe70b",
+    "D:\\Work\\excel-vba-rpfem\\versions\\G1R17\\delivery\\rpfem_native_x64.dll": "72aaf9bfccc0acc186eb69cdcbabd93b27f7ce245ceac574193ba6602c675323",
+    "D:\\Work\\excel-vba-rpfem\\versions\\G1R19\\native\\unified\\baseline_source_sha256.json": "edc63026c443541bc1cdf22b0a5f5232a23226684a0ce328a20f4942c6d981ac"
+  },
+  "scope": "small ABI regression; no new accuracy experiment or bound adoption"
+}

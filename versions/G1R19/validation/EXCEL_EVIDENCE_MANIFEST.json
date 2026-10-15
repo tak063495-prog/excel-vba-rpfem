@@ -1,0 +1,1183 @@
+{
+  "archive_path": "D:\\Work\\excel-vba-rpfem\\versions\\G1R19\\delivery\\RPFEM_20261015_G1R19_Regression_Evidence.zip",
+  "archived_source_bytes": 421142771,
+  "archived_source_files": 139,
+  "curated_limit_bytes": 2097152,
+  "curated_rule": "summary.json plus .json/.tsv/.py/.bas <= 2 MiB; no DLL/XLSM",
+  "embedded_manifest": "EVIDENCE_MANIFEST.json",
+  "excluded_cache_names": [
+    ".cache",
+    ".git",
+    ".mypy_cache",
+    ".pytest_cache",
+    ".ruff_cache",
+    ".tox",
+    ".venv",
+    "__pycache__",
+    "cache"
+  ],
+  "excluded_suffixes": [
+    ".dll",
+    ".exe",
+    ".lib",
+    ".pdb",
+    ".pyc",
+    ".pyo"
+  ],
+  "references_are_not_accepted_complete_runs": true,
+  "release": "G1R19",
+  "runs": [
+    {
+      "accepted_complete_run": true,
+      "excluded_cache_directories": [],
+      "files": [
+        {
+          "archive_path": "DIRECT_AND_TERMINAL/Direct_Test.xlsm",
+          "bytes": 1996450,
+          "path": "Direct_Test.xlsm",
+          "sha256": "aaac6ddea8c7187c6da25af2f29d0dc9687c940905b5efb85890cf02014e8b11"
+        },
+        {
+          "archive_path": "DIRECT_AND_TERMINAL/P06A_input.json",
+          "bytes": 7612,
+          "curated_path": "validation/excel/DIRECT_AND_TERMINAL/P06A_input.json",
+          "path": "P06A_input.json",
+          "sha256": "7ba1d27d7f1d4bee57972dd9e87881a3efa59f8765808631c87916e3bf3ee9d1"
+        },
+        {
+          "archive_path": "DIRECT_AND_TERMINAL/SpeedDirectProbe.bas",
+          "bytes": 3464,
+          "curated_path": "validation/excel/DIRECT_AND_TERMINAL/SpeedDirectProbe.bas",
+          "path": "SpeedDirectProbe.bas",
+          "sha256": "bbd527d3ccb482d3882e93bbda920a43c8dd6f46e53b5203237753786cac786f"
+        },
+        {
+          "archive_path": "DIRECT_AND_TERMINAL/TerminalReuseProbe.bas",
+          "bytes": 7406,
+          "curated_path": "validation/excel/DIRECT_AND_TERMINAL/TerminalReuseProbe.bas",
+          "path": "TerminalReuseProbe.bas",
+          "sha256": "a30c7fea8000aaed7aceb1f5b55884d2338f1b5330d2f35902aedecb0642ed0e"
+        },
+        {
+          "archive_path": "DIRECT_AND_TERMINAL/harness_snapshot.py",
+          "bytes": 9775,
+          "curated_path": "validation/excel/DIRECT_AND_TERMINAL/harness_snapshot.py",
+          "path": "harness_snapshot.py",
+          "sha256": "2662a4677f37c42c94992f8220bc2541b909379cdf625320e2756f1b10d00bd7"
+        },
+        {
+          "archive_path": "DIRECT_AND_TERMINAL/lower_0_False.tsv",
+          "bytes": 2806,
+          "curated_path": "validation/excel/DIRECT_AND_TERMINAL/lower_0_False.tsv",
+          "path": "lower_0_False.tsv",
+          "sha256": "038b00b7b8e6d0a7cb3b1aa4b128b5e265b37991cfb04f481550198d7b273e60"
+        },
+        {
+          "archive_path": "DIRECT_AND_TERMINAL/lower_1_False.tsv",
+          "bytes": 1828,
+          "curated_path": "validation/excel/DIRECT_AND_TERMINAL/lower_1_False.tsv",
+          "path": "lower_1_False.tsv",
+          "sha256": "33bf482b1ca567375f5136fe5456a7582ac77b5789743234f15524eae2bbf89e"
+        },
+        {
+          "bytes": 1521664,
+          "excluded_reason": "runtime/compiler binary or bytecode; not included in review archive",
+          "path": "rpfem_native_x64.dll",
+          "sha256": "66da1a21be43cd2b3a3bfbaa9d13aad5fb1fd1960e1bf2507cc4e1cfa9ebe70b"
+        },
+        {
+          "archive_path": "DIRECT_AND_TERMINAL/summary.json",
+          "bytes": 16751,
+          "curated_path": "validation/excel/DIRECT_AND_TERMINAL/summary.json",
+          "path": "summary.json",
+          "sha256": "adb1865497783368b1a8418745b4bdfefc5db66a644fdd57dd2715eae680c39b"
+        },
+        {
+          "archive_path": "DIRECT_AND_TERMINAL/terminal.tsv",
+          "bytes": 5897,
+          "curated_path": "validation/excel/DIRECT_AND_TERMINAL/terminal.tsv",
+          "path": "terminal.tsv",
+          "sha256": "206c030b6889391dd69a213c9d7a8d8467d072e1f00c1415deb828049bb1bf2f"
+        },
+        {
+          "archive_path": "DIRECT_AND_TERMINAL/upper_0_False.tsv",
+          "bytes": 15177,
+          "curated_path": "validation/excel/DIRECT_AND_TERMINAL/upper_0_False.tsv",
+          "path": "upper_0_False.tsv",
+          "sha256": "3301da99db53d990bddc7587c4b1a90893aff71477c249784d06831e03680a38"
+        },
+        {
+          "archive_path": "DIRECT_AND_TERMINAL/upper_1_False.tsv",
+          "bytes": 841,
+          "curated_path": "validation/excel/DIRECT_AND_TERMINAL/upper_1_False.tsv",
+          "path": "upper_1_False.tsv",
+          "sha256": "bd4de04bf5279102772222a9f850b5b7e26e331d6f0b0d9f66275bc39e8a2994"
+        },
+        {
+          "archive_path": "DIRECT_AND_TERMINAL/upper_1_True.tsv",
+          "bytes": 2699,
+          "curated_path": "validation/excel/DIRECT_AND_TERMINAL/upper_1_True.tsv",
+          "path": "upper_1_True.tsv",
+          "sha256": "bff533f3408af52f24273ae558a80688ac1d48f9e00b31f2fd9d4e669ea7adf5"
+        },
+        {
+          "archive_path": "DIRECT_AND_TERMINAL/RPFEM_logs/20261015_210916_10456_direct_fixed_original_lp.tsv",
+          "bytes": 58472,
+          "curated_path": "validation/excel/DIRECT_AND_TERMINAL/RPFEM_logs/20261015_210916_10456_direct_fixed_original_lp.tsv",
+          "path": "RPFEM_logs/20261015_210916_10456_direct_fixed_original_lp.tsv",
+          "sha256": "2384faa9b1a0b9c056239fae3588a3bf89d4dc3b9c0d586d9b9296ffd51e3b28"
+        },
+        {
+          "archive_path": "DIRECT_AND_TERMINAL/RPFEM_logs/20261015_210917_10456_direct_fixed_original_lp.tsv",
+          "bytes": 61840,
+          "curated_path": "validation/excel/DIRECT_AND_TERMINAL/RPFEM_logs/20261015_210917_10456_direct_fixed_original_lp.tsv",
+          "path": "RPFEM_logs/20261015_210917_10456_direct_fixed_original_lp.tsv",
+          "sha256": "6b0486143a9e57ac8cd8e951c7ca7c1f9ce7639d10454ef33fe35108319baeb0"
+        },
+        {
+          "archive_path": "DIRECT_AND_TERMINAL/RPFEM_logs/20261015_210918_10456_direct_fixed_original_lp.tsv",
+          "bytes": 49854,
+          "curated_path": "validation/excel/DIRECT_AND_TERMINAL/RPFEM_logs/20261015_210918_10456_direct_fixed_original_lp.tsv",
+          "path": "RPFEM_logs/20261015_210918_10456_direct_fixed_original_lp.tsv",
+          "sha256": "322c1f57ea43689844407e00a8290e405c91f5947d7de5c4cbb22ba52a574005"
+        },
+        {
+          "archive_path": "DIRECT_AND_TERMINAL/RPFEM_logs/20261015_210918_10456_direct_fixed_original_lp_1.tsv",
+          "bytes": 26186,
+          "curated_path": "validation/excel/DIRECT_AND_TERMINAL/RPFEM_logs/20261015_210918_10456_direct_fixed_original_lp_1.tsv",
+          "path": "RPFEM_logs/20261015_210918_10456_direct_fixed_original_lp_1.tsv",
+          "sha256": "c55535ee36de29de806ea34c923c933e2d7b61f5eb82d9511c7aba93b9956c46"
+        },
+        {
+          "archive_path": "DIRECT_AND_TERMINAL/RPFEM_logs/20261015_210918_10456_direct_fixed_original_lp_1.tsv.accuracy_dual_solve_3_1_lower.bin",
+          "bytes": 39372,
+          "path": "RPFEM_logs/20261015_210918_10456_direct_fixed_original_lp_1.tsv.accuracy_dual_solve_3_1_lower.bin",
+          "sha256": "e1191a7eb43de9af1ce8195056771b9768ff81ce705dca7528508015831eca4f"
+        },
+        {
+          "archive_path": "DIRECT_AND_TERMINAL/RPFEM_logs/20261015_210918_10456_direct_fixed_original_lp_1.tsv.accuracy_dual_solve_3_1_lower.bin.context.tsv",
+          "bytes": 66148,
+          "curated_path": "validation/excel/DIRECT_AND_TERMINAL/RPFEM_logs/20261015_210918_10456_direct_fixed_original_lp_1.tsv.accuracy_dual_solve_3_1_lower.bin.context.tsv",
+          "path": "RPFEM_logs/20261015_210918_10456_direct_fixed_original_lp_1.tsv.accuracy_dual_solve_3_1_lower.bin.context.tsv",
+          "sha256": "b0ab0bb37878d267ae9d5dffbb643fb60a4108b02e09ff65909fa7e3aa408f23"
+        },
+        {
+          "archive_path": "DIRECT_AND_TERMINAL/RPFEM_logs/20261015_210919_10456_direct_fixed_original_lp.tsv",
+          "bytes": 294384,
+          "curated_path": "validation/excel/DIRECT_AND_TERMINAL/RPFEM_logs/20261015_210919_10456_direct_fixed_original_lp.tsv",
+          "path": "RPFEM_logs/20261015_210919_10456_direct_fixed_original_lp.tsv",
+          "sha256": "dce0cefbd31e53fdc0dfcf9ab14daabe1ae73d393f7d88b041bf8018d5918776"
+        },
+        {
+          "archive_path": "DIRECT_AND_TERMINAL/RPFEM_logs/20261015_210921_10456_direct_fixed_original_lp.tsv",
+          "bytes": 24266,
+          "curated_path": "validation/excel/DIRECT_AND_TERMINAL/RPFEM_logs/20261015_210921_10456_direct_fixed_original_lp.tsv",
+          "path": "RPFEM_logs/20261015_210921_10456_direct_fixed_original_lp.tsv",
+          "sha256": "c3f1127604da21219166cf007737bc5df4d158682a570e35538ffd9ae784bdf2"
+        },
+        {
+          "archive_path": "DIRECT_AND_TERMINAL/RPFEM_logs/20261015_210921_10456_direct_fixed_original_lp.tsv.accuracy_dual_solve_5_2_upper.bin",
+          "bytes": 94652,
+          "path": "RPFEM_logs/20261015_210921_10456_direct_fixed_original_lp.tsv.accuracy_dual_solve_5_2_upper.bin",
+          "sha256": "0ebf804bde7a3cc7e02f441eae33ed1302d7c3b1cefde97a1816e4206405ddc0"
+        },
+        {
+          "archive_path": "DIRECT_AND_TERMINAL/RPFEM_logs/20261015_210921_10456_direct_fixed_original_lp.tsv.accuracy_dual_solve_5_2_upper.bin.context.tsv",
+          "bytes": 36300,
+          "curated_path": "validation/excel/DIRECT_AND_TERMINAL/RPFEM_logs/20261015_210921_10456_direct_fixed_original_lp.tsv.accuracy_dual_solve_5_2_upper.bin.context.tsv",
+          "path": "RPFEM_logs/20261015_210921_10456_direct_fixed_original_lp.tsv.accuracy_dual_solve_5_2_upper.bin.context.tsv",
+          "sha256": "121548dcdac07aa010c8148a34fe2abac795d1629685e3ec72d605a0d4696080"
+        },
+        {
+          "archive_path": "DIRECT_AND_TERMINAL/RPFEM_logs/20261015_210922_10456_direct_fixed_original_lp.tsv",
+          "bytes": 61426,
+          "curated_path": "validation/excel/DIRECT_AND_TERMINAL/RPFEM_logs/20261015_210922_10456_direct_fixed_original_lp.tsv",
+          "path": "RPFEM_logs/20261015_210922_10456_direct_fixed_original_lp.tsv",
+          "sha256": "a9ab1f5be5a4273d5b1b18c743c57209f134c5c8aa6b700627842e8dce34d254"
+        },
+        {
+          "archive_path": "DIRECT_AND_TERMINAL/RPFEM_logs/20261015_210923_10456_direct_fixed_original_lp.tsv",
+          "bytes": 29704,
+          "curated_path": "validation/excel/DIRECT_AND_TERMINAL/RPFEM_logs/20261015_210923_10456_direct_fixed_original_lp.tsv",
+          "path": "RPFEM_logs/20261015_210923_10456_direct_fixed_original_lp.tsv",
+          "sha256": "df0180b976085f090dcce711a720a6dbe1b524d0814c03f659b3b27fb8a4144d"
+        },
+        {
+          "archive_path": "DIRECT_AND_TERMINAL/RPFEM_logs/20261015_210923_10456_direct_fixed_original_lp.tsv.accuracy_primal_solve_6_3_upper.bin",
+          "bytes": 91172,
+          "path": "RPFEM_logs/20261015_210923_10456_direct_fixed_original_lp.tsv.accuracy_primal_solve_6_3_upper.bin",
+          "sha256": "621af7d6c5fd9a836e6b0964390f7d6e3b13b8ce810458ca76f47abaff302c0f"
+        },
+        {
+          "archive_path": "DIRECT_AND_TERMINAL/RPFEM_logs/20261015_210923_10456_direct_fixed_original_lp.tsv.accuracy_primal_solve_6_3_upper.bin.context.tsv",
+          "bytes": 36300,
+          "curated_path": "validation/excel/DIRECT_AND_TERMINAL/RPFEM_logs/20261015_210923_10456_direct_fixed_original_lp.tsv.accuracy_primal_solve_6_3_upper.bin.context.tsv",
+          "path": "RPFEM_logs/20261015_210923_10456_direct_fixed_original_lp.tsv.accuracy_primal_solve_6_3_upper.bin.context.tsv",
+          "sha256": "2dacaa9b8c19b3c447aa395bf83733cdd2cf7219b455f7194fc8a231fbd88b6b"
+        },
+        {
+          "archive_path": "DIRECT_AND_TERMINAL/RPFEM_logs/20261015_210923_10456_direct_fixed_original_lp_1.tsv",
+          "bytes": 62512,
+          "curated_path": "validation/excel/DIRECT_AND_TERMINAL/RPFEM_logs/20261015_210923_10456_direct_fixed_original_lp_1.tsv",
+          "path": "RPFEM_logs/20261015_210923_10456_direct_fixed_original_lp_1.tsv",
+          "sha256": "fc1628ad16bd7d6a6d66fce0dd47f2670a694595568394ecaf5e30b18184450c"
+        },
+        {
+          "archive_path": "DIRECT_AND_TERMINAL/RPFEM_logs/20261015_210924_10456_direct_fixed_original_lp.tsv",
+          "bytes": 289918,
+          "curated_path": "validation/excel/DIRECT_AND_TERMINAL/RPFEM_logs/20261015_210924_10456_direct_fixed_original_lp.tsv",
+          "path": "RPFEM_logs/20261015_210924_10456_direct_fixed_original_lp.tsv",
+          "sha256": "24f4cf56bd188253372b6f2032b023de4d91049144c4ae1f8dd337be29c9177d"
+        },
+        {
+          "archive_path": "DIRECT_AND_TERMINAL/RPFEM_logs/20261015_210954_10456_direct_fixed_original_lp.tsv",
+          "bytes": 28230,
+          "curated_path": "validation/excel/DIRECT_AND_TERMINAL/RPFEM_logs/20261015_210954_10456_direct_fixed_original_lp.tsv",
+          "path": "RPFEM_logs/20261015_210954_10456_direct_fixed_original_lp.tsv",
+          "sha256": "d5c19710824d16ee22deec87366a0a8f11c5f694377ecb523e58ef91eea0c5e2"
+        },
+        {
+          "archive_path": "DIRECT_AND_TERMINAL/RPFEM_logs/20261015_210954_10456_direct_fixed_original_lp.tsv.accuracy_dual_solve_8_4_upper.bin",
+          "bytes": 2425592,
+          "path": "RPFEM_logs/20261015_210954_10456_direct_fixed_original_lp.tsv.accuracy_dual_solve_8_4_upper.bin",
+          "sha256": "ddf3947a742dd9076b134f42c20b2e57736ef5efe713e64b2ddce588832511f8"
+        },
+        {
+          "archive_path": "DIRECT_AND_TERMINAL/RPFEM_logs/20261015_210954_10456_direct_fixed_original_lp.tsv.accuracy_dual_solve_8_4_upper.bin.context.tsv",
+          "bytes": 722678,
+          "curated_path": "validation/excel/DIRECT_AND_TERMINAL/RPFEM_logs/20261015_210954_10456_direct_fixed_original_lp.tsv.accuracy_dual_solve_8_4_upper.bin.context.tsv",
+          "path": "RPFEM_logs/20261015_210954_10456_direct_fixed_original_lp.tsv.accuracy_dual_solve_8_4_upper.bin.context.tsv",
+          "sha256": "df6ed9230d699bf9b70abab71dbc7314ae19dead8e0f3fabab4c46bccabac764"
+        },
+        {
+          "archive_path": "DIRECT_AND_TERMINAL/RPFEM_logs/20261015_211001_10456_analysis.tsv",
+          "bytes": 252832,
+          "curated_path": "validation/excel/DIRECT_AND_TERMINAL/RPFEM_logs/20261015_211001_10456_analysis.tsv",
+          "path": "RPFEM_logs/20261015_211001_10456_analysis.tsv",
+          "sha256": "a57b84a31b292747c33f7ffe48c4a031c374781378d79f2c224730ceb1fcdde7"
+        }
+      ],
+      "label": "DIRECT_AND_TERMINAL",
+      "original_dll_references": [
+        {
+          "bytes": 1521664,
+          "filename": "rpfem_native_x64.dll",
+          "path": "rpfem_native_x64.dll",
+          "sha256": "66da1a21be43cd2b3a3bfbaa9d13aad5fb1fd1960e1bf2507cc4e1cfa9ebe70b",
+          "source_path": "D:\\Work\\excel-vba-rpfem\\versions\\G1R18_Speed2pct\\results\\direct_excel_1792066147963620300\\rpfem_native_x64.dll"
+        }
+      ],
+      "role": "accepted_primary",
+      "scope": "accepted complete run; summary.status == PASS",
+      "source_directory": "D:\\Work\\excel-vba-rpfem\\versions\\G1R18_Speed2pct\\results\\direct_excel_1792066147963620300",
+      "summary_sha256": "adb1865497783368b1a8418745b4bdfefc5db66a644fdd57dd2715eae680c39b",
+      "summary_status": "PASS",
+      "summary_status_present": true
+    },
+    {
+      "accepted_complete_run": true,
+      "excluded_cache_directories": [],
+      "files": [
+        {
+          "archive_path": "N_FIXED_FINAL/Direct_Test.xlsm",
+          "bytes": 1968084,
+          "path": "Direct_Test.xlsm",
+          "sha256": "3a75836938b51d6ceecb4d071403a08e8cb4dabf07e129f6e81f03e23042cd36"
+        },
+        {
+          "archive_path": "N_FIXED_FINAL/P06N_input.json",
+          "bytes": 7607,
+          "curated_path": "validation/excel/N_FIXED_FINAL/P06N_input.json",
+          "path": "P06N_input.json",
+          "sha256": "25f865f0e776f231feb5437eebaefbdbf59b6c3e0f8297174c4c6aa6abeff392"
+        },
+        {
+          "archive_path": "N_FIXED_FINAL/SpeedDirectProbe.bas",
+          "bytes": 3464,
+          "curated_path": "validation/excel/N_FIXED_FINAL/SpeedDirectProbe.bas",
+          "path": "SpeedDirectProbe.bas",
+          "sha256": "bbd527d3ccb482d3882e93bbda920a43c8dd6f46e53b5203237753786cac786f"
+        },
+        {
+          "archive_path": "N_FIXED_FINAL/harness_snapshot.py",
+          "bytes": 10091,
+          "curated_path": "validation/excel/N_FIXED_FINAL/harness_snapshot.py",
+          "path": "harness_snapshot.py",
+          "sha256": "b01c25778a4b09ac66fdc2abdb30118ad68d9c8b3e163f6d6c26d40867bebd16"
+        },
+        {
+          "bytes": 1521664,
+          "excluded_reason": "runtime/compiler binary or bytecode; not included in review archive",
+          "path": "rpfem_native_x64.dll",
+          "sha256": "66da1a21be43cd2b3a3bfbaa9d13aad5fb1fd1960e1bf2507cc4e1cfa9ebe70b"
+        },
+        {
+          "archive_path": "N_FIXED_FINAL/summary.json",
+          "bytes": 9693,
+          "curated_path": "validation/excel/N_FIXED_FINAL/summary.json",
+          "path": "summary.json",
+          "sha256": "cdef75eaf05ccb4978e096b51341abd8d2bbf73712934793f0e62d27c32663b6"
+        },
+        {
+          "archive_path": "N_FIXED_FINAL/upper_0_False.tsv",
+          "bytes": 2629,
+          "curated_path": "validation/excel/N_FIXED_FINAL/upper_0_False.tsv",
+          "path": "upper_0_False.tsv",
+          "sha256": "4f4557694468caf126ecbd5ab276abe88c266a55d4e52674fc74552bb63a311e"
+        },
+        {
+          "archive_path": "N_FIXED_FINAL/upper_1_False.tsv",
+          "bytes": 281,
+          "curated_path": "validation/excel/N_FIXED_FINAL/upper_1_False.tsv",
+          "path": "upper_1_False.tsv",
+          "sha256": "26176cc7a598aef081082f4803b3eb2744f3b1e10193e0c3d8ee835f4500c232"
+        },
+        {
+          "archive_path": "N_FIXED_FINAL/RPFEM_logs/20261015_213017_8924_direct_fixed_original_lp.tsv",
+          "bytes": 266676,
+          "curated_path": "validation/excel/N_FIXED_FINAL/RPFEM_logs/20261015_213017_8924_direct_fixed_original_lp.tsv",
+          "path": "RPFEM_logs/20261015_213017_8924_direct_fixed_original_lp.tsv",
+          "sha256": "72d1674432beeb6edd0783c847b6c490fdfc538685dd1661d8762d8d168d4c5d"
+        },
+        {
+          "archive_path": "N_FIXED_FINAL/RPFEM_logs/20261015_213047_8924_direct_fixed_original_lp.tsv",
+          "bytes": 31288,
+          "curated_path": "validation/excel/N_FIXED_FINAL/RPFEM_logs/20261015_213047_8924_direct_fixed_original_lp.tsv",
+          "path": "RPFEM_logs/20261015_213047_8924_direct_fixed_original_lp.tsv",
+          "sha256": "40c8d038a2555b5e6681b0f063644e94c081da4cba9a8091707c118de881d76b"
+        },
+        {
+          "archive_path": "N_FIXED_FINAL/RPFEM_logs/20261015_213047_8924_direct_fixed_original_lp.tsv.accuracy_primal_solve_1_1_upper.bin",
+          "bytes": 2336720,
+          "path": "RPFEM_logs/20261015_213047_8924_direct_fixed_original_lp.tsv.accuracy_primal_solve_1_1_upper.bin",
+          "sha256": "b1ab66088518781856ee5b6bee206cc3531ea751c81ed831d9888f70eca35732"
+        },
+        {
+          "archive_path": "N_FIXED_FINAL/RPFEM_logs/20261015_213047_8924_direct_fixed_original_lp.tsv.accuracy_primal_solve_1_1_upper.bin.context.tsv",
+          "bytes": 722702,
+          "curated_path": "validation/excel/N_FIXED_FINAL/RPFEM_logs/20261015_213047_8924_direct_fixed_original_lp.tsv.accuracy_primal_solve_1_1_upper.bin.context.tsv",
+          "path": "RPFEM_logs/20261015_213047_8924_direct_fixed_original_lp.tsv.accuracy_primal_solve_1_1_upper.bin.context.tsv",
+          "sha256": "bfb5e0c708cb4c333a07766a96f0cdbac24c581cd9df5ca2b7dab79c58c379a1"
+        }
+      ],
+      "label": "N_FIXED_FINAL",
+      "original_dll_references": [
+        {
+          "bytes": 1521664,
+          "filename": "rpfem_native_x64.dll",
+          "path": "rpfem_native_x64.dll",
+          "sha256": "66da1a21be43cd2b3a3bfbaa9d13aad5fb1fd1960e1bf2507cc4e1cfa9ebe70b",
+          "source_path": "D:\\Work\\excel-vba-rpfem\\versions\\G1R19\\results\\direct_excel_1792067406412512700\\rpfem_native_x64.dll"
+        }
+      ],
+      "role": "accepted_primary",
+      "scope": "accepted complete run; summary.status == PASS",
+      "source_directory": "D:\\Work\\excel-vba-rpfem\\versions\\G1R19\\results\\direct_excel_1792067406412512700",
+      "summary_sha256": "cdef75eaf05ccb4978e096b51341abd8d2bbf73712934793f0e62d27c32663b6",
+      "summary_status": "PASS",
+      "summary_status_present": true
+    },
+    {
+      "accepted_complete_run": true,
+      "excluded_cache_directories": [],
+      "files": [
+        {
+          "archive_path": "CURRENT_FIXES/CurrentProduction.xlsm",
+          "bytes": 1989588,
+          "path": "CurrentProduction.xlsm",
+          "sha256": "8a0e3ef5f59689c41c71ad1ae941b3b636de1f718576af34086b9f70b6ec8aed"
+        },
+        {
+          "archive_path": "CURRENT_FIXES/cache.tsv",
+          "bytes": 4755,
+          "curated_path": "validation/excel/CURRENT_FIXES/cache.tsv",
+          "path": "cache.tsv",
+          "sha256": "13f38198d66dda6e47c481d45e19dd25771713cdcc0c06025e9ca7f2c63502d5"
+        },
+        {
+          "archive_path": "CURRENT_FIXES/harness_snapshot.py",
+          "bytes": 17220,
+          "curated_path": "validation/excel/CURRENT_FIXES/harness_snapshot.py",
+          "path": "harness_snapshot.py",
+          "sha256": "05b020cc77f7598aee8731f5d107e5da596674b7e9bed24a8a22c54d4c6fd5dc"
+        },
+        {
+          "archive_path": "CURRENT_FIXES/heartbeat.json",
+          "bytes": 2306,
+          "curated_path": "validation/excel/CURRENT_FIXES/heartbeat.json",
+          "path": "heartbeat.json",
+          "sha256": "c1b1b7f0e6518da301c58f0b35122700f3eefaf99d0b53f859ca54b5f81813f8"
+        },
+        {
+          "archive_path": "CURRENT_FIXES/observer_snapshot.bas",
+          "bytes": 6568,
+          "curated_path": "validation/excel/CURRENT_FIXES/observer_snapshot.bas",
+          "path": "observer_snapshot.bas",
+          "sha256": "cd50f142021179615732d224703aaabfda26c02e48258d2abaf8795b05c99f66"
+        },
+        {
+          "bytes": 1521664,
+          "excluded_reason": "runtime/compiler binary or bytecode; not included in review archive",
+          "path": "rpfem_native_x64.dll",
+          "sha256": "66da1a21be43cd2b3a3bfbaa9d13aad5fb1fd1960e1bf2507cc4e1cfa9ebe70b"
+        },
+        {
+          "archive_path": "CURRENT_FIXES/summary.json",
+          "bytes": 15753,
+          "curated_path": "validation/excel/CURRENT_FIXES/summary.json",
+          "path": "summary.json",
+          "sha256": "1e0d0ea0f95b63213ca1f4fd99f24e565bc1ccee17b06abca097e9571c209042"
+        },
+        {
+          "archive_path": "CURRENT_FIXES/RPFEM_logs/20261015_213136_5824_current_cache_preflight.tsv",
+          "bytes": 155482,
+          "curated_path": "validation/excel/CURRENT_FIXES/RPFEM_logs/20261015_213136_5824_current_cache_preflight.tsv",
+          "path": "RPFEM_logs/20261015_213136_5824_current_cache_preflight.tsv",
+          "sha256": "8fae97bb43ddb0bde400f1d738d023660cb8fbfe8cab97553c6f636adf46094f"
+        }
+      ],
+      "label": "CURRENT_FIXES",
+      "original_dll_references": [
+        {
+          "bytes": 1521664,
+          "filename": "rpfem_native_x64.dll",
+          "path": "rpfem_native_x64.dll",
+          "sha256": "66da1a21be43cd2b3a3bfbaa9d13aad5fb1fd1960e1bf2507cc4e1cfa9ebe70b",
+          "source_path": "D:\\Work\\excel-vba-rpfem\\versions\\G1R19\\results\\current_preflight_1792067488853934100\\rpfem_native_x64.dll"
+        }
+      ],
+      "role": "accepted_primary",
+      "scope": "accepted complete run; summary.status == PASS",
+      "source_directory": "D:\\Work\\excel-vba-rpfem\\versions\\G1R19\\results\\current_preflight_1792067488853934100",
+      "summary_sha256": "1e0d0ea0f95b63213ca1f4fd99f24e565bc1ccee17b06abca097e9571c209042",
+      "summary_status": "PASS",
+      "summary_status_present": true
+    },
+    {
+      "accepted_complete_run": true,
+      "excluded_cache_directories": [],
+      "files": [
+        {
+          "archive_path": "P06A_lower/P06A_lower_source.bin",
+          "bytes": 4525348,
+          "path": "P06A_lower_source.bin",
+          "sha256": "78bb1c9a84863cc2711a5f619da6688e0017070a45a9866683b3858d4c434127"
+        },
+        {
+          "archive_path": "P06A_lower/P06A_lower_source.json",
+          "bytes": 2804,
+          "curated_path": "validation/excel/P06A_lower/P06A_lower_source.json",
+          "path": "P06A_lower_source.json",
+          "sha256": "fa54fbb4a96bc43949133f48f431bc4211708802b3da3e9651e2bd0d6da6cab4"
+        },
+        {
+          "archive_path": "P06A_lower/PythonOriginalField_Test.xlsm",
+          "bytes": 2054895,
+          "path": "PythonOriginalField_Test.xlsm",
+          "sha256": "2339152bc4e5ea9be95e007b23cd128c5f3c9bb6d5d33941918ce86298898256"
+        },
+        {
+          "archive_path": "P06A_lower/audited_context.tsv",
+          "bytes": 10896584,
+          "path": "audited_context.tsv",
+          "sha256": "722e0a31bce8444f8550e61cad7cd202f0c726f20e67d52685d101f4de7e3dae"
+        },
+        {
+          "archive_path": "P06A_lower/audited_field.bin",
+          "bytes": 3179540,
+          "path": "audited_field.bin",
+          "sha256": "00c519f1474c5736061c2a82c5727391d0593e6b8e314dc6f75d8dd5e3ef0154"
+        },
+        {
+          "archive_path": "P06A_lower/audited_native.bin",
+          "bytes": 4525348,
+          "path": "audited_native.bin",
+          "sha256": "cc35660f6f77cbaffeedaac3d32ede34a40a7193f19d56b8d4f7418d5fabf407"
+        },
+        {
+          "archive_path": "P06A_lower/audited_original.bin",
+          "bytes": 39596532,
+          "path": "audited_original.bin",
+          "sha256": "b5a59c670f9fff8626976b763da33c53b27eca03ae48f1dab09ea5b35f0aa612"
+        },
+        {
+          "archive_path": "P06A_lower/audited_stages.tsv",
+          "bytes": 140,
+          "curated_path": "validation/excel/P06A_lower/audited_stages.tsv",
+          "path": "audited_stages.tsv",
+          "sha256": "088591781f7316be3d4aa06b8ecbfd85bdcea9646b16197f1117ade9934bd0f9"
+        },
+        {
+          "archive_path": "P06A_lower/changed_material.bin",
+          "bytes": 4525348,
+          "path": "changed_material.bin",
+          "sha256": "b0c66439ab7d79f3608d9303dcbd801cf74b48fd26194ca824705b4fb20a78b8"
+        },
+        {
+          "archive_path": "P06A_lower/harness_snapshot.py",
+          "bytes": 12674,
+          "curated_path": "validation/excel/P06A_lower/harness_snapshot.py",
+          "path": "harness_snapshot.py",
+          "sha256": "6d10730069dbdcd9cdbddf791d9fc405911f4da694ebf736c5bdac2d6c4c7cd3"
+        },
+        {
+          "archive_path": "P06A_lower/nan_xy.bin",
+          "bytes": 4525348,
+          "path": "nan_xy.bin",
+          "sha256": "300ac357f3a4641a120208a8d4f692830d79fd49b00de7b1594d14cdcd92df40"
+        },
+        {
+          "archive_path": "P06A_lower/observer_snapshot.bas",
+          "bytes": 11531,
+          "curated_path": "validation/excel/P06A_lower/observer_snapshot.bas",
+          "path": "observer_snapshot.bas",
+          "sha256": "94f2428b9b66278d7161df8eaf37c6b4a8bc8cadfe2264a56cc9aeeee6a8f58a"
+        },
+        {
+          "archive_path": "P06A_lower/q4.bin",
+          "bytes": 4525348,
+          "path": "q4.bin",
+          "sha256": "cc11c12e4c24eb1b5eaa91926d5a8101b780855ff78808091fe69e1a5240d6c9"
+        },
+        {
+          "bytes": 1521664,
+          "excluded_reason": "runtime/compiler binary or bytecode; not included in review archive",
+          "path": "rpfem_native_x64.dll",
+          "sha256": "66da1a21be43cd2b3a3bfbaa9d13aad5fb1fd1960e1bf2507cc4e1cfa9ebe70b"
+        },
+        {
+          "archive_path": "P06A_lower/summary.json",
+          "bytes": 13405,
+          "curated_path": "validation/excel/P06A_lower/summary.json",
+          "path": "summary.json",
+          "sha256": "1d9a59d38cc202450db4f00ee7c9f12bd593b101f585bdb0642beeef8f089c49"
+        }
+      ],
+      "label": "P06A_lower",
+      "original_dll_references": [
+        {
+          "bytes": 1521664,
+          "filename": "rpfem_native_x64.dll",
+          "path": "rpfem_native_x64.dll",
+          "sha256": "66da1a21be43cd2b3a3bfbaa9d13aad5fb1fd1960e1bf2507cc4e1cfa9ebe70b",
+          "source_path": "D:\\Work\\excel-vba-rpfem\\versions\\G1R19\\results\\python_field_excel_1792066291792866000\\rpfem_native_x64.dll"
+        }
+      ],
+      "role": "accepted_primary",
+      "scope": "accepted complete run; summary.status == PASS",
+      "source_directory": "D:\\Work\\excel-vba-rpfem\\versions\\G1R19\\results\\python_field_excel_1792066291792866000",
+      "summary_sha256": "1d9a59d38cc202450db4f00ee7c9f12bd593b101f585bdb0642beeef8f089c49",
+      "summary_status": "PASS",
+      "summary_status_present": true
+    },
+    {
+      "accepted_complete_run": true,
+      "excluded_cache_directories": [],
+      "files": [
+        {
+          "archive_path": "P06A_upper/P06A_upper_source.bin",
+          "bytes": 1992848,
+          "path": "P06A_upper_source.bin",
+          "sha256": "161f1a5428ae49d23e2b2e5a9c89c299ef6f2c8b782852d1ac25a2edd62c8179"
+        },
+        {
+          "archive_path": "P06A_upper/P06A_upper_source.json",
+          "bytes": 2756,
+          "curated_path": "validation/excel/P06A_upper/P06A_upper_source.json",
+          "path": "P06A_upper_source.json",
+          "sha256": "c538fd850eb85d1bfe6d1c8427a32af210ff4cf3f4bbac07cc65e689364dde2b"
+        },
+        {
+          "archive_path": "P06A_upper/PythonOriginalField_Test.xlsm",
+          "bytes": 2055076,
+          "path": "PythonOriginalField_Test.xlsm",
+          "sha256": "178bfe73c45de4ac53d29fcf95392020f3cf162054f61625e5776fc6a2b0006d"
+        },
+        {
+          "archive_path": "P06A_upper/audited_context.tsv",
+          "bytes": 6209806,
+          "path": "audited_context.tsv",
+          "sha256": "060d133d710920f0b270cb3c4d5d81cae5e3f1c54f76d878c0242a5d0362ead6"
+        },
+        {
+          "archive_path": "P06A_upper/audited_field.bin",
+          "bytes": 1224300,
+          "path": "audited_field.bin",
+          "sha256": "4c4b34c3b7e470d8fa9c24ceca491ec3e7d6253f12401afb011ff1919bf615df"
+        },
+        {
+          "archive_path": "P06A_upper/audited_native.bin",
+          "bytes": 1992848,
+          "path": "audited_native.bin",
+          "sha256": "67b1ca0db4b6ba0b8a4d1980159a7aa387619cf627263a9404e6f23957499a01"
+        },
+        {
+          "archive_path": "P06A_upper/audited_original.bin",
+          "bytes": 68645020,
+          "path": "audited_original.bin",
+          "sha256": "cbeb054072d639f4f1008d9e8f293a336ad05e3e9b160be1eeaca430f9c6a342"
+        },
+        {
+          "archive_path": "P06A_upper/audited_stages.tsv",
+          "bytes": 140,
+          "curated_path": "validation/excel/P06A_upper/audited_stages.tsv",
+          "path": "audited_stages.tsv",
+          "sha256": "088591781f7316be3d4aa06b8ecbfd85bdcea9646b16197f1117ade9934bd0f9"
+        },
+        {
+          "archive_path": "P06A_upper/changed_material.bin",
+          "bytes": 1992848,
+          "path": "changed_material.bin",
+          "sha256": "9abd094c8a47d353708be1a704d512b087b7988bd5923ddfe6300af85be56cae"
+        },
+        {
+          "archive_path": "P06A_upper/harness_snapshot.py",
+          "bytes": 12674,
+          "curated_path": "validation/excel/P06A_upper/harness_snapshot.py",
+          "path": "harness_snapshot.py",
+          "sha256": "6d10730069dbdcd9cdbddf791d9fc405911f4da694ebf736c5bdac2d6c4c7cd3"
+        },
+        {
+          "archive_path": "P06A_upper/nan_xy.bin",
+          "bytes": 1992848,
+          "path": "nan_xy.bin",
+          "sha256": "259db46936b01d49cd53b4c0aec30344d19b9069cd9b29a388aaaeaaa3218f1d"
+        },
+        {
+          "archive_path": "P06A_upper/observer_snapshot.bas",
+          "bytes": 11531,
+          "curated_path": "validation/excel/P06A_upper/observer_snapshot.bas",
+          "path": "observer_snapshot.bas",
+          "sha256": "94f2428b9b66278d7161df8eaf37c6b4a8bc8cadfe2264a56cc9aeeee6a8f58a"
+        },
+        {
+          "archive_path": "P06A_upper/q4.bin",
+          "bytes": 1992848,
+          "path": "q4.bin",
+          "sha256": "2218046029f7131dd374b93e6fd9cf7bfbccb4070d77bedb121e2585fe73678c"
+        },
+        {
+          "bytes": 1521664,
+          "excluded_reason": "runtime/compiler binary or bytecode; not included in review archive",
+          "path": "rpfem_native_x64.dll",
+          "sha256": "66da1a21be43cd2b3a3bfbaa9d13aad5fb1fd1960e1bf2507cc4e1cfa9ebe70b"
+        },
+        {
+          "archive_path": "P06A_upper/summary.json",
+          "bytes": 13231,
+          "curated_path": "validation/excel/P06A_upper/summary.json",
+          "path": "summary.json",
+          "sha256": "15161f5a864e82ff9adc5409fa249b9da36b8195411f12341307fb082da427ab"
+        }
+      ],
+      "label": "P06A_upper",
+      "original_dll_references": [
+        {
+          "bytes": 1521664,
+          "filename": "rpfem_native_x64.dll",
+          "path": "rpfem_native_x64.dll",
+          "sha256": "66da1a21be43cd2b3a3bfbaa9d13aad5fb1fd1960e1bf2507cc4e1cfa9ebe70b",
+          "source_path": "D:\\Work\\excel-vba-rpfem\\versions\\G1R19\\results\\python_field_excel_1792066641461239500\\rpfem_native_x64.dll"
+        }
+      ],
+      "role": "accepted_primary",
+      "scope": "accepted complete run; summary.status == PASS",
+      "source_directory": "D:\\Work\\excel-vba-rpfem\\versions\\G1R19\\results\\python_field_excel_1792066641461239500",
+      "summary_sha256": "15161f5a864e82ff9adc5409fa249b9da36b8195411f12341307fb082da427ab",
+      "summary_status": "PASS",
+      "summary_status_present": true
+    },
+    {
+      "accepted_complete_run": true,
+      "excluded_cache_directories": [],
+      "files": [
+        {
+          "archive_path": "P06N_lower/P06N_lower_source.bin",
+          "bytes": 2297352,
+          "path": "P06N_lower_source.bin",
+          "sha256": "0c0f754af3156fadf5b710a52636b87333670cb2a682c23203941839b5d2ac9a"
+        },
+        {
+          "archive_path": "P06N_lower/P06N_lower_source.json",
+          "bytes": 2757,
+          "curated_path": "validation/excel/P06N_lower/P06N_lower_source.json",
+          "path": "P06N_lower_source.json",
+          "sha256": "777793292b9b611d8febea1ddfa469d8412c3e8578462be84ebdac46dba4259c"
+        },
+        {
+          "archive_path": "P06N_lower/PythonOriginalField_Test.xlsm",
+          "bytes": 2054962,
+          "path": "PythonOriginalField_Test.xlsm",
+          "sha256": "a20e86935b6d99c2df0bd08c8ab69dd1bfd48b43f5b369723ed3ebe3b82f6212"
+        },
+        {
+          "archive_path": "P06N_lower/audited_context.tsv",
+          "bytes": 5469084,
+          "path": "audited_context.tsv",
+          "sha256": "a958327f94418654c3203d6d9ff476318967f0a0a819d76e1387b6f8039595e8"
+        },
+        {
+          "archive_path": "P06N_lower/audited_field.bin",
+          "bytes": 1612964,
+          "path": "audited_field.bin",
+          "sha256": "7c11e27d8ba2624f2ebaccbf3194d2f1cfe0b8e9af23b5ff486fbd6de325acfc"
+        },
+        {
+          "archive_path": "P06N_lower/audited_native.bin",
+          "bytes": 2297352,
+          "path": "audited_native.bin",
+          "sha256": "e63b65656995ebf194e276bce400f6e73aff1a496e2aad5bb05173c6dfc14e67"
+        },
+        {
+          "archive_path": "P06N_lower/audited_original.bin",
+          "bytes": 20066832,
+          "path": "audited_original.bin",
+          "sha256": "ee01c86635b0abd96b18de0ed5d2b5d553312e08659e8741dba9cebd5c8af2f5"
+        },
+        {
+          "archive_path": "P06N_lower/audited_stages.tsv",
+          "bytes": 140,
+          "curated_path": "validation/excel/P06N_lower/audited_stages.tsv",
+          "path": "audited_stages.tsv",
+          "sha256": "088591781f7316be3d4aa06b8ecbfd85bdcea9646b16197f1117ade9934bd0f9"
+        },
+        {
+          "archive_path": "P06N_lower/changed_material.bin",
+          "bytes": 2297352,
+          "path": "changed_material.bin",
+          "sha256": "5c376b18afb6ea7b33deff447a7e91430756f605a5e8fa67e998a1c2ce09eb50"
+        },
+        {
+          "archive_path": "P06N_lower/harness_snapshot.py",
+          "bytes": 12674,
+          "curated_path": "validation/excel/P06N_lower/harness_snapshot.py",
+          "path": "harness_snapshot.py",
+          "sha256": "6d10730069dbdcd9cdbddf791d9fc405911f4da694ebf736c5bdac2d6c4c7cd3"
+        },
+        {
+          "archive_path": "P06N_lower/nan_xy.bin",
+          "bytes": 2297352,
+          "path": "nan_xy.bin",
+          "sha256": "7c4b95dc832424b07ce419e8d6ced8a74459f1878e631027412c65ccd0273f35"
+        },
+        {
+          "archive_path": "P06N_lower/observer_snapshot.bas",
+          "bytes": 11531,
+          "curated_path": "validation/excel/P06N_lower/observer_snapshot.bas",
+          "path": "observer_snapshot.bas",
+          "sha256": "94f2428b9b66278d7161df8eaf37c6b4a8bc8cadfe2264a56cc9aeeee6a8f58a"
+        },
+        {
+          "archive_path": "P06N_lower/q4.bin",
+          "bytes": 2297352,
+          "path": "q4.bin",
+          "sha256": "d9c45197a7012cf9a33fb40ec6f77aa1978e3b51b7d900d9f892d9427d8f8251"
+        },
+        {
+          "bytes": 1521664,
+          "excluded_reason": "runtime/compiler binary or bytecode; not included in review archive",
+          "path": "rpfem_native_x64.dll",
+          "sha256": "66da1a21be43cd2b3a3bfbaa9d13aad5fb1fd1960e1bf2507cc4e1cfa9ebe70b"
+        },
+        {
+          "archive_path": "P06N_lower/summary.json",
+          "bytes": 13256,
+          "curated_path": "validation/excel/P06N_lower/summary.json",
+          "path": "summary.json",
+          "sha256": "9a043ed2e594f3e774e47a7ff318bc3552260e0db950694d832fd1f199f8f059"
+        }
+      ],
+      "label": "P06N_lower",
+      "original_dll_references": [
+        {
+          "bytes": 1521664,
+          "filename": "rpfem_native_x64.dll",
+          "path": "rpfem_native_x64.dll",
+          "sha256": "66da1a21be43cd2b3a3bfbaa9d13aad5fb1fd1960e1bf2507cc4e1cfa9ebe70b",
+          "source_path": "D:\\Work\\excel-vba-rpfem\\versions\\G1R19\\results\\python_field_excel_1792066819862595700\\rpfem_native_x64.dll"
+        }
+      ],
+      "role": "accepted_primary",
+      "scope": "accepted complete run; summary.status == PASS",
+      "source_directory": "D:\\Work\\excel-vba-rpfem\\versions\\G1R19\\results\\python_field_excel_1792066819862595700",
+      "summary_sha256": "9a043ed2e594f3e774e47a7ff318bc3552260e0db950694d832fd1f199f8f059",
+      "summary_status": "PASS",
+      "summary_status_present": true
+    },
+    {
+      "accepted_complete_run": true,
+      "excluded_cache_directories": [],
+      "files": [
+        {
+          "archive_path": "P06N_upper/P06N_upper_source.bin",
+          "bytes": 4358880,
+          "path": "P06N_upper_source.bin",
+          "sha256": "2a55407081b7b8d129d926202fe3059807f46f1b8ba58f03b6736b7e9fa6c38b"
+        },
+        {
+          "archive_path": "P06N_upper/P06N_upper_source.json",
+          "bytes": 2755,
+          "curated_path": "validation/excel/P06N_upper/P06N_upper_source.json",
+          "path": "P06N_upper_source.json",
+          "sha256": "1229fb3b4497a0ea9f157c9112704d1eaf7921665cef835dad4e3aa41d2abccb"
+        },
+        {
+          "archive_path": "P06N_upper/PythonOriginalField_Test.xlsm",
+          "bytes": 2055035,
+          "path": "PythonOriginalField_Test.xlsm",
+          "sha256": "ac218e6f833fe8262fbb673e6443ba818e59fabd70b78cb94e929569ddcbf389"
+        },
+        {
+          "archive_path": "P06N_upper/audited_context.tsv",
+          "bytes": 13752818,
+          "path": "audited_context.tsv",
+          "sha256": "1d60b3636d1e430ae329aa896eec226acd3c200c7fddd9b4f171d15196697580"
+        },
+        {
+          "archive_path": "P06N_upper/audited_field.bin",
+          "bytes": 2680044,
+          "path": "audited_field.bin",
+          "sha256": "b4dc46a722129ff07bc84baf0cfacb129f5877cf5a559cf64c0efb3f8aae8a5c"
+        },
+        {
+          "archive_path": "P06N_upper/audited_native.bin",
+          "bytes": 4358880,
+          "path": "audited_native.bin",
+          "sha256": "652a36675a2b880c7a486812df9883b1fd236cde0be4829444c792b3bb7f7204"
+        },
+        {
+          "archive_path": "P06N_upper/audited_original.bin",
+          "bytes": 152051500,
+          "path": "audited_original.bin",
+          "sha256": "de1bad35225ea618c287f36672d3126a26b81b7a35a79eed9f7b371329a85585"
+        },
+        {
+          "archive_path": "P06N_upper/audited_stages.tsv",
+          "bytes": 140,
+          "curated_path": "validation/excel/P06N_upper/audited_stages.tsv",
+          "path": "audited_stages.tsv",
+          "sha256": "088591781f7316be3d4aa06b8ecbfd85bdcea9646b16197f1117ade9934bd0f9"
+        },
+        {
+          "archive_path": "P06N_upper/changed_material.bin",
+          "bytes": 4358880,
+          "path": "changed_material.bin",
+          "sha256": "ae1949332cdc7c9354fb853d051d741e6179f476cea128cfd56e92c9a7f7e2c6"
+        },
+        {
+          "archive_path": "P06N_upper/harness_snapshot.py",
+          "bytes": 12674,
+          "curated_path": "validation/excel/P06N_upper/harness_snapshot.py",
+          "path": "harness_snapshot.py",
+          "sha256": "6d10730069dbdcd9cdbddf791d9fc405911f4da694ebf736c5bdac2d6c4c7cd3"
+        },
+        {
+          "archive_path": "P06N_upper/nan_xy.bin",
+          "bytes": 4358880,
+          "path": "nan_xy.bin",
+          "sha256": "f7ba2eb9f8403bfa161bec5b228b1c19d6f2816ec47ea6fe8e71ee62345056f6"
+        },
+        {
+          "archive_path": "P06N_upper/observer_snapshot.bas",
+          "bytes": 11531,
+          "curated_path": "validation/excel/P06N_upper/observer_snapshot.bas",
+          "path": "observer_snapshot.bas",
+          "sha256": "94f2428b9b66278d7161df8eaf37c6b4a8bc8cadfe2264a56cc9aeeee6a8f58a"
+        },
+        {
+          "archive_path": "P06N_upper/q4.bin",
+          "bytes": 4358880,
+          "path": "q4.bin",
+          "sha256": "a999b7abda7a15b7b1e20ea437b6a1175967ea082f9eb662f0a9d20e5b355cd7"
+        },
+        {
+          "bytes": 1521664,
+          "excluded_reason": "runtime/compiler binary or bytecode; not included in review archive",
+          "path": "rpfem_native_x64.dll",
+          "sha256": "66da1a21be43cd2b3a3bfbaa9d13aad5fb1fd1960e1bf2507cc4e1cfa9ebe70b"
+        },
+        {
+          "archive_path": "P06N_upper/summary.json",
+          "bytes": 13235,
+          "curated_path": "validation/excel/P06N_upper/summary.json",
+          "path": "summary.json",
+          "sha256": "06f8374c059a86cd99e73cdca3968bc174a93a3332525dd60fa97748ced3ee2f"
+        }
+      ],
+      "label": "P06N_upper",
+      "original_dll_references": [
+        {
+          "bytes": 1521664,
+          "filename": "rpfem_native_x64.dll",
+          "path": "rpfem_native_x64.dll",
+          "sha256": "66da1a21be43cd2b3a3bfbaa9d13aad5fb1fd1960e1bf2507cc4e1cfa9ebe70b",
+          "source_path": "D:\\Work\\excel-vba-rpfem\\versions\\G1R19\\results\\python_field_excel_1792067011651254800\\rpfem_native_x64.dll"
+        }
+      ],
+      "role": "accepted_primary",
+      "scope": "accepted complete run; summary.status == PASS",
+      "source_directory": "D:\\Work\\excel-vba-rpfem\\versions\\G1R19\\results\\python_field_excel_1792067011651254800",
+      "summary_sha256": "06f8374c059a86cd99e73cdca3968bc174a93a3332525dd60fa97748ced3ee2f",
+      "summary_status": "PASS",
+      "summary_status_present": true
+    },
+    {
+      "accepted_complete_run": false,
+      "excluded_cache_directories": [],
+      "files": [
+        {
+          "archive_path": "LP_ONLY_REFERENCE/Direct_Test.xlsm",
+          "bytes": 1917536,
+          "path": "Direct_Test.xlsm",
+          "sha256": "6b280c0310ad09e8bc3efcbb4d467a35bebd8a3c69d1576da94f211520543ec7"
+        },
+        {
+          "archive_path": "LP_ONLY_REFERENCE/P06A_input.json",
+          "bytes": 7612,
+          "curated_path": "validation/excel/LP_ONLY_REFERENCE/P06A_input.json",
+          "path": "P06A_input.json",
+          "sha256": "7ba1d27d7f1d4bee57972dd9e87881a3efa59f8765808631c87916e3bf3ee9d1"
+        },
+        {
+          "archive_path": "LP_ONLY_REFERENCE/P06N_input.json",
+          "bytes": 7607,
+          "curated_path": "validation/excel/LP_ONLY_REFERENCE/P06N_input.json",
+          "path": "P06N_input.json",
+          "sha256": "25f865f0e776f231feb5437eebaefbdbf59b6c3e0f8297174c4c6aa6abeff392"
+        },
+        {
+          "archive_path": "LP_ONLY_REFERENCE/SpeedDirectProbe.bas",
+          "bytes": 3464,
+          "curated_path": "validation/excel/LP_ONLY_REFERENCE/SpeedDirectProbe.bas",
+          "path": "SpeedDirectProbe.bas",
+          "sha256": "bbd527d3ccb482d3882e93bbda920a43c8dd6f46e53b5203237753786cac786f"
+        },
+        {
+          "archive_path": "LP_ONLY_REFERENCE/TerminalReuseProbe.bas",
+          "bytes": 7210,
+          "curated_path": "validation/excel/LP_ONLY_REFERENCE/TerminalReuseProbe.bas",
+          "path": "TerminalReuseProbe.bas",
+          "sha256": "9510c2fce7e3367292e1559b813e8bd76691730219d084c4758436e8a816a6a3"
+        },
+        {
+          "archive_path": "LP_ONLY_REFERENCE/harness_snapshot.py",
+          "bytes": 9683,
+          "curated_path": "validation/excel/LP_ONLY_REFERENCE/harness_snapshot.py",
+          "path": "harness_snapshot.py",
+          "sha256": "a5cfafa0cef8943c4a60256ef972c08ac6185c900f4e8e9b6cb82b036750307b"
+        },
+        {
+          "archive_path": "LP_ONLY_REFERENCE/lower_0_False.tsv",
+          "bytes": 2799,
+          "curated_path": "validation/excel/LP_ONLY_REFERENCE/lower_0_False.tsv",
+          "path": "lower_0_False.tsv",
+          "sha256": "f3ba7090e0f1f4562507bc6037bdddb58018c18dcb0c32de62618efb86f3b486"
+        },
+        {
+          "archive_path": "LP_ONLY_REFERENCE/lower_1_False.tsv",
+          "bytes": 1825,
+          "curated_path": "validation/excel/LP_ONLY_REFERENCE/lower_1_False.tsv",
+          "path": "lower_1_False.tsv",
+          "sha256": "a9e0754557da33b4cd08fe59480f9af3266763f6998b68a96c4271e8b4475e51"
+        },
+        {
+          "archive_path": "LP_ONLY_REFERENCE/n_fixed_speed_independent_replay.json",
+          "bytes": 847,
+          "curated_path": "validation/excel/LP_ONLY_REFERENCE/n_fixed_speed_independent_replay.json",
+          "path": "n_fixed_speed_independent_replay.json",
+          "sha256": "e3cdc3e9590d624fe44373cdb49c0518ede82138a6321ab0a47fe77e8f0937f0"
+        },
+        {
+          "bytes": 1521664,
+          "excluded_reason": "runtime/compiler binary or bytecode; not included in review archive",
+          "path": "rpfem_native_x64.dll",
+          "sha256": "66da1a21be43cd2b3a3bfbaa9d13aad5fb1fd1960e1bf2507cc4e1cfa9ebe70b"
+        },
+        {
+          "archive_path": "LP_ONLY_REFERENCE/summary.json",
+          "bytes": 16141,
+          "curated_path": "validation/excel/LP_ONLY_REFERENCE/summary.json",
+          "path": "summary.json",
+          "sha256": "de44521de3ca52e3d87d753bbb53a5616b7106c62e8bfc6d9638fa8205e29bbe"
+        },
+        {
+          "archive_path": "LP_ONLY_REFERENCE/upper_0_False.tsv",
+          "bytes": 17779,
+          "curated_path": "validation/excel/LP_ONLY_REFERENCE/upper_0_False.tsv",
+          "path": "upper_0_False.tsv",
+          "sha256": "45c986fcbfcc694992228811257858eb3036f9f69deb410327da1ddc07b961a4"
+        },
+        {
+          "archive_path": "LP_ONLY_REFERENCE/upper_1_False.tsv",
+          "bytes": 13764,
+          "curated_path": "validation/excel/LP_ONLY_REFERENCE/upper_1_False.tsv",
+          "path": "upper_1_False.tsv",
+          "sha256": "239f71347bf42a9d172e3fcfff6ce8d1b4bc096076810398f5ef3c8c2adc430c"
+        },
+        {
+          "archive_path": "LP_ONLY_REFERENCE/upper_1_True.tsv",
+          "bytes": 2696,
+          "curated_path": "validation/excel/LP_ONLY_REFERENCE/upper_1_True.tsv",
+          "path": "upper_1_True.tsv",
+          "sha256": "5093495254399c4e335671d2fdb6a9f8b81b36172498d59e1a31b2f07ccc9a63"
+        },
+        {
+          "archive_path": "LP_ONLY_REFERENCE/RPFEM_logs/20261015_210422_18688_direct_fixed_original_lp.tsv",
+          "bytes": 58480,
+          "curated_path": "validation/excel/LP_ONLY_REFERENCE/RPFEM_logs/20261015_210422_18688_direct_fixed_original_lp.tsv",
+          "path": "RPFEM_logs/20261015_210422_18688_direct_fixed_original_lp.tsv",
+          "sha256": "b5db2a277706f9c879023e710700ce58f02d2e77b2e9001a6f5944f34653b931"
+        },
+        {
+          "archive_path": "LP_ONLY_REFERENCE/RPFEM_logs/20261015_210422_18688_direct_fixed_original_lp_1.tsv",
+          "bytes": 61628,
+          "curated_path": "validation/excel/LP_ONLY_REFERENCE/RPFEM_logs/20261015_210422_18688_direct_fixed_original_lp_1.tsv",
+          "path": "RPFEM_logs/20261015_210422_18688_direct_fixed_original_lp_1.tsv",
+          "sha256": "55669488f5f85eb0f4fb123d153186f0f2fc45f907ba28b186e750ab13c800c5"
+        },
+        {
+          "archive_path": "LP_ONLY_REFERENCE/RPFEM_logs/20261015_210423_18688_direct_fixed_original_lp.tsv",
+          "bytes": 49866,
+          "curated_path": "validation/excel/LP_ONLY_REFERENCE/RPFEM_logs/20261015_210423_18688_direct_fixed_original_lp.tsv",
+          "path": "RPFEM_logs/20261015_210423_18688_direct_fixed_original_lp.tsv",
+          "sha256": "78f70553be71e7674db16b88f3a9fe781df305cbc378d97bad0be581a094c553"
+        },
+        {
+          "archive_path": "LP_ONLY_REFERENCE/RPFEM_logs/20261015_210424_18688_direct_fixed_original_lp.tsv",
+          "bytes": 25992,
+          "curated_path": "validation/excel/LP_ONLY_REFERENCE/RPFEM_logs/20261015_210424_18688_direct_fixed_original_lp.tsv",
+          "path": "RPFEM_logs/20261015_210424_18688_direct_fixed_original_lp.tsv",
+          "sha256": "355b0dc56a594da119703c823920b78e5267b3c8c8c1aa5e6ca1626169bb3853"
+        },
+        {
+          "archive_path": "LP_ONLY_REFERENCE/RPFEM_logs/20261015_210424_18688_direct_fixed_original_lp.tsv.accuracy_dual_solve_3_1_lower.bin",
+          "bytes": 39372,
+          "path": "RPFEM_logs/20261015_210424_18688_direct_fixed_original_lp.tsv.accuracy_dual_solve_3_1_lower.bin",
+          "sha256": "e1191a7eb43de9af1ce8195056771b9768ff81ce705dca7528508015831eca4f"
+        },
+        {
+          "archive_path": "LP_ONLY_REFERENCE/RPFEM_logs/20261015_210424_18688_direct_fixed_original_lp.tsv.accuracy_dual_solve_3_1_lower.bin.context.tsv",
+          "bytes": 66148,
+          "curated_path": "validation/excel/LP_ONLY_REFERENCE/RPFEM_logs/20261015_210424_18688_direct_fixed_original_lp.tsv.accuracy_dual_solve_3_1_lower.bin.context.tsv",
+          "path": "RPFEM_logs/20261015_210424_18688_direct_fixed_original_lp.tsv.accuracy_dual_solve_3_1_lower.bin.context.tsv",
+          "sha256": "b0ab0bb37878d267ae9d5dffbb643fb60a4108b02e09ff65909fa7e3aa408f23"
+        },
+        {
+          "archive_path": "LP_ONLY_REFERENCE/RPFEM_logs/20261015_210425_18688_direct_fixed_original_lp.tsv",
+          "bytes": 294384,
+          "curated_path": "validation/excel/LP_ONLY_REFERENCE/RPFEM_logs/20261015_210425_18688_direct_fixed_original_lp.tsv",
+          "path": "RPFEM_logs/20261015_210425_18688_direct_fixed_original_lp.tsv",
+          "sha256": "0419d432de20b2a79323b5737c52e094d1984e68441d263263f9d4cf9e20bc0d"
+        },
+        {
+          "archive_path": "LP_ONLY_REFERENCE/RPFEM_logs/20261015_210427_18688_direct_fixed_original_lp.tsv",
+          "bytes": 294900,
+          "curated_path": "validation/excel/LP_ONLY_REFERENCE/RPFEM_logs/20261015_210427_18688_direct_fixed_original_lp.tsv",
+          "path": "RPFEM_logs/20261015_210427_18688_direct_fixed_original_lp.tsv",
+          "sha256": "4db4f4a77e2a47a4d78eb6690b4041fae15f6e395635f2b747f0596571929d42"
+        },
+        {
+          "archive_path": "LP_ONLY_REFERENCE/RPFEM_logs/20261015_210429_18688_direct_fixed_original_lp.tsv",
+          "bytes": 61452,
+          "curated_path": "validation/excel/LP_ONLY_REFERENCE/RPFEM_logs/20261015_210429_18688_direct_fixed_original_lp.tsv",
+          "path": "RPFEM_logs/20261015_210429_18688_direct_fixed_original_lp.tsv",
+          "sha256": "cb7d14e7c021149c0abfabcb4cfacbc5d204370a245d2af3bfffaed34bd6fb59"
+        },
+        {
+          "archive_path": "LP_ONLY_REFERENCE/RPFEM_logs/20261015_210430_18688_direct_fixed_original_lp.tsv",
+          "bytes": 29500,
+          "curated_path": "validation/excel/LP_ONLY_REFERENCE/RPFEM_logs/20261015_210430_18688_direct_fixed_original_lp.tsv",
+          "path": "RPFEM_logs/20261015_210430_18688_direct_fixed_original_lp.tsv",
+          "sha256": "374177638a98145bf6a03cffe14a4b3d618d881a79f1542cb866134487a16196"
+        },
+        {
+          "archive_path": "LP_ONLY_REFERENCE/RPFEM_logs/20261015_210430_18688_direct_fixed_original_lp.tsv.accuracy_primal_solve_8_2_upper.bin",
+          "bytes": 91172,
+          "path": "RPFEM_logs/20261015_210430_18688_direct_fixed_original_lp.tsv.accuracy_primal_solve_8_2_upper.bin",
+          "sha256": "621af7d6c5fd9a836e6b0964390f7d6e3b13b8ce810458ca76f47abaff302c0f"
+        },
+        {
+          "archive_path": "LP_ONLY_REFERENCE/RPFEM_logs/20261015_210430_18688_direct_fixed_original_lp.tsv.accuracy_primal_solve_8_2_upper.bin.context.tsv",
+          "bytes": 36300,
+          "curated_path": "validation/excel/LP_ONLY_REFERENCE/RPFEM_logs/20261015_210430_18688_direct_fixed_original_lp.tsv.accuracy_primal_solve_8_2_upper.bin.context.tsv",
+          "path": "RPFEM_logs/20261015_210430_18688_direct_fixed_original_lp.tsv.accuracy_primal_solve_8_2_upper.bin.context.tsv",
+          "sha256": "2dacaa9b8c19b3c447aa395bf83733cdd2cf7219b455f7194fc8a231fbd88b6b"
+        },
+        {
+          "archive_path": "LP_ONLY_REFERENCE/RPFEM_logs/20261015_210431_18688_direct_fixed_original_lp.tsv",
+          "bytes": 62316,
+          "curated_path": "validation/excel/LP_ONLY_REFERENCE/RPFEM_logs/20261015_210431_18688_direct_fixed_original_lp.tsv",
+          "path": "RPFEM_logs/20261015_210431_18688_direct_fixed_original_lp.tsv",
+          "sha256": "d82c4c02e6dca1e95d3301cc044ce3d90b72a1a0ea00addde3dd102ccf2836fb"
+        },
+        {
+          "archive_path": "LP_ONLY_REFERENCE/RPFEM_logs/20261015_210432_18688_direct_fixed_original_lp.tsv",
+          "bytes": 290032,
+          "curated_path": "validation/excel/LP_ONLY_REFERENCE/RPFEM_logs/20261015_210432_18688_direct_fixed_original_lp.tsv",
+          "path": "RPFEM_logs/20261015_210432_18688_direct_fixed_original_lp.tsv",
+          "sha256": "ab50eb53c8c02679a891a4c8250aaaf43cabac80e3c7091f2cb69b3238b2fb12"
+        },
+        {
+          "archive_path": "LP_ONLY_REFERENCE/RPFEM_logs/20261015_210502_18688_direct_fixed_original_lp.tsv",
+          "bytes": 294046,
+          "curated_path": "validation/excel/LP_ONLY_REFERENCE/RPFEM_logs/20261015_210502_18688_direct_fixed_original_lp.tsv",
+          "path": "RPFEM_logs/20261015_210502_18688_direct_fixed_original_lp.tsv",
+          "sha256": "9d5479ed29c7eed8d8b64d2a2928815c4c4dbd64c82ad51f5f9f1df2fb962782"
+        },
+        {
+          "archive_path": "LP_ONLY_REFERENCE/RPFEM_logs/20261015_210533_18688_direct_fixed_original_lp.tsv",
+          "bytes": 267284,
+          "curated_path": "validation/excel/LP_ONLY_REFERENCE/RPFEM_logs/20261015_210533_18688_direct_fixed_original_lp.tsv",
+          "path": "RPFEM_logs/20261015_210533_18688_direct_fixed_original_lp.tsv",
+          "sha256": "1d3a05f76f13769a0598681808814faec5a49581e6deafce064056910424ef1e"
+        },
+        {
+          "archive_path": "LP_ONLY_REFERENCE/RPFEM_logs/20261015_210601_18688_direct_fixed_original_lp.tsv",
+          "bytes": 31136,
+          "curated_path": "validation/excel/LP_ONLY_REFERENCE/RPFEM_logs/20261015_210601_18688_direct_fixed_original_lp.tsv",
+          "path": "RPFEM_logs/20261015_210601_18688_direct_fixed_original_lp.tsv",
+          "sha256": "c9a8704a175ababdae7708f7a489cbe3be44a8adc63e9d5c699256fcbd2ab618"
+        },
+        {
+          "archive_path": "LP_ONLY_REFERENCE/RPFEM_logs/20261015_210601_18688_direct_fixed_original_lp.tsv.accuracy_primal_solve_12_3_upper.bin",
+          "bytes": 2336720,
+          "path": "RPFEM_logs/20261015_210601_18688_direct_fixed_original_lp.tsv.accuracy_primal_solve_12_3_upper.bin",
+          "sha256": "b1ab66088518781856ee5b6bee206cc3531ea751c81ed831d9888f70eca35732"
+        },
+        {
+          "archive_path": "LP_ONLY_REFERENCE/RPFEM_logs/20261015_210601_18688_direct_fixed_original_lp.tsv.accuracy_primal_solve_12_3_upper.bin.context.tsv",
+          "bytes": 722702,
+          "curated_path": "validation/excel/LP_ONLY_REFERENCE/RPFEM_logs/20261015_210601_18688_direct_fixed_original_lp.tsv.accuracy_primal_solve_12_3_upper.bin.context.tsv",
+          "path": "RPFEM_logs/20261015_210601_18688_direct_fixed_original_lp.tsv.accuracy_primal_solve_12_3_upper.bin.context.tsv",
+          "sha256": "bfb5e0c708cb4c333a07766a96f0cdbac24c581cd9df5ca2b7dab79c58c379a1"
+        },
+        {
+          "archive_path": "LP_ONLY_REFERENCE/RPFEM_logs/20261015_210607_18688_analysis.tsv",
+          "bytes": 8216,
+          "curated_path": "validation/excel/LP_ONLY_REFERENCE/RPFEM_logs/20261015_210607_18688_analysis.tsv",
+          "path": "RPFEM_logs/20261015_210607_18688_analysis.tsv",
+          "sha256": "ee7a7f4dcf1a180cf89feba686a6cc48d783bfb9d1e8e83f0b31c31666e26736"
+        }
+      ],
+      "label": "LP_ONLY_REFERENCE",
+      "original_dll_references": [
+        {
+          "bytes": 1521664,
+          "filename": "rpfem_native_x64.dll",
+          "path": "rpfem_native_x64.dll",
+          "sha256": "66da1a21be43cd2b3a3bfbaa9d13aad5fb1fd1960e1bf2507cc4e1cfa9ebe70b",
+          "source_path": "D:\\Work\\excel-vba-rpfem\\versions\\G1R18_Speed2pct\\results\\direct_excel_1792065854260060600\\rpfem_native_x64.dll"
+        }
+      ],
+      "role": "reference",
+      "scope": "reference only; complete run not accepted",
+      "source_directory": "D:\\Work\\excel-vba-rpfem\\versions\\G1R18_Speed2pct\\results\\direct_excel_1792065854260060600",
+      "summary_sha256": "de44521de3ca52e3d87d753bbb53a5616b7106c62e8bfc6d9638fa8205e29bbe",
+      "summary_status": "FAIL",
+      "summary_status_present": true
+    }
+  ],
+  "schema": "G1R19_RELEASE_EVIDENCE_V1",
+  "scope": "review artifacts only; not required by the runtime workbook or DLL",
+  "source_runs_modified": false
+}

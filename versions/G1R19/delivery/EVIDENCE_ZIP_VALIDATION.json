@@ -1,0 +1,29 @@
+{
+  "accepted_primary_runs": [
+    "DIRECT_AND_TERMINAL",
+    "N_FIXED_FINAL",
+    "CURRENT_FIXES",
+    "P06A_lower",
+    "P06A_upper",
+    "P06N_lower",
+    "P06N_upper"
+  ],
+  "all_zip_file_bytes_and_sha256_verified": true,
+  "archive": "D:\\Work\\excel-vba-rpfem\\versions\\G1R19\\delivery\\RPFEM_20261015_G1R19_Regression_Evidence.zip",
+  "archive_bytes": 121630135,
+  "archive_sha256": "f749a7ffe13aec231b68597285ab94e61befbf21e4f05225cc722d8b0310d732",
+  "completion_marker": "This validation JSON is published last after all artifact checks.",
+  "dlls_in_archive": 0,
+  "manifest": "validation/EXCEL_EVIDENCE_MANIFEST.json",
+  "manifest_bytes": 57997,
+  "manifest_sha256": "1bfbb84154c00c0aa90312cab463de2ac58cb09fbe0bfdc248c79185eec6ff71",
+  "original_run_bytes_unchanged": true,
+  "reference_only_runs": [
+    "LP_ONLY_REFERENCE"
+  ],
+  "release": "G1R19",
+  "review_only": true,
+  "status": "PASS",
+  "xlsm_in_archive": 8,
+  "zip_entry_count": 140
+}
