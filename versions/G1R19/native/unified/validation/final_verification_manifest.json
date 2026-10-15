@@ -1,0 +1,18 @@
+{
+  "final_dll_sha256": "66da1a21be43cd2b3a3bfbaa9d13aad5fb1fd1960e1bf2507cc4e1cfa9ebe70b",
+  "delivery_dll": "versions\\G1R19\\delivery\\rpfem_native_x64.dll",
+  "delivery_sha256": "66da1a21be43cd2b3a3bfbaa9d13aad5fb1fd1960e1bf2507cc4e1cfa9ebe70b",
+  "source_copy_files_verified": 268,
+  "runtime_source_files_unchanged_from_initial_unified": true,
+  "qa_source_sha256": {
+    "versions\\G1R19\\native\\unified\\tests\\verify_unified.py": "e582e01023958a744b65d901d60b0c6c15d164366bb75b1888f63df128da76c9",
+    "versions\\G1R18\\tests\\test_accuracy_native_ffi.py": "f155573169a4bfe153f8ead4ca5d3654e0b3c35b9a583aa89e59fa5572aa2bb5",
+    "versions\\G1R17\\tools\\test_compile_python.py": "d5dca64b6a97efde7eff57c4dd1769c9bd0c3f54e3d9abc41dd71f72c1ce92f0",
+    "versions\\G1R17\\python\\test_meshfan_native.py": "92236f91edcaaa17a97b7d1db83f2f931faa276e4fc32f0950d1fcdf430a7910",
+    "versions\\G1R19\\native\\unified\\README.md": "d4500c0df8b7c8a2ea673c01169073c61de9e215a3ab0f539e3c6477c13f3473"
+  },
+  "qa_summary_sha256": "29cf73649204841a239ac69084caa942fff5353ea90adb921fdfd8ce7138fcc9",
+  "build_manifest_sha256": "f9725b96ced20de8f4fe4daa280a6bccbf0757fb15b82e25dd9f06007f3a6c69",
+  "original_G1R18_unmodified": true,
+  "epoch": 1792065822.2987056
+}

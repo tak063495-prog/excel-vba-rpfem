@@ -1,0 +1,22 @@
+test_abi_layout_and_default_settings (test_accuracy_native_ffi.NativeAccuracyFFITests.test_abi_layout_and_default_settings) ... ok
+test_create_copies_every_input_before_worker_starts (test_accuracy_native_ffi.NativeAccuracyFFITests.test_create_copies_every_input_before_worker_starts) ... ok
+test_equalities_real_raw_physical_rows_recover_then_q8_full_gate (test_accuracy_native_ffi.NativeAccuracyFFITests.test_equalities_real_raw_physical_rows_recover_then_q8_full_gate) ... ok
+test_equalities_rejects_bad_inputs_aliases_and_nonfinite_outputs (test_accuracy_native_ffi.NativeAccuracyFFITests.test_equalities_rejects_bad_inputs_aliases_and_nonfinite_outputs) ... ok
+test_equalities_staged_initial_correction_preserves_original_rhs (test_accuracy_native_ffi.NativeAccuracyFFITests.test_equalities_staged_initial_correction_preserves_original_rhs) ... ok
+test_equalities_under_over_rank_deficient_and_inconsistent_scipy_parity (test_accuracy_native_ffi.NativeAccuracyFFITests.test_equalities_under_over_rank_deficient_and_inconsistent_scipy_parity) ... ok
+test_handle_and_result_lifecycle_with_output_alias_guards (test_accuracy_native_ffi.NativeAccuracyFFITests.test_handle_and_result_lifecycle_with_output_alias_guards) ... ok
+test_linear_and_diagonal_qp_match_python (test_accuracy_native_ffi.NativeAccuracyFFITests.test_linear_and_diagonal_qp_match_python) ... ok
+test_modified_qp_dual_is_not_an_original_lp_guide (test_accuracy_native_ffi.NativeAccuracyFFITests.test_modified_qp_dual_is_not_an_original_lp_guide) ... ok
+test_original_eight_triangle_c0_wedge_q8 (test_accuracy_native_ffi.NativeAccuracyFFITests.test_original_eight_triangle_c0_wedge_q8) ... ok
+test_prestart_cancel_and_running_destroy_are_nonblocking (test_accuracy_native_ffi.NativeAccuracyFFITests.test_prestart_cancel_and_running_destroy_are_nonblocking) ... ok
+test_real_cohesive_original_q8_lower_and_upper (test_accuracy_native_ffi.NativeAccuracyFFITests.test_real_cohesive_original_q8_lower_and_upper) ... ok
+test_registry_limit_is_rejected_and_all_created_handles_release (test_accuracy_native_ffi.NativeAccuracyFFITests.test_registry_limit_is_rejected_and_all_created_handles_release) ... ok
+test_rejects_abi_null_alignment_and_dimension_limits (test_accuracy_native_ffi.NativeAccuracyFFITests.test_rejects_abi_null_alignment_and_dimension_limits) ... ok
+test_rejects_csr_and_cone_structure (test_accuracy_native_ffi.NativeAccuracyFFITests.test_rejects_csr_and_cone_structure) ... ok
+test_rejects_invalid_settings (test_accuracy_native_ffi.NativeAccuracyFFITests.test_rejects_invalid_settings) ... ok
+test_rejects_nonfinite_and_negative_pdiag (test_accuracy_native_ffi.NativeAccuracyFFITests.test_rejects_nonfinite_and_negative_pdiag) ... ok
+
+----------------------------------------------------------------------
+Ran 17 tests in 0.127s
+
+OK

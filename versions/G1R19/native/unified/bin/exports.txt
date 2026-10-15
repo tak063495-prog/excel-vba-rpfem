@@ -1,0 +1,128 @@
+
+Dump of file D:\Work\excel-vba-rpfem\versions\G1R19\native\unified\bin\rpfem_native_x64.dll
+
+File Type: DLL
+
+  Section contains the following exports for rpfem_native_x64.dll
+
+    00000000 characteristics
+    735EB2AE time date stamp
+        0.00 version
+           1 ordinal base
+         103 number of functions
+         103 number of names
+
+    ordinal hint RVA      name
+
+          1    0 00064BB0 rpfem_accuracy_abi_version
+          2    1 00067240 rpfem_accuracy_cancel
+          3    2 00064C50 rpfem_accuracy_create
+          4    3 00064BC0 rpfem_accuracy_default_settings
+          5    4 00067A30 rpfem_accuracy_destroy
+          6    5 00062DE0 rpfem_accuracy_equalities
+          7    6 00066E80 rpfem_accuracy_poll
+          8    7 000673D0 rpfem_accuracy_result
+          9    8 000665A0 rpfem_accuracy_start
+         10    9 000F9A40 rpx_abi
+         11    A 000F9A50 rpx_backsolve
+         12    B 000F9D80 rpx_bulk_ready
+         13    C 000F9DF0 rpx_bulk_step
+         14    D 000EB240 rpx_compile_bytes
+         15    E 000EB280 rpx_compile_counts
+         16    F 000EB2C0 rpx_compile_create
+         17   10 000EB3C0 rpx_compile_destroy
+         18   11 000EB3E0 rpx_compile_export
+         19   12 000EB450 rpx_compile_live_handles
+         20   13 000EB460 rpx_compile_order_begin
+         21   14 000EB4C0 rpx_compile_permute_begin
+         22   15 000EB4E0 rpx_compile_signature
+         23   16 000EB540 rpx_compile_slots
+         24   17 000EB5A0 rpx_compile_step
+         25   18 000FA590 rpx_corrector
+         26   19 000FACF0 rpx_dd_backsolve
+         27   1A 000FB440 rpx_dd_numeric
+         28   1B 000FBE10 rpx_dd_test
+         29   1C 000E5540 rpx_exact_spans
+         30   1D 000E55F0 rpx_factor_step
+         31   1E 000FC090 rpx_gproduct
+         32   1F 000FC330 rpx_gtadd
+         33   20 000FC590 rpx_hdd_assemble
+         34   21 000FD0B0 rpx_hdd_step
+         35   22 000ED4C0 rpx_hlinear_begin
+         36   23 000ED540 rpx_hlinear_create
+         37   24 000ED5D0 rpx_hlinear_destroy
+         38   25 000ED5F0 rpx_hlinear_live_handles
+         39   26 000ED600 rpx_hlinear_result
+         40   27 000ED680 rpx_hlinear_step
+         41   28 000FD240 rpx_hoperator
+         42   29 000FE190 rpx_kkt_cones
+         43   2A 000FE610 rpx_kkt_diagonal
+         44   2B 000FE820 rpx_kkt_init
+         45   2C 000FE870 rpx_kkt_scale
+         46   2D 000F0400 rpx_krylov_begin
+         47   2E 000F04B0 rpx_krylov_bytes
+         48   2F 000F04F0 rpx_krylov_create
+         49   30 000F0580 rpx_krylov_destroy
+         50   31 000FEA30 rpx_krylov_givens
+         51   32 000F05A0 rpx_krylov_live_handles
+         52   33 000F05B0 rpx_krylov_result
+         53   34 000F0610 rpx_krylov_step
+         54   35 000F47A0 rpx_lu_backsolve
+         55   36 000F4BA0 rpx_lu_create
+         56   37 000F4C40 rpx_lu_destroy
+         57   38 000F4E30 rpx_lu_export
+         58   39 000F4E90 rpx_lu_finish
+         59   3A 000F4EE0 rpx_lu_input
+         60   3B 000F4F50 rpx_lu_live_handles
+         61   3C 000F4F60 rpx_lu_metrics
+         62   3D 000F4FA0 rpx_lu_retained_solve
+         63   3E 000F5040 rpx_lu_step
+         64   3F 000F64E0 rpx_meshfan_create
+         65   40 000F65D0 rpx_meshfan_destroy
+         66   41 000F65F0 rpx_meshfan_live_handles
+         67   42 000F6600 rpx_meshfan_result
+         68   43 000F6680 rpx_meshfan_step
+         69   44 000FEB10 rpx_nt_scalar_test
+         70   45 000FEC50 rpx_nt_test
+         71   46 000FED10 rpx_nt_trace
+         72   47 000FF010 rpx_numeric
+         73   48 00107A90 rpx_order_create
+         74   49 00107B30 rpx_order_destroy
+         75   4A 00107BC0 rpx_order_feed
+         76   4B 00107C20 rpx_order_start
+         77   4C 00107C60 rpx_order_step
+         78   4D 00108990 rpx_refine_begin
+         79   4E 001089F0 rpx_refine_create
+         80   4F 00108A40 rpx_refine_destroy
+         81   50 00108A60 rpx_refine_live_handles
+         82   51 00108A70 rpx_refine_result
+         83   52 00108B00 rpx_refine_step
+         84   53 000FF4E0 rpx_scaling
+         85   54 0010CB60 rpx_schur_bytes
+         86   55 0010CBB0 rpx_schur_create
+         87   56 0010CCC0 rpx_schur_destroy
+         88   57 0010CCE0 rpx_schur_factor_begin
+         89   58 0010CD20 rpx_schur_factor_commit
+         90   59 0010CDB0 rpx_schur_factor_result
+         91   5A 0010CE20 rpx_schur_factor_step
+         92   5B 0010CEB0 rpx_schur_finite
+         93   5C 0010CF80 rpx_schur_live_handles
+         94   5D 0010CF90 rpx_schur_solve_begin
+         95   5E 0010D020 rpx_schur_solve_result
+         96   5F 0010D090 rpx_schur_solve_step
+         97   60 000EB9B0 rpx_snapshot_compare
+         98   61 000FFB60 rpx_solver_cones
+         99   62 001007C0 rpx_solver_residual
+        100   63 00100ED0 rpx_solver_update
+        101   64 00101000 rpx_solver_vectors
+        102   65 00103DF0 rpx_test_controlword
+        103   66 000E5890 rpx_vector_step
+
+  Summary
+
+        3000 .data
+        1000 .fptable
+        9000 .pdata
+       42000 .rdata
+        3000 .reloc
+      126000 .text

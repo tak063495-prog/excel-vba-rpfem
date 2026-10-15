@@ -1,0 +1,100 @@
+{
+  "policy_date": "2026-10-15",
+  "accepted_relative_gap": 0.02,
+  "one_percent_experiments_stopped": true,
+  "scope": "Existing frozen Python q8 certificates; native replay is reported separately, not a cold-run reproduction.",
+  "cases": {
+    "P06A": {
+      "lower": {
+        "fs": 0.8468,
+        "q": 8,
+        "root_complete": true,
+        "mesh_id": "e51df740d3bffec27452ea35cab79ffe6a5a2c41d3520cc933e46e219bada053",
+        "physical_model_id": "f67b757898e3bcc3f45c5ea9b5a8e290955fad53f5900c5cd8c31b9637d51875",
+        "source_files": {
+          "validation/accuracy_20261013/snapshots/20261014_progress7_audit/snapshots/P06A/best_lower_certificate.json": {
+            "bytes": 2889,
+            "sha256": "4b0c9950145379686b94b7baab60bde1b04f3a07cce33ba56df9d7add4aabf31"
+          },
+          "validation/accuracy_20261013/snapshots/20261014_progress7_audit/snapshots/P06A/best_lower_mesh.npz": {
+            "bytes": 213421,
+            "sha256": "86ca5173fae84ee0173d7428d33f222e150ddba511bcc52558fc5085bf1ffdf7"
+          },
+          "validation/accuracy_20261013/snapshots/20261014_progress7_audit/snapshots/P06A/best_lower_field.npz": {
+            "bytes": 2957966,
+            "sha256": "902c6f855b2eeeffbe1d25276559f1faf8bd1d17b09d53a3349921f92e180c96"
+          }
+        }
+      },
+      "upper": {
+        "fs": 0.85755,
+        "q": 8,
+        "root_complete": true,
+        "mesh_id": "27b06e20be73627245ba3f7e0bf4ffa3df883ec1bb2af10e103fca5caf489308",
+        "physical_model_id": "f67b757898e3bcc3f45c5ea9b5a8e290955fad53f5900c5cd8c31b9637d51875",
+        "source_files": {
+          "validation/accuracy_20261013/snapshots/20261014_progress7_audit/snapshots/P06A/best_upper_certificate.json": {
+            "bytes": 2842,
+            "sha256": "a1642f27e81608e6e73235da81174bc88e2add7d74149e38a33ffc8a40388e9a"
+          },
+          "validation/accuracy_20261013/snapshots/20261014_progress7_audit/snapshots/P06A/best_upper_mesh.npz": {
+            "bytes": 94859,
+            "sha256": "a8c4a911d1c29783b063531f512bd87b706e4042d0453c01e66ebe2ff6f386ba"
+          },
+          "validation/accuracy_20261013/snapshots/20261014_progress7_audit/snapshots/P06A/best_upper_field.npz": {
+            "bytes": 1104103,
+            "sha256": "1b97b2b0b46726f4d1e0e2b9c2120707511b6d0406f2935db7e92c1b0e4d5713"
+          }
+        }
+      },
+      "relative_gap": 0.012614779828086998,
+      "passes_two_percent": true
+    },
+    "P06N": {
+      "lower": {
+        "fs": 0.678279841819045,
+        "q": 8,
+        "root_complete": true,
+        "mesh_id": "4a473caa0f4c62f3fdf757961fcb1e89a872e7546cbce0881fb9402f8a92b4ee",
+        "physical_model_id": "08cc8e73e85408e7a82cbe79b5716ef007cb917d00e021872c40e510b5d17525",
+        "source_files": {
+          "validation/accuracy_20261013/snapshots/20261014_progress7_audit/snapshots/P06N/best_lower_certificate.json": {
+            "bytes": 2863,
+            "sha256": "2796c6f5b7ce4fa1c49439170dd96b3b31b9732eeb5d1b52b3927d2f80d09c93"
+          },
+          "validation/accuracy_20261013/snapshots/20261014_progress7_audit/snapshots/P06N/best_lower_mesh.npz": {
+            "bytes": 98942,
+            "sha256": "4abcd08e2616fea9fb51c9b219c17007ef7b32b0f42c261f41264933d4fdcb30"
+          },
+          "validation/accuracy_20261013/snapshots/20261014_progress7_audit/snapshots/P06N/best_lower_field.npz": {
+            "bytes": 1453789,
+            "sha256": "3ddc8254652940f6066c59128b5a168057885502f6947584b348a238a478374c"
+          }
+        }
+      },
+      "upper": {
+        "fs": 0.6876,
+        "q": 8,
+        "root_complete": true,
+        "mesh_id": "b7e51076e7e4821cbf5087f2174984e1057757c9602ed7c45a802d8f6b7cf24b",
+        "physical_model_id": "08cc8e73e85408e7a82cbe79b5716ef007cb917d00e021872c40e510b5d17525",
+        "source_files": {
+          "validation/accuracy_20261013/snapshots/20261014_progress7_audit/snapshots/P06N/best_upper_certificate.json": {
+            "bytes": 2868,
+            "sha256": "79e8cf44f34911ddd93990602e01c8006b76f56b34b085315274ddf40382e026"
+          },
+          "validation/accuracy_20261013/snapshots/20261014_progress7_audit/snapshots/P06N/best_upper_mesh.npz": {
+            "bytes": 216697,
+            "sha256": "6d70f13299a01b3bce74fc73902f44d5104632258833aae816e5efe7a1d11f98"
+          },
+          "validation/accuracy_20261013/snapshots/20261014_progress7_audit/snapshots/P06N/best_upper_field.npz": {
+            "bytes": 2444307,
+            "sha256": "be7fdc2a6c84a23d4e0696de3b3b1e28eb359139dedc78b4c1180aea19cd1749"
+          }
+        }
+      },
+      "relative_gap": 0.01364711286542254,
+      "passes_two_percent": true
+    }
+  }
+}

@@ -1,0 +1,11 @@
+LIBRARY rpfem_native_x64
+EXPORTS
+    rpfem_accuracy_abi_version
+    rpfem_accuracy_default_settings
+    rpfem_accuracy_create
+    rpfem_accuracy_start
+    rpfem_accuracy_poll
+    rpfem_accuracy_cancel
+    rpfem_accuracy_result
+    rpfem_accuracy_destroy
+    rpfem_accuracy_equalities
