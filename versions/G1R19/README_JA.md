@@ -49,21 +49,21 @@ G1R19 のブックと DLL を組み合わせて使用してください。通常
 | P06N | 0.678279841819045 | 0.6876 | 1.3647112865% | 合格 |
 
 幅は `2*(U-L)/(U+L)`。
-これは[保存済み Python 場の独立 q8 再監査](../../validation/accuracy_20261013/snapshots/20261014_progress7_audit/REPORT_JA.md)
+これは[保存済み Python 場の独立 q8 再監査](https://github.com/tak063495-prog/excel-vba-rpfem/blob/main/validation/accuracy_20261013/snapshots/20261014_progress7_audit/REPORT_JA.md)
 による確定値です。G1R19 が初期状態からの本番解析で同じ精度を自動再現したという
 意味ではありません。P06N は既存 Davis 等価関連モデルの `hold_initial` 方針です。
 今回の停止した追加精度実験から新しい上下界は採用していません。
 
 ## 検証・ソース
 
-検証結果と速度の計測条件は [TEST_RESULTS.md](TEST_RESULTS.md)、ハッシュは `SHA256SUMS.txt` に記録します。
+検証結果と速度の計測条件は [TEST_RESULTS.md](TEST_RESULTS.md)、ハッシュは `SHA256SUMS.txt` に記録しています。
 DLL の両 ABI、従来の演算・メッシュ・取消・精度回復、実 Excel の採用と復帰、
-入力が異なる場合の再利用拒否、DLL 1個のみのロードを確認対象とします。
+入力が異なる場合の再利用拒否、DLL 1個のみのロードを確認しました。
 小規模回帰と本番規模の初期状態からの精度再現は区別します。
 
 - [統合DLLのソース・ビルド・ライセンス・headless回帰](native/unified/README.md)
 - [VBAソース](src/vba) / [CP932インポート用](import) / `SOURCE_MANIFEST.json`
-- [方針変更・実験停止の記録](../../validation/accuracy_20261015/README.md)
+- [方針変更・実験停止の記録](https://github.com/tak063495-prog/excel-vba-rpfem/blob/main/validation/accuracy_20261015/README.md)
 - [P06の本番確認などの課題](https://github.com/tak063495-prog/excel-vba-rpfem/issues/11)
 
 ビルド・回帰の再実行にはリポジトリ全体の checkout を使用します。

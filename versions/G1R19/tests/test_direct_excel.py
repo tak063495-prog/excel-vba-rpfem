@@ -8,17 +8,17 @@ from current_sources import module_paths,sha
 
 def main():
     ap=argparse.ArgumentParser();ap.add_argument('--source-root',type=Path,required=True)
-    ap.add_argument('--unified-dll',type=Path);ap.add_argument('--without-accuracy',action='store_true')
+    ap.add_argument('--unified-dll',type=Path,default=ROOT/'delivery/rpfem_native_x64.dll');ap.add_argument('--without-accuracy',action='store_true')
     ap.add_argument('--p06-benchmark',action='store_true');ap.add_argument('--p06-cases',nargs='+',choices=['P06A','P06N'],default=['P06A','P06N'])
+    ap.add_argument('--fixed-only',action='store_true')
     ap.add_argument('--terminal',action='store_true');args=ap.parse_args()
     prior=[p.pid for p in psutil.process_iter() if p.name().upper()=='EXCEL.EXE']
     if prior:raise RuntimeError(f'Serial owned Excel only: {prior}')
     folder=ROOT/'results'/('direct_excel_'+str(time.time_ns()));folder.mkdir(parents=True)
     workbook=folder/'Direct_Test.xlsm';shutil.copyfile(BASE/'delivery/RPFEM_20261014_G1R18.xlsm',workbook)
-    if args.unified_dll:shutil.copyfile(args.unified_dll,folder/'rpfem_native_x64.dll')
-    else:
+    if args.without_accuracy:
         shutil.copyfile(BASE/'delivery/rpfem_native_x64.dll',folder/'rpfem_native_x64.dll')
-        if not args.without_accuracy:shutil.copyfile(BASE/'native/accuracy/bin/rpfem_accuracy_x64.dll',folder/'rpfem_accuracy_x64.dll')
+    else:shutil.copyfile(args.unified_dll,folder/'rpfem_native_x64.dll')
     record=dict(status='PREPARING',output=str(folder),run_token=uuid.uuid4().hex,prior_excel_pids=prior,
                 source_root=str(args.source_root.resolve()),harness_sha256=sha(__file__),dll_sha256={p.name:sha(p) for p in folder.glob('*.dll')},cases=[],dialogs=[])
     save=lambda:(folder/'summary.json').write_text(json.dumps(record,indent=2,ensure_ascii=False,allow_nan=False)+'\n',encoding='utf8')
@@ -65,14 +65,15 @@ def main():
         # Setup creates the baseline sheets before preset; compare the second application.
         before={name:book.Worksheets(name).UsedRange.Value2 for name in before};call('RPX_Speed2pctPreset')
         assert before=={name:book.Worksheets(name).UsedRange.Value2 for name in before}
-        for mode,fs in [('lower',.4),('lower',2.),('upper',.4),('upper',2.)]:
+        for mode,fs in ([] if args.fixed_only else [('lower',.4),('lower',2.),('upper',.4),('upper',2.)]):
             for direct in [0,1]:
                 item=list(call('SpeedDirectCase',mode,fs,direct,False,str(folder)));record['cases'].append(item);save()
                 assert item[0]=='PASS',item
-        item=list(call('SpeedDirectCase','upper',2.,1,True,str(folder)));record['cases'].append(item);save();assert item[0]=='PASS',item
+        if not args.fixed_only:
+            item=list(call('SpeedDirectCase','upper',2.,1,True,str(folder)));record['cases'].append(item);save();assert item[0]=='PASS',item
         accepted=[x for x in record['cases'] if x[3]==1 and not x[4] and x[8]]
         if args.without_accuracy:assert not accepted
-        else:assert accepted,'Original LP produced no strictly audited direct endpoint'
+        elif not args.fixed_only:assert accepted,'Original LP produced no strictly audited direct endpoint'
         if args.p06_benchmark:
             record['p06_fixed_q8_benchmark']=[]
             for case in args.p06_cases:
@@ -96,6 +97,7 @@ def main():
         if args.terminal:
             record['terminal']=call('TerminalReuseSmallFixtureRun',str(folder/'terminal.tsv'));save()
             assert str(record['terminal']).startswith('PASS'),record['terminal']
+            record['terminal_scope']='Generic actual q8 control fixture; test-only GAP1.9; product 2-percent boundary tested separately'
         if args.unified_dll:
             maps=[m.path for m in psutil.Process(pid).memory_maps() if Path(m.path).name.lower().startswith('rpfem_')]
             record['native_memory_maps']=maps

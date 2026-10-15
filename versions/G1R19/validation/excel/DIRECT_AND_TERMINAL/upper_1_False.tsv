@@ -1,0 +1,27 @@
+# upper F=0.4 76161.77
+# upper elements 0/20 76161.77
+# upper edges 0/38 76161.87
+# compile arrays 76161.99
+# ordering complete 76162
+# symbolic factorization 76162.01
+# symbolic complete 3340 76162.02
+# triangulation 0/19 76162.4
+# zero stress fan eligibility 0 76162.41
+# upper F=2 76163.2
+# upper elements 0/20 76163.2
+# upper edges 0/38 76163.3
+# compile arrays 76163.42
+# ordering complete 76163.43
+# symbolic factorization 76163.43
+# symbolic complete 3340 76163.43
+# triangulation 0/19 76163.78
+# zero stress fan eligibility 0 76163.8
+# upper F=1 76194.91
+# upper elements 0/451 76194.92
+# upper elements 256/451 76196.16
+# upper edges 0/709 76197.11
+# upper edges 512/709 76198.46
+# compile arrays 76198.99
+# ordering complete 76199.05
+# symbolic factorization 76199.09
+# symbolic complete 200569 76199.13

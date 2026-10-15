@@ -5,10 +5,12 @@ on:
       - 'versions/G1R19/src/vba/**'
       - 'versions/G1R19/import/**'
       - 'versions/G1R19/SOURCE_MANIFEST.json'
+      - 'versions/G1R19/delivery/**'
+      - 'versions/G1R19/tools/package_release.py'
       - 'versions/G1R19/native/unified/**'
       - '!versions/G1R19/native/unified/validation/**'
       - '!versions/G1R19/native/unified/bin/**'
-      - 'versions/G1R19/tests/test_source_integrity.py'
+      - 'versions/G1R19/tests/**'
       - 'versions/G1R17/native/**'
       - 'versions/G1R18/native/accuracy/**'
       - 'versions/G1R18/tests/test_accuracy_native_ffi.py'
@@ -34,5 +36,7 @@ jobs:
         run: python -X utf8 -m pip install -r validation/accuracy_20261013/requirements.txt
       - name: Verify both ABIs, original arithmetic and q8 recovery
         run: python -X utf8 versions/G1R19/native/unified/tests/verify_unified.py --dll versions/G1R19/native/unified/bin/rpfem_native_x64.dll --output versions/G1R19/native/unified/validation/ci
+      - name: Run the same regressions against the published DLL
+        run: python -X utf8 versions/G1R19/native/unified/tests/verify_unified.py --dll versions/G1R19/delivery/rpfem_native_x64.dll --output versions/G1R19/native/unified/validation/published
       - name: Check source provenance and the published one-DLL package
         run: python -X utf8 versions/G1R19/tests/test_source_integrity.py

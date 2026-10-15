@@ -1,0 +1,457 @@
+{
+  "status": "FAIL",
+  "output": "D:\\Work\\excel-vba-rpfem\\versions\\G1R18_Speed2pct\\results\\direct_excel_1792065854260060600",
+  "run_token": "f82c3cef72dc45b19c5c1f6eb1267fb1",
+  "prior_excel_pids": [],
+  "source_root": "D:\\Work\\excel-vba-rpfem\\versions\\G1R19",
+  "harness_sha256": "a5cfafa0cef8943c4a60256ef972c08ac6185c900f4e8e9b6cb82b036750307b",
+  "dll_sha256": {
+    "rpfem_native_x64.dll": "66da1a21be43cd2b3a3bfbaa9d13aad5fb1fd1960e1bf2507cc4e1cfa9ebe70b"
+  },
+  "cases": [
+    [
+      "PASS",
+      "lower",
+      0.4,
+      0,
+      false,
+      "OPTIMAL",
+      34.9887801413491,
+      0.515625,
+      false,
+      "",
+      361,
+      294,
+      8
+    ],
+    [
+      "PASS",
+      "lower",
+      0.4,
+      1,
+      false,
+      "OPTIMAL",
+      34.9887801413491,
+      0.53125,
+      false,
+      "",
+      361,
+      294,
+      8
+    ],
+    [
+      "PASS",
+      "lower",
+      2.0,
+      0,
+      false,
+      "OPTIMAL",
+      0.49255722972920946,
+      0.4375,
+      false,
+      "",
+      361,
+      294,
+      8
+    ],
+    [
+      "PASS",
+      "lower",
+      2.0,
+      1,
+      false,
+      "ORIGINAL_LOWER_DUAL_GUIDE",
+      0.4925573538140783,
+      0.359375,
+      true,
+      "original_dual",
+      361,
+      294,
+      8
+    ],
+    [
+      "PASS",
+      "upper",
+      0.4,
+      0,
+      false,
+      "INFEASIBLE",
+      1e+30,
+      1.9296875,
+      false,
+      "",
+      240,
+      55,
+      8
+    ],
+    [
+      "PASS",
+      "upper",
+      0.4,
+      1,
+      false,
+      "INFEASIBLE",
+      1e+30,
+      2.0078125,
+      false,
+      "",
+      240,
+      55,
+      8
+    ],
+    [
+      "PASS",
+      "upper",
+      2.0,
+      0,
+      false,
+      "OPTIMAL",
+      0.6778228335472283,
+      0.4921875,
+      false,
+      "",
+      240,
+      55,
+      8
+    ],
+    [
+      "PASS",
+      "upper",
+      2.0,
+      1,
+      false,
+      "ORIGINAL_ACCURACY_UPPER_WITNESS",
+      0.6778226263088611,
+      0.3671875,
+      true,
+      "original_primal",
+      240,
+      55,
+      8
+    ],
+    [
+      "PASS",
+      "upper",
+      2.0,
+      1,
+      true,
+      "OPTIMAL",
+      0.6778228335472283,
+      0.5078125,
+      false,
+      "",
+      240,
+      55,
+      8
+    ]
+  ],
+  "dialogs": [
+    [
+      "実行時エラー '5':\n\nFIXTURE_RUN_FAILED_目標区間幅は0より大きく2未満です。",
+      "継続(&C)",
+      "終了(&E)",
+      "デバッグ(&D)",
+      "ヘルプ(&H)"
+    ]
+  ],
+  "pid": 18688,
+  "process_creation_time": 1792065854.3096395,
+  "source_sha256": {
+    "RPX_AccuracyMesh": "ec54485fb54a8ad6568a5b138c3db8f46ec7f397c3197d76117ba8c1d8c7d08f",
+    "RPX_AccuracyNative": "2fe04b5198791727ccfd2da9dc48d0fae9111e6ba9b0bb82a2230036423c2412",
+    "RPX_Adapt": "3e736fbd18812ad7a3774beba2b386a12c551d373023fe2e21e9b3fa16f6e6ed",
+    "RPX_Affine": "1db43674855d97522da6c1ee68cbaad7f60bc197ae7980e7d4d16b57547e5d8c",
+    "RPX_AHO3": "26514eb2aa91485f5f194f2ae8d52f43ff3d0c3207618a8fe78340441bd299ca",
+    "RPX_Audit": "6bd8c4adcd3ed0dc4feace1b0fecc26817c99cc415a0e6900b4708b2170c57d5",
+    "RPX_Bearing": "e03ebda3e1ae5a942af9e12c6143e25328e7bd9dd636fa4b95f5723061468ed4",
+    "RPX_C0Guides": "2525c8d5c5f0dc43b6eb686d9afd012d9f110d203b74e1a9188d239405085edd",
+    "RPX_C0Select": "34da66a74cc21acb6c977d923446cded0846067e3b516e4a2603e022a4fb495e",
+    "RPX_Certificate": "b0b9ce138156f90cb5d14026e9619ae487d6c89d1c1940b467b873127a4b1166",
+    "RPX_ColumnOrder": "c38a62a5bfa9d439f3742b5345414d833a265774ad56336679fe7a595d41f2e3",
+    "RPX_Conic": "10a58abf41ab6d660e3cafea361978f4cf945a02a30e1345dae9f8310e3835d2",
+    "RPX_Control": "8a3ee2a3d34bd17b7c35bd17b2a1bc5cf25311dd0bfb8bf8d143c6e79ac76828",
+    "RPX_Definition": "28eec4f7d8072f01c6ebd1a6b8cf291ce8bcb896519b688a8ba19d4a0c43e7f0",
+    "RPX_Diagnostics": "7cda9b7801ebb058af3440160ec59c006a9781e0992110fcc2b85b637cdb3bca",
+    "RPX_Exchange": "bcb9da802fc928c18cc802682d1e01bf00f6a0a39bb01a03055b1310b1f61f81",
+    "RPX_FactorFree": "7aa6255e58ec85af8e170f4f91b80b689ad347c0b3230857a334aad9ff8e4864",
+    "RPX_FixedLowerRecovery": "601f59a7446d95775586200b8323afd245835f4dd944ce189fbc5c783c86c1e1",
+    "RPX_FixedWitness": "b11b940743c32ad253d0d2c9a53c0057762a4b8d98db61c487ee4eeb3794e88b",
+    "RPX_FreeFaceSplit": "df4f932f1e1b7b7390d062057f219c310643b7ce659231b1c3d4abdb7174466c",
+    "RPX_Fs": "4f2cdfe4b7dc57842e13df0062d2abeb91cf56b28b7566a00fc6a273bec00a68",
+    "RPX_Guard": "9fd387b1a6ed1edfac0f2e0572142f81e54ee056c79f8391b34a3f38caa16fcc",
+    "RPX_HSDCandidate": "db4aba8cf8c0f2f45ef21230aff5b757c57487cc8724e0bd0f6319a0711dc689",
+    "RPX_HSDLu": "4259698082c53d1fd72afc00693baa381d4965acfb4cbea379ae1b33c6b3e4a2",
+    "RPX_HSDPrecision": "1ced0a3645007e6fc6235aea7ff9832a4e14ebad33536be12e3af845a35559f2",
+    "RPX_HSDQuality": "40259e63df092f06dcbb5513526af91191416ec3b53435eab68baa4345a95e5e",
+    "RPX_Indicator": "723de6a651889c63e67bcb029ba77738f90f74fda9e8444cb59046fe5a2002b8",
+    "RPX_KktCapture": "1f486164023bcc248875fbee33d98a663d343f1b4099d76b1b12993380a8cd9a",
+    "RPX_LDL": "03ef3d4cd0c11149d38711cd00821a38b9016f69f3029e940bb34090df042ab3",
+    "RPX_LoadStepMesh": "47c050c4b94e34521f4023992d9b9e108cfde9fff3fc876e4eb7a7562075fffa",
+    "RPX_Lower": "ee575b799d8f043c3803dc5e335342585368148dbe40c231c9f9a935eaea071e",
+    "RPX_LowerCache": "640ca2b9a4b0245fdf921102e7b9356fe0b2d29f36ed4ec930d3c27c6ffac663",
+    "RPX_Mesh": "e78725ac20e0762d487395a9459b000d2585630af0860e498748d1194ef429e5",
+    "RPX_MeshGuard": "f5d7fb45ac05a42c6698833b35095bc0dfe182937055710d632e6835f4d4b313",
+    "RPX_MeshTests": "7adab7d50d147c115100a040c7b5e66bd78915425354aa7c1e453f5bce445e99",
+    "RPX_Model": "8b967f7ba10caa8ee3b676f2dd781079bef1dab97419d056271f7d6e7adb7b9e",
+    "RPX_Native": "8820c2c6e2af78f59f6c16b0d01281019c5173d6dcc2c1c0cba1a82fc95e82ec",
+    "RPX_NativeBulk": "ee860f6ddf72c9f15edabf7ca8158a6126d546bc4ac50b1192d43f816e1be949",
+    "RPX_NativeGuard": "f396f22f327aee6335d5c3e7d045d2eca4d891b1ab0d06d31e723759d5bb7900",
+    "RPX_NativeLU": "ccf566350ab78eb2e6f117a504d3aa3c4c0247eaf638b6cd997b7eb204e4d6c0",
+    "RPX_NativeMesh": "4c7a829d4dceb811d57609913c57ee4436b0db838f962de5b805f751112a81ee",
+    "RPX_NativeSolver": "a98b27d492eea27129e9445438270924036f0504a7564504a4b70e0f8c8ea033",
+    "RPX_NT": "e986114e4b19d2c4939874460168ef46ca77c47b8bce851735d21385f351e818",
+    "RPX_NTPrecision": "677f9c58d1ba328343349c56787641bc4d27a7a9d8391df7a44661b6c4d7cb6e",
+    "RPX_Order": "2a3c50063e96fb4d287c8c0c2ad9ca7d0cc12285f62dcf657b9b21a3a343b90d",
+    "RPX_Output": "5d225faf8c610084d6a449e7db296e1b8af59602d2e276e837ee21460f66028f",
+    "RPX_P4": "d037d854e3d11b0f59546b8948ddc951b999c9caa934ce4776a9f83190de08c4",
+    "RPX_Profile": "c7a85c4485bf18c14264c2645a0106a315ae2263fdc099b94c583dab9e926b41",
+    "RPX_Refine": "5ac40f834b8bbb363146a1fb160bd099ee95dbe104cb6e2183f8f97257d8f9d7",
+    "RPX_Robust": "b53c71817f688da2456af74dcd1c7d52cd66eae1bdc7af43c2b20076cd347117",
+    "RPX_Schur": "18c7814f8036e3287ebd5d8cad3b004fd45139880c0ba528905fe60aefe03370",
+    "RPX_SchurCache": "71b9810fa0164b931929dce5a4238c1e3a6f975dc968b3ababca62bc08b5baae",
+    "RPX_SchurLDL": "5de3e755f95c6167354f72a28ccb51afce74bcb173cfeb0a61a2f3402237bc5c",
+    "RPX_Seep": "1b7c462210b58f876e154c5e7f623cb060b801f0e8b3114eebe671620e607952",
+    "RPX_SeepUI": "c63f8453b90f5dd495576e5fc00895a34a02dd172e23f530148ec748c2af334b",
+    "RPX_SeepWT": "52a45b94fc725add904e1e89e951163d54da7a0007697ed7abe34e3d0d9b65c0",
+    "RPX_Seismic": "186971f072df1822c55d53925ab54d0a6ebff6704536f9bb80cb9d371109bb88",
+    "RPX_Solve": "8d20065b0aaf97890bb84c64644ba034892d757dba33fe384de80fdc9769d141",
+    "RPX_UI": "13d43610cf8de77ac8b7b2fd2843d71d97ec429ccd6efb8762fb7a4ea73b236e",
+    "RPX_Upper": "97b097e62a025dbf3db07c1c124b8e4bfb7037b3892e63f424e54db82c5defd1",
+    "RPX_Water": "16bef24bd16eda2b4db63b3ea1c857f9ca4ceb0512337cb6a213f2e400e09fe6",
+    "RPX_WorkPrecision": "253afaec8d8ddc9c5d19398bc956f42af254d082f19aa75a0235fa6f89d178bd"
+  },
+  "compile": "PASS",
+  "preset": [
+    "PASS",
+    0.02,
+    1.0,
+    8.0,
+    0.0001,
+    8.0,
+    0.0
+  ],
+  "p06_fixed_q8_benchmark": [
+    {
+      "case": "P06A",
+      "input_sha256": "7ba1d27d7f1d4bee57972dd9e87881a3efa59f8765808631c87916e3bf3ee9d1",
+      "result": [
+        "PASS",
+        "upper",
+        1.0,
+        0,
+        false,
+        "OPTIMAL",
+        1.051104662747519,
+        29.7265625,
+        false,
+        "",
+        5412,
+        442,
+        8
+      ],
+      "fixed_fs": 1.0,
+      "mesh_target": 400,
+      "adaptation": false
+    },
+    {
+      "case": "P06A",
+      "input_sha256": "7ba1d27d7f1d4bee57972dd9e87881a3efa59f8765808631c87916e3bf3ee9d1",
+      "result": [
+        "PASS",
+        "upper",
+        1.0,
+        1,
+        false,
+        "OPTIMAL",
+        1.051104662747519,
+        30.5078125,
+        false,
+        "",
+        5412,
+        442,
+        8
+      ],
+      "fixed_fs": 1.0,
+      "mesh_target": 400,
+      "adaptation": false
+    },
+    {
+      "case": "P06N",
+      "input_sha256": "25f865f0e776f231feb5437eebaefbdbf59b6c3e0f8297174c4c6aa6abeff392",
+      "result": [
+        "PASS",
+        "upper",
+        1.0,
+        0,
+        false,
+        "OPTIMAL",
+        0.8365342319266091,
+        27.5546875,
+        false,
+        "",
+        5412,
+        442,
+        8
+      ],
+      "fixed_fs": 1.0,
+      "mesh_target": 400,
+      "adaptation": false
+    },
+    {
+      "case": "P06N",
+      "input_sha256": "25f865f0e776f231feb5437eebaefbdbf59b6c3e0f8297174c4c6aa6abeff392",
+      "result": [
+        "PASS",
+        "upper",
+        1.0,
+        1,
+        false,
+        "ORIGINAL_ACCURACY_UPPER_WITNESS",
+        0.8365379764993431,
+        5.7109375,
+        true,
+        "original_primal",
+        5412,
+        442,
+        8
+      ],
+      "fixed_fs": 1.0,
+      "mesh_target": 400,
+      "adaptation": false
+    }
+  ],
+  "P06A_policy": "ASSOCIATED",
+  "P06N_policy": "DAVIS_EQUIVALENT",
+  "error": "com_error(-2147352567, '例外が発生しました。', (0, None, None, None, 0, -2146788248), None)",
+  "owned_excel_exited": false,
+  "files": {
+    "Direct_Test.xlsm": {
+      "sha256": "6b280c0310ad09e8bc3efcbb4d467a35bebd8a3c69d1576da94f211520543ec7",
+      "bytes": 1917536
+    },
+    "harness_snapshot.py": {
+      "sha256": "a5cfafa0cef8943c4a60256ef972c08ac6185c900f4e8e9b6cb82b036750307b",
+      "bytes": 9683
+    },
+    "lower_0_False.tsv": {
+      "sha256": "f3ba7090e0f1f4562507bc6037bdddb58018c18dcb0c32de62618efb86f3b486",
+      "bytes": 2799
+    },
+    "lower_1_False.tsv": {
+      "sha256": "a9e0754557da33b4cd08fe59480f9af3266763f6998b68a96c4271e8b4475e51",
+      "bytes": 1825
+    },
+    "P06A_input.json": {
+      "sha256": "7ba1d27d7f1d4bee57972dd9e87881a3efa59f8765808631c87916e3bf3ee9d1",
+      "bytes": 7612
+    },
+    "P06N_input.json": {
+      "sha256": "25f865f0e776f231feb5437eebaefbdbf59b6c3e0f8297174c4c6aa6abeff392",
+      "bytes": 7607
+    },
+    "rpfem_native_x64.dll": {
+      "sha256": "66da1a21be43cd2b3a3bfbaa9d13aad5fb1fd1960e1bf2507cc4e1cfa9ebe70b",
+      "bytes": 1521664
+    },
+    "SpeedDirectProbe.bas": {
+      "sha256": "bbd527d3ccb482d3882e93bbda920a43c8dd6f46e53b5203237753786cac786f",
+      "bytes": 3464
+    },
+    "TerminalReuseProbe.bas": {
+      "sha256": "9510c2fce7e3367292e1559b813e8bd76691730219d084c4758436e8a816a6a3",
+      "bytes": 7210
+    },
+    "upper_0_False.tsv": {
+      "sha256": "45c986fcbfcc694992228811257858eb3036f9f69deb410327da1ddc07b961a4",
+      "bytes": 17779
+    },
+    "upper_1_False.tsv": {
+      "sha256": "239f71347bf42a9d172e3fcfff6ce8d1b4bc096076810398f5ef3c8c2adc430c",
+      "bytes": 13764
+    },
+    "upper_1_True.tsv": {
+      "sha256": "5093495254399c4e335671d2fdb6a9f8b81b36172498d59e1a31b2f07ccc9a63",
+      "bytes": 2696
+    },
+    "RPFEM_logs/20261015_210422_18688_direct_fixed_original_lp.tsv": {
+      "sha256": "b5db2a277706f9c879023e710700ce58f02d2e77b2e9001a6f5944f34653b931",
+      "bytes": 58480
+    },
+    "RPFEM_logs/20261015_210422_18688_direct_fixed_original_lp_1.tsv": {
+      "sha256": "55669488f5f85eb0f4fb123d153186f0f2fc45f907ba28b186e750ab13c800c5",
+      "bytes": 61628
+    },
+    "RPFEM_logs/20261015_210423_18688_direct_fixed_original_lp.tsv": {
+      "sha256": "78f70553be71e7674db16b88f3a9fe781df305cbc378d97bad0be581a094c553",
+      "bytes": 49866
+    },
+    "RPFEM_logs/20261015_210424_18688_direct_fixed_original_lp.tsv": {
+      "sha256": "355b0dc56a594da119703c823920b78e5267b3c8c8c1aa5e6ca1626169bb3853",
+      "bytes": 25992
+    },
+    "RPFEM_logs/20261015_210424_18688_direct_fixed_original_lp.tsv.accuracy_dual_solve_3_1_lower.bin": {
+      "sha256": "e1191a7eb43de9af1ce8195056771b9768ff81ce705dca7528508015831eca4f",
+      "bytes": 39372
+    },
+    "RPFEM_logs/20261015_210424_18688_direct_fixed_original_lp.tsv.accuracy_dual_solve_3_1_lower.bin.context.tsv": {
+      "sha256": "b0ab0bb37878d267ae9d5dffbb643fb60a4108b02e09ff65909fa7e3aa408f23",
+      "bytes": 66148
+    },
+    "RPFEM_logs/20261015_210425_18688_direct_fixed_original_lp.tsv": {
+      "sha256": "0419d432de20b2a79323b5737c52e094d1984e68441d263263f9d4cf9e20bc0d",
+      "bytes": 294384
+    },
+    "RPFEM_logs/20261015_210427_18688_direct_fixed_original_lp.tsv": {
+      "sha256": "4db4f4a77e2a47a4d78eb6690b4041fae15f6e395635f2b747f0596571929d42",
+      "bytes": 294900
+    },
+    "RPFEM_logs/20261015_210429_18688_direct_fixed_original_lp.tsv": {
+      "sha256": "cb7d14e7c021149c0abfabcb4cfacbc5d204370a245d2af3bfffaed34bd6fb59",
+      "bytes": 61452
+    },
+    "RPFEM_logs/20261015_210430_18688_direct_fixed_original_lp.tsv": {
+      "sha256": "374177638a98145bf6a03cffe14a4b3d618d881a79f1542cb866134487a16196",
+      "bytes": 29500
+    },
+    "RPFEM_logs/20261015_210430_18688_direct_fixed_original_lp.tsv.accuracy_primal_solve_8_2_upper.bin": {
+      "sha256": "621af7d6c5fd9a836e6b0964390f7d6e3b13b8ce810458ca76f47abaff302c0f",
+      "bytes": 91172
+    },
+    "RPFEM_logs/20261015_210430_18688_direct_fixed_original_lp.tsv.accuracy_primal_solve_8_2_upper.bin.context.tsv": {
+      "sha256": "2dacaa9b8c19b3c447aa395bf83733cdd2cf7219b455f7194fc8a231fbd88b6b",
+      "bytes": 36300
+    },
+    "RPFEM_logs/20261015_210431_18688_direct_fixed_original_lp.tsv": {
+      "sha256": "d82c4c02e6dca1e95d3301cc044ce3d90b72a1a0ea00addde3dd102ccf2836fb",
+      "bytes": 62316
+    },
+    "RPFEM_logs/20261015_210432_18688_direct_fixed_original_lp.tsv": {
+      "sha256": "ab50eb53c8c02679a891a4c8250aaaf43cabac80e3c7091f2cb69b3238b2fb12",
+      "bytes": 290032
+    },
+    "RPFEM_logs/20261015_210502_18688_direct_fixed_original_lp.tsv": {
+      "sha256": "9d5479ed29c7eed8d8b64d2a2928815c4c4dbd64c82ad51f5f9f1df2fb962782",
+      "bytes": 294046
+    },
+    "RPFEM_logs/20261015_210533_18688_direct_fixed_original_lp.tsv": {
+      "sha256": "1d3a05f76f13769a0598681808814faec5a49581e6deafce064056910424ef1e",
+      "bytes": 267284
+    },
+    "RPFEM_logs/20261015_210601_18688_direct_fixed_original_lp.tsv": {
+      "sha256": "c9a8704a175ababdae7708f7a489cbe3be44a8adc63e9d5c699256fcbd2ab618",
+      "bytes": 31136
+    },
+    "RPFEM_logs/20261015_210601_18688_direct_fixed_original_lp.tsv.accuracy_primal_solve_12_3_upper.bin": {
+      "sha256": "b1ab66088518781856ee5b6bee206cc3531ea751c81ed831d9888f70eca35732",
+      "bytes": 2336720
+    },
+    "RPFEM_logs/20261015_210601_18688_direct_fixed_original_lp.tsv.accuracy_primal_solve_12_3_upper.bin.context.tsv": {
+      "sha256": "bfb5e0c708cb4c333a07766a96f0cdbac24c581cd9df5ca2b7dab79c58c379a1",
+      "bytes": 722702
+    },
+    "RPFEM_logs/20261015_210607_18688_analysis.tsv": {
+      "sha256": "ee7a7f4dcf1a180cf89feba686a6cc48d783bfb9d1e8e83f0b31c31666e26736",
+      "bytes": 8216
+    }
+  }
+}

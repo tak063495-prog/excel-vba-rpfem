@@ -1,0 +1,274 @@
+{
+  "state": "PASS",
+  "owned_excel_pid": 10624,
+  "owned_excel_creation_time": 1792067541.0755832,
+  "prior_pids": [],
+  "modules": {
+    "RPX_AccuracyMesh.bas": {
+      "source_sha256": "ec54485fb54a8ad6568a5b138c3db8f46ec7f397c3197d76117ba8c1d8c7d08f",
+      "loaded_code_sha256": "0a2ea2a2c3bfa8e5c5d7e18e5ee51b5a2d74bafc1720a703a3a21b173b9d3fee"
+    },
+    "RPX_AccuracyNative.bas": {
+      "source_sha256": "6f3ec95531b82090c1d135388b22e39def6b1da06d9039b522e6e4414db4716f",
+      "loaded_code_sha256": "0aba15f05046bd45880250618f4acaf1ceba8b2bf1b54fc411c71040c10d0028"
+    },
+    "RPX_Adapt.bas": {
+      "source_sha256": "3e736fbd18812ad7a3774beba2b386a12c551d373023fe2e21e9b3fa16f6e6ed",
+      "loaded_code_sha256": "b71e34e91faa3ee9deac7da61a719dd765448fab800e8c844b4dfca8cc8f6e41"
+    },
+    "RPX_Affine.bas": {
+      "source_sha256": "1db43674855d97522da6c1ee68cbaad7f60bc197ae7980e7d4d16b57547e5d8c",
+      "loaded_code_sha256": "6f01b1c52ffc12eb27c7de4a8eca92609e063404512a96963322fda0ef1334f4"
+    },
+    "RPX_AHO3.bas": {
+      "source_sha256": "26514eb2aa91485f5f194f2ae8d52f43ff3d0c3207618a8fe78340441bd299ca",
+      "loaded_code_sha256": "0b2999c31bdcf9dc40fcb4eee879d12818e653425e3bf85787b3482e58ee2f33"
+    },
+    "RPX_Audit.bas": {
+      "source_sha256": "6bd8c4adcd3ed0dc4feace1b0fecc26817c99cc415a0e6900b4708b2170c57d5",
+      "loaded_code_sha256": "286f1cd92df63c8f8637334f2531b468486e1103408cb93c19840a2d73580364"
+    },
+    "RPX_Bearing.bas": {
+      "source_sha256": "e03ebda3e1ae5a942af9e12c6143e25328e7bd9dd636fa4b95f5723061468ed4",
+      "loaded_code_sha256": "83e374cbd72b9c5c9a938e78394dfe195b3656ecfa244d5df1dba02e370d36a9"
+    },
+    "RPX_C0Guides.bas": {
+      "source_sha256": "2525c8d5c5f0dc43b6eb686d9afd012d9f110d203b74e1a9188d239405085edd",
+      "loaded_code_sha256": "dd33e48262edc814f31a7dc9d90fd0f7f8030081528a6a50662ff18f2dde0f06"
+    },
+    "RPX_C0Select.bas": {
+      "source_sha256": "34da66a74cc21acb6c977d923446cded0846067e3b516e4a2603e022a4fb495e",
+      "loaded_code_sha256": "b4ceabe7aa99448029fbbd14ff88d13f6ee422e02dd4c4451343a2a23f0da1c1"
+    },
+    "RPX_Certificate.bas": {
+      "source_sha256": "b0b9ce138156f90cb5d14026e9619ae487d6c89d1c1940b467b873127a4b1166",
+      "loaded_code_sha256": "0f741ca743ccfdaeda5c28f94c57fa2e8b813fe1c7559f927c786c8eddb6b55c"
+    },
+    "RPX_ColumnOrder.bas": {
+      "source_sha256": "c38a62a5bfa9d439f3742b5345414d833a265774ad56336679fe7a595d41f2e3",
+      "loaded_code_sha256": "265a56e0d36dc9457c64b4cca628db10b4bb0c9de6838ada27a55afccc6e6abf"
+    },
+    "RPX_Conic.bas": {
+      "source_sha256": "10a58abf41ab6d660e3cafea361978f4cf945a02a30e1345dae9f8310e3835d2",
+      "loaded_code_sha256": "50c5135744d9c3ddef524bdd5ef6a5e44500598357cf3667964ae67e2b044441"
+    },
+    "RPX_Control.bas": {
+      "source_sha256": "8a3ee2a3d34bd17b7c35bd17b2a1bc5cf25311dd0bfb8bf8d143c6e79ac76828",
+      "loaded_code_sha256": "bf1b8ef0eb1c949d63ef2b23358ed243350d8c09efe7a85a5d86b8f03c74288b"
+    },
+    "RPX_Definition.bas": {
+      "source_sha256": "28eec4f7d8072f01c6ebd1a6b8cf291ce8bcb896519b688a8ba19d4a0c43e7f0",
+      "loaded_code_sha256": "3b101beae315023a6e1230433c5ac24497b8e12928b9890c624570500160f6da"
+    },
+    "RPX_Diagnostics.bas": {
+      "source_sha256": "7cda9b7801ebb058af3440160ec59c006a9781e0992110fcc2b85b637cdb3bca",
+      "loaded_code_sha256": "8309fd417428ac247c75d4798302bc8382d96c114f2d0eb50674918efee8a6d4"
+    },
+    "RPX_Exchange.bas": {
+      "source_sha256": "bcb9da802fc928c18cc802682d1e01bf00f6a0a39bb01a03055b1310b1f61f81",
+      "loaded_code_sha256": "52ac41874657d441b23ab1e97d713777366b3f81a913dcc5136f04e6e6bd46a1"
+    },
+    "RPX_FactorFree.bas": {
+      "source_sha256": "7aa6255e58ec85af8e170f4f91b80b689ad347c0b3230857a334aad9ff8e4864",
+      "loaded_code_sha256": "ebcea48de3a6d74be8ea7e0ab32e4b0fbcaa8f846fe373240a8657b356234fde"
+    },
+    "RPX_FixedLowerRecovery.bas": {
+      "source_sha256": "601f59a7446d95775586200b8323afd245835f4dd944ce189fbc5c783c86c1e1",
+      "loaded_code_sha256": "3f01f7c2bdeabdc7bb7993c321420f0b4d9c554341211bd611ec63847354a223"
+    },
+    "RPX_FixedWitness.bas": {
+      "source_sha256": "b11b940743c32ad253d0d2c9a53c0057762a4b8d98db61c487ee4eeb3794e88b",
+      "loaded_code_sha256": "af4fc7eb93870a180a81efbe20f88d21f4a8127444fa1fb0e6f893b9dcb014ab"
+    },
+    "RPX_FreeFaceSplit.bas": {
+      "source_sha256": "df4f932f1e1b7b7390d062057f219c310643b7ce659231b1c3d4abdb7174466c",
+      "loaded_code_sha256": "8f38a4ce6e6fff44bfd7561216decf721cc5db37c31b6f096860acb8b73cee01"
+    },
+    "RPX_Fs.bas": {
+      "source_sha256": "4f2cdfe4b7dc57842e13df0062d2abeb91cf56b28b7566a00fc6a273bec00a68",
+      "loaded_code_sha256": "c6eff04284030b2277b5fe4adcea5a1f05c15f81f50b00603c5afdb714d75314"
+    },
+    "RPX_Guard.bas": {
+      "source_sha256": "9fd387b1a6ed1edfac0f2e0572142f81e54ee056c79f8391b34a3f38caa16fcc",
+      "loaded_code_sha256": "2a59fbbc5f0d045377f48e6119d2b32afd4d3667d5d2c01be88460a1a4005772"
+    },
+    "RPX_HSDCandidate.bas": {
+      "source_sha256": "db4aba8cf8c0f2f45ef21230aff5b757c57487cc8724e0bd0f6319a0711dc689",
+      "loaded_code_sha256": "224e25e4308215f2f6e9a13b076cc5fe924d3aae0b324e441215fe21446474c0"
+    },
+    "RPX_HSDLu.bas": {
+      "source_sha256": "4259698082c53d1fd72afc00693baa381d4965acfb4cbea379ae1b33c6b3e4a2",
+      "loaded_code_sha256": "987006a15fc2d2390f2941b475367ef46fc900a625dcc003c909948394fc68b9"
+    },
+    "RPX_HSDPrecision.bas": {
+      "source_sha256": "1ced0a3645007e6fc6235aea7ff9832a4e14ebad33536be12e3af845a35559f2",
+      "loaded_code_sha256": "0571fedb64596b7e853b168276c8155cfaedbd6c3bf81532ba0e2663ac62b1ed"
+    },
+    "RPX_HSDQuality.bas": {
+      "source_sha256": "40259e63df092f06dcbb5513526af91191416ec3b53435eab68baa4345a95e5e",
+      "loaded_code_sha256": "ee03248ff3c0d711120ea0922fb4d9f08e821e53b0a1a1406dcd9ce37d6ff264"
+    },
+    "RPX_Indicator.bas": {
+      "source_sha256": "723de6a651889c63e67bcb029ba77738f90f74fda9e8444cb59046fe5a2002b8",
+      "loaded_code_sha256": "852991cd2027e2779a3356431531ff5a797bcc9cf625a7f424ab3fc33d15977e"
+    },
+    "RPX_KktCapture.bas": {
+      "source_sha256": "1f486164023bcc248875fbee33d98a663d343f1b4099d76b1b12993380a8cd9a",
+      "loaded_code_sha256": "6ef95283077e76cc7bfd5e6c10003ffc712d6a9686c024d47f8443d3421203dd"
+    },
+    "RPX_LDL.bas": {
+      "source_sha256": "03ef3d4cd0c11149d38711cd00821a38b9016f69f3029e940bb34090df042ab3",
+      "loaded_code_sha256": "8e8a9a4801c138572e7b38279b5f1775bc6088a9ab20a20c1c61a52e17d047ea"
+    },
+    "RPX_LoadStepMesh.bas": {
+      "source_sha256": "47c050c4b94e34521f4023992d9b9e108cfde9fff3fc876e4eb7a7562075fffa",
+      "loaded_code_sha256": "f482ec20a07a2ba5ef974e6783c3ab1cfcaa392f68ad9b4a7ed7583534d7e6be"
+    },
+    "RPX_Lower.bas": {
+      "source_sha256": "ee575b799d8f043c3803dc5e335342585368148dbe40c231c9f9a935eaea071e",
+      "loaded_code_sha256": "76fc445e0081908e09c4fd4307c9ae7dd56ff1f003289532cdf1b8d08194801c"
+    },
+    "RPX_LowerCache.bas": {
+      "source_sha256": "640ca2b9a4b0245fdf921102e7b9356fe0b2d29f36ed4ec930d3c27c6ffac663",
+      "loaded_code_sha256": "13805dec08f41c7ba6aa3af5f27999800063182f0cda4bcc576dfbb1a3c98874"
+    },
+    "RPX_Mesh.bas": {
+      "source_sha256": "e78725ac20e0762d487395a9459b000d2585630af0860e498748d1194ef429e5",
+      "loaded_code_sha256": "87ffbd19444ffc3a8f6ff24f648465d5ab8412d5ebc76429288c820acb7a01f4"
+    },
+    "RPX_MeshGuard.bas": {
+      "source_sha256": "f5d7fb45ac05a42c6698833b35095bc0dfe182937055710d632e6835f4d4b313",
+      "loaded_code_sha256": "bcd8274f2e57a890e3ea209aef2ca69f23a2add41ac9b963024ad949dec6f452"
+    },
+    "RPX_MeshTests.bas": {
+      "source_sha256": "7adab7d50d147c115100a040c7b5e66bd78915425354aa7c1e453f5bce445e99",
+      "loaded_code_sha256": "5b9d2620e80bc35bb6282a054a86ed45f17a6f1a5aa90ba0c48f74f4170bb12d"
+    },
+    "RPX_Model.bas": {
+      "source_sha256": "8b967f7ba10caa8ee3b676f2dd781079bef1dab97419d056271f7d6e7adb7b9e",
+      "loaded_code_sha256": "21e308e41f07e8a96ee9fd324893fcf2be7d6a02c32be20f270a590262285fb1"
+    },
+    "RPX_Native.bas": {
+      "source_sha256": "8820c2c6e2af78f59f6c16b0d01281019c5173d6dcc2c1c0cba1a82fc95e82ec",
+      "loaded_code_sha256": "e4778881c4c5cb94f6e8a4e0774675c64c10066b8d722470e2f8b3d8863de148"
+    },
+    "RPX_NativeBulk.bas": {
+      "source_sha256": "ee860f6ddf72c9f15edabf7ca8158a6126d546bc4ac50b1192d43f816e1be949",
+      "loaded_code_sha256": "3714881e08139baa618f5ad4e75321aa76c85870a7eeb331683b32a1f8884b06"
+    },
+    "RPX_NativeGuard.bas": {
+      "source_sha256": "f396f22f327aee6335d5c3e7d045d2eca4d891b1ab0d06d31e723759d5bb7900",
+      "loaded_code_sha256": "33471b96a59ce22cca04fd8e649cbf717b1ba29decdaa673538f0f44cd25c1e4"
+    },
+    "RPX_NativeLU.bas": {
+      "source_sha256": "ccf566350ab78eb2e6f117a504d3aa3c4c0247eaf638b6cd997b7eb204e4d6c0",
+      "loaded_code_sha256": "9e626bbbc1a96a18beecdf4aaacc1da8f4fad4f17ebb4f581352f211c117396a"
+    },
+    "RPX_NativeMesh.bas": {
+      "source_sha256": "4c7a829d4dceb811d57609913c57ee4436b0db838f962de5b805f751112a81ee",
+      "loaded_code_sha256": "37b98c8586780c371231f37ba92167b2734b5396cd236e233631d2cc31954e28"
+    },
+    "RPX_NativeSolver.bas": {
+      "source_sha256": "a98b27d492eea27129e9445438270924036f0504a7564504a4b70e0f8c8ea033",
+      "loaded_code_sha256": "fe00c44cde25740ec6a25e99831d213cf6240d6f8bec172dc61537f2461b7e90"
+    },
+    "RPX_NT.bas": {
+      "source_sha256": "e986114e4b19d2c4939874460168ef46ca77c47b8bce851735d21385f351e818",
+      "loaded_code_sha256": "366bbf9c92e921dab84e964f4609d0dad178c7a566f5638f054aedada29a42a3"
+    },
+    "RPX_NTPrecision.bas": {
+      "source_sha256": "677f9c58d1ba328343349c56787641bc4d27a7a9d8391df7a44661b6c4d7cb6e",
+      "loaded_code_sha256": "fee6a4dbfe73157f0c4e5439c73ebdc21103cc09fe333649b09f95851e083560"
+    },
+    "RPX_Order.bas": {
+      "source_sha256": "2a3c50063e96fb4d287c8c0c2ad9ca7d0cc12285f62dcf657b9b21a3a343b90d",
+      "loaded_code_sha256": "86d5595f792d1a9565b3a73b54bcd3666d1e5ba77ba4e0fc22971030c4906c2e"
+    },
+    "RPX_Output.bas": {
+      "source_sha256": "5d225faf8c610084d6a449e7db296e1b8af59602d2e276e837ee21460f66028f",
+      "loaded_code_sha256": "0a4e075cdb8bfc576410c6cd6ff15247bd42a1800e58b7f9890035551b8b63ae"
+    },
+    "RPX_P4.bas": {
+      "source_sha256": "d037d854e3d11b0f59546b8948ddc951b999c9caa934ce4776a9f83190de08c4",
+      "loaded_code_sha256": "cc4a096f05fad25882dba55aa706e56b090ba39808b4479e1a6f44c6d6270e89"
+    },
+    "RPX_Profile.bas": {
+      "source_sha256": "c7a85c4485bf18c14264c2645a0106a315ae2263fdc099b94c583dab9e926b41",
+      "loaded_code_sha256": "c3bd2fc2e31791e3dbfc0048fb157f73fec8bf8957bce3ee7f5388625feebad1"
+    },
+    "RPX_Refine.bas": {
+      "source_sha256": "5ac40f834b8bbb363146a1fb160bd099ee95dbe104cb6e2183f8f97257d8f9d7",
+      "loaded_code_sha256": "2e58e55d07bee1e1c3806a70b9c356b06154d47b601ec699f180b568d11960b0"
+    },
+    "RPX_Robust.bas": {
+      "source_sha256": "b53c71817f688da2456af74dcd1c7d52cd66eae1bdc7af43c2b20076cd347117",
+      "loaded_code_sha256": "2fb7bbd651d80a3894f7b5bc4b08bafc3eb5fba78899c8296d0b7d974892922e"
+    },
+    "RPX_Schur.bas": {
+      "source_sha256": "18c7814f8036e3287ebd5d8cad3b004fd45139880c0ba528905fe60aefe03370",
+      "loaded_code_sha256": "6b878bc222235c7bfddd57ef757f3038f1ad3b641f1dbe0738899cdee862cd5f"
+    },
+    "RPX_SchurCache.bas": {
+      "source_sha256": "71b9810fa0164b931929dce5a4238c1e3a6f975dc968b3ababca62bc08b5baae",
+      "loaded_code_sha256": "a90f05826771509f46eae837f5a04cb57c8deec07e17cb94484413a76b41b018"
+    },
+    "RPX_SchurLDL.bas": {
+      "source_sha256": "5de3e755f95c6167354f72a28ccb51afce74bcb173cfeb0a61a2f3402237bc5c",
+      "loaded_code_sha256": "c2bf4a7cbe04a67a2f5ca4f74843647d4549ff27f29e851ba0654c793c208a8b"
+    },
+    "RPX_Seep.bas": {
+      "source_sha256": "1b7c462210b58f876e154c5e7f623cb060b801f0e8b3114eebe671620e607952",
+      "loaded_code_sha256": "4917e5d0ec8bae911be23c08a7ddea61e2a5e6831b9485d311125d6744d7ac84"
+    },
+    "RPX_SeepUI.bas": {
+      "source_sha256": "c63f8453b90f5dd495576e5fc00895a34a02dd172e23f530148ec748c2af334b",
+      "loaded_code_sha256": "8c2c0e38378d166e5bd9d50465de9f9e8770489c376ea51c60434fa5f31cee1b"
+    },
+    "RPX_SeepWT.bas": {
+      "source_sha256": "52a45b94fc725add904e1e89e951163d54da7a0007697ed7abe34e3d0d9b65c0",
+      "loaded_code_sha256": "f5d7674ec88151dc81ce68732c2802dbd4b1c62bd9c16c0f8a9ba986facae3c2"
+    },
+    "RPX_Seismic.bas": {
+      "source_sha256": "186971f072df1822c55d53925ab54d0a6ebff6704536f9bb80cb9d371109bb88",
+      "loaded_code_sha256": "95432491e371019a5afef0c93eb43628c6ea53e37fe338d3a32d9825f5e493e6"
+    },
+    "RPX_Solve.bas": {
+      "source_sha256": "8d20065b0aaf97890bb84c64644ba034892d757dba33fe384de80fdc9769d141",
+      "loaded_code_sha256": "7d704d923580426827737b20dda7ec5d215bc12a8c3e927369f595aff40a83cd"
+    },
+    "RPX_UI.bas": {
+      "source_sha256": "13d43610cf8de77ac8b7b2fd2843d71d97ec429ccd6efb8762fb7a4ea73b236e",
+      "loaded_code_sha256": "af5b41ab36b78a0442059a08f8b0f3f830b7785d41e0b8b1eef100adcafdcf51"
+    },
+    "RPX_Upper.bas": {
+      "source_sha256": "97b097e62a025dbf3db07c1c124b8e4bfb7037b3892e63f424e54db82c5defd1",
+      "loaded_code_sha256": "3da92afe5678b5cb13f3d31f65e804ffba974ca149603d2af57dbfe6922909b8"
+    },
+    "RPX_Water.bas": {
+      "source_sha256": "16bef24bd16eda2b4db63b3ea1c857f9ca4ceb0512337cb6a213f2e400e09fe6",
+      "loaded_code_sha256": "d20277150d138f083f2eb422d591f66945e6ce280b06905697e5b1c72b503f02"
+    },
+    "RPX_WorkPrecision.bas": {
+      "source_sha256": "253afaec8d8ddc9c5d19398bc956f42af254d082f19aa75a0235fa6f89d178bd",
+      "loaded_code_sha256": "0b72bc5bb034c55adc17c6f352629de9f77603a759ef08ff9b1f4965c2e2fb1f"
+    }
+  },
+  "dll_sha256": "66da1a21be43cd2b3a3bfbaa9d13aad5fb1fd1960e1bf2507cc4e1cfa9ebe70b",
+  "compile": "PASS",
+  "two_percent_guard_unit": "PASS;setting=0.02;symmetric_1.99pct=accept;symmetric_2.01pct=reject;synthetic_guard_only=1;field_or_root_created=0",
+  "preset_preserves_saved_fields": true,
+  "speed_preset": {
+    "GAP": 0.02,
+    "DIRECT_DLL": 1.0,
+    "QUADRATURE": 8.0,
+    "FS_TOL": 0.0001,
+    "ADAPT_CERT_QUADRATURE": 8.0,
+    "ADAPT_PRECISION_FROM_START": 0.0,
+    "ACCURACY_DLL_RECOVERY": 1.0
+  },
+  "preset_preserves_input_and_policy": true,
+  "reopen_compile": "PASS",
+  "initial_state": "UNSOLVED;GAP=.02;DIRECT_DLL=0;precision_from_start=0;62_source_modules",
+  "owned_excel_exited": true,
+  "workbook_sha256": "3533073bfe883b254143cf68285235ddbe729e8f0e272f4180f2b730f9c63a6f"
+}

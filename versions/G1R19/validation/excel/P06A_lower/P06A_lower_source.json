@@ -1,0 +1,54 @@
+{
+  "case": "P06A",
+  "mode": "lower",
+  "fs": 0.8468,
+  "q": 8,
+  "mesh_id": "e51df740d3bffec27452ea35cab79ffe6a5a2c41d3520cc933e46e219bada053",
+  "physical_model_id": "f67b757898e3bcc3f45c5ea9b5a8e290955fad53f5900c5cd8c31b9637d51875",
+  "elements": 22080,
+  "output": "D:\\Work\\excel-vba-rpfem\\versions\\G1R19\\results\\python_field_excel_1792066291792866000\\P06A_lower_source.bin",
+  "binary_sha256": "78bb1c9a84863cc2711a5f619da6688e0017070a45a9866683b3858d4c434127",
+  "original_field_vector_sha256": "2aee7f0f9e070feb641bbb0076441c88fe0306773e7daaef82cff8fc420f5c75",
+  "ignored_source_metadata": {
+    "root_complete": true,
+    "solver_status": null,
+    "imported": false
+  },
+  "source_sha256": {
+    "D:\\Work\\excel-vba-rpfem\\validation\\accuracy_20261013\\snapshots\\20261014_progress7_audit\\snapshots\\P06A\\best_lower_mesh.npz": "86ca5173fae84ee0173d7428d33f222e150ddba511bcc52558fc5085bf1ffdf7",
+    "D:\\Work\\excel-vba-rpfem\\validation\\accuracy_20261013\\snapshots\\20261014_progress7_audit\\snapshots\\P06A\\best_lower_field.npz": "902c6f855b2eeeffbe1d25276559f1faf8bd1d17b09d53a3349921f92e180c96",
+    "D:\\Work\\excel-vba-rpfem\\validation\\accuracy_20261013\\snapshots\\20261014_progress7_audit\\snapshots\\P06A\\best_lower_certificate.json": "4b0c9950145379686b94b7baab60bde1b04f3a07cce33ba56df9d7add4aabf31"
+  },
+  "source_code_sha256": {
+    "D:\\Work\\excel-vba-rpfem\\versions\\G1R19\\tests\\export_python_witness.py": "264d949330e09ef9b8fb35a224aeb5960af4413c87df4f7f405f79ac5ce899c3",
+    "D:\\Work\\excel-vba-rpfem\\validation\\accuracy_20261013\\python\\experiment_core.py": "9a9e60b6d69ba4008ea89608f433bb716b433436715c45566bd209418ee9238e",
+    "D:\\Work\\excel-vba-rpfem\\validation\\accuracy_20261013\\python\\accuracy_driver.py": "6fbc9761c37bd72046c4083ac8a40030999a74906bcc6b049ea18b5120e15c3c"
+  },
+  "fresh_original_audit": {
+    "objective": -1.0000015000266633,
+    "value": 1.0000015000266633,
+    "eq_error": 1.5224865812513144e-10,
+    "cone_error": 3.2789476689387698e-09,
+    "audit": {
+      "pass": true,
+      "errors": {
+        "yield": 3.278947724449921e-09,
+        "equilibrium": 1.6870446151173724e-09,
+        "internal_traction": 2.153121014814019e-10,
+        "boundary_traction": 1.398511306760497e-10
+      },
+      "load": 1.0000015000266633,
+      "value": 1.0000015000266633
+    },
+    "raw_lower_errors": {
+      "yield": 6.557895448899842e-08,
+      "equilibrium": 3.374089230234745e-08,
+      "internal_traction": 4.306242029628038e-09,
+      "boundary_traction": 2.797022613520994e-09
+    },
+    "physical_pass": true,
+    "witness": true,
+    "numerical_gate": false
+  },
+  "scope": "primal field only; no solver status, dual, root, bracket, or precision result imported"
+}

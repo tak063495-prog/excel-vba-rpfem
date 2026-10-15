@@ -50,6 +50,16 @@ class ReleaseIntegrityTests(unittest.TestCase):
             self.skipTest('Distribution ZIP is checked after packaging')
         with zipfile.ZipFile(path) as archive:
             self.assertIsNone(archive.testzip())
+            prefix = 'RPFEM_20261015_G1R19/'
+            manifest = json.loads(archive.read(prefix+'MANIFEST.json'))
+            self.assertEqual(set(archive.namelist()), {prefix+name for name in manifest['files']} | {prefix+'MANIFEST.json'})
+            for name, record in manifest['files'].items():
+                data = archive.read(prefix+name)
+                self.assertEqual(len(data), record['bytes'], name)
+                self.assertEqual(hashlib.sha256(data).hexdigest(), record['sha256'], name)
+            workbook = 'RPFEM_20261015_G1R19.xlsm'
+            self.assertEqual(archive.read(prefix+workbook), (ROOT/'delivery'/workbook).read_bytes())
+            self.assertEqual(archive.read(prefix+'SOURCE_MANIFEST.json'), (ROOT/'SOURCE_MANIFEST.json').read_bytes())
             dlls = [name for name in archive.namelist() if name.lower().endswith('.dll')]
             self.assertEqual(len(dlls), 1, dlls)
             self.assertTrue(dlls[0].endswith('/rpfem_native_x64.dll') or dlls[0] == 'rpfem_native_x64.dll')
