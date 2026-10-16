@@ -19,3 +19,4 @@ versions/G1R18/native/accuracy/** -text
 versions/G1R18_Issue15/** -text
 # G1R19 source/import pairs, unified DLL and regression evidence use byte hashes.
 versions/G1R19/** -text
+versions/G1R19_Issue11/** -text
