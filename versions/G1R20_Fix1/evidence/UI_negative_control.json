@@ -1,0 +1,44 @@
+{
+  "scope": "Solver0 state-machine sentinels; no numerical certificate",
+  "original_book_sha256": "5f3812b456b42d5b9d9989caf68a7b6a6257f0ce6ebe94add1abb363f63f9ee1",
+  "probe_sha256": "3d534e461bcefa954887a995352a00972e705a760abb2bbf06ff0932f65663a5",
+  "results": {
+    "accuracy_protected": [
+      0,
+      1004,
+      "指定された値は境界を超えています。",
+      true,
+      true,
+      true
+    ],
+    "speed_protected": [
+      1,
+      1004,
+      "指定された値は境界を超えています。",
+      true,
+      true,
+      true
+    ],
+    "g20_protected": [
+      2,
+      1004,
+      "指定された値は境界を超えています。",
+      false,
+      false,
+      false
+    ],
+    "g19_migration_missing7": [
+      3,
+      5,
+      "ACCURACY_SETTING_MISSING ADAPT_BALANCED_LOWER_TARGET",
+      false,
+      false,
+      false
+    ]
+  },
+  "dialogs": [],
+  "owned_pid": 16460,
+  "owned_creation_time": 1792176781.9552257,
+  "owned_exited": true,
+  "original_book_unchanged": true
+}

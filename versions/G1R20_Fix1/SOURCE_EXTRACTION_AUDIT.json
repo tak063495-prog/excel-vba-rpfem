@@ -1,0 +1,452 @@
+{
+  "status": "PASS",
+  "scope": "Saved XLSM source extraction, no Excel or solver",
+  "workbook_sha256": "aba4481062b8898d99873a92bd78ac3dc84513c5b1f6e66488f19c89eff3675c",
+  "module_count": 63,
+  "verifier_sha256": "af234da0c2bad387e661a829afe2c0fe0c884db23f08135439864be9bace80f9",
+  "builder_sha256": "80a1ff49769939bf4f8313e1a804a140687a710386fae6811adfd85ac432a91d",
+  "normalization": "Identifier case and leading-label indentation only; literal strings/comments/numbers/Call preserved",
+  "modules": {
+    "RPX_AccuracyMesh.bas": {
+      "stream": "VBA/RPX_AccuracyMesh",
+      "source_sha256": "ec54485fb54a8ad6568a5b138c3db8f46ec7f397c3197d76117ba8c1d8c7d08f",
+      "source_code_key_sha256": "dc03d91daace7c53f03955a3db8e444f6bac20e14b74975b371f057eacaf4583",
+      "extracted_code_key_sha256": "dc03d91daace7c53f03955a3db8e444f6bac20e14b74975b371f057eacaf4583",
+      "pass": true
+    },
+    "RPX_AccuracyNative.bas": {
+      "stream": "VBA/RPX_AccuracyNative",
+      "source_sha256": "f5b206b220371076248734f0221bee5c9f5162e8c25f57134a20257c5f7049be",
+      "source_code_key_sha256": "0d9bdc725bbef427341d923669fd7d4b444733b973c967cd628ca51e15e952f8",
+      "extracted_code_key_sha256": "0d9bdc725bbef427341d923669fd7d4b444733b973c967cd628ca51e15e952f8",
+      "pass": true
+    },
+    "RPX_Adapt.bas": {
+      "stream": "VBA/RPX_Adapt",
+      "source_sha256": "39ef88998f10d8df9b0e9372b741152cd127b508be5ba4aad41f2a8654487a3f",
+      "source_code_key_sha256": "94145c9365bff4571725f040ef1d80cb9d053a352e7c801e5994a4bc92141304",
+      "extracted_code_key_sha256": "94145c9365bff4571725f040ef1d80cb9d053a352e7c801e5994a4bc92141304",
+      "pass": true
+    },
+    "RPX_Affine.bas": {
+      "stream": "VBA/RPX_Affine",
+      "source_sha256": "1db43674855d97522da6c1ee68cbaad7f60bc197ae7980e7d4d16b57547e5d8c",
+      "source_code_key_sha256": "ae62213a9225733f8846f33c3c2046fa25a3b21b65d3889838ceda62e7b91066",
+      "extracted_code_key_sha256": "ae62213a9225733f8846f33c3c2046fa25a3b21b65d3889838ceda62e7b91066",
+      "pass": true
+    },
+    "RPX_AHO3.bas": {
+      "stream": "VBA/RPX_AHO3",
+      "source_sha256": "26514eb2aa91485f5f194f2ae8d52f43ff3d0c3207618a8fe78340441bd299ca",
+      "source_code_key_sha256": "cbebddc7eaddbcd8f6e214e13f22227620492812b38f0f0f1babc62451962231",
+      "extracted_code_key_sha256": "cbebddc7eaddbcd8f6e214e13f22227620492812b38f0f0f1babc62451962231",
+      "pass": true
+    },
+    "RPX_Audit.bas": {
+      "stream": "VBA/RPX_Audit",
+      "source_sha256": "6bd8c4adcd3ed0dc4feace1b0fecc26817c99cc415a0e6900b4708b2170c57d5",
+      "source_code_key_sha256": "d70a23d940c56b72f7850d3b84998d49e9e1859b4edf99c947223d07c459501e",
+      "extracted_code_key_sha256": "d70a23d940c56b72f7850d3b84998d49e9e1859b4edf99c947223d07c459501e",
+      "pass": true
+    },
+    "RPX_Bearing.bas": {
+      "stream": "VBA/RPX_Bearing",
+      "source_sha256": "e03ebda3e1ae5a942af9e12c6143e25328e7bd9dd636fa4b95f5723061468ed4",
+      "source_code_key_sha256": "7458bc65f748e1049936d992e4a43eac831a22cc132fc9c15e02f889a56f3a27",
+      "extracted_code_key_sha256": "7458bc65f748e1049936d992e4a43eac831a22cc132fc9c15e02f889a56f3a27",
+      "pass": true
+    },
+    "RPX_C0Guides.bas": {
+      "stream": "VBA/RPX_C0Guides",
+      "source_sha256": "2525c8d5c5f0dc43b6eb686d9afd012d9f110d203b74e1a9188d239405085edd",
+      "source_code_key_sha256": "af97693b2da9c4b399aa232ef602fd3e23c753f9836206877696839f513f2628",
+      "extracted_code_key_sha256": "af97693b2da9c4b399aa232ef602fd3e23c753f9836206877696839f513f2628",
+      "pass": true
+    },
+    "RPX_C0Select.bas": {
+      "stream": "VBA/RPX_C0Select",
+      "source_sha256": "34da66a74cc21acb6c977d923446cded0846067e3b516e4a2603e022a4fb495e",
+      "source_code_key_sha256": "d2c88e662786f1e0196e18c47cc089d09ce6f5060d7b5015882e33607d38390f",
+      "extracted_code_key_sha256": "d2c88e662786f1e0196e18c47cc089d09ce6f5060d7b5015882e33607d38390f",
+      "pass": true
+    },
+    "RPX_Certificate.bas": {
+      "stream": "VBA/RPX_Certificate",
+      "source_sha256": "b0b9ce138156f90cb5d14026e9619ae487d6c89d1c1940b467b873127a4b1166",
+      "source_code_key_sha256": "2198774f9fdf0dd9a0588e0a8483bd21239401f1ec3399d7159b9d5a8f1bd0cf",
+      "extracted_code_key_sha256": "2198774f9fdf0dd9a0588e0a8483bd21239401f1ec3399d7159b9d5a8f1bd0cf",
+      "pass": true
+    },
+    "RPX_ColumnOrder.bas": {
+      "stream": "VBA/RPX_ColumnOrder",
+      "source_sha256": "c38a62a5bfa9d439f3742b5345414d833a265774ad56336679fe7a595d41f2e3",
+      "source_code_key_sha256": "08697af14dfd3e9b11b8f61c6867e1e61cf5875b4f651b40fc8a3b18308ac5aa",
+      "extracted_code_key_sha256": "08697af14dfd3e9b11b8f61c6867e1e61cf5875b4f651b40fc8a3b18308ac5aa",
+      "pass": true
+    },
+    "RPX_Conic.bas": {
+      "stream": "VBA/RPX_Conic",
+      "source_sha256": "79b8b4152638fd9c7aa29eed34324c195b8c8f74041ee1440dbb06dcd3c37840",
+      "source_code_key_sha256": "990cf4e73d1a0fc2b3df18e6b1cbc3e27d1de5c15e49831568747d2ba226f424",
+      "extracted_code_key_sha256": "990cf4e73d1a0fc2b3df18e6b1cbc3e27d1de5c15e49831568747d2ba226f424",
+      "pass": true
+    },
+    "RPX_Control.bas": {
+      "stream": "VBA/RPX_Control",
+      "source_sha256": "8a3ee2a3d34bd17b7c35bd17b2a1bc5cf25311dd0bfb8bf8d143c6e79ac76828",
+      "source_code_key_sha256": "aaa9eb2d6fe9ff8851b5ed800d126dea11b20ecaa3fe44c93969ab5053150e53",
+      "extracted_code_key_sha256": "aaa9eb2d6fe9ff8851b5ed800d126dea11b20ecaa3fe44c93969ab5053150e53",
+      "pass": true
+    },
+    "RPX_Definition.bas": {
+      "stream": "VBA/RPX_Definition",
+      "source_sha256": "28eec4f7d8072f01c6ebd1a6b8cf291ce8bcb896519b688a8ba19d4a0c43e7f0",
+      "source_code_key_sha256": "19ecb21f9df06ff11fa0af45a60c9b65cf537238710e19a6c9e4bc99b2dcdb43",
+      "extracted_code_key_sha256": "19ecb21f9df06ff11fa0af45a60c9b65cf537238710e19a6c9e4bc99b2dcdb43",
+      "pass": true
+    },
+    "RPX_Diagnostics.bas": {
+      "stream": "VBA/RPX_Diagnostics",
+      "source_sha256": "7cda9b7801ebb058af3440160ec59c006a9781e0992110fcc2b85b637cdb3bca",
+      "source_code_key_sha256": "de446b64a20d2b845ca5562ad47a5e220a9156db639995ded534212da44d3bd2",
+      "extracted_code_key_sha256": "de446b64a20d2b845ca5562ad47a5e220a9156db639995ded534212da44d3bd2",
+      "pass": true
+    },
+    "RPX_Exchange.bas": {
+      "stream": "VBA/RPX_Exchange",
+      "source_sha256": "bcb9da802fc928c18cc802682d1e01bf00f6a0a39bb01a03055b1310b1f61f81",
+      "source_code_key_sha256": "166f500130f50bef61db3a19ad6426f069ee7c26f6d3f2469e66900dd81a925a",
+      "extracted_code_key_sha256": "166f500130f50bef61db3a19ad6426f069ee7c26f6d3f2469e66900dd81a925a",
+      "pass": true
+    },
+    "RPX_FactorFree.bas": {
+      "stream": "VBA/RPX_FactorFree",
+      "source_sha256": "7aa6255e58ec85af8e170f4f91b80b689ad347c0b3230857a334aad9ff8e4864",
+      "source_code_key_sha256": "ba20a9b3a84f9a8a1a42ae077e53017cdfafae0aee701fa922a7b87435eee058",
+      "extracted_code_key_sha256": "ba20a9b3a84f9a8a1a42ae077e53017cdfafae0aee701fa922a7b87435eee058",
+      "pass": true
+    },
+    "RPX_FixedLowerRecovery.bas": {
+      "stream": "VBA/RPX_FixedLowerRecovery",
+      "source_sha256": "601f59a7446d95775586200b8323afd245835f4dd944ce189fbc5c783c86c1e1",
+      "source_code_key_sha256": "494b2e0f95bd9f5ce3bdf2671f47343d1961bc7c03c0e02dc88438345fc3675e",
+      "extracted_code_key_sha256": "494b2e0f95bd9f5ce3bdf2671f47343d1961bc7c03c0e02dc88438345fc3675e",
+      "pass": true
+    },
+    "RPX_FixedWitness.bas": {
+      "stream": "VBA/RPX_FixedWitness",
+      "source_sha256": "b11b940743c32ad253d0d2c9a53c0057762a4b8d98db61c487ee4eeb3794e88b",
+      "source_code_key_sha256": "ece07e0fe5de63dddc2eeecd1dc76509e3bdf103c1b069287e1cacc954852c26",
+      "extracted_code_key_sha256": "ece07e0fe5de63dddc2eeecd1dc76509e3bdf103c1b069287e1cacc954852c26",
+      "pass": true
+    },
+    "RPX_FlowMesh.bas": {
+      "stream": "VBA/RPX_FlowMesh",
+      "source_sha256": "1016edee32d4527f27db395c7b3082df5f84cb9df1ca6003363e1aa4b165db69",
+      "source_code_key_sha256": "fe0115e1bfa581b1a2da5bf64af47cb05a5cebf585b98c0d6162100a65162a9d",
+      "extracted_code_key_sha256": "fe0115e1bfa581b1a2da5bf64af47cb05a5cebf585b98c0d6162100a65162a9d",
+      "pass": true
+    },
+    "RPX_FreeFaceSplit.bas": {
+      "stream": "VBA/RPX_FreeFaceSplit",
+      "source_sha256": "df4f932f1e1b7b7390d062057f219c310643b7ce659231b1c3d4abdb7174466c",
+      "source_code_key_sha256": "16f537aaa91a1a30085b2ccb834936c86c648db721b6b7b932d1275046b2053c",
+      "extracted_code_key_sha256": "16f537aaa91a1a30085b2ccb834936c86c648db721b6b7b932d1275046b2053c",
+      "pass": true
+    },
+    "RPX_Fs.bas": {
+      "stream": "VBA/RPX_Fs",
+      "source_sha256": "3fe2e2bcfcf25d0b65d9c2a913291115a31be8c3ea1b609ffdf38b5970b10d8a",
+      "source_code_key_sha256": "0492f5236dc2889fcf1cc44ee9b2731268e467851608d2a93bdab4765b23f213",
+      "extracted_code_key_sha256": "0492f5236dc2889fcf1cc44ee9b2731268e467851608d2a93bdab4765b23f213",
+      "pass": true
+    },
+    "RPX_Guard.bas": {
+      "stream": "VBA/RPX_Guard",
+      "source_sha256": "128d4e719beb2a4c2569402ab9ffeb6f860748644b860c2b1c60b6640b7e8fc0",
+      "source_code_key_sha256": "bcf794a3697e09d426180aea7748262064d52c7c38bf9387ae36702f0aafb762",
+      "extracted_code_key_sha256": "bcf794a3697e09d426180aea7748262064d52c7c38bf9387ae36702f0aafb762",
+      "pass": true
+    },
+    "RPX_HSDCandidate.bas": {
+      "stream": "VBA/RPX_HSDCandidate",
+      "source_sha256": "db4aba8cf8c0f2f45ef21230aff5b757c57487cc8724e0bd0f6319a0711dc689",
+      "source_code_key_sha256": "23789d03a427c23e51cca93e97003f9a0b673c90009a775ed043135971594438",
+      "extracted_code_key_sha256": "23789d03a427c23e51cca93e97003f9a0b673c90009a775ed043135971594438",
+      "pass": true
+    },
+    "RPX_HSDLu.bas": {
+      "stream": "VBA/RPX_HSDLu",
+      "source_sha256": "4259698082c53d1fd72afc00693baa381d4965acfb4cbea379ae1b33c6b3e4a2",
+      "source_code_key_sha256": "7d408ee2ac57a98837e4d29e141684d6f06908a6f276ba80c3ab6ac3b3fd1eeb",
+      "extracted_code_key_sha256": "7d408ee2ac57a98837e4d29e141684d6f06908a6f276ba80c3ab6ac3b3fd1eeb",
+      "pass": true
+    },
+    "RPX_HSDPrecision.bas": {
+      "stream": "VBA/RPX_HSDPrecision",
+      "source_sha256": "1ced0a3645007e6fc6235aea7ff9832a4e14ebad33536be12e3af845a35559f2",
+      "source_code_key_sha256": "6868abb55694450ac37a89c1b288d20e4345b53380ca2deca161b16258c6f28d",
+      "extracted_code_key_sha256": "6868abb55694450ac37a89c1b288d20e4345b53380ca2deca161b16258c6f28d",
+      "pass": true
+    },
+    "RPX_HSDQuality.bas": {
+      "stream": "VBA/RPX_HSDQuality",
+      "source_sha256": "40259e63df092f06dcbb5513526af91191416ec3b53435eab68baa4345a95e5e",
+      "source_code_key_sha256": "e595c61ed470393715366c64fcfa06a58c937c593b6604744a2f6e594beb4a2d",
+      "extracted_code_key_sha256": "e595c61ed470393715366c64fcfa06a58c937c593b6604744a2f6e594beb4a2d",
+      "pass": true
+    },
+    "RPX_Indicator.bas": {
+      "stream": "VBA/RPX_Indicator",
+      "source_sha256": "723de6a651889c63e67bcb029ba77738f90f74fda9e8444cb59046fe5a2002b8",
+      "source_code_key_sha256": "dee3a507ace94524931abce64889fe00b72b41d8bd1d4a9d93c0cf132952c0ab",
+      "extracted_code_key_sha256": "dee3a507ace94524931abce64889fe00b72b41d8bd1d4a9d93c0cf132952c0ab",
+      "pass": true
+    },
+    "RPX_KktCapture.bas": {
+      "stream": "VBA/RPX_KktCapture",
+      "source_sha256": "1f486164023bcc248875fbee33d98a663d343f1b4099d76b1b12993380a8cd9a",
+      "source_code_key_sha256": "57c0781be8ce21fbe2ab81a3f8bce5c2a4452d165293de041c01b95358825df3",
+      "extracted_code_key_sha256": "57c0781be8ce21fbe2ab81a3f8bce5c2a4452d165293de041c01b95358825df3",
+      "pass": true
+    },
+    "RPX_LDL.bas": {
+      "stream": "VBA/RPX_LDL",
+      "source_sha256": "03ef3d4cd0c11149d38711cd00821a38b9016f69f3029e940bb34090df042ab3",
+      "source_code_key_sha256": "3c13826188d5e56d9bc0b14fda99abfa0914225aef21d7eaef1eae27f4068fd2",
+      "extracted_code_key_sha256": "3c13826188d5e56d9bc0b14fda99abfa0914225aef21d7eaef1eae27f4068fd2",
+      "pass": true
+    },
+    "RPX_LoadStepMesh.bas": {
+      "stream": "VBA/RPX_LoadStepMesh",
+      "source_sha256": "47c050c4b94e34521f4023992d9b9e108cfde9fff3fc876e4eb7a7562075fffa",
+      "source_code_key_sha256": "5efab6c5baf50116bdcf0c90c054927690b19dfe3a6a59cb5ff9c3894d8f51c4",
+      "extracted_code_key_sha256": "5efab6c5baf50116bdcf0c90c054927690b19dfe3a6a59cb5ff9c3894d8f51c4",
+      "pass": true
+    },
+    "RPX_Lower.bas": {
+      "stream": "VBA/RPX_Lower",
+      "source_sha256": "ee575b799d8f043c3803dc5e335342585368148dbe40c231c9f9a935eaea071e",
+      "source_code_key_sha256": "33558a681e2d3d5945c1aeed12fb54c74ec914b07c00193278f3b1dce0d6cb39",
+      "extracted_code_key_sha256": "33558a681e2d3d5945c1aeed12fb54c74ec914b07c00193278f3b1dce0d6cb39",
+      "pass": true
+    },
+    "RPX_LowerCache.bas": {
+      "stream": "VBA/RPX_LowerCache",
+      "source_sha256": "640ca2b9a4b0245fdf921102e7b9356fe0b2d29f36ed4ec930d3c27c6ffac663",
+      "source_code_key_sha256": "4df847af0c7857625ade671f3580e063693ad8b4b2871041b6569f86fc4056bd",
+      "extracted_code_key_sha256": "4df847af0c7857625ade671f3580e063693ad8b4b2871041b6569f86fc4056bd",
+      "pass": true
+    },
+    "RPX_Mesh.bas": {
+      "stream": "VBA/RPX_Mesh",
+      "source_sha256": "c82481797853e4f5f956c41fbdb911c421da41ef518771a382eb0451ce3bb78c",
+      "source_code_key_sha256": "2f584d803998bd1d7f2cb779dcadc5c66754cb559f95381051ff933095100dba",
+      "extracted_code_key_sha256": "2f584d803998bd1d7f2cb779dcadc5c66754cb559f95381051ff933095100dba",
+      "pass": true
+    },
+    "RPX_MeshGuard.bas": {
+      "stream": "VBA/RPX_MeshGuard",
+      "source_sha256": "f5d7fb45ac05a42c6698833b35095bc0dfe182937055710d632e6835f4d4b313",
+      "source_code_key_sha256": "67bf38462733d9fdeb622820a422d1b930d2908cc309b105cf96c749e2db4516",
+      "extracted_code_key_sha256": "67bf38462733d9fdeb622820a422d1b930d2908cc309b105cf96c749e2db4516",
+      "pass": true
+    },
+    "RPX_MeshTests.bas": {
+      "stream": "VBA/RPX_MeshTests",
+      "source_sha256": "7adab7d50d147c115100a040c7b5e66bd78915425354aa7c1e453f5bce445e99",
+      "source_code_key_sha256": "e3ef04baeb0098e6839ab2a74918d516a8baed86e0d62551c67f52540e59d7af",
+      "extracted_code_key_sha256": "e3ef04baeb0098e6839ab2a74918d516a8baed86e0d62551c67f52540e59d7af",
+      "pass": true
+    },
+    "RPX_Model.bas": {
+      "stream": "VBA/RPX_Model",
+      "source_sha256": "8b967f7ba10caa8ee3b676f2dd781079bef1dab97419d056271f7d6e7adb7b9e",
+      "source_code_key_sha256": "af697bd9090b4e68647802c680c35992cd64114a02ac8a3d9488e0fdd16d95ec",
+      "extracted_code_key_sha256": "af697bd9090b4e68647802c680c35992cd64114a02ac8a3d9488e0fdd16d95ec",
+      "pass": true
+    },
+    "RPX_Native.bas": {
+      "stream": "VBA/RPX_Native",
+      "source_sha256": "8820c2c6e2af78f59f6c16b0d01281019c5173d6dcc2c1c0cba1a82fc95e82ec",
+      "source_code_key_sha256": "3016772212d5bdff4833ea7458c6bdeb9cedf62a7d7ac70bb775a500dd28f05c",
+      "extracted_code_key_sha256": "3016772212d5bdff4833ea7458c6bdeb9cedf62a7d7ac70bb775a500dd28f05c",
+      "pass": true
+    },
+    "RPX_NativeBulk.bas": {
+      "stream": "VBA/RPX_NativeBulk",
+      "source_sha256": "ee860f6ddf72c9f15edabf7ca8158a6126d546bc4ac50b1192d43f816e1be949",
+      "source_code_key_sha256": "dc8311ab54f037365eb2e5c656a1b7f0079d7e815a07844bf02e4b9b3468193f",
+      "extracted_code_key_sha256": "dc8311ab54f037365eb2e5c656a1b7f0079d7e815a07844bf02e4b9b3468193f",
+      "pass": true
+    },
+    "RPX_NativeGuard.bas": {
+      "stream": "VBA/RPX_NativeGuard",
+      "source_sha256": "f396f22f327aee6335d5c3e7d045d2eca4d891b1ab0d06d31e723759d5bb7900",
+      "source_code_key_sha256": "71da3e5a74f40d0c7149c133622cca69f0e27bfc04ec0d8dc775ba94824c9846",
+      "extracted_code_key_sha256": "71da3e5a74f40d0c7149c133622cca69f0e27bfc04ec0d8dc775ba94824c9846",
+      "pass": true
+    },
+    "RPX_NativeLU.bas": {
+      "stream": "VBA/RPX_NativeLU",
+      "source_sha256": "ccf566350ab78eb2e6f117a504d3aa3c4c0247eaf638b6cd997b7eb204e4d6c0",
+      "source_code_key_sha256": "2da633bbecf6ae12b48ecde4ccf13960ae0ccb4163bcd005ffff68530209ac94",
+      "extracted_code_key_sha256": "2da633bbecf6ae12b48ecde4ccf13960ae0ccb4163bcd005ffff68530209ac94",
+      "pass": true
+    },
+    "RPX_NativeMesh.bas": {
+      "stream": "VBA/RPX_NativeMesh",
+      "source_sha256": "4c7a829d4dceb811d57609913c57ee4436b0db838f962de5b805f751112a81ee",
+      "source_code_key_sha256": "d07b72b3b6730ce4da402efdec5474a2e8174dc75c68f70ecd9af68fdfeddfca",
+      "extracted_code_key_sha256": "d07b72b3b6730ce4da402efdec5474a2e8174dc75c68f70ecd9af68fdfeddfca",
+      "pass": true
+    },
+    "RPX_NativeSolver.bas": {
+      "stream": "VBA/RPX_NativeSolver",
+      "source_sha256": "a98b27d492eea27129e9445438270924036f0504a7564504a4b70e0f8c8ea033",
+      "source_code_key_sha256": "a831ddac47049ec790fed0952b00357097c68adfc3b71d14b1414b3c932960f6",
+      "extracted_code_key_sha256": "a831ddac47049ec790fed0952b00357097c68adfc3b71d14b1414b3c932960f6",
+      "pass": true
+    },
+    "RPX_NT.bas": {
+      "stream": "VBA/RPX_NT",
+      "source_sha256": "e986114e4b19d2c4939874460168ef46ca77c47b8bce851735d21385f351e818",
+      "source_code_key_sha256": "d6b01259eff32c046f7af32a6c250afc1e2ad5bbaa4f6fb642f407f725d38c50",
+      "extracted_code_key_sha256": "d6b01259eff32c046f7af32a6c250afc1e2ad5bbaa4f6fb642f407f725d38c50",
+      "pass": true
+    },
+    "RPX_NTPrecision.bas": {
+      "stream": "VBA/RPX_NTPrecision",
+      "source_sha256": "677f9c58d1ba328343349c56787641bc4d27a7a9d8391df7a44661b6c4d7cb6e",
+      "source_code_key_sha256": "d925cb26143814a6c80ec5f77a6b17e75d4711e8bf773569cf18474cafaf7ea7",
+      "extracted_code_key_sha256": "d925cb26143814a6c80ec5f77a6b17e75d4711e8bf773569cf18474cafaf7ea7",
+      "pass": true
+    },
+    "RPX_Order.bas": {
+      "stream": "VBA/RPX_Order",
+      "source_sha256": "2a3c50063e96fb4d287c8c0c2ad9ca7d0cc12285f62dcf657b9b21a3a343b90d",
+      "source_code_key_sha256": "67a4bb109c04c57c77f16fc6387adbdc6bacd63978c94c794bf1e1c95ffec208",
+      "extracted_code_key_sha256": "67a4bb109c04c57c77f16fc6387adbdc6bacd63978c94c794bf1e1c95ffec208",
+      "pass": true
+    },
+    "RPX_Output.bas": {
+      "stream": "VBA/RPX_Output",
+      "source_sha256": "5d225faf8c610084d6a449e7db296e1b8af59602d2e276e837ee21460f66028f",
+      "source_code_key_sha256": "84389b04cbf8ce7e196db786f602e2ca1ff3389dbc61009dda8581484f31a4ed",
+      "extracted_code_key_sha256": "84389b04cbf8ce7e196db786f602e2ca1ff3389dbc61009dda8581484f31a4ed",
+      "pass": true
+    },
+    "RPX_P4.bas": {
+      "stream": "VBA/RPX_P4",
+      "source_sha256": "d037d854e3d11b0f59546b8948ddc951b999c9caa934ce4776a9f83190de08c4",
+      "source_code_key_sha256": "d4fa788d0c6c2c2341014e3e8ccacc374a1910fa22fb4e08e87c076636e9d7d1",
+      "extracted_code_key_sha256": "d4fa788d0c6c2c2341014e3e8ccacc374a1910fa22fb4e08e87c076636e9d7d1",
+      "pass": true
+    },
+    "RPX_Profile.bas": {
+      "stream": "VBA/RPX_Profile",
+      "source_sha256": "c7a85c4485bf18c14264c2645a0106a315ae2263fdc099b94c583dab9e926b41",
+      "source_code_key_sha256": "b4334d120cdcb02e56b27f9ab1dcd5e98d9de2b6dfe96cec3c5ab603875ba9f0",
+      "extracted_code_key_sha256": "b4334d120cdcb02e56b27f9ab1dcd5e98d9de2b6dfe96cec3c5ab603875ba9f0",
+      "pass": true
+    },
+    "RPX_Refine.bas": {
+      "stream": "VBA/RPX_Refine",
+      "source_sha256": "0d46f9bfaecc310302fd48c1ba07ce1316e0e20eb70abf06f0cc2d150682ecbd",
+      "source_code_key_sha256": "56d10312368576e83ab92b87d2e5ba83d150eafae7d1877e2fe44cdbb08209e5",
+      "extracted_code_key_sha256": "56d10312368576e83ab92b87d2e5ba83d150eafae7d1877e2fe44cdbb08209e5",
+      "pass": true
+    },
+    "RPX_Robust.bas": {
+      "stream": "VBA/RPX_Robust",
+      "source_sha256": "b53c71817f688da2456af74dcd1c7d52cd66eae1bdc7af43c2b20076cd347117",
+      "source_code_key_sha256": "096da0e6337c570075ad7706f03b6f0ee172cd857f9c345f7d2084f03aecc2ff",
+      "extracted_code_key_sha256": "096da0e6337c570075ad7706f03b6f0ee172cd857f9c345f7d2084f03aecc2ff",
+      "pass": true
+    },
+    "RPX_Schur.bas": {
+      "stream": "VBA/RPX_Schur",
+      "source_sha256": "18c7814f8036e3287ebd5d8cad3b004fd45139880c0ba528905fe60aefe03370",
+      "source_code_key_sha256": "f9b9b5358f0999fdf3c0faeab72fefea3f68e1d86d76c16a3b8c51bcb8b0723b",
+      "extracted_code_key_sha256": "f9b9b5358f0999fdf3c0faeab72fefea3f68e1d86d76c16a3b8c51bcb8b0723b",
+      "pass": true
+    },
+    "RPX_SchurCache.bas": {
+      "stream": "VBA/RPX_SchurCache",
+      "source_sha256": "71b9810fa0164b931929dce5a4238c1e3a6f975dc968b3ababca62bc08b5baae",
+      "source_code_key_sha256": "ad74bfb70766c6d6386d4f50e3143e1899fd919ce552cb18d7dc577ad979fafd",
+      "extracted_code_key_sha256": "ad74bfb70766c6d6386d4f50e3143e1899fd919ce552cb18d7dc577ad979fafd",
+      "pass": true
+    },
+    "RPX_SchurLDL.bas": {
+      "stream": "VBA/RPX_SchurLDL",
+      "source_sha256": "5de3e755f95c6167354f72a28ccb51afce74bcb173cfeb0a61a2f3402237bc5c",
+      "source_code_key_sha256": "c312b9de062d64a8ea739aac33e8e72861d63d40a12de31bb90a8be26144a4fc",
+      "extracted_code_key_sha256": "c312b9de062d64a8ea739aac33e8e72861d63d40a12de31bb90a8be26144a4fc",
+      "pass": true
+    },
+    "RPX_Seep.bas": {
+      "stream": "VBA/RPX_Seep",
+      "source_sha256": "83a396876432053749ca39bf99a836fc348c3157202aa0f7ee1ce0931b66af27",
+      "source_code_key_sha256": "71d50a0c0a6f75716d13b7c24ce889f2fe3219f8382e5d26a3d1db463685456e",
+      "extracted_code_key_sha256": "71d50a0c0a6f75716d13b7c24ce889f2fe3219f8382e5d26a3d1db463685456e",
+      "pass": true
+    },
+    "RPX_SeepUI.bas": {
+      "stream": "VBA/RPX_SeepUI",
+      "source_sha256": "e939a2310c84506904fd0d137af85f9fb7b44a57f0c434fd119215d02a3aac5b",
+      "source_code_key_sha256": "c41b9aade436ca09e0095b691ca3c0500fa7077cbe73a43ae29ebc60bec62dc5",
+      "extracted_code_key_sha256": "c41b9aade436ca09e0095b691ca3c0500fa7077cbe73a43ae29ebc60bec62dc5",
+      "pass": true
+    },
+    "RPX_SeepWT.bas": {
+      "stream": "VBA/RPX_SeepWT",
+      "source_sha256": "52a45b94fc725add904e1e89e951163d54da7a0007697ed7abe34e3d0d9b65c0",
+      "source_code_key_sha256": "bf466bf781b5b8611e201454abc487f29480052b66469882e84ad65590140734",
+      "extracted_code_key_sha256": "bf466bf781b5b8611e201454abc487f29480052b66469882e84ad65590140734",
+      "pass": true
+    },
+    "RPX_Seismic.bas": {
+      "stream": "VBA/RPX_Seismic",
+      "source_sha256": "186971f072df1822c55d53925ab54d0a6ebff6704536f9bb80cb9d371109bb88",
+      "source_code_key_sha256": "d3ba67d4a0fccfa24709becf26245eea4f8ee9675c496eeb61132e0c11110bea",
+      "extracted_code_key_sha256": "d3ba67d4a0fccfa24709becf26245eea4f8ee9675c496eeb61132e0c11110bea",
+      "pass": true
+    },
+    "RPX_Solve.bas": {
+      "stream": "VBA/RPX_Solve",
+      "source_sha256": "f844f91dc407f06b3fbf62cd6f5f0d280bba4f2aab3afe32322ffa5583a54dd8",
+      "source_code_key_sha256": "9476aaf3cdeca2330acfb7634d5563b9d8b1f2640168f4a8959a3711d0468da1",
+      "extracted_code_key_sha256": "9476aaf3cdeca2330acfb7634d5563b9d8b1f2640168f4a8959a3711d0468da1",
+      "pass": true
+    },
+    "RPX_UI.bas": {
+      "stream": "VBA/RPX_UI",
+      "source_sha256": "0089067c64e987b255abbbdabfbfba582a62c038d39de161b3d241fc3cab043d",
+      "source_code_key_sha256": "e370a1d285415796af76810381ce57c0aac5647bd8ffccae1b92a6bf1e3642f2",
+      "extracted_code_key_sha256": "e370a1d285415796af76810381ce57c0aac5647bd8ffccae1b92a6bf1e3642f2",
+      "pass": true
+    },
+    "RPX_Upper.bas": {
+      "stream": "VBA/RPX_Upper",
+      "source_sha256": "97b097e62a025dbf3db07c1c124b8e4bfb7037b3892e63f424e54db82c5defd1",
+      "source_code_key_sha256": "c9b671677d02fe7de2517f5e727c90c98521d200208d229285e24d74c00f6a3e",
+      "extracted_code_key_sha256": "c9b671677d02fe7de2517f5e727c90c98521d200208d229285e24d74c00f6a3e",
+      "pass": true
+    },
+    "RPX_Water.bas": {
+      "stream": "VBA/RPX_Water",
+      "source_sha256": "d08fb5a39732b45875bfc6ae51ee642b928d0e33fc59d5236610a4fd857873bb",
+      "source_code_key_sha256": "6fafed7d31fa2937b167afe189c353e3413b7f355513dedc5f85665233067523",
+      "extracted_code_key_sha256": "6fafed7d31fa2937b167afe189c353e3413b7f355513dedc5f85665233067523",
+      "pass": true
+    },
+    "RPX_WorkPrecision.bas": {
+      "stream": "VBA/RPX_WorkPrecision",
+      "source_sha256": "253afaec8d8ddc9c5d19398bc956f42af254d082f19aa75a0235fa6f89d178bd",
+      "source_code_key_sha256": "aa576605a789a4aba6183008808e7e658906deea7956692a28dcdbcd6fb935fe",
+      "extracted_code_key_sha256": "aa576605a789a4aba6183008808e7e658906deea7956692a28dcdbcd6fb935fe",
+      "pass": true
+    }
+  }
+}
