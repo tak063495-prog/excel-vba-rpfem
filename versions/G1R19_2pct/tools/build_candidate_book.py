@@ -1,6 +1,6 @@
 """Build/reopen a new full-source candidate. Never replaces a published book."""
 from pathlib import Path
-import argparse, gc, hashlib, importlib.util, json, shutil, time, uuid
+import argparse, gc, hashlib, importlib.util, json, re, shutil, time, uuid
 import psutil, win32com.client, win32process
 
 ROOT=Path(__file__).resolve().parents[1]
@@ -15,9 +15,11 @@ def code(path):
 
 def code_key(text):
     # Excel changes identifier capitalization across the project on serialization.
-    # Preserve string literals and all non-case code characters exactly.
+    # VBE also moves indentation past a leading label's colon. Normalize only
+    # that formatter change; preserve literals/comments and remaining spacing.
     lines=[]
     for line in text.replace('\r\n','\n').rstrip('\n').split('\n'):
+        line=re.sub(r'^[ \t]*([A-Za-z_]\w*):[ \t]*',r'\1:',line)
         result=[];i=0
         while i<len(line):
             if line[i]=="'":
@@ -70,7 +72,10 @@ def main():
         for p in sorted((out/'src/vba').glob('*.bas')):
             component=book.VBProject.VBComponents.Add(1);component.Name=p.stem;component.CodeModule.AddFromString(code(p))
             loaded=component.CodeModule.Lines(1,component.CodeModule.CountOfLines)
-            rec['modules'][p.name]=dict(source_sha256=sources.sha(p),loaded_code_sha256=hashlib.sha256(loaded.encode('utf8')).hexdigest(),loaded_code_key_sha256=code_key(loaded))
+            expected_key=code_key(code(p))
+            rec['modules'][p.name]=dict(source_sha256=sources.sha(p),source_code_key_sha256=expected_key,
+                loaded_code_sha256=hashlib.sha256(loaded.encode('utf8')).hexdigest(),loaded_code_key_sha256=code_key(loaded))
+            if code_key(loaded)!=expected_key:raise ValueError('Loaded code differs from its declared source: '+p.name)
         compile_book();rec['compile']='PASS';save()
         call=lambda name,*v:app.Run("'"+book.Name+"'!"+name,*v)
         call('RPX_Setup')
@@ -103,7 +108,7 @@ def main():
             rec['modules'][p.name]['reopened_code_key_sha256']=code_key(reopened)
             if code_key(reopened)!=rec['modules'][p.name]['loaded_code_key_sha256']:raise ValueError('Reopened code differs beyond identifier case: '+p.name)
         rec.update(state='PASS',reopen_compile='PASS',standard_modules=62,runtime_dll_count=1,
-                   reopened_code_comparison='Identifier case insensitive; string literals/non-case characters exact; raw pre/post SHA retained')
+                   reopened_code_comparison='Identifier case and leading-label indentation normalized; string literals/comments/numbers and other characters exact; raw pre/post SHA retained')
     except BaseException as e:rec.update(state='FAIL',error=repr(e));save();raise
     finally:
         if book is not None:book.Close(False)

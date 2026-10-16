@@ -1,0 +1,263 @@
+{
+  "status": "PORTABLE_PARTIAL24_REPLAY_PASS",
+  "scientific_pairs_replayed": 24,
+  "expected_catalog_cases": 26,
+  "bundle_declared_verified_cases": 24,
+  "normal_cold_execution_cases": 20,
+  "scope": "Saved original q8 field/own-root replay only; no new optimization and no all26 cold-completion claim",
+  "solver_calls": 0,
+  "archive_sha256_before": "318ae43a5502388f2490eaa1f11fa5341f50a5bcd12ee563be9a15dfe333ba89",
+  "archive_sha256_after": "318ae43a5502388f2490eaa1f11fa5341f50a5bcd12ee563be9a15dfe333ba89",
+  "archive_bytes": 10255703,
+  "original_member_count": 478,
+  "manifest_hashed_files": 476,
+  "original_bundle_member_sha256_unchanged": true,
+  "zip_crc": "PASS",
+  "returncode": 0,
+  "elapsed_seconds": 87.08871160002309,
+  "process_count": 49,
+  "all_owned_processes_exited": true,
+  "external_600s_guard_triggered": false,
+  "cases": [
+    {
+      "case": "D01A",
+      "status": "VERIFIED_2PCT",
+      "target_met": true,
+      "root_complete": true,
+      "relative_gap": 0.0010121454864861859,
+      "cold_execution_verified": false,
+      "output_sha256": "e596822cf08914402c2f8ffc8e350bee20b64cc8d918b1a81f86d60f74718b7f",
+      "errors": []
+    },
+    {
+      "case": "D02A",
+      "status": "VERIFIED_2PCT",
+      "target_met": true,
+      "root_complete": true,
+      "relative_gap": 0.00011169726928843663,
+      "cold_execution_verified": true,
+      "output_sha256": "d4a6459cfcbc4c3950c355c647df300103b877b5c2477bc8e6be3e494cc6b3bd",
+      "errors": []
+    },
+    {
+      "case": "D03N",
+      "status": "VERIFIED_2PCT",
+      "target_met": true,
+      "root_complete": true,
+      "relative_gap": 8.48777596255343e-05,
+      "cold_execution_verified": true,
+      "output_sha256": "adc3e03384b3eed2e837230bb6e3f62d57543301e5b7f90cf1c1ec4e52b4533b",
+      "errors": []
+    },
+    {
+      "case": "D04A",
+      "status": "VERIFIED_2PCT",
+      "target_met": true,
+      "root_complete": true,
+      "relative_gap": 0.01823414548703356,
+      "cold_execution_verified": true,
+      "output_sha256": "da1c3772ab12db7670aa615de94858f684ab925ebe7b75eaeb60eebcd68f3f20",
+      "errors": []
+    },
+    {
+      "case": "D05A",
+      "status": "VERIFIED_2PCT",
+      "target_met": true,
+      "root_complete": true,
+      "relative_gap": 0.017206300415645824,
+      "cold_execution_verified": false,
+      "output_sha256": "d11ba108b7f60f5ba520e271f3623ae5e1dff3848981a8577034c7330f94271b",
+      "errors": []
+    },
+    {
+      "case": "D06A",
+      "status": "VERIFIED_2PCT",
+      "target_met": true,
+      "root_complete": true,
+      "relative_gap": 0.017615010626730175,
+      "cold_execution_verified": true,
+      "output_sha256": "50cb8a38bf98e1a3717bd29cca67e935656f154bacff8e776066e3a4c62aecda",
+      "errors": []
+    },
+    {
+      "case": "D07A",
+      "status": "VERIFIED_2PCT",
+      "target_met": true,
+      "root_complete": true,
+      "relative_gap": 0.018398739346823387,
+      "cold_execution_verified": true,
+      "output_sha256": "983729019b16875c978c4cff17e4fb92892d01bc5b0e16c572ffc84468b26fc4",
+      "errors": []
+    },
+    {
+      "case": "D08A",
+      "status": "VERIFIED_2PCT",
+      "target_met": true,
+      "root_complete": true,
+      "relative_gap": 0.01877784521463376,
+      "cold_execution_verified": false,
+      "output_sha256": "282365c5e64a46d55557fc6f04245b35dd40c18c11d96d0b1f373a65118a1841",
+      "errors": []
+    },
+    {
+      "case": "D09A",
+      "status": "VERIFIED_2PCT",
+      "target_met": true,
+      "root_complete": true,
+      "relative_gap": 0.01823414548703356,
+      "cold_execution_verified": true,
+      "output_sha256": "4b1eb780d0130f638881484a1855b57614ef68395012fc63662694f2534b7e6f",
+      "errors": []
+    },
+    {
+      "case": "P01A",
+      "status": "VERIFIED_2PCT",
+      "target_met": true,
+      "root_complete": true,
+      "relative_gap": 0.01737332001218363,
+      "cold_execution_verified": true,
+      "output_sha256": "1857fdc2982aca90d5ea525c174d2ef2291496ed5da7ef6314a678032a05b798",
+      "errors": []
+    },
+    {
+      "case": "P01N",
+      "status": "VERIFIED_2PCT",
+      "target_met": true,
+      "root_complete": true,
+      "relative_gap": 0.017639883263046576,
+      "cold_execution_verified": true,
+      "output_sha256": "ba65e0de416c5febd32bdefd78e24877cd3c0adfcba7b2b8aa35440eaf707883",
+      "errors": []
+    },
+    {
+      "case": "P02A",
+      "status": "VERIFIED_2PCT",
+      "target_met": true,
+      "root_complete": true,
+      "relative_gap": 0.01823414548703356,
+      "cold_execution_verified": true,
+      "output_sha256": "3a9849e79c5b89543537333f9e2f70ce6c05dbae784bec09216147acb531797d",
+      "errors": []
+    },
+    {
+      "case": "P02N",
+      "status": "VERIFIED_2PCT",
+      "target_met": true,
+      "root_complete": true,
+      "relative_gap": 0.01208450978204539,
+      "cold_execution_verified": true,
+      "output_sha256": "f1494e040633bb289b6154e656df8838d319e6af755c56aca917716111fe9e7c",
+      "errors": []
+    },
+    {
+      "case": "P03A",
+      "status": "VERIFIED_2PCT",
+      "target_met": true,
+      "root_complete": true,
+      "relative_gap": 0.012988666974534529,
+      "cold_execution_verified": true,
+      "output_sha256": "ce3c3f648eeddd37c5496231f5a2650d4f5ed24eaddfeea9acae88c2ca3f967e",
+      "errors": []
+    },
+    {
+      "case": "P03N",
+      "status": "VERIFIED_2PCT",
+      "target_met": true,
+      "root_complete": true,
+      "relative_gap": 0.013069047041558566,
+      "cold_execution_verified": true,
+      "output_sha256": "6265e3efbd79bc1f40a37b7e22abb2860b6ecc75e50f668b079836efc611213d",
+      "errors": []
+    },
+    {
+      "case": "P04A",
+      "status": "VERIFIED_2PCT",
+      "target_met": true,
+      "root_complete": true,
+      "relative_gap": 0.018394786728254064,
+      "cold_execution_verified": true,
+      "output_sha256": "d855f654080f742fa54cae997fa7a1c1afbbed82d2d512694abe8866a94f1066",
+      "errors": []
+    },
+    {
+      "case": "P04N",
+      "status": "VERIFIED_2PCT",
+      "target_met": true,
+      "root_complete": true,
+      "relative_gap": 0.018910801237806564,
+      "cold_execution_verified": false,
+      "output_sha256": "accec4794b16c33df109c0f9607bf7a2337be3c9c70c2b0b28fcfa5dd163fcdb",
+      "errors": []
+    },
+    {
+      "case": "P05A",
+      "status": "VERIFIED_2PCT",
+      "target_met": true,
+      "root_complete": true,
+      "relative_gap": 0.018384292808241186,
+      "cold_execution_verified": true,
+      "output_sha256": "0ee486cf899e3eec5cb5d947003928bd5b4e51fb203dcb270b0408f6f59328a9",
+      "errors": []
+    },
+    {
+      "case": "P05N",
+      "status": "VERIFIED_2PCT",
+      "target_met": true,
+      "root_complete": true,
+      "relative_gap": 0.01922538018731993,
+      "cold_execution_verified": true,
+      "output_sha256": "b7459399870f35fa69e6c31a06a9fb9b363f68adbf4dd6d5c53416dad45c9faf",
+      "errors": []
+    },
+    {
+      "case": "P07A",
+      "status": "VERIFIED_2PCT",
+      "target_met": true,
+      "root_complete": true,
+      "relative_gap": 0.01485585165398073,
+      "cold_execution_verified": true,
+      "output_sha256": "72e91b8688a6390616f68984a7d98a3f1901a3f2177af9893fec48f289550252",
+      "errors": []
+    },
+    {
+      "case": "P07N",
+      "status": "VERIFIED_2PCT",
+      "target_met": true,
+      "root_complete": true,
+      "relative_gap": 0.015922493153888714,
+      "cold_execution_verified": true,
+      "output_sha256": "e62d3631a5f04d441dcfda28f53d2b8ec201380ccc548b9cce5a61fbccaa4c94",
+      "errors": []
+    },
+    {
+      "case": "P08A",
+      "status": "VERIFIED_2PCT",
+      "target_met": true,
+      "root_complete": true,
+      "relative_gap": 0.016817118724725737,
+      "cold_execution_verified": true,
+      "output_sha256": "0812bc9859109f345f4f5a78c5a4cc7a26a5993545d99125b3022659a9cd36db",
+      "errors": []
+    },
+    {
+      "case": "P09A",
+      "status": "VERIFIED_2PCT",
+      "target_met": true,
+      "root_complete": true,
+      "relative_gap": 0.013611390666705518,
+      "cold_execution_verified": true,
+      "output_sha256": "f50b5bb794444dcb43c8e7b9384abedf97322a781f6eb6f0bdecd4635d709d2c",
+      "errors": []
+    },
+    {
+      "case": "P10A",
+      "status": "VERIFIED_2PCT",
+      "target_met": true,
+      "root_complete": true,
+      "relative_gap": 0.013681685723371561,
+      "cold_execution_verified": true,
+      "output_sha256": "fcd253d90be863ac30571882cc39612225afbf87dba99408e45ff268463d84af",
+      "errors": []
+    }
+  ]
+}

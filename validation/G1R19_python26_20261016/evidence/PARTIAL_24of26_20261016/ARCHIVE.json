@@ -1,0 +1,10 @@
+{
+  "status": "PARTIAL",
+  "verified_cases": 24,
+  "file_count": 476,
+  "archive": "PARTIAL_24of26_evidence_20261016.zip",
+  "bytes": 10255703,
+  "sha256": "318ae43a5502388f2490eaa1f11fa5341f50a5bcd12ee563be9a15dfe333ba89",
+  "crc_and_all_member_sha256": "PASS",
+  "saved_field_replay_not_yet_run": true
+}

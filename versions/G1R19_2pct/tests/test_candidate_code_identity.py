@@ -14,6 +14,12 @@ class SerializedCodeIdentityTests(unittest.TestCase):
         self.assertEqual(builder.code_key('Call RPX_Clear\r\nx = 1#\r\n'),
                          builder.code_key('call rpx_clear\nx = 1#\n'))
 
+    def test_vbe_label_indentation_is_allowed(self):
+        self.assertEqual(builder.code_key('    Failed: reason = "X"'),
+                         builder.code_key('Failed:     reason = "X"'))
+        self.assertNotEqual(builder.code_key('Clear: value = 1'),
+                            builder.code_key('Call Clear: value = 1'))
+
     def test_string_and_escaped_quote_case_is_preserved(self):
         self.assertNotEqual(builder.code_key('x = "A""B"'), builder.code_key('x = "a""B"'))
 

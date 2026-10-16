@@ -112,7 +112,7 @@ def supervised_attempts(batch):
                        timing_scope=('Fresh predecessor plus continuation; discarded trials separately recorded'
                                      if continuation else 'Python process wall time; native mesh generation excluded'))
         if owner.get('status') == 'FINISHED' and job.get('phase') == 'FINISHED':
-            if job.get('returncode') != 0:
+            if job.get('returncode') != 0 and attempt['status'] not in ('BUDGET_EXHAUSTED', 'BUDGET_EXPIRED', 'MAX_CYCLES'):
                 attempt['status'] = 'INTERRUPTED'
             elif attempt['status'] == 'RUNNING':
                 attempt['status'] = 'GAP_NOT_MET'

@@ -60,6 +60,14 @@ class SupervisorEvidenceTests(unittest.TestCase):
         self.assertFalse(result['verified'])
         audit.assert_not_called()
 
+    def test_budget_exit_keeps_its_explicit_reason(self):
+        self.owner['cases']['P06A']['returncode'] = 2
+        self.summary.update(status='BUDGET_EXHAUSTED', target_met=False)
+        result, audit = self.collect()
+        self.assertEqual(result['status'], 'BUDGET_EXHAUSTED')
+        self.assertFalse(result['verified'])
+        audit.assert_not_called()
+
     def test_continuation_is_separate_from_a_completed_cold_run(self):
         self.owner['cases']['P06A']['command'] = ['python', 'run_case.py', '--prior-run', 'fresh-v1']
         self.summary.update(cold_cumulative_seconds=926, adopted_path_seconds=926,
