@@ -1,0 +1,508 @@
+[
+ {
+  "case": "D08A",
+  "issue11": {
+   "status": "PASS_TARGET",
+   "lower_fs": 1.3005376454569189,
+   "upper_fs": 1.3133263046857948,
+   "gap_pct": 0.978525238712421,
+   "analysis_seconds": 212.177204,
+   "target_met": true,
+   "audit_pass": true,
+   "reasons": [],
+   "solve_count": 56
+  },
+  "issue11_events": {
+   "final_evaluations": 1,
+   "terminal_pair_reuse": 0,
+   "terminal_pair_reuse_rejected": 0
+  },
+  "g1r19": {
+   "status": "PASS_TARGET",
+   "lower_fs": 1.3005376454569189,
+   "upper_fs": 1.3133263046857948,
+   "gap_pct": 0.978525238712421,
+   "analysis_seconds": 220.177994,
+   "target_met": true,
+   "audit_pass": true,
+   "reasons": [],
+   "solve_count": 56
+  },
+  "g1r19_events": {
+   "final_evaluations": 1,
+   "terminal_pair_reuse": 0,
+   "terminal_pair_reuse_rejected": 0
+  },
+  "g1r17": {
+   "status": "PASS_TARGET",
+   "lower_fs": 1.3016957465342585,
+   "upper_fs": 1.3104895557092444,
+   "gap_pct": 0.6732913754191405,
+   "analysis_seconds": 348.077068,
+   "target_met": true,
+   "audit_pass": true,
+   "reasons": [],
+   "solve_count": null
+  }
+ },
+ {
+  "case": "P04A",
+  "issue11": {
+   "status": "FS_AVAILABLE_PARTIAL",
+   "lower_fs": 2.247045117848366,
+   "upper_fs": 2.2702503138653056,
+   "gap_pct": 1.0273933315951582,
+   "analysis_seconds": 208.558697,
+   "target_met": false,
+   "audit_pass": true,
+   "reasons": [
+    "GAP_TARGET_NOT_MET"
+   ],
+   "solve_count": 57
+  },
+  "issue11_events": {
+   "final_evaluations": 1,
+   "terminal_pair_reuse": 0,
+   "terminal_pair_reuse_rejected": 0
+  },
+  "g1r19": {
+   "status": "FS_AVAILABLE_PARTIAL",
+   "lower_fs": 2.247045117848366,
+   "upper_fs": 2.2702503138653056,
+   "gap_pct": 1.0273933315951582,
+   "analysis_seconds": 221.847124,
+   "target_met": false,
+   "audit_pass": true,
+   "reasons": [
+    "GAP_TARGET_NOT_MET"
+   ],
+   "solve_count": 57
+  },
+  "g1r19_events": {
+   "final_evaluations": 1,
+   "terminal_pair_reuse": 0,
+   "terminal_pair_reuse_rejected": 0
+  },
+  "g1r17": {
+   "status": "PASS_TARGET",
+   "lower_fs": 2.2503402432794615,
+   "upper_fs": 2.264818318989914,
+   "gap_pct": 0.641309735230016,
+   "analysis_seconds": 336.181641,
+   "target_met": true,
+   "audit_pass": true,
+   "reasons": [],
+   "solve_count": null
+  }
+ },
+ {
+  "case": "P04N",
+  "issue11": {
+   "status": "FS_AVAILABLE_PARTIAL",
+   "lower_fs": 2.1351769159855465,
+   "upper_fs": 2.1596364114494153,
+   "gap_pct": 1.1390248469065378,
+   "analysis_seconds": 245.703198,
+   "target_met": false,
+   "audit_pass": true,
+   "reasons": [
+    "GAP_TARGET_NOT_MET"
+   ],
+   "solve_count": 55
+  },
+  "issue11_events": {
+   "final_evaluations": 1,
+   "terminal_pair_reuse": 0,
+   "terminal_pair_reuse_rejected": 0
+  },
+  "g1r19": {
+   "status": "FS_AVAILABLE_PARTIAL",
+   "lower_fs": 2.1351769159855465,
+   "upper_fs": 2.1596364114494153,
+   "gap_pct": 1.1390248469065378,
+   "analysis_seconds": 253.535058,
+   "target_met": false,
+   "audit_pass": true,
+   "reasons": [
+    "GAP_TARGET_NOT_MET"
+   ],
+   "solve_count": 55
+  },
+  "g1r19_events": {
+   "final_evaluations": 1,
+   "terminal_pair_reuse": 0,
+   "terminal_pair_reuse_rejected": 0
+  },
+  "g1r17": {
+   "status": "PASS_TARGET",
+   "lower_fs": 2.138029172910192,
+   "upper_fs": 2.1539417859693817,
+   "gap_pct": 0.7415060918000153,
+   "analysis_seconds": 310.336875,
+   "target_met": true,
+   "audit_pass": true,
+   "reasons": [],
+   "solve_count": null
+  }
+ },
+ {
+  "case": "P02N",
+  "issue11": {
+   "status": "FS_AVAILABLE_PARTIAL",
+   "lower_fs": 1.2147916100266731,
+   "upper_fs": 1.2265137308787126,
+   "gap_pct": 0.9603158323237203,
+   "analysis_seconds": 204.73431,
+   "target_met": false,
+   "audit_pass": true,
+   "reasons": [
+    "NATIVE_GLOBAL_INCOMPLETE"
+   ],
+   "solve_count": 55
+  },
+  "issue11_events": {
+   "final_evaluations": 1,
+   "terminal_pair_reuse": 0,
+   "terminal_pair_reuse_rejected": 0
+  },
+  "g1r19": {
+   "status": "FS_AVAILABLE_PARTIAL",
+   "lower_fs": 1.2147916100266731,
+   "upper_fs": 1.2265137308787126,
+   "gap_pct": 0.9603158323237203,
+   "analysis_seconds": 223.542698,
+   "target_met": false,
+   "audit_pass": true,
+   "reasons": [
+    "NATIVE_GLOBAL_INCOMPLETE"
+   ],
+   "solve_count": 55
+  },
+  "g1r19_events": {
+   "final_evaluations": 1,
+   "terminal_pair_reuse": 0,
+   "terminal_pair_reuse_rejected": 0
+  },
+  "g1r17": {
+   "status": "PASS_TARGET",
+   "lower_fs": 1.215929091721389,
+   "upper_fs": 1.224966156938399,
+   "gap_pct": 0.7404713677878573,
+   "analysis_seconds": 321.352305,
+   "target_met": true,
+   "audit_pass": true,
+   "reasons": [],
+   "solve_count": null
+  }
+ },
+ {
+  "case": "D07A",
+  "issue11": {
+   "status": "FS_AVAILABLE_PARTIAL",
+   "lower_fs": 1.2612500306920593,
+   "upper_fs": 1.2775733308342803,
+   "gap_pct": 1.285894906245654,
+   "analysis_seconds": 153.238966,
+   "target_met": false,
+   "audit_pass": true,
+   "reasons": [
+    "GAP_TARGET_NOT_MET"
+   ],
+   "solve_count": 45
+  },
+  "issue11_events": {
+   "final_evaluations": 1,
+   "terminal_pair_reuse": 0,
+   "terminal_pair_reuse_rejected": 0
+  },
+  "g1r19": {
+   "status": "FS_AVAILABLE_PARTIAL",
+   "lower_fs": 1.2612500306920593,
+   "upper_fs": 1.2775733308342803,
+   "gap_pct": 1.285894906245654,
+   "analysis_seconds": 153.21779,
+   "target_met": false,
+   "audit_pass": true,
+   "reasons": [
+    "GAP_TARGET_NOT_MET"
+   ],
+   "solve_count": 45
+  },
+  "g1r19_events": {
+   "final_evaluations": 1,
+   "terminal_pair_reuse": 0,
+   "terminal_pair_reuse_rejected": 0
+  },
+  "g1r17": {
+   "status": "FS_AVAILABLE_PARTIAL",
+   "lower_fs": 1.2651420914772866,
+   "upper_fs": 1.277577204587988,
+   "gap_pct": 0.9780956262017702,
+   "analysis_seconds": 265.8232,
+   "target_met": false,
+   "audit_pass": true,
+   "reasons": [
+    "NATIVE_GLOBAL_INCOMPLETE"
+   ],
+   "solve_count": null
+  }
+ },
+ {
+  "case": "P08A",
+  "issue11": {
+   "status": "FS_AVAILABLE_PARTIAL",
+   "lower_fs": 1.4420812144866602,
+   "upper_fs": 1.4570954132250902,
+   "gap_pct": 1.035756055351506,
+   "analysis_seconds": 950.968535,
+   "target_met": false,
+   "audit_pass": true,
+   "reasons": [
+    "GAP_TARGET_NOT_MET"
+   ],
+   "solve_count": 9
+  },
+  "issue11_events": {
+   "final_evaluations": 1,
+   "terminal_pair_reuse": 0,
+   "terminal_pair_reuse_rejected": 0
+  },
+  "g1r19": {
+   "status": "FS_AVAILABLE_PARTIAL",
+   "lower_fs": 1.4420812144866602,
+   "upper_fs": 1.4570954132250902,
+   "gap_pct": 1.035756055351506,
+   "analysis_seconds": 964.10215,
+   "target_met": false,
+   "audit_pass": true,
+   "reasons": [
+    "GAP_TARGET_NOT_MET"
+   ],
+   "solve_count": 9
+  },
+  "g1r19_events": {
+   "final_evaluations": 1,
+   "terminal_pair_reuse": 0,
+   "terminal_pair_reuse_rejected": 0
+  },
+  "g1r17": {
+   "status": "FS_AVAILABLE_PARTIAL",
+   "lower_fs": 1.4428188996601232,
+   "upper_fs": 1.4552607361808534,
+   "gap_pct": 0.8586262687098136,
+   "analysis_seconds": 1375.33656,
+   "target_met": false,
+   "audit_pass": true,
+   "reasons": [
+    "NATIVE_GLOBAL_INCOMPLETE"
+   ],
+   "solve_count": null
+  }
+ },
+ {
+  "case": "P09A",
+  "issue11": {
+   "status": "FS_AVAILABLE_PARTIAL",
+   "lower_fs": 0.9637749073198114,
+   "upper_fs": 0.9755616501742672,
+   "gap_pct": 1.215543821819776,
+   "analysis_seconds": 971.668994,
+   "target_met": false,
+   "audit_pass": true,
+   "reasons": [
+    "GAP_TARGET_NOT_MET"
+   ],
+   "solve_count": 9
+  },
+  "issue11_events": {
+   "final_evaluations": 1,
+   "terminal_pair_reuse": 0,
+   "terminal_pair_reuse_rejected": 0
+  },
+  "g1r19": {
+   "status": "FS_AVAILABLE_PARTIAL",
+   "lower_fs": 0.9637749073198114,
+   "upper_fs": 0.9755616501742672,
+   "gap_pct": 1.215543821819776,
+   "analysis_seconds": 980.643832,
+   "target_met": false,
+   "audit_pass": true,
+   "reasons": [
+    "GAP_TARGET_NOT_MET"
+   ],
+   "solve_count": 9
+  },
+  "g1r19_events": {
+   "final_evaluations": 1,
+   "terminal_pair_reuse": 0,
+   "terminal_pair_reuse_rejected": 0
+  },
+  "g1r17": {
+   "status": "FS_AVAILABLE_PARTIAL",
+   "lower_fs": 0.9645406357821467,
+   "upper_fs": 0.9730500784564394,
+   "gap_pct": 0.8783529578006589,
+   "analysis_seconds": 1127.375623,
+   "target_met": false,
+   "audit_pass": true,
+   "reasons": [
+    "NATIVE_GLOBAL_INCOMPLETE"
+   ],
+   "solve_count": null
+  }
+ },
+ {
+  "case": "P07A",
+  "issue11": {
+   "status": "FS_AVAILABLE_PARTIAL",
+   "lower_fs": 1.374644241732545,
+   "upper_fs": 1.3909434078583836,
+   "gap_pct": 1.1787126781716264,
+   "analysis_seconds": 993.278523,
+   "target_met": false,
+   "audit_pass": true,
+   "reasons": [
+    "GAP_TARGET_NOT_MET"
+   ],
+   "solve_count": 55
+  },
+  "issue11_events": {
+   "final_evaluations": 1,
+   "terminal_pair_reuse": 0,
+   "terminal_pair_reuse_rejected": 0
+  },
+  "g1r19": {
+   "status": "FS_AVAILABLE_PARTIAL",
+   "lower_fs": 1.374644241732545,
+   "upper_fs": 1.3909434078583836,
+   "gap_pct": 1.1787126781716264,
+   "analysis_seconds": 996.415658,
+   "target_met": false,
+   "audit_pass": true,
+   "reasons": [
+    "GAP_TARGET_NOT_MET"
+   ],
+   "solve_count": 55
+  },
+  "g1r19_events": {
+   "final_evaluations": 1,
+   "terminal_pair_reuse": 0,
+   "terminal_pair_reuse_rejected": 0
+  },
+  "g1r17": {
+   "status": "PASS_TARGET",
+   "lower_fs": 1.374825370666586,
+   "upper_fs": 1.3882584616508422,
+   "gap_pct": 0.9723259806409623,
+   "analysis_seconds": 547.532441,
+   "target_met": true,
+   "audit_pass": true,
+   "reasons": [],
+   "solve_count": null
+  }
+ },
+ {
+  "case": "P07N",
+  "issue11": {
+   "status": "FS_AVAILABLE_PARTIAL",
+   "lower_fs": 1.3255815524736623,
+   "upper_fs": 1.3425242233421735,
+   "gap_pct": 1.2700149313481084,
+   "analysis_seconds": 1014.898657,
+   "target_met": false,
+   "audit_pass": true,
+   "reasons": [
+    "GAP_TARGET_NOT_MET"
+   ],
+   "solve_count": 54
+  },
+  "issue11_events": {
+   "final_evaluations": 1,
+   "terminal_pair_reuse": 0,
+   "terminal_pair_reuse_rejected": 0
+  },
+  "g1r19": {
+   "status": "FS_AVAILABLE_PARTIAL",
+   "lower_fs": 1.3255815524736623,
+   "upper_fs": 1.3425242233421735,
+   "gap_pct": 1.2700149313481084,
+   "analysis_seconds": 1017.921748,
+   "target_met": false,
+   "audit_pass": true,
+   "reasons": [
+    "GAP_TARGET_NOT_MET"
+   ],
+   "solve_count": 54
+  },
+  "g1r19_events": {
+   "final_evaluations": 1,
+   "terminal_pair_reuse": 0,
+   "terminal_pair_reuse_rejected": 0
+  },
+  "g1r17": {
+   "status": "FS_AVAILABLE_PARTIAL",
+   "lower_fs": 1.3257680282493587,
+   "upper_fs": 1.3397480948715283,
+   "gap_pct": 1.0489575734249375,
+   "analysis_seconds": 746.87111,
+   "target_met": false,
+   "audit_pass": true,
+   "reasons": [
+    "GAP_TARGET_NOT_MET"
+   ],
+   "solve_count": null
+  }
+ },
+ {
+  "case": "P05A",
+  "issue11": {
+   "status": "FS_AVAILABLE_PARTIAL",
+   "lower_fs": 1.4651781691334949,
+   "upper_fs": 1.4897690822584515,
+   "gap_pct": 1.6643893127617044,
+   "analysis_seconds": 588.128943,
+   "target_met": false,
+   "audit_pass": true,
+   "reasons": [
+    "GAP_TARGET_NOT_MET"
+   ],
+   "solve_count": 33
+  },
+  "issue11_events": {
+   "final_evaluations": 1,
+   "terminal_pair_reuse": 0,
+   "terminal_pair_reuse_rejected": 0
+  },
+  "g1r19": {
+   "status": "FS_AVAILABLE_PARTIAL",
+   "lower_fs": 1.4651781691334949,
+   "upper_fs": 1.4897690822584515,
+   "gap_pct": 1.6643893127617044,
+   "analysis_seconds": 601.556995,
+   "target_met": false,
+   "audit_pass": true,
+   "reasons": [
+    "GAP_TARGET_NOT_MET"
+   ],
+   "solve_count": 33
+  },
+  "g1r19_events": {
+   "final_evaluations": 1,
+   "terminal_pair_reuse": 0,
+   "terminal_pair_reuse_rejected": 0
+  },
+  "g1r17": {
+   "status": "FS_AVAILABLE_PARTIAL",
+   "lower_fs": 1.4650728061474296,
+   "upper_fs": 1.4896715015368427,
+   "gap_pct": 1.6650303936919568,
+   "analysis_seconds": 283.859588,
+   "target_met": false,
+   "audit_pass": true,
+   "reasons": [
+    "GAP_TARGET_NOT_MET"
+   ],
+   "solve_count": null
+  }
+ }
+]
