@@ -1,0 +1,435 @@
+{
+  "status": "PASS",
+  "excel_runs": 0,
+  "solver_calls": 0,
+  "scope": "Synthetic lifecycle checks only; separate 24 runner plus 12 collector cases",
+  "historical_check": "assert rec['monitored_files_unchanged'] and all(x['owned_excel_exited'] and not x['dialogs'] and not x['monitor_errors'] and not x.get('hard_timeout') for x in rec['sessions']),rec",
+  "historical_PASS_retained_reproduced": [
+    "run_saved_revision_fix4.py",
+    "run_settings_input_fix4.py",
+    "run_seep_state_fix4.py",
+    "run_settings_extent_display_fix4.py"
+  ],
+  "runner_checks": [
+    {
+      "runner": "run_saved_revision_fix4.py",
+      "scenario": "good",
+      "passed": true
+    },
+    {
+      "runner": "run_saved_revision_fix4.py",
+      "scenario": "immutable",
+      "passed": true
+    },
+    {
+      "runner": "run_saved_revision_fix4.py",
+      "scenario": "exit",
+      "passed": true
+    },
+    {
+      "runner": "run_saved_revision_fix4.py",
+      "scenario": "dialog",
+      "passed": true
+    },
+    {
+      "runner": "run_saved_revision_fix4.py",
+      "scenario": "monitor",
+      "passed": true
+    },
+    {
+      "runner": "run_saved_revision_fix4.py",
+      "scenario": "timeout",
+      "passed": true
+    },
+    {
+      "runner": "run_settings_input_fix4.py",
+      "scenario": "good",
+      "passed": true
+    },
+    {
+      "runner": "run_settings_input_fix4.py",
+      "scenario": "immutable",
+      "passed": true
+    },
+    {
+      "runner": "run_settings_input_fix4.py",
+      "scenario": "exit",
+      "passed": true
+    },
+    {
+      "runner": "run_settings_input_fix4.py",
+      "scenario": "dialog",
+      "passed": true
+    },
+    {
+      "runner": "run_settings_input_fix4.py",
+      "scenario": "monitor",
+      "passed": true
+    },
+    {
+      "runner": "run_settings_input_fix4.py",
+      "scenario": "timeout",
+      "passed": true
+    },
+    {
+      "runner": "run_seep_state_fix4.py",
+      "scenario": "good",
+      "passed": true
+    },
+    {
+      "runner": "run_seep_state_fix4.py",
+      "scenario": "immutable",
+      "passed": true
+    },
+    {
+      "runner": "run_seep_state_fix4.py",
+      "scenario": "exit",
+      "passed": true
+    },
+    {
+      "runner": "run_seep_state_fix4.py",
+      "scenario": "dialog",
+      "passed": true
+    },
+    {
+      "runner": "run_seep_state_fix4.py",
+      "scenario": "monitor",
+      "passed": true
+    },
+    {
+      "runner": "run_seep_state_fix4.py",
+      "scenario": "timeout",
+      "passed": true
+    },
+    {
+      "runner": "run_settings_extent_display_fix4.py",
+      "scenario": "good",
+      "passed": true
+    },
+    {
+      "runner": "run_settings_extent_display_fix4.py",
+      "scenario": "immutable",
+      "passed": true
+    },
+    {
+      "runner": "run_settings_extent_display_fix4.py",
+      "scenario": "exit",
+      "passed": true
+    },
+    {
+      "runner": "run_settings_extent_display_fix4.py",
+      "scenario": "dialog",
+      "passed": true
+    },
+    {
+      "runner": "run_settings_extent_display_fix4.py",
+      "scenario": "monitor",
+      "passed": true
+    },
+    {
+      "runner": "run_settings_extent_display_fix4.py",
+      "scenario": "timeout",
+      "passed": true
+    }
+  ],
+  "collector_checks": [
+    {
+      "scenario": "good",
+      "passed": true
+    },
+    {
+      "scenario": "root_error",
+      "passed": true
+    },
+    {
+      "scenario": "nested_monitor",
+      "passed": true
+    },
+    {
+      "scenario": "nested_dialog",
+      "passed": true
+    },
+    {
+      "scenario": "timeout",
+      "passed": true
+    },
+    {
+      "scenario": "immutable",
+      "passed": true
+    },
+    {
+      "scenario": "immutable_map",
+      "passed": true
+    },
+    {
+      "scenario": "exit",
+      "passed": true
+    },
+    {
+      "scenario": "child_exit_code",
+      "passed": true
+    },
+    {
+      "scenario": "child_status",
+      "passed": true
+    },
+    {
+      "scenario": "published_mutation",
+      "passed": true
+    },
+    {
+      "scenario": "cleanup_error",
+      "passed": true
+    }
+  ],
+  "positive_raw": [
+    {
+      "path": "results/crash_auto_01/summary.json",
+      "sha256": "d77f9c2fac4adcc935de91076446f67a562679858388dff8c84090dfded66f56",
+      "no_latecheck_conflict": true
+    },
+    {
+      "path": "results/crash_auto_quiet_01/summary.json",
+      "sha256": "588561e7918d986b4474bc31d2d6f98c700b35408add5a4148b6ce2c7b3c2d7e",
+      "no_latecheck_conflict": true
+    },
+    {
+      "path": "results/inherited_final_01/presets/summary.json",
+      "sha256": "758dcb23bd4b4a8d07cd2934a4b9b5b353a8f9333bfd00e23f5ee4231ca6aced",
+      "no_latecheck_conflict": true
+    },
+    {
+      "path": "results/inherited_final_02/saved_edit/summary.json",
+      "sha256": "ee34e2d15b733251568648b7f9f64d678d5b5109ed307a212203fe9fb483e689",
+      "no_latecheck_conflict": true
+    },
+    {
+      "path": "results/inherited_final_02/saved_missingproof/summary.json",
+      "sha256": "dc8c12c23c6085d4168b4b85903d4de0b25bee23aba4ca97461543af96420dc5",
+      "no_latecheck_conflict": true
+    },
+    {
+      "path": "results/inherited_final_02/saved_openchanged/summary.json",
+      "sha256": "beaef210d1b086b5361ded2b58e2588f316caa96615e808c5a9b6455b0d0f79c",
+      "no_latecheck_conflict": true
+    },
+    {
+      "path": "results/inherited_final_02/seep_ui/summary.json",
+      "sha256": "960c2df8f9a32ada1c56de6e7cf8fefe28deb005a31924f47f9c8a6786cb6413",
+      "no_latecheck_conflict": true
+    },
+    {
+      "path": "results/inherited_final_02/setup_control/summary.json",
+      "sha256": "f61b38531488e7429f7105a4ee6e57aff4f962fd7cca0e91b9b465bacd7972dc",
+      "no_latecheck_conflict": true
+    },
+    {
+      "path": "results/inherited_final_02/summary.json",
+      "sha256": "7b7c30ef05527a24d4549cb834c1dc1c1251d7172c46aa951d6b780466df7462",
+      "no_latecheck_conflict": true
+    },
+    {
+      "path": "results/inherited_final_02/water_restart/summary.json",
+      "sha256": "950617fc8fffa5b32247d55203df8f20f0636a7fb59bd9fb5fe046bc9aadb994",
+      "no_latecheck_conflict": true
+    },
+    {
+      "path": "results/inherited_final_02/water_source/summary.json",
+      "sha256": "49e651057f77370ad68688af87da4448152ae758195df2d524763b2e72becea8",
+      "no_latecheck_conflict": true
+    },
+    {
+      "path": "results/owned_excel_1792185646836935100/summary.json",
+      "sha256": "c92f76b8c182dd029bc97f8dfe75d2532b3403159289e39cd3597dd91f6b5894",
+      "no_latecheck_conflict": true
+    },
+    {
+      "path": "results/pure_public_positive_01/summary.json",
+      "sha256": "6e66f5e85fd22f51dd55c9bb16bb752bf743a8c090cd2d0a9d3f3d6c0e45d76d",
+      "no_latecheck_conflict": true
+    },
+    {
+      "path": "results/saved_revision_positive_01/summary.json",
+      "sha256": "f95b9ca34e11b7d29e3a8eb457c4a2acfb129844657d32a8611e0c3cad85b957",
+      "no_latecheck_conflict": true
+    },
+    {
+      "path": "results/seep_state_positive_01/summary.json",
+      "sha256": "1b6557f501ac31da6f19872f461b5cd74496c20c8a20f13185cf0e1c3a8a33fe",
+      "no_latecheck_conflict": true
+    },
+    {
+      "path": "results/seismic_candidate_/1792185516506912600/summary.json",
+      "sha256": "28e501a9a30b77e69d55c43917e892d964f8c58f17152b0a8da322fd02915234",
+      "no_latecheck_conflict": true
+    },
+    {
+      "path": "results/seismic_candidate_/1792185537367641200/summary.json",
+      "sha256": "3e455ef56fcfac706daba8a1d6ddabc4b662157352eee63d89e8b5cc1e6e8451",
+      "no_latecheck_conflict": true
+    },
+    {
+      "path": "results/seismic_initial_attempts/1792183030815040300/summary.json",
+      "sha256": "dbac9194b896a19f7c4557e6cb9a3815f46f0102e0842c3a8049fe95a62f8e6d",
+      "no_latecheck_conflict": true
+    },
+    {
+      "path": "results/seismic_negative_/1792183196954712500/summary.json",
+      "sha256": "d7ea7254a2aa985e49749ef13393f3b874615b7a518d6b1191fcdb0dbf9383f2",
+      "no_latecheck_conflict": true
+    },
+    {
+      "path": "results/seismic_negative_/1792183665675121600/summary.json",
+      "sha256": "79f7624b51030848bc1256ab56d8801ed9404641e7b7767f4b623da4010bcbf7",
+      "no_latecheck_conflict": true
+    },
+    {
+      "path": "results/seismic_negative_/1792183772543388000/summary.json",
+      "sha256": "c9532e6b456e4345792e8fffd74e07d9f9bfd2bf7664601d34cfd6a40567607f",
+      "no_latecheck_conflict": true
+    },
+    {
+      "path": "results/settings_extent_positive_02/summary.json",
+      "sha256": "65baeacfd92cdc8faa1b82c15060783daf7c3e9d2a6f22e58428a51cf7cffcb3",
+      "no_latecheck_conflict": true
+    },
+    {
+      "path": "results/settings_positive_01/summary.json",
+      "sha256": "2b79a794ea9b34a580b4289d7c73713654086c360dc85f92c8d2b640dc32c994",
+      "no_latecheck_conflict": true
+    },
+    {
+      "path": "results/water_cancel_gamma_final_02/summary.json",
+      "sha256": "0c073d025681c5c038694285a36c74b2055e87967e2a0db716c52c7c06cddbfd",
+      "no_latecheck_conflict": true
+    },
+    {
+      "path": "results/water_inputs_fix4_final_01/summary.json",
+      "sha256": "f3873c07f1704b8a7c093d36dc8e28540b28234d6c21fcdccce0f6a21eb8f1a7",
+      "no_latecheck_conflict": true
+    },
+    {
+      "path": "results/water_inputs_fix4_positive_02/summary.json",
+      "sha256": "3d964b60226452e2c5281a60deb1c199a1e56f9b4d61710333dc094e10b54432",
+      "no_latecheck_conflict": true
+    },
+    {
+      "path": "results/water_inverse_budget_final_01/summary.json",
+      "sha256": "d635dd2c0e881eaef22ae7276b97ee5570ebdd2833347d882b4531261ac5168a",
+      "no_latecheck_conflict": true
+    },
+    {
+      "path": "results/water_native_fixed_1792186131557879300/summary.json",
+      "sha256": "f50015ad22f3fa0e3bacd579499894063a6882a2d032f7e90f610ca3f77faec1",
+      "no_latecheck_conflict": true
+    },
+    {
+      "path": "results/water_transitions_final_01/summary.json",
+      "sha256": "4837acc38b12126d859e03140d3bcbf897949f33d6ecbf4b204c3344581e845b",
+      "no_latecheck_conflict": true
+    }
+  ],
+  "raw_failures": [
+    {
+      "path": "results/inherited_final_01/setup_control/summary.json",
+      "sha256": "e12d00a263a3e5e41179b6c10a3416d8c6b4bcc50710f5c69b66c9f64e1f68f3",
+      "retained_FAIL": true
+    },
+    {
+      "path": "results/inherited_final_01/summary.json",
+      "sha256": "cf5278d35340d7c5ee4d80ebcfe9189ff7dc01a562e63e7b0875f7c088699f6d",
+      "retained_FAIL": true
+    },
+    {
+      "path": "results/seismic_initial_attempts/1792183003529084400/summary.json",
+      "sha256": "dc2eb4655fb15e50df8b7d237b76f6056b25ef10d7f183628fd0c9be1d01ba6f",
+      "retained_FAIL": true
+    },
+    {
+      "path": "results/seismic_initial_attempts/1792183015654003400/summary.json",
+      "sha256": "862415e09bd722125401b33b536d4ed47473f6f7345afb140ed1c3a7f1f53c2a",
+      "retained_FAIL": true
+    },
+    {
+      "path": "results/seismic_negative_/1792183363499885000/summary.json",
+      "sha256": "d47148de264183bee90d08a047bf50eefb686f1fd6a50218fd46e013a4091067",
+      "retained_FAIL": true
+    },
+    {
+      "path": "results/seismic_negative_/1792183404854273000/summary.json",
+      "sha256": "d2bb0e652786b6bb1d28c76acf65c05cd6714db488c29a2467c6b2dae0792790",
+      "retained_FAIL": true
+    },
+    {
+      "path": "results/seismic_negative_/1792183427152077600/summary.json",
+      "sha256": "c5b5e9738b5d67588f45e1854f3625aeaf1bcb1bc723c961250ade36cac45dce",
+      "retained_FAIL": true
+    },
+    {
+      "path": "results/seismic_negative_/1792183690937194400/summary.json",
+      "sha256": "d8b8867a716dc05eda355e966163a803285f2043a0c90ec216cf79326e4fc881",
+      "retained_FAIL": true
+    },
+    {
+      "path": "results/settings_extent_negative_01/summary.json",
+      "sha256": "3793ced87e16a507f85b64d0282a8fb0dabdc2bcd10637e5512dec614f37a8fa",
+      "retained_FAIL": true
+    },
+    {
+      "path": "results/settings_extent_positive_01/summary.json",
+      "sha256": "ab77f5bc57e8468bfe766de42dae52eca538dfd8ac028c4a7bdcbfac3b40a62b",
+      "retained_FAIL": true
+    },
+    {
+      "path": "results/water_cancel_gamma_final_01/summary.json",
+      "sha256": "dca7597c13fd230bb5ceeb925a1abd169fce954648490188f8bbd788a09b4bbc",
+      "retained_FAIL": true
+    },
+    {
+      "path": "results/water_inputs_fix4_positive_01/summary.json",
+      "sha256": "2be7cdda9a69446eb9308a413d211b6e760d19f7b4d3ecc429d5cf705e42b205",
+      "retained_FAIL": true
+    }
+  ],
+  "harness_sha256": {
+    "tests/run_saved_revision_fix4.py": "91548363412dadda4d06e31582fa976b92e253f6a804d93ff2fadca643ccb681",
+    "tests/run_settings_input_fix4.py": "b52626cf02b4fd222b274c3c6fb40c1b8b8a0f9e9454199bab6490f030e790d3",
+    "tests/run_seep_state_fix4.py": "7d9847cbef4abee2d52a5210df4640d6f4b7bbf26b5c34f8ef89c6bfd2fefea8",
+    "tests/run_settings_extent_display_fix4.py": "3fa4582bcb3779a54391e72a744cd10338bb7402f1d055c3dcef77ffc924e16a",
+    "tools/collect_release_validation.py": "5806dd5ecf0dffa4939455b4a979a88e770576ccf8940d0b76bdb5c2a03538ed",
+    "tests/run_final_record_checks.py": "ee7930a211126cedc4a38e787db35fb1227c29210dfd1c0dfb1e8b14b20a1089"
+  },
+  "historical_harness_snapshots": {
+    "run_saved_revision_fix4.py": {
+      "path": "results/saved_revision_positive_01/runner_snapshot.py",
+      "sha256": "5f78a6a36ad1ced6fef331ba7d6f744b7936f2d581431089c01e19953fdd68fe",
+      "current_sha256": "91548363412dadda4d06e31582fa976b92e253f6a804d93ff2fadca643ccb681",
+      "current_differs_from_executed_snapshot": true
+    },
+    "run_settings_input_fix4.py": {
+      "path": "results/settings_positive_01/runner_snapshot.py",
+      "sha256": "1a32987bde3847e2f401e399456ea6f9bf875600a48c0ee16925e5cd5dae69b9",
+      "current_sha256": "b52626cf02b4fd222b274c3c6fb40c1b8b8a0f9e9454199bab6490f030e790d3",
+      "current_differs_from_executed_snapshot": true
+    },
+    "run_seep_state_fix4.py": {
+      "path": "results/seep_state_positive_01/runner_snapshot.py",
+      "sha256": "4acb0792def743890336369465d853a0420ac7d84f8127d833cd4bd85a6c48f1",
+      "current_sha256": "7d9847cbef4abee2d52a5210df4640d6f4b7bbf26b5c34f8ef89c6bfd2fefea8",
+      "current_differs_from_executed_snapshot": true
+    },
+    "run_settings_extent_display_fix4.py": {
+      "path": "results/settings_extent_positive_02/runner_snapshot.py",
+      "sha256": "82135d91dc1f73f0137078bed87c12927d0dbf2c7dc6c9fc5bae9c183f34fd17",
+      "current_sha256": "3fa4582bcb3779a54391e72a744cd10338bb7402f1d055c3dcef77ffc924e16a",
+      "current_differs_from_executed_snapshot": true
+    }
+  },
+  "completed_raw_summaries_unchanged": true,
+  "runner_case_count": 24,
+  "collector_case_count": 12,
+  "portable_case_count_increase": 0,
+  "product_files_unchanged": true,
+  "source_bundle_sha256": "7acc11691df549ea58ed1a063299725f4d5d7f8bc4b2c1fb24c387622ca17a4c",
+  "workbook_sha256": "b010ab89c4e70540277475d1aab025db2545a24fd6697ad87856998737e94be6"
+}

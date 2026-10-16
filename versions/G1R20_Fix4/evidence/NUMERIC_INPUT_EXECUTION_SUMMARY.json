@@ -1,0 +1,100 @@
+{
+  "status": "PASS",
+  "final_book_sha256": "b010ab89c4e70540277475d1aab025db2545a24fd6697ad87856998737e94be6",
+  "final_book": "delivery/RPFEM_20261017_G1R20_Fix4.xlsm",
+  "product_modules_replaced": false,
+  "input": {
+    "main_cases": 57,
+    "main_valid_accepted": 11,
+    "main_invalid_rejected": 46,
+    "legacy_cases": 31,
+    "legacy_valid_accepted": 3,
+    "legacy_invalid_rejected": 28,
+    "legacy_busy_rejected_without_state_change": 1,
+    "file_handles_closed_after_every_legacy_case": true,
+    "prior_current_state_invalidated_on_idle_legacy_read": true
+  },
+  "seismic": {
+    "public_calls": 17,
+    "quadrature": [
+      2,
+      8
+    ],
+    "actual_unit_shear_fs": [
+      9.999989784787447,
+      10.000009993685573
+    ],
+    "integrated_fixed_body": [
+      4.0,
+      -19.999999999999996,
+      0.0,
+      0.0
+    ],
+    "fresh_and_after_actual_fs_exact_equal": true,
+    "reference_body_and_zero_kh_controls_pass": true,
+    "public_bearing_before_actual_fs": [
+      183.04347822419126,
+      184.89650500619234
+    ],
+    "public_bearing_after_actual_fs": [
+      183.04347822419126,
+      184.89650500619234
+    ],
+    "public_bearing_before_after_exact_equal": true,
+    "physical_context_sha256": "8a854e5900961e9c26e189be87654a14a8101ab58398fd324446562f160d1afb"
+  },
+  "portable": {
+    "status": "PASS",
+    "unittest_cases": 7,
+    "independent_geometric_configurations": 2250,
+    "tests": [
+      "tests/test_seismic_phase_contract.py",
+      "tests/test_region_overlap.py",
+      "tests/test_legacy_input_contract.py"
+    ]
+  },
+  "runs": [
+    {
+      "path": "results/seismic_candidate_/1792185516506912600/summary.json",
+      "sha256": "28e501a9a30b77e69d55c43917e892d964f8c58f17152b0a8da322fd02915234",
+      "status": "PASS",
+      "final_book": true,
+      "product_modules_replaced": false,
+      "source_book_sha256": "b010ab89c4e70540277475d1aab025db2545a24fd6697ad87856998737e94be6",
+      "dll_sha256": "66da1a21be43cd2b3a3bfbaa9d13aad5fb1fd1960e1bf2507cc4e1cfa9ebe70b",
+      "owned_excel_pid": 4936,
+      "owned_excel_exit_code": 0,
+      "owned_excel_exited": true,
+      "owned_excel_children": [],
+      "dialogs": [],
+      "source_book_unchanged": true,
+      "source_files_unchanged": true,
+      "baseline_unchanged": true
+    },
+    {
+      "path": "results/seismic_candidate_/1792185537367641200/summary.json",
+      "sha256": "3e455ef56fcfac706daba8a1d6ddabc4b662157352eee63d89e8b5cc1e6e8451",
+      "status": "PASS",
+      "final_book": true,
+      "product_modules_replaced": false,
+      "source_book_sha256": "b010ab89c4e70540277475d1aab025db2545a24fd6697ad87856998737e94be6",
+      "dll_sha256": "66da1a21be43cd2b3a3bfbaa9d13aad5fb1fd1960e1bf2507cc4e1cfa9ebe70b",
+      "owned_excel_pid": 21600,
+      "owned_excel_exit_code": 0,
+      "owned_excel_exited": true,
+      "owned_excel_children": [],
+      "dialogs": [],
+      "source_book_unchanged": true,
+      "source_files_unchanged": true,
+      "baseline_unchanged": true
+    }
+  ],
+  "negative_evidence": [
+    "results/seismic_negative_/1792183665675121600/summary.json",
+    "results/seismic_negative_/1792183772543388000/summary.json"
+  ],
+  "limitations": [
+    "These are focused review and regression cases; they do not claim all 26 benchmark cases or GAP <= 2% for every benchmark.",
+    "The earlier single recovery-process anomaly is retained in results/seismic_negative_/1792183690937194400 and discussed in evidence/SETUP_CRASH_AUDIT.md; no cause or DLL correction is claimed."
+  ]
+}

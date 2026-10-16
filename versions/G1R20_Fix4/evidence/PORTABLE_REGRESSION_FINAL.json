@@ -1,0 +1,274 @@
+{
+  "status": "PASS",
+  "solver_calls": 0,
+  "excel_runs": 0,
+  "scope": "Portable source and rejection contracts; not fresh numerical solves",
+  "suites": [
+    {
+      "suite": "fix4",
+      "command": [
+        "D:\\Work\\rpfem-venv\\Scripts\\python.exe",
+        "-X",
+        "utf8",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "versions/G1R20_Fix4/tests",
+        "-p",
+        "test_*.py"
+      ],
+      "exit_code": 0,
+      "seconds": 0.5517106999759562,
+      "stdout": "",
+      "stderr": ".......\n----------------------------------------------------------------------\nRan 7 tests in 0.386s\n\nOK\n"
+    },
+    {
+      "suite": "fix3",
+      "command": [
+        "D:\\Work\\rpfem-venv\\Scripts\\python.exe",
+        "-X",
+        "utf8",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "versions/G1R20_Fix3/tests",
+        "-p",
+        "test_*.py"
+      ],
+      "exit_code": 0,
+      "seconds": 0.2319747000001371,
+      "stdout": "{\n  \"status\": \"PASS\",\n  \"scope\": \"portable static contract only\",\n  \"checks\": [\n    \"utf8_cp932_source_identity\",\n    \"lossless_journal_fail_closed_ordering\",\n    \"producer_and_consumer_source_checks_precede_eligibility_cache\",\n    \"all_modes_scope_and_relevant_input_footprint\",\n    \"seep_and_water_numerical_formulas_unchanged\"\n  ],\n  \"sources\": {\n    \"RPX_Water.bas\": \"3b6b98c937035aa911410b68fb536a9e4098306fe3a6d675a8cd41dd34f9611c\",\n    \"RPX_Seep.bas\": \"4dd738b46ebb59786f231cb3e70972b5314f30fcd64ae37430917374ceb13224\"\n  }\n}\n",
+      "stderr": "..........\n----------------------------------------------------------------------\nRan 10 tests in 0.050s\n\nOK\n"
+    },
+    {
+      "suite": "fix2",
+      "command": [
+        "D:\\Work\\rpfem-venv\\Scripts\\python.exe",
+        "-X",
+        "utf8",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "versions/G1R20_Fix2/tests",
+        "-p",
+        "test_*.py"
+      ],
+      "exit_code": 0,
+      "seconds": 0.24672320001991466,
+      "stdout": "",
+      "stderr": "..................\n----------------------------------------------------------------------\nRan 18 tests in 0.046s\n\nOK\n"
+    },
+    {
+      "suite": "fix1_ui",
+      "command": [
+        "D:\\Work\\rpfem-venv\\Scripts\\python.exe",
+        "-X",
+        "utf8",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "versions/G1R20_Fix1/tests",
+        "-p",
+        "UI_test_contract.py"
+      ],
+      "exit_code": 0,
+      "seconds": 0.17202500000712462,
+      "stdout": "",
+      "stderr": ".....\n----------------------------------------------------------------------\nRan 5 tests in 0.003s\n\nOK\n"
+    },
+    {
+      "suite": "fix1_water",
+      "command": [
+        "D:\\Work\\rpfem-venv\\Scripts\\python.exe",
+        "-X",
+        "utf8",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "versions/G1R20_Fix1/tests",
+        "-p",
+        "test_contract_water.py"
+      ],
+      "exit_code": 0,
+      "seconds": 0.19780949997948483,
+      "stdout": "",
+      "stderr": ".......\n----------------------------------------------------------------------\nRan 7 tests in 0.012s\n\nOK\n"
+    },
+    {
+      "suite": "fix1_scope",
+      "command": [
+        "D:\\Work\\rpfem-venv\\Scripts\\python.exe",
+        "-X",
+        "utf8",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "versions/G1R20_Fix1/tests",
+        "-p",
+        "test_release_scope.py"
+      ],
+      "exit_code": 0,
+      "seconds": 0.22052430000621825,
+      "stdout": "",
+      "stderr": "...\n----------------------------------------------------------------------\nRan 3 tests in 0.031s\n\nOK\n"
+    },
+    {
+      "suite": "dual",
+      "command": [
+        "D:\\Work\\rpfem-venv\\Scripts\\python.exe",
+        "-X",
+        "utf8",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "versions/G1R19_DualRepair_20261016/tests",
+        "-p",
+        "test_contract.py"
+      ],
+      "exit_code": 0,
+      "seconds": 0.21695999999064952,
+      "stdout": "",
+      "stderr": ".........\n----------------------------------------------------------------------\nRan 9 tests in 0.014s\n\nOK\n"
+    },
+    {
+      "suite": "terminal",
+      "command": [
+        "D:\\Work\\rpfem-venv\\Scripts\\python.exe",
+        "-X",
+        "utf8",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "versions/G1R19_TerminalRoot_20261016/tests",
+        "-p",
+        "test_contract.py"
+      ],
+      "exit_code": 0,
+      "seconds": 0.19816780000110157,
+      "stdout": "",
+      "stderr": "........\n----------------------------------------------------------------------\nRan 8 tests in 0.013s\n\nOK\n"
+    },
+    {
+      "suite": "upper",
+      "command": [
+        "D:\\Work\\rpfem-venv\\Scripts\\python.exe",
+        "-X",
+        "utf8",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "versions/G1R19_UpperRecovery_20261016/tests",
+        "-p",
+        "test_contract.py"
+      ],
+      "exit_code": 0,
+      "seconds": 0.203747999999905,
+      "stdout": "",
+      "stderr": "..........\n----------------------------------------------------------------------\nRan 10 tests in 0.011s\n\nOK\n"
+    },
+    {
+      "suite": "water",
+      "command": [
+        "D:\\Work\\rpfem-venv\\Scripts\\python.exe",
+        "-X",
+        "utf8",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "versions/G1R19_WaterCommon_20261016/tests",
+        "-p",
+        "test_*.py"
+      ],
+      "exit_code": 0,
+      "seconds": 0.4772059000097215,
+      "stdout": "",
+      "stderr": ".....................\n----------------------------------------------------------------------\nRan 21 tests in 0.173s\n\nOK\n"
+    },
+    {
+      "suite": "state",
+      "command": [
+        "D:\\Work\\rpfem-venv\\Scripts\\python.exe",
+        "-X",
+        "utf8",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "versions/G1R19_StateReset_20261016/tests",
+        "-p",
+        "test_contract.py"
+      ],
+      "exit_code": 0,
+      "seconds": 3.04517460000352,
+      "stdout": "",
+      "stderr": "..........\n----------------------------------------------------------------------\nRan 10 tests in 2.863s\n\nOK\n"
+    },
+    {
+      "suite": "flow",
+      "command": [
+        "D:\\Work\\rpfem-venv\\Scripts\\python.exe",
+        "-X",
+        "utf8",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "versions/G1R19_FlowMesh_20261016/tests",
+        "-p",
+        "test_contract.py"
+      ],
+      "exit_code": 0,
+      "seconds": 0.9721406000026036,
+      "stdout": "",
+      "stderr": "....\n----------------------------------------------------------------------\nRan 4 tests in 0.127s\n\nOK\n"
+    },
+    {
+      "suite": "collector",
+      "command": [
+        "D:\\Work\\rpfem-venv\\Scripts\\python.exe",
+        "-X",
+        "utf8",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "validation/G1R19_python26_20261016",
+        "-p",
+        "test_collector.py"
+      ],
+      "exit_code": 0,
+      "seconds": 0.4410771999973804,
+      "stdout": "",
+      "stderr": ".........\n----------------------------------------------------------------------\nRan 9 tests in 0.156s\n\nOK\n"
+    },
+    {
+      "suite": "provenance",
+      "command": [
+        "D:\\Work\\rpfem-venv\\Scripts\\python.exe",
+        "-X",
+        "utf8",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "validation/G1R19_python26_20261016",
+        "-p",
+        "test_evidence_provenance.py"
+      ],
+      "exit_code": 0,
+      "seconds": 0.8380415000137873,
+      "stdout": "",
+      "stderr": "...........\n----------------------------------------------------------------------\nRan 11 tests in 0.638s\n\nOK\n"
+    }
+  ]
+}

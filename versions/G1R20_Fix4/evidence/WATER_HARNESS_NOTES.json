@@ -1,0 +1,35 @@
+{
+  "first_attempt": "results/water_inputs_fix4_positive_01/summary.json",
+  "first_status": "FAIL",
+  "second_attempt": "results/water_inputs_fix4_positive_02/summary.json",
+  "second_status": "PASS",
+  "product_source_hashes_equal": true,
+  "monitored_product_paths": 128,
+  "first_owned_excel_exited": true,
+  "second_owned_excel_exited": true,
+  "cause": "Test Configure preserved invalid C210/C212/C213/C214/C215 from earlier cases; this correctly failed later valid controls under strict validation.",
+  "resolution": "Test fixture now explicitly resets C209:C223 to known defaults before each case; no product edit and no validation weakening.",
+  "scope": "Pre-final Guard/P4 follow-up source; final complete rerun remains queued.",
+  "cancellation_assertions": {
+    "first_attempt": "results/water_cancel_gamma_final_01/summary.json",
+    "first_status": "FAIL",
+    "corrected": "results/water_cancel_gamma_final_02/summary.json",
+    "corrected_status": "PASS",
+    "product_hashes_equal": true,
+    "both_owned_excel_exited": true,
+    "cause": "Initial assertions required literal K2=False even when no result exists; a direct pre-cancel writer also retains old K2 but sets authoritative PENDING.",
+    "resolution": "Active cancellation requires K2 not True and false convergence. Direct cancelled writer requires PENDING plus actual ordinary consumer rejection with SEEP_RESULT_WRITE_INCOMPLETE, rather than trusting K2 alone.",
+    "observed_direct_cancel": [
+      "",
+      18,
+      "SEEP_ANALYSIS_CANCELLED 浸透解析を中止しました。",
+      false,
+      true,
+      "PENDING",
+      "REJECTED",
+      5,
+      "SEEP_RESULT_WRITE_INCOMPLETE"
+    ]
+  },
+  "final_results": "evidence/WATER_FINAL_RESULTS.json"
+}

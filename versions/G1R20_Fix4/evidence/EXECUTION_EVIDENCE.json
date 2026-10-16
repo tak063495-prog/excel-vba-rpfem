@@ -1,0 +1,352 @@
+{
+  "status": "PASS",
+  "archive": "EXECUTION_EVIDENCE.zip",
+  "bytes": 346652274,
+  "sha256": "0008756f1a598f0f3913faea4c759ebb50e17a01c12e7945e0d9f9351fce6d1a",
+  "members": 6467,
+  "source_file_count": 6466,
+  "member_sha256_and_crc": "PASS",
+  "run_summaries": [
+    {
+      "path": "versions/G1R20_Fix4/results/crash_auto_01/summary.json",
+      "status": "PASS",
+      "sha256": "d77f9c2fac4adcc935de91076446f67a562679858388dff8c84090dfded66f56",
+      "original_owned_excel_exited": true,
+      "later_exit_observation": null
+    },
+    {
+      "path": "versions/G1R20_Fix4/results/crash_auto_quiet_01/summary.json",
+      "status": "PASS",
+      "sha256": "588561e7918d986b4474bc31d2d6f98c700b35408add5a4148b6ce2c7b3c2d7e",
+      "original_owned_excel_exited": true,
+      "later_exit_observation": null
+    },
+    {
+      "path": "versions/G1R20_Fix4/results/final_book_01/delivery/WORKBOOK_VALIDATION.json",
+      "status": "PASS",
+      "sha256": "ecc4aa8b0dd76f39b890e7228ae14486d8c429e9e48e241490fa9bfa0638a0ae"
+    },
+    {
+      "path": "versions/G1R20_Fix4/results/final_book_02/delivery/WORKBOOK_VALIDATION.json",
+      "status": "PASS",
+      "sha256": "f04d09a66d7ce68f139175ced8e6302415b6d3d1e1b81b619169a03bac7a1784"
+    },
+    {
+      "path": "versions/G1R20_Fix4/results/inherited_final_01/summary.json",
+      "status": "FAIL",
+      "sha256": "cf5278d35340d7c5ee4d80ebcfe9189ff7dc01a562e63e7b0875f7c088699f6d",
+      "original_owned_excel_exited": true,
+      "later_exit_observation": null
+    },
+    {
+      "path": "versions/G1R20_Fix4/results/inherited_final_02/summary.json",
+      "status": "PASS",
+      "sha256": "7b7c30ef05527a24d4549cb834c1dc1c1251d7172c46aa951d6b780466df7462",
+      "original_owned_excel_exited": true,
+      "later_exit_observation": null
+    },
+    {
+      "path": "versions/G1R20_Fix4/results/native_abi/summary.json",
+      "status": "PASS",
+      "sha256": "d7a3bdb31b57118856824998ce0eb3b60ca54b82eb6663b6ef2a6b4b8fd86f2e",
+      "scope": "Separate Python FFI process; Excel runs0"
+    },
+    {
+      "path": "versions/G1R20_Fix4/results/owned_excel_1792185646836935100/summary.json",
+      "status": "PASS",
+      "sha256": "c92f76b8c182dd029bc97f8dfe75d2532b3403159289e39cd3597dd91f6b5894",
+      "original_owned_excel_exited": true,
+      "later_exit_observation": null
+    },
+    {
+      "path": "versions/G1R20_Fix4/results/pure_public_positive_01/summary.json",
+      "status": "PASS",
+      "sha256": "6e66f5e85fd22f51dd55c9bb16bb752bf743a8c090cd2d0a9d3f3d6c0e45d76d",
+      "original_owned_excel_exited": true,
+      "later_exit_observation": null
+    },
+    {
+      "path": "versions/G1R20_Fix4/results/saved_revision_positive_01/summary.json",
+      "status": "PASS",
+      "sha256": "f95b9ca34e11b7d29e3a8eb457c4a2acfb129844657d32a8611e0c3cad85b957",
+      "original_owned_excel_exited": true,
+      "later_exit_observation": null
+    },
+    {
+      "path": "versions/G1R20_Fix4/results/seep_state_initial_negative/summary.json",
+      "status": "CONFIRMED_NEGATIVE",
+      "sha256": "79cba6a593a7897b03879d20c591f4110c1f042c71a10643dcdca995b72f95aa",
+      "original_owned_excel_exited": true,
+      "later_exit_observation": null
+    },
+    {
+      "path": "versions/G1R20_Fix4/results/seep_state_positive_01/summary.json",
+      "status": "PASS",
+      "sha256": "1b6557f501ac31da6f19872f461b5cd74496c20c8a20f13185cf0e1c3a8a33fe",
+      "original_owned_excel_exited": true,
+      "later_exit_observation": null
+    },
+    {
+      "path": "versions/G1R20_Fix4/results/seismic_candidate_/1792185516506912600/summary.json",
+      "status": "PASS",
+      "sha256": "28e501a9a30b77e69d55c43917e892d964f8c58f17152b0a8da322fd02915234",
+      "original_owned_excel_exited": true,
+      "later_exit_observation": null
+    },
+    {
+      "path": "versions/G1R20_Fix4/results/seismic_candidate_/1792185537367641200/summary.json",
+      "status": "PASS",
+      "sha256": "3e455ef56fcfac706daba8a1d6ddabc4b662157352eee63d89e8b5cc1e6e8451",
+      "original_owned_excel_exited": true,
+      "later_exit_observation": null
+    },
+    {
+      "path": "versions/G1R20_Fix4/results/seismic_initial_attempts/1792183003529084400/summary.json",
+      "status": "FAIL",
+      "sha256": "dc2eb4655fb15e50df8b7d237b76f6056b25ef10d7f183628fd0c9be1d01ba6f",
+      "original_owned_excel_exited": true,
+      "later_exit_observation": null
+    },
+    {
+      "path": "versions/G1R20_Fix4/results/seismic_initial_attempts/1792183015654003400/summary.json",
+      "status": "FAIL",
+      "sha256": "862415e09bd722125401b33b536d4ed47473f6f7345afb140ed1c3a7f1f53c2a",
+      "original_owned_excel_exited": true,
+      "later_exit_observation": null
+    },
+    {
+      "path": "versions/G1R20_Fix4/results/seismic_initial_attempts/1792183030815040300/summary.json",
+      "status": "PASS",
+      "sha256": "dbac9194b896a19f7c4557e6cb9a3815f46f0102e0842c3a8049fe95a62f8e6d",
+      "original_owned_excel_exited": true,
+      "later_exit_observation": null
+    },
+    {
+      "path": "versions/G1R20_Fix4/results/seismic_negative_/1792183196954712500/summary.json",
+      "status": "PASS",
+      "sha256": "d7ea7254a2aa985e49749ef13393f3b874615b7a518d6b1191fcdb0dbf9383f2",
+      "original_owned_excel_exited": true,
+      "later_exit_observation": null
+    },
+    {
+      "path": "versions/G1R20_Fix4/results/seismic_negative_/1792183363499885000/summary.json",
+      "status": "FAIL",
+      "sha256": "d47148de264183bee90d08a047bf50eefb686f1fd6a50218fd46e013a4091067",
+      "original_owned_excel_exited": true,
+      "later_exit_observation": null
+    },
+    {
+      "path": "versions/G1R20_Fix4/results/seismic_negative_/1792183404854273000/summary.json",
+      "status": "FAIL",
+      "sha256": "d2bb0e652786b6bb1d28c76acf65c05cd6714db488c29a2467c6b2dae0792790",
+      "original_owned_excel_exited": true,
+      "later_exit_observation": null
+    },
+    {
+      "path": "versions/G1R20_Fix4/results/seismic_negative_/1792183427152077600/summary.json",
+      "status": "FAIL",
+      "sha256": "c5b5e9738b5d67588f45e1854f3625aeaf1bcb1bc723c961250ade36cac45dce",
+      "original_owned_excel_exited": true,
+      "later_exit_observation": null
+    },
+    {
+      "path": "versions/G1R20_Fix4/results/seismic_negative_/1792183665675121600/summary.json",
+      "status": "PASS",
+      "sha256": "79f7624b51030848bc1256ab56d8801ed9404641e7b7767f4b623da4010bcbf7",
+      "original_owned_excel_exited": true,
+      "later_exit_observation": null
+    },
+    {
+      "path": "versions/G1R20_Fix4/results/seismic_negative_/1792183690937194400/summary.json",
+      "status": "FAIL",
+      "sha256": "d8b8867a716dc05eda355e966163a803285f2043a0c90ec216cf79326e4fc881",
+      "original_owned_excel_exited": true,
+      "later_exit_observation": null
+    },
+    {
+      "path": "versions/G1R20_Fix4/results/seismic_negative_/1792183772543388000/summary.json",
+      "status": "PASS",
+      "sha256": "c9532e6b456e4345792e8fffd74e07d9f9bfd2bf7664601d34cfd6a40567607f",
+      "original_owned_excel_exited": true,
+      "later_exit_observation": null
+    },
+    {
+      "path": "versions/G1R20_Fix4/results/settings_extent_negative_01/summary.json",
+      "status": "FAIL",
+      "sha256": "3793ced87e16a507f85b64d0282a8fb0dabdc2bcd10637e5512dec614f37a8fa",
+      "original_owned_excel_exited": true,
+      "later_exit_observation": null
+    },
+    {
+      "path": "versions/G1R20_Fix4/results/settings_extent_positive_01/summary.json",
+      "status": "FAIL",
+      "sha256": "ab77f5bc57e8468bfe766de42dae52eca538dfd8ac028c4a7bdcbfac3b40a62b",
+      "original_owned_excel_exited": false,
+      "later_exit_observation": {
+        "observed_utc": "2026-10-16T21:17:48.770677+00:00",
+        "note": "Read-only post-run ownership check; original FAIL summary and session flags are unchanged. No process was terminated by this check.",
+        "sessions": [
+          {
+            "pid": 22184,
+            "birth": 1792185385.9294534,
+            "creation_time": 1792185385.9294534,
+            "command_line": [
+              "C:\\Program Files\\Microsoft Office\\Root\\Office16\\EXCEL.EXE",
+              "/automation",
+              "-Embedding"
+            ],
+            "original_owner_exited": true,
+            "original_owned_excel_exited": true,
+            "process_present": false,
+            "owned_excel_exited": true,
+            "post_run_owned_excel_exited": true
+          },
+          {
+            "pid": 18876,
+            "birth": 1792185392.5674014,
+            "creation_time": 1792185392.5674014,
+            "command_line": [
+              "C:\\Program Files\\Microsoft Office\\Root\\Office16\\EXCEL.EXE",
+              "/automation",
+              "-Embedding"
+            ],
+            "original_owner_exited": true,
+            "original_owned_excel_exited": true,
+            "process_present": false,
+            "owned_excel_exited": true,
+            "post_run_owned_excel_exited": true
+          },
+          {
+            "pid": 8248,
+            "birth": 1792185399.7956197,
+            "creation_time": 1792185399.7956197,
+            "command_line": [
+              "C:\\Program Files\\Microsoft Office\\Root\\Office16\\EXCEL.EXE",
+              "/automation",
+              "-Embedding"
+            ],
+            "original_owner_exited": false,
+            "original_owned_excel_exited": false,
+            "process_present": false,
+            "owned_excel_exited": true,
+            "post_run_owned_excel_exited": true
+          }
+        ],
+        "excel_processes_present": []
+      }
+    },
+    {
+      "path": "versions/G1R20_Fix4/results/settings_extent_positive_02/summary.json",
+      "status": "PASS",
+      "sha256": "65baeacfd92cdc8faa1b82c15060783daf7c3e9d2a6f22e58428a51cf7cffcb3",
+      "original_owned_excel_exited": true,
+      "later_exit_observation": null
+    },
+    {
+      "path": "versions/G1R20_Fix4/results/settings_initial_negative/summary.json",
+      "status": "COMPLETED_MATRIX",
+      "sha256": "93f07a4cf826d410a74bf349b29e14efdbf32c29388425465e940cd87eb7e8e9",
+      "original_owned_excel_exited": true,
+      "later_exit_observation": null
+    },
+    {
+      "path": "versions/G1R20_Fix4/results/settings_missing_negative/summary.json",
+      "status": "COMPLETED_MATRIX",
+      "sha256": "76de68e8d8f2ce8c7f55afde372d06d8021f7b2dc8a186f641ff084fee85fe4b",
+      "original_owned_excel_exited": true,
+      "later_exit_observation": null
+    },
+    {
+      "path": "versions/G1R20_Fix4/results/settings_positive_01/summary.json",
+      "status": "PASS",
+      "sha256": "2b79a794ea9b34a580b4289d7c73713654086c360dc85f92c8d2b640dc32c994",
+      "original_owned_excel_exited": true,
+      "later_exit_observation": null
+    },
+    {
+      "path": "versions/G1R20_Fix4/results/water_cancel_gamma_final_01/summary.json",
+      "status": "FAIL",
+      "sha256": "dca7597c13fd230bb5ceeb925a1abd169fce954648490188f8bbd788a09b4bbc",
+      "original_owned_excel_exited": true,
+      "later_exit_observation": null
+    },
+    {
+      "path": "versions/G1R20_Fix4/results/water_cancel_gamma_final_02/summary.json",
+      "status": "PASS",
+      "sha256": "0c073d025681c5c038694285a36c74b2055e87967e2a0db716c52c7c06cddbfd",
+      "original_owned_excel_exited": true,
+      "later_exit_observation": null
+    },
+    {
+      "path": "versions/G1R20_Fix4/results/water_fix3_negative_01/summary.json",
+      "status": "REVIEW_OBSERVED",
+      "sha256": "760f7d077ff948c3a6d20cf5fe2b9d1f697ae0863c212af31da75b837b3420c2",
+      "original_owned_excel_exited": true,
+      "later_exit_observation": null
+    },
+    {
+      "path": "versions/G1R20_Fix4/results/water_inputs_fix3_isolated_negative_02/summary.json",
+      "status": "CONFIRMED_NEGATIVE",
+      "sha256": "6041842bb6c37f71c9141d0d9de8385294c1b4be00777177b8d198e29d28e972",
+      "original_owned_excel_exited": true,
+      "later_exit_observation": null
+    },
+    {
+      "path": "versions/G1R20_Fix4/results/water_inputs_fix3_negative_01/summary.json",
+      "status": "CONFIRMED_NEGATIVE",
+      "sha256": "8f94dba9cb0e228636f5bb2268911c674c2540e7f6dcc65bc31515ae9d30872a",
+      "original_owned_excel_exited": true,
+      "later_exit_observation": null
+    },
+    {
+      "path": "versions/G1R20_Fix4/results/water_inputs_fix4_final_01/summary.json",
+      "status": "PASS",
+      "sha256": "f3873c07f1704b8a7c093d36dc8e28540b28234d6c21fcdccce0f6a21eb8f1a7",
+      "original_owned_excel_exited": true,
+      "later_exit_observation": null
+    },
+    {
+      "path": "versions/G1R20_Fix4/results/water_inputs_fix4_positive_01/summary.json",
+      "status": "FAIL",
+      "sha256": "2be7cdda9a69446eb9308a413d211b6e760d19f7b4d3ecc429d5cf705e42b205",
+      "original_owned_excel_exited": true,
+      "later_exit_observation": null
+    },
+    {
+      "path": "versions/G1R20_Fix4/results/water_inputs_fix4_positive_02/summary.json",
+      "status": "PASS",
+      "sha256": "3d964b60226452e2c5281a60deb1c199a1e56f9b4d61710333dc094e10b54432",
+      "original_owned_excel_exited": true,
+      "later_exit_observation": null
+    },
+    {
+      "path": "versions/G1R20_Fix4/results/water_inverse_budget_final_01/summary.json",
+      "status": "PASS",
+      "sha256": "d635dd2c0e881eaef22ae7276b97ee5570ebdd2833347d882b4531261ac5168a",
+      "original_owned_excel_exited": true,
+      "later_exit_observation": null
+    },
+    {
+      "path": "versions/G1R20_Fix4/results/water_inverse_budget_fix3_negative_01/summary.json",
+      "status": "CONFIRMED_NEGATIVE",
+      "sha256": "0038a96c8c882aedc6d647d491e3da1eda13b633105096392dd207ed2bd19e31",
+      "original_owned_excel_exited": true,
+      "later_exit_observation": null
+    },
+    {
+      "path": "versions/G1R20_Fix4/results/water_native_fixed_1792186131557879300/summary.json",
+      "status": "PASS",
+      "sha256": "f50015ad22f3fa0e3bacd579499894063a6882a2d032f7e90f610ca3f77faec1",
+      "original_owned_excel_exited": true,
+      "later_exit_observation": null
+    },
+    {
+      "path": "versions/G1R20_Fix4/results/water_transitions_final_01/summary.json",
+      "status": "PASS",
+      "sha256": "4837acc38b12126d859e03140d3bcbf897949f33d6ecbf4b204c3344581e845b",
+      "original_owned_excel_exited": true,
+      "later_exit_observation": null
+    }
+  ],
+  "scope": "Owned-test source snapshots, configured copies, raw fields and logs; no original G1R20 evidence replaced"
+}

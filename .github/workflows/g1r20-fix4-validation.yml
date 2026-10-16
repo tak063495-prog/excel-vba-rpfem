@@ -1,0 +1,33 @@
+name: G1R20 Fix4 regression
+on:
+  pull_request:
+    paths:
+      - 'versions/G1R20_Fix4/**'
+      - '.github/workflows/g1r20-fix4-validation.yml'
+  workflow_dispatch:
+jobs:
+  source-workbook-and-regression:
+    runs-on: ubuntu-latest
+    env:
+      OPENBLAS_NUM_THREADS: '1'
+      OMP_NUM_THREADS: '1'
+      MKL_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Install numerical reference and saved-source reader
+        run: |
+          python -X utf8 -m pip install -r validation/accuracy_20261013/requirements.txt
+          python -X utf8 -m pip install oletools==0.60.2 psutil==7.2.2
+      - name: Verify the changed input and state modules and single-DLL distribution
+        run: python -X utf8 versions/G1R20_Fix4/tools/check_release_sources.py --require-delivery
+      - name: Independently extract 63 saved standard modules and ThisWorkbook
+        run: python -X utf8 versions/G1R20_Fix4/tools/audit_book_sources.py versions/G1R20_Fix4
+      - name: Run portable regression controls
+        run: python -X utf8 versions/G1R20_Fix4/tests/run_portable_regression.py --output "$RUNNER_TEMP/fix4_portable.json"
+      - name: Reject late harness failures and invalid execution records
+        run: python -X utf8 versions/G1R20_Fix4/tests/run_final_record_checks.py --output "$RUNNER_TEMP/fix4_record_checks.json"
+      - name: Verify evidence ownership and later-exit observations
+        run: python -X utf8 versions/G1R20_Fix4/tests/run_evidence_packager_checks.py --output "$RUNNER_TEMP/fix4_packager_checks.json"
