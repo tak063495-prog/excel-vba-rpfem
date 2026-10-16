@@ -10,6 +10,7 @@ import csv
 import hashlib
 import json
 import math
+from evidence_provenance import verify_source_provenance
 
 ROOT = Path(__file__).resolve().parent
 REPO = ROOT.parents[1]
@@ -29,8 +30,8 @@ def validate(audit_path, summary_path, case):
         raise ValueError('Case identity differs')
     if not audit.get('target_met') or not audit.get('root_complete'):
         raise ValueError('Independent audit does not certify the target and both roots')
-    if not summary.get('target_met') or not summary.get('source_unchanged'):
-        raise ValueError('The producer did not finish with unchanged sources and the target')
+    if not summary.get('source_unchanged'):
+        raise ValueError('The producer did not verify unchanged sources')
     lower, upper = audit['lower_fs'], audit['upper_fs']
     if not all(math.isfinite(v) for v in (lower, upper)) or not 0 < lower <= upper:
         raise ValueError('Nonfinite, reversed or nonpositive bounds')
@@ -72,18 +73,81 @@ def validate(audit_path, summary_path, case):
         if read(verification).get('status') != 'PASS':
             raise ValueError('Common-load geometry verification failed')
     rounded = [str(Decimal(str(v)).quantize(Decimal('.01'), rounding=ROUND_HALF_UP)) for v in (lower, upper)]
+    provenance = verify_source_provenance(summary_path, case, repo=REPO, audit=audit)
     return dict(lower_fs=lower, upper_fs=upper, gap_percent=gap*100,
                 lower_elements=audit['sides']['lower']['elements'],
                 upper_elements=audit['sides']['upper']['elements'],
                 physical_model_id=models[0], lower_rounded_2dp=rounded[0],
                 upper_rounded_2dp=rounded[1], rounded_2dp_agree=rounded[0] == rounded[1],
+                producer_target_met=bool(summary.get('target_met')),
+                provenance=provenance,
                 audit=relative(audit_path), summary=relative(summary_path))
+
+
+def supervised_attempts(batch):
+    """Read a cold retry supervisor without treating checkpoints as passes."""
+    owner = read(batch/'OWNERSHIP.json')
+    for case, job in owner['cases'].items():
+        folder = Path(job['folder'])
+        summary_path = folder/'summary.json'
+        summary = read(summary_path) if summary_path.exists() else {}
+        lower, upper = summary.get('lower') or {}, summary.get('upper') or {}
+        seeded = summary.get('execution_scope', {}).get('saved_witness_seed_requested')
+        continuation = (summary.get('attempt_kind') == 'continuation'
+                        or '--prior-run' in job.get('command', []))
+        kind = 'continuation' if continuation else 'unclassified_seeded' if seeded else 'fresh_cold'
+        process_seconds = (job['finished_epoch']-job['started_epoch'] if 'finished_epoch' in job else None)
+        attempt = dict(case=case, version=batch.parent.parent.name, kind=kind,
+                       selected=False, verified=False, cold_execution_verified=False, batch=relative(batch),
+                       status=summary.get('status', job.get('phase', 'RUNNING')),
+                       process_exit_code=job.get('returncode'),
+                       audit_exit_code=job.get('audit_returncode'),
+                       lower_fs=lower.get('fs'), upper_fs=upper.get('fs'),
+                       gap_percent=(100*summary['relative_width_symmetric']
+                                    if summary.get('relative_width_symmetric') is not None else None),
+                       seconds=(summary.get('cold_cumulative_seconds') if continuation else process_seconds),
+                       process_seconds=process_seconds,
+                       adopted_path_seconds=summary.get('adopted_path_seconds'),
+                       all_current_session_trial_seconds=summary.get('all_current_session_trial_seconds'),
+                       timing_scope=('Fresh predecessor plus continuation; discarded trials separately recorded'
+                                     if continuation else 'Python process wall time; native mesh generation excluded'))
+        if owner.get('status') == 'FINISHED' and job.get('phase') == 'FINISHED':
+            if job.get('returncode') != 0:
+                attempt['status'] = 'INTERRUPTED'
+            elif attempt['status'] == 'RUNNING':
+                attempt['status'] = 'GAP_NOT_MET'
+        elif job.get('phase') in ('SOLVER_EXITED', 'AUDITING'):
+            attempt['status'] = 'AUDITING'
+        # Both the supervisor and its independent auditor must have finished.
+        # A physically valid intermediate checkpoint is never a completed run.
+        if owner.get('status') == 'FINISHED' and job.get('phase') == 'FINISHED' and summary.get('target_met'):
+            try:
+                if kind == 'unclassified_seeded':
+                    raise ValueError('A supervised seed lacks an identified fresh predecessor')
+                if job.get('returncode') != 0 or job.get('audit_returncode') != 0:
+                    raise ValueError('Solver or independent audit did not exit successfully')
+                before = owner.get('source_sha256', {})
+                if not before or not owner.get('source_unchanged') or before != owner.get('source_sha256_after'):
+                    raise ValueError('Supervisor did not verify unchanged numerical sources')
+                for name, expected in before.items():
+                    path = Path(name).resolve()
+                    if not path.is_relative_to(REPO.resolve()) or hashlib.sha256(path.read_bytes()).hexdigest() != expected:
+                        raise ValueError('A supervised numerical source changed')
+                attempt.update(validate(Path(job['independent_audit']), summary_path, case),
+                               status='VERIFIED_PAIR_CONTINUATION' if continuation else 'PASS',
+                               verified=True, cold_execution_verified=not continuation)
+            except (KeyError, ValueError, OSError) as error:
+                attempt.update(status='EVIDENCE_REJECTED', error=str(error))
+        elif owner.get('status') in ('ERROR', 'SOURCE_CHANGED'):
+            attempt.update(status='EVIDENCE_REJECTED', error='Supervisor '+owner['status'])
+        yield attempt
 
 
 def main():
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument('--batch', type=Path, required=True)
     ap.add_argument('--additional-batch', type=Path, action='append', default=[])
+    ap.add_argument('--supervised-batch', type=Path, action='append', default=[])
     ap.add_argument('--retries', type=Path, default=ROOT/'COLD_RETRIES.json')
     ap.add_argument('--output', type=Path, default=ROOT)
     args = ap.parse_args()
@@ -100,23 +164,37 @@ def main():
                 raise ValueError('An additional batch contains a case outside the 26-case catalog')
             attempt = dict(case=case, version=version, status=record['status'], seconds=record.get('seconds'),
                            kind='fresh_cold', selected=False, process_exit_code=record.get('returncode'),
+                           cold_execution_verified=False,
                            lower_fs=record.get('lower_fs'), upper_fs=record.get('upper_fs'),
                            gap_percent=record.get('gap_percent'), batch=relative(batch))
-            if record['status'] == 'PASS' and record.get('returncode') == 0:
+            if record['status'] in ('PASS', 'VERIFIED_PAIR_AFTER_INTERRUPTION'):
                 try:
                     attempt.update(validate(batch/f'{case}_independent_audit.json',
-                                            batch/'cases'/case/'summary.json', case), status='PASS', verified=True)
+                                            batch/'cases'/case/'summary.json', case), verified=True)
+                    attempt['cold_execution_verified'] = (record['status'] == 'PASS'
+                        and record.get('returncode') == 0 and attempt['producer_target_met'])
                 except (KeyError, ValueError, OSError) as error:
                     attempt.update(status='EVIDENCE_REJECTED', verified=False, error=str(error))
             else:
                 attempt['verified'] = False
             attempts.append(attempt)
+    for batch in args.supervised_batch:
+        for attempt in supervised_attempts(batch):
+            if attempt['case'] not in rows:
+                raise ValueError('A supervised retry contains a case outside the 26-case catalog')
+            attempts.append(attempt)
     if args.retries.exists():
         for record in read(args.retries):
-            attempt = dict(record, kind='fresh_cold', selected=False, verified=False)
+            attempt = dict(record, selected=False, verified=False, cold_execution_verified=False)
+            attempt.setdefault('kind', 'fresh_cold')
             try:
                 attempt.update(validate(REPO/record['audit'], REPO/record['summary'], record['case']),
-                               status='PASS', verified=True)
+                               verified=True)
+                attempt['cold_execution_verified'] = (record.get('process_exit_code') == 0
+                    and attempt['producer_target_met'] and attempt['kind'] == 'fresh_cold')
+                attempt['status'] = ('PASS' if attempt['cold_execution_verified'] else
+                    'VERIFIED_PAIR_EXIT_UNRECORDED' if record.get('process_exit_code') is None else
+                    'VERIFIED_PAIR_AFTER_INTERRUPTION')
             except (KeyError, ValueError, OSError) as error:
                 attempt.update(status='EVIDENCE_REJECTED', error=str(error))
             attempts.append(attempt)
@@ -126,24 +204,30 @@ def main():
         if attempt['verified'] or not row['verified']:
             row.update({k:v for k,v in attempt.items() if k not in ('attempts', 'selected')})
     for row in rows.values():
+        row['scientific_pair_verified'] = row['verified']
+        row['cold_execution_verified'] = any(a.get('cold_execution_verified', False) for a in row['attempts'])
         for attempt in reversed(row['attempts']):
             if attempt['version'] == row.get('version'):
                 attempt['selected'] = True
                 break
     count = sum(r['verified'] for r in rows.values())
-    report = dict(scope='All 26 catalog cases; fresh cold attempts only; no historical replay counted',
+    completed = sum(r['cold_execution_verified'] for r in rows.values())
+    report = dict(scope='All 26 catalog cases; fresh solves and explicitly labelled continuations; no historical replay counted',
                   verified_cases=count, expected_cases=len(rows), all_26_verified=count == len(rows),
+                  completed_cold_runs=completed, all_26_cold_runs_completed=completed == len(rows),
+                  completion_note='A reassembled physical pair with completed own roots can be scientifically verified after a timeout; that does not establish normal cold-run completion or a captured successful worker exit',
                   target='2*(upper-lower)/(upper+lower) <= 0.02 plus original q8 physical gates and own roots',
                   rounding_note='ROUND_HALF_UP at two decimal places is a separate display check, not a stop target',
                   cases=list(rows.values()))
     args.output.mkdir(parents=True, exist_ok=True)
     (args.output/'CURRENT_RESULTS.json').write_text(json.dumps(report, indent=2, ensure_ascii=False)+'\n', encoding='utf8')
-    fields = ['case','status','verified','version','seconds','lower_fs','upper_fs','gap_percent',
+    fields = ['case','status','verified','scientific_pair_verified','cold_execution_verified','version','kind','seconds','process_seconds',
+              'adopted_path_seconds','all_current_session_trial_seconds','lower_fs','upper_fs','gap_percent',
               'lower_elements','upper_elements','lower_rounded_2dp','upper_rounded_2dp','rounded_2dp_agree','audit']
     with (args.output/'CURRENT_RESULTS.csv').open('w', encoding='utf8', newline='') as stream:
         writer = csv.DictWriter(stream, fieldnames=fields, extrasaction='ignore')
         writer.writeheader(); writer.writerows(rows.values())
-    print(f'{count}/{len(rows)} fresh cold pairs independently verified at GAP <= 2%')
+    print(f'{count}/{len(rows)} fresh physical pairs independently verified at GAP <= 2%; {completed}/{len(rows)} normal cold executions verified')
     for row in rows.values():
         if row['status'] != 'PENDING':
             print(row['case'], row['status'], row.get('version'), row.get('gap_percent'))

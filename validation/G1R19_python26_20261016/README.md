@@ -34,3 +34,13 @@ G1R19のVBA側で見つかった差分と修正後の実Excel結果は、別途�
 別版で新規再計算したケースは `COLD_RETRIES.json` に明示して追加し、最初の失敗行も履歴に残す。
 集計時には独立監査が参照した全入力・mesh・場のSHAも再照合する。
 過去の16保存済みペアの再監査は `EXISTING_SAVED_16_REAUDIT.json` に別記し、26新規計算には数えない。
+
+原因調査と確認済みの修正結果は [CURRENT_FINDINGS_JA.md](CURRENT_FINDINGS_JA.md)。
+別のsupervisorが管理する新規実験は `--supervised-batch PATH` で集計できる。
+supervisor・solver・独立監査の正常終了、sourceの開始/終了/現在SHA一致を確認し、
+途中checkpointの幅が2%でも正常完了には数えない。
+
+表は `scientific_pair_verified`（保存対を別プロセスで元式・両自己根まで確認）と
+`cold_execution_verified`（初期状態からのdriverも正常終了）を区別する。
+前者だけがtrueの場合、時間切れ・worker終了コード未記録などの理由をstatusに残す。
+この場合はGAP到達の証拠にはなるが、規定時間内の正常完了や本番での速度を保証しない。
