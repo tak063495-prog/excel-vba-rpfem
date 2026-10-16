@@ -1,0 +1,13 @@
+{
+  "status": "PASS",
+  "version": "G1R20_Fix1",
+  "archive": "RPFEM_20261017_G1R20_Fix1.zip",
+  "bytes": 3519630,
+  "sha256": "5bfc16a4263ee8689a5e1e2e00b9923373870753551cd81bd5af03446372b52b",
+  "member_count": 177,
+  "runtime_dll_count": 1,
+  "source_module_count": 63,
+  "workbook_sha256": "aba4481062b8898d99873a92bd78ac3dc84513c5b1f6e66488f19c89eff3675c",
+  "member_sha256_and_crc": "PASS",
+  "p06_native_cold_completion_claimed": false
+}

@@ -1,0 +1,28 @@
+{
+  "status": "PASS",
+  "exit_code": 0,
+  "tests": 11,
+  "solver_calls": 0,
+  "excel_runs": 0,
+  "scope": "Historical, unchanged P06 composite proof controls in the original evidence workspace; separate from the 97 portable Fix1 controls",
+  "record_kind": "Post-execution receipt from observed exec_command output; process start/end not captured",
+  "command": [
+    "D:/Work/rpfem-venv/Scripts/python.exe",
+    "-X",
+    "utf8",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "validation/G1R19_python26_20261016",
+    "-p",
+    "test_composite_provenance.py"
+  ],
+  "cwd": "D:\\Work\\excel-vba-rpfem",
+  "test_sha256": "c844e3b73a99a433f11090ddac6475dbda5b766c8e86a449feb73cca44255c16",
+  "stdout": "",
+  "stderr": "...........\n----------------------------------------------------------------------\nRan 11 tests in 2.541s\n\nOK\n",
+  "portable_limit": "These historical tests require absolute-path raw artifacts distributed in the original G1R20 evidence ZIP; a clean source checkout alone is insufficient. Initial failure is retained in portable_initial_fail.json.",
+  "started_epoch": null,
+  "finished_epoch": null
+}

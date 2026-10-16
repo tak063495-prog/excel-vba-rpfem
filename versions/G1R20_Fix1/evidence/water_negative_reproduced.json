@@ -1,0 +1,40 @@
+{
+  "status": "CONFIRMED_MICRO",
+  "solver_calls": 0,
+  "scope": "Public mode1 prescribed producer/cache micro only; no long limit run",
+  "source_sha256_before": {
+    "D:\\Work\\rpfem-g20-fix1-20261017\\versions\\G1R20\\delivery\\RPFEM_20261016_G1R20.xlsm": "5f3812b456b42d5b9d9989caf68a7b6a6257f0ce6ebe94add1abb363f63f9ee1",
+    "D:\\Work\\rpfem-g20-fix1-20261017\\versions\\G1R20_Fix1\\tests\\water_negative_control.bas": "68e40dfdfa1ac58e5839e4839d7d7cc7333512f4978ee8dd96cbe9c262315e20",
+    "D:\\Work\\rpfem-g20-fix1-20261017\\versions\\G1R20\\delivery\\rpfem_native_x64.dll": "66da1a21be43cd2b3a3bfbaa9d13aad5fb1fd1960e1bf2507cc4e1cfa9ebe70b"
+  },
+  "python": {
+    "pid": 12436,
+    "create_time": 1792177809.710356,
+    "cmdline": [
+      "D:\\Work\\rpfem-venv\\Scripts\\python.exe",
+      "-X",
+      "utf8",
+      "versions/G1R20_Fix1/tests/run_water_negative_control.py"
+    ]
+  },
+  "dialogs": [],
+  "excel": {
+    "pid": 4648,
+    "create_time": 1792177809.9066527,
+    "cmdline": [
+      "C:\\Program Files\\Microsoft Office\\Root\\Office16\\EXCEL.EXE",
+      "/automation",
+      "-Embedding"
+    ],
+    "exe": "C:\\Program Files\\Microsoft Office\\root\\Office16\\EXCEL.EXE"
+  },
+  "compile": "PASS",
+  "result": "REPRODUCED_STALE_HEAD solver0;natural_ID_collision=1;attempt=1;seconds=0.0439453125;K9_first=20261017041014-4-2;K9_second=20261017041014-4-2;first_head=2;second_expected=1.175;second_observed=2;first_body_x=0;second_body_x=0;expected_body_x=-4.905;sheet_D2=1;K2=True",
+  "owned_excel_exited": true,
+  "source_sha256_after": {
+    "D:\\Work\\rpfem-g20-fix1-20261017\\versions\\G1R20\\delivery\\RPFEM_20261016_G1R20.xlsm": "5f3812b456b42d5b9d9989caf68a7b6a6257f0ce6ebe94add1abb363f63f9ee1",
+    "D:\\Work\\rpfem-g20-fix1-20261017\\versions\\G1R20_Fix1\\tests\\water_negative_control.bas": "68e40dfdfa1ac58e5839e4839d7d7cc7333512f4978ee8dd96cbe9c262315e20",
+    "D:\\Work\\rpfem-g20-fix1-20261017\\versions\\G1R20\\delivery\\rpfem_native_x64.dll": "66da1a21be43cd2b3a3bfbaa9d13aad5fb1fd1960e1bf2507cc4e1cfa9ebe70b"
+  },
+  "production_unchanged": true
+}

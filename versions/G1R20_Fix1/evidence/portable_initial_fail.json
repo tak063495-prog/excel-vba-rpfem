@@ -1,0 +1,236 @@
+{
+  "status": "FAIL",
+  "solver_calls": 0,
+  "excel_runs": 0,
+  "scope": "Portable source and rejection contracts; not fresh numerical solves",
+  "suites": [
+    {
+      "suite": "fix1_ui",
+      "command": [
+        "D:\\Work\\rpfem-venv\\Scripts\\python.exe",
+        "-X",
+        "utf8",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "versions/G1R20_Fix1/tests",
+        "-p",
+        "UI_test_contract.py"
+      ],
+      "exit_code": 0,
+      "seconds": 0.20032720000017434,
+      "stdout": "",
+      "stderr": ".....\n----------------------------------------------------------------------\nRan 5 tests in 0.004s\n\nOK\n"
+    },
+    {
+      "suite": "fix1_water",
+      "command": [
+        "D:\\Work\\rpfem-venv\\Scripts\\python.exe",
+        "-X",
+        "utf8",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "versions/G1R20_Fix1/tests",
+        "-p",
+        "test_contract_water.py"
+      ],
+      "exit_code": 0,
+      "seconds": 0.2088579999981448,
+      "stdout": "",
+      "stderr": ".......\n----------------------------------------------------------------------\nRan 7 tests in 0.013s\n\nOK\n"
+    },
+    {
+      "suite": "fix1_scope",
+      "command": [
+        "D:\\Work\\rpfem-venv\\Scripts\\python.exe",
+        "-X",
+        "utf8",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "versions/G1R20_Fix1/tests",
+        "-p",
+        "test_release_scope.py"
+      ],
+      "exit_code": 0,
+      "seconds": 0.23971500000334345,
+      "stdout": "",
+      "stderr": "...\n----------------------------------------------------------------------\nRan 3 tests in 0.036s\n\nOK\n"
+    },
+    {
+      "suite": "dual",
+      "command": [
+        "D:\\Work\\rpfem-venv\\Scripts\\python.exe",
+        "-X",
+        "utf8",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "versions/G1R19_DualRepair_20261016/tests",
+        "-p",
+        "test_contract.py"
+      ],
+      "exit_code": 0,
+      "seconds": 0.3868052999896463,
+      "stdout": "",
+      "stderr": ".........\n----------------------------------------------------------------------\nRan 9 tests in 0.148s\n\nOK\n"
+    },
+    {
+      "suite": "terminal",
+      "command": [
+        "D:\\Work\\rpfem-venv\\Scripts\\python.exe",
+        "-X",
+        "utf8",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "versions/G1R19_TerminalRoot_20261016/tests",
+        "-p",
+        "test_contract.py"
+      ],
+      "exit_code": 0,
+      "seconds": 0.4274773000215646,
+      "stdout": "",
+      "stderr": "........\n----------------------------------------------------------------------\nRan 8 tests in 0.176s\n\nOK\n"
+    },
+    {
+      "suite": "upper",
+      "command": [
+        "D:\\Work\\rpfem-venv\\Scripts\\python.exe",
+        "-X",
+        "utf8",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "versions/G1R19_UpperRecovery_20261016/tests",
+        "-p",
+        "test_contract.py"
+      ],
+      "exit_code": 0,
+      "seconds": 0.3250525000039488,
+      "stdout": "",
+      "stderr": "..........\n----------------------------------------------------------------------\nRan 10 tests in 0.066s\n\nOK\n"
+    },
+    {
+      "suite": "water",
+      "command": [
+        "D:\\Work\\rpfem-venv\\Scripts\\python.exe",
+        "-X",
+        "utf8",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "versions/G1R19_WaterCommon_20261016/tests",
+        "-p",
+        "test_*.py"
+      ],
+      "exit_code": 0,
+      "seconds": 0.7051796999876387,
+      "stdout": "",
+      "stderr": ".....................\n----------------------------------------------------------------------\nRan 21 tests in 0.249s\n\nOK\n"
+    },
+    {
+      "suite": "state",
+      "command": [
+        "D:\\Work\\rpfem-venv\\Scripts\\python.exe",
+        "-X",
+        "utf8",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "versions/G1R19_StateReset_20261016/tests",
+        "-p",
+        "test_contract.py"
+      ],
+      "exit_code": 0,
+      "seconds": 4.3241153999988455,
+      "stdout": "",
+      "stderr": "..........\n----------------------------------------------------------------------\nRan 10 tests in 4.093s\n\nOK\n"
+    },
+    {
+      "suite": "flow",
+      "command": [
+        "D:\\Work\\rpfem-venv\\Scripts\\python.exe",
+        "-X",
+        "utf8",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "versions/G1R19_FlowMesh_20261016/tests",
+        "-p",
+        "test_contract.py"
+      ],
+      "exit_code": 0,
+      "seconds": 1.2806967000069562,
+      "stdout": "",
+      "stderr": "....\n----------------------------------------------------------------------\nRan 4 tests in 0.292s\n\nOK\n"
+    },
+    {
+      "suite": "collector",
+      "command": [
+        "D:\\Work\\rpfem-venv\\Scripts\\python.exe",
+        "-X",
+        "utf8",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "validation/G1R19_python26_20261016",
+        "-p",
+        "test_collector.py"
+      ],
+      "exit_code": 0,
+      "seconds": 0.5865563999977894,
+      "stdout": "",
+      "stderr": ".........\n----------------------------------------------------------------------\nRan 9 tests in 0.193s\n\nOK\n"
+    },
+    {
+      "suite": "provenance",
+      "command": [
+        "D:\\Work\\rpfem-venv\\Scripts\\python.exe",
+        "-X",
+        "utf8",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "validation/G1R19_python26_20261016",
+        "-p",
+        "test_evidence_provenance.py"
+      ],
+      "exit_code": 0,
+      "seconds": 0.9089065000007395,
+      "stdout": "",
+      "stderr": "...........\n----------------------------------------------------------------------\nRan 11 tests in 0.673s\n\nOK\n"
+    },
+    {
+      "suite": "composite",
+      "command": [
+        "D:\\Work\\rpfem-venv\\Scripts\\python.exe",
+        "-X",
+        "utf8",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "validation/G1R19_python26_20261016",
+        "-p",
+        "test_composite_provenance.py"
+      ],
+      "exit_code": 1,
+      "seconds": 0.8533986000111327,
+      "stdout": "",
+      "stderr": "F.F.FEFFFFE\n======================================================================\nERROR: test_real_components_pass_without_cold_claim (test_composite_provenance.CompositeEvidenceTests.test_real_components_pass_without_cold_claim)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"D:\\Work\\rpfem-g20-fix1-20261017\\validation\\G1R19_python26_20261016\\test_composite_provenance.py\", line 26, in test_real_components_pass_without_cold_claim\n    result = self.run_proof()\n  File \"D:\\Work\\rpfem-g20-fix1-20261017\\validation\\G1R19_python26_20261016\\test_composite_provenance.py\", line 23, in run_proof\n    return proof.verify_composite_provenance(PAIR/'summary.json', 'P06A', audit=audit)\n           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"D:\\Work\\rpfem-g20-fix1-20261017\\validation\\G1R19_python26_20261016\\composite_provenance.py\", line 191, in verify_composite_provenance\n    run = inside(component['run'], repo)\n  File \"D:\\Work\\rpfem-g20-fix1-20261017\\validation\\G1R19_python26_20261016\\evidence_provenance.py\", line 50, in inside\n    require(path.is_relative_to(repo), 'Provenance file is outside the repository: ' + str(name))\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"D:\\Work\\rpfem-g20-fix1-20261017\\validation\\G1R19_python26_20261016\\evidence_provenance.py\", line 22, in require\n    raise ValueError(message)\nValueError: Provenance file is outside the repository: D:\\Work\\excel-vba-rpfem\\validation\\G1R19_python26_known_recipes_20261016\\results\\known_recipes_20261016T121215Z\n\n======================================================================\nERROR: test_real_unowned_repair_does_not_become_cold_run (test_composite_provenance.UnownedRepairEvidenceTests.test_real_unowned_repair_does_not_become_cold_run)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"D:\\Work\\rpfem-g20-fix1-20261017\\validation\\G1R19_python26_20261016\\test_composite_provenance.py\", line 87, in test_real_unowned_repair_does_not_become_cold_run\n    result = self.run_proof()\n  File \"D:\\Work\\rpfem-g20-fix1-20261017\\validation\\G1R19_python26_20261016\\test_composite_provenance.py\", line 84, in run_proof\n    return proof.verify_composite_provenance(NPAIR/'summary.json', 'P06N', audit=audit)\n           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"D:\\Work\\rpfem-g20-fix1-20261017\\validation\\G1R19_python26_20261016\\composite_provenance.py\", line 191, in verify_composite_provenance\n    run = inside(component['run'], repo)\n  File \"D:\\Work\\rpfem-g20-fix1-20261017\\validation\\G1R19_python26_20261016\\evidence_provenance.py\", line 50, in inside\n    require(path.is_relative_to(repo), 'Provenance file is outside the repository: ' + str(name))\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"D:\\Work\\rpfem-g20-fix1-20261017\\validation\\G1R19_python26_20261016\\evidence_provenance.py\", line 22, in require\n    raise ValueError(message)\nValueError: Provenance file is outside the repository: D:\\Work\\excel-vba-rpfem\\validation\\G1R19_python26_geometry_replay_20261016\\results\\known_lower_20261016T122636Z\n\n======================================================================\nFAIL: test_actual_supervisor_exit_mismatch_rejected (test_composite_provenance.CompositeEvidenceTests.test_actual_supervisor_exit_mismatch_rejected)\n----------------------------------------------------------------------\nValueError: Provenance file is outside the repository: D:\\Work\\excel-vba-rpfem\\validation\\G1R19_python26_known_recipes_20261016\\results\\known_recipes_20261016T121215Z\n\nDuring handling of the above exception, another exception occurred:\n\nTraceback (most recent call last):\n  File \"D:\\Work\\rpfem-g20-fix1-20261017\\validation\\G1R19_python26_20261016\\test_composite_provenance.py\", line 63, in test_actual_supervisor_exit_mismatch_rejected\n    with self.assertRaisesRegex(ValueError, 'exit/audit'):\n         ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: \"exit/audit\" does not match \"Provenance file is outside the repository: D:\\Work\\excel-vba-rpfem\\validation\\G1R19_python26_known_recipes_20261016\\results\\known_recipes_20261016T121215Z\"\n\n======================================================================\nFAIL: test_component_end_map_mismatch_rejected (test_composite_provenance.CompositeEvidenceTests.test_component_end_map_mismatch_rejected)\n----------------------------------------------------------------------\nValueError: Provenance file is outside the repository: D:\\Work\\excel-vba-rpfem\\validation\\G1R19_python26_known_recipes_20261016\\results\\known_recipes_20261016T121215Z\n\nDuring handling of the above exception, another exception occurred:\n\nTraceback (most recent call last):\n  File \"D:\\Work\\rpfem-g20-fix1-20261017\\validation\\G1R19_python26_20261016\\test_composite_provenance.py\", line 54, in test_component_end_map_mismatch_rejected\n    with self.assertRaisesRegex(ValueError, 'start/end'):\n         ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: \"start/end\" does not match \"Provenance file is outside the repository: D:\\Work\\excel-vba-rpfem\\validation\\G1R19_python26_known_recipes_20261016\\results\\known_recipes_20261016T121215Z\"\n\n======================================================================\nFAIL: test_original_root_context_mismatch_rejected (test_composite_provenance.CompositeEvidenceTests.test_original_root_context_mismatch_rejected)\n----------------------------------------------------------------------\nValueError: Provenance file is outside the repository: D:\\Work\\excel-vba-rpfem\\validation\\G1R19_python26_known_recipes_20261016\\results\\known_recipes_20261016T121215Z\n\nDuring handling of the above exception, another exception occurred:\n\nTraceback (most recent call last):\n  File \"D:\\Work\\rpfem-g20-fix1-20261017\\validation\\G1R19_python26_20261016\\test_composite_provenance.py\", line 71, in test_original_root_context_mismatch_rejected\n    with self.assertRaisesRegex(ValueError, 'Root case'):\n         ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: \"Root case\" does not match \"Provenance file is outside the repository: D:\\Work\\excel-vba-rpfem\\validation\\G1R19_python26_known_recipes_20261016\\results\\known_recipes_20261016T121215Z\"\n\n======================================================================\nFAIL: test_extra_wrapper_time_cannot_be_called_process_time (test_composite_provenance.UnownedRepairEvidenceTests.test_extra_wrapper_time_cannot_be_called_process_time)\n----------------------------------------------------------------------\nValueError: Provenance file is outside the repository: D:\\Work\\excel-vba-rpfem\\validation\\G1R19_python26_geometry_replay_20261016\\results\\known_lower_20261016T122636Z\n\nDuring handling of the above exception, another exception occurred:\n\nTraceback (most recent call last):\n  File \"D:\\Work\\rpfem-g20-fix1-20261017\\validation\\G1R19_python26_20261016\\test_composite_provenance.py\", line 123, in test_extra_wrapper_time_cannot_be_called_process_time\n    with self.assertRaisesRegex(ValueError, 'process-duration sum'):\n         ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: \"process-duration sum\" does not match \"Provenance file is outside the repository: D:\\Work\\excel-vba-rpfem\\validation\\G1R19_python26_geometry_replay_20261016\\results\\known_lower_20261016T122636Z\"\n\n======================================================================\nFAIL: test_false_independent_dual_residual_rejected (test_composite_provenance.UnownedRepairEvidenceTests.test_false_independent_dual_residual_rejected)\n----------------------------------------------------------------------\nValueError: Provenance file is outside the repository: D:\\Work\\excel-vba-rpfem\\validation\\G1R19_python26_geometry_replay_20261016\\results\\known_lower_20261016T122636Z\n\nDuring handling of the above exception, another exception occurred:\n\nTraceback (most recent call last):\n  File \"D:\\Work\\rpfem-g20-fix1-20261017\\validation\\G1R19_python26_20261016\\test_composite_provenance.py\", line 115, in test_false_independent_dual_residual_rejected\n    with self.assertRaisesRegex(ValueError, 'original dual raw gate'):\n         ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: \"original dual raw gate\" does not match \"Provenance file is outside the repository: D:\\Work\\excel-vba-rpfem\\validation\\G1R19_python26_geometry_replay_20261016\\results\\known_lower_20261016T122636Z\"\n\n======================================================================\nFAIL: test_invented_process_timing_rejected (test_composite_provenance.UnownedRepairEvidenceTests.test_invented_process_timing_rejected)\n----------------------------------------------------------------------\nValueError: Provenance file is outside the repository: D:\\Work\\excel-vba-rpfem\\validation\\G1R19_python26_geometry_replay_20261016\\results\\known_lower_20261016T122636Z\n\nDuring handling of the above exception, another exception occurred:\n\nTraceback (most recent call last):\n  File \"D:\\Work\\rpfem-g20-fix1-20261017\\validation\\G1R19_python26_20261016\\test_composite_provenance.py\", line 99, in test_invented_process_timing_rejected\n    with self.assertRaisesRegex(ValueError, 'invent process timing'):\n         ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: \"invent process timing\" does not match \"Provenance file is outside the repository: D:\\Work\\excel-vba-rpfem\\validation\\G1R19_python26_geometry_replay_20261016\\results\\known_lower_20261016T122636Z\"\n\n======================================================================\nFAIL: test_optimizer_scope_relabel_rejected (test_composite_provenance.UnownedRepairEvidenceTests.test_optimizer_scope_relabel_rejected)\n----------------------------------------------------------------------\nValueError: Provenance file is outside the repository: D:\\Work\\excel-vba-rpfem\\validation\\G1R19_python26_geometry_replay_20261016\\results\\known_lower_20261016T122636Z\n\nDuring handling of the above exception, another exception occurred:\n\nTraceback (most recent call last):\n  File \"D:\\Work\\rpfem-g20-fix1-20261017\\validation\\G1R19_python26_20261016\\test_composite_provenance.py\", line 107, in test_optimizer_scope_relabel_rejected\n    with self.assertRaisesRegex(ValueError, 'no-optimizer continuation'):\n         ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: \"no-optimizer continuation\" does not match \"Provenance file is outside the repository: D:\\Work\\excel-vba-rpfem\\validation\\G1R19_python26_geometry_replay_20261016\\results\\known_lower_20261016T122636Z\"\n\n----------------------------------------------------------------------\nRan 11 tests in 0.563s\n\nFAILED (failures=7, errors=2)\n"
+    }
+  ]
+}

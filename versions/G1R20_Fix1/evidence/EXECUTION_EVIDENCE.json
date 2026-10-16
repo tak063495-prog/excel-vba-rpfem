@@ -1,0 +1,57 @@
+{
+  "status": "PASS",
+  "archive": "EXECUTION_EVIDENCE.zip",
+  "bytes": 48493768,
+  "sha256": "ad9e25dce054dcf23b4fa023c0b9c9f7c198981d8e4740b93630197e4e590604",
+  "members": 853,
+  "source_file_count": 852,
+  "member_sha256_and_crc": "PASS",
+  "run_summaries": [
+    {
+      "path": "versions/G1R20_Fix1/results/UI_regression_20261017_01/summary.json",
+      "status": "PASS",
+      "sha256": "24c0002fc9c7604bfbb7e197f1ff7aa6c7be827cb0a609c31d60882424ca2f0e"
+    },
+    {
+      "path": "versions/G1R20_Fix1/results/water_cache_1792177277741818500/summary.json",
+      "status": "FAIL",
+      "sha256": "4b12322273bc609333410cc99de5ebc090de47fc68d7fb2678189eb566633227"
+    },
+    {
+      "path": "versions/G1R20_Fix1/results/water_cache_1792177307881793700/summary.json",
+      "status": "PASS",
+      "sha256": "d6749c267d7472cee36bcafcb01be4f5f0f5960cc04f537e118556944c275a26"
+    },
+    {
+      "path": "versions/G1R20_Fix1/results/owned_excel_1792177396751089400/summary.json",
+      "status": "PASS",
+      "sha256": "c91b38b9fcf239168b8269daf4e11dd22e06ae582881a6e1c81cd65eea238eca"
+    },
+    {
+      "path": "versions/G1R20_Fix1/results/water_native_fixed_1792177673144368900/summary.json",
+      "status": "FAIL",
+      "sha256": "e5cc22f8c57757a5d308159be10e1e1780ec9cb62174a9170d734a576378c0ea"
+    },
+    {
+      "path": "versions/G1R20_Fix1/results/water_native_fixed_1792177697199413100/summary.json",
+      "status": "FAIL",
+      "sha256": "b73ee94ac6bac65c247fee0bf1984483aa6387367ef877e5382ab0b1ec01a4ca"
+    },
+    {
+      "path": "versions/G1R20_Fix1/results/water_native_fixed_1792177737935369100/summary.json",
+      "status": "FAIL",
+      "sha256": "b34906455be0e9b448f2e6299634d01873fd37b928949f9aee818f64e12d698a"
+    },
+    {
+      "path": "versions/G1R20_Fix1/results/water_native_fixed_1792177779002910000/summary.json",
+      "status": "PASS",
+      "sha256": "3530a0635917a12b2f859c2063391bff1818ffb7005bdac55aaf9552356069f7"
+    },
+    {
+      "path": "versions/G1R20_Fix1/results/water_negative_1792177809887744900/summary.json",
+      "status": "CONFIRMED_MICRO",
+      "sha256": "9d5852a52de58a72c6cdff7a383c8bcd1d07e308ea4bfe202aecea7fe2b14904"
+    }
+  ],
+  "scope": "Owned-test source snapshots, configured copies, raw fields and logs; no original G1R20 evidence replaced"
+}
