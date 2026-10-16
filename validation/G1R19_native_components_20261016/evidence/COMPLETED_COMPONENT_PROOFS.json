@@ -1,0 +1,47 @@
+{
+  "status": "PASS",
+  "scope": "COMPLETED_COMPONENT_PROOFS",
+  "archive": "COMPLETED_COMPONENT_PROOFS.zip",
+  "file_count": 733,
+  "bytes": 54058661,
+  "sha256": "4fd3d4d7a0dcb45dbdef0b96d7f929853d6629c9b38958aef828d25cb066aa3f",
+  "all_member_sha256_and_crc": "PASS",
+  "scopes": [
+    {
+      "role": "seven_module_D08_cold",
+      "folder": "validation/G1R19_WaterCommon_excel_20261016/results/owned_excel_1792152100656896200",
+      "status": "PASS",
+      "summary_sha256": "a07f0bd540e11caa0f6c747e256b5075c591f10f2fe8f59b8ded203df904c483"
+    },
+    {
+      "role": "water_transaction_micro_solver0",
+      "folder": "validation/G1R19_WaterCommon_excel_20261016/results/owned_micro_1792151829932868800",
+      "status": "PASS",
+      "summary_sha256": "2408d22ccdd36e211944f2e9bc1842844cdab81c8f7507b4164bebb99c69512e"
+    },
+    {
+      "role": "state_reset_positive_micro_solver0",
+      "folder": "validation/G1R19_StateReset_excel_20261016/results/positive_/1792153293517482300",
+      "status": "PASS",
+      "summary_sha256": "3b7fe40f196811f0f718c1debe3dd0dea073b43b7ec5dbe79063ee1576c17990"
+    },
+    {
+      "role": "state_reset_negative_control_solver0",
+      "folder": "validation/G1R19_StateReset_excel_20261016/results/negative_/1792153314267480200",
+      "status": "PASS",
+      "summary_sha256": "6c0ad0c8ddc03ee45f0bd038c82c30126b1aa6577a5f7bfb4223f8cc4a7be551"
+    },
+    {
+      "role": "ten_module_D02_cold",
+      "folder": "validation/G1R19_Combined_excel_20261016/results/owned_excel_1792153483764082600",
+      "status": "PASS",
+      "summary_sha256": "e06be7c8fe46478a6ca7a59518930d22955c8872b2abc0689f78751d310c1553"
+    },
+    {
+      "role": "flow_geometry_micro_solver0",
+      "folder": "validation/G1R19_FlowMesh_excel_20261016/results/owned_geometry_1792154199526082100",
+      "status": "PASS",
+      "summary_sha256": "3ce207098d13106f95416d2a0d9a1a60f8288cecbb7dff55922c6f766b03de2e"
+    }
+  ]
+}

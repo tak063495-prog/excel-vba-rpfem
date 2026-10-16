@@ -1,0 +1,64 @@
+{
+  "status": "STATIC_PASS_EXCEL_RUNTIME_PENDING",
+  "scope": "independent source review and scalar geometry checks; no VBA execution or solver calls",
+  "modules": {
+    "RPX_Mesh": {
+      "source_sha256": "54d21a37a4d6a454baad37cbef23d7767fd0fd582c3aedc2e9f7a1908d235aa5",
+      "normalized_changed_existing_functions": [
+        "RPX_AssignRegions"
+      ],
+      "added_functions": [
+        "RPX_WaterCommonMesh",
+        "WCAppend",
+        "WCBoundaryEqual",
+        "WCClip",
+        "WCCross",
+        "WCEmit",
+        "WCInterrupted",
+        "WCIntersection",
+        "WCProtectConformingLine",
+        "WCQuality",
+        "WCRestoreMesh",
+        "WCTriangulate"
+      ],
+      "import_decoded_equal": true
+    },
+    "RPX_Water": {
+      "source_sha256": "48532ee33f4b6723375f7a454d10208994a4e3c00c94784d42743d6213cf02b3",
+      "normalized_changed_existing_functions": [
+        "RPX_WaterApply"
+      ],
+      "added_functions": [
+        "RPX_WaterCommonConforming",
+        "RPX_WaterCommonInputAssert",
+        "RPX_WaterCommonInputBegin",
+        "RPX_WaterCommonInputEnd",
+        "RPX_WaterCommonLevel",
+        "WCCommonInputLevel",
+        "WCSourceCell",
+        "WCSourceContext",
+        "WCSourceRange"
+      ],
+      "import_decoded_equal": true
+    },
+    "RPX_Guard": {
+      "source_sha256": "128d4e719beb2a4c2569402ab9ffeb6f860748644b860c2b1c60b6640b7e8fc0",
+      "normalized_changed_existing_functions": [
+        "RPX_InputBegin",
+        "RPX_InputEnd",
+        "RPX_AssertInputs"
+      ],
+      "added_functions": [],
+      "import_decoded_equal": true
+    }
+  },
+  "independent_random_meshes": 100,
+  "parent_triangles": 4906,
+  "child_triangles": 7704,
+  "worst_total_area_error": 5.684341886080802e-14,
+  "worst_total_first_moment_error": 1.3642420526593924e-12,
+  "worst_independent_clipped_wet_area_error": 2.842170943040401e-14,
+  "nonwriting_author_tests": 6,
+  "author_fixture_or_source_modified": false,
+  "original_blocker": "Standard input snapshot excluded seep input/result sheets. Isolated overlay now adds eligible exact water-source begin/assert/end hooks; actual VBA mutation tests remain pending."
+}

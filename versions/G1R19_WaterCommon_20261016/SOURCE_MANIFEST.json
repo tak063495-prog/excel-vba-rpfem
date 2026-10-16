@@ -1,0 +1,93 @@
+{
+  "schema": "rpfem.watercommon.overlay.v3",
+  "created_utc": "2026-10-16T12:40:52.913921+00:00",
+  "status": "STATIC_ALGORITHM_TESTS_PASS; EXCEL_COMPILE_AND_RUNTIME_PENDING",
+  "scope": "isolated prototype; no numerical bound or product 2% claim",
+  "modules": [
+    {
+      "module": "RPX_Mesh",
+      "base": "versions\\G1R19\\src\\vba\\RPX_Mesh.bas",
+      "base_sha256": "e78725ac20e0762d487395a9459b000d2585630af0860e498748d1194ef429e5",
+      "source": "src\\vba\\RPX_Mesh.bas",
+      "source_sha256": "c82481797853e4f5f956c41fbdb911c421da41ef518771a382eb0451ce3bb78c",
+      "imported": "import\\RPX_Mesh.bas",
+      "import_sha256": "c82481797853e4f5f956c41fbdb911c421da41ef518771a382eb0451ce3bb78c",
+      "decoded_text_equal": true
+    },
+    {
+      "module": "RPX_Water",
+      "base": "versions\\G1R19\\src\\vba\\RPX_Water.bas",
+      "base_sha256": "16bef24bd16eda2b4db63b3ea1c857f9ca4ceb0512337cb6a213f2e400e09fe6",
+      "source": "src\\vba\\RPX_Water.bas",
+      "source_sha256": "48532ee33f4b6723375f7a454d10208994a4e3c00c94784d42743d6213cf02b3",
+      "imported": "import\\RPX_Water.bas",
+      "import_sha256": "246137927129136e1c3a8020bea39853d44086ffc958d8980c2d2df68e4835f6",
+      "decoded_text_equal": true
+    },
+    {
+      "module": "RPX_Guard",
+      "base": "versions\\G1R19\\src\\vba\\RPX_Guard.bas",
+      "base_sha256": "9fd387b1a6ed1edfac0f2e0572142f81e54ee056c79f8391b34a3f38caa16fcc",
+      "source": "src\\vba\\RPX_Guard.bas",
+      "source_sha256": "128d4e719beb2a4c2569402ab9ffeb6f860748644b860c2b1c60b6640b7e8fc0",
+      "imported": "import\\RPX_Guard.bas",
+      "import_sha256": "5bc6df7f72d89f0fd7e491ff2274443732e15a7d3e3d87c85accfb38a2336962",
+      "decoded_text_equal": true
+    }
+  ],
+  "references": [
+    {
+      "path": "versions\\G1R19_WaterCommon_20261016\\tests\\test_water_common_geometry.py",
+      "sha256": "ad735aa8cafd1b27b7828e3d1d29832972e9a1c377910190f4e9bdb0ac156e2f"
+    },
+    {
+      "path": "versions\\G1R19_WaterCommon_20261016\\tests\\test_water_common_source.py",
+      "sha256": "92778ad667f8058f6d5762fa70c4e107e1dd97fc44cf06c53e957b201b432f6d"
+    },
+    {
+      "path": "versions\\G1R19_WaterCommon_20261016\\tests\\test_water_common_rollback.py",
+      "sha256": "90e0cadeea55cedbb4434a7b8c88b4340769b887dacb8ffb7062dac0f3e845a5"
+    },
+    {
+      "path": "versions\\G1R19_WaterCommon_20261016\\tests\\WaterCommonSourceProbe.bas",
+      "sha256": "b542a2f2dcf0ecf4b17bff9c8c98f4ec5f310ab47f0a2e1fd1d2b5a94859ca05"
+    },
+    {
+      "path": "versions\\G1R19_WaterCommon_20261016\\tests\\WaterCommonRollbackProbe.bas",
+      "sha256": "09a0193e76579bee729987923b276a9134fd9d16fce464c035d7c1f3b4a7e381"
+    },
+    {
+      "path": "versions\\G1R19_WaterCommon_20261016\\README.md",
+      "sha256": "1895136213c0d5e332da24ffc21c5bb0e36d5901ac06c57fec19d71cc4e658f7"
+    },
+    {
+      "path": "validation\\G1R19_python26_water_20261016\\python\\waterline_conform.py",
+      "sha256": "cc4cf78a3a23f49f86a93dd5f9dc98efc86c1a8184353643d47d6367224ee24f"
+    },
+    {
+      "path": "validation\\G1R19_python26_water_20261016\\VBA_PROPOSAL.md",
+      "sha256": "d7467297a1aedb1bec1750e793a753265337d88966f3aaaa313085c592b3f84d"
+    },
+    {
+      "path": "docs\\benchmarks\\G1R17_native26_20261013\\data\\inputs\\D08A.json",
+      "sha256": "c3650aff7307ff93f79dfdf7af70ba63892b8e15c098178c71614fcbbf216b08"
+    },
+    {
+      "path": "versions\\G1R17\\results\\geometry25\\P02A_new_vba_mesh.bin",
+      "sha256": "65fe6462d0cc1d832d1a2656494ade80858d5c491c7d14f6f8a6f8c168f2c79b"
+    }
+  ],
+  "static_test_count": 21,
+  "solver_runs": 0,
+  "excel_runs": 0,
+  "unchanged_policy": {
+    "q": 8,
+    "raw_physical_tolerance": 1e-07,
+    "own_root_relative_tolerance": 0.0001,
+    "target_gap": 0.02
+  },
+  "results": {
+    "geometry_comparison": "results/STATIC_GEOMETRY_COMPARISON.json",
+    "fixture": "results/D08A_expected_common_geometry.npz"
+  }
+}

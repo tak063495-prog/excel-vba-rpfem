@@ -1,0 +1,150 @@
+{
+  "status": "PYTHON_EXPECTED_GEOMETRY_ONLY; VBA_RUNTIME_PENDING",
+  "solver_calls": 0,
+  "reference": "D:\\Work\\excel-vba-rpfem\\validation\\G1R19_python26_20261016\\python\\mesh_geometry.py",
+  "reference_sha256": "e5a5f41a9af249fa8e75f2aa634bda9b4202b89fb5518ff8d478de1b4406d68e",
+  "explicit_constraints_rule": "Only an extra source-edge rejection predicate added to original Python function",
+  "fixtures": [
+    {
+      "name": "P06A_actual2904",
+      "case": "P06A",
+      "input": "P06A_actual2904.bin",
+      "input_sha256": "a426a0824ba2b17748254ab471e7fdc3ca36fa9b5091d0bb1152cd44fef032e0",
+      "expected_tri": "P06A_actual2904_expected.npz",
+      "expected_tri_sha256": "779cc423e70c5a7e453036bd69dc95d23d1a1b027ba547200c25c02c15063ffb",
+      "expected_info": "P06A_actual2904_expected.json",
+      "expected_info_sha256": "29ae919a0c2e01b745e38a8170ec8265a70de9e06ea5894e79528546b9d176d4",
+      "elements": 2904,
+      "protected_edges": 208,
+      "extra_constraints": 0,
+      "flips": 773,
+      "source_files": {
+        "validation/accuracy_20261013/results/a_flowflip/P06A/source_witness/best_upper_mesh.npz": "75b8dd49cfe94e5cb662df2d91010ca701dd688ec72bf2be5bd40390c249cec9",
+        "validation/accuracy_20261013/results/a_flowflip/P06A/source_witness/best_upper_field.npz": "8687a07f7e3a08bd73e4c9b014a79e1fe3ae207dfcbed0cafbc2b13ead911521"
+      },
+      "source_fs": 0.8665872165458376,
+      "source_physical_audit": {
+        "objective": 0.9996749917188068,
+        "value": 0.9996749917188071,
+        "eq_error": 5.190292640122607e-14,
+        "cone_error": 1.0547218013737079e-10,
+        "audit": {
+          "pass": true,
+          "errors": {
+            "flow": 6.628765032440138e-11,
+            "jump": 6.484886843008723e-12,
+            "bonded_interface": 0.0,
+            "boundary": 0.0,
+            "work": 5.941913627793838e-13,
+            "objective": 3.3306690738754696e-16
+          },
+          "dissipation": 0.9996749917188071,
+          "work": [
+            0.0,
+            1.0000000000005942
+          ],
+          "value": 0.9996749917188071
+        },
+        "raw_lower_errors": {},
+        "physical_pass": true,
+        "witness": true,
+        "numerical_gate": false
+      },
+      "scope": "Archived source velocity used for geometry comparison only; candidate has no field/root/bound certificate"
+    },
+    {
+      "name": "P06N_actual2914",
+      "case": "P06N",
+      "input": "P06N_actual2914.bin",
+      "input_sha256": "96ebb891f41e9931cb93d77e6bc2abaad2b5f96ba7ff400b1a932c92622cd2e3",
+      "expected_tri": "P06N_actual2914_expected.npz",
+      "expected_tri_sha256": "52c05962e8c3d14638a42f47fda8a8d52f28f65dd50b5477fef740ac5676753c",
+      "expected_info": "P06N_actual2914_expected.json",
+      "expected_info_sha256": "4d06b6bf033390f6622d0f8b198276ce071e7d7a9db83566cc2e29c117c108fc",
+      "elements": 2914,
+      "protected_edges": 191,
+      "extra_constraints": 0,
+      "flips": 362,
+      "source_files": {
+        "validation/accuracy_20261013/results/n_flow_geometry/P06N/source_witness/best_upper_mesh.npz": "706f63b6de630c9c71e3fd70543f80654a4162a8981dd4642822506360cd7eab",
+        "validation/accuracy_20261013/results/n_flow_geometry/P06N/source_witness/best_upper_field.npz": "5b6412b8e0d18b09c422e3d95fa8014dc52767030ce233c265ff9f66e98c9fad"
+      },
+      "source_fs": 0.6952250450157371,
+      "source_physical_audit": {
+        "objective": 0.9999414444462444,
+        "value": 0.9999414444462437,
+        "eq_error": 3.469446951953614e-16,
+        "cone_error": 3.227220283721636e-08,
+        "audit": {
+          "pass": true,
+          "errors": {
+            "flow": 1.5704602565896372e-08,
+            "jump": 6.526385315261568e-12,
+            "bonded_interface": 0.0,
+            "boundary": 0.0,
+            "work": 3.3306690738754696e-15,
+            "objective": 7.771561172376096e-16
+          },
+          "dissipation": 0.9999414444462437,
+          "work": [
+            0.0,
+            0.9999999999999967
+          ],
+          "value": 0.9999414444462437
+        },
+        "raw_lower_errors": {},
+        "physical_pass": true,
+        "witness": true,
+        "numerical_gate": false
+      },
+      "scope": "Archived source velocity used for geometry comparison only; candidate has no field/root/bound certificate"
+    },
+    {
+      "name": "P06N_actual2914_constraints",
+      "case": "P06N",
+      "input": "P06N_actual2914_constraints.bin",
+      "input_sha256": "34b171cda2c371712d3bc40a23ae7fbf21433b74229d768a9b3bd82e43506c42",
+      "expected_tri": "P06N_actual2914_constraints_expected.npz",
+      "expected_tri_sha256": "0ad02b52469b99ad98019cb8092e9ec17a96bf5b79723ad5ea5f903ceacc3e94",
+      "expected_info": "P06N_actual2914_constraints_expected.json",
+      "expected_info_sha256": "f289d8d66f129fa64796ef4b44e0366b7b76a3f12c08af6ec06adc1f88a5f726",
+      "elements": 2914,
+      "protected_edges": 199,
+      "extra_constraints": 8,
+      "flips": 354,
+      "source_files": {
+        "validation/accuracy_20261013/results/n_flow_geometry/P06N/source_witness/best_upper_mesh.npz": "706f63b6de630c9c71e3fd70543f80654a4162a8981dd4642822506360cd7eab",
+        "validation/accuracy_20261013/results/n_flow_geometry/P06N/source_witness/best_upper_field.npz": "5b6412b8e0d18b09c422e3d95fa8014dc52767030ce233c265ff9f66e98c9fad"
+      },
+      "source_fs": 0.6952250450157371,
+      "source_physical_audit": {
+        "objective": 0.9999414444462444,
+        "value": 0.9999414444462437,
+        "eq_error": 3.469446951953614e-16,
+        "cone_error": 3.227220283721636e-08,
+        "audit": {
+          "pass": true,
+          "errors": {
+            "flow": 1.5704602565896372e-08,
+            "jump": 6.526385315261568e-12,
+            "bonded_interface": 0.0,
+            "boundary": 0.0,
+            "work": 3.3306690738754696e-15,
+            "objective": 7.771561172376096e-16
+          },
+          "dissipation": 0.9999414444462437,
+          "work": [
+            0.0,
+            0.9999999999999967
+          ],
+          "value": 0.9999414444462437
+        },
+        "raw_lower_errors": {},
+        "physical_pass": true,
+        "witness": true,
+        "numerical_gate": false
+      },
+      "scope": "Archived source velocity used for geometry comparison only; candidate has no field/root/bound certificate"
+    }
+  ]
+}

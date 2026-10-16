@@ -1,0 +1,37 @@
+"""Offline check of all saved standard VBA modules against declared sources."""
+from pathlib import Path
+import argparse,hashlib,importlib.util,json
+from oletools.olevba import VBA_Parser
+
+ROOT=Path(__file__).resolve().parents[1]
+spec=importlib.util.spec_from_file_location('combined_builder',ROOT/'tools/build_candidate_book.py')
+builder=importlib.util.module_from_spec(spec);spec.loader.exec_module(builder)
+def sha(p):return hashlib.sha256(Path(p).read_bytes()).hexdigest()
+def key(text):
+    lines=[s for s in text.replace('\r\n','\n').splitlines() if not s.startswith('Attribute VB_')]
+    return builder.code_key('\r\n'.join(lines))
+
+def audit(output):
+    output=Path(output).resolve();book=output/'delivery/RPFEM_20261016_G1R19_Combined_candidate.xlsm'
+    before=sha(book);parser=VBA_Parser(str(book));sources={p.name:p for p in (output/'src/vba').glob('*.bas')};rows={}
+    try:
+        for _,stream,name,text in parser.extract_macros():
+            if name not in sources:continue
+            if isinstance(text,bytes):text=text.decode('cp932')
+            source=sources[name];want=key(source.read_text(encoding='utf8'));actual=key(text)
+            rows[name]={'stream':stream,'source_sha256':sha(source),'source_code_key_sha256':want,
+                        'extracted_code_key_sha256':actual,'pass':want==actual}
+    finally:parser.close()
+    assert set(rows)==set(sources) and len(rows)==62
+    assert all(row['pass'] for row in rows.values()),[n for n,r in rows.items() if not r['pass']]
+    assert before==sha(book)
+    data={'status':'PASS','scope':'Saved XLSM source extraction, no Excel or solver',
+          'workbook_sha256':before,'module_count':62,'verifier_sha256':sha(__file__),
+          'builder_sha256':sha(ROOT/'tools/build_candidate_book.py'),
+          'normalization':'Identifier case and leading-label indentation only; literal strings/comments/numbers/Call preserved',
+          'modules':rows}
+    path=output/'SOURCE_EXTRACTION_AUDIT.json';path.write_text(json.dumps(data,indent=2)+'\n',encoding='utf8')
+    print(json.dumps({'status':'PASS','module_count':62,'audit':str(path),'workbook_sha256':before}))
+
+if __name__=='__main__':
+    parser=argparse.ArgumentParser();parser.add_argument('output',type=Path);audit(parser.parse_args().output)

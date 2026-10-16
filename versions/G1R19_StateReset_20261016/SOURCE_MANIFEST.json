@@ -1,0 +1,94 @@
+{
+  "schema": "rpfem.statereset.overlay.v1",
+  "status": "STATIC_CONTRACT_ONLY; EXCEL_COMPILE_AND_MICRO_PENDING",
+  "scope": "Four explicit parameterless Sub calls; no established false-PASS claim",
+  "production_artifacts_modified": false,
+  "excel_runs": 0,
+  "solver_calls": 0,
+  "base_composition": "G1R19 plus authoritative G1R19_2pct overlay; then these four modules",
+  "unchanged_contract": [
+    "physical model",
+    "objective",
+    "q",
+    "raw physical gates",
+    "root signs and normalized tolerance",
+    "GAP target",
+    "DLL"
+  ],
+  "modules": [
+    {
+      "module": "RPX_Fs",
+      "baseline": "versions/G1R19_2pct/src/vba/RPX_Fs.bas",
+      "baseline_sha256": "947dfe184026b4c7c45c34e112e8742150e9b0f9a3836f6c5c441126c7696eb2",
+      "source": "src/vba/RPX_Fs.bas",
+      "source_sha256": "5cae700fe650f804e69ae37ad3cfb9ce87ec9c05a2af0cfbef4819f65cdf4698",
+      "imported": "import/RPX_Fs.bas",
+      "import_sha256": "5cae700fe650f804e69ae37ad3cfb9ce87ec9c05a2af0cfbef4819f65cdf4698",
+      "changed_line": 189,
+      "before": "            RPX_ResetPreparedState: RPX_Compile: prepared = True",
+      "after": "            Call RPX_ResetPreparedState: RPX_Compile: prepared = True",
+      "decoded_text_equal": true,
+      "normalized_diff": "one line; insert Call plus one space only"
+    },
+    {
+      "module": "RPX_Conic",
+      "baseline": "versions/G1R19/src/vba/RPX_Conic.bas",
+      "baseline_sha256": "10a58abf41ab6d660e3cafea361978f4cf945a02a30e1345dae9f8310e3835d2",
+      "source": "src/vba/RPX_Conic.bas",
+      "source_sha256": "79b8b4152638fd9c7aa29eed34324c195b8c8f74041ee1440dbb06dcd3c37840",
+      "imported": "import/RPX_Conic.bas",
+      "import_sha256": "79b8b4152638fd9c7aa29eed34324c195b8c8f74041ee1440dbb06dcd3c37840",
+      "changed_line": 914,
+      "before": "    RPX_OriginalGuideClear: OriginalFarkasReason = \"scope\"",
+      "after": "    Call RPX_OriginalGuideClear: OriginalFarkasReason = \"scope\"",
+      "decoded_text_equal": true,
+      "normalized_diff": "one line; insert Call plus one space only"
+    },
+    {
+      "module": "RPX_Solve",
+      "baseline": "versions/G1R19/src/vba/RPX_Solve.bas",
+      "baseline_sha256": "8d20065b0aaf97890bb84c64644ba034892d757dba33fe384de80fdc9769d141",
+      "source": "src/vba/RPX_Solve.bas",
+      "source_sha256": "f844f91dc407f06b3fbf62cd6f5f0d280bba4f2aab3afe32322ffa5583a54dd8",
+      "imported": "import/RPX_Solve.bas",
+      "import_sha256": "f844f91dc407f06b3fbf62cd6f5f0d280bba4f2aab3afe32322ffa5583a54dd8",
+      "changed_line": 2073,
+      "before": "    HContext: HEnsureDD XN + XM",
+      "after": "    Call HContext: HEnsureDD XN + XM",
+      "decoded_text_equal": true,
+      "normalized_diff": "one line; insert Call plus one space only"
+    },
+    {
+      "module": "RPX_Seep",
+      "baseline": "versions/G1R19/src/vba/RPX_Seep.bas",
+      "baseline_sha256": "1b7c462210b58f876e154c5e7f623cb060b801f0e8b3114eebe671620e607952",
+      "source": "src/vba/RPX_Seep.bas",
+      "source_sha256": "d68aa0ee1612330298951d9015b938fc81c19201193cce69f254f6232b0ca50a",
+      "imported": "import/RPX_Seep.bas",
+      "import_sha256": "ace78fef8dd295e6028e89c92f7ecd46b5e9c7de0c92ef3a22eb1147dcae1cd6",
+      "changed_line": 433,
+      "before": "RPX_SeepDefaults:     SRelax = relax",
+      "after": "Call RPX_SeepDefaults:     SRelax = relax",
+      "decoded_text_equal": true,
+      "normalized_diff": "one line; insert Call plus one space only"
+    }
+  ],
+  "references": [
+    {
+      "path": "README_JA.md",
+      "sha256": "d7a31f397ee3a5ef24a11c1fd6f0bf3f10e7fe2f45fcf9e10458129cef6e8f3e"
+    },
+    {
+      "path": "tests/test_contract.py",
+      "sha256": "0ca38489214453ec50e1394c118bbf0f851a6f5e90170602040f46cf89879d73"
+    },
+    {
+      "path": "tests/make_probe_sources.py",
+      "sha256": "0c33149385950473442b62a79f67f4a46664999c391ac9a8172a7b17fb29dbc3"
+    },
+    {
+      "path": "tests/MICROTEST_JA.md",
+      "sha256": "dafafc8b5df23e8f7207ec489c382c68d7cb8829425805ee9058dec4134c44fe"
+    }
+  ]
+}
