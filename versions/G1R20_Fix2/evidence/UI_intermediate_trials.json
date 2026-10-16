@@ -1,0 +1,79 @@
+{
+  "recorded_epoch": 1792179551.8386078,
+  "accepted_negative_run": "UI_setup_control_negative_03",
+  "accepted_positive_run": "UI_setup_control_fixed_04",
+  "final_condition_count": 18,
+  "intermediate_trials_not_added_to_final_totals": true,
+  "trials": {
+    "UI_setup_control_negative_01": {
+      "classification": "initial 10-condition negative control; not counted in final totals",
+      "original_recorded_status": "CONFIRMED_NEGATIVE",
+      "conditions": 10,
+      "condition_passes": 2,
+      "owned_excel_pid": 23400,
+      "owned_excel_exited": true,
+      "summary_sha256": "5fcd42bbb69d153f26397ecd50a665d78562f21e14c0dd0ccf86cd4ca5119798",
+      "raw_path": "results/UI_setup_control_negative_01/summary.json"
+    },
+    "UI_setup_control_fixed_01": {
+      "classification": "product patch failure: active error handler still skipped cleanup on secondary protected-result error",
+      "original_recorded_status": "FAIL",
+      "conditions": 10,
+      "condition_passes": 9,
+      "owned_excel_pid": 19320,
+      "owned_excel_exited": true,
+      "summary_sha256": "559d37794b6964afba1456a4b133b7413cf9ebc833e8e85dccb6b0a8e3aea718",
+      "raw_path": "results/UI_setup_control_fixed_01/summary.json"
+    },
+    "UI_setup_control_fixed_02": {
+      "classification": "intermediate 10-condition PASS before preset and Run coverage extension",
+      "original_recorded_status": "PASS",
+      "conditions": 10,
+      "condition_passes": 10,
+      "owned_excel_pid": 21280,
+      "owned_excel_exited": true,
+      "summary_sha256": "db805f4636c25ca126ed158b9ea5fa16e18c5e06b224f31d5ca4e206754ffad0",
+      "raw_path": "results/UI_setup_control_fixed_02/summary.json"
+    },
+    "UI_setup_control_negative_02": {
+      "classification": "18-condition negative control with one observer expectation error: Run MeshCurrent preservation is valid legacy behavior",
+      "original_recorded_status": "CONFIRMED_NEGATIVE",
+      "conditions": 18,
+      "condition_passes": 5,
+      "owned_excel_pid": 7512,
+      "owned_excel_exited": true,
+      "summary_sha256": "eb5d64f16e0ef3c70ccaf169199743fcd39ddd3ee5ab55adbdd773a0ca41f4be",
+      "raw_path": "results/UI_setup_control_negative_02/summary.json"
+    },
+    "UI_setup_control_negative_03": {
+      "classification": "accepted final 18-condition negative control: 12 reproduced failure variants and 6 expected controls",
+      "original_recorded_status": "CONFIRMED_NEGATIVE",
+      "conditions": 18,
+      "condition_passes": 6,
+      "owned_excel_pid": 20700,
+      "owned_excel_exited": true,
+      "summary_sha256": "c1b82482940fcdb19dcb145a52059276d4224bb352437950accd946b6a50cb78",
+      "raw_path": "results/UI_setup_control_negative_03/summary.json"
+    },
+    "UI_setup_control_fixed_03": {
+      "classification": "18 state assertions PASS, but monitor thread stopped on transient closed-window 1400; excluded from final acceptance",
+      "original_recorded_status": "PASS",
+      "conditions": 18,
+      "condition_passes": 18,
+      "owned_excel_pid": 11456,
+      "owned_excel_exited": true,
+      "summary_sha256": "104b2f374116eb4df57cfc9c4499e1a1c4a7d6a1a839fc94db5cb571b3652558",
+      "raw_path": "results/UI_setup_control_fixed_03/summary.json"
+    },
+    "UI_setup_control_fixed_04": {
+      "classification": "accepted final 18-condition regression; monitor and ownership checks passed",
+      "original_recorded_status": "PASS",
+      "conditions": 18,
+      "condition_passes": 18,
+      "owned_excel_pid": 22372,
+      "owned_excel_exited": true,
+      "summary_sha256": "11e49a9279362345e0e6aef34ab892029e1dfe32b2095f25d06499029cba7273",
+      "raw_path": "results/UI_setup_control_fixed_04/summary.json"
+    }
+  }
+}

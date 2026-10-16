@@ -1,0 +1,11 @@
+{
+  "status": "PREFLIGHT_GUARD_REJECTION",
+  "source": "Observed tool exit 1 before Excel or output creation",
+  "error": "AssertionError: Final delivery workbook changed",
+  "cause": "Copied test retained Fix1 workbook SHA; actual final Fix2 workbook is bound by its source manifest",
+  "old_expected_workbook_sha256": "aba4481062b8898d99873a92bd78ac3dc84513c5b1f6e66488f19c89eff3675c",
+  "fix2_workbook_sha256": "e01c5431b8fec7f757ee2e0a5802c6f327483d891c1ae4d2cb9011157d9d7b1d",
+  "repair": "Update the test-only pinned SHA to the verified Fix2 delivery; assertion retained",
+  "excel_started": false,
+  "product_changed": false
+}
