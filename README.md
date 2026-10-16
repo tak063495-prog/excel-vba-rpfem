@@ -2,7 +2,15 @@
 
 Excel VBAによる2次元RPFEM解析のソース、XLSM、検証資料です。
 
-**最新は [G1R20 Fix2 Release](https://github.com/tak063495-prog/excel-vba-rpfem/releases/tag/G1R20_Fix2) です。** [バージョン一覧](versions/README.md)から過去版も確認できます。
+**最新は [G1R20 Fix3 Release](https://github.com/tak063495-prog/excel-vba-rpfem/releases/tag/G1R20_Fix3) です。** [バージョン一覧](versions/README.md)から過去版も確認できます。
+
+## G1R20 Fix3 — Fix2レビューによる保存入力・浸透連成・Fs経路の修正（2026-10-17）
+
+- **[配布ZIP](https://github.com/tak063495-prog/excel-vba-rpfem/releases/download/G1R20_Fix3/RPFEM_20261017_G1R20_Fix3.zip)** / [導入](versions/G1R20_Fix3/README_JA.md) / [レビュー](versions/G1R20_Fix3/REVIEW_JA.md) / [再現・回帰結果](versions/G1R20_Fix3/TEST_RESULTS.md) / [検証コード](versions/G1R20_Fix3/REGRESSION.md)
+- 入力変更後の旧浸透結果の使用、保存再開後の数式再計算による旧解析表示、キャンセル後の浸透操作、書式更新時の数式消失、旧モデルの制約持越し、DLL有効時の粘着力モデルのFs誤拒否を修正しました。
+- 変更は7標準モジュールとThisWorkbookイベントです。残る56標準モジュールと統合DLL1個はFix2と同一です。物理式・原q8監査・GAP2%・根幅条件を保持します。
+- **従来版の浸透結果は対応入力の記録がないため、更新後に浸透解析を再実行してください。** 既存ブックのソース更新では63標準モジュールに加え、ThisWorkbookコードも更新します。
+- P06のVBA本番2%自動完走と全26ケースのVBA再計算は今回の確認範囲に含めません。
 
 ## G1R20 Fix2 — Fix1レビューによる初期化・例外復旧・水理再起動の修正（2026-10-17）
 

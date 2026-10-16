@@ -38,3 +38,5 @@ versions/G1R19_*_20261016/** -text
 # Dated audits also bind original JSON/source/archive byte hashes.
 validation/G1R19_*_20261016/** -text
 validation/G1R20_*_20261016/** -text
+
+versions/G1R20_Fix3/** -text

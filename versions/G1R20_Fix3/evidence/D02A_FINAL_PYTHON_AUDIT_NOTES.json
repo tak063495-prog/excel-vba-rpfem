@@ -1,0 +1,119 @@
+{
+  "status": "PASS",
+  "independent_audit_path": "versions/G1R20_Fix3/evidence/D02A_FINAL_PYTHON_AUDIT.json",
+  "independent_audit_sha256": "145816b2b30dc5cb3cc03b620b90acc137c529191e89498fc7ae0970944bb13b",
+  "fresh_run": "versions/G1R20_Fix3/results/owned_excel_1792182017045637900",
+  "native_summary_sha256": "7a1551db441864a73dff60f016b0412cc2080f5459a16320504ba5b58ffd4d8b",
+  "final_book_sha256": "09b13bff8d2e01172d8cb46b1065db3887da8e1bfc310cecf5a66c131124d285",
+  "final_ThisWorkbook_sha256": "28d100a977206b77c9564804a442c844de3dfc86dfaa1257ebe7018ee97cc5dc",
+  "source_manifest_sha256": "7e3f0012e319aa24ec02006619442d430830ab1220863fd321c65ac0602d5cca",
+  "source_bundle_sha256": "d11f3591e85b6726c5c16b3e7040ccf0718928d15938001d95633d84312518a4",
+  "all_63_standard_sources_match_release_manifest": true,
+  "final_workbook_and_document_sources_match_release_manifest": true,
+  "imported_field_or_root": false,
+  "solver_threads": 1,
+  "python_audit_solver_calls": 0,
+  "python_audit_excel_calls": 0,
+  "pair": {
+    "lower_checkpoint": "00004_lower",
+    "upper_checkpoint": "00005_upper",
+    "selection": "Final checkpoints match exact cold_result Fs, element counts and both root endpoints; prior matching pair has identical binary bytes"
+  },
+  "previous_pair_binary_identical": {
+    "00002_lower": true,
+    "00003_upper": true
+  },
+  "lower": 1.5,
+  "upper": 1.500051451551501,
+  "gap_percent": 0.0034300446063679417,
+  "own_mesh_elements": {
+    "lower": 360,
+    "upper": 8
+  },
+  "q": {
+    "lower": 8,
+    "upper": 8
+  },
+  "normalized_root_widths": {
+    "lower": 4.882693293623722e-05,
+    "upper": 8.333672227665453e-05
+  },
+  "raw_lower_errors": {
+    "yield": 6.452741274642904e-08,
+    "equilibrium": 4.773035300331685e-10,
+    "internal_traction": 1.322644216372737e-10,
+    "boundary_traction": 1.894008866849724e-10
+  },
+  "upper_physical_errors": {
+    "flow": 0.0,
+    "jump": 0.0,
+    "boundary": 5.513001685864184e-20,
+    "work": 4.263256414560601e-13,
+    "objective": 0.0
+  },
+  "canonical_material_body_and_boundary_exact": true,
+  "source_fields_unchanged": true,
+  "areas": {
+    "lower": 1399.999999999999,
+    "upper": 1400.0
+  },
+  "reference_body_forces": {
+    "lower": [
+      0.0,
+      -27999.999999999993
+    ],
+    "upper": [
+      0.0,
+      -28000.0
+    ]
+  },
+  "literal_original_proof_count": 28,
+  "matching_root_endpoint_literal_proofs": {
+    "lower": {
+      "a": [
+        {
+          "path": "versions/G1R20_Fix3/results/owned_excel_1792182017045637900/RPFEM_logs/20261017_052026_17068_analysis.tsv.accuracy_primal_solve_6_26_lower.bin",
+          "dual": false,
+          "fs": 1.5,
+          "raw_equality_or_stationarity": 4.773035300331685e-10,
+          "raw_cone": 6.452740564100168e-08,
+          "original_objective": -1.000003,
+          "all_original_gates_pass": true
+        }
+      ],
+      "b": [
+        {
+          "path": "versions/G1R20_Fix3/results/owned_excel_1792182017045637900/RPFEM_logs/20261017_052026_17068_analysis.tsv.accuracy_dual_solve_6_38_lower.bin",
+          "dual": true,
+          "fs": 1.5000732421875,
+          "raw_equality_or_stationarity": 8.731149137020111e-11,
+          "raw_cone": 0.0,
+          "original_objective": 0.0,
+          "all_original_gates_pass": true
+        }
+      ]
+    },
+    "upper": {
+      "a": [
+        {
+          "path": "versions/G1R20_Fix3/results/owned_excel_1792182017045637900/RPFEM_logs/20261017_052026_17068_analysis.tsv.accuracy_dual_solve_9_50_upper.bin",
+          "dual": true,
+          "fs": 1.499926447389001,
+          "raw_equality_or_stationarity": 5.087485988042317e-12,
+          "raw_cone": 9.00968188943807e-09,
+          "original_objective": 1.000003,
+          "all_original_gates_pass": true
+        }
+      ],
+      "b": []
+    }
+  },
+  "production_solves_started": 37,
+  "production_solves_ended": 37,
+  "native_run_owned_excel_exited": true,
+  "limitations": {
+    "full_kkt_optimality_not_claimed": "core.evaluate was supplied physical primal fields without paired dual vectors, so numerical_gate=False is its unassessed-KKT sentinel; physical_pass and witness are True for both sides.",
+    "root_scope": "Root metadata/model/width and accepted physical endpoint are independently checked. Complete original dual/ray vectors at every rejected root endpoint are not exported, so the native opposite signs are not independently re-proved here.",
+    "fresh_scope": "Fresh Excel performed the numerical run. Python independently re-evaluated its unchanged own-mesh fields and exported literal proofs; it did not perform a fresh solver run."
+  }
+}

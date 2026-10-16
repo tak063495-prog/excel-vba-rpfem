@@ -1,0 +1,89 @@
+{
+  "status": "PASS",
+  "scope": "ReadModel fresh/continuous identity plus analytical phi-zero Fs, final 63 standard modules and ThisWorkbook",
+  "evidence": {
+    "before": {
+      "path": "versions/G1R20_Fix3/results/read_model_before_1792181535091900600/summary.json",
+      "sha256": "2ccfb0b3bc60c11ffe9bf3d226f5753a5b2b1212405d9d8992fdf8186b4a857d"
+    },
+    "fixed": {
+      "path": "versions/G1R20_Fix3/results/read_model_fixed_1792181547034306500/summary.json",
+      "sha256": "a309b1ddfc8fd9460447c10e12df710709c2e9a94dc2df67f0f57803d1f5ef78"
+    },
+    "fs_direct_negative": {
+      "path": "versions/G1R20_Fix3/results/read_model_fixed_1792181286402870100/summary.json",
+      "sha256": "a2295e218147bfb261c9fdca912523279bb573fb5a689436d2772de6311e1a60"
+    }
+  },
+  "source_sha256": {
+    "RPX_Model.bas": "2f4bde0e77b2cd15b0be90694e348dff012b11d0f10eb15868cc977f451c2eac",
+    "RPX_Fs.bas": "6b6b91e759dff8a589d4dc4cf28f9e57747020cecf9414c1cb00f39c24b7885a"
+  },
+  "source_bundle_sha256": "d11f3591e85b6726c5c16b3e7040ccf0718928d15938001d95633d84312518a4",
+  "settings": {
+    "DIRECT_DLL": 1.0,
+    "ACCURACY_DLL_RECOVERY": 1.0,
+    "DIRECT_DLL_SECONDS": 30.0,
+    "QUADRATURE": 8.0
+  },
+  "fixed_owned_excel_pid": 18292,
+  "owned_excel_exited": true,
+  "native_memory_maps": [
+    "D:\\Work\\rpfem-g20-fix1-20261017\\versions\\G1R20_Fix3\\results\\read_model_fixed_1792181547034306500\\rpfem_native_x64.dll"
+  ],
+  "legacy_baseline_unchanged": true,
+  "identity_cases": 5,
+  "all_constraints_empty": true,
+  "fs_bound_attempts": 6,
+  "completed_fs_runs": 3,
+  "fs_cases": {
+    "fresh_testfs": {
+      "lower_fs": 9.999989784787447,
+      "upper_fs": 10.000009993685573,
+      "q": 8,
+      "normalized_audit": 8.881784197001252e-16,
+      "physical_gate": true,
+      "raw_lower_audit": [
+        0.0,
+        8.881784197001252e-16,
+        1.1102230246251565e-16,
+        2.220446049250313e-16
+      ],
+      "search_incomplete": false,
+      "status": "OPTIMAL",
+      "direct_recovery_accepted": false
+    },
+    "other_testfs": {
+      "lower_fs": 10.999988821899189,
+      "upper_fs": 11.000010992573849,
+      "q": 8,
+      "normalized_audit": 8.881784197001252e-16,
+      "physical_gate": true,
+      "raw_lower_audit": [
+        0.0,
+        8.881784197001252e-16,
+        2.220446049250313e-16,
+        2.220446049250313e-16
+      ],
+      "search_incomplete": false,
+      "status": "OPTIMAL",
+      "direct_recovery_accepted": false
+    },
+    "return_testfs": {
+      "lower_fs": 9.999989784787447,
+      "upper_fs": 10.000009993685573,
+      "q": 8,
+      "normalized_audit": 8.881784197001252e-16,
+      "physical_gate": true,
+      "raw_lower_audit": [
+        0.0,
+        8.881784197001252e-16,
+        1.1102230246251565e-16,
+        2.220446049250313e-16
+      ],
+      "search_incomplete": false,
+      "status": "OPTIMAL",
+      "direct_recovery_accepted": false
+    }
+  }
+}

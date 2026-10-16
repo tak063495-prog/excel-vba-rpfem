@@ -1,0 +1,29 @@
+name: G1R20 Fix3 regression
+on:
+  pull_request:
+    paths:
+      - 'versions/G1R20_Fix3/**'
+      - '.github/workflows/g1r20-fix3-validation.yml'
+  workflow_dispatch:
+jobs:
+  source-workbook-and-regression:
+    runs-on: ubuntu-latest
+    env:
+      OPENBLAS_NUM_THREADS: '1'
+      OMP_NUM_THREADS: '1'
+      MKL_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Install numerical reference and saved-source reader
+        run: |
+          python -X utf8 -m pip install -r validation/accuracy_20261013/requirements.txt
+          python -X utf8 -m pip install oletools==0.60.2 psutil==7.2.2
+      - name: Verify the seven changed modules and single-DLL distribution
+        run: python -X utf8 versions/G1R20_Fix3/tools/check_release_sources.py --require-delivery
+      - name: Independently extract 63 saved standard modules and ThisWorkbook
+        run: python -X utf8 versions/G1R20_Fix3/tools/audit_book_sources.py versions/G1R20_Fix3
+      - name: Run portable regression controls
+        run: python -X utf8 versions/G1R20_Fix3/tests/run_portable_regression.py --output "$RUNNER_TEMP/fix3_portable.json"

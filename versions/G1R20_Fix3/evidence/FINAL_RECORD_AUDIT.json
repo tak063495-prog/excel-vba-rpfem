@@ -1,0 +1,622 @@
+{
+  "status": "PASS_WITH_PENDING_ROOT_REGRESSIONS",
+  "observed_utc": "2026-10-16T20:19:57.283293+00:00",
+  "scope": "Read-only release/evidence preparation snapshot; no Excel launch or product/tool edits. Only this audit JSON is written.",
+  "numerical_rows_pending_root_completion": [
+    "継承UI",
+    "D02A新規解析",
+    "D08A固定点"
+  ],
+  "pending_note": "D02A/D08A are not claimed complete here. Root will fill their final numerical rows after the active regression sequence.",
+  "category_counts": {
+    "harness_failure": 3,
+    "expected_failure_negative_control": 5,
+    "expected_failure_product_reproduction": 2,
+    "current_pass": 9,
+    "historical_pass_superseded": 2,
+    "incomplete_running_root_owned": 1
+  },
+  "records": [
+    {
+      "record": "results/read_model_before_1792180801994581100/summary.json",
+      "record_sha256": "9afb3274fa0fdffbbc1ece6cc30d06034043e52f65a997a7fabc9c7a3973d9d3",
+      "reported_status": "FAIL",
+      "category": "harness_failure",
+      "reason": "Initial text fixture had EOF62 before intended identity assertion.",
+      "case_count": null,
+      "test_count": null,
+      "migration_count": null,
+      "error": "AssertionError('Expected fresh TestFs runtime 91')",
+      "source_provenance": {
+        "checked_entries": 63,
+        "mismatches": [
+          "RPX_Control.bas",
+          "RPX_Fs.bas",
+          "RPX_Guard.bas",
+          "RPX_Model.bas",
+          "RPX_Seep.bas",
+          "RPX_SeepUI.bas",
+          "RPX_Water.bas"
+        ],
+        "current_candidate_match": false
+      },
+      "owned_exit_fields": [
+        {
+          "field": "$.owned_excel_exited",
+          "value": true
+        }
+      ]
+    },
+    {
+      "record": "results/read_model_before_1792180821978626500/summary.json",
+      "record_sha256": "c7aa09e5e7248acc42f02a1d6eb46b571b3727af48b1cc48bd707629fc234038",
+      "reported_status": "FAIL",
+      "category": "harness_failure",
+      "reason": "Intended identity negative reproduced, but harness incorrectly required DLL mapping before DLL could be reached.",
+      "case_count": null,
+      "test_count": null,
+      "migration_count": null,
+      "error": "AssertionError('Unexpected native DLL mapping')",
+      "source_provenance": {
+        "checked_entries": 63,
+        "mismatches": [
+          "RPX_Control.bas",
+          "RPX_Fs.bas",
+          "RPX_Guard.bas",
+          "RPX_Model.bas",
+          "RPX_Seep.bas",
+          "RPX_SeepUI.bas",
+          "RPX_Water.bas"
+        ],
+        "current_candidate_match": false
+      },
+      "owned_exit_fields": [
+        {
+          "field": "$.owned_excel_exited",
+          "value": true
+        }
+      ]
+    },
+    {
+      "record": "results/read_model_before_1792180838940624500/summary.json",
+      "record_sha256": "016bde7fa0f0ad147b3141b861f74c687a95ce8c100637ff56e2014cddc80695",
+      "reported_status": "PASS",
+      "category": "expected_failure_negative_control",
+      "reason": "Published Fix2 defect intentionally reproduced; PASS may mean the negative test met its expectation.",
+      "case_count": null,
+      "test_count": null,
+      "migration_count": null,
+      "error": null,
+      "source_provenance": {
+        "checked_entries": 63,
+        "mismatches": [
+          "RPX_Control.bas",
+          "RPX_Fs.bas",
+          "RPX_Guard.bas",
+          "RPX_Model.bas",
+          "RPX_Seep.bas",
+          "RPX_SeepUI.bas",
+          "RPX_Water.bas"
+        ],
+        "current_candidate_match": false
+      },
+      "owned_exit_fields": [
+        {
+          "field": "$.owned_excel_exited",
+          "value": true
+        }
+      ]
+    },
+    {
+      "record": "results/read_model_before_1792181535091900600/summary.json",
+      "record_sha256": "2ccfb0b3bc60c11ffe9bf3d226f5753a5b2b1212405d9d8992fdf8186b4a857d",
+      "reported_status": "PASS",
+      "category": "expected_failure_negative_control",
+      "reason": "Published Fix2 defect intentionally reproduced; PASS may mean the negative test met its expectation.",
+      "case_count": null,
+      "test_count": null,
+      "migration_count": null,
+      "error": null,
+      "source_provenance": {
+        "checked_entries": 63,
+        "mismatches": [
+          "RPX_Control.bas",
+          "RPX_Fs.bas",
+          "RPX_Guard.bas",
+          "RPX_Model.bas",
+          "RPX_Seep.bas",
+          "RPX_SeepUI.bas",
+          "RPX_Water.bas"
+        ],
+        "current_candidate_match": false
+      },
+      "owned_exit_fields": [
+        {
+          "field": "$.owned_excel_exited",
+          "value": true
+        }
+      ]
+    },
+    {
+      "record": "results/read_model_fixed_1792181257720530400/summary.json",
+      "record_sha256": "f227b9ad405fa2e9b07d65d47c2c12abaf11eb13d484818eb4931cc449b4e03b",
+      "reported_status": "FAIL",
+      "category": "expected_failure_product_reproduction",
+      "reason": "Intermediate candidate exposes confirmed phi0/DIRECT_DLL NO_FINITE_POSITIVE_FS defect (#6), fixed in final Fs.",
+      "case_count": null,
+      "test_count": null,
+      "migration_count": null,
+      "error": "AssertionError(\"Unexpected analytical Fs pair: ('FAIL 5 NO_FINITE_POSITIVE_FS', 0.0, 0.0, 1, 8, 0.0, False, 0.0, 0.0, 0.0, 0.0, False)\")",
+      "source_provenance": {
+        "checked_entries": 64,
+        "mismatches": [
+          "RPX_Fs.bas"
+        ],
+        "current_candidate_match": false
+      },
+      "owned_exit_fields": [
+        {
+          "field": "$.owned_excel_exited",
+          "value": true
+        }
+      ]
+    },
+    {
+      "record": "results/read_model_fixed_1792181286402870100/summary.json",
+      "record_sha256": "a2295e218147bfb261c9fdca912523279bb573fb5a689436d2772de6311e1a60",
+      "reported_status": "FAIL",
+      "category": "expected_failure_product_reproduction",
+      "reason": "Intermediate candidate exposes confirmed phi0/DIRECT_DLL NO_FINITE_POSITIVE_FS defect (#6), fixed in final Fs.",
+      "case_count": null,
+      "test_count": null,
+      "migration_count": null,
+      "error": "AssertionError(\"Unexpected analytical Fs pair: ('FAIL 5 NO_FINITE_POSITIVE_FS', 0.0, 0.0, 1, 8, 0.0, False, 0.0, 0.0, 0.0, 0.0, False, 'ORIGINAL_ACCURACY_DUAL_GUIDE', 10.000000000000032, 10.000000000000032, 'original_dual', True)\")",
+      "source_provenance": {
+        "checked_entries": 64,
+        "mismatches": [
+          "RPX_Fs.bas"
+        ],
+        "current_candidate_match": false
+      },
+      "owned_exit_fields": [
+        {
+          "field": "$.owned_excel_exited",
+          "value": true
+        }
+      ]
+    },
+    {
+      "record": "results/read_model_fixed_1792181547034306500/summary.json",
+      "record_sha256": "a309b1ddfc8fd9460447c10e12df710709c2e9a94dc2df67f0f57803d1f5ef78",
+      "reported_status": "PASS",
+      "category": "current_pass",
+      "reason": "Recorded product source provenance matches current final candidate.",
+      "case_count": null,
+      "test_count": null,
+      "migration_count": null,
+      "error": null,
+      "source_provenance": {
+        "checked_entries": 64,
+        "mismatches": [],
+        "current_candidate_match": true
+      },
+      "owned_exit_fields": [
+        {
+          "field": "$.owned_excel_exited",
+          "value": true
+        }
+      ]
+    },
+    {
+      "record": "results/saved_formula_negative_01/summary.json",
+      "record_sha256": "7b2db8a60cb0c7570b1f59764f6c91736457e34276f9912b38b41d92db7861bb",
+      "reported_status": "CONFIRMED_NEGATIVE",
+      "category": "expected_failure_negative_control",
+      "reason": "Published Fix2 defect intentionally reproduced; PASS may mean the negative test met its expectation.",
+      "case_count": null,
+      "test_count": null,
+      "migration_count": null,
+      "error": null,
+      "source_provenance": {
+        "checked_entries": 0,
+        "mismatches": [],
+        "current_candidate_match": false
+      },
+      "owned_exit_fields": [
+        {
+          "field": "$.sessions[0].owned_excel_exited",
+          "value": true
+        },
+        {
+          "field": "$.sessions[1].owned_excel_exited",
+          "value": true
+        }
+      ]
+    },
+    {
+      "record": "results/saved_formula_positive_01/summary.json",
+      "record_sha256": "d54948c7a66a0a686702c34849d4cd82ff1e2b2a7f9a5d3d8d7030eed2150852",
+      "reported_status": "PASS",
+      "category": "historical_pass_superseded",
+      "reason": "Successful earlier source freeze; preserve but do not use instead of final acceptance records.",
+      "case_count": null,
+      "test_count": null,
+      "migration_count": null,
+      "error": null,
+      "source_provenance": {
+        "checked_entries": 128,
+        "mismatches": [
+          "src/vba/RPX_Fs.bas",
+          "src/vba/RPX_Water.bas",
+          "import/RPX_Fs.bas",
+          "import/RPX_Water.bas"
+        ],
+        "current_candidate_match": false
+      },
+      "owned_exit_fields": [
+        {
+          "field": "$.sessions[0].owned_excel_exited",
+          "value": true
+        },
+        {
+          "field": "$.sessions[1].owned_excel_exited",
+          "value": true
+        }
+      ]
+    },
+    {
+      "record": "results/saved_formula_positive_02/summary.json",
+      "record_sha256": "d3ad034e9585afcc07ef76a0be9d7dc0e23449521351ac9dd4777a6f1662c585",
+      "reported_status": "PASS",
+      "category": "historical_pass_superseded",
+      "reason": "Successful earlier source freeze; preserve but do not use instead of final acceptance records.",
+      "case_count": null,
+      "test_count": null,
+      "migration_count": null,
+      "error": null,
+      "source_provenance": {
+        "checked_entries": 128,
+        "mismatches": [
+          "src/vba/RPX_Fs.bas",
+          "import/RPX_Fs.bas"
+        ],
+        "current_candidate_match": false
+      },
+      "owned_exit_fields": [
+        {
+          "field": "$.sessions[0].owned_excel_exited",
+          "value": true
+        },
+        {
+          "field": "$.sessions[1].owned_excel_exited",
+          "value": true
+        }
+      ]
+    },
+    {
+      "record": "results/saved_formula_positive_final_edit_01/summary.json",
+      "record_sha256": "dc2003ddfe9be01f23027f8119d095fe0b5b80592b522850d96338c5016163a5",
+      "reported_status": "PASS",
+      "category": "current_pass",
+      "reason": "Recorded product source provenance matches current final candidate.",
+      "case_count": null,
+      "test_count": null,
+      "migration_count": null,
+      "error": null,
+      "source_provenance": {
+        "checked_entries": 128,
+        "mismatches": [],
+        "current_candidate_match": true
+      },
+      "owned_exit_fields": [
+        {
+          "field": "$.sessions[0].owned_excel_exited",
+          "value": true
+        },
+        {
+          "field": "$.sessions[1].owned_excel_exited",
+          "value": true
+        }
+      ]
+    },
+    {
+      "record": "results/saved_formula_positive_final_missingproof_01/summary.json",
+      "record_sha256": "9b57a93fc42f4a9f909d081c603de5bcbaabbfec4f3d30337d0fe085f4048495",
+      "reported_status": "PASS",
+      "category": "current_pass",
+      "reason": "Recorded product source provenance matches current final candidate.",
+      "case_count": null,
+      "test_count": null,
+      "migration_count": null,
+      "error": null,
+      "source_provenance": {
+        "checked_entries": 128,
+        "mismatches": [],
+        "current_candidate_match": true
+      },
+      "owned_exit_fields": [
+        {
+          "field": "$.sessions[0].owned_excel_exited",
+          "value": true
+        },
+        {
+          "field": "$.sessions[1].owned_excel_exited",
+          "value": true
+        }
+      ]
+    },
+    {
+      "record": "results/saved_formula_positive_final_openchanged_01/summary.json",
+      "record_sha256": "21eaff0e3b8aa1634adc6be728daf9aa48875f58dd54f506dfc69f2e570afe8a",
+      "reported_status": "PASS",
+      "category": "current_pass",
+      "reason": "Recorded product source provenance matches current final candidate.",
+      "case_count": null,
+      "test_count": null,
+      "migration_count": null,
+      "error": null,
+      "source_provenance": {
+        "checked_entries": 128,
+        "mismatches": [],
+        "current_candidate_match": true
+      },
+      "owned_exit_fields": [
+        {
+          "field": "$.sessions[0].owned_excel_exited",
+          "value": true
+        },
+        {
+          "field": "$.sessions[1].owned_excel_exited",
+          "value": true
+        }
+      ]
+    },
+    {
+      "record": "results/seep_ui_negative_01/summary.json",
+      "record_sha256": "ff59c928ce85bdb05b46c332b49f7a7d9a797b890325dce3757878ca538544cd",
+      "reported_status": "CONFIRMED_NEGATIVE",
+      "category": "expected_failure_negative_control",
+      "reason": "Published Fix2 defect intentionally reproduced; PASS may mean the negative test met its expectation.",
+      "case_count": 4,
+      "test_count": null,
+      "migration_count": null,
+      "error": null,
+      "source_provenance": {
+        "checked_entries": 0,
+        "mismatches": [],
+        "current_candidate_match": false
+      },
+      "owned_exit_fields": [
+        {
+          "field": "$.owned_excel_exited",
+          "value": true
+        }
+      ]
+    },
+    {
+      "record": "results/seep_ui_positive_final_01/summary.json",
+      "record_sha256": "2829080c0f5f21fb79151d85d797620dacad8cdb98a7060c90d6cf2458f7e235",
+      "reported_status": "PASS",
+      "category": "current_pass",
+      "reason": "Recorded product source provenance matches current final candidate.",
+      "case_count": 6,
+      "test_count": null,
+      "migration_count": null,
+      "error": null,
+      "source_provenance": {
+        "checked_entries": 128,
+        "mismatches": [],
+        "current_candidate_match": true
+      },
+      "owned_exit_fields": [
+        {
+          "field": "$.owned_excel_exited",
+          "value": true
+        }
+      ]
+    },
+    {
+      "record": "results/ui_preset_final_01/summary.json",
+      "record_sha256": "8373f7455cbe08516f276d1d3159231df7497670dd8187ee1b1c4fb3a2269d2e",
+      "reported_status": "PASS",
+      "category": "current_pass",
+      "reason": "Recorded product source provenance matches current final candidate.",
+      "case_count": null,
+      "test_count": 24,
+      "migration_count": 3,
+      "error": null,
+      "source_provenance": {
+        "checked_entries": 64,
+        "mismatches": [],
+        "current_candidate_match": true
+      },
+      "owned_exit_fields": [
+        {
+          "field": "$.owned_excel_exited",
+          "value": true
+        }
+      ]
+    },
+    {
+      "record": "results/ui_setup_final_01/summary.json",
+      "record_sha256": "6ee904f6cd7fa5253355330771d6cf38f2f52247d3f16fe3e90bbec1c3f0dd98",
+      "reported_status": "PREPARING",
+      "category": "incomplete_running_root_owned",
+      "reason": "Currently running root-owned regression; no orphan inference or process action.",
+      "case_count": 17,
+      "test_count": null,
+      "migration_count": null,
+      "error": null,
+      "source_provenance": {
+        "checked_entries": 64,
+        "mismatches": [],
+        "current_candidate_match": true
+      },
+      "owned_exit_fields": []
+    },
+    {
+      "record": "results/water_source_negative_01/summary.json",
+      "record_sha256": "a1a6e12b31202f8507da6f03de9a8ddf4fbdf730b740e485e2d73405922d6383",
+      "reported_status": "FAIL",
+      "category": "harness_failure",
+      "reason": "Initial water fixture/COM trial failed before intended case results; retained and superseded by negative_02.",
+      "case_count": 0,
+      "test_count": null,
+      "migration_count": null,
+      "error": "com_error(-2147352567, '例外が発生しました。', (0, None, None, None, 0, -2146788248), None)",
+      "source_provenance": {
+        "checked_entries": 0,
+        "mismatches": [],
+        "current_candidate_match": false
+      },
+      "owned_exit_fields": [
+        {
+          "field": "$.owned_excel_exited",
+          "value": false
+        }
+      ]
+    },
+    {
+      "record": "results/water_source_negative_02/summary.json",
+      "record_sha256": "5dda6c21b7d06c0d394acaafb62411ae81cff04dc8d3afbefa2db45a3ba3135a",
+      "reported_status": "CONFIRMED_NEGATIVE",
+      "category": "expected_failure_negative_control",
+      "reason": "Published Fix2 defect intentionally reproduced; PASS may mean the negative test met its expectation.",
+      "case_count": 4,
+      "test_count": null,
+      "migration_count": null,
+      "error": null,
+      "source_provenance": {
+        "checked_entries": 0,
+        "mismatches": [],
+        "current_candidate_match": false
+      },
+      "owned_exit_fields": [
+        {
+          "field": "$.owned_excel_exited",
+          "value": true
+        }
+      ]
+    },
+    {
+      "record": "results/water_source_positive_01/summary.json",
+      "record_sha256": "cb31678d197b473d0e5bfbec230cd35b15498ba0d6072081320657f972a3144c",
+      "reported_status": "PASS",
+      "category": "current_pass",
+      "reason": "Recorded product source provenance matches current final candidate.",
+      "case_count": 21,
+      "test_count": null,
+      "migration_count": null,
+      "error": null,
+      "source_provenance": {
+        "checked_entries": 128,
+        "mismatches": [],
+        "current_candidate_match": true
+      },
+      "owned_exit_fields": [
+        {
+          "field": "$.owned_excel_exited",
+          "value": true
+        }
+      ]
+    },
+    {
+      "record": "results/water_source_process_restart_01/summary.json",
+      "record_sha256": "dbb489fca8d1bd6115964784ff65091e14263e592a0247c0c8ed3a68f6e9a537",
+      "reported_status": "PASS",
+      "category": "current_pass",
+      "reason": "Recorded product source provenance matches current final candidate.",
+      "case_count": null,
+      "test_count": null,
+      "migration_count": null,
+      "error": null,
+      "source_provenance": {
+        "checked_entries": 129,
+        "mismatches": [],
+        "current_candidate_match": true
+      },
+      "owned_exit_fields": [
+        {
+          "field": "$.stages[0].owned_excel_exited",
+          "value": true
+        },
+        {
+          "field": "$.stages[1].owned_excel_exited",
+          "value": true
+        }
+      ]
+    },
+    {
+      "record": "results/candidate_final_01/delivery/WORKBOOK_VALIDATION.json",
+      "record_sha256": "0b2eb931cb5ec2a4d9a1e5231372cb655e4ceeb57f5a8560ce6345cb2895c1b0",
+      "reported_status": "PASS",
+      "category": "current_pass",
+      "reason": "Recorded product source provenance matches current final candidate.",
+      "case_count": null,
+      "test_count": null,
+      "migration_count": null,
+      "error": null,
+      "source_provenance": {
+        "checked_entries": 64,
+        "mismatches": [],
+        "current_candidate_match": true
+      },
+      "owned_exit_fields": [
+        {
+          "field": "$.owned_excel_exited",
+          "value": true
+        }
+      ]
+    }
+  ],
+  "false_exit_records": [
+    {
+      "record": "results/water_source_negative_01/summary.json",
+      "field": "$.owned_excel_exited",
+      "original_value": false,
+      "sidecar": "results/water_source_negative_01/POST_RUN_EXIT_CHECK.json",
+      "sidecar_sha256": "67612133bf35aea9b92e62c3e92bdeaa8d0af77330a33515d8fc439c47224bb0",
+      "later_ownership_exit_verified": true,
+      "needs_later_exit_sidecar": false
+    }
+  ],
+  "new_exit_sidecars_needed": [],
+  "monitor_issues": [],
+  "document_checks": {
+    "six_numbered_bugs": true,
+    "seven_changed_standard_modules": true,
+    "fifty_six_unchanged_standard_modules": true,
+    "event_source_and_cp932_equal": true,
+    "thisworkbook_replacement_instruction": true,
+    "witness_payload_retention_instruction": true,
+    "legacy_seep_result_requires_recompute": true,
+    "dry_analysis_remains_available": true,
+    "sentinel_not_numerical_evidence": true,
+    "missingproof_exact_command": true,
+    "openchanged_exact_command": true,
+    "book_sha_documented": true,
+    "source_bundle_sha_documented": true,
+    "dll_sha_documented": true
+  },
+  "document_sha256": {
+    "README_JA.md": "286146c72caa5556e0ee28813eed3f5033a02cd64ffa9acb26d18593986c7f2f",
+    "REVIEW_JA.md": "73bcdf429e2fdf9e111e5a7f6d3ddb46bc09ba33b01f755695b6840f0353baa4",
+    "REGRESSION.md": "112a2dd58cc1aecc4d3cf5931b5b180dcf1e14b68f37deddd4a6f85396d903f6",
+    "TEST_RESULTS.md": "e009c712a7f3522fd9f88e50d50bbf7fb051d7677327200cb91d51c310d429fd"
+  },
+  "changed_standard_modules": [
+    "RPX_Control.bas",
+    "RPX_Fs.bas",
+    "RPX_Guard.bas",
+    "RPX_Model.bas",
+    "RPX_Seep.bas",
+    "RPX_SeepUI.bas",
+    "RPX_Water.bas"
+  ],
+  "standard_module_count": 63,
+  "unchanged_standard_module_count": 56,
+  "source_bundle_sha256": "d11f3591e85b6726c5c16b3e7040ccf0718928d15938001d95633d84312518a4",
+  "published_book_sha256": "09b13bff8d2e01172d8cb46b1065db3887da8e1bfc310cecf5a66c131124d285",
+  "runtime_dll_sha256": "66da1a21be43cd2b3a3bfbaa9d13aad5fb1fd1960e1bf2507cc4e1cfa9ebe70b",
+  "issues": []
+}

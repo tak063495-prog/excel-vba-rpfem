@@ -1,0 +1,627 @@
+{
+  "state": "PASS",
+  "run_token": "f12cd2b553f24709a57609bf48153d46",
+  "prior_pids": [],
+  "candidate_only": true,
+  "published_files_modified": false,
+  "solver_calls": 0,
+  "harness_sha256": "24eba3020f6bf4cd4de5d624f893292cea6cc7f4c072535c990e3b53023414dc",
+  "baseline_workbook_sha256": "e01c5431b8fec7f757ee2e0a5802c6f327483d891c1ae4d2cb9011157d9d7b1d",
+  "dll_sha256": "66da1a21be43cd2b3a3bfbaa9d13aad5fb1fd1960e1bf2507cc4e1cfa9ebe70b",
+  "modules": {
+    "RPX_AccuracyMesh.bas": {
+      "source_sha256": "ec54485fb54a8ad6568a5b138c3db8f46ec7f397c3197d76117ba8c1d8c7d08f",
+      "source_code_key_sha256": "dc03d91daace7c53f03955a3db8e444f6bac20e14b74975b371f057eacaf4583",
+      "loaded_code_sha256": "0a2ea2a2c3bfa8e5c5d7e18e5ee51b5a2d74bafc1720a703a3a21b173b9d3fee",
+      "loaded_code_key_sha256": "dc03d91daace7c53f03955a3db8e444f6bac20e14b74975b371f057eacaf4583",
+      "reopened_code_sha256": "e79ff2bca9be047512f214d2fd50196da92e057c77d9663cd76a6d2e5234090c",
+      "reopened_code_key_sha256": "dc03d91daace7c53f03955a3db8e444f6bac20e14b74975b371f057eacaf4583"
+    },
+    "RPX_AccuracyNative.bas": {
+      "source_sha256": "f5b206b220371076248734f0221bee5c9f5162e8c25f57134a20257c5f7049be",
+      "source_code_key_sha256": "0d9bdc725bbef427341d923669fd7d4b444733b973c967cd628ca51e15e952f8",
+      "loaded_code_sha256": "c8d4c975ba5e9be84b2684ac74e8966c17da2924a409de000971c359fbd85b4d",
+      "loaded_code_key_sha256": "0d9bdc725bbef427341d923669fd7d4b444733b973c967cd628ca51e15e952f8",
+      "reopened_code_sha256": "b5aa051d16297bbc4bdca858d0b66f5f39ac799cde5b89ebdd0c0ae47089aef1",
+      "reopened_code_key_sha256": "0d9bdc725bbef427341d923669fd7d4b444733b973c967cd628ca51e15e952f8"
+    },
+    "RPX_Adapt.bas": {
+      "source_sha256": "39ef88998f10d8df9b0e9372b741152cd127b508be5ba4aad41f2a8654487a3f",
+      "source_code_key_sha256": "94145c9365bff4571725f040ef1d80cb9d053a352e7c801e5994a4bc92141304",
+      "loaded_code_sha256": "18923f191bd72df86ac330ff07f2977c44a51373fba36b91f17ce7c05f5bd605",
+      "loaded_code_key_sha256": "94145c9365bff4571725f040ef1d80cb9d053a352e7c801e5994a4bc92141304",
+      "reopened_code_sha256": "804a4914ef6f19b3cdfc0393972784886f3ea14f115ffd843be777e621ac788b",
+      "reopened_code_key_sha256": "94145c9365bff4571725f040ef1d80cb9d053a352e7c801e5994a4bc92141304"
+    },
+    "RPX_Affine.bas": {
+      "source_sha256": "1db43674855d97522da6c1ee68cbaad7f60bc197ae7980e7d4d16b57547e5d8c",
+      "source_code_key_sha256": "ae62213a9225733f8846f33c3c2046fa25a3b21b65d3889838ceda62e7b91066",
+      "loaded_code_sha256": "6f01b1c52ffc12eb27c7de4a8eca92609e063404512a96963322fda0ef1334f4",
+      "loaded_code_key_sha256": "ae62213a9225733f8846f33c3c2046fa25a3b21b65d3889838ceda62e7b91066",
+      "reopened_code_sha256": "e81f60c72ff32777b679659372b2fb0a8c844909dd98cf89dc409f353bf2bcca",
+      "reopened_code_key_sha256": "ae62213a9225733f8846f33c3c2046fa25a3b21b65d3889838ceda62e7b91066"
+    },
+    "RPX_AHO3.bas": {
+      "source_sha256": "26514eb2aa91485f5f194f2ae8d52f43ff3d0c3207618a8fe78340441bd299ca",
+      "source_code_key_sha256": "cbebddc7eaddbcd8f6e214e13f22227620492812b38f0f0f1babc62451962231",
+      "loaded_code_sha256": "0b2999c31bdcf9dc40fcb4eee879d12818e653425e3bf85787b3482e58ee2f33",
+      "loaded_code_key_sha256": "cbebddc7eaddbcd8f6e214e13f22227620492812b38f0f0f1babc62451962231",
+      "reopened_code_sha256": "6c75820480ef41b79af83f68d0ff4e8956816a37b095eb3d78ba69e7bed5bb7c",
+      "reopened_code_key_sha256": "cbebddc7eaddbcd8f6e214e13f22227620492812b38f0f0f1babc62451962231"
+    },
+    "RPX_Audit.bas": {
+      "source_sha256": "6bd8c4adcd3ed0dc4feace1b0fecc26817c99cc415a0e6900b4708b2170c57d5",
+      "source_code_key_sha256": "d70a23d940c56b72f7850d3b84998d49e9e1859b4edf99c947223d07c459501e",
+      "loaded_code_sha256": "286f1cd92df63c8f8637334f2531b468486e1103408cb93c19840a2d73580364",
+      "loaded_code_key_sha256": "d70a23d940c56b72f7850d3b84998d49e9e1859b4edf99c947223d07c459501e",
+      "reopened_code_sha256": "286f1cd92df63c8f8637334f2531b468486e1103408cb93c19840a2d73580364",
+      "reopened_code_key_sha256": "d70a23d940c56b72f7850d3b84998d49e9e1859b4edf99c947223d07c459501e"
+    },
+    "RPX_Bearing.bas": {
+      "source_sha256": "e03ebda3e1ae5a942af9e12c6143e25328e7bd9dd636fa4b95f5723061468ed4",
+      "source_code_key_sha256": "7458bc65f748e1049936d992e4a43eac831a22cc132fc9c15e02f889a56f3a27",
+      "loaded_code_sha256": "83e374cbd72b9c5c9a938e78394dfe195b3656ecfa244d5df1dba02e370d36a9",
+      "loaded_code_key_sha256": "7458bc65f748e1049936d992e4a43eac831a22cc132fc9c15e02f889a56f3a27",
+      "reopened_code_sha256": "83e374cbd72b9c5c9a938e78394dfe195b3656ecfa244d5df1dba02e370d36a9",
+      "reopened_code_key_sha256": "7458bc65f748e1049936d992e4a43eac831a22cc132fc9c15e02f889a56f3a27"
+    },
+    "RPX_C0Guides.bas": {
+      "source_sha256": "2525c8d5c5f0dc43b6eb686d9afd012d9f110d203b74e1a9188d239405085edd",
+      "source_code_key_sha256": "af97693b2da9c4b399aa232ef602fd3e23c753f9836206877696839f513f2628",
+      "loaded_code_sha256": "dd33e48262edc814f31a7dc9d90fd0f7f8030081528a6a50662ff18f2dde0f06",
+      "loaded_code_key_sha256": "af97693b2da9c4b399aa232ef602fd3e23c753f9836206877696839f513f2628",
+      "reopened_code_sha256": "af1576de9ff0adcbfb6c0f8d3c8e91769e7e4cf9e498a1a80e08f9dafddecf4c",
+      "reopened_code_key_sha256": "af97693b2da9c4b399aa232ef602fd3e23c753f9836206877696839f513f2628"
+    },
+    "RPX_C0Select.bas": {
+      "source_sha256": "34da66a74cc21acb6c977d923446cded0846067e3b516e4a2603e022a4fb495e",
+      "source_code_key_sha256": "d2c88e662786f1e0196e18c47cc089d09ce6f5060d7b5015882e33607d38390f",
+      "loaded_code_sha256": "b4ceabe7aa99448029fbbd14ff88d13f6ee422e02dd4c4451343a2a23f0da1c1",
+      "loaded_code_key_sha256": "d2c88e662786f1e0196e18c47cc089d09ce6f5060d7b5015882e33607d38390f",
+      "reopened_code_sha256": "b4ceabe7aa99448029fbbd14ff88d13f6ee422e02dd4c4451343a2a23f0da1c1",
+      "reopened_code_key_sha256": "d2c88e662786f1e0196e18c47cc089d09ce6f5060d7b5015882e33607d38390f"
+    },
+    "RPX_Certificate.bas": {
+      "source_sha256": "b0b9ce138156f90cb5d14026e9619ae487d6c89d1c1940b467b873127a4b1166",
+      "source_code_key_sha256": "2198774f9fdf0dd9a0588e0a8483bd21239401f1ec3399d7159b9d5a8f1bd0cf",
+      "loaded_code_sha256": "0f741ca743ccfdaeda5c28f94c57fa2e8b813fe1c7559f927c786c8eddb6b55c",
+      "loaded_code_key_sha256": "2198774f9fdf0dd9a0588e0a8483bd21239401f1ec3399d7159b9d5a8f1bd0cf",
+      "reopened_code_sha256": "024f69ccda1441608f26732b4e19edc7a2c9c0c11bfad13021c8d9ec6259b90f",
+      "reopened_code_key_sha256": "2198774f9fdf0dd9a0588e0a8483bd21239401f1ec3399d7159b9d5a8f1bd0cf"
+    },
+    "RPX_ColumnOrder.bas": {
+      "source_sha256": "c38a62a5bfa9d439f3742b5345414d833a265774ad56336679fe7a595d41f2e3",
+      "source_code_key_sha256": "08697af14dfd3e9b11b8f61c6867e1e61cf5875b4f651b40fc8a3b18308ac5aa",
+      "loaded_code_sha256": "265a56e0d36dc9457c64b4cca628db10b4bb0c9de6838ada27a55afccc6e6abf",
+      "loaded_code_key_sha256": "08697af14dfd3e9b11b8f61c6867e1e61cf5875b4f651b40fc8a3b18308ac5aa",
+      "reopened_code_sha256": "265a56e0d36dc9457c64b4cca628db10b4bb0c9de6838ada27a55afccc6e6abf",
+      "reopened_code_key_sha256": "08697af14dfd3e9b11b8f61c6867e1e61cf5875b4f651b40fc8a3b18308ac5aa"
+    },
+    "RPX_Conic.bas": {
+      "source_sha256": "79b8b4152638fd9c7aa29eed34324c195b8c8f74041ee1440dbb06dcd3c37840",
+      "source_code_key_sha256": "990cf4e73d1a0fc2b3df18e6b1cbc3e27d1de5c15e49831568747d2ba226f424",
+      "loaded_code_sha256": "fb8ac6591774c7c46409217a218e641a14110e23f39b34ca59fd29681f692d10",
+      "loaded_code_key_sha256": "990cf4e73d1a0fc2b3df18e6b1cbc3e27d1de5c15e49831568747d2ba226f424",
+      "reopened_code_sha256": "33fb979d408ae3b08bdb30e0ae03a1052c5f26803fb958d4d32ea775d34914f6",
+      "reopened_code_key_sha256": "990cf4e73d1a0fc2b3df18e6b1cbc3e27d1de5c15e49831568747d2ba226f424"
+    },
+    "RPX_Control.bas": {
+      "source_sha256": "30145de38ceb4debec4450331b03652ee4b31d201603472137256882a4c60da3",
+      "source_code_key_sha256": "7231d845e7394441e0dfe3a0d53870c3a87b0fd9d92a536c4f02a578be963224",
+      "loaded_code_sha256": "7697b2092cd4b01a3dc433610766a6bbdbc91f808b4ec7e17947cd252c93597d",
+      "loaded_code_key_sha256": "7231d845e7394441e0dfe3a0d53870c3a87b0fd9d92a536c4f02a578be963224",
+      "reopened_code_sha256": "7697b2092cd4b01a3dc433610766a6bbdbc91f808b4ec7e17947cd252c93597d",
+      "reopened_code_key_sha256": "7231d845e7394441e0dfe3a0d53870c3a87b0fd9d92a536c4f02a578be963224"
+    },
+    "RPX_Definition.bas": {
+      "source_sha256": "28eec4f7d8072f01c6ebd1a6b8cf291ce8bcb896519b688a8ba19d4a0c43e7f0",
+      "source_code_key_sha256": "19ecb21f9df06ff11fa0af45a60c9b65cf537238710e19a6c9e4bc99b2dcdb43",
+      "loaded_code_sha256": "3b101beae315023a6e1230433c5ac24497b8e12928b9890c624570500160f6da",
+      "loaded_code_key_sha256": "19ecb21f9df06ff11fa0af45a60c9b65cf537238710e19a6c9e4bc99b2dcdb43",
+      "reopened_code_sha256": "3b101beae315023a6e1230433c5ac24497b8e12928b9890c624570500160f6da",
+      "reopened_code_key_sha256": "19ecb21f9df06ff11fa0af45a60c9b65cf537238710e19a6c9e4bc99b2dcdb43"
+    },
+    "RPX_Diagnostics.bas": {
+      "source_sha256": "7cda9b7801ebb058af3440160ec59c006a9781e0992110fcc2b85b637cdb3bca",
+      "source_code_key_sha256": "de446b64a20d2b845ca5562ad47a5e220a9156db639995ded534212da44d3bd2",
+      "loaded_code_sha256": "8309fd417428ac247c75d4798302bc8382d96c114f2d0eb50674918efee8a6d4",
+      "loaded_code_key_sha256": "de446b64a20d2b845ca5562ad47a5e220a9156db639995ded534212da44d3bd2",
+      "reopened_code_sha256": "8309fd417428ac247c75d4798302bc8382d96c114f2d0eb50674918efee8a6d4",
+      "reopened_code_key_sha256": "de446b64a20d2b845ca5562ad47a5e220a9156db639995ded534212da44d3bd2"
+    },
+    "RPX_Exchange.bas": {
+      "source_sha256": "bcb9da802fc928c18cc802682d1e01bf00f6a0a39bb01a03055b1310b1f61f81",
+      "source_code_key_sha256": "166f500130f50bef61db3a19ad6426f069ee7c26f6d3f2469e66900dd81a925a",
+      "loaded_code_sha256": "52ac41874657d441b23ab1e97d713777366b3f81a913dcc5136f04e6e6bd46a1",
+      "loaded_code_key_sha256": "166f500130f50bef61db3a19ad6426f069ee7c26f6d3f2469e66900dd81a925a",
+      "reopened_code_sha256": "52ac41874657d441b23ab1e97d713777366b3f81a913dcc5136f04e6e6bd46a1",
+      "reopened_code_key_sha256": "166f500130f50bef61db3a19ad6426f069ee7c26f6d3f2469e66900dd81a925a"
+    },
+    "RPX_FactorFree.bas": {
+      "source_sha256": "7aa6255e58ec85af8e170f4f91b80b689ad347c0b3230857a334aad9ff8e4864",
+      "source_code_key_sha256": "ba20a9b3a84f9a8a1a42ae077e53017cdfafae0aee701fa922a7b87435eee058",
+      "loaded_code_sha256": "ebcea48de3a6d74be8ea7e0ab32e4b0fbcaa8f846fe373240a8657b356234fde",
+      "loaded_code_key_sha256": "ba20a9b3a84f9a8a1a42ae077e53017cdfafae0aee701fa922a7b87435eee058",
+      "reopened_code_sha256": "eaf601c4ddab186fae76158ebc9713da163a212a418529759325f02a4a15dea2",
+      "reopened_code_key_sha256": "ba20a9b3a84f9a8a1a42ae077e53017cdfafae0aee701fa922a7b87435eee058"
+    },
+    "RPX_FixedLowerRecovery.bas": {
+      "source_sha256": "601f59a7446d95775586200b8323afd245835f4dd944ce189fbc5c783c86c1e1",
+      "source_code_key_sha256": "494b2e0f95bd9f5ce3bdf2671f47343d1961bc7c03c0e02dc88438345fc3675e",
+      "loaded_code_sha256": "c2dd9d5eb1563d2b29fc093f984e15134b8842d83453579ffb024ef280301c83",
+      "loaded_code_key_sha256": "494b2e0f95bd9f5ce3bdf2671f47343d1961bc7c03c0e02dc88438345fc3675e",
+      "reopened_code_sha256": "a4c812c72115b4ea9760d2b26467bebccfa24ca59a90fd82a5cb5abbf3ddb52b",
+      "reopened_code_key_sha256": "494b2e0f95bd9f5ce3bdf2671f47343d1961bc7c03c0e02dc88438345fc3675e"
+    },
+    "RPX_FixedWitness.bas": {
+      "source_sha256": "b11b940743c32ad253d0d2c9a53c0057762a4b8d98db61c487ee4eeb3794e88b",
+      "source_code_key_sha256": "ece07e0fe5de63dddc2eeecd1dc76509e3bdf103c1b069287e1cacc954852c26",
+      "loaded_code_sha256": "af4fc7eb93870a180a81efbe20f88d21f4a8127444fa1fb0e6f893b9dcb014ab",
+      "loaded_code_key_sha256": "ece07e0fe5de63dddc2eeecd1dc76509e3bdf103c1b069287e1cacc954852c26",
+      "reopened_code_sha256": "af4fc7eb93870a180a81efbe20f88d21f4a8127444fa1fb0e6f893b9dcb014ab",
+      "reopened_code_key_sha256": "ece07e0fe5de63dddc2eeecd1dc76509e3bdf103c1b069287e1cacc954852c26"
+    },
+    "RPX_FlowMesh.bas": {
+      "source_sha256": "1016edee32d4527f27db395c7b3082df5f84cb9df1ca6003363e1aa4b165db69",
+      "source_code_key_sha256": "fe0115e1bfa581b1a2da5bf64af47cb05a5cebf585b98c0d6162100a65162a9d",
+      "loaded_code_sha256": "d3fce037e266aff1963e7f69283d498ab6283c18ee0e2613c8bb23e401513c0b",
+      "loaded_code_key_sha256": "fe0115e1bfa581b1a2da5bf64af47cb05a5cebf585b98c0d6162100a65162a9d",
+      "reopened_code_sha256": "d3fce037e266aff1963e7f69283d498ab6283c18ee0e2613c8bb23e401513c0b",
+      "reopened_code_key_sha256": "fe0115e1bfa581b1a2da5bf64af47cb05a5cebf585b98c0d6162100a65162a9d"
+    },
+    "RPX_FreeFaceSplit.bas": {
+      "source_sha256": "df4f932f1e1b7b7390d062057f219c310643b7ce659231b1c3d4abdb7174466c",
+      "source_code_key_sha256": "16f537aaa91a1a30085b2ccb834936c86c648db721b6b7b932d1275046b2053c",
+      "loaded_code_sha256": "8f38a4ce6e6fff44bfd7561216decf721cc5db37c31b6f096860acb8b73cee01",
+      "loaded_code_key_sha256": "16f537aaa91a1a30085b2ccb834936c86c648db721b6b7b932d1275046b2053c",
+      "reopened_code_sha256": "8f38a4ce6e6fff44bfd7561216decf721cc5db37c31b6f096860acb8b73cee01",
+      "reopened_code_key_sha256": "16f537aaa91a1a30085b2ccb834936c86c648db721b6b7b932d1275046b2053c"
+    },
+    "RPX_Fs.bas": {
+      "source_sha256": "6b6b91e759dff8a589d4dc4cf28f9e57747020cecf9414c1cb00f39c24b7885a",
+      "source_code_key_sha256": "60f81de55625aee17c7a4534dbf41ac750f76c636508aab148e84971d03a4440",
+      "loaded_code_sha256": "207496125a64b4228453e057bda0f0a0f746f30cbee5df346e5b8dc3b58026f1",
+      "loaded_code_key_sha256": "60f81de55625aee17c7a4534dbf41ac750f76c636508aab148e84971d03a4440",
+      "reopened_code_sha256": "207496125a64b4228453e057bda0f0a0f746f30cbee5df346e5b8dc3b58026f1",
+      "reopened_code_key_sha256": "60f81de55625aee17c7a4534dbf41ac750f76c636508aab148e84971d03a4440"
+    },
+    "RPX_Guard.bas": {
+      "source_sha256": "10390498aecd1a321f603ce22f1f5d912e2e58f6e90d864edb9f54ff91d578ef",
+      "source_code_key_sha256": "cdaed8c95c41dc656b0e95f1bc024f843c94f57229db360acd692498c5035738",
+      "loaded_code_sha256": "268fa2f21e95d810eb4445f8fbfdd1308fbe2d74c5bb826d4c6c67ce2296f4e4",
+      "loaded_code_key_sha256": "cdaed8c95c41dc656b0e95f1bc024f843c94f57229db360acd692498c5035738",
+      "reopened_code_sha256": "1d03ac8cf00821b45a473d0a34b1c2771f00f449376b1bb7334b3639013dde50",
+      "reopened_code_key_sha256": "cdaed8c95c41dc656b0e95f1bc024f843c94f57229db360acd692498c5035738"
+    },
+    "RPX_HSDCandidate.bas": {
+      "source_sha256": "db4aba8cf8c0f2f45ef21230aff5b757c57487cc8724e0bd0f6319a0711dc689",
+      "source_code_key_sha256": "23789d03a427c23e51cca93e97003f9a0b673c90009a775ed043135971594438",
+      "loaded_code_sha256": "224e25e4308215f2f6e9a13b076cc5fe924d3aae0b324e441215fe21446474c0",
+      "loaded_code_key_sha256": "23789d03a427c23e51cca93e97003f9a0b673c90009a775ed043135971594438",
+      "reopened_code_sha256": "224e25e4308215f2f6e9a13b076cc5fe924d3aae0b324e441215fe21446474c0",
+      "reopened_code_key_sha256": "23789d03a427c23e51cca93e97003f9a0b673c90009a775ed043135971594438"
+    },
+    "RPX_HSDLu.bas": {
+      "source_sha256": "4259698082c53d1fd72afc00693baa381d4965acfb4cbea379ae1b33c6b3e4a2",
+      "source_code_key_sha256": "7d408ee2ac57a98837e4d29e141684d6f06908a6f276ba80c3ab6ac3b3fd1eeb",
+      "loaded_code_sha256": "987006a15fc2d2390f2941b475367ef46fc900a625dcc003c909948394fc68b9",
+      "loaded_code_key_sha256": "7d408ee2ac57a98837e4d29e141684d6f06908a6f276ba80c3ab6ac3b3fd1eeb",
+      "reopened_code_sha256": "987006a15fc2d2390f2941b475367ef46fc900a625dcc003c909948394fc68b9",
+      "reopened_code_key_sha256": "7d408ee2ac57a98837e4d29e141684d6f06908a6f276ba80c3ab6ac3b3fd1eeb"
+    },
+    "RPX_HSDPrecision.bas": {
+      "source_sha256": "1ced0a3645007e6fc6235aea7ff9832a4e14ebad33536be12e3af845a35559f2",
+      "source_code_key_sha256": "6868abb55694450ac37a89c1b288d20e4345b53380ca2deca161b16258c6f28d",
+      "loaded_code_sha256": "0571fedb64596b7e853b168276c8155cfaedbd6c3bf81532ba0e2663ac62b1ed",
+      "loaded_code_key_sha256": "6868abb55694450ac37a89c1b288d20e4345b53380ca2deca161b16258c6f28d",
+      "reopened_code_sha256": "0571fedb64596b7e853b168276c8155cfaedbd6c3bf81532ba0e2663ac62b1ed",
+      "reopened_code_key_sha256": "6868abb55694450ac37a89c1b288d20e4345b53380ca2deca161b16258c6f28d"
+    },
+    "RPX_HSDQuality.bas": {
+      "source_sha256": "40259e63df092f06dcbb5513526af91191416ec3b53435eab68baa4345a95e5e",
+      "source_code_key_sha256": "e595c61ed470393715366c64fcfa06a58c937c593b6604744a2f6e594beb4a2d",
+      "loaded_code_sha256": "ee03248ff3c0d711120ea0922fb4d9f08e821e53b0a1a1406dcd9ce37d6ff264",
+      "loaded_code_key_sha256": "e595c61ed470393715366c64fcfa06a58c937c593b6604744a2f6e594beb4a2d",
+      "reopened_code_sha256": "ee03248ff3c0d711120ea0922fb4d9f08e821e53b0a1a1406dcd9ce37d6ff264",
+      "reopened_code_key_sha256": "e595c61ed470393715366c64fcfa06a58c937c593b6604744a2f6e594beb4a2d"
+    },
+    "RPX_Indicator.bas": {
+      "source_sha256": "723de6a651889c63e67bcb029ba77738f90f74fda9e8444cb59046fe5a2002b8",
+      "source_code_key_sha256": "dee3a507ace94524931abce64889fe00b72b41d8bd1d4a9d93c0cf132952c0ab",
+      "loaded_code_sha256": "852991cd2027e2779a3356431531ff5a797bcc9cf625a7f424ab3fc33d15977e",
+      "loaded_code_key_sha256": "dee3a507ace94524931abce64889fe00b72b41d8bd1d4a9d93c0cf132952c0ab",
+      "reopened_code_sha256": "852991cd2027e2779a3356431531ff5a797bcc9cf625a7f424ab3fc33d15977e",
+      "reopened_code_key_sha256": "dee3a507ace94524931abce64889fe00b72b41d8bd1d4a9d93c0cf132952c0ab"
+    },
+    "RPX_KktCapture.bas": {
+      "source_sha256": "1f486164023bcc248875fbee33d98a663d343f1b4099d76b1b12993380a8cd9a",
+      "source_code_key_sha256": "57c0781be8ce21fbe2ab81a3f8bce5c2a4452d165293de041c01b95358825df3",
+      "loaded_code_sha256": "6ef95283077e76cc7bfd5e6c10003ffc712d6a9686c024d47f8443d3421203dd",
+      "loaded_code_key_sha256": "57c0781be8ce21fbe2ab81a3f8bce5c2a4452d165293de041c01b95358825df3",
+      "reopened_code_sha256": "6ef95283077e76cc7bfd5e6c10003ffc712d6a9686c024d47f8443d3421203dd",
+      "reopened_code_key_sha256": "57c0781be8ce21fbe2ab81a3f8bce5c2a4452d165293de041c01b95358825df3"
+    },
+    "RPX_LDL.bas": {
+      "source_sha256": "03ef3d4cd0c11149d38711cd00821a38b9016f69f3029e940bb34090df042ab3",
+      "source_code_key_sha256": "3c13826188d5e56d9bc0b14fda99abfa0914225aef21d7eaef1eae27f4068fd2",
+      "loaded_code_sha256": "8e8a9a4801c138572e7b38279b5f1775bc6088a9ab20a20c1c61a52e17d047ea",
+      "loaded_code_key_sha256": "3c13826188d5e56d9bc0b14fda99abfa0914225aef21d7eaef1eae27f4068fd2",
+      "reopened_code_sha256": "8e8a9a4801c138572e7b38279b5f1775bc6088a9ab20a20c1c61a52e17d047ea",
+      "reopened_code_key_sha256": "3c13826188d5e56d9bc0b14fda99abfa0914225aef21d7eaef1eae27f4068fd2"
+    },
+    "RPX_LoadStepMesh.bas": {
+      "source_sha256": "47c050c4b94e34521f4023992d9b9e108cfde9fff3fc876e4eb7a7562075fffa",
+      "source_code_key_sha256": "5efab6c5baf50116bdcf0c90c054927690b19dfe3a6a59cb5ff9c3894d8f51c4",
+      "loaded_code_sha256": "f482ec20a07a2ba5ef974e6783c3ab1cfcaa392f68ad9b4a7ed7583534d7e6be",
+      "loaded_code_key_sha256": "5efab6c5baf50116bdcf0c90c054927690b19dfe3a6a59cb5ff9c3894d8f51c4",
+      "reopened_code_sha256": "f482ec20a07a2ba5ef974e6783c3ab1cfcaa392f68ad9b4a7ed7583534d7e6be",
+      "reopened_code_key_sha256": "5efab6c5baf50116bdcf0c90c054927690b19dfe3a6a59cb5ff9c3894d8f51c4"
+    },
+    "RPX_Lower.bas": {
+      "source_sha256": "ee575b799d8f043c3803dc5e335342585368148dbe40c231c9f9a935eaea071e",
+      "source_code_key_sha256": "33558a681e2d3d5945c1aeed12fb54c74ec914b07c00193278f3b1dce0d6cb39",
+      "loaded_code_sha256": "76fc445e0081908e09c4fd4307c9ae7dd56ff1f003289532cdf1b8d08194801c",
+      "loaded_code_key_sha256": "33558a681e2d3d5945c1aeed12fb54c74ec914b07c00193278f3b1dce0d6cb39",
+      "reopened_code_sha256": "95beadde56edfbb0af7e29b16d367aab92814162584e15e8cb3d8fa7d8a9538c",
+      "reopened_code_key_sha256": "33558a681e2d3d5945c1aeed12fb54c74ec914b07c00193278f3b1dce0d6cb39"
+    },
+    "RPX_LowerCache.bas": {
+      "source_sha256": "640ca2b9a4b0245fdf921102e7b9356fe0b2d29f36ed4ec930d3c27c6ffac663",
+      "source_code_key_sha256": "4df847af0c7857625ade671f3580e063693ad8b4b2871041b6569f86fc4056bd",
+      "loaded_code_sha256": "13805dec08f41c7ba6aa3af5f27999800063182f0cda4bcc576dfbb1a3c98874",
+      "loaded_code_key_sha256": "4df847af0c7857625ade671f3580e063693ad8b4b2871041b6569f86fc4056bd",
+      "reopened_code_sha256": "13805dec08f41c7ba6aa3af5f27999800063182f0cda4bcc576dfbb1a3c98874",
+      "reopened_code_key_sha256": "4df847af0c7857625ade671f3580e063693ad8b4b2871041b6569f86fc4056bd"
+    },
+    "RPX_Mesh.bas": {
+      "source_sha256": "c82481797853e4f5f956c41fbdb911c421da41ef518771a382eb0451ce3bb78c",
+      "source_code_key_sha256": "2f584d803998bd1d7f2cb779dcadc5c66754cb559f95381051ff933095100dba",
+      "loaded_code_sha256": "2607ae8cef33b2a510c0f23ee76a6c6f2243fc2414b5b7ca7d0849d7e56a86b6",
+      "loaded_code_key_sha256": "2f584d803998bd1d7f2cb779dcadc5c66754cb559f95381051ff933095100dba",
+      "reopened_code_sha256": "056be330d5ca08ffc2430fd83e2ccdc0e6b68a6bcdc90944b06541209e484678",
+      "reopened_code_key_sha256": "2f584d803998bd1d7f2cb779dcadc5c66754cb559f95381051ff933095100dba"
+    },
+    "RPX_MeshGuard.bas": {
+      "source_sha256": "f5d7fb45ac05a42c6698833b35095bc0dfe182937055710d632e6835f4d4b313",
+      "source_code_key_sha256": "67bf38462733d9fdeb622820a422d1b930d2908cc309b105cf96c749e2db4516",
+      "loaded_code_sha256": "bcd8274f2e57a890e3ea209aef2ca69f23a2add41ac9b963024ad949dec6f452",
+      "loaded_code_key_sha256": "67bf38462733d9fdeb622820a422d1b930d2908cc309b105cf96c749e2db4516",
+      "reopened_code_sha256": "bcd8274f2e57a890e3ea209aef2ca69f23a2add41ac9b963024ad949dec6f452",
+      "reopened_code_key_sha256": "67bf38462733d9fdeb622820a422d1b930d2908cc309b105cf96c749e2db4516"
+    },
+    "RPX_MeshTests.bas": {
+      "source_sha256": "7adab7d50d147c115100a040c7b5e66bd78915425354aa7c1e453f5bce445e99",
+      "source_code_key_sha256": "e3ef04baeb0098e6839ab2a74918d516a8baed86e0d62551c67f52540e59d7af",
+      "loaded_code_sha256": "5b9d2620e80bc35bb6282a054a86ed45f17a6f1a5aa90ba0c48f74f4170bb12d",
+      "loaded_code_key_sha256": "e3ef04baeb0098e6839ab2a74918d516a8baed86e0d62551c67f52540e59d7af",
+      "reopened_code_sha256": "5b9d2620e80bc35bb6282a054a86ed45f17a6f1a5aa90ba0c48f74f4170bb12d",
+      "reopened_code_key_sha256": "e3ef04baeb0098e6839ab2a74918d516a8baed86e0d62551c67f52540e59d7af"
+    },
+    "RPX_Model.bas": {
+      "source_sha256": "2f4bde0e77b2cd15b0be90694e348dff012b11d0f10eb15868cc977f451c2eac",
+      "source_code_key_sha256": "e635a7465c57f0b1c4f2c86d800c78d364392635cc970058056372bb3fb003e1",
+      "loaded_code_sha256": "baea2878516123fa7fbd7e82c1a72f56a79597bb0ee615270dbd202dbb795317",
+      "loaded_code_key_sha256": "e635a7465c57f0b1c4f2c86d800c78d364392635cc970058056372bb3fb003e1",
+      "reopened_code_sha256": "baea2878516123fa7fbd7e82c1a72f56a79597bb0ee615270dbd202dbb795317",
+      "reopened_code_key_sha256": "e635a7465c57f0b1c4f2c86d800c78d364392635cc970058056372bb3fb003e1"
+    },
+    "RPX_Native.bas": {
+      "source_sha256": "8820c2c6e2af78f59f6c16b0d01281019c5173d6dcc2c1c0cba1a82fc95e82ec",
+      "source_code_key_sha256": "3016772212d5bdff4833ea7458c6bdeb9cedf62a7d7ac70bb775a500dd28f05c",
+      "loaded_code_sha256": "685bbaee8accf4c899e5b6932ee865ec1adfcc0e64f919f7b76dfc99ff8511c4",
+      "loaded_code_key_sha256": "3016772212d5bdff4833ea7458c6bdeb9cedf62a7d7ac70bb775a500dd28f05c",
+      "reopened_code_sha256": "685bbaee8accf4c899e5b6932ee865ec1adfcc0e64f919f7b76dfc99ff8511c4",
+      "reopened_code_key_sha256": "3016772212d5bdff4833ea7458c6bdeb9cedf62a7d7ac70bb775a500dd28f05c"
+    },
+    "RPX_NativeBulk.bas": {
+      "source_sha256": "ee860f6ddf72c9f15edabf7ca8158a6126d546bc4ac50b1192d43f816e1be949",
+      "source_code_key_sha256": "dc8311ab54f037365eb2e5c656a1b7f0079d7e815a07844bf02e4b9b3468193f",
+      "loaded_code_sha256": "3714881e08139baa618f5ad4e75321aa76c85870a7eeb331683b32a1f8884b06",
+      "loaded_code_key_sha256": "dc8311ab54f037365eb2e5c656a1b7f0079d7e815a07844bf02e4b9b3468193f",
+      "reopened_code_sha256": "91aea0d80d0b1261dff9626c8b1ae407bd8c8e97dc94c826a481b7de451e3fe9",
+      "reopened_code_key_sha256": "dc8311ab54f037365eb2e5c656a1b7f0079d7e815a07844bf02e4b9b3468193f"
+    },
+    "RPX_NativeGuard.bas": {
+      "source_sha256": "f396f22f327aee6335d5c3e7d045d2eca4d891b1ab0d06d31e723759d5bb7900",
+      "source_code_key_sha256": "71da3e5a74f40d0c7149c133622cca69f0e27bfc04ec0d8dc775ba94824c9846",
+      "loaded_code_sha256": "33471b96a59ce22cca04fd8e649cbf717b1ba29decdaa673538f0f44cd25c1e4",
+      "loaded_code_key_sha256": "71da3e5a74f40d0c7149c133622cca69f0e27bfc04ec0d8dc775ba94824c9846",
+      "reopened_code_sha256": "487072a9948ec3e70f6377a5f903f3741f2b44704a236c0976364a1c50cb836c",
+      "reopened_code_key_sha256": "71da3e5a74f40d0c7149c133622cca69f0e27bfc04ec0d8dc775ba94824c9846"
+    },
+    "RPX_NativeLU.bas": {
+      "source_sha256": "ccf566350ab78eb2e6f117a504d3aa3c4c0247eaf638b6cd997b7eb204e4d6c0",
+      "source_code_key_sha256": "2da633bbecf6ae12b48ecde4ccf13960ae0ccb4163bcd005ffff68530209ac94",
+      "loaded_code_sha256": "9e626bbbc1a96a18beecdf4aaacc1da8f4fad4f17ebb4f581352f211c117396a",
+      "loaded_code_key_sha256": "2da633bbecf6ae12b48ecde4ccf13960ae0ccb4163bcd005ffff68530209ac94",
+      "reopened_code_sha256": "9e626bbbc1a96a18beecdf4aaacc1da8f4fad4f17ebb4f581352f211c117396a",
+      "reopened_code_key_sha256": "2da633bbecf6ae12b48ecde4ccf13960ae0ccb4163bcd005ffff68530209ac94"
+    },
+    "RPX_NativeMesh.bas": {
+      "source_sha256": "4c7a829d4dceb811d57609913c57ee4436b0db838f962de5b805f751112a81ee",
+      "source_code_key_sha256": "d07b72b3b6730ce4da402efdec5474a2e8174dc75c68f70ecd9af68fdfeddfca",
+      "loaded_code_sha256": "37b98c8586780c371231f37ba92167b2734b5396cd236e233631d2cc31954e28",
+      "loaded_code_key_sha256": "d07b72b3b6730ce4da402efdec5474a2e8174dc75c68f70ecd9af68fdfeddfca",
+      "reopened_code_sha256": "3b5d2b21e008d6a1deaee9f1ddf4105dc85b19eb3e0a5000fde13da324abfe00",
+      "reopened_code_key_sha256": "d07b72b3b6730ce4da402efdec5474a2e8174dc75c68f70ecd9af68fdfeddfca"
+    },
+    "RPX_NativeSolver.bas": {
+      "source_sha256": "a98b27d492eea27129e9445438270924036f0504a7564504a4b70e0f8c8ea033",
+      "source_code_key_sha256": "a831ddac47049ec790fed0952b00357097c68adfc3b71d14b1414b3c932960f6",
+      "loaded_code_sha256": "fe00c44cde25740ec6a25e99831d213cf6240d6f8bec172dc61537f2461b7e90",
+      "loaded_code_key_sha256": "a831ddac47049ec790fed0952b00357097c68adfc3b71d14b1414b3c932960f6",
+      "reopened_code_sha256": "99ab2549bea2c455f5698db8e6a33bb26bfb369e88335c8cdd3e3186f3306f39",
+      "reopened_code_key_sha256": "a831ddac47049ec790fed0952b00357097c68adfc3b71d14b1414b3c932960f6"
+    },
+    "RPX_NT.bas": {
+      "source_sha256": "e986114e4b19d2c4939874460168ef46ca77c47b8bce851735d21385f351e818",
+      "source_code_key_sha256": "d6b01259eff32c046f7af32a6c250afc1e2ad5bbaa4f6fb642f407f725d38c50",
+      "loaded_code_sha256": "366bbf9c92e921dab84e964f4609d0dad178c7a566f5638f054aedada29a42a3",
+      "loaded_code_key_sha256": "d6b01259eff32c046f7af32a6c250afc1e2ad5bbaa4f6fb642f407f725d38c50",
+      "reopened_code_sha256": "beb857a4657ecc3a2f7d493f00c5f0965619a5265e6b49459b8afdb01d62e7b6",
+      "reopened_code_key_sha256": "d6b01259eff32c046f7af32a6c250afc1e2ad5bbaa4f6fb642f407f725d38c50"
+    },
+    "RPX_NTPrecision.bas": {
+      "source_sha256": "677f9c58d1ba328343349c56787641bc4d27a7a9d8391df7a44661b6c4d7cb6e",
+      "source_code_key_sha256": "d925cb26143814a6c80ec5f77a6b17e75d4711e8bf773569cf18474cafaf7ea7",
+      "loaded_code_sha256": "fee6a4dbfe73157f0c4e5439c73ebdc21103cc09fe333649b09f95851e083560",
+      "loaded_code_key_sha256": "d925cb26143814a6c80ec5f77a6b17e75d4711e8bf773569cf18474cafaf7ea7",
+      "reopened_code_sha256": "a1a7bcaf8fae91496d68defd7089c322129d3a48db30fcef9b7932834bb198d5",
+      "reopened_code_key_sha256": "d925cb26143814a6c80ec5f77a6b17e75d4711e8bf773569cf18474cafaf7ea7"
+    },
+    "RPX_Order.bas": {
+      "source_sha256": "2a3c50063e96fb4d287c8c0c2ad9ca7d0cc12285f62dcf657b9b21a3a343b90d",
+      "source_code_key_sha256": "67a4bb109c04c57c77f16fc6387adbdc6bacd63978c94c794bf1e1c95ffec208",
+      "loaded_code_sha256": "86d5595f792d1a9565b3a73b54bcd3666d1e5ba77ba4e0fc22971030c4906c2e",
+      "loaded_code_key_sha256": "67a4bb109c04c57c77f16fc6387adbdc6bacd63978c94c794bf1e1c95ffec208",
+      "reopened_code_sha256": "86d5595f792d1a9565b3a73b54bcd3666d1e5ba77ba4e0fc22971030c4906c2e",
+      "reopened_code_key_sha256": "67a4bb109c04c57c77f16fc6387adbdc6bacd63978c94c794bf1e1c95ffec208"
+    },
+    "RPX_Output.bas": {
+      "source_sha256": "5d225faf8c610084d6a449e7db296e1b8af59602d2e276e837ee21460f66028f",
+      "source_code_key_sha256": "84389b04cbf8ce7e196db786f602e2ca1ff3389dbc61009dda8581484f31a4ed",
+      "loaded_code_sha256": "0a4e075cdb8bfc576410c6cd6ff15247bd42a1800e58b7f9890035551b8b63ae",
+      "loaded_code_key_sha256": "84389b04cbf8ce7e196db786f602e2ca1ff3389dbc61009dda8581484f31a4ed",
+      "reopened_code_sha256": "0a4e075cdb8bfc576410c6cd6ff15247bd42a1800e58b7f9890035551b8b63ae",
+      "reopened_code_key_sha256": "84389b04cbf8ce7e196db786f602e2ca1ff3389dbc61009dda8581484f31a4ed"
+    },
+    "RPX_P4.bas": {
+      "source_sha256": "d037d854e3d11b0f59546b8948ddc951b999c9caa934ce4776a9f83190de08c4",
+      "source_code_key_sha256": "d4fa788d0c6c2c2341014e3e8ccacc374a1910fa22fb4e08e87c076636e9d7d1",
+      "loaded_code_sha256": "cc4a096f05fad25882dba55aa706e56b090ba39808b4479e1a6f44c6d6270e89",
+      "loaded_code_key_sha256": "d4fa788d0c6c2c2341014e3e8ccacc374a1910fa22fb4e08e87c076636e9d7d1",
+      "reopened_code_sha256": "3a2d7552c698cd82643f69e3a8ba53271417f1d5d1ba4cdeeec5819929395731",
+      "reopened_code_key_sha256": "d4fa788d0c6c2c2341014e3e8ccacc374a1910fa22fb4e08e87c076636e9d7d1"
+    },
+    "RPX_Profile.bas": {
+      "source_sha256": "c7a85c4485bf18c14264c2645a0106a315ae2263fdc099b94c583dab9e926b41",
+      "source_code_key_sha256": "b4334d120cdcb02e56b27f9ab1dcd5e98d9de2b6dfe96cec3c5ab603875ba9f0",
+      "loaded_code_sha256": "c3bd2fc2e31791e3dbfc0048fb157f73fec8bf8957bce3ee7f5388625feebad1",
+      "loaded_code_key_sha256": "b4334d120cdcb02e56b27f9ab1dcd5e98d9de2b6dfe96cec3c5ab603875ba9f0",
+      "reopened_code_sha256": "c3bd2fc2e31791e3dbfc0048fb157f73fec8bf8957bce3ee7f5388625feebad1",
+      "reopened_code_key_sha256": "b4334d120cdcb02e56b27f9ab1dcd5e98d9de2b6dfe96cec3c5ab603875ba9f0"
+    },
+    "RPX_Refine.bas": {
+      "source_sha256": "0d46f9bfaecc310302fd48c1ba07ce1316e0e20eb70abf06f0cc2d150682ecbd",
+      "source_code_key_sha256": "56d10312368576e83ab92b87d2e5ba83d150eafae7d1877e2fe44cdbb08209e5",
+      "loaded_code_sha256": "a8405f38dfc85b35073243249d8308219b8bacba106c49b4b7768965bd2a7759",
+      "loaded_code_key_sha256": "56d10312368576e83ab92b87d2e5ba83d150eafae7d1877e2fe44cdbb08209e5",
+      "reopened_code_sha256": "a8405f38dfc85b35073243249d8308219b8bacba106c49b4b7768965bd2a7759",
+      "reopened_code_key_sha256": "56d10312368576e83ab92b87d2e5ba83d150eafae7d1877e2fe44cdbb08209e5"
+    },
+    "RPX_Robust.bas": {
+      "source_sha256": "b53c71817f688da2456af74dcd1c7d52cd66eae1bdc7af43c2b20076cd347117",
+      "source_code_key_sha256": "096da0e6337c570075ad7706f03b6f0ee172cd857f9c345f7d2084f03aecc2ff",
+      "loaded_code_sha256": "17a7e0223759756f8c249d7d018c584980db99e6aadb57871e9011a05d165823",
+      "loaded_code_key_sha256": "096da0e6337c570075ad7706f03b6f0ee172cd857f9c345f7d2084f03aecc2ff",
+      "reopened_code_sha256": "17a7e0223759756f8c249d7d018c584980db99e6aadb57871e9011a05d165823",
+      "reopened_code_key_sha256": "096da0e6337c570075ad7706f03b6f0ee172cd857f9c345f7d2084f03aecc2ff"
+    },
+    "RPX_Schur.bas": {
+      "source_sha256": "18c7814f8036e3287ebd5d8cad3b004fd45139880c0ba528905fe60aefe03370",
+      "source_code_key_sha256": "f9b9b5358f0999fdf3c0faeab72fefea3f68e1d86d76c16a3b8c51bcb8b0723b",
+      "loaded_code_sha256": "6b878bc222235c7bfddd57ef757f3038f1ad3b641f1dbe0738899cdee862cd5f",
+      "loaded_code_key_sha256": "f9b9b5358f0999fdf3c0faeab72fefea3f68e1d86d76c16a3b8c51bcb8b0723b",
+      "reopened_code_sha256": "6b878bc222235c7bfddd57ef757f3038f1ad3b641f1dbe0738899cdee862cd5f",
+      "reopened_code_key_sha256": "f9b9b5358f0999fdf3c0faeab72fefea3f68e1d86d76c16a3b8c51bcb8b0723b"
+    },
+    "RPX_SchurCache.bas": {
+      "source_sha256": "71b9810fa0164b931929dce5a4238c1e3a6f975dc968b3ababca62bc08b5baae",
+      "source_code_key_sha256": "ad74bfb70766c6d6386d4f50e3143e1899fd919ce552cb18d7dc577ad979fafd",
+      "loaded_code_sha256": "a90f05826771509f46eae837f5a04cb57c8deec07e17cb94484413a76b41b018",
+      "loaded_code_key_sha256": "ad74bfb70766c6d6386d4f50e3143e1899fd919ce552cb18d7dc577ad979fafd",
+      "reopened_code_sha256": "a90f05826771509f46eae837f5a04cb57c8deec07e17cb94484413a76b41b018",
+      "reopened_code_key_sha256": "ad74bfb70766c6d6386d4f50e3143e1899fd919ce552cb18d7dc577ad979fafd"
+    },
+    "RPX_SchurLDL.bas": {
+      "source_sha256": "5de3e755f95c6167354f72a28ccb51afce74bcb173cfeb0a61a2f3402237bc5c",
+      "source_code_key_sha256": "c312b9de062d64a8ea739aac33e8e72861d63d40a12de31bb90a8be26144a4fc",
+      "loaded_code_sha256": "c2bf4a7cbe04a67a2f5ca4f74843647d4549ff27f29e851ba0654c793c208a8b",
+      "loaded_code_key_sha256": "c312b9de062d64a8ea739aac33e8e72861d63d40a12de31bb90a8be26144a4fc",
+      "reopened_code_sha256": "c2bf4a7cbe04a67a2f5ca4f74843647d4549ff27f29e851ba0654c793c208a8b",
+      "reopened_code_key_sha256": "c312b9de062d64a8ea739aac33e8e72861d63d40a12de31bb90a8be26144a4fc"
+    },
+    "RPX_Seep.bas": {
+      "source_sha256": "4dd738b46ebb59786f231cb3e70972b5314f30fcd64ae37430917374ceb13224",
+      "source_code_key_sha256": "237ba6af3c5c26836a85fd1688c0df15883e69494fd07f7f842dbb4a1dad4a99",
+      "loaded_code_sha256": "3743b6b32f746c5cf69de373155ba47418bac0ea3ed33e774e5143c7d6e32e56",
+      "loaded_code_key_sha256": "237ba6af3c5c26836a85fd1688c0df15883e69494fd07f7f842dbb4a1dad4a99",
+      "reopened_code_sha256": "80ed26ea9211e0d1792fd633b4e648de18c81a5871a360a9aec3ba3823906594",
+      "reopened_code_key_sha256": "237ba6af3c5c26836a85fd1688c0df15883e69494fd07f7f842dbb4a1dad4a99"
+    },
+    "RPX_SeepUI.bas": {
+      "source_sha256": "fe7835813296b5ff485d91f4fe2e9e97e1eb35ea50582b41fe22b33bbf28f2b8",
+      "source_code_key_sha256": "42848507a422f611792f498ffd33505b57ebda9620470f8a4dca1f966c9363c9",
+      "loaded_code_sha256": "e62b84171e14529e3bf9b412df5f2771a28ae8871a9b2aecf5e35105f8f0f5ad",
+      "loaded_code_key_sha256": "42848507a422f611792f498ffd33505b57ebda9620470f8a4dca1f966c9363c9",
+      "reopened_code_sha256": "ce0e2705d5fad7add2f88fd509499a978f47ad702dff573047965157cb50f3d3",
+      "reopened_code_key_sha256": "42848507a422f611792f498ffd33505b57ebda9620470f8a4dca1f966c9363c9"
+    },
+    "RPX_SeepWT.bas": {
+      "source_sha256": "52a45b94fc725add904e1e89e951163d54da7a0007697ed7abe34e3d0d9b65c0",
+      "source_code_key_sha256": "bf466bf781b5b8611e201454abc487f29480052b66469882e84ad65590140734",
+      "loaded_code_sha256": "a95ae87aa79f112137b6dd1d30ff8adb84a1ad982923f3fc908fda497bc377b7",
+      "loaded_code_key_sha256": "bf466bf781b5b8611e201454abc487f29480052b66469882e84ad65590140734",
+      "reopened_code_sha256": "d215076c9e50d55b818dd13a93c299be0789b96c6f539d70efc6561620fff75f",
+      "reopened_code_key_sha256": "bf466bf781b5b8611e201454abc487f29480052b66469882e84ad65590140734"
+    },
+    "RPX_Seismic.bas": {
+      "source_sha256": "186971f072df1822c55d53925ab54d0a6ebff6704536f9bb80cb9d371109bb88",
+      "source_code_key_sha256": "d3ba67d4a0fccfa24709becf26245eea4f8ee9675c496eeb61132e0c11110bea",
+      "loaded_code_sha256": "95432491e371019a5afef0c93eb43628c6ea53e37fe338d3a32d9825f5e493e6",
+      "loaded_code_key_sha256": "d3ba67d4a0fccfa24709becf26245eea4f8ee9675c496eeb61132e0c11110bea",
+      "reopened_code_sha256": "7464c871b695bf5abb2be707f448aaa840db908aa03edc5ab5ad0d85f14568a4",
+      "reopened_code_key_sha256": "d3ba67d4a0fccfa24709becf26245eea4f8ee9675c496eeb61132e0c11110bea"
+    },
+    "RPX_Solve.bas": {
+      "source_sha256": "f844f91dc407f06b3fbf62cd6f5f0d280bba4f2aab3afe32322ffa5583a54dd8",
+      "source_code_key_sha256": "9476aaf3cdeca2330acfb7634d5563b9d8b1f2640168f4a8959a3711d0468da1",
+      "loaded_code_sha256": "ee4113638321786be25be22530e2fc03e009d7190029f5b62d6cc69b6fc53c9e",
+      "loaded_code_key_sha256": "9476aaf3cdeca2330acfb7634d5563b9d8b1f2640168f4a8959a3711d0468da1",
+      "reopened_code_sha256": "ee4113638321786be25be22530e2fc03e009d7190029f5b62d6cc69b6fc53c9e",
+      "reopened_code_key_sha256": "9476aaf3cdeca2330acfb7634d5563b9d8b1f2640168f4a8959a3711d0468da1"
+    },
+    "RPX_UI.bas": {
+      "source_sha256": "e203cce05007086a6932da592794ec6d1740b182c0e8b641a3ddd67fdb15e7ee",
+      "source_code_key_sha256": "867b483cda493dfa8e6973a35b213fad15fefdf0739832ea3e5fd5e34cd8a915",
+      "loaded_code_sha256": "4ecf3c6ebacbd0c2930d4c5f38c15b7f5095f6e21a52ac95339f9271efce4b01",
+      "loaded_code_key_sha256": "867b483cda493dfa8e6973a35b213fad15fefdf0739832ea3e5fd5e34cd8a915",
+      "reopened_code_sha256": "4ecf3c6ebacbd0c2930d4c5f38c15b7f5095f6e21a52ac95339f9271efce4b01",
+      "reopened_code_key_sha256": "867b483cda493dfa8e6973a35b213fad15fefdf0739832ea3e5fd5e34cd8a915"
+    },
+    "RPX_Upper.bas": {
+      "source_sha256": "97b097e62a025dbf3db07c1c124b8e4bfb7037b3892e63f424e54db82c5defd1",
+      "source_code_key_sha256": "c9b671677d02fe7de2517f5e727c90c98521d200208d229285e24d74c00f6a3e",
+      "loaded_code_sha256": "3da92afe5678b5cb13f3d31f65e804ffba974ca149603d2af57dbfe6922909b8",
+      "loaded_code_key_sha256": "c9b671677d02fe7de2517f5e727c90c98521d200208d229285e24d74c00f6a3e",
+      "reopened_code_sha256": "3da92afe5678b5cb13f3d31f65e804ffba974ca149603d2af57dbfe6922909b8",
+      "reopened_code_key_sha256": "c9b671677d02fe7de2517f5e727c90c98521d200208d229285e24d74c00f6a3e"
+    },
+    "RPX_Water.bas": {
+      "source_sha256": "3b6b98c937035aa911410b68fb536a9e4098306fe3a6d675a8cd41dd34f9611c",
+      "source_code_key_sha256": "1ece39ca9eb96a7ef6dbbfc27b25317e3046d14afb72cf19a194d1ef5d479d91",
+      "loaded_code_sha256": "5d52eb7dca3fc4494d3e867d3b0d1506cee976437d5eba227c082147b9de63a7",
+      "loaded_code_key_sha256": "1ece39ca9eb96a7ef6dbbfc27b25317e3046d14afb72cf19a194d1ef5d479d91",
+      "reopened_code_sha256": "5d52eb7dca3fc4494d3e867d3b0d1506cee976437d5eba227c082147b9de63a7",
+      "reopened_code_key_sha256": "1ece39ca9eb96a7ef6dbbfc27b25317e3046d14afb72cf19a194d1ef5d479d91"
+    },
+    "RPX_WorkPrecision.bas": {
+      "source_sha256": "253afaec8d8ddc9c5d19398bc956f42af254d082f19aa75a0235fa6f89d178bd",
+      "source_code_key_sha256": "aa576605a789a4aba6183008808e7e658906deea7956692a28dcdbcd6fb935fe",
+      "loaded_code_sha256": "0b72bc5bb034c55adc17c6f352629de9f77603a759ef08ff9b1f4965c2e2fb1f",
+      "loaded_code_key_sha256": "aa576605a789a4aba6183008808e7e658906deea7956692a28dcdbcd6fb935fe",
+      "reopened_code_sha256": "0b72bc5bb034c55adc17c6f352629de9f77603a759ef08ff9b1f4965c2e2fb1f",
+      "reopened_code_key_sha256": "aa576605a789a4aba6183008808e7e658906deea7956692a28dcdbcd6fb935fe"
+    }
+  },
+  "workbook_modules": {
+    "ThisWorkbook": {
+      "source_path": "src/workbook/ThisWorkbook.code.txt",
+      "source_sha256": "28d100a977206b77c9564804a442c844de3dfc86dfaa1257ebe7018ee97cc5dc",
+      "source_code_key_sha256": "edcd73b878d592d40bc4570fbf702636b8df87f4e5774c62c3492dc432ef508f",
+      "loaded_code_sha256": "bec30f789ef19902ef60073b0e7163f87d4b2217dd42f87aa6e7a108ab987089",
+      "loaded_code_key_sha256": "edcd73b878d592d40bc4570fbf702636b8df87f4e5774c62c3492dc432ef508f",
+      "reopened_code_sha256": "bec30f789ef19902ef60073b0e7163f87d4b2217dd42f87aa6e7a108ab987089",
+      "reopened_code_key_sha256": "edcd73b878d592d40bc4570fbf702636b8df87f4e5774c62c3492dc432ef508f"
+    }
+  },
+  "source_bundle_sha256": "d11f3591e85b6726c5c16b3e7040ccf0718928d15938001d95633d84312518a4",
+  "owned_excel_pid": 18592,
+  "owned_excel_creation_time": 1792181510.2415566,
+  "compile": "PASS",
+  "ordinary_defaults": {
+    "DIRECT_DLL": 0.0,
+    "ADAPT_PRECISION_FROM_START": 0.0,
+    "ADAPT_C0_WEDGE_AUTO": 0.0,
+    "GAP": 0.02
+  },
+  "speed_preset": {
+    "GAP": 0.02,
+    "QUADRATURE": 8.0,
+    "FS_TOL": 0.0001,
+    "DIRECT_DLL": 1.0,
+    "ADAPT_C0_WEDGE_AUTO": 1.0,
+    "ADAPT_PRECISION_FROM_START": 1.0,
+    "ACCURACY_DLL_RECOVERY": 1.0,
+    "LOWER_MODEL_CACHE": 0.0,
+    "TARGET": 1000.0
+  },
+  "preset_preserves_physical_input_and_policy": true,
+  "opt_in_improvement_profile": {
+    "ADAPT_BALANCED_LOWER_TARGET": 1000.0,
+    "ADAPT_UPPER_FLOW_PASSES": 5.0,
+    "FS_TERMINAL_SCHEDULE": 1.0,
+    "ACCURACY_DLL_UPPER_RECENTER": 1.0,
+    "ACCURACY_DLL_DUAL_LINEAR_REPAIR": 1.0,
+    "ACCURACY_DLL_UPPER_LP_SECONDS": 30.0,
+    "DIRECT_DLL_SECONDS": 30.0,
+    "ACCURACY_DLL_DUAL_SECONDS": 60.0,
+    "ACCURACY_DLL_DUAL_REGULARIZATION": 1e-08,
+    "ACCURACY_DLL_DUAL_EQUILIBRATE": 1.0,
+    "ACCURACY_DLL_EQUILIBRATE": 0.0,
+    "ACCURACY_DLL_SECONDS": 90.0
+  },
+  "saved_optional_flags": {
+    "ADAPT_BALANCED_LOWER_TARGET": 0.0,
+    "ADAPT_UPPER_FLOW_PASSES": 0.0,
+    "FS_TERMINAL_SCHEDULE": 0.0,
+    "ACCURACY_DLL_UPPER_RECENTER": 0.0,
+    "ACCURACY_DLL_DUAL_LINEAR_REPAIR": 0.0,
+    "ACCURACY_DLL_DUAL_REGULARIZATION": 0.0,
+    "DIRECT_DLL_SECONDS": 5.0,
+    "ACCURACY_DLL_DUAL_SECONDS": 20.0,
+    "ACCURACY_DLL_SECONDS": 120.0
+  },
+  "final_saved_improvement_profile": {
+    "ADAPT_BALANCED_LOWER_TARGET": 1000.0,
+    "ADAPT_UPPER_FLOW_PASSES": 5.0,
+    "FS_TERMINAL_SCHEDULE": 1.0,
+    "ACCURACY_DLL_UPPER_RECENTER": 1.0,
+    "ACCURACY_DLL_DUAL_LINEAR_REPAIR": 1.0,
+    "ACCURACY_DLL_UPPER_LP_SECONDS": 30.0,
+    "DIRECT_DLL_SECONDS": 30.0,
+    "ACCURACY_DLL_DUAL_SECONDS": 60.0,
+    "ACCURACY_DLL_DUAL_REGULARIZATION": 1e-08,
+    "ACCURACY_DLL_DUAL_EQUILIBRATE": 1.0,
+    "ACCURACY_DLL_EQUILIBRATE": 0.0,
+    "ACCURACY_DLL_SECONDS": 90.0
+  },
+  "saved_profile": "G20ImprovementPreset; GAP.02/q8/direct1/precision1/auto1/balanced1000/flow5/terminal1/recenter1",
+  "runtime_available": true,
+  "native_memory_maps": [
+    "D:\\Work\\rpfem-g20-fix1-20261017\\versions\\G1R20_Fix3\\results\\candidate_final_01\\delivery\\rpfem_native_x64.dll"
+  ],
+  "reopened_speed_profile": {
+    "GAP": 0.02,
+    "QUADRATURE": 8.0,
+    "FS_TOL": 0.0001,
+    "DIRECT_DLL": 1.0,
+    "ADAPT_C0_WEDGE_AUTO": 1.0,
+    "ADAPT_PRECISION_FROM_START": 1.0,
+    "ACCURACY_DLL_RECOVERY": 1.0,
+    "LOWER_MODEL_CACHE": 0.0,
+    "TARGET": 1000.0
+  },
+  "reopened_improvement_profile": {
+    "ADAPT_BALANCED_LOWER_TARGET": 1000.0,
+    "ADAPT_UPPER_FLOW_PASSES": 5.0,
+    "FS_TERMINAL_SCHEDULE": 1.0,
+    "ACCURACY_DLL_UPPER_RECENTER": 1.0,
+    "ACCURACY_DLL_DUAL_LINEAR_REPAIR": 1.0,
+    "ACCURACY_DLL_UPPER_LP_SECONDS": 30.0,
+    "DIRECT_DLL_SECONDS": 30.0,
+    "ACCURACY_DLL_DUAL_SECONDS": 60.0,
+    "ACCURACY_DLL_DUAL_REGULARIZATION": 1e-08,
+    "ACCURACY_DLL_DUAL_EQUILIBRATE": 1.0,
+    "ACCURACY_DLL_EQUILIBRATE": 0.0,
+    "ACCURACY_DLL_SECONDS": 90.0
+  },
+  "reopened_physical_input_policy_unchanged": true,
+  "reopen_compile": "PASS",
+  "standard_modules": 63,
+  "workbook_module_count": 1,
+  "runtime_dll_count": 1,
+  "reopened_code_comparison": "Identifier case and leading-label indentation normalized; string literals/comments/numbers and other characters exact; raw pre/post SHA retained",
+  "owned_excel_exited": true,
+  "workbook_sha256": "09b13bff8d2e01172d8cb46b1065db3887da8e1bfc310cecf5a66c131124d285"
+}
