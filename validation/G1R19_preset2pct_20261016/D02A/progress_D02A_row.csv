@@ -1,0 +1,2 @@
+case,status,analysis_seconds,lower_fs,upper_fs,fs_obtained,target_met,error
+D02A,RUNNING,,,,False,False,

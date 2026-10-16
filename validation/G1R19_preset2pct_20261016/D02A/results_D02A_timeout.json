@@ -1,0 +1,6 @@
+{
+  "case": "D02A",
+  "timeout_s": 6060,
+  "utc": "2026-10-16T10:22:07.712724+00:00",
+  "action": "killed own Excel pid 3880 after grace"
+}
