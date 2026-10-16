@@ -1,0 +1,2 @@
+START D02A ExcelPID 3880 TARGET 1536 water 0
+成功: PID 3880 のプロセスは強制終了されました。
