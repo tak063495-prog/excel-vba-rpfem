@@ -1,0 +1,48 @@
+[
+  {
+    "label": "P06A_flow5",
+    "case": "P06A",
+    "mode": "upper",
+    "script": "flow_candidate.py",
+    "case_seconds": 300,
+    "argv": [
+      "--case",
+      "P06A",
+      "--seed",
+      "D:\\Work\\excel-vba-rpfem\\validation\\G1R19_python26_20261016\\results\\p06_early_20261016_2028\\cases\\P06A\\generic_fallback\\P06A",
+      "--prior-run",
+      "D:\\Work\\excel-vba-rpfem\\validation\\G1R19_python26_20261016\\results\\p06_early_20261016_2028\\cases\\P06A",
+      "--output",
+      "{OUTPUT}",
+      "--passes",
+      "5",
+      "--case-seconds",
+      "300",
+      "--solve-seconds",
+      "30",
+      "--initial-span",
+      ".005"
+    ]
+  },
+  {
+    "label": "P06A_uniform4000",
+    "case": "P06A",
+    "mode": "lower",
+    "script": "uniform_lower_candidate.py",
+    "case_seconds": 450,
+    "argv": [
+      "--case",
+      "P06A",
+      "--geometry",
+      "D:/Work/excel-vba-rpfem/validation/accuracy_20261013/native_seeds/P06A/best_lower_mesh.npz",
+      "--expected-geometry",
+      "D:/Work/excel-vba-rpfem/validation/accuracy_20261013/results/a_upper_only/P06A/best_lower_mesh.npz",
+      "--output",
+      "{OUTPUT}",
+      "--case-seconds",
+      "450",
+      "--solve-seconds",
+      "30"
+    ]
+  }
+]

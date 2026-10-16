@@ -1,0 +1,23 @@
+[
+  {
+    "label": "P06A_uniform4000_close",
+    "case": "P06A",
+    "mode": "lower",
+    "script": "close_current_side.py",
+    "case_seconds": 120,
+    "argv": [
+      "--case",
+      "P06A",
+      "--mode",
+      "lower",
+      "--source",
+      "D:/Work/excel-vba-rpfem/validation/G1R19_python26_known_recipes_20261016/results/known_recipes_20261016T121215Z/P06A_uniform4000",
+      "--output",
+      "{OUTPUT}",
+      "--case-seconds",
+      "120",
+      "--solve-seconds",
+      "30"
+    ]
+  }
+]

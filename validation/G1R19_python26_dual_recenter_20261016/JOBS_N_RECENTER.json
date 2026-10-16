@@ -1,0 +1,25 @@
+[
+  {
+    "label": "P06N_upper8739_recenter_close",
+    "case": "P06N",
+    "mode": "upper",
+    "script": "recenter_close.py",
+    "case_seconds": 90,
+    "argv": [
+      "--case",
+      "P06N",
+      "--geometry",
+      "D:\\Work\\excel-vba-rpfem\\validation\\G1R19_python26_upper_goal_recipe_20261016\\results\\upper_goal_20261016T123423Z\\P06N_known_upper8739_goal\\candidate_mesh.npz",
+      "--dual",
+      "D:\\Work\\excel-vba-rpfem\\validation\\G1R19_python26_upper_goal_recipe_20261016\\results\\upper_goal_20261016T123423Z\\P06N_known_upper8739_goal\\step2_original_dual.npz",
+      "--primal",
+      "D:\\Work\\excel-vba-rpfem\\validation\\G1R19_python26_upper_goal_recipe_20261016\\results\\upper_goal_20261016T123423Z\\P06N_known_upper8739_goal\\step1_qp1_raw.npz",
+      "--output",
+      "{OUTPUT}",
+      "--case-seconds",
+      "90",
+      "--solve-seconds",
+      "60"
+    ]
+  }
+]
