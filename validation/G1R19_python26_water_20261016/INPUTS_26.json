@@ -1,0 +1,3036 @@
+{
+  "schema": "rpfem.python26.inputs.v1",
+  "created_utc": "2026-10-16T10:55:26.032528+00:00",
+  "canonical_source": "docs/benchmarks/G1R17_native26_20261013/data/inputs",
+  "case_count": 26,
+  "acceptance": {
+    "relative_gap_symmetric": 0.02,
+    "formula": "2*(upper-lower)/(upper+lower)",
+    "q": 8,
+    "raw_physical_tolerance": 1e-07,
+    "old_native_root_contract_is_relative_and_not_imported": true,
+    "fs_root_relative_tolerance": 0.0001,
+    "fs_root_normalization": "(hi-lo)/max(1,(hi+lo)/2)"
+  },
+  "input_hash_policy": "Exact source byte SHA and canonical JSON SHA are recorded. Loader permits only CRLF/LF newline conversion and requires the recorded LF-normalized byte SHA plus identical canonical JSON SHA.",
+  "scope": "Isolated fresh D08A prototype: same declared hydrostatic continuum field, corrected waterline-conforming discretization; no saved witnesses or roots reused.",
+  "policy_notes": [
+    "N cases retain the existing Davis equivalent associated model with hold_initial; no nonassociated continuum-bound claim.",
+    "E and nu are catalog diagnostics and are not inputs of this rigid-plastic model.",
+    "D08A alone is coupled: fixed u=9.81*max(3-y,0), suction off, reference body b-grad(u_P1), no extra exposed-surface water traction.",
+    "All native initial fixed/reference loads are combined as reference_total for the Fs problem.",
+    "Historical whole-Excel time, historical Python root-stage time, new Python time and G1R19 cold-start reproduction are separate categories.",
+    "D08A v2 splits all triangles at y3 so nodal P1 interpolation exactly represents the prescribed pressure; exact common piecewise constant body is used on every mesh. This corrects the old native mesh-dependent pressure approximation."
+  ],
+  "historical_coverage": {
+    "native_saved_field_audits": 26,
+    "newer_python_saved_field_pairs": 16,
+    "newer_python_pairs_under_two_percent": 16
+  },
+  "cases": [
+    {
+      "case": "D01A",
+      "input": {
+        "path": "docs/benchmarks/G1R17_native26_20261013/data/inputs/D01A.json",
+        "sha256": "9b5f09ac4771f128febd047d5ade57eb40d97f171ce568265e9d3113f31f9197",
+        "sha256_lf": "9b5f09ac4771f128febd047d5ade57eb40d97f171ce568265e9d3113f31f9197",
+        "sha256_canonical_json": "61064a075497006e218c00a9ab6160e73d142f6d34bd2b74495cc294def74da4"
+      },
+      "title": "All c=0, 45 degree face, phi=30",
+      "policy": "equal_reduced_phi",
+      "native_analysis_policy": "ASSOCIATED",
+      "coupled_pore_pressure": false,
+      "water": {
+        "coupling": 0,
+        "mode": 2,
+        "gamma_w": 9.81,
+        "suction": 0,
+        "water_table": [],
+        "seep_target": 1536
+      },
+      "material_count": 1,
+      "region_areas": [
+        158.0
+      ],
+      "total_dry_weight": 3160.0,
+      "initial_mesh": {
+        "path": "versions/G1R17/results/geometry25/D01A_new_vba_mesh.bin",
+        "sha256": "05abc7d68379d290ac8b3e1606c2ddd918bd4f1a8a67b40fb1c47533821a31b8",
+        "kind": "recorded_coarse_geometry_only",
+        "uses_saved_primal_field": false,
+        "uses_saved_root": false
+      },
+      "historical_bounds": {
+        "native26": {
+          "source_summary": "docs/benchmarks/G1R17_native26_20261013/data/summary.json",
+          "full_record_path": "D:\\Work\\rpfem-native26\\G1R17_native26\\results\\D01A.json",
+          "full_record_sha256": "10a94d8e1dffceadfa12412ff1ed238f9a277310eb2bcf2f186a9ec3dc848b53",
+          "lower_fs": 0.5773027250336507,
+          "upper_fs": 0.5975832375661093,
+          "relative_gap_symmetric": 0.03452337193234043,
+          "q": [
+            8,
+            8
+          ],
+          "target_met_at_one_percent": false,
+          "independent_saved_field_audit_pass": true,
+          "root_search_incomplete": true,
+          "root_tolerance_contract": "width <= FS_TOL * max(1, bracket midpoint); per-owner native root validity and completion flags",
+          "root_owner_flags": [
+            "False",
+            "False",
+            "False",
+            "False"
+          ],
+          "time": {
+            "seconds": 1862.762136,
+            "kind": "historical_G1R17_sequential_native_Excel_whole_analysis",
+            "boundary": "run_end.elapsed_s; excludes startup, save and independent Python audit",
+            "not_new_python_or_G1R19_coldstart_time": true
+          },
+          "witnesses": {
+            "lower": {
+              "path": "D:\\Work\\rpfem-native26\\G1R17_native26\\cases\\D01A\\witness_lower.bin",
+              "sha256": "3522c5bbe373f444b8e17a7903940695764edfecc202fb7773631bb8e31f9d85",
+              "format": "RP25M001"
+            },
+            "upper": {
+              "path": "D:\\Work\\rpfem-native26\\G1R17_native26\\cases\\D01A\\witness_upper.bin",
+              "sha256": "b11bf91e6bd9e6847d279d17fb5de06096b5d22af3a9dfcfea314e2f1ffd0275",
+              "format": "RP25M001"
+            }
+          }
+        },
+        "python_q8_snapshot": {
+          "summary_path": "validation/accuracy_20261013/snapshots/20261014_progress7_audit/snapshots/D01A/summary.json",
+          "summary_sha256": "9eb1d69464bef3283a9e298ec6fc7fca8e65c9de5228635c9826609b0331f078",
+          "lower_fs": 0.5773475782353508,
+          "upper_fs": 0.579303671848832,
+          "relative_gap_symmetric": 0.0033823395139008245,
+          "root_complete": true,
+          "one_percent_target_met": true,
+          "two_percent_width_met": true,
+          "kind": "historical_independent_q8_saved_field_audit_and_discrete_root_metadata",
+          "not_G1R19_coldstart_reproduction": true,
+          "sides": {
+            "lower": {
+              "fs": 0.5773475782353508,
+              "elements": 377,
+              "physical_model_id": "93d1091474efc6505b694e0cf3bc45b44edb96f743ccbda3fb2ac1cc85445cb3",
+              "mesh_id": "5a3ac5caa5be0b75f8933087215ede2f9c84012e7e61229d099073fa3a4ca91c",
+              "q": 8,
+              "root_complete": true,
+              "root_stage_seconds": 16.244413700012956,
+              "time_kind": "historical_per_side_root_search_stage; not complete production runtime",
+              "files": {
+                "mesh": {
+                  "path": "validation/accuracy_20261013/snapshots/20261014_progress7_audit/snapshots/D01A/best_lower_mesh.npz",
+                  "sha256": "02a4ced100838426feff1e3b6677d720a50831dfe010451cf189c84537e5c120"
+                },
+                "field": {
+                  "path": "validation/accuracy_20261013/snapshots/20261014_progress7_audit/snapshots/D01A/best_lower_field.npz",
+                  "sha256": "cf53634f992089ed51c6c242f1310d42c7ad37e8c55a1a2a782b3af876dfddd0"
+                },
+                "certificate": {
+                  "path": "validation/accuracy_20261013/snapshots/20261014_progress7_audit/snapshots/D01A/best_lower_certificate.json",
+                  "sha256": "8479b16b1b5bead3e4931763132909d56636145ac1657acf3b47def10392e33c"
+                }
+              }
+            },
+            "upper": {
+              "fs": 0.579303671848832,
+              "elements": 1164,
+              "physical_model_id": "93d1091474efc6505b694e0cf3bc45b44edb96f743ccbda3fb2ac1cc85445cb3",
+              "mesh_id": "477b877837112b4732683483a524307989e610857929a66d8edbaf2a377828a5",
+              "q": 8,
+              "root_complete": true,
+              "root_stage_seconds": 540.2370422999957,
+              "time_kind": "historical_per_side_root_search_stage; not complete production runtime",
+              "files": {
+                "mesh": {
+                  "path": "validation/accuracy_20261013/snapshots/20261014_progress7_audit/snapshots/D01A/best_upper_mesh.npz",
+                  "sha256": "e3a4dad9c47a4d16f45abd9b591eee903e5e09e3a4c5527bda3fab630a4f8832"
+                },
+                "field": {
+                  "path": "validation/accuracy_20261013/snapshots/20261014_progress7_audit/snapshots/D01A/best_upper_field.npz",
+                  "sha256": "540c4b970945fc8eb09c2c9c1480cb5df0f4abfc670a59ebb7c5eeff4c2b386a"
+                },
+                "certificate": {
+                  "path": "validation/accuracy_20261013/snapshots/20261014_progress7_audit/snapshots/D01A/best_upper_certificate.json",
+                  "sha256": "a563beb5e65a421b4f107641a1abfbe7dbd76042b99d0bbb56372231e422ec79"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "case": "D02A",
+      "input": {
+        "path": "docs/benchmarks/G1R17_native26_20261013/data/inputs/D02A.json",
+        "sha256": "97c4f88a81575120452a427fdc80621a630a0abf4f09d5da119b3a64f6512a5b",
+        "sha256_lf": "97c4f88a81575120452a427fdc80621a630a0abf4f09d5da119b3a64f6512a5b",
+        "sha256_canonical_json": "3911bed529d59055e7a1c1d928fba7adf667b7d00118f2331e01a643de53bf99"
+      },
+      "title": "All c=0, slope ratio 2:3, phi=45",
+      "policy": "equal_reduced_phi",
+      "native_analysis_policy": "ASSOCIATED",
+      "coupled_pore_pressure": false,
+      "water": {
+        "coupling": 0,
+        "mode": 2,
+        "gamma_w": 9.81,
+        "suction": 0,
+        "water_table": [],
+        "seep_target": 1536
+      },
+      "material_count": 1,
+      "region_areas": [
+        1400.0
+      ],
+      "total_dry_weight": 28000.0,
+      "initial_mesh": {
+        "path": "versions/G1R17/results/geometry25/D02A_new_vba_mesh.bin",
+        "sha256": "5b7c7dad8be4e4489ce759b11122c8aefcc3199bdbded84f8e5be6d94d2ec54e",
+        "kind": "recorded_coarse_geometry_only",
+        "uses_saved_primal_field": false,
+        "uses_saved_root": false
+      },
+      "historical_bounds": {
+        "native26": {
+          "source_summary": "docs/benchmarks/G1R17_native26_20261013/data/summary.json",
+          "full_record_path": "D:\\Work\\rpfem-native26\\G1R17_native26\\results\\D02A.json",
+          "full_record_sha256": "23248ef4aa4c86a3050b1cb7e400ef429bf8f9e04dec32003cb45b29e4d6a2ec",
+          "lower_fs": 1.4999997500001465,
+          "upper_fs": 1.571264919285243,
+          "relative_gap_symmetric": 0.04640770298814933,
+          "q": [
+            4,
+            8
+          ],
+          "target_met_at_one_percent": false,
+          "independent_saved_field_audit_pass": true,
+          "root_search_incomplete": true,
+          "root_tolerance_contract": "width <= FS_TOL * max(1, bracket midpoint); per-owner native root validity and completion flags",
+          "root_owner_flags": [
+            "False",
+            "False",
+            "False",
+            "False"
+          ],
+          "time": {
+            "seconds": 2056.986049,
+            "kind": "historical_G1R17_sequential_native_Excel_whole_analysis",
+            "boundary": "run_end.elapsed_s; excludes startup, save and independent Python audit",
+            "not_new_python_or_G1R19_coldstart_time": true
+          },
+          "witnesses": {
+            "lower": {
+              "path": "D:\\Work\\rpfem-native26\\G1R17_native26\\cases\\D02A\\witness_lower.bin",
+              "sha256": "b45f1c3f40fd7cb32f1754c87b7e704602c33caa3881a7837e6f4469aaba3b65",
+              "format": "RP25M001"
+            },
+            "upper": {
+              "path": "D:\\Work\\rpfem-native26\\G1R17_native26\\cases\\D02A\\witness_upper.bin",
+              "sha256": "738d8aa498934c7c7de72b15532661b816d65b394159769200761e5685d07039",
+              "format": "RP25M001"
+            }
+          }
+        },
+        "python_q8_snapshot": {
+          "summary_path": "validation/accuracy_20261013/snapshots/20261014_progress7_audit/snapshots/D02A/summary.json",
+          "summary_sha256": "0d27108c4a3cfdade37ae4be71658686dd3af408ccad6a1a1d9233c4e884fe88",
+          "lower_fs": 1.4999957169311484,
+          "upper_fs": 1.5000956876875935,
+          "relative_gap_symmetric": 6.66451404055021e-05,
+          "root_complete": true,
+          "one_percent_target_met": true,
+          "two_percent_width_met": true,
+          "kind": "historical_independent_q8_saved_field_audit_and_discrete_root_metadata",
+          "not_G1R19_coldstart_reproduction": true,
+          "sides": {
+            "lower": {
+              "fs": 1.4999957169311484,
+              "elements": 1381,
+              "physical_model_id": "88804f72c1e9025c7ad0606e33e33d648b0f0532c402edf97fde7ca082f595ea",
+              "mesh_id": "5d6b0a17e18d43d08fb22e31cfde3add1f191775b30417113587af02a835fe28",
+              "q": 8,
+              "root_complete": true,
+              "root_stage_seconds": 218.21500810002908,
+              "time_kind": "historical_per_side_root_search_stage; not complete production runtime",
+              "files": {
+                "mesh": {
+                  "path": "validation/accuracy_20261013/snapshots/20261014_progress7_audit/snapshots/D02A/best_lower_mesh.npz",
+                  "sha256": "ca6e4d0900dafa4479c9462056a63c00faa9fb6343135726841db20b8eb9fa6a"
+                },
+                "field": {
+                  "path": "validation/accuracy_20261013/snapshots/20261014_progress7_audit/snapshots/D02A/best_lower_field.npz",
+                  "sha256": "fd26f900b6c586418c9dc22f15ffe2a3b8eb09a31d64782d365833a0a8b88eea"
+                },
+                "certificate": {
+                  "path": "validation/accuracy_20261013/snapshots/20261014_progress7_audit/snapshots/D02A/best_lower_certificate.json",
+                  "sha256": "805b911e4d622526f8f072fb3622b86d06874d7d1e1519e2821c6299e8ec76d3"
+                }
+              }
+            },
+            "upper": {
+              "fs": 1.5000956876875935,
+              "elements": 8,
+              "physical_model_id": "88804f72c1e9025c7ad0606e33e33d648b0f0532c402edf97fde7ca082f595ea",
+              "mesh_id": "8e62aeb3154034ac4eeb10b3ebfb80997249e3dbffaaa4fa51ec539a324dce76",
+              "q": 8,
+              "root_complete": true,
+              "root_stage_seconds": 0.6391815000097267,
+              "time_kind": "historical_per_side_root_search_stage; not complete production runtime",
+              "files": {
+                "mesh": {
+                  "path": "validation/accuracy_20261013/snapshots/20261014_progress7_audit/snapshots/D02A/best_upper_mesh.npz",
+                  "sha256": "0ccad2427ca291763d29a83e6b9442043e291a1f3e576ffd43469b383666b398"
+                },
+                "field": {
+                  "path": "validation/accuracy_20261013/snapshots/20261014_progress7_audit/snapshots/D02A/best_upper_field.npz",
+                  "sha256": "e72b6436b181a70385b7090b47286c86e895b1782b3c32127339c36fccd7b45a"
+                },
+                "certificate": {
+                  "path": "validation/accuracy_20261013/snapshots/20261014_progress7_audit/snapshots/D02A/best_upper_certificate.json",
+                  "sha256": "a91b50946e075e958721dab45a8ed17086e04a874b90eacbdbc561206d9764e6"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "case": "D03N",
+      "input": {
+        "path": "docs/benchmarks/G1R17_native26_20261013/data/inputs/D03N.json",
+        "sha256": "ec20faf54cbbf37b5410af6b467f9243ad08b6356fc7332dd6e53b493310bb59",
+        "sha256_lf": "ec20faf54cbbf37b5410af6b467f9243ad08b6356fc7332dd6e53b493310bb59",
+        "sha256_canonical_json": "40054dca1189bb59d08e3cceb2094b5e9b99a787a7b2a5d1a2c7fefdb00c3e52"
+      },
+      "title": "D02 geometry, c=0 nonassociated psi=0",
+      "policy": "hold_initial",
+      "native_analysis_policy": "DAVIS_EQUIVALENT",
+      "coupled_pore_pressure": false,
+      "water": {
+        "coupling": 0,
+        "mode": 2,
+        "gamma_w": 9.81,
+        "suction": 0,
+        "water_table": [],
+        "seep_target": 1536
+      },
+      "material_count": 1,
+      "region_areas": [
+        1400.0
+      ],
+      "total_dry_weight": 28000.0,
+      "initial_mesh": {
+        "path": "versions/G1R17/results/geometry25/D03N_new_vba_mesh.bin",
+        "sha256": "5b7c7dad8be4e4489ce759b11122c8aefcc3199bdbded84f8e5be6d94d2ec54e",
+        "kind": "recorded_coarse_geometry_only",
+        "uses_saved_primal_field": false,
+        "uses_saved_root": false
+      },
+      "historical_bounds": {
+        "native26": {
+          "source_summary": "docs/benchmarks/G1R17_native26_20261013/data/summary.json",
+          "full_record_path": "D:\\Work\\rpfem-native26\\G1R17_native26\\results\\D03N.json",
+          "full_record_sha256": "75a028a7f7510ca45b93ab638b55ddcc3d0d8da6e2f3d3bc9a8aec9a9488dee9",
+          "lower_fs": 1.1179508407467074,
+          "upper_fs": 1.2119129823403816,
+          "relative_gap_symmetric": 0.08065891290519597,
+          "q": [
+            8,
+            8
+          ],
+          "target_met_at_one_percent": false,
+          "independent_saved_field_audit_pass": true,
+          "root_search_incomplete": true,
+          "root_tolerance_contract": "width <= FS_TOL * max(1, bracket midpoint); per-owner native root validity and completion flags",
+          "root_owner_flags": [
+            "False",
+            "False",
+            "False",
+            "False"
+          ],
+          "time": {
+            "seconds": 2035.130294,
+            "kind": "historical_G1R17_sequential_native_Excel_whole_analysis",
+            "boundary": "run_end.elapsed_s; excludes startup, save and independent Python audit",
+            "not_new_python_or_G1R19_coldstart_time": true
+          },
+          "witnesses": {
+            "lower": {
+              "path": "D:\\Work\\rpfem-native26\\G1R17_native26\\cases\\D03N\\witness_lower.bin",
+              "sha256": "ec2f4662c4ffd04c5d1b0ff1e6fa3690a8a7d280cc13480d00470d1aeedb483f",
+              "format": "RP25M001"
+            },
+            "upper": {
+              "path": "D:\\Work\\rpfem-native26\\G1R17_native26\\cases\\D03N\\witness_upper.bin",
+              "sha256": "c3bdd1c85d9ef4fbe415dce113451eaef2362da4e496e1f39a8d2d7a77c5cb2c",
+              "format": "RP25M001"
+            }
+          }
+        },
+        "python_q8_snapshot": {
+          "summary_path": "validation/accuracy_20261013/snapshots/20261014_progress7_audit/snapshots/D03N/summary.json",
+          "summary_sha256": "774a4b4b17c84b5945b600af93c145f23b1e3db657aaaa6362c6c9e685e9a801",
+          "lower_fs": 1.118029096411199,
+          "upper_fs": 1.1181295839404553,
+          "relative_gap_symmetric": 8.987513286891199e-05,
+          "root_complete": true,
+          "one_percent_target_met": true,
+          "two_percent_width_met": true,
+          "kind": "historical_independent_q8_saved_field_audit_and_discrete_root_metadata",
+          "not_G1R19_coldstart_reproduction": true,
+          "sides": {
+            "lower": {
+              "fs": 1.118029096411199,
+              "elements": 874,
+              "physical_model_id": "452103cf370382bbc1cf1fc833a631a5a96f55949d4a42292c6ed9bb7244c13c",
+              "mesh_id": "36f3aa42f2de8e52a4d9e4f2c1f0d53b123101b82492b6648a0a3cfe33ae12e1",
+              "q": 8,
+              "root_complete": true,
+              "root_stage_seconds": 19.696732499985956,
+              "time_kind": "historical_per_side_root_search_stage; not complete production runtime",
+              "files": {
+                "mesh": {
+                  "path": "validation/accuracy_20261013/snapshots/20261014_progress7_audit/snapshots/D03N/best_lower_mesh.npz",
+                  "sha256": "b7229c578cc2981d36e8f1d49d14b7cdfd60026c8468062b0f7ce5c6de78f0e6"
+                },
+                "field": {
+                  "path": "validation/accuracy_20261013/snapshots/20261014_progress7_audit/snapshots/D03N/best_lower_field.npz",
+                  "sha256": "d6e998529aa4e24769fc734d709b4386b5c135343358a7af0c2485abbfa4934d"
+                },
+                "certificate": {
+                  "path": "validation/accuracy_20261013/snapshots/20261014_progress7_audit/snapshots/D03N/best_lower_certificate.json",
+                  "sha256": "90dc95ded342820cc1a71995172c800d80a820777abd178f92221d35d2d689cf"
+                }
+              }
+            },
+            "upper": {
+              "fs": 1.1181295839404553,
+              "elements": 8,
+              "physical_model_id": "452103cf370382bbc1cf1fc833a631a5a96f55949d4a42292c6ed9bb7244c13c",
+              "mesh_id": "627dc2971716dd4e82bffb575a3f40b01ac9076e1f424c8cf2d98c03d2047660",
+              "q": 8,
+              "root_complete": true,
+              "root_stage_seconds": 0.7008804999641143,
+              "time_kind": "historical_per_side_root_search_stage; not complete production runtime",
+              "files": {
+                "mesh": {
+                  "path": "validation/accuracy_20261013/snapshots/20261014_progress7_audit/snapshots/D03N/best_upper_mesh.npz",
+                  "sha256": "0ccad2427ca291763d29a83e6b9442043e291a1f3e576ffd43469b383666b398"
+                },
+                "field": {
+                  "path": "validation/accuracy_20261013/snapshots/20261014_progress7_audit/snapshots/D03N/best_upper_field.npz",
+                  "sha256": "4ad755dec50df5b545263fe359f07035c5ba9b8e992ca11e068fd0a5ba172d01"
+                },
+                "certificate": {
+                  "path": "validation/accuracy_20261013/snapshots/20261014_progress7_audit/snapshots/D03N/best_upper_certificate.json",
+                  "sha256": "f45529e23700cff87da9fa7448b0fd66fd3e7867900a8e696a6bad5165cbbc06"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "case": "D04A",
+      "input": {
+        "path": "docs/benchmarks/G1R17_native26_20261013/data/inputs/D04A.json",
+        "sha256": "0ad45375992deed59e62a4261f551c18d6a3a4a0a026abb70070fa2b15b4af82",
+        "sha256_lf": "0ad45375992deed59e62a4261f551c18d6a3a4a0a026abb70070fa2b15b4af82",
+        "sha256_canonical_json": "aa86ed44cf98c8ab4e8fecb476a0a48efa2e210b3dfca5322ffdd43b342ea4a8"
+      },
+      "title": "Elastic modulus sensitivity E/10",
+      "policy": "equal_reduced_phi",
+      "native_analysis_policy": "ASSOCIATED",
+      "coupled_pore_pressure": false,
+      "water": {
+        "coupling": 0,
+        "mode": 2,
+        "gamma_w": 9.81,
+        "suction": 0,
+        "water_table": [],
+        "seep_target": 1536
+      },
+      "material_count": 1,
+      "region_areas": [
+        158.0
+      ],
+      "total_dry_weight": 3160.0,
+      "initial_mesh": {
+        "path": "versions/G1R17/results/geometry25/D04A_new_vba_mesh.bin",
+        "sha256": "65fe6462d0cc1d832d1a2656494ade80858d5c491c7d14f6f8a6f8c168f2c79b",
+        "kind": "recorded_coarse_geometry_only",
+        "uses_saved_primal_field": false,
+        "uses_saved_root": false
+      },
+      "historical_bounds": {
+        "native26": {
+          "source_summary": "docs/benchmarks/G1R17_native26_20261013/data/summary.json",
+          "full_record_path": "D:\\Work\\rpfem-native26\\G1R17_native26\\results\\D04A.json",
+          "full_record_sha256": "e133e29d36de6d6802dae71dac5458c7d26398139cd9137bad499284f7255f3a",
+          "lower_fs": 1.3016569748403444,
+          "upper_fs": 1.3110550654525948,
+          "relative_gap_symmetric": 0.007194126614272169,
+          "q": [
+            8,
+            8
+          ],
+          "target_met_at_one_percent": true,
+          "independent_saved_field_audit_pass": true,
+          "root_search_incomplete": false,
+          "root_tolerance_contract": "width <= FS_TOL * max(1, bracket midpoint); per-owner native root validity and completion flags",
+          "root_owner_flags": [
+            "True",
+            "True",
+            "False",
+            "False"
+          ],
+          "time": {
+            "seconds": 322.292376,
+            "kind": "historical_G1R17_sequential_native_Excel_whole_analysis",
+            "boundary": "run_end.elapsed_s; excludes startup, save and independent Python audit",
+            "not_new_python_or_G1R19_coldstart_time": true
+          },
+          "witnesses": {
+            "lower": {
+              "path": "D:\\Work\\rpfem-native26\\G1R17_native26\\cases\\D04A\\witness_lower.bin",
+              "sha256": "8a630cecb724e4e215029809372e0bd6eb2ab2244fbeb0f5c8cbbcc2f298e834",
+              "format": "RP25M001"
+            },
+            "upper": {
+              "path": "D:\\Work\\rpfem-native26\\G1R17_native26\\cases\\D04A\\witness_upper.bin",
+              "sha256": "641bc2b1badf702b06305ac1c105f1621d51bc5b4603a8c25c3e3ae7051f3d57",
+              "format": "RP25M001"
+            }
+          }
+        }
+      }
+    },
+    {
+      "case": "D05A",
+      "input": {
+        "path": "docs/benchmarks/G1R17_native26_20261013/data/inputs/D05A.json",
+        "sha256": "b9c7b2b34a74889f0274f220b1895405acd68409f8df3b13571d5f62f27fa7e2",
+        "sha256_lf": "b9c7b2b34a74889f0274f220b1895405acd68409f8df3b13571d5f62f27fa7e2",
+        "sha256_canonical_json": "2320c3ed03c576233d6b49b9488525cf5b9693e024f0afbdd0e7d205a7d5e041"
+      },
+      "title": "Geometric similitude: L x1000, gamma /1000",
+      "policy": "equal_reduced_phi",
+      "native_analysis_policy": "ASSOCIATED",
+      "coupled_pore_pressure": false,
+      "water": {
+        "coupling": 0,
+        "mode": 2,
+        "gamma_w": 9.81,
+        "suction": 0,
+        "water_table": [],
+        "seep_target": 1536
+      },
+      "material_count": 1,
+      "region_areas": [
+        158000000.0
+      ],
+      "total_dry_weight": 3160000.0,
+      "initial_mesh": {
+        "path": "versions/G1R17/results/geometry25/D05A_new_vba_mesh.bin",
+        "sha256": "8f9849b3fb0b4238aa7e15f039d7321373cdc7b5c621b40b037d14c604d01983",
+        "kind": "recorded_coarse_geometry_only",
+        "uses_saved_primal_field": false,
+        "uses_saved_root": false
+      },
+      "historical_bounds": {
+        "native26": {
+          "source_summary": "docs/benchmarks/G1R17_native26_20261013/data/summary.json",
+          "full_record_path": "D:\\Work\\rpfem-native26\\G1R17_native26\\results\\D05A.json",
+          "full_record_sha256": "e326ee4b45050d3f892f47091170daec49be66ecc056fc8d93fe6e58f99eb54b",
+          "lower_fs": 1.3015184815788732,
+          "upper_fs": 1.3109054656496246,
+          "relative_gap_symmetric": 0.007186417105623329,
+          "q": [
+            8,
+            8
+          ],
+          "target_met_at_one_percent": true,
+          "independent_saved_field_audit_pass": true,
+          "root_search_incomplete": false,
+          "root_tolerance_contract": "width <= FS_TOL * max(1, bracket midpoint); per-owner native root validity and completion flags",
+          "root_owner_flags": [
+            "True",
+            "True",
+            "False",
+            "False"
+          ],
+          "time": {
+            "seconds": 363.771358,
+            "kind": "historical_G1R17_sequential_native_Excel_whole_analysis",
+            "boundary": "run_end.elapsed_s; excludes startup, save and independent Python audit",
+            "not_new_python_or_G1R19_coldstart_time": true
+          },
+          "witnesses": {
+            "lower": {
+              "path": "D:\\Work\\rpfem-native26\\G1R17_native26\\cases\\D05A\\witness_lower.bin",
+              "sha256": "2d9b862eb5082f19ef926e66e2a84dba00aa1ce9315ec26f34b93884f7480078",
+              "format": "RP25M001"
+            },
+            "upper": {
+              "path": "D:\\Work\\rpfem-native26\\G1R17_native26\\cases\\D05A\\witness_upper.bin",
+              "sha256": "a0c35c9f896f72f3d03071fdd694561b1e9d0624903f161faf8b0966268c6469",
+              "format": "RP25M001"
+            }
+          }
+        }
+      }
+    },
+    {
+      "case": "D06A",
+      "input": {
+        "path": "docs/benchmarks/G1R17_native26_20261013/data/inputs/D06A.json",
+        "sha256": "a83db7c48b2ded624b6ec68bbd68a314127bc09c33e562fe1eade9269f030069",
+        "sha256_lf": "a83db7c48b2ded624b6ec68bbd68a314127bc09c33e562fe1eade9269f030069",
+        "sha256_canonical_json": "a2373058af1d2f0020bfbc86e27b317833b5c4198b471a839704d81ae38466fa"
+      },
+      "title": "Translation covariance (+1000,+2000)",
+      "policy": "equal_reduced_phi",
+      "native_analysis_policy": "ASSOCIATED",
+      "coupled_pore_pressure": false,
+      "water": {
+        "coupling": 0,
+        "mode": 2,
+        "gamma_w": 9.81,
+        "suction": 0,
+        "water_table": [],
+        "seep_target": 1536
+      },
+      "material_count": 1,
+      "region_areas": [
+        158.0
+      ],
+      "total_dry_weight": 3160.0,
+      "initial_mesh": {
+        "path": "versions/G1R17/results/geometry25/D06A_new_vba_mesh.bin",
+        "sha256": "bc2d146e39104d5432333710649c3a03b4ffb297112d6c15d8b4c67e06abc7b6",
+        "kind": "recorded_coarse_geometry_only",
+        "uses_saved_primal_field": false,
+        "uses_saved_root": false
+      },
+      "historical_bounds": {
+        "native26": {
+          "source_summary": "docs/benchmarks/G1R17_native26_20261013/data/summary.json",
+          "full_record_path": "D:\\Work\\rpfem-native26\\G1R17_native26\\results\\D06A.json",
+          "full_record_sha256": "42a483a02b5302ad129582eb88a78bee0652a1d6b5195b1206d84bcf9b4fd7cb",
+          "lower_fs": 1.301656974841376,
+          "upper_fs": 1.3110550654525315,
+          "relative_gap_symmetric": 0.0071941266134313685,
+          "q": [
+            8,
+            8
+          ],
+          "target_met_at_one_percent": true,
+          "independent_saved_field_audit_pass": true,
+          "root_search_incomplete": false,
+          "root_tolerance_contract": "width <= FS_TOL * max(1, bracket midpoint); per-owner native root validity and completion flags",
+          "root_owner_flags": [
+            "True",
+            "True",
+            "False",
+            "False"
+          ],
+          "time": {
+            "seconds": 321.343931,
+            "kind": "historical_G1R17_sequential_native_Excel_whole_analysis",
+            "boundary": "run_end.elapsed_s; excludes startup, save and independent Python audit",
+            "not_new_python_or_G1R19_coldstart_time": true
+          },
+          "witnesses": {
+            "lower": {
+              "path": "D:\\Work\\rpfem-native26\\G1R17_native26\\cases\\D06A\\witness_lower.bin",
+              "sha256": "bfe1c7871e84a57c3032870bdca02aeb57d0ad7f2fb4897cfc08e1f184553d2a",
+              "format": "RP25M001"
+            },
+            "upper": {
+              "path": "D:\\Work\\rpfem-native26\\G1R17_native26\\cases\\D06A\\witness_upper.bin",
+              "sha256": "b3f7a8edbd7f627bdedb49678f06aac9b691ce38c80f235d9cabce91b73541f6",
+              "format": "RP25M001"
+            }
+          }
+        }
+      }
+    },
+    {
+      "case": "D07A",
+      "input": {
+        "path": "docs/benchmarks/G1R17_native26_20261013/data/inputs/D07A.json",
+        "sha256": "d127e3e92f7ab9ac07f8a4d0e42a96e5ae531ac67c55c297b7753eccdf6492b3",
+        "sha256_lf": "d127e3e92f7ab9ac07f8a4d0e42a96e5ae531ac67c55c297b7753eccdf6492b3",
+        "sha256_canonical_json": "87f69fa82ef9afe738276e028589ed6f48118e87e7448a85ff86ed3399571294"
+      },
+      "title": "Crest surcharge 20 kPa on x=2..8",
+      "policy": "equal_reduced_phi",
+      "native_analysis_policy": "ASSOCIATED",
+      "coupled_pore_pressure": false,
+      "water": {
+        "coupling": 0,
+        "mode": 2,
+        "gamma_w": 9.81,
+        "suction": 0,
+        "water_table": [],
+        "seep_target": 1536
+      },
+      "material_count": 1,
+      "region_areas": [
+        158.0
+      ],
+      "total_dry_weight": 3160.0,
+      "initial_mesh": {
+        "path": "versions/G1R17/results/geometry25/D07A_new_vba_mesh.bin",
+        "sha256": "92ae7282825d2a30eddc3798eab03d7d701e8a740f3d905c571704ed6f697788",
+        "kind": "recorded_coarse_geometry_only",
+        "uses_saved_primal_field": false,
+        "uses_saved_root": false
+      },
+      "historical_bounds": {
+        "native26": {
+          "source_summary": "docs/benchmarks/G1R17_native26_20261013/data/summary.json",
+          "full_record_path": "D:\\Work\\rpfem-native26\\G1R17_native26\\results\\D07A.json",
+          "full_record_sha256": "dbd82e27c55093c5c5352f67894b1777c392ec1b03fb4fb4d14cbb126bda5339",
+          "lower_fs": 1.2651420914772866,
+          "upper_fs": 1.277577204587988,
+          "relative_gap_symmetric": 0.009780956262017701,
+          "q": [
+            8,
+            4
+          ],
+          "target_met_at_one_percent": false,
+          "independent_saved_field_audit_pass": true,
+          "root_search_incomplete": true,
+          "root_tolerance_contract": "width <= FS_TOL * max(1, bracket midpoint); per-owner native root validity and completion flags",
+          "root_owner_flags": [
+            "True",
+            "True",
+            "False",
+            "False"
+          ],
+          "time": {
+            "seconds": 265.8232,
+            "kind": "historical_G1R17_sequential_native_Excel_whole_analysis",
+            "boundary": "run_end.elapsed_s; excludes startup, save and independent Python audit",
+            "not_new_python_or_G1R19_coldstart_time": true
+          },
+          "witnesses": {
+            "lower": {
+              "path": "D:\\Work\\rpfem-native26\\G1R17_native26\\cases\\D07A\\witness_lower.bin",
+              "sha256": "19a9ab3ae1585525ea6d9cb6bba076a924f0dd62abf9568dd75ff7f4dd459ecf",
+              "format": "RP25M001"
+            },
+            "upper": {
+              "path": "D:\\Work\\rpfem-native26\\G1R17_native26\\cases\\D07A\\witness_upper.bin",
+              "sha256": "a5190bd0c5263724c72a606cf7c09746f3b0709fecab3c21a03d1237b459e6e0",
+              "format": "RP25M001"
+            }
+          }
+        },
+        "python_q8_snapshot": {
+          "summary_path": "validation/accuracy_20261013/snapshots/20261014_progress7_audit/snapshots/D07A/summary.json",
+          "summary_sha256": "39ff876d2adcf01ada5fa20586eeeaccef4998e19f322a45d719e8b500735656",
+          "lower_fs": 1.2651420914772866,
+          "upper_fs": 1.2773813831138292,
+          "relative_gap_symmetric": 0.009627672474891021,
+          "root_complete": true,
+          "one_percent_target_met": true,
+          "two_percent_width_met": true,
+          "kind": "historical_independent_q8_saved_field_audit_and_discrete_root_metadata",
+          "not_G1R19_coldstart_reproduction": true,
+          "sides": {
+            "lower": {
+              "fs": 1.2651420914772866,
+              "elements": 999,
+              "physical_model_id": "dacfe861651e5a6c4482ce5a55f9040cf6f1f092fc2577b04b81d534e8f8c0bb",
+              "mesh_id": "2645baf356d550c985dcc3ed1c2d1955d347e6f26b2ce324b60e398617e5e723",
+              "q": 8,
+              "root_complete": true,
+              "root_stage_seconds": 90.95968880003784,
+              "time_kind": "historical_per_side_root_search_stage; not complete production runtime",
+              "files": {
+                "mesh": {
+                  "path": "validation/accuracy_20261013/snapshots/20261014_progress7_audit/snapshots/D07A/best_lower_mesh.npz",
+                  "sha256": "f9131d41eec13014f22c75f7b135267769ad6c87ea6da8431909b3983fe0edcc"
+                },
+                "field": {
+                  "path": "validation/accuracy_20261013/snapshots/20261014_progress7_audit/snapshots/D07A/best_lower_field.npz",
+                  "sha256": "28e0612f74b291b360b59c8a0387e33bfff47ff7f25d97183d5dda5d60602090"
+                },
+                "certificate": {
+                  "path": "validation/accuracy_20261013/snapshots/20261014_progress7_audit/snapshots/D07A/best_lower_certificate.json",
+                  "sha256": "7c0dd751f505ee81aa08b30be17fbc7cba6a1d505c134fa5c70b86bedd4d86d5"
+                }
+              }
+            },
+            "upper": {
+              "fs": 1.2773813831138292,
+              "elements": 557,
+              "physical_model_id": "dacfe861651e5a6c4482ce5a55f9040cf6f1f092fc2577b04b81d534e8f8c0bb",
+              "mesh_id": "a47398ca7f5928f8cbdeffdc4bb4c215b78d32350898471698fc8395e3ce5ac7",
+              "q": 8,
+              "root_complete": true,
+              "root_stage_seconds": 70.03677599999355,
+              "time_kind": "historical_per_side_root_search_stage; not complete production runtime",
+              "files": {
+                "mesh": {
+                  "path": "validation/accuracy_20261013/snapshots/20261014_progress7_audit/snapshots/D07A/best_upper_mesh.npz",
+                  "sha256": "2813713d62ba32adc96ea84f904b50866419a9a944b0663f54c14a15be8783aa"
+                },
+                "field": {
+                  "path": "validation/accuracy_20261013/snapshots/20261014_progress7_audit/snapshots/D07A/best_upper_field.npz",
+                  "sha256": "b041a618e525c4c35d2385baa4bef6f5e9e6e7dd8c07fc91f934c2712e30ecb1"
+                },
+                "certificate": {
+                  "path": "validation/accuracy_20261013/snapshots/20261014_progress7_audit/snapshots/D07A/best_upper_certificate.json",
+                  "sha256": "e949f378e70082e0d38bc085f58f218284fffa4c357814434482399c2c9a1ab3"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "case": "D08A",
+      "input": {
+        "path": "docs/benchmarks/G1R17_native26_20261013/data/inputs/D08A.json",
+        "sha256": "c3650aff7307ff93f79dfdf7af70ba63892b8e15c098178c71614fcbbf216b08",
+        "sha256_lf": "c3650aff7307ff93f79dfdf7af70ba63892b8e15c098178c71614fcbbf216b08",
+        "sha256_canonical_json": "1e84f58bdd743a5794cef64dba3396046e3f8c0ee63b651d2ad1feefe26bf122"
+      },
+      "title": "Fixed pore pressure field, water elevation y=3",
+      "policy": "equal_reduced_phi",
+      "native_analysis_policy": "ASSOCIATED",
+      "coupled_pore_pressure": true,
+      "water": {
+        "coupling": 1,
+        "mode": 2,
+        "gamma_w": 9.81,
+        "suction": 0,
+        "water_table": [
+          [
+            0.0,
+            3.0
+          ],
+          [
+            20.0,
+            3.0
+          ]
+        ],
+        "catalog_spec": {
+          "mode": "fixed_hydrostatic",
+          "water_elevation_m": 3.0,
+          "gamma_w_kPa_m": 9.81,
+          "formula": "9.81*max(3-y,0)",
+          "surface_water_traction": "none; exposed ground is above y=3"
+        },
+        "seep_target": 1536
+      },
+      "material_count": 1,
+      "region_areas": [
+        158.0
+      ],
+      "total_dry_weight": 3160.0,
+      "initial_mesh": {
+        "path": "validation/G1R19_python26_water_20261016/data/D08A_waterline_initial_mesh.bin",
+        "sha256": "aa2fd1df3b0d9e7dcbcb66cc296ed763cec9c723200938e35358c89eb1e84d93",
+        "kind": "fresh_waterline_conforming_geometry_only",
+        "uses_saved_primal_field": false,
+        "uses_saved_root": false,
+        "source_geometry": {
+          "path": "versions/G1R17/results/geometry25/P02A_new_vba_mesh.bin",
+          "sha256": "65fe6462d0cc1d832d1a2656494ade80858d5c491c7d14f6f8a6f8c168f2c79b",
+          "kind": "recorded_coarse_geometry_only",
+          "uses_saved_primal_field": false,
+          "uses_saved_root": false,
+          "alias_case": "P02A",
+          "reason": "geometry25 has no D08A file; same declared polygon/material-region geometry; D08A material, boundary and hydrostatic loads are independently rebuilt"
+        },
+        "water_level": 3.0,
+        "proof": {
+          "positive_orientation": true,
+          "material_ownership_exact": true,
+          "maximum_parent_area_error": 1.6653345369377348e-15,
+          "maximum_parent_first_moment_error": 2.842170943040401e-14,
+          "maximum_barycentric_outside": 3.415359825210581e-15,
+          "total_area": 158.0
+        }
+      },
+      "historical_bounds": {
+        "native26": {
+          "source_summary": "docs/benchmarks/G1R17_native26_20261013/data/summary.json",
+          "full_record_path": "D:\\Work\\rpfem-native26\\G1R17_native26\\results\\D08A.json",
+          "full_record_sha256": "68481aca8344915f74a0918ed901528ab433d411196acc41708ca3fdd79a6de4",
+          "lower_fs": 1.3016957465342585,
+          "upper_fs": 1.3104895557092444,
+          "relative_gap_symmetric": 0.006732913754191405,
+          "q": [
+            8,
+            8
+          ],
+          "target_met_at_one_percent": true,
+          "independent_saved_field_audit_pass": true,
+          "root_search_incomplete": false,
+          "root_tolerance_contract": "width <= FS_TOL * max(1, bracket midpoint); per-owner native root validity and completion flags",
+          "root_owner_flags": [
+            "True",
+            "True",
+            "False",
+            "False"
+          ],
+          "time": {
+            "seconds": 348.077068,
+            "kind": "historical_G1R17_sequential_native_Excel_whole_analysis",
+            "boundary": "run_end.elapsed_s; excludes startup, save and independent Python audit",
+            "not_new_python_or_G1R19_coldstart_time": true
+          },
+          "witnesses": {
+            "lower": {
+              "path": "D:\\Work\\rpfem-native26\\G1R17_native26\\cases\\D08A\\witness_lower.bin",
+              "sha256": "45301ebef56d3543dd5928e16cfcf921d0b8cb4d14d1c9955fb774fedbe35430",
+              "format": "RP25M001"
+            },
+            "upper": {
+              "path": "D:\\Work\\rpfem-native26\\G1R17_native26\\cases\\D08A\\witness_upper.bin",
+              "sha256": "18e94e3b70732a7bf29f3f6da76158dcecae34906c21749c362c6e269cb9f3fd",
+              "format": "RP25M001"
+            }
+          }
+        }
+      }
+    },
+    {
+      "case": "D09A",
+      "input": {
+        "path": "docs/benchmarks/G1R17_native26_20261013/data/inputs/D09A.json",
+        "sha256": "46795043ad9bc7afc4024431fe4b0edd3a680edc56c19bc5d4c471a12efd5455",
+        "sha256_lf": "46795043ad9bc7afc4024431fe4b0edd3a680edc56c19bc5d4c471a12efd5455",
+        "sha256_canonical_json": "f3ad157f21b33f51786a5e4f388df2caa27dcee2193836827ad7d5e5b1e3b313"
+      },
+      "title": "Near-incompressibility diagnostic nu=0.49",
+      "policy": "equal_reduced_phi",
+      "native_analysis_policy": "ASSOCIATED",
+      "coupled_pore_pressure": false,
+      "water": {
+        "coupling": 0,
+        "mode": 2,
+        "gamma_w": 9.81,
+        "suction": 0,
+        "water_table": [],
+        "seep_target": 1536
+      },
+      "material_count": 1,
+      "region_areas": [
+        158.0
+      ],
+      "total_dry_weight": 3160.0,
+      "initial_mesh": {
+        "path": "versions/G1R17/results/geometry25/D09A_new_vba_mesh.bin",
+        "sha256": "65fe6462d0cc1d832d1a2656494ade80858d5c491c7d14f6f8a6f8c168f2c79b",
+        "kind": "recorded_coarse_geometry_only",
+        "uses_saved_primal_field": false,
+        "uses_saved_root": false
+      },
+      "historical_bounds": {
+        "native26": {
+          "source_summary": "docs/benchmarks/G1R17_native26_20261013/data/summary.json",
+          "full_record_path": "D:\\Work\\rpfem-native26\\G1R17_native26\\results\\D09A.json",
+          "full_record_sha256": "5c2894bd0912cdf164a13766becb02246909a7a35120c474a5d8adf39290a07c",
+          "lower_fs": 1.3016569748403444,
+          "upper_fs": 1.3110550654525948,
+          "relative_gap_symmetric": 0.007194126614272169,
+          "q": [
+            8,
+            8
+          ],
+          "target_met_at_one_percent": true,
+          "independent_saved_field_audit_pass": true,
+          "root_search_incomplete": false,
+          "root_tolerance_contract": "width <= FS_TOL * max(1, bracket midpoint); per-owner native root validity and completion flags",
+          "root_owner_flags": [
+            "True",
+            "True",
+            "False",
+            "False"
+          ],
+          "time": {
+            "seconds": 323.323682,
+            "kind": "historical_G1R17_sequential_native_Excel_whole_analysis",
+            "boundary": "run_end.elapsed_s; excludes startup, save and independent Python audit",
+            "not_new_python_or_G1R19_coldstart_time": true
+          },
+          "witnesses": {
+            "lower": {
+              "path": "D:\\Work\\rpfem-native26\\G1R17_native26\\cases\\D09A\\witness_lower.bin",
+              "sha256": "8a630cecb724e4e215029809372e0bd6eb2ab2244fbeb0f5c8cbbcc2f298e834",
+              "format": "RP25M001"
+            },
+            "upper": {
+              "path": "D:\\Work\\rpfem-native26\\G1R17_native26\\cases\\D09A\\witness_upper.bin",
+              "sha256": "641bc2b1badf702b06305ac1c105f1621d51bc5b4603a8c25c3e3ae7051f3d57",
+              "format": "RP25M001"
+            }
+          }
+        }
+      }
+    },
+    {
+      "case": "P01A",
+      "input": {
+        "path": "docs/benchmarks/G1R17_native26_20261013/data/inputs/P01A.json",
+        "sha256": "c952158d3da2da80cba14b72c4c613ea13634ae667f0af35237c375e7a2e31e6",
+        "sha256_lf": "c952158d3da2da80cba14b72c4c613ea13634ae667f0af35237c375e7a2e31e6",
+        "sha256_canonical_json": "73dfab86cccbcf1c0d29b4cb78a85f93e403f7e7825af7836b47ca1d151e177f"
+      },
+      "title": "Jia2024 / Cheng homogeneous Case 1, psi=0, associated twin",
+      "policy": "equal_reduced_phi",
+      "native_analysis_policy": "ASSOCIATED",
+      "coupled_pore_pressure": false,
+      "water": {
+        "coupling": 0,
+        "mode": 2,
+        "gamma_w": 9.81,
+        "suction": 0,
+        "water_table": [],
+        "seep_target": 1536
+      },
+      "material_count": 1,
+      "region_areas": [
+        158.0
+      ],
+      "total_dry_weight": 3160.0,
+      "initial_mesh": {
+        "path": "versions/G1R17/results/geometry25/P01A_new_vba_mesh.bin",
+        "sha256": "65fe6462d0cc1d832d1a2656494ade80858d5c491c7d14f6f8a6f8c168f2c79b",
+        "kind": "recorded_coarse_geometry_only",
+        "uses_saved_primal_field": false,
+        "uses_saved_root": false
+      },
+      "historical_bounds": {
+        "native26": {
+          "source_summary": "docs/benchmarks/G1R17_native26_20261013/data/summary.json",
+          "full_record_path": "D:\\Work\\rpfem-native26\\G1R17_native26\\results\\P01A.json",
+          "full_record_sha256": "dbec1740a7fb6d10b8268fdb01b8ee41619759503c5c7d36159b451d80d7ba63",
+          "lower_fs": 0.670003704164139,
+          "upper_fs": 0.6799341966897774,
+          "relative_gap_symmetric": 0.014712517545224487,
+          "q": [
+            8,
+            8
+          ],
+          "target_met_at_one_percent": false,
+          "independent_saved_field_audit_pass": true,
+          "root_search_incomplete": true,
+          "root_tolerance_contract": "width <= FS_TOL * max(1, bracket midpoint); per-owner native root validity and completion flags",
+          "root_owner_flags": [
+            "True",
+            "True",
+            "False",
+            "False"
+          ],
+          "time": {
+            "seconds": 264.601352,
+            "kind": "historical_G1R17_sequential_native_Excel_whole_analysis",
+            "boundary": "run_end.elapsed_s; excludes startup, save and independent Python audit",
+            "not_new_python_or_G1R19_coldstart_time": true
+          },
+          "witnesses": {
+            "lower": {
+              "path": "D:\\Work\\rpfem-native26\\G1R17_native26\\cases\\P01A\\witness_lower.bin",
+              "sha256": "9d690f49380169bc93659f15f1d7c977d4f39033952a525aa1a5b1e4896509dd",
+              "format": "RP25M001"
+            },
+            "upper": {
+              "path": "D:\\Work\\rpfem-native26\\G1R17_native26\\cases\\P01A\\witness_upper.bin",
+              "sha256": "3818066778a424585028764a185f13638404b941c3e57859aec46f731968f090",
+              "format": "RP25M001"
+            }
+          }
+        },
+        "python_q8_snapshot": {
+          "summary_path": "validation/accuracy_20261013/snapshots/20261014_progress7_audit/snapshots/P01A/summary.json",
+          "summary_sha256": "8e284e55176131db2edf58e8d5ae2037691360f1f6a3ba080f79d89a0a015eed",
+          "lower_fs": 0.6737167317080549,
+          "upper_fs": 0.6799341966897774,
+          "relative_gap_symmetric": 0.009186216108286375,
+          "root_complete": true,
+          "one_percent_target_met": true,
+          "two_percent_width_met": true,
+          "kind": "historical_independent_q8_saved_field_audit_and_discrete_root_metadata",
+          "not_G1R19_coldstart_reproduction": true,
+          "sides": {
+            "lower": {
+              "fs": 0.6737167317080549,
+              "elements": 2083,
+              "physical_model_id": "6e65daa45a166d68cdad206ac0813a848a5813559a81695ab085ab3c60954587",
+              "mesh_id": "c60f217f58580f4bb76cac03d10bd5e563c54c19aa3b1ea29e59dfc4408d19f2",
+              "q": 8,
+              "root_complete": true,
+              "root_stage_seconds": 68.8218865999952,
+              "time_kind": "historical_per_side_root_search_stage; not complete production runtime",
+              "files": {
+                "mesh": {
+                  "path": "validation/accuracy_20261013/snapshots/20261014_progress7_audit/snapshots/P01A/best_lower_mesh.npz",
+                  "sha256": "4257bd2179bfc16958d2378578433de73e06bdd30d8f5014b30433710db01f7e"
+                },
+                "field": {
+                  "path": "validation/accuracy_20261013/snapshots/20261014_progress7_audit/snapshots/P01A/best_lower_field.npz",
+                  "sha256": "178bc3cfcbf343e7140657377f89b19ba1e3cfc128d38174f97eefa256792dbf"
+                },
+                "certificate": {
+                  "path": "validation/accuracy_20261013/snapshots/20261014_progress7_audit/snapshots/P01A/best_lower_certificate.json",
+                  "sha256": "4c0980fb1489c3b69e60d849f4da91d1c57c3287309356f5646d142ca6cebe0d"
+                }
+              }
+            },
+            "upper": {
+              "fs": 0.6799341966897774,
+              "elements": 997,
+              "physical_model_id": "6e65daa45a166d68cdad206ac0813a848a5813559a81695ab085ab3c60954587",
+              "mesh_id": "a955e3c4ce984562e48ed0fc8ec95e308f987e7f6a64a8c03be2663111faa9ae",
+              "q": 8,
+              "root_complete": true,
+              "root_stage_seconds": 154.5792713999981,
+              "time_kind": "historical_per_side_root_search_stage; not complete production runtime",
+              "files": {
+                "mesh": {
+                  "path": "validation/accuracy_20261013/snapshots/20261014_progress7_audit/snapshots/P01A/best_upper_mesh.npz",
+                  "sha256": "630ffd3e910fa797b99faefc417d794245ac4c2303d81b923623e00c3d939676"
+                },
+                "field": {
+                  "path": "validation/accuracy_20261013/snapshots/20261014_progress7_audit/snapshots/P01A/best_upper_field.npz",
+                  "sha256": "eb304a72eff694d531cb714b7461e11c3e32fd9912632850a33bd5925084069b"
+                },
+                "certificate": {
+                  "path": "validation/accuracy_20261013/snapshots/20261014_progress7_audit/snapshots/P01A/best_upper_certificate.json",
+                  "sha256": "d5261193eb75e71e9256a8545f8e1820da67ee419828dab2670956116ee9846c"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "case": "P01N",
+      "input": {
+        "path": "docs/benchmarks/G1R17_native26_20261013/data/inputs/P01N.json",
+        "sha256": "bfca4f197eeb60d99fc2027ac947a2165c4be22c32730209d33ef68001349ca6",
+        "sha256_lf": "bfca4f197eeb60d99fc2027ac947a2165c4be22c32730209d33ef68001349ca6",
+        "sha256_canonical_json": "c126c1bb680c038a38da720bccfa9aa9f7dd91346d3ab88b31a47c714b0d2fe4"
+      },
+      "title": "Jia2024 / Cheng homogeneous Case 1, psi=0",
+      "policy": "hold_initial",
+      "native_analysis_policy": "DAVIS_EQUIVALENT",
+      "coupled_pore_pressure": false,
+      "water": {
+        "coupling": 0,
+        "mode": 2,
+        "gamma_w": 9.81,
+        "suction": 0,
+        "water_table": [],
+        "seep_target": 1536
+      },
+      "material_count": 1,
+      "region_areas": [
+        158.0
+      ],
+      "total_dry_weight": 3160.0,
+      "initial_mesh": {
+        "path": "versions/G1R17/results/geometry25/P01N_new_vba_mesh.bin",
+        "sha256": "65fe6462d0cc1d832d1a2656494ade80858d5c491c7d14f6f8a6f8c168f2c79b",
+        "kind": "recorded_coarse_geometry_only",
+        "uses_saved_primal_field": false,
+        "uses_saved_root": false
+      },
+      "historical_bounds": {
+        "native26": {
+          "source_summary": "docs/benchmarks/G1R17_native26_20261013/data/summary.json",
+          "full_record_path": "D:\\Work\\rpfem-native26\\G1R17_native26\\results\\P01N.json",
+          "full_record_sha256": "d9014bdf3bcab39413d30eb524b6ecbde2bfeeade8b74447a53d4191c612836e",
+          "lower_fs": 0.6642932758545593,
+          "upper_fs": 0.6741943852536502,
+          "relative_gap_symmetric": 0.014794472428521527,
+          "q": [
+            8,
+            8
+          ],
+          "target_met_at_one_percent": false,
+          "independent_saved_field_audit_pass": true,
+          "root_search_incomplete": true,
+          "root_tolerance_contract": "width <= FS_TOL * max(1, bracket midpoint); per-owner native root validity and completion flags",
+          "root_owner_flags": [
+            "True",
+            "True",
+            "False",
+            "False"
+          ],
+          "time": {
+            "seconds": 262.753328,
+            "kind": "historical_G1R17_sequential_native_Excel_whole_analysis",
+            "boundary": "run_end.elapsed_s; excludes startup, save and independent Python audit",
+            "not_new_python_or_G1R19_coldstart_time": true
+          },
+          "witnesses": {
+            "lower": {
+              "path": "D:\\Work\\rpfem-native26\\G1R17_native26\\cases\\P01N\\witness_lower.bin",
+              "sha256": "7ebec9c2b869f220b8e468fda0847311bd1d625fad32dc6c2a521e74d609b736",
+              "format": "RP25M001"
+            },
+            "upper": {
+              "path": "D:\\Work\\rpfem-native26\\G1R17_native26\\cases\\P01N\\witness_upper.bin",
+              "sha256": "94e2023f214688c7d7cc14ff60507e6b91894bf72c9087ef445c23a0e7998500",
+              "format": "RP25M001"
+            }
+          }
+        },
+        "python_q8_snapshot": {
+          "summary_path": "validation/accuracy_20261013/snapshots/20261014_progress7_audit/snapshots/P01N/summary.json",
+          "summary_sha256": "0ed67ece297761bbd2f6f025893a103b577884e61bdfdf825e3fc5a47a021e57",
+          "lower_fs": 0.668059011706057,
+          "upper_fs": 0.6732826066608659,
+          "relative_gap_symmetric": 0.007788612361359002,
+          "root_complete": true,
+          "one_percent_target_met": true,
+          "two_percent_width_met": true,
+          "kind": "historical_independent_q8_saved_field_audit_and_discrete_root_metadata",
+          "not_G1R19_coldstart_reproduction": true,
+          "sides": {
+            "lower": {
+              "fs": 0.668059011706057,
+              "elements": 2083,
+              "physical_model_id": "954955d39b669dad9b79f7e96c608f4b4176990549275d088943822f09b20df4",
+              "mesh_id": "15b6b18d0a3a8bc14cf6dfc9e81197007353ec2d60aed5f28467f0681fdc72d8",
+              "q": 8,
+              "root_complete": true,
+              "root_stage_seconds": 48.80923139996594,
+              "time_kind": "historical_per_side_root_search_stage; not complete production runtime",
+              "files": {
+                "mesh": {
+                  "path": "validation/accuracy_20261013/snapshots/20261014_progress7_audit/snapshots/P01N/best_lower_mesh.npz",
+                  "sha256": "4257bd2179bfc16958d2378578433de73e06bdd30d8f5014b30433710db01f7e"
+                },
+                "field": {
+                  "path": "validation/accuracy_20261013/snapshots/20261014_progress7_audit/snapshots/P01N/best_lower_field.npz",
+                  "sha256": "8c21ff69804b716eb3a0340dde8bd7a66a83d621c28494da28a8127c063780c2"
+                },
+                "certificate": {
+                  "path": "validation/accuracy_20261013/snapshots/20261014_progress7_audit/snapshots/P01N/best_lower_certificate.json",
+                  "sha256": "5c80f5186bc59394099a1e00f4b99b84d52d4befa4e3422eb06313afa0c988a0"
+                }
+              }
+            },
+            "upper": {
+              "fs": 0.6732826066608659,
+              "elements": 2216,
+              "physical_model_id": "954955d39b669dad9b79f7e96c608f4b4176990549275d088943822f09b20df4",
+              "mesh_id": "fe164b6cb74689bb0f70f0767af8ec2dad35e98698c3bb1abcf7564b5e23e10b",
+              "q": 8,
+              "root_complete": true,
+              "root_stage_seconds": 1059.9421807999606,
+              "time_kind": "historical_per_side_root_search_stage; not complete production runtime",
+              "files": {
+                "mesh": {
+                  "path": "validation/accuracy_20261013/snapshots/20261014_progress7_audit/snapshots/P01N/best_upper_mesh.npz",
+                  "sha256": "cf7396f1eeb7f0214820a0644d6da6b892cfbd4a85fa2acbf6c529176613eb11"
+                },
+                "field": {
+                  "path": "validation/accuracy_20261013/snapshots/20261014_progress7_audit/snapshots/P01N/best_upper_field.npz",
+                  "sha256": "f486e8ab206dfe80d478ea4b6b6959aecad3bc314450c85877f414933a21a30d"
+                },
+                "certificate": {
+                  "path": "validation/accuracy_20261013/snapshots/20261014_progress7_audit/snapshots/P01N/best_upper_certificate.json",
+                  "sha256": "69828c77a64d8336504a2c5aa30cf49b80c9dd933bff791e8ad53ae88afe5c19"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "case": "P02A",
+      "input": {
+        "path": "docs/benchmarks/G1R17_native26_20261013/data/inputs/P02A.json",
+        "sha256": "9587c4b45eae1c22d9e7190ee1470f5ad2e38145305f6c374894f91240ae7e1b",
+        "sha256_lf": "9587c4b45eae1c22d9e7190ee1470f5ad2e38145305f6c374894f91240ae7e1b",
+        "sha256_canonical_json": "75cc59ebd5a75b65098bbc93a2a41213ba210c0a275421395ca7223ce884121a"
+      },
+      "title": "Jia2024 / Cheng homogeneous Case 2, psi=0, associated twin",
+      "policy": "equal_reduced_phi",
+      "native_analysis_policy": "ASSOCIATED",
+      "coupled_pore_pressure": false,
+      "water": {
+        "coupling": 0,
+        "mode": 2,
+        "gamma_w": 9.81,
+        "suction": 0,
+        "water_table": [],
+        "seep_target": 1536
+      },
+      "material_count": 1,
+      "region_areas": [
+        158.0
+      ],
+      "total_dry_weight": 3160.0,
+      "initial_mesh": {
+        "path": "versions/G1R17/results/geometry25/P02A_new_vba_mesh.bin",
+        "sha256": "65fe6462d0cc1d832d1a2656494ade80858d5c491c7d14f6f8a6f8c168f2c79b",
+        "kind": "recorded_coarse_geometry_only",
+        "uses_saved_primal_field": false,
+        "uses_saved_root": false
+      },
+      "historical_bounds": {
+        "native26": {
+          "source_summary": "docs/benchmarks/G1R17_native26_20261013/data/summary.json",
+          "full_record_path": "D:\\Work\\rpfem-native26\\G1R17_native26\\results\\P02A.json",
+          "full_record_sha256": "99a3fe5cd9665ba4cdedd954a68380cc2a5a5c4b44d4c12f364075a5d9dffaa1",
+          "lower_fs": 1.3016569748403444,
+          "upper_fs": 1.3110550654525948,
+          "relative_gap_symmetric": 0.007194126614272169,
+          "q": [
+            8,
+            8
+          ],
+          "target_met_at_one_percent": true,
+          "independent_saved_field_audit_pass": true,
+          "root_search_incomplete": false,
+          "root_tolerance_contract": "width <= FS_TOL * max(1, bracket midpoint); per-owner native root validity and completion flags",
+          "root_owner_flags": [
+            "True",
+            "True",
+            "False",
+            "False"
+          ],
+          "time": {
+            "seconds": 334.060525,
+            "kind": "historical_G1R17_sequential_native_Excel_whole_analysis",
+            "boundary": "run_end.elapsed_s; excludes startup, save and independent Python audit",
+            "not_new_python_or_G1R19_coldstart_time": true
+          },
+          "witnesses": {
+            "lower": {
+              "path": "D:\\Work\\rpfem-native26\\G1R17_native26\\cases\\P02A\\witness_lower.bin",
+              "sha256": "8a630cecb724e4e215029809372e0bd6eb2ab2244fbeb0f5c8cbbcc2f298e834",
+              "format": "RP25M001"
+            },
+            "upper": {
+              "path": "D:\\Work\\rpfem-native26\\G1R17_native26\\cases\\P02A\\witness_upper.bin",
+              "sha256": "641bc2b1badf702b06305ac1c105f1621d51bc5b4603a8c25c3e3ae7051f3d57",
+              "format": "RP25M001"
+            }
+          }
+        }
+      }
+    },
+    {
+      "case": "P02N",
+      "input": {
+        "path": "docs/benchmarks/G1R17_native26_20261013/data/inputs/P02N.json",
+        "sha256": "7d8d74f5d573032e7980fe7dffde911ffab2f7bd4cef784ee145f7e0349fac31",
+        "sha256_lf": "7d8d74f5d573032e7980fe7dffde911ffab2f7bd4cef784ee145f7e0349fac31",
+        "sha256_canonical_json": "1c2402a62839d7bfdc9e9e891c1c006917212ae9070c13f2474ff696203fc04e"
+      },
+      "title": "Jia2024 / Cheng homogeneous Case 2, psi=0",
+      "policy": "hold_initial",
+      "native_analysis_policy": "DAVIS_EQUIVALENT",
+      "coupled_pore_pressure": false,
+      "water": {
+        "coupling": 0,
+        "mode": 2,
+        "gamma_w": 9.81,
+        "suction": 0,
+        "water_table": [],
+        "seep_target": 1536
+      },
+      "material_count": 1,
+      "region_areas": [
+        158.0
+      ],
+      "total_dry_weight": 3160.0,
+      "initial_mesh": {
+        "path": "versions/G1R17/results/geometry25/P02N_new_vba_mesh.bin",
+        "sha256": "65fe6462d0cc1d832d1a2656494ade80858d5c491c7d14f6f8a6f8c168f2c79b",
+        "kind": "recorded_coarse_geometry_only",
+        "uses_saved_primal_field": false,
+        "uses_saved_root": false
+      },
+      "historical_bounds": {
+        "native26": {
+          "source_summary": "docs/benchmarks/G1R17_native26_20261013/data/summary.json",
+          "full_record_path": "D:\\Work\\rpfem-native26\\G1R17_native26\\results\\P02N.json",
+          "full_record_sha256": "d08cb0c26a9df0b1f09c046cbcb354f9e3e599c33bd429039275f16a18298cf3",
+          "lower_fs": 1.215929091721389,
+          "upper_fs": 1.224966156938399,
+          "relative_gap_symmetric": 0.007404713677878573,
+          "q": [
+            8,
+            8
+          ],
+          "target_met_at_one_percent": true,
+          "independent_saved_field_audit_pass": true,
+          "root_search_incomplete": false,
+          "root_tolerance_contract": "width <= FS_TOL * max(1, bracket midpoint); per-owner native root validity and completion flags",
+          "root_owner_flags": [
+            "True",
+            "True",
+            "False",
+            "False"
+          ],
+          "time": {
+            "seconds": 321.352305,
+            "kind": "historical_G1R17_sequential_native_Excel_whole_analysis",
+            "boundary": "run_end.elapsed_s; excludes startup, save and independent Python audit",
+            "not_new_python_or_G1R19_coldstart_time": true
+          },
+          "witnesses": {
+            "lower": {
+              "path": "D:\\Work\\rpfem-native26\\G1R17_native26\\cases\\P02N\\witness_lower.bin",
+              "sha256": "e1315afbcd72e35ba45b4a4f517694a83fc70f53641bbbcac3e5ffa2d19aad01",
+              "format": "RP25M001"
+            },
+            "upper": {
+              "path": "D:\\Work\\rpfem-native26\\G1R17_native26\\cases\\P02N\\witness_upper.bin",
+              "sha256": "8c419bc806f1f4afb0fb4121d34d25d5396d5da9705ab05f07cba199c2e43a96",
+              "format": "RP25M001"
+            }
+          }
+        }
+      }
+    },
+    {
+      "case": "P03A",
+      "input": {
+        "path": "docs/benchmarks/G1R17_native26_20261013/data/inputs/P03A.json",
+        "sha256": "858297b2897751405f4cc882100ff262ba994850668b8ef6054a425cf4314e8d",
+        "sha256_lf": "858297b2897751405f4cc882100ff262ba994850668b8ef6054a425cf4314e8d",
+        "sha256_canonical_json": "03b87792ecbb0aa461d21f37c336ddeb14d8d31699c80fc3588e2cd22d3d33c4"
+      },
+      "title": "Jia2024 / Cheng homogeneous Case 3, psi=0, associated twin",
+      "policy": "equal_reduced_phi",
+      "native_analysis_policy": "ASSOCIATED",
+      "coupled_pore_pressure": false,
+      "water": {
+        "coupling": 0,
+        "mode": 2,
+        "gamma_w": 9.81,
+        "suction": 0,
+        "water_table": [],
+        "seep_target": 1536
+      },
+      "material_count": 1,
+      "region_areas": [
+        158.0
+      ],
+      "total_dry_weight": 3160.0,
+      "initial_mesh": {
+        "path": "versions/G1R17/results/geometry25/P03A_new_vba_mesh.bin",
+        "sha256": "65fe6462d0cc1d832d1a2656494ade80858d5c491c7d14f6f8a6f8c168f2c79b",
+        "kind": "recorded_coarse_geometry_only",
+        "uses_saved_primal_field": false,
+        "uses_saved_root": false
+      },
+      "historical_bounds": {
+        "native26": {
+          "source_summary": "docs/benchmarks/G1R17_native26_20261013/data/summary.json",
+          "full_record_path": "D:\\Work\\rpfem-native26\\G1R17_native26\\results\\P03A.json",
+          "full_record_sha256": "f9df43fc633b8a1555c2d4278768e6bf2055994e4182f5cfed41038c7dd3a2d1",
+          "lower_fs": 1.1553169284451044,
+          "upper_fs": 1.1741222483654132,
+          "relative_gap_symmetric": 0.01614579174894554,
+          "q": [
+            8,
+            8
+          ],
+          "target_met_at_one_percent": false,
+          "independent_saved_field_audit_pass": true,
+          "root_search_incomplete": true,
+          "root_tolerance_contract": "width <= FS_TOL * max(1, bracket midpoint); per-owner native root validity and completion flags",
+          "root_owner_flags": [
+            "True",
+            "True",
+            "False",
+            "False"
+          ],
+          "time": {
+            "seconds": 252.892343,
+            "kind": "historical_G1R17_sequential_native_Excel_whole_analysis",
+            "boundary": "run_end.elapsed_s; excludes startup, save and independent Python audit",
+            "not_new_python_or_G1R19_coldstart_time": true
+          },
+          "witnesses": {
+            "lower": {
+              "path": "D:\\Work\\rpfem-native26\\G1R17_native26\\cases\\P03A\\witness_lower.bin",
+              "sha256": "7560d40149999c043182e67e7108d8663278b52b35dfc217e086d1da51a9cdf2",
+              "format": "RP25M001"
+            },
+            "upper": {
+              "path": "D:\\Work\\rpfem-native26\\G1R17_native26\\cases\\P03A\\witness_upper.bin",
+              "sha256": "5c3574a9b1a09bfa8e459896e935b3b6632ae335125fcddbc6c10b51c25bfb05",
+              "format": "RP25M001"
+            }
+          }
+        },
+        "python_q8_snapshot": {
+          "summary_path": "validation/accuracy_20261013/snapshots/20261014_progress7_audit/snapshots/P03A/summary.json",
+          "summary_sha256": "8381f899daad472a28193e1726f04f2749d3904e02fb72719d3ebbe8ca73c62a",
+          "lower_fs": 1.1590692283621642,
+          "upper_fs": 1.17069,
+          "relative_gap_symmetric": 0.00997594214575151,
+          "root_complete": true,
+          "one_percent_target_met": true,
+          "two_percent_width_met": true,
+          "kind": "historical_independent_q8_saved_field_audit_and_discrete_root_metadata",
+          "not_G1R19_coldstart_reproduction": true,
+          "sides": {
+            "lower": {
+              "fs": 1.1590692283621642,
+              "elements": 13325,
+              "physical_model_id": "2fcdebce70cb9505953c365112d2a62d8dd9887de869dde406d312530a121786",
+              "mesh_id": "c8bf888f3e4942bd031da63e8021fddc58c9ea360245d0228209e9c04b8213f7",
+              "q": 8,
+              "root_complete": true,
+              "root_stage_seconds": 902.280054300034,
+              "time_kind": "historical_per_side_root_search_stage; not complete production runtime",
+              "files": {
+                "mesh": {
+                  "path": "validation/accuracy_20261013/snapshots/20261014_progress7_audit/snapshots/P03A/best_lower_mesh.npz",
+                  "sha256": "d68bab3765f8d1a0417960977069a81e009e58ce0785d9a64f8a66c340eb07a5"
+                },
+                "field": {
+                  "path": "validation/accuracy_20261013/snapshots/20261014_progress7_audit/snapshots/P03A/best_lower_field.npz",
+                  "sha256": "49edf393438b6c91cfc769531768057d8501f4df8b7ba1adbdedc2d69799edb7"
+                },
+                "certificate": {
+                  "path": "validation/accuracy_20261013/snapshots/20261014_progress7_audit/snapshots/P03A/best_lower_certificate.json",
+                  "sha256": "55676b18beae87ed79d7029b5d1ef611636035a697571325ab7515dc0b0cfa8c"
+                }
+              }
+            },
+            "upper": {
+              "fs": 1.17069,
+              "elements": 13325,
+              "physical_model_id": "2fcdebce70cb9505953c365112d2a62d8dd9887de869dde406d312530a121786",
+              "mesh_id": "c8bf888f3e4942bd031da63e8021fddc58c9ea360245d0228209e9c04b8213f7",
+              "q": 8,
+              "root_complete": true,
+              "root_stage_seconds": 18.50454700004775,
+              "time_kind": "historical_per_side_root_search_stage; not complete production runtime",
+              "files": {
+                "mesh": {
+                  "path": "validation/accuracy_20261013/snapshots/20261014_progress7_audit/snapshots/P03A/best_upper_mesh.npz",
+                  "sha256": "d68bab3765f8d1a0417960977069a81e009e58ce0785d9a64f8a66c340eb07a5"
+                },
+                "field": {
+                  "path": "validation/accuracy_20261013/snapshots/20261014_progress7_audit/snapshots/P03A/best_upper_field.npz",
+                  "sha256": "e7781baef3e5a527dcff84260173cb0671ebbea65d5b27cdd7da1c354faa8770"
+                },
+                "certificate": {
+                  "path": "validation/accuracy_20261013/snapshots/20261014_progress7_audit/snapshots/P03A/best_upper_certificate.json",
+                  "sha256": "a72c8e68f79a5c84180ce776444e04dea587a542d42741fd5fc1bbbef9b963af"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "case": "P03N",
+      "input": {
+        "path": "docs/benchmarks/G1R17_native26_20261013/data/inputs/P03N.json",
+        "sha256": "603ce099f1b440bf62c485596e202d0624930bf20601fa9b10b7010974a1db70",
+        "sha256_lf": "603ce099f1b440bf62c485596e202d0624930bf20601fa9b10b7010974a1db70",
+        "sha256_canonical_json": "aa7385ff964e15649cf4b66e57ae5c6ea263f52d9e1665156ba6a898671ee2ba"
+      },
+      "title": "Jia2024 / Cheng homogeneous Case 3, psi=0",
+      "policy": "hold_initial",
+      "native_analysis_policy": "DAVIS_EQUIVALENT",
+      "coupled_pore_pressure": false,
+      "water": {
+        "coupling": 0,
+        "mode": 2,
+        "gamma_w": 9.81,
+        "suction": 0,
+        "water_table": [],
+        "seep_target": 1536
+      },
+      "material_count": 1,
+      "region_areas": [
+        158.0
+      ],
+      "total_dry_weight": 3160.0,
+      "initial_mesh": {
+        "path": "versions/G1R17/results/geometry25/P03N_new_vba_mesh.bin",
+        "sha256": "65fe6462d0cc1d832d1a2656494ade80858d5c491c7d14f6f8a6f8c168f2c79b",
+        "kind": "recorded_coarse_geometry_only",
+        "uses_saved_primal_field": false,
+        "uses_saved_root": false
+      },
+      "historical_bounds": {
+        "native26": {
+          "source_summary": "docs/benchmarks/G1R17_native26_20261013/data/summary.json",
+          "full_record_path": "D:\\Work\\rpfem-native26\\G1R17_native26\\results\\P03N.json",
+          "full_record_sha256": "0b9773b3c6fd11cd11dc141d4b919271dee817e88ef137a388f9fcc656b23b8e",
+          "lower_fs": 1.1520001000286129,
+          "upper_fs": 1.1708578238454124,
+          "relative_gap_symmetric": 0.016236657113620535,
+          "q": [
+            8,
+            8
+          ],
+          "target_met_at_one_percent": false,
+          "independent_saved_field_audit_pass": true,
+          "root_search_incomplete": true,
+          "root_tolerance_contract": "width <= FS_TOL * max(1, bracket midpoint); per-owner native root validity and completion flags",
+          "root_owner_flags": [
+            "True",
+            "True",
+            "False",
+            "False"
+          ],
+          "time": {
+            "seconds": 254.10996,
+            "kind": "historical_G1R17_sequential_native_Excel_whole_analysis",
+            "boundary": "run_end.elapsed_s; excludes startup, save and independent Python audit",
+            "not_new_python_or_G1R19_coldstart_time": true
+          },
+          "witnesses": {
+            "lower": {
+              "path": "D:\\Work\\rpfem-native26\\G1R17_native26\\cases\\P03N\\witness_lower.bin",
+              "sha256": "6c242d477c1bc192ef0a4a85f65f7e9b95394dd9b9d4b6390fb42c9e76fc3a1d",
+              "format": "RP25M001"
+            },
+            "upper": {
+              "path": "D:\\Work\\rpfem-native26\\G1R17_native26\\cases\\P03N\\witness_upper.bin",
+              "sha256": "5930a31174d2e7d9cff476aed7dad53e873b7ba289b5a96807a9b87a9485d6aa",
+              "format": "RP25M001"
+            }
+          }
+        },
+        "python_q8_snapshot": {
+          "summary_path": "validation/accuracy_20261013/snapshots/20261014_progress7_audit/snapshots/P03N/summary.json",
+          "summary_sha256": "3883b66fae8d9a4debbf266cfdb86a952a22c524bce06b8a849b32fc28a653b0",
+          "lower_fs": 1.1557639749233335,
+          "upper_fs": 1.167378,
+          "relative_gap_symmetric": 0.00999854955231465,
+          "root_complete": true,
+          "one_percent_target_met": true,
+          "two_percent_width_met": true,
+          "kind": "historical_independent_q8_saved_field_audit_and_discrete_root_metadata",
+          "not_G1R19_coldstart_reproduction": true,
+          "sides": {
+            "lower": {
+              "fs": 1.1557639749233335,
+              "elements": 13363,
+              "physical_model_id": "53d1cc3320cf49fa54084ac607f2e924d6b4b83d70f040bdbb35fa4525db9a92",
+              "mesh_id": "928a290d71a3f668bb878b198713bc7dffae50b6d409589cf62a9819cda5a778",
+              "q": 8,
+              "root_complete": true,
+              "root_stage_seconds": 901.2008460000507,
+              "time_kind": "historical_per_side_root_search_stage; not complete production runtime",
+              "files": {
+                "mesh": {
+                  "path": "validation/accuracy_20261013/snapshots/20261014_progress7_audit/snapshots/P03N/best_lower_mesh.npz",
+                  "sha256": "c6a872489dfdb4a38619dd71ef5be0707da192d2cfa56d27fe1bdbd434d24ac9"
+                },
+                "field": {
+                  "path": "validation/accuracy_20261013/snapshots/20261014_progress7_audit/snapshots/P03N/best_lower_field.npz",
+                  "sha256": "784233d1ae0eab7a7cb5f4fe6edec8d9afb9f90916e33d79cb176eb4fcea2a31"
+                },
+                "certificate": {
+                  "path": "validation/accuracy_20261013/snapshots/20261014_progress7_audit/snapshots/P03N/best_lower_certificate.json",
+                  "sha256": "d0af02d840c03b974786e6029d4cefb86aa2b6876f0a3c37aaa54e1cc513b0f6"
+                }
+              }
+            },
+            "upper": {
+              "fs": 1.167378,
+              "elements": 13363,
+              "physical_model_id": "53d1cc3320cf49fa54084ac607f2e924d6b4b83d70f040bdbb35fa4525db9a92",
+              "mesh_id": "928a290d71a3f668bb878b198713bc7dffae50b6d409589cf62a9819cda5a778",
+              "q": 8,
+              "root_complete": true,
+              "root_stage_seconds": 18.748072499991395,
+              "time_kind": "historical_per_side_root_search_stage; not complete production runtime",
+              "files": {
+                "mesh": {
+                  "path": "validation/accuracy_20261013/snapshots/20261014_progress7_audit/snapshots/P03N/best_upper_mesh.npz",
+                  "sha256": "c6a872489dfdb4a38619dd71ef5be0707da192d2cfa56d27fe1bdbd434d24ac9"
+                },
+                "field": {
+                  "path": "validation/accuracy_20261013/snapshots/20261014_progress7_audit/snapshots/P03N/best_upper_field.npz",
+                  "sha256": "ce7a1160f4dbedc8b8e45705447538bc33b57a28783b68accbea326e396dcc76"
+                },
+                "certificate": {
+                  "path": "validation/accuracy_20261013/snapshots/20261014_progress7_audit/snapshots/P03N/best_upper_certificate.json",
+                  "sha256": "575db5132e15954238b08703b47472b5b14635616321ac52d896efad89eda2f4"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "case": "P04A",
+      "input": {
+        "path": "docs/benchmarks/G1R17_native26_20261013/data/inputs/P04A.json",
+        "sha256": "8dffa91b1bcb91f018ca950f9556db561dde206ac3e76f317cef11b879330a9e",
+        "sha256_lf": "8dffa91b1bcb91f018ca950f9556db561dde206ac3e76f317cef11b879330a9e",
+        "sha256_canonical_json": "44a53275903d741a184fb8258f78eb9b3b2e5b198970d80d220b64f051725c89"
+      },
+      "title": "Jia2024 / Cheng homogeneous Case 4, psi=0, associated twin",
+      "policy": "equal_reduced_phi",
+      "native_analysis_policy": "ASSOCIATED",
+      "coupled_pore_pressure": false,
+      "water": {
+        "coupling": 0,
+        "mode": 2,
+        "gamma_w": 9.81,
+        "suction": 0,
+        "water_table": [],
+        "seep_target": 1536
+      },
+      "material_count": 1,
+      "region_areas": [
+        158.0
+      ],
+      "total_dry_weight": 3160.0,
+      "initial_mesh": {
+        "path": "versions/G1R17/results/geometry25/P04A_new_vba_mesh.bin",
+        "sha256": "65fe6462d0cc1d832d1a2656494ade80858d5c491c7d14f6f8a6f8c168f2c79b",
+        "kind": "recorded_coarse_geometry_only",
+        "uses_saved_primal_field": false,
+        "uses_saved_root": false
+      },
+      "historical_bounds": {
+        "native26": {
+          "source_summary": "docs/benchmarks/G1R17_native26_20261013/data/summary.json",
+          "full_record_path": "D:\\Work\\rpfem-native26\\G1R17_native26\\results\\P04A.json",
+          "full_record_sha256": "95fb45a82ffdd4fe8d74be0122aedd275f6f9bc5bf8579cb2ab528709625d395",
+          "lower_fs": 2.2503402432794615,
+          "upper_fs": 2.264818318989914,
+          "relative_gap_symmetric": 0.00641309735230016,
+          "q": [
+            8,
+            8
+          ],
+          "target_met_at_one_percent": true,
+          "independent_saved_field_audit_pass": true,
+          "root_search_incomplete": false,
+          "root_tolerance_contract": "width <= FS_TOL * max(1, bracket midpoint); per-owner native root validity and completion flags",
+          "root_owner_flags": [
+            "True",
+            "True",
+            "False",
+            "False"
+          ],
+          "time": {
+            "seconds": 336.181641,
+            "kind": "historical_G1R17_sequential_native_Excel_whole_analysis",
+            "boundary": "run_end.elapsed_s; excludes startup, save and independent Python audit",
+            "not_new_python_or_G1R19_coldstart_time": true
+          },
+          "witnesses": {
+            "lower": {
+              "path": "D:\\Work\\rpfem-native26\\G1R17_native26\\cases\\P04A\\witness_lower.bin",
+              "sha256": "7594ba1dcc3fb2d84d699dc309bfd11cf0a3ec8de2b46f7a86eed1769d6eb190",
+              "format": "RP25M001"
+            },
+            "upper": {
+              "path": "D:\\Work\\rpfem-native26\\G1R17_native26\\cases\\P04A\\witness_upper.bin",
+              "sha256": "2b159e3f3e4fb057c6d8054ef5c06b8e881d41ded7122ba84c859c6d2ec3416b",
+              "format": "RP25M001"
+            }
+          }
+        }
+      }
+    },
+    {
+      "case": "P04N",
+      "input": {
+        "path": "docs/benchmarks/G1R17_native26_20261013/data/inputs/P04N.json",
+        "sha256": "2aa99fceb305627ba7b39447ed9a2435dfd40c8202157f385b8a1478e852bff7",
+        "sha256_lf": "2aa99fceb305627ba7b39447ed9a2435dfd40c8202157f385b8a1478e852bff7",
+        "sha256_canonical_json": "541db3701c417b59faa655006909b13b7f7c76138a6fd7977e457146b9ae186b"
+      },
+      "title": "Jia2024 / Cheng homogeneous Case 4, psi=0",
+      "policy": "hold_initial",
+      "native_analysis_policy": "DAVIS_EQUIVALENT",
+      "coupled_pore_pressure": false,
+      "water": {
+        "coupling": 0,
+        "mode": 2,
+        "gamma_w": 9.81,
+        "suction": 0,
+        "water_table": [],
+        "seep_target": 1536
+      },
+      "material_count": 1,
+      "region_areas": [
+        158.0
+      ],
+      "total_dry_weight": 3160.0,
+      "initial_mesh": {
+        "path": "versions/G1R17/results/geometry25/P04N_new_vba_mesh.bin",
+        "sha256": "65fe6462d0cc1d832d1a2656494ade80858d5c491c7d14f6f8a6f8c168f2c79b",
+        "kind": "recorded_coarse_geometry_only",
+        "uses_saved_primal_field": false,
+        "uses_saved_root": false
+      },
+      "historical_bounds": {
+        "native26": {
+          "source_summary": "docs/benchmarks/G1R17_native26_20261013/data/summary.json",
+          "full_record_path": "D:\\Work\\rpfem-native26\\G1R17_native26\\results\\P04N.json",
+          "full_record_sha256": "a16372255cec98dafcb9829742d63283372b584bb0e348249736ab6a5030fba7",
+          "lower_fs": 2.138029172910192,
+          "upper_fs": 2.1539417859693817,
+          "relative_gap_symmetric": 0.007415060918000153,
+          "q": [
+            8,
+            8
+          ],
+          "target_met_at_one_percent": true,
+          "independent_saved_field_audit_pass": true,
+          "root_search_incomplete": false,
+          "root_tolerance_contract": "width <= FS_TOL * max(1, bracket midpoint); per-owner native root validity and completion flags",
+          "root_owner_flags": [
+            "True",
+            "True",
+            "False",
+            "False"
+          ],
+          "time": {
+            "seconds": 310.336875,
+            "kind": "historical_G1R17_sequential_native_Excel_whole_analysis",
+            "boundary": "run_end.elapsed_s; excludes startup, save and independent Python audit",
+            "not_new_python_or_G1R19_coldstart_time": true
+          },
+          "witnesses": {
+            "lower": {
+              "path": "D:\\Work\\rpfem-native26\\G1R17_native26\\cases\\P04N\\witness_lower.bin",
+              "sha256": "a2dd261e3896854c767365e13da9a2999f108fd0e0b427dfcfe1887a4cc7a13a",
+              "format": "RP25M001"
+            },
+            "upper": {
+              "path": "D:\\Work\\rpfem-native26\\G1R17_native26\\cases\\P04N\\witness_upper.bin",
+              "sha256": "0b041539de1d9290c7f770d4f877f9e41b074ae41eec69aaccb33a4e2127ea49",
+              "format": "RP25M001"
+            }
+          }
+        }
+      }
+    },
+    {
+      "case": "P05A",
+      "input": {
+        "path": "docs/benchmarks/G1R17_native26_20261013/data/inputs/P05A.json",
+        "sha256": "0a63a1df97061275ed31d44eae841cc248828c34caff610da24e14731e607a83",
+        "sha256_lf": "0a63a1df97061275ed31d44eae841cc248828c34caff610da24e14731e607a83",
+        "sha256_canonical_json": "a3c1b6623cb360bed3655bdf836c919d107c6b4e13e1ed8f6eb430cd109fd444"
+      },
+      "title": "Three horizontal layers",
+      "policy": "equal_reduced_phi",
+      "native_analysis_policy": "ASSOCIATED",
+      "coupled_pore_pressure": false,
+      "water": {
+        "coupling": 0,
+        "mode": 2,
+        "gamma_w": 9.81,
+        "suction": 0,
+        "water_table": [],
+        "seep_target": 1536
+      },
+      "material_count": 3,
+      "region_areas": [
+        100.0,
+        150.0,
+        225.0
+      ],
+      "total_dry_weight": 9450.0,
+      "initial_mesh": {
+        "path": "versions/G1R17/results/geometry25/P05A_new_vba_mesh.bin",
+        "sha256": "4836fabecb9c2b000fedba7284debdcbb580e861f33d71b02ded402452849e2e",
+        "kind": "recorded_coarse_geometry_only",
+        "uses_saved_primal_field": false,
+        "uses_saved_root": false
+      },
+      "historical_bounds": {
+        "native26": {
+          "source_summary": "docs/benchmarks/G1R17_native26_20261013/data/summary.json",
+          "full_record_path": "D:\\Work\\rpfem-native26\\G1R17_native26\\results\\P05A.json",
+          "full_record_sha256": "522156aa7290ab266301094ce107389ae7488027600fdc1f874d2abbb82a8698",
+          "lower_fs": 1.4650728061474296,
+          "upper_fs": 1.4896715015368427,
+          "relative_gap_symmetric": 0.016650303936919568,
+          "q": [
+            8,
+            8
+          ],
+          "target_met_at_one_percent": false,
+          "independent_saved_field_audit_pass": true,
+          "root_search_incomplete": true,
+          "root_tolerance_contract": "width <= FS_TOL * max(1, bracket midpoint); per-owner native root validity and completion flags",
+          "root_owner_flags": [
+            "True",
+            "True",
+            "False",
+            "False"
+          ],
+          "time": {
+            "seconds": 283.859588,
+            "kind": "historical_G1R17_sequential_native_Excel_whole_analysis",
+            "boundary": "run_end.elapsed_s; excludes startup, save and independent Python audit",
+            "not_new_python_or_G1R19_coldstart_time": true
+          },
+          "witnesses": {
+            "lower": {
+              "path": "D:\\Work\\rpfem-native26\\G1R17_native26\\cases\\P05A\\witness_lower.bin",
+              "sha256": "e060e4a1a321563f25c34c0cba53821f212568fb2f278f839e998a6ba5127044",
+              "format": "RP25M001"
+            },
+            "upper": {
+              "path": "D:\\Work\\rpfem-native26\\G1R17_native26\\cases\\P05A\\witness_upper.bin",
+              "sha256": "96a5bb1880aba98a4f98f675c0d6938b3edfe4995cf2d06c261895af26c17922",
+              "format": "RP25M001"
+            }
+          }
+        },
+        "python_q8_snapshot": {
+          "summary_path": "validation/accuracy_20261013/snapshots/20261014_progress7_audit/snapshots/P05A/summary.json",
+          "summary_sha256": "ad4c1835a5703441a44e5bfc6c4b571d1f50cc1056a8d3f5f3fbb93bd758ea32",
+          "lower_fs": 1.467504983908067,
+          "upper_fs": 1.4812371036327419,
+          "relative_gap_symmetric": 0.009313883220032465,
+          "root_complete": true,
+          "one_percent_target_met": true,
+          "two_percent_width_met": true,
+          "kind": "historical_independent_q8_saved_field_audit_and_discrete_root_metadata",
+          "not_G1R19_coldstart_reproduction": true,
+          "sides": {
+            "lower": {
+              "fs": 1.467504983908067,
+              "elements": 1358,
+              "physical_model_id": "320ca4350d5f848391da16ad6a833abec62b66545c979b6e83391eb44580023e",
+              "mesh_id": "f4aea2ec5574b569eb9d6a528d25a993a0722167cbf609dbf549dc13059df6a2",
+              "q": 8,
+              "root_complete": true,
+              "root_stage_seconds": 227.72289029997773,
+              "time_kind": "historical_per_side_root_search_stage; not complete production runtime",
+              "files": {
+                "mesh": {
+                  "path": "validation/accuracy_20261013/snapshots/20261014_progress7_audit/snapshots/P05A/best_lower_mesh.npz",
+                  "sha256": "45042720496911ee0afc1147c42031a4f66149a61fc76325cf05b91b1ab4aef1"
+                },
+                "field": {
+                  "path": "validation/accuracy_20261013/snapshots/20261014_progress7_audit/snapshots/P05A/best_lower_field.npz",
+                  "sha256": "af633f1733488de6180f509161e14c200e548262b108af94bd5dea102bd230b6"
+                },
+                "certificate": {
+                  "path": "validation/accuracy_20261013/snapshots/20261014_progress7_audit/snapshots/P05A/best_lower_certificate.json",
+                  "sha256": "9af2b288731c8d7966cde2e455352edd70271f1a186c63f2f061bb1181e583ee"
+                }
+              }
+            },
+            "upper": {
+              "fs": 1.4812371036327419,
+              "elements": 1358,
+              "physical_model_id": "320ca4350d5f848391da16ad6a833abec62b66545c979b6e83391eb44580023e",
+              "mesh_id": "f4aea2ec5574b569eb9d6a528d25a993a0722167cbf609dbf549dc13059df6a2",
+              "q": 8,
+              "root_complete": true,
+              "root_stage_seconds": 152.56011450005462,
+              "time_kind": "historical_per_side_root_search_stage; not complete production runtime",
+              "files": {
+                "mesh": {
+                  "path": "validation/accuracy_20261013/snapshots/20261014_progress7_audit/snapshots/P05A/best_upper_mesh.npz",
+                  "sha256": "45042720496911ee0afc1147c42031a4f66149a61fc76325cf05b91b1ab4aef1"
+                },
+                "field": {
+                  "path": "validation/accuracy_20261013/snapshots/20261014_progress7_audit/snapshots/P05A/best_upper_field.npz",
+                  "sha256": "506272451acccccec0d7926754884291c22ebcf98a75705be505d28b027fee91"
+                },
+                "certificate": {
+                  "path": "validation/accuracy_20261013/snapshots/20261014_progress7_audit/snapshots/P05A/best_upper_certificate.json",
+                  "sha256": "2509afd151e24e15a9ddccf16ef3c2e107ca97983b87b092e3d29b0c8ff0a168"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "case": "P05N",
+      "input": {
+        "path": "docs/benchmarks/G1R17_native26_20261013/data/inputs/P05N.json",
+        "sha256": "00c0f0343591fd462869feb282b56a4d34bddb9de4570d77888235ea8c99b328",
+        "sha256_lf": "00c0f0343591fd462869feb282b56a4d34bddb9de4570d77888235ea8c99b328",
+        "sha256_canonical_json": "87cb33da22a819b981daedeb9627540ed9972373a5dbd17ff5fa3170cac8baea"
+      },
+      "title": "Three horizontal layers",
+      "policy": "hold_initial",
+      "native_analysis_policy": "DAVIS_EQUIVALENT",
+      "coupled_pore_pressure": false,
+      "water": {
+        "coupling": 0,
+        "mode": 2,
+        "gamma_w": 9.81,
+        "suction": 0,
+        "water_table": [],
+        "seep_target": 1536
+      },
+      "material_count": 3,
+      "region_areas": [
+        100.0,
+        150.0,
+        225.0
+      ],
+      "total_dry_weight": 9450.0,
+      "initial_mesh": {
+        "path": "versions/G1R17/results/geometry25/P05N_new_vba_mesh.bin",
+        "sha256": "4836fabecb9c2b000fedba7284debdcbb580e861f33d71b02ded402452849e2e",
+        "kind": "recorded_coarse_geometry_only",
+        "uses_saved_primal_field": false,
+        "uses_saved_root": false
+      },
+      "historical_bounds": {
+        "native26": {
+          "source_summary": "docs/benchmarks/G1R17_native26_20261013/data/summary.json",
+          "full_record_path": "D:\\Work\\rpfem-native26\\G1R17_native26\\results\\P05N.json",
+          "full_record_sha256": "b8e82e346ffd9cd0c322cdd3b1ed3d4dc0c0a98aa6a2951e878c09d27a7f9076",
+          "lower_fs": 1.4590373977014948,
+          "upper_fs": 1.4760732287084188,
+          "relative_gap_symmetric": 0.011608305904136557,
+          "q": [
+            8,
+            8
+          ],
+          "target_met_at_one_percent": false,
+          "independent_saved_field_audit_pass": true,
+          "root_search_incomplete": true,
+          "root_tolerance_contract": "width <= FS_TOL * max(1, bracket midpoint); per-owner native root validity and completion flags",
+          "root_owner_flags": [
+            "True",
+            "True",
+            "False",
+            "False"
+          ],
+          "time": {
+            "seconds": 552.866536,
+            "kind": "historical_G1R17_sequential_native_Excel_whole_analysis",
+            "boundary": "run_end.elapsed_s; excludes startup, save and independent Python audit",
+            "not_new_python_or_G1R19_coldstart_time": true
+          },
+          "witnesses": {
+            "lower": {
+              "path": "D:\\Work\\rpfem-native26\\G1R17_native26\\cases\\P05N\\witness_lower.bin",
+              "sha256": "b23c19834b8f0fc5ebd0c2bf1ada9f149dd17cd0b0d56a38134f0948e5b1ceb5",
+              "format": "RP25M001"
+            },
+            "upper": {
+              "path": "D:\\Work\\rpfem-native26\\G1R17_native26\\cases\\P05N\\witness_upper.bin",
+              "sha256": "b9af72c8efa73b26714490759feccead37dae1d1ba1a76e9f41b613a294952f1",
+              "format": "RP25M001"
+            }
+          }
+        },
+        "python_q8_snapshot": {
+          "summary_path": "validation/accuracy_20261013/snapshots/20261014_progress7_audit/snapshots/P05N/summary.json",
+          "summary_sha256": "3b46b7ff6f246eb883b11ff6ecd24cc93fef92750e73310c61c0b3426c4b5ad4",
+          "lower_fs": 1.4594954949316832,
+          "upper_fs": 1.4737115115424855,
+          "relative_gap_symmetric": 0.009693156043487371,
+          "root_complete": true,
+          "one_percent_target_met": true,
+          "two_percent_width_met": true,
+          "kind": "historical_independent_q8_saved_field_audit_and_discrete_root_metadata",
+          "not_G1R19_coldstart_reproduction": true,
+          "sides": {
+            "lower": {
+              "fs": 1.4594954949316832,
+              "elements": 1716,
+              "physical_model_id": "28588532516b34fed88e9376a2eeb3e4f4cbb52cab0924d6cfe6861776e72de2",
+              "mesh_id": "5578ee4bb597fb2d39e934b9b4b8c19c4cd275345877339dbfce270f0e4bc73f",
+              "q": 8,
+              "root_complete": true,
+              "root_stage_seconds": 259.52969910000684,
+              "time_kind": "historical_per_side_root_search_stage; not complete production runtime",
+              "files": {
+                "mesh": {
+                  "path": "validation/accuracy_20261013/snapshots/20261014_progress7_audit/snapshots/P05N/best_lower_mesh.npz",
+                  "sha256": "ea18d0266b8623318b6176da7483048b08a23e123b4914872b21326a0a312b3e"
+                },
+                "field": {
+                  "path": "validation/accuracy_20261013/snapshots/20261014_progress7_audit/snapshots/P05N/best_lower_field.npz",
+                  "sha256": "bdcadb5e2b490908dfdc878e71e2512fd6d557b5984455a4467c48f1c9ed8c0a"
+                },
+                "certificate": {
+                  "path": "validation/accuracy_20261013/snapshots/20261014_progress7_audit/snapshots/P05N/best_lower_certificate.json",
+                  "sha256": "f1760ab69e974409f8cea92d97c85c3c8a14cbb70dcff44bd179297ba48e3a53"
+                }
+              }
+            },
+            "upper": {
+              "fs": 1.4737115115424855,
+              "elements": 1716,
+              "physical_model_id": "28588532516b34fed88e9376a2eeb3e4f4cbb52cab0924d6cfe6861776e72de2",
+              "mesh_id": "5578ee4bb597fb2d39e934b9b4b8c19c4cd275345877339dbfce270f0e4bc73f",
+              "q": 8,
+              "root_complete": true,
+              "root_stage_seconds": 184.16720030002762,
+              "time_kind": "historical_per_side_root_search_stage; not complete production runtime",
+              "files": {
+                "mesh": {
+                  "path": "validation/accuracy_20261013/snapshots/20261014_progress7_audit/snapshots/P05N/best_upper_mesh.npz",
+                  "sha256": "ea18d0266b8623318b6176da7483048b08a23e123b4914872b21326a0a312b3e"
+                },
+                "field": {
+                  "path": "validation/accuracy_20261013/snapshots/20261014_progress7_audit/snapshots/P05N/best_upper_field.npz",
+                  "sha256": "0462cb9e96cc163bf2c136a55e8c7771844ba4f9ac5f5489ddcfdba7b58006fe"
+                },
+                "certificate": {
+                  "path": "validation/accuracy_20261013/snapshots/20261014_progress7_audit/snapshots/P05N/best_upper_certificate.json",
+                  "sha256": "71d00706bdb66dd7b64d9334e87ab45855379d1637c3af9e8426d1dfa2775912"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "case": "P06A",
+      "input": {
+        "path": "docs/benchmarks/G1R17_native26_20261013/data/inputs/P06A.json",
+        "sha256": "723491feaccb2c8b64c191dccf0564416816e09d3c2fe4c297e06c7505cf3215",
+        "sha256_lf": "723491feaccb2c8b64c191dccf0564416816e09d3c2fe4c297e06c7505cf3215",
+        "sha256_canonical_json": "a0c8a6ef76c3fde27097e43884d7a5df86ac3cd8156b7746e66653c6172915f4"
+      },
+      "title": "Thin frictional weak band, 28 m domain",
+      "policy": "equal_reduced_phi",
+      "native_analysis_policy": "ASSOCIATED",
+      "coupled_pore_pressure": false,
+      "water": {
+        "coupling": 0,
+        "mode": 2,
+        "gamma_w": 9.81,
+        "suction": 0,
+        "water_table": [],
+        "seep_target": 1536
+      },
+      "material_count": 3,
+      "region_areas": [
+        83.75,
+        11.600000000000005,
+        207.14999999999998
+      ],
+      "total_dry_weight": 5747.5,
+      "initial_mesh": {
+        "path": "versions/G1R17/results/geometry25/P06A_new_vba_mesh.bin",
+        "sha256": "2699b713948a44bfe6fd569fba165f8e38019cb066223e0b827cf2c83f22c28f",
+        "kind": "recorded_coarse_geometry_only",
+        "uses_saved_primal_field": false,
+        "uses_saved_root": false
+      },
+      "historical_bounds": {
+        "native26": {
+          "source_summary": "docs/benchmarks/G1R17_native26_20261013/data/summary.json",
+          "full_record_path": "D:\\Work\\rpfem-native26\\G1R17_native26\\results\\P06A.json",
+          "full_record_sha256": "c317a9c2cbd2102dc9ca4356538f142807caffec9d6888beee39212d9fd081b0",
+          "lower_fs": 0.8397999792049067,
+          "upper_fs": 0.9153859713305423,
+          "relative_gap_symmetric": 0.08612875701583286,
+          "q": [
+            8,
+            8
+          ],
+          "target_met_at_one_percent": false,
+          "independent_saved_field_audit_pass": true,
+          "root_search_incomplete": true,
+          "root_tolerance_contract": "width <= FS_TOL * max(1, bracket midpoint); per-owner native root validity and completion flags",
+          "root_owner_flags": [
+            "True",
+            "True",
+            "False",
+            "False"
+          ],
+          "time": {
+            "seconds": 6049.832389,
+            "kind": "historical_G1R17_sequential_native_Excel_whole_analysis",
+            "boundary": "run_end.elapsed_s; excludes startup, save and independent Python audit",
+            "not_new_python_or_G1R19_coldstart_time": true
+          },
+          "witnesses": {
+            "lower": {
+              "path": "D:\\Work\\rpfem-native26\\G1R17_native26\\cases\\P06A\\witness_lower.bin",
+              "sha256": "0fcb8f496e68b03726d829c3cbf5a5ecf1ce38204fb0a9f011b0f45a8add47a5",
+              "format": "RP25M001"
+            },
+            "upper": {
+              "path": "D:\\Work\\rpfem-native26\\G1R17_native26\\cases\\P06A\\witness_upper.bin",
+              "sha256": "d1bec261371ed4441061a0b4b1d210aa4d173d63d53f6b00009184878ba01ccf",
+              "format": "RP25M001"
+            }
+          }
+        },
+        "python_q8_snapshot": {
+          "summary_path": "validation/accuracy_20261013/snapshots/20261014_progress7_audit/snapshots/P06A/summary.json",
+          "summary_sha256": "1c6e277d0d0e1aaf4f04c1ce498e4e8dcc34d196a0603bd80a90f25383d6b2eb",
+          "lower_fs": 0.8468,
+          "upper_fs": 0.85755,
+          "relative_gap_symmetric": 0.012614779828086998,
+          "root_complete": true,
+          "one_percent_target_met": false,
+          "two_percent_width_met": true,
+          "kind": "historical_independent_q8_saved_field_audit_and_discrete_root_metadata",
+          "not_G1R19_coldstart_reproduction": true,
+          "sides": {
+            "lower": {
+              "fs": 0.8468,
+              "elements": 22080,
+              "physical_model_id": "f67b757898e3bcc3f45c5ea9b5a8e290955fad53f5900c5cd8c31b9637d51875",
+              "mesh_id": "e51df740d3bffec27452ea35cab79ffe6a5a2c41d3520cc933e46e219bada053",
+              "q": 8,
+              "root_complete": true,
+              "root_stage_seconds": 4.491827399993781,
+              "time_kind": "historical_per_side_root_search_stage; not complete production runtime",
+              "files": {
+                "mesh": {
+                  "path": "validation/accuracy_20261013/snapshots/20261014_progress7_audit/snapshots/P06A/best_lower_mesh.npz",
+                  "sha256": "86ca5173fae84ee0173d7428d33f222e150ddba511bcc52558fc5085bf1ffdf7"
+                },
+                "field": {
+                  "path": "validation/accuracy_20261013/snapshots/20261014_progress7_audit/snapshots/P06A/best_lower_field.npz",
+                  "sha256": "902c6f855b2eeeffbe1d25276559f1faf8bd1d17b09d53a3349921f92e180c96"
+                },
+                "certificate": {
+                  "path": "validation/accuracy_20261013/snapshots/20261014_progress7_audit/snapshots/P06A/best_lower_certificate.json",
+                  "sha256": "4b0c9950145379686b94b7baab60bde1b04f3a07cce33ba56df9d7add4aabf31"
+                }
+              }
+            },
+            "upper": {
+              "fs": 0.85755,
+              "elements": 12753,
+              "physical_model_id": "f67b757898e3bcc3f45c5ea9b5a8e290955fad53f5900c5cd8c31b9637d51875",
+              "mesh_id": "27b06e20be73627245ba3f7e0bf4ffa3df883ec1bb2af10e103fca5caf489308",
+              "q": 8,
+              "root_complete": true,
+              "root_stage_seconds": 9.82632290001493,
+              "time_kind": "historical_per_side_root_search_stage; not complete production runtime",
+              "files": {
+                "mesh": {
+                  "path": "validation/accuracy_20261013/snapshots/20261014_progress7_audit/snapshots/P06A/best_upper_mesh.npz",
+                  "sha256": "a8c4a911d1c29783b063531f512bd87b706e4042d0453c01e66ebe2ff6f386ba"
+                },
+                "field": {
+                  "path": "validation/accuracy_20261013/snapshots/20261014_progress7_audit/snapshots/P06A/best_upper_field.npz",
+                  "sha256": "1b97b2b0b46726f4d1e0e2b9c2120707511b6d0406f2935db7e92c1b0e4d5713"
+                },
+                "certificate": {
+                  "path": "validation/accuracy_20261013/snapshots/20261014_progress7_audit/snapshots/P06A/best_upper_certificate.json",
+                  "sha256": "a1642f27e81608e6e73235da81174bc88e2add7d74149e38a33ffc8a40388e9a"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "case": "P06N",
+      "input": {
+        "path": "docs/benchmarks/G1R17_native26_20261013/data/inputs/P06N.json",
+        "sha256": "389bf6c3c29d49e509a1ea0f270ca0fae3594910da0cb8dd594edfea9cefec2b",
+        "sha256_lf": "389bf6c3c29d49e509a1ea0f270ca0fae3594910da0cb8dd594edfea9cefec2b",
+        "sha256_canonical_json": "244ca67bac194a3b4d20ffe6f9eeceabf6b19d732dc0aba31177bb581d4c2f26"
+      },
+      "title": "Thin frictional weak band, 28 m domain",
+      "policy": "hold_initial",
+      "native_analysis_policy": "DAVIS_EQUIVALENT",
+      "coupled_pore_pressure": false,
+      "water": {
+        "coupling": 0,
+        "mode": 2,
+        "gamma_w": 9.81,
+        "suction": 0,
+        "water_table": [],
+        "seep_target": 1536
+      },
+      "material_count": 3,
+      "region_areas": [
+        83.75,
+        11.600000000000005,
+        207.14999999999998
+      ],
+      "total_dry_weight": 5747.5,
+      "initial_mesh": {
+        "path": "versions/G1R17/results/geometry25/P06N_new_vba_mesh.bin",
+        "sha256": "2699b713948a44bfe6fd569fba165f8e38019cb066223e0b827cf2c83f22c28f",
+        "kind": "recorded_coarse_geometry_only",
+        "uses_saved_primal_field": false,
+        "uses_saved_root": false
+      },
+      "historical_bounds": {
+        "native26": {
+          "source_summary": "docs/benchmarks/G1R17_native26_20261013/data/summary.json",
+          "full_record_path": "D:\\Work\\rpfem-native26\\G1R17_native26\\results\\P06N.json",
+          "full_record_sha256": "4f1eba08804ee95531c05048d68f54281a203b7d0f020507dba1f82e9f0de099",
+          "lower_fs": 0.6705083583412688,
+          "upper_fs": 0.7563936919252566,
+          "relative_gap_symmetric": 0.12038013901226884,
+          "q": [
+            8,
+            8
+          ],
+          "target_met_at_one_percent": false,
+          "independent_saved_field_audit_pass": true,
+          "root_search_incomplete": true,
+          "root_tolerance_contract": "width <= FS_TOL * max(1, bracket midpoint); per-owner native root validity and completion flags",
+          "root_owner_flags": [
+            "True",
+            "True",
+            "False",
+            "False"
+          ],
+          "time": {
+            "seconds": 6057.41818,
+            "kind": "historical_G1R17_sequential_native_Excel_whole_analysis",
+            "boundary": "run_end.elapsed_s; excludes startup, save and independent Python audit",
+            "not_new_python_or_G1R19_coldstart_time": true
+          },
+          "witnesses": {
+            "lower": {
+              "path": "D:\\Work\\rpfem-native26\\G1R17_native26\\cases\\P06N\\witness_lower.bin",
+              "sha256": "2819d86d19eb9e1e571abb43179a9e7004c62eef053ae9ac9a86e539167a17bc",
+              "format": "RP25M001"
+            },
+            "upper": {
+              "path": "D:\\Work\\rpfem-native26\\G1R17_native26\\cases\\P06N\\witness_upper.bin",
+              "sha256": "c77bf37ce82a072ef7353eb2c10f9fe5c0f6ed05537f2b16601084e9ce2bb39f",
+              "format": "RP25M001"
+            }
+          }
+        },
+        "python_q8_snapshot": {
+          "summary_path": "validation/accuracy_20261013/snapshots/20261014_progress7_audit/snapshots/P06N/summary.json",
+          "summary_sha256": "8d116014feead37af8d819426dc84d92551f2e41392a8be8a2d88a7383192655",
+          "lower_fs": 0.678279841819045,
+          "upper_fs": 0.6876,
+          "relative_gap_symmetric": 0.01364711286542254,
+          "root_complete": true,
+          "one_percent_target_met": false,
+          "two_percent_width_met": true,
+          "kind": "historical_independent_q8_saved_field_audit_and_discrete_root_metadata",
+          "not_G1R19_coldstart_reproduction": true,
+          "sides": {
+            "lower": {
+              "fs": 0.678279841819045,
+              "elements": 11201,
+              "physical_model_id": "08cc8e73e85408e7a82cbe79b5716ef007cb917d00e021872c40e510b5d17525",
+              "mesh_id": "4a473caa0f4c62f3fdf757961fcb1e89a872e7546cbce0881fb9402f8a92b4ee",
+              "q": 8,
+              "root_complete": true,
+              "root_stage_seconds": 3810.571863099991,
+              "time_kind": "historical_per_side_root_search_stage; not complete production runtime",
+              "files": {
+                "mesh": {
+                  "path": "validation/accuracy_20261013/snapshots/20261014_progress7_audit/snapshots/P06N/best_lower_mesh.npz",
+                  "sha256": "4abcd08e2616fea9fb51c9b219c17007ef7b32b0f42c261f41264933d4fdcb30"
+                },
+                "field": {
+                  "path": "validation/accuracy_20261013/snapshots/20261014_progress7_audit/snapshots/P06N/best_lower_field.npz",
+                  "sha256": "3ddc8254652940f6066c59128b5a168057885502f6947584b348a238a478374c"
+                },
+                "certificate": {
+                  "path": "validation/accuracy_20261013/snapshots/20261014_progress7_audit/snapshots/P06N/best_lower_certificate.json",
+                  "sha256": "2796c6f5b7ce4fa1c49439170dd96b3b31b9732eeb5d1b52b3927d2f80d09c93"
+                }
+              }
+            },
+            "upper": {
+              "fs": 0.6876,
+              "elements": 27917,
+              "physical_model_id": "08cc8e73e85408e7a82cbe79b5716ef007cb917d00e021872c40e510b5d17525",
+              "mesh_id": "b7e51076e7e4821cbf5087f2174984e1057757c9602ed7c45a802d8f6b7cf24b",
+              "q": 8,
+              "root_complete": true,
+              "root_stage_seconds": 20.50505040003918,
+              "time_kind": "historical_per_side_root_search_stage; not complete production runtime",
+              "files": {
+                "mesh": {
+                  "path": "validation/accuracy_20261013/snapshots/20261014_progress7_audit/snapshots/P06N/best_upper_mesh.npz",
+                  "sha256": "6d70f13299a01b3bce74fc73902f44d5104632258833aae816e5efe7a1d11f98"
+                },
+                "field": {
+                  "path": "validation/accuracy_20261013/snapshots/20261014_progress7_audit/snapshots/P06N/best_upper_field.npz",
+                  "sha256": "be7fdc2a6c84a23d4e0696de3b3b1e28eb359139dedc78b4c1180aea19cd1749"
+                },
+                "certificate": {
+                  "path": "validation/accuracy_20261013/snapshots/20261014_progress7_audit/snapshots/P06N/best_upper_certificate.json",
+                  "sha256": "79e8cf44f34911ddd93990602e01c8006b76f56b34b085315274ddf40382e026"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "case": "P07A",
+      "input": {
+        "path": "docs/benchmarks/G1R17_native26_20261013/data/inputs/P07A.json",
+        "sha256": "cb756be312cf7441b0b81c08c8fd5521ca7ff5a94d0d89021cb19ea5bc654074",
+        "sha256_lf": "cb756be312cf7441b0b81c08c8fd5521ca7ff5a94d0d89021cb19ea5bc654074",
+        "sha256_canonical_json": "3b7e462e50301569a05e777507d366475fd3a37fb6cda729a5202ff01bda52bf"
+      },
+      "title": "Griffiths–Lane Example1, D=1",
+      "policy": "equal_reduced_phi",
+      "native_analysis_policy": "ASSOCIATED",
+      "coupled_pore_pressure": false,
+      "water": {
+        "coupling": 0,
+        "mode": 2,
+        "gamma_w": 9.81,
+        "suction": 0,
+        "water_table": [],
+        "seep_target": 1536
+      },
+      "material_count": 1,
+      "region_areas": [
+        220.0
+      ],
+      "total_dry_weight": 4400.0,
+      "initial_mesh": {
+        "path": "versions/G1R17/results/geometry25/P07A_new_vba_mesh.bin",
+        "sha256": "9c2bda437616a1564ec446811597c2549ebe9151e57271438027fdc6d0b97994",
+        "kind": "recorded_coarse_geometry_only",
+        "uses_saved_primal_field": false,
+        "uses_saved_root": false
+      },
+      "historical_bounds": {
+        "native26": {
+          "source_summary": "docs/benchmarks/G1R17_native26_20261013/data/summary.json",
+          "full_record_path": "D:\\Work\\rpfem-native26\\G1R17_native26\\results\\P07A.json",
+          "full_record_sha256": "851de3ca36ab455d3615848bc9a03a16936fe063f8d3cb251adc5e52633a5e27",
+          "lower_fs": 1.374825370666586,
+          "upper_fs": 1.3882584616508422,
+          "relative_gap_symmetric": 0.009723259806409623,
+          "q": [
+            8,
+            8
+          ],
+          "target_met_at_one_percent": true,
+          "independent_saved_field_audit_pass": true,
+          "root_search_incomplete": false,
+          "root_tolerance_contract": "width <= FS_TOL * max(1, bracket midpoint); per-owner native root validity and completion flags",
+          "root_owner_flags": [
+            "True",
+            "True",
+            "False",
+            "False"
+          ],
+          "time": {
+            "seconds": 547.532441,
+            "kind": "historical_G1R17_sequential_native_Excel_whole_analysis",
+            "boundary": "run_end.elapsed_s; excludes startup, save and independent Python audit",
+            "not_new_python_or_G1R19_coldstart_time": true
+          },
+          "witnesses": {
+            "lower": {
+              "path": "D:\\Work\\rpfem-native26\\G1R17_native26\\cases\\P07A\\witness_lower.bin",
+              "sha256": "e683edd8354d099db386274afcf0aadf6f9779cbba5c90b200108a85095e9bbc",
+              "format": "RP25M001"
+            },
+            "upper": {
+              "path": "D:\\Work\\rpfem-native26\\G1R17_native26\\cases\\P07A\\witness_upper.bin",
+              "sha256": "4e1e6d739dd4e5f0f26168120c1ca871cdebdde767074e5d5cf54b1740e7fd8a",
+              "format": "RP25M001"
+            }
+          }
+        }
+      }
+    },
+    {
+      "case": "P07N",
+      "input": {
+        "path": "docs/benchmarks/G1R17_native26_20261013/data/inputs/P07N.json",
+        "sha256": "bad1e69be28a7088ff6e97b099d30acd4a4ce72ec9f33821e8907997253eaba3",
+        "sha256_lf": "bad1e69be28a7088ff6e97b099d30acd4a4ce72ec9f33821e8907997253eaba3",
+        "sha256_canonical_json": "19f8f456f689934da323d8a2cc11d11cda8725dcf8e47af299d36b5573b7014f"
+      },
+      "title": "Griffiths–Lane Example1, D=1",
+      "policy": "hold_initial",
+      "native_analysis_policy": "DAVIS_EQUIVALENT",
+      "coupled_pore_pressure": false,
+      "water": {
+        "coupling": 0,
+        "mode": 2,
+        "gamma_w": 9.81,
+        "suction": 0,
+        "water_table": [],
+        "seep_target": 1536
+      },
+      "material_count": 1,
+      "region_areas": [
+        220.0
+      ],
+      "total_dry_weight": 4400.0,
+      "initial_mesh": {
+        "path": "versions/G1R17/results/geometry25/P07N_new_vba_mesh.bin",
+        "sha256": "9c2bda437616a1564ec446811597c2549ebe9151e57271438027fdc6d0b97994",
+        "kind": "recorded_coarse_geometry_only",
+        "uses_saved_primal_field": false,
+        "uses_saved_root": false
+      },
+      "historical_bounds": {
+        "native26": {
+          "source_summary": "docs/benchmarks/G1R17_native26_20261013/data/summary.json",
+          "full_record_path": "D:\\Work\\rpfem-native26\\G1R17_native26\\results\\P07N.json",
+          "full_record_sha256": "eca886707e5a26cf0489d2161a7c8739320da4445c53904594cbfa9118b953b2",
+          "lower_fs": 1.3257680282493587,
+          "upper_fs": 1.3397480948715283,
+          "relative_gap_symmetric": 0.010489575734249374,
+          "q": [
+            8,
+            8
+          ],
+          "target_met_at_one_percent": false,
+          "independent_saved_field_audit_pass": true,
+          "root_search_incomplete": true,
+          "root_tolerance_contract": "width <= FS_TOL * max(1, bracket midpoint); per-owner native root validity and completion flags",
+          "root_owner_flags": [
+            "True",
+            "True",
+            "False",
+            "False"
+          ],
+          "time": {
+            "seconds": 746.87111,
+            "kind": "historical_G1R17_sequential_native_Excel_whole_analysis",
+            "boundary": "run_end.elapsed_s; excludes startup, save and independent Python audit",
+            "not_new_python_or_G1R19_coldstart_time": true
+          },
+          "witnesses": {
+            "lower": {
+              "path": "D:\\Work\\rpfem-native26\\G1R17_native26\\cases\\P07N\\witness_lower.bin",
+              "sha256": "4ead0556ae713ba86dc7a4c70976ba396ba23f725b062c41c254b8b9c0574b22",
+              "format": "RP25M001"
+            },
+            "upper": {
+              "path": "D:\\Work\\rpfem-native26\\G1R17_native26\\cases\\P07N\\witness_upper.bin",
+              "sha256": "3ebcae1362f6639ad8e34e51a69fdfb8cb7792505fc6993f6ba6cf11abce9b80",
+              "format": "RP25M001"
+            }
+          }
+        },
+        "python_q8_snapshot": {
+          "summary_path": "validation/accuracy_20261013/snapshots/20261014_progress7_audit/snapshots/P07N/summary.json",
+          "summary_sha256": "ace4891024736f26ad09578c526f7b6322597d2f55eec3daad2b8651bd4b4e42",
+          "lower_fs": 1.325913934095238,
+          "upper_fs": 1.3350868239582836,
+          "relative_gap_symmetric": 0.0068943158586361845,
+          "root_complete": true,
+          "one_percent_target_met": true,
+          "two_percent_width_met": true,
+          "kind": "historical_independent_q8_saved_field_audit_and_discrete_root_metadata",
+          "not_G1R19_coldstart_reproduction": true,
+          "sides": {
+            "lower": {
+              "fs": 1.325913934095238,
+              "elements": 2198,
+              "physical_model_id": "73f6d77e5a721ca5a4f74870e570b4ce0a9d4c24ecbe3f49cf71df611ecf06a6",
+              "mesh_id": "d93a218711baef1da8d2ad15e3438340ef5552c03f34ed33606fe1b8aeff927f",
+              "q": 8,
+              "root_complete": true,
+              "root_stage_seconds": 176.50142379995668,
+              "time_kind": "historical_per_side_root_search_stage; not complete production runtime",
+              "files": {
+                "mesh": {
+                  "path": "validation/accuracy_20261013/snapshots/20261014_progress7_audit/snapshots/P07N/best_lower_mesh.npz",
+                  "sha256": "d6bc28b4bfdb6cd0adfc11dd6d14f01984fba5a533ff4f65c6c389f17617c2d4"
+                },
+                "field": {
+                  "path": "validation/accuracy_20261013/snapshots/20261014_progress7_audit/snapshots/P07N/best_lower_field.npz",
+                  "sha256": "00b2445b6dd4ce9fa8957d8c8c1830639c80ca7362b33defd8fbad065c19013b"
+                },
+                "certificate": {
+                  "path": "validation/accuracy_20261013/snapshots/20261014_progress7_audit/snapshots/P07N/best_lower_certificate.json",
+                  "sha256": "cef1a4a5b8a110b83b4f5cff6c811016bd934b182af55fffe23c269fa760b1ca"
+                }
+              }
+            },
+            "upper": {
+              "fs": 1.3350868239582836,
+              "elements": 2198,
+              "physical_model_id": "73f6d77e5a721ca5a4f74870e570b4ce0a9d4c24ecbe3f49cf71df611ecf06a6",
+              "mesh_id": "d93a218711baef1da8d2ad15e3438340ef5552c03f34ed33606fe1b8aeff927f",
+              "q": 8,
+              "root_complete": true,
+              "root_stage_seconds": 250.44077530002687,
+              "time_kind": "historical_per_side_root_search_stage; not complete production runtime",
+              "files": {
+                "mesh": {
+                  "path": "validation/accuracy_20261013/snapshots/20261014_progress7_audit/snapshots/P07N/best_upper_mesh.npz",
+                  "sha256": "d6bc28b4bfdb6cd0adfc11dd6d14f01984fba5a533ff4f65c6c389f17617c2d4"
+                },
+                "field": {
+                  "path": "validation/accuracy_20261013/snapshots/20261014_progress7_audit/snapshots/P07N/best_upper_field.npz",
+                  "sha256": "53b6e1072e7f04c70a5a317d6f13d7639590b182a007e58a9b3838ad513dfac6"
+                },
+                "certificate": {
+                  "path": "validation/accuracy_20261013/snapshots/20261014_progress7_audit/snapshots/P07N/best_upper_certificate.json",
+                  "sha256": "0908ce4f18a8a85aaa17dadc5e88334c367fc48871bd2daff7676c1ff5ffdd1f"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "case": "P08A",
+      "input": {
+        "path": "docs/benchmarks/G1R17_native26_20261013/data/inputs/P08A.json",
+        "sha256": "6edeed25559cbceb89ca2e676761ca65e933252333e676e11ecea32718dd09ef",
+        "sha256_lf": "6edeed25559cbceb89ca2e676761ca65e933252333e676e11ecea32718dd09ef",
+        "sha256_canonical_json": "cd01aa7041205d507755a2250179963dd9cc975d976a53e55d9adc192403c090"
+      },
+      "title": "Uniform undrained clay",
+      "policy": "equal_reduced_phi",
+      "native_analysis_policy": "ASSOCIATED",
+      "coupled_pore_pressure": false,
+      "water": {
+        "coupling": 0,
+        "mode": 2,
+        "gamma_w": 9.81,
+        "suction": 0,
+        "water_table": [],
+        "seep_target": 1536
+      },
+      "material_count": 2,
+      "region_areas": [
+        300.0,
+        600.0
+      ],
+      "total_dry_weight": 18000.0,
+      "initial_mesh": {
+        "path": "versions/G1R17/results/geometry25/P08A_new_vba_mesh.bin",
+        "sha256": "e7ec6ed0dc02605e97e9b90fd8457247929455dd92f79672fb3b4fce9e59c581",
+        "kind": "recorded_coarse_geometry_only",
+        "uses_saved_primal_field": false,
+        "uses_saved_root": false
+      },
+      "historical_bounds": {
+        "native26": {
+          "source_summary": "docs/benchmarks/G1R17_native26_20261013/data/summary.json",
+          "full_record_path": "D:\\Work\\rpfem-native26\\G1R17_native26\\results\\P08A.json",
+          "full_record_sha256": "a22f7c32d0f17d83f7a818aed3d24d23224d13bf00cacf2e72a3d49e0b13794a",
+          "lower_fs": 1.4428188996601232,
+          "upper_fs": 1.4552607361808534,
+          "relative_gap_symmetric": 0.008586262687098136,
+          "q": [
+            4,
+            4
+          ],
+          "target_met_at_one_percent": false,
+          "independent_saved_field_audit_pass": true,
+          "root_search_incomplete": true,
+          "root_tolerance_contract": "width <= FS_TOL * max(1, bracket midpoint); per-owner native root validity and completion flags",
+          "root_owner_flags": [
+            "True",
+            "True",
+            "False",
+            "False"
+          ],
+          "time": {
+            "seconds": 1375.33656,
+            "kind": "historical_G1R17_sequential_native_Excel_whole_analysis",
+            "boundary": "run_end.elapsed_s; excludes startup, save and independent Python audit",
+            "not_new_python_or_G1R19_coldstart_time": true
+          },
+          "witnesses": {
+            "lower": {
+              "path": "D:\\Work\\rpfem-native26\\G1R17_native26\\cases\\P08A\\witness_lower.bin",
+              "sha256": "2f9a7cb9de77625b76a21df6ce22c30aff7c67b7cae661636737288677b829a0",
+              "format": "RP25M001"
+            },
+            "upper": {
+              "path": "D:\\Work\\rpfem-native26\\G1R17_native26\\cases\\P08A\\witness_upper.bin",
+              "sha256": "f106cd40ad41cd484c822adae21146eb09e3ee8abbe88a7c3f186ffa7b2a2275",
+              "format": "RP25M001"
+            }
+          }
+        },
+        "python_q8_snapshot": {
+          "summary_path": "validation/accuracy_20261013/snapshots/20261014_progress7_audit/snapshots/P08A/summary.json",
+          "summary_sha256": "29a685bfca0dfb0bfb8a225b7c41fbdb90f9f0ef0f82938456cb7ce23a57bbdb",
+          "lower_fs": 1.4428188996601232,
+          "upper_fs": 1.4535629801994787,
+          "relative_gap_symmetric": 0.007418966824827877,
+          "root_complete": true,
+          "one_percent_target_met": true,
+          "two_percent_width_met": true,
+          "kind": "historical_independent_q8_saved_field_audit_and_discrete_root_metadata",
+          "not_G1R19_coldstart_reproduction": true,
+          "sides": {
+            "lower": {
+              "fs": 1.4428188996601232,
+              "elements": 998,
+              "physical_model_id": "58f6faaa2495ec985dc17b65efc7731172e5f4e1b5de3de3e610d98c3b2b1878",
+              "mesh_id": "f10877dc2e238553b442f336f236e3c5962d405730a2fee540d223eb95cf7d0c",
+              "q": 8,
+              "root_complete": true,
+              "root_stage_seconds": 17.55092850001529,
+              "time_kind": "historical_per_side_root_search_stage; not complete production runtime",
+              "files": {
+                "mesh": {
+                  "path": "validation/accuracy_20261013/snapshots/20261014_progress7_audit/snapshots/P08A/best_lower_mesh.npz",
+                  "sha256": "8a13cd97fd2c8be673b2d7e99b98520a896110e44d8ea62b92306e38b21c40d3"
+                },
+                "field": {
+                  "path": "validation/accuracy_20261013/snapshots/20261014_progress7_audit/snapshots/P08A/best_lower_field.npz",
+                  "sha256": "894b5bd2692ccfa81edd80e759f3354a0fb26e26da88091d371207ba53138159"
+                },
+                "certificate": {
+                  "path": "validation/accuracy_20261013/snapshots/20261014_progress7_audit/snapshots/P08A/best_lower_certificate.json",
+                  "sha256": "c63639598e4324f62c20a843782820ca48d7e88e37bec696050d376f9ec4cc22"
+                }
+              }
+            },
+            "upper": {
+              "fs": 1.4535629801994787,
+              "elements": 1537,
+              "physical_model_id": "58f6faaa2495ec985dc17b65efc7731172e5f4e1b5de3de3e610d98c3b2b1878",
+              "mesh_id": "05b8a8d4652a5ee4b99a471fc96a17966acc2dfc2e78aac64021cb822a9b5ba7",
+              "q": 8,
+              "root_complete": true,
+              "root_stage_seconds": 107.37530700000934,
+              "time_kind": "historical_per_side_root_search_stage; not complete production runtime",
+              "files": {
+                "mesh": {
+                  "path": "validation/accuracy_20261013/snapshots/20261014_progress7_audit/snapshots/P08A/best_upper_mesh.npz",
+                  "sha256": "2bd4b6e820b7c6bf07dab9c08989c3ba05e1949e12f1597eea842c18eca648ec"
+                },
+                "field": {
+                  "path": "validation/accuracy_20261013/snapshots/20261014_progress7_audit/snapshots/P08A/best_upper_field.npz",
+                  "sha256": "fa9f5b7ac04c65b7102c104ed538d060f331663c03c5f650b60ee6ce267480c0"
+                },
+                "certificate": {
+                  "path": "validation/accuracy_20261013/snapshots/20261014_progress7_audit/snapshots/P08A/best_upper_certificate.json",
+                  "sha256": "ae4a47a2ead8b9c399b14ccd2b6b0b9a07b3d9df4d8702545c63d91897d94769"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "case": "P09A",
+      "input": {
+        "path": "docs/benchmarks/G1R17_native26_20261013/data/inputs/P09A.json",
+        "sha256": "b22f5dd2e83f676252b7f462214108c325da08d8da3d02543c9e0b5f23f1d3ee",
+        "sha256_lf": "b22f5dd2e83f676252b7f462214108c325da08d8da3d02543c9e0b5f23f1d3ee",
+        "sha256_canonical_json": "6ce9ebcd847580e031d2b224411424c047d05f34f9d0319c3df2327ed3888845"
+      },
+      "title": "Weak clay foundation",
+      "policy": "equal_reduced_phi",
+      "native_analysis_policy": "ASSOCIATED",
+      "coupled_pore_pressure": false,
+      "water": {
+        "coupling": 0,
+        "mode": 2,
+        "gamma_w": 9.81,
+        "suction": 0,
+        "water_table": [],
+        "seep_target": 1536
+      },
+      "material_count": 2,
+      "region_areas": [
+        300.0,
+        600.0
+      ],
+      "total_dry_weight": 18000.0,
+      "initial_mesh": {
+        "path": "versions/G1R17/results/geometry25/P09A_new_vba_mesh.bin",
+        "sha256": "e7ec6ed0dc02605e97e9b90fd8457247929455dd92f79672fb3b4fce9e59c581",
+        "kind": "recorded_coarse_geometry_only",
+        "uses_saved_primal_field": false,
+        "uses_saved_root": false
+      },
+      "historical_bounds": {
+        "native26": {
+          "source_summary": "docs/benchmarks/G1R17_native26_20261013/data/summary.json",
+          "full_record_path": "D:\\Work\\rpfem-native26\\G1R17_native26\\results\\P09A.json",
+          "full_record_sha256": "ff3fea801fb87f7503590bc1c0738f8d82f61ac9f6eef2ada2747cede36787be",
+          "lower_fs": 0.9645406357821467,
+          "upper_fs": 0.9730500784564394,
+          "relative_gap_symmetric": 0.008783529578006589,
+          "q": [
+            4,
+            4
+          ],
+          "target_met_at_one_percent": false,
+          "independent_saved_field_audit_pass": true,
+          "root_search_incomplete": true,
+          "root_tolerance_contract": "width <= FS_TOL * max(1, bracket midpoint); per-owner native root validity and completion flags",
+          "root_owner_flags": [
+            "True",
+            "True",
+            "False",
+            "False"
+          ],
+          "time": {
+            "seconds": 1127.375623,
+            "kind": "historical_G1R17_sequential_native_Excel_whole_analysis",
+            "boundary": "run_end.elapsed_s; excludes startup, save and independent Python audit",
+            "not_new_python_or_G1R19_coldstart_time": true
+          },
+          "witnesses": {
+            "lower": {
+              "path": "D:\\Work\\rpfem-native26\\G1R17_native26\\cases\\P09A\\witness_lower.bin",
+              "sha256": "998a3390a18e86966d85a2721b666213f624fc63c160fb6a7d31dfed49d03f06",
+              "format": "RP25M001"
+            },
+            "upper": {
+              "path": "D:\\Work\\rpfem-native26\\G1R17_native26\\cases\\P09A\\witness_upper.bin",
+              "sha256": "9af3115ba1a262548b4a299dcd7df3c99ee1ec1c472c613e6a43e6d1dbc47244",
+              "format": "RP25M001"
+            }
+          }
+        },
+        "python_q8_snapshot": {
+          "summary_path": "validation/accuracy_20261013/snapshots/20261014_progress7_audit/snapshots/P09A/summary.json",
+          "summary_sha256": "6a39fa65d5acfa5f3a8bb43475ad07284bd4604aa0b0cebd9a4f701bd5c9ef23",
+          "lower_fs": 0.9650393868611594,
+          "upper_fs": 0.9729784421112154,
+          "relative_gap_symmetric": 0.008192964101125584,
+          "root_complete": true,
+          "one_percent_target_met": true,
+          "two_percent_width_met": true,
+          "kind": "historical_independent_q8_saved_field_audit_and_discrete_root_metadata",
+          "not_G1R19_coldstart_reproduction": true,
+          "sides": {
+            "lower": {
+              "fs": 0.9650393868611594,
+              "elements": 1467,
+              "physical_model_id": "a1e84ff9bfb1304740e7f08e13570bc752196621b91b4167b259e3b62f351edd",
+              "mesh_id": "c18463047bcbad54c1c04d59b6515779d67e4ec68ce1b521b16ef6fbab04402b",
+              "q": 8,
+              "root_complete": true,
+              "root_stage_seconds": 42.66193949995795,
+              "time_kind": "historical_per_side_root_search_stage; not complete production runtime",
+              "files": {
+                "mesh": {
+                  "path": "validation/accuracy_20261013/snapshots/20261014_progress7_audit/snapshots/P09A/best_lower_mesh.npz",
+                  "sha256": "e6e58dcf6a30c0ff64bf8d41ecf4c7a82e4e7b4f621d9f42f0e400875f8d3048"
+                },
+                "field": {
+                  "path": "validation/accuracy_20261013/snapshots/20261014_progress7_audit/snapshots/P09A/best_lower_field.npz",
+                  "sha256": "9bbe512f23e832b27a240b583a4df7ef56c8283d2c46b90f6faf75f97022b5b0"
+                },
+                "certificate": {
+                  "path": "validation/accuracy_20261013/snapshots/20261014_progress7_audit/snapshots/P09A/best_lower_certificate.json",
+                  "sha256": "0f75256cb99a29d19f04218f5e4abd0567f9326ab34105085bce463d8d1316c3"
+                }
+              }
+            },
+            "upper": {
+              "fs": 0.9729784421112154,
+              "elements": 1467,
+              "physical_model_id": "a1e84ff9bfb1304740e7f08e13570bc752196621b91b4167b259e3b62f351edd",
+              "mesh_id": "c18463047bcbad54c1c04d59b6515779d67e4ec68ce1b521b16ef6fbab04402b",
+              "q": 8,
+              "root_complete": true,
+              "root_stage_seconds": 110.53512279997813,
+              "time_kind": "historical_per_side_root_search_stage; not complete production runtime",
+              "files": {
+                "mesh": {
+                  "path": "validation/accuracy_20261013/snapshots/20261014_progress7_audit/snapshots/P09A/best_upper_mesh.npz",
+                  "sha256": "e6e58dcf6a30c0ff64bf8d41ecf4c7a82e4e7b4f621d9f42f0e400875f8d3048"
+                },
+                "field": {
+                  "path": "validation/accuracy_20261013/snapshots/20261014_progress7_audit/snapshots/P09A/best_upper_field.npz",
+                  "sha256": "19b05da3e4cb63ddaa30ccf95726f5fa8c6da5559b83844f19a5e4613cb640fa"
+                },
+                "certificate": {
+                  "path": "validation/accuracy_20261013/snapshots/20261014_progress7_audit/snapshots/P09A/best_upper_certificate.json",
+                  "sha256": "836a67b8da423fba13a8e7b50684de20eab2819b30f8fff1204e4421dcd910a7"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "case": "P10A",
+      "input": {
+        "path": "docs/benchmarks/G1R17_native26_20261013/data/inputs/P10A.json",
+        "sha256": "706553eb9d63a7f3adb67fa4c73d3c1a6a56dee86b66dd2f67b31edd9509e3dc",
+        "sha256_lf": "706553eb9d63a7f3adb67fa4c73d3c1a6a56dee86b66dd2f67b31edd9509e3dc",
+        "sha256_canonical_json": "4acaee99393c32ca7504127ea26ca903a2f274a6e1b9b0d74d3217b89466228e"
+      },
+      "title": "Clay foundation mechanism transition",
+      "policy": "equal_reduced_phi",
+      "native_analysis_policy": "ASSOCIATED",
+      "coupled_pore_pressure": false,
+      "water": {
+        "coupling": 0,
+        "mode": 2,
+        "gamma_w": 9.81,
+        "suction": 0,
+        "water_table": [],
+        "seep_target": 1536
+      },
+      "material_count": 2,
+      "region_areas": [
+        300.0,
+        600.0
+      ],
+      "total_dry_weight": 18000.0,
+      "initial_mesh": {
+        "path": "versions/G1R17/results/geometry25/P10A_new_vba_mesh.bin",
+        "sha256": "e7ec6ed0dc02605e97e9b90fd8457247929455dd92f79672fb3b4fce9e59c581",
+        "kind": "recorded_coarse_geometry_only",
+        "uses_saved_primal_field": false,
+        "uses_saved_root": false
+      },
+      "historical_bounds": {
+        "native26": {
+          "source_summary": "docs/benchmarks/G1R17_native26_20261013/data/summary.json",
+          "full_record_path": "D:\\Work\\rpfem-native26\\G1R17_native26\\results\\P10A.json",
+          "full_record_sha256": "3bc61da44b62d0ec684c26a2d45492c9b9c0b15f629a0512135cc32489713a63",
+          "lower_fs": 1.997662491461876,
+          "upper_fs": 2.036682630356508,
+          "relative_gap_symmetric": 0.019343976638788358,
+          "q": [
+            4,
+            4
+          ],
+          "target_met_at_one_percent": false,
+          "independent_saved_field_audit_pass": true,
+          "root_search_incomplete": true,
+          "root_tolerance_contract": "width <= FS_TOL * max(1, bracket midpoint); per-owner native root validity and completion flags",
+          "root_owner_flags": [
+            "True",
+            "True",
+            "False",
+            "False"
+          ],
+          "time": {
+            "seconds": 989.995308,
+            "kind": "historical_G1R17_sequential_native_Excel_whole_analysis",
+            "boundary": "run_end.elapsed_s; excludes startup, save and independent Python audit",
+            "not_new_python_or_G1R19_coldstart_time": true
+          },
+          "witnesses": {
+            "lower": {
+              "path": "D:\\Work\\rpfem-native26\\G1R17_native26\\cases\\P10A\\witness_lower.bin",
+              "sha256": "40671864122eb8fa8a9ba2fe0ae2925c428c8140fe0b43694a5ffe73412be999",
+              "format": "RP25M001"
+            },
+            "upper": {
+              "path": "D:\\Work\\rpfem-native26\\G1R17_native26\\cases\\P10A\\witness_upper.bin",
+              "sha256": "55e0ec3152400efaf22b619f64925a4a3190b07e4285e4130b878971539879e2",
+              "format": "RP25M001"
+            }
+          }
+        },
+        "python_q8_snapshot": {
+          "summary_path": "validation/accuracy_20261013/snapshots/20261014_progress7_audit/snapshots/P10A/summary.json",
+          "summary_sha256": "099b7448998919468a5f1273618c82573b2a3e52c5040936a92c5b049c6398f9",
+          "lower_fs": 2.0042290756695387,
+          "upper_fs": 2.0190754722504622,
+          "relative_gap_symmetric": 0.007380200232964704,
+          "root_complete": true,
+          "one_percent_target_met": true,
+          "two_percent_width_met": true,
+          "kind": "historical_independent_q8_saved_field_audit_and_discrete_root_metadata",
+          "not_G1R19_coldstart_reproduction": true,
+          "sides": {
+            "lower": {
+              "fs": 2.0042290756695387,
+              "elements": 8800,
+              "physical_model_id": "7f678b49037d6fc6a83cc00b3fc7e51aa2e624c9eeb7d56d313634f29477d6f9",
+              "mesh_id": "7932283b23708aea4629f514fa4d86c7583c149c4dfe7d6db102233483d0def7",
+              "q": 8,
+              "root_complete": true,
+              "root_stage_seconds": 1285.9113444999675,
+              "time_kind": "historical_per_side_root_search_stage; not complete production runtime",
+              "files": {
+                "mesh": {
+                  "path": "validation/accuracy_20261013/snapshots/20261014_progress7_audit/snapshots/P10A/best_lower_mesh.npz",
+                  "sha256": "8a7910b3e043fc4ac38f5b6312b693f3e3fb26a420febaa56fba93a39c312355"
+                },
+                "field": {
+                  "path": "validation/accuracy_20261013/snapshots/20261014_progress7_audit/snapshots/P10A/best_lower_field.npz",
+                  "sha256": "f080d00b421175a425ef1a122b3ed6dbbf1855f3881afba03f755bbc874fbcda"
+                },
+                "certificate": {
+                  "path": "validation/accuracy_20261013/snapshots/20261014_progress7_audit/snapshots/P10A/best_lower_certificate.json",
+                  "sha256": "55b134242cf6c670be1545c74e6ae513cd5a33b862f68da3b5ead8226aeab5fe"
+                }
+              }
+            },
+            "upper": {
+              "fs": 2.0190754722504622,
+              "elements": 4352,
+              "physical_model_id": "7f678b49037d6fc6a83cc00b3fc7e51aa2e624c9eeb7d56d313634f29477d6f9",
+              "mesh_id": "b89ce9806fb9caeec916fe909896ac35446735a846a5c57835b5cd0a1b2de9a5",
+              "q": 8,
+              "root_complete": true,
+              "root_stage_seconds": 870.429781099956,
+              "time_kind": "historical_per_side_root_search_stage; not complete production runtime",
+              "files": {
+                "mesh": {
+                  "path": "validation/accuracy_20261013/snapshots/20261014_progress7_audit/snapshots/P10A/best_upper_mesh.npz",
+                  "sha256": "b15abb2906182a59f2a7b3d4e4729c95bf07a10537dda25966a9f6735c9ee381"
+                },
+                "field": {
+                  "path": "validation/accuracy_20261013/snapshots/20261014_progress7_audit/snapshots/P10A/best_upper_field.npz",
+                  "sha256": "a61d5e61ce697b4acfec8d2a5cc7d1093880e42bd3db0426c077b05ad3cd930d"
+                },
+                "certificate": {
+                  "path": "validation/accuracy_20261013/snapshots/20261014_progress7_audit/snapshots/P10A/best_upper_certificate.json",
+                  "sha256": "c00460294b9d007af7a67faf323828703786dead3f5d9630c7b173ac270304db"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  ],
+  "execution_profiles": {
+    "fresh_D08A_waterline_reference": {
+      "entrypoint": "validation/G1R19_python26_water_20261016/run_case.py",
+      "target_gap_symmetric": 0.02,
+      "q": 8,
+      "fs_root_relative_tolerance": 0.0001,
+      "fs_root_normalization": "(hi-lo)/max(1,(hi+lo)/2)",
+      "case_seconds": 600,
+      "solve_seconds": 30,
+      "cycles": 8,
+      "max_elements": 32000,
+      "parallel_cases": 1,
+      "solver_threads": 1,
+      "physical_scope": "Declared exact u=9.81max(3-y,0); waterline-conforming mesh; new physical model ID distinguishes old P1 approximation",
+      "no_old_fields_or_roots": true
+    }
+  }
+}
