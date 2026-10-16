@@ -1,0 +1,107 @@
+{
+  "status": "PASS",
+  "positive_cases": 138,
+  "suites": [
+    {
+      "raw": "results/water_inputs_fix4_final_01/summary.json",
+      "status": "PASS",
+      "cases": 92,
+      "elapsed_seconds": 91.71323839999968,
+      "raw_sha256": "f3873c07f1704b8a7c093d36dc8e28540b28234d6c21fcdccce0f6a21eb8f1a7",
+      "owned_excel_exited": true,
+      "monitored_files_unchanged": true,
+      "dialogs": 0,
+      "monitor_errors": 0,
+      "book_sha256": "b010ab89c4e70540277475d1aab025db2545a24fd6697ad87856998737e94be6"
+    },
+    {
+      "raw": "results/water_cancel_gamma_final_02/summary.json",
+      "status": "PASS",
+      "cases": 14,
+      "elapsed_seconds": 162.56543380001676,
+      "raw_sha256": "0c073d025681c5c038694285a36c74b2055e87967e2a0db716c52c7c06cddbfd",
+      "owned_excel_exited": true,
+      "monitored_files_unchanged": true,
+      "dialogs": 0,
+      "monitor_errors": 0,
+      "book_sha256": "b010ab89c4e70540277475d1aab025db2545a24fd6697ad87856998737e94be6"
+    },
+    {
+      "raw": "results/water_transitions_final_01/summary.json",
+      "status": "PASS",
+      "cases": 29,
+      "elapsed_seconds": 57.898909499985166,
+      "raw_sha256": "4837acc38b12126d859e03140d3bcbf897949f33d6ecbf4b204c3344581e845b",
+      "owned_excel_exited": true,
+      "monitored_files_unchanged": true,
+      "dialogs": 0,
+      "monitor_errors": 0,
+      "book_sha256": "b010ab89c4e70540277475d1aab025db2545a24fd6697ad87856998737e94be6"
+    },
+    {
+      "raw": "results/water_inverse_budget_final_01/summary.json",
+      "status": "PASS",
+      "cases": 3,
+      "elapsed_seconds": 40.081165299983695,
+      "raw_sha256": "d635dd2c0e881eaef22ae7276b97ee5570ebdd2833347d882b4531261ac5168a",
+      "owned_excel_exited": true,
+      "monitored_files_unchanged": true,
+      "dialogs": 0,
+      "monitor_errors": 0,
+      "book_sha256": "b010ab89c4e70540277475d1aab025db2545a24fd6697ad87856998737e94be6"
+    }
+  ],
+  "product_source_import_paths": 128,
+  "product_hashes_equal_across_all_final_suites": true,
+  "final_delivery_workbook_sha256": "b010ab89c4e70540277475d1aab025db2545a24fd6697ad87856998737e94be6",
+  "source_manifest_sha256": "d6a2bc7d6a0c6cb716aa96dbe0e826a9915a9a4c455aabb9e38c6e1a596eaeca",
+  "inverse_counter_baseline": {
+    "inverse_budget_6": [
+      6,
+      7,
+      6.0,
+      0.0,
+      true
+    ],
+    "inverse_budget_12": [
+      12,
+      13,
+      12.0,
+      0.0,
+      true
+    ],
+    "inverse_budget_5": [
+      5,
+      7,
+      6.0,
+      0.0,
+      true
+    ]
+  },
+  "inverse_counter_fixed": {
+    "inverse_budget_6": [
+      6,
+      6,
+      6.0,
+      0.0,
+      true
+    ],
+    "inverse_budget_12": [
+      12,
+      12,
+      12.0,
+      0.0,
+      true
+    ],
+    "inverse_budget_5": [
+      5,
+      0,
+      null,
+      null,
+      false
+    ]
+  },
+  "inverse_counter_instrumentation": "Test copy adds one WaterCountForwardEntry call immediately before the existing SKrMin-default branch in RPX_SeepSolve; no equations, data or gates replaced.",
+  "negative_inputs": "evidence/WATER_INPUT_NEGATIVE.json",
+  "scope": "Small actual Excel operational/physics controls; does not claim a full26-case or P06 production recalculation."
+}

@@ -1,0 +1,713 @@
+[
+  {
+    "id": "valid_mode0",
+    "mode": 0,
+    "address": "",
+    "value": null,
+    "valid": true
+  },
+  {
+    "id": "valid_mode1",
+    "mode": 1,
+    "address": "",
+    "value": null,
+    "valid": true
+  },
+  {
+    "id": "valid_mode2",
+    "mode": 2,
+    "address": "",
+    "value": null,
+    "valid": true
+  },
+  {
+    "id": "valid_mode3",
+    "mode": 3,
+    "address": "",
+    "value": null,
+    "valid": true
+  },
+  {
+    "id": "valid_negative_head",
+    "mode": 0,
+    "address": "K7:K8",
+    "value": -1.25,
+    "valid": true
+  },
+  {
+    "id": "valid_ky_blank",
+    "mode": 0,
+    "address": "C7",
+    "value": "",
+    "valid": true
+  },
+  {
+    "id": "valid_beta_zero",
+    "mode": 0,
+    "address": "C211",
+    "value": 0,
+    "valid": true
+  },
+  {
+    "id": "valid_blank_tolerance",
+    "mode": 0,
+    "address": "C213",
+    "value": "",
+    "valid": true
+  },
+  {
+    "id": "perm_id_fraction",
+    "mode": 0,
+    "address": "A7",
+    "value": 1.4,
+    "valid": false
+  },
+  {
+    "id": "perm_id_zero",
+    "mode": 0,
+    "address": "A7",
+    "value": 0,
+    "valid": false
+  },
+  {
+    "id": "perm_id_boolean",
+    "mode": 0,
+    "address": "A7",
+    "value": true,
+    "valid": false
+  },
+  {
+    "id": "perm_id_error",
+    "mode": 0,
+    "address": "A7",
+    "value": "=1/0",
+    "formula": true,
+    "valid": false
+  },
+  {
+    "id": "perm_duplicate",
+    "mode": 0,
+    "address": "A8:C8",
+    "value": [
+      [
+        1,
+        2,
+        2
+      ]
+    ],
+    "valid": false
+  },
+  {
+    "id": "kx_zero",
+    "mode": 0,
+    "address": "B7",
+    "value": 0,
+    "valid": false
+  },
+  {
+    "id": "kx_negative",
+    "mode": 0,
+    "address": "B7",
+    "value": -1,
+    "valid": false
+  },
+  {
+    "id": "kx_text",
+    "mode": 0,
+    "address": "B7",
+    "value": "invalid",
+    "valid": false
+  },
+  {
+    "id": "kx_boolean",
+    "mode": 0,
+    "address": "B7",
+    "value": true,
+    "valid": false
+  },
+  {
+    "id": "kx_error",
+    "mode": 0,
+    "address": "B7",
+    "value": "=1/0",
+    "formula": true,
+    "valid": false
+  },
+  {
+    "id": "ky_negative",
+    "mode": 0,
+    "address": "C7",
+    "value": -1,
+    "valid": false
+  },
+  {
+    "id": "ky_error",
+    "mode": 0,
+    "address": "C7",
+    "value": "=1/0",
+    "formula": true,
+    "valid": false
+  },
+  {
+    "id": "boundary_id_fraction",
+    "mode": 0,
+    "address": "E7",
+    "value": 1.4,
+    "valid": false
+  },
+  {
+    "id": "boundary_id_text",
+    "mode": 0,
+    "address": "E7",
+    "value": "invalid",
+    "valid": false
+  },
+  {
+    "id": "boundary_region_fraction",
+    "mode": 0,
+    "address": "F7",
+    "value": 1.4,
+    "valid": false
+  },
+  {
+    "id": "boundary_start_fraction",
+    "mode": 0,
+    "address": "G7",
+    "value": 4.4,
+    "valid": false
+  },
+  {
+    "id": "boundary_end_fraction",
+    "mode": 0,
+    "address": "H7",
+    "value": 1.4,
+    "valid": false
+  },
+  {
+    "id": "boundary_same_endpoint",
+    "mode": 0,
+    "address": "G7:H7",
+    "value": 1,
+    "valid": false
+  },
+  {
+    "id": "boundary_wrap_two",
+    "mode": 0,
+    "address": "I7",
+    "value": 2,
+    "valid": false
+  },
+  {
+    "id": "boundary_wrap_fraction",
+    "mode": 0,
+    "address": "I7",
+    "value": 0.5,
+    "valid": false
+  },
+  {
+    "id": "boundary_wrap_text",
+    "mode": 0,
+    "address": "I7",
+    "value": "invalid",
+    "valid": false
+  },
+  {
+    "id": "boundary_kind_text",
+    "mode": 0,
+    "address": "J7",
+    "value": "invalid",
+    "valid": false
+  },
+  {
+    "id": "boundary_head_text",
+    "mode": 0,
+    "address": "K7",
+    "value": "invalid",
+    "valid": false
+  },
+  {
+    "id": "boundary_head_blank",
+    "mode": 0,
+    "address": "K7",
+    "value": "",
+    "valid": false
+  },
+  {
+    "id": "boundary_head_error",
+    "mode": 0,
+    "address": "K7",
+    "value": "=1/0",
+    "formula": true,
+    "valid": false
+  },
+  {
+    "id": "inverse_guess_text",
+    "mode": 3,
+    "address": "K7",
+    "value": "?invalid",
+    "valid": false
+  },
+  {
+    "id": "water_pair_partial",
+    "mode": 2,
+    "address": "N7",
+    "value": "",
+    "valid": false
+  },
+  {
+    "id": "water_x_duplicate",
+    "mode": 2,
+    "address": "M8",
+    "value": 0,
+    "valid": false
+  },
+  {
+    "id": "water_y_error",
+    "mode": 2,
+    "address": "N7",
+    "value": "=1/0",
+    "formula": true,
+    "valid": false
+  },
+  {
+    "id": "water_tail_row207",
+    "mode": 2,
+    "address": "M207:N207",
+    "value": [
+      [
+        2,
+        20
+      ]
+    ],
+    "valid": false
+  },
+  {
+    "id": "observation_y_error",
+    "mode": 3,
+    "address": "Q7",
+    "value": "=1/0",
+    "formula": true,
+    "valid": false
+  },
+  {
+    "id": "observation_x_outside",
+    "mode": 3,
+    "address": "P7",
+    "value": 2,
+    "valid": false
+  },
+  {
+    "id": "target_fraction",
+    "mode": 0,
+    "address": "C209",
+    "value": 32.4,
+    "valid": false
+  },
+  {
+    "id": "target_text",
+    "mode": 0,
+    "address": "C209",
+    "value": "invalid",
+    "valid": false
+  },
+  {
+    "id": "target_error",
+    "mode": 0,
+    "address": "C209",
+    "value": "=1/0",
+    "formula": true,
+    "valid": false
+  },
+  {
+    "id": "target_negative",
+    "mode": 0,
+    "address": "C209",
+    "value": -1,
+    "valid": false
+  },
+  {
+    "id": "krmin_zero",
+    "mode": 0,
+    "address": "C210",
+    "value": 0,
+    "valid": false
+  },
+  {
+    "id": "krmin_one",
+    "mode": 0,
+    "address": "C210",
+    "value": 1,
+    "valid": false
+  },
+  {
+    "id": "krmin_text",
+    "mode": 0,
+    "address": "C210",
+    "value": "invalid",
+    "valid": false
+  },
+  {
+    "id": "beta_negative",
+    "mode": 0,
+    "address": "C211",
+    "value": -1,
+    "valid": false
+  },
+  {
+    "id": "beta_text",
+    "mode": 0,
+    "address": "C211",
+    "value": "invalid",
+    "valid": false
+  },
+  {
+    "id": "relax_zero",
+    "mode": 0,
+    "address": "C212",
+    "value": 0,
+    "valid": false
+  },
+  {
+    "id": "relax_above_one",
+    "mode": 0,
+    "address": "C212",
+    "value": 1.1,
+    "valid": false
+  },
+  {
+    "id": "relax_error",
+    "mode": 0,
+    "address": "C212",
+    "value": "=1/0",
+    "formula": true,
+    "valid": false
+  },
+  {
+    "id": "tolerance_zero",
+    "mode": 0,
+    "address": "C213",
+    "value": 0,
+    "valid": false
+  },
+  {
+    "id": "tolerance_negative",
+    "mode": 0,
+    "address": "C213",
+    "value": -1,
+    "valid": false
+  },
+  {
+    "id": "tolerance_text",
+    "mode": 0,
+    "address": "C213",
+    "value": "invalid",
+    "valid": false
+  },
+  {
+    "id": "maxit_zero",
+    "mode": 0,
+    "address": "C214",
+    "value": 0,
+    "valid": false
+  },
+  {
+    "id": "maxit_fraction",
+    "mode": 0,
+    "address": "C214",
+    "value": 30.4,
+    "valid": false
+  },
+  {
+    "id": "maxit_text",
+    "mode": 0,
+    "address": "C214",
+    "value": "invalid",
+    "valid": false
+  },
+  {
+    "id": "rigidk_zero",
+    "mode": 0,
+    "address": "C215",
+    "value": 0,
+    "valid": false
+  },
+  {
+    "id": "rigidk_negative",
+    "mode": 0,
+    "address": "C215",
+    "value": -1,
+    "valid": false
+  },
+  {
+    "id": "rigidk_text",
+    "mode": 0,
+    "address": "C215",
+    "value": "invalid",
+    "valid": false
+  },
+  {
+    "id": "inverse_maxit_fraction",
+    "mode": 3,
+    "address": "C216",
+    "value": 12.4,
+    "valid": false
+  },
+  {
+    "id": "inverse_maxit_text",
+    "mode": 3,
+    "address": "C216",
+    "value": "invalid",
+    "valid": false
+  },
+  {
+    "id": "inverse_maxit_zero",
+    "mode": 3,
+    "address": "C216",
+    "value": 0,
+    "valid": false
+  },
+  {
+    "id": "valid_anisotropy",
+    "mode": 0,
+    "address": "B7:C7",
+    "value": [
+      [
+        1e-08,
+        1e-12
+      ]
+    ],
+    "valid": true
+  },
+  {
+    "id": "valid_tiny_k",
+    "mode": 0,
+    "address": "B7:C7",
+    "value": [
+      [
+        1e-30,
+        1e-30
+      ]
+    ],
+    "valid": true
+  },
+  {
+    "id": "valid_numeric_text",
+    "mode": 0,
+    "address": "A7",
+    "value": "1",
+    "valid": true
+  },
+  {
+    "id": "valid_negative_flux",
+    "mode": 0,
+    "address": "E9:K9",
+    "value": [
+      [
+        3,
+        1,
+        3,
+        4,
+        0,
+        "流量",
+        -1e-05
+      ]
+    ],
+    "valid": true
+  },
+  {
+    "id": "valid_zero_head",
+    "mode": 0,
+    "address": "K7:K8",
+    "value": 0,
+    "valid": true
+  },
+  {
+    "id": "valid_observation_duplicate_x",
+    "mode": 3,
+    "address": "P8:Q8",
+    "value": [
+      [
+        0.25,
+        0.65
+      ]
+    ],
+    "valid": true
+  },
+  {
+    "id": "coupling_two",
+    "mode": 2,
+    "address": "D4",
+    "value": 2,
+    "valid": false
+  },
+  {
+    "id": "coupling_text",
+    "mode": 2,
+    "address": "D4",
+    "value": "invalid",
+    "valid": false
+  },
+  {
+    "id": "coupling_error",
+    "mode": 2,
+    "address": "D4",
+    "value": "=1/0",
+    "formula": true,
+    "valid": false
+  },
+  {
+    "id": "coupling_fraction",
+    "mode": 2,
+    "address": "D4",
+    "value": 0.5,
+    "valid": false
+  },
+  {
+    "id": "suction_negative",
+    "mode": 2,
+    "address": "F4",
+    "value": -1,
+    "valid": false
+  },
+  {
+    "id": "suction_text",
+    "mode": 2,
+    "address": "F4",
+    "value": "invalid",
+    "valid": false
+  },
+  {
+    "id": "suction_error",
+    "mode": 2,
+    "address": "F4",
+    "value": "=1/0",
+    "formula": true,
+    "valid": false
+  },
+  {
+    "id": "suction_fraction",
+    "mode": 2,
+    "address": "F4",
+    "value": 0.5,
+    "valid": false
+  },
+  {
+    "id": "valid_coupling_boolean_true",
+    "mode": 2,
+    "address": "D4",
+    "value": true,
+    "valid": true
+  },
+  {
+    "id": "valid_coupling_boolean_false",
+    "mode": 2,
+    "address": "D4",
+    "value": false,
+    "valid": true
+  },
+  {
+    "id": "valid_coupling_text_true",
+    "mode": 2,
+    "address": "D4",
+    "value": "TRUE",
+    "valid": true
+  },
+  {
+    "id": "valid_coupling_text_false",
+    "mode": 2,
+    "address": "D4",
+    "value": "FALSE",
+    "valid": true
+  },
+  {
+    "id": "valid_suction_boolean_true",
+    "mode": 2,
+    "address": "F4",
+    "value": true,
+    "valid": true
+  },
+  {
+    "id": "valid_suction_boolean_false",
+    "mode": 2,
+    "address": "F4",
+    "value": false,
+    "valid": true
+  },
+  {
+    "id": "inverse_maxit_below_min",
+    "mode": 3,
+    "address": "C216",
+    "value": 1,
+    "valid": false
+  },
+  {
+    "id": "valid_inverse_minimum",
+    "mode": 3,
+    "address": "C216",
+    "value": 6,
+    "valid": true
+  },
+  {
+    "id": "boundary_wrap_required",
+    "mode": 0,
+    "address": "I7",
+    "value": 0,
+    "valid": false
+  },
+  {
+    "id": "boundary_wrap_unneeded",
+    "mode": 0,
+    "address": "I8",
+    "value": 1,
+    "valid": false
+  },
+  {
+    "id": "valid_wrap_blank",
+    "mode": 0,
+    "address": "I8",
+    "value": "",
+    "valid": true
+  },
+  {
+    "id": "permeability_tail_row224",
+    "mode": 0,
+    "address": "A224:C224",
+    "value": [
+      [
+        1,
+        1,
+        1
+      ]
+    ],
+    "valid": false
+  },
+  {
+    "id": "boundary_tail_row207",
+    "mode": 0,
+    "address": "E207:K207",
+    "value": [
+      [
+        3,
+        1,
+        3,
+        4,
+        0,
+        "流量",
+        0
+      ]
+    ],
+    "valid": false
+  },
+  {
+    "id": "observation_tail_row207",
+    "mode": 3,
+    "address": "P207:Q207",
+    "value": [
+      [
+        0.5,
+        0.5
+      ]
+    ],
+    "valid": false
+  }
+]

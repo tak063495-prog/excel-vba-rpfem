@@ -2,7 +2,16 @@
 
 Excel VBAによる2次元RPFEM解析のソース、XLSM、検証資料です。
 
-**最新は [G1R20 Fix3 Release](https://github.com/tak063495-prog/excel-vba-rpfem/releases/tag/G1R20_Fix3) です。** [バージョン一覧](versions/README.md)から過去版も確認できます。
+**最新は [G1R20 Fix4 Release](https://github.com/tak063495-prog/excel-vba-rpfem/releases/tag/G1R20_Fix4) です。** [バージョン一覧](versions/README.md)から過去版も確認できます。
+
+## G1R20 Fix4 — 入力系の追加監査・地震荷重・浸透中止の修正（2026-10-17）
+
+- **[配布ZIP](https://github.com/tak063495-prog/excel-vba-rpfem/releases/download/G1R20_Fix4/RPFEM_20261017_G1R20_Fix4.zip)** / [導入](versions/G1R20_Fix4/README_JA.md) / [レビュー](versions/G1R20_Fix4/REVIEW_JA.md) / [再現・回帰結果](versions/G1R20_Fix4/TEST_RESULTS.md) / [検証コード](versions/G1R20_Fix4/REGRESSION.md)
+- **GAPの合格基準・設定シートの標準値は2%です。** 設定項目が欠けた場合の既定値も2%へ統一しました。
+- 主入力のID欠落・論理値・表の上限、領域の部分重複、設定の小数丸め・重複・読取範囲、地震設定の補充、水理入力と逆解析上限、旧テキストモデルの検査を修正しました。
+- Fs実行後に固定自重の地震荷重が比例側へ入る不具合、浸透の中止無視、単位体積重量の不整合、失敗後の旧連成結果の有効表示も修正しました。
+- 63標準モジュール・ThisWorkbookイベントと統合DLL1個を配布します。**更新後は旧版の通常解析結果・浸透結果を再計算してください。**
+- P06の通常初期状態からのVBA本番2%自動完走と全26ケースのVBA再計算は今回の確認範囲に含めません。
 
 ## G1R20 Fix3 — Fix2レビューによる保存入力・浸透連成・Fs経路の修正（2026-10-17）
 

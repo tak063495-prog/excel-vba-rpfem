@@ -1,9 +1,10 @@
 # バージョンと配布物
 
-最新は **[G1R20 Fix3 Release](https://github.com/tak063495-prog/excel-vba-rpfem/releases/tag/G1R20_Fix3)** です。配布ZIPにはXLSM、統合DLL1個、ソース・検証範囲・導入手順が含まれます。
+最新は **[G1R20 Fix4 Release](https://github.com/tak063495-prog/excel-vba-rpfem/releases/tag/G1R20_Fix4)** です。配布ZIPにはXLSM、統合DLL1個、ソース・検証範囲・導入手順が含まれます。
 
 |版・記録|位置付け|案内|
 |---|---|---|
+|G1R20 Fix4・2026-10-17|Fix3の入力系を追加監査。主入力・設定・形状・水理・旧モデル、地震荷重、中止と失敗処理を修正。GAP標準2%、統合DLL1個|[導入](G1R20_Fix4/README_JA.md) / [レビュー・回帰](G1R20_Fix4/TEST_RESULTS.md) / [検証コード](G1R20_Fix4/REGRESSION.md) / [ZIP](https://github.com/tak063495-prog/excel-vba-rpfem/releases/download/G1R20_Fix4/RPFEM_20261017_G1R20_Fix4.zip)|
 |G1R20 Fix3・2026-10-17|Fix2レビューの6件修正。浸透入力の対応記録・保存結果失効・UI数式保持・旧モデル・解析的Fsの誤拒否。単一DLLを保持|[導入](G1R20_Fix3/README_JA.md) / [レビュー・回帰](G1R20_Fix3/TEST_RESULTS.md) / [検証コード](G1R20_Fix3/REGRESSION.md) / [ZIP](https://github.com/tak063495-prog/excel-vba-rpfem/releases/download/G1R20_Fix3/RPFEM_20261017_G1R20_Fix3.zip)|
 |G1R20 Fix2・2026-10-17|Fix1レビューで確認した初期化・二重例外復旧・水理失敗状態の保存を修正。数値条件と単一DLLを保持|[導入](G1R20_Fix2/README_JA.md) / [レビュー・回帰](G1R20_Fix2/TEST_RESULTS.md) / [検証コード](G1R20_Fix2/REGRESSION.md) / [ZIP](https://github.com/tak063495-prog/excel-vba-rpfem/releases/download/G1R20_Fix2/RPFEM_20261017_G1R20_Fix2.zip)|
 |G1R20 Fix1・2026-10-17|水理更新・プリセット例外・G1R19移行の3件修正。元の精度条件と単一DLLを保持|[導入](G1R20_Fix1/README_JA.md) / [再現・回帰](G1R20_Fix1/TEST_RESULTS.md) / [検証コード](G1R20_Fix1/REGRESSION.md) / [ZIP](https://github.com/tak063495-prog/excel-vba-rpfem/releases/download/G1R20_Fix1/RPFEM_20261017_G1R20_Fix1.zip)|

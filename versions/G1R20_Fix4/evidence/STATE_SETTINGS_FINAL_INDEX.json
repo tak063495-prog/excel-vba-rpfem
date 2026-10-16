@@ -1,0 +1,158 @@
+{
+  "created_utc": "2026-10-16T21:19:04.049370+00:00",
+  "final_artifact_binding": {
+    "workbook_sha256": "b010ab89c4e70540277475d1aab025db2545a24fd6697ad87856998737e94be6",
+    "dll_sha256": "66da1a21be43cd2b3a3bfbaa9d13aad5fb1fd1960e1bf2507cc4e1cfa9ebe70b",
+    "validation_sha256": "f04d09a66d7ce68f139175ced8e6302415b6d3d1e1b81b619169a03bac7a1784",
+    "source_bundle_sha256": "7acc11691df549ea58ed1a063299725f4d5d7f8bc4b2c1fb24c387622ca17a4c",
+    "standard_modules": 63,
+    "document_modules": 1,
+    "all_64_source_sha256_match": true
+  },
+  "positive_runs": [
+    {
+      "run": "settings_positive_01",
+      "summary_path": "versions/G1R20_Fix4/results/settings_positive_01/summary.json",
+      "summary_sha256": "2b79a794ea9b34a580b4289d7c73713654086c360dc85f92c8d2b640dc32c994",
+      "status": "PASS",
+      "owned_excel_sessions": 4,
+      "all_owned_excel_exited": true,
+      "dialogs": 0,
+      "monitor_errors": 0,
+      "monitored_files_unchanged": true,
+      "fixture": "Synthetic TargetMet/idle display probes; no numerical certificate generated",
+      "cases": 79,
+      "runner_snapshot_sha256": "1a32987bde3847e2f401e399456ea6f9bf875600a48c0ee16925e5cd5dae69b9"
+    },
+    {
+      "run": "seep_state_positive_01",
+      "summary_path": "versions/G1R20_Fix4/results/seep_state_positive_01/summary.json",
+      "summary_sha256": "1b6557f501ac31da6f19872f461b5cd74496c20c8a20f13185cf0e1c3a8a33fe",
+      "status": "PASS",
+      "owned_excel_sessions": 5,
+      "all_owned_excel_exited": true,
+      "dialogs": 0,
+      "monitor_errors": 0,
+      "monitored_files_unchanged": true,
+      "fixture": "Real public mode2 seep producer, synthetic main display/flags/source proof; conic optimizer0, no numerical soil certificate",
+      "cases": 5,
+      "runner_snapshot_sha256": "4acb0792def743890336369465d853a0420ac7d84f8127d833cd4bd85a6c48f1"
+    },
+    {
+      "run": "saved_revision_positive_01",
+      "summary_path": "versions/G1R20_Fix4/results/saved_revision_positive_01/summary.json",
+      "summary_sha256": "f95b9ca34e11b7d29e3a8eb457c4a2acfb129844657d32a8611e0c3cad85b957",
+      "status": "PASS",
+      "owned_excel_sessions": 3,
+      "all_owned_excel_exited": true,
+      "dialogs": 0,
+      "monitor_errors": 0,
+      "monitored_files_unchanged": true,
+      "fixture": "Synthetic saved display/source record only; no numerical certificate or conic optimizer call",
+      "public_calls": 0,
+      "runner_snapshot_sha256": "5f78a6a36ad1ced6fef331ba7d6f744b7936f2d581431089c01e19953fdd68fe",
+      "physical_before": "602cba5b1dbb2effcf12f9a4f436214317b42d0fa0ba330056ab7fef87097d22",
+      "physical_after_upgrade": "602cba5b1dbb2effcf12f9a4f436214317b42d0fa0ba330056ab7fef87097d22",
+      "physical_after_reopen": "602cba5b1dbb2effcf12f9a4f436214317b42d0fa0ba330056ab7fef87097d22",
+      "reopened": {
+        "pair": [
+          null,
+          null
+        ],
+        "status": "未解析（入力変更）"
+      }
+    },
+    {
+      "run": "pure_public_positive_01",
+      "summary_path": "versions/G1R20_Fix4/results/pure_public_positive_01/summary.json",
+      "summary_sha256": "6e66f5e85fd22f51dd55c9bb16bb752bf743a8c090cd2d0a9d3f3d6c0e45d76d",
+      "status": "PASS",
+      "owned_excel_sessions": 1,
+      "all_owned_excel_exited": true,
+      "dialogs": 0,
+      "monitor_errors": 0,
+      "monitored_files_unchanged": true,
+      "fixture": "Final saved Fix4 workbook; no VBE access, no injected modules or replacement numerical state; direct public macros only",
+      "public_calls": 9,
+      "runner_snapshot_sha256": "5f78a6a36ad1ced6fef331ba7d6f744b7936f2d581431089c01e19953fdd68fe",
+      "native_info": "DLL_READY;numeric=42;dd_numeric=0;backsolve=0;ordering=0;column_ordering=0;nt_bulk=42;g_bulk=0;gt_bulk=84;kkt_bulk=42;hsd_operator=0;corrector_bulk=42;bulk_job_steps=834;hsd_lu=0;hsd_lu_solve=0;solver_vector_calls=510;hsd_jobs=0;hsd_job_steps=0;krylov_jobs=0;krylov_steps=0;refine_jobs=84;refine_steps=84;input_compare_calls=0;schur_jobs=0;schur_steps=0;schur_native_bytes=0;meshfan_jobs=0;meshfan_steps=0"
+    },
+    {
+      "run": "settings_extent_positive_02",
+      "summary_path": "versions/G1R20_Fix4/results/settings_extent_positive_02/summary.json",
+      "summary_sha256": "65baeacfd92cdc8faa1b82c15060783daf7c3e9d2a6f22e58428a51cf7cffcb3",
+      "status": "PASS",
+      "owned_excel_sessions": 3,
+      "all_owned_excel_exited": true,
+      "dialogs": 0,
+      "monitor_errors": 0,
+      "monitored_files_unchanged": true,
+      "fixture": "Synthetic saved display and source record; final saved Fix4 book, display paths use no VBE; final public-reader error is caught in one test-only VBA probe; no numerical certificate or optimizer",
+      "cases": 2,
+      "runner_snapshot_sha256": "82135d91dc1f73f0137078bed87c12927d0dbf2c7dc6c9fc5bae9c183f34fd17",
+      "public_reader_error": "5|SETTING_ROW_OUT_OF_RANGE row=121",
+      "direct_edit_control_in_addition_to_cases": true
+    }
+  ],
+  "retained_harness_failure": {
+    "run": "settings_extent_positive_01",
+    "summary_sha256": "ab77f5bc57e8468bfe766de42dae52eca538dfd8ac028c4a7bdcbfac3b40a62b",
+    "original_status": "FAIL",
+    "original_last_owner_exit": false,
+    "reason": "Expected unhandled VBA Err5 opened a modal runtime dialog; Python COM exception omitted its text. Corrected disposable-copy catching probe passed in settings_extent_positive_02; no product change.",
+    "post_run_exit_check_sha256": "64abfccbbcfd808415d6b9d6d85570bf9470170ff011121be7ab2bc9a6ae57d1",
+    "post_run_exit_check": {
+      "observed_utc": "2026-10-16T21:17:48.770677+00:00",
+      "note": "Read-only post-run ownership check; original FAIL summary and session flags are unchanged. No process was terminated by this check.",
+      "sessions": [
+        {
+          "pid": 22184,
+          "birth": 1792185385.9294534,
+          "creation_time": 1792185385.9294534,
+          "command_line": [
+            "C:\\Program Files\\Microsoft Office\\Root\\Office16\\EXCEL.EXE",
+            "/automation",
+            "-Embedding"
+          ],
+          "original_owner_exited": true,
+          "original_owned_excel_exited": true,
+          "process_present": false,
+          "owned_excel_exited": true,
+          "post_run_owned_excel_exited": true
+        },
+        {
+          "pid": 18876,
+          "birth": 1792185392.5674014,
+          "creation_time": 1792185392.5674014,
+          "command_line": [
+            "C:\\Program Files\\Microsoft Office\\Root\\Office16\\EXCEL.EXE",
+            "/automation",
+            "-Embedding"
+          ],
+          "original_owner_exited": true,
+          "original_owned_excel_exited": true,
+          "process_present": false,
+          "owned_excel_exited": true,
+          "post_run_owned_excel_exited": true
+        },
+        {
+          "pid": 8248,
+          "birth": 1792185399.7956197,
+          "creation_time": 1792185399.7956197,
+          "command_line": [
+            "C:\\Program Files\\Microsoft Office\\Root\\Office16\\EXCEL.EXE",
+            "/automation",
+            "-Embedding"
+          ],
+          "original_owner_exited": false,
+          "original_owned_excel_exited": false,
+          "process_present": false,
+          "owned_excel_exited": true,
+          "post_run_owned_excel_exited": true
+        }
+      ],
+      "excel_processes_present": []
+    }
+  },
+  "scope": "79 settings cases, five producer state cases, two extent paths plus direct edit control; one three-session saved-source migration; nine direct public calls in three actual Fs/Setup cycles. Synthetic display/TargetMet fixtures are not numerical certificates."
+}
