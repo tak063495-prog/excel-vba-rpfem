@@ -1,0 +1,281 @@
+{
+  "case": "P06N",
+  "status": "VERIFIED_TARGET",
+  "target_met": true,
+  "target_gap": 0.02,
+  "root_complete": true,
+  "lower": {
+    "case": "P06N",
+    "mode": "lower",
+    "q": 8,
+    "fs": 0.6767771508826014,
+    "mesh_id": "0b1cffd134d60c92b20ec7480cbbbbfe27695c3a725f6f5d31ec5ca097587cc8",
+    "physical_model_id": "08cc8e73e85408e7a82cbe79b5716ef007cb917d00e021872c40e510b5d17525",
+    "elements": 5966,
+    "source": "D:\\Work\\excel-vba-rpfem\\validation\\G1R19_python26_geometry_replay_20261016\\results\\known_lower_20261016T122636Z\\P06N_known_lower5966\\best_lower_certificate.json",
+    "root_complete": true,
+    "mesh_path": "best_lower_mesh.npz",
+    "field_path": "best_lower_field.npz",
+    "audit": {
+      "objective": -1.000154212143018,
+      "value": 1.000154212143018,
+      "eq_error": 1.8078594177239893e-13,
+      "cone_error": 0.0,
+      "audit": {
+        "pass": true,
+        "errors": {
+          "yield": 0.0,
+          "equilibrium": 5.965129381928485e-11,
+          "internal_traction": 2.557398737224048e-13,
+          "boundary_traction": 5.551115123125783e-17
+        },
+        "load": 1.000154212143018,
+        "value": 1.000154212143018
+      },
+      "raw_lower_errors": {
+        "yield": 0.0,
+        "equilibrium": 1.193025876385697e-09,
+        "internal_traction": 5.114797474448096e-12,
+        "boundary_traction": 1.1102230246251565e-15
+      },
+      "physical_pass": true,
+      "witness": true,
+      "numerical_gate": false,
+      "discrete_root_search": {
+        "mode": "lower",
+        "root_complete": true,
+        "bracket": [
+          0.6767771508826014,
+          0.6768552758826014
+        ],
+        "bracket_width": 7.812500000003997e-05,
+        "fs_tolerance": 0.0001,
+        "endpoint": 0.6767771508826014,
+        "trials": 10,
+        "seconds": 427.03100620000623,
+        "mesh_id": "0b1cffd134d60c92b20ec7480cbbbbfe27695c3a725f6f5d31ec5ca097587cc8",
+        "physical_model_id": "08cc8e73e85408e7a82cbe79b5716ef007cb917d00e021872c40e510b5d17525",
+        "elements": 5966,
+        "q": 8,
+        "case": "P06N",
+        "policy": "hold_initial",
+        "bracket_signs": [
+          1,
+          -1
+        ],
+        "opposite_numerical_endpoint_is_continuum_bound": false,
+        "budget_exhausted": false,
+        "budget_error": null,
+        "case_budget": {
+          "case_seconds": 450.0,
+          "solve_seconds": 30.0,
+          "elapsed_seconds": 427.43719609998516,
+          "remaining_seconds": 22.562803300010273,
+          "exhausted": false,
+          "expired_at": null,
+          "solver_time_allocations": [
+            {
+              "stage": "P06N_new_lower_known_geometry:LP_attempt_1",
+              "time_limit": 30.0,
+              "elapsed_seconds": 8.488305099977879
+            },
+            {
+              "stage": "P06N_new_lower_known_geometry:LP_attempt_1",
+              "time_limit": 30.0,
+              "elapsed_seconds": 49.87943129998166
+            },
+            {
+              "stage": "P06N_new_lower_known_geometry:LP_attempt_1",
+              "time_limit": 30.0,
+              "elapsed_seconds": 72.92349879999529
+            },
+            {
+              "stage": "P06N_new_lower_known_geometry:LP_attempt_1",
+              "time_limit": 30.0,
+              "elapsed_seconds": 97.57549960000324
+            },
+            {
+              "stage": "P06N_new_lower_known_geometry:LP_attempt_1",
+              "time_limit": 30.0,
+              "elapsed_seconds": 120.65106010000454
+            },
+            {
+              "stage": "P06N_new_lower_known_geometry:LP_attempt_1",
+              "time_limit": 30.0,
+              "elapsed_seconds": 145.96232959997724
+            },
+            {
+              "stage": "P06N_new_lower_known_geometry:LP_attempt_1",
+              "time_limit": 30.0,
+              "elapsed_seconds": 170.66632309998386
+            },
+            {
+              "stage": "P06N_new_lower_known_geometry:LP_attempt_1",
+              "time_limit": 30.0,
+              "elapsed_seconds": 193.4559926999791
+            },
+            {
+              "stage": "P06N_new_lower_known_geometry:LP_attempt_1",
+              "time_limit": 30.0,
+              "elapsed_seconds": 218.0433353999979
+            },
+            {
+              "stage": "P06N_new_lower_known_geometry:LP_attempt_2",
+              "time_limit": 30.0,
+              "elapsed_seconds": 240.09184879998793
+            },
+            {
+              "stage": "P06N_new_lower_known_geometry:LP_attempt_3",
+              "time_limit": 30.0,
+              "elapsed_seconds": 262.9180382999766
+            },
+            {
+              "stage": "P06N_new_lower_known_geometry:LP_attempt_1",
+              "time_limit": 30.0,
+              "elapsed_seconds": 290.4131827999954
+            },
+            {
+              "stage": "P06N_new_lower_known_geometry:LP_attempt_2",
+              "time_limit": 30.0,
+              "elapsed_seconds": 314.38809559997753
+            },
+            {
+              "stage": "P06N_new_lower_known_geometry:LP_attempt_3",
+              "time_limit": 30.0,
+              "elapsed_seconds": 338.33249189998605
+            },
+            {
+              "stage": "P06N_new_lower_known_geometry:LP_attempt_4",
+              "time_limit": 30.0,
+              "elapsed_seconds": 379.4025214999856
+            },
+            {
+              "stage": "P06N_new_lower_known_geometry:original_dual",
+              "time_limit": 30.0,
+              "elapsed_seconds": 396.94604949999484
+            }
+          ],
+          "scope": "cooperative wall deadline; OS watchdog required for in-flight native work"
+        },
+        "proposal_method": "bounded_bisection",
+        "pilot_trial_limit": null,
+        "new_points": 10,
+        "pilot_trial_limit_reached": false,
+        "pilot_stop_reason": null
+      }
+    },
+    "policy": "hold_initial",
+    "source_hashes": {
+      "D:\\Work\\excel-vba-rpfem\\docs\\benchmarks\\G1R17_native26_20261013\\data\\inputs\\P06N.json": "389bf6c3c29d49e509a1ea0f270ca0fae3594910da0cb8dd594edfea9cefec2b",
+      "D:\\Work\\excel-vba-rpfem\\validation\\G1R19_python26_geometry_replay_20261016\\results\\known_lower_20261016T122636Z\\P06N_known_lower5966\\best_lower_certificate.json": "f9858ea9e958646af02f9234b05793e5694f4bb0e247b9a79ee1f5b4970c461d",
+      "D:\\Work\\excel-vba-rpfem\\validation\\G1R19_python26_geometry_replay_20261016\\results\\known_lower_20261016T122636Z\\P06N_known_lower5966\\best_lower_mesh.npz": "63e9120241b7796c1f224091454c922ff117eb86fd7fb7061809b3198a59fe98",
+      "D:\\Work\\excel-vba-rpfem\\validation\\G1R19_python26_geometry_replay_20261016\\results\\known_lower_20261016T122636Z\\P06N_known_lower5966\\best_lower_field.npz": "2504b86ceebacc22c135f54ae102c4a73b192e79a55c9d83791b2eb974506a6e"
+    }
+  },
+  "upper": {
+    "case": "P06N",
+    "mode": "upper",
+    "q": 8,
+    "fs": 0.6902587260388777,
+    "mesh_id": "44c89fcad8854b4b5ef36f061999d3033613a1e5b7193b2e2ef4a8eb0a8b7fbc",
+    "physical_model_id": "08cc8e73e85408e7a82cbe79b5716ef007cb917d00e021872c40e510b5d17525",
+    "elements": 8739,
+    "source": "D:\\Work\\excel-vba-rpfem\\validation\\G1R19_python26_dual_linear_repair_20261016\\results\\P06N_repair_20261016T125042Z\\best_upper_certificate.json",
+    "root_complete": true,
+    "mesh_path": "best_upper_mesh.npz",
+    "field_path": "best_upper_field.npz",
+    "audit": {
+      "objective": 0.999997988594999,
+      "value": 0.999997988595,
+      "eq_error": 9.784808295050365e-10,
+      "cone_error": 2.163433515667279e-08,
+      "audit": {
+        "pass": true,
+        "errors": {
+          "flow": 3.91246291799448e-10,
+          "jump": 2.1634334422942686e-08,
+          "bonded_interface": 1.3625546545484687e-09,
+          "boundary": 9.784808295050365e-10,
+          "work": 4.440892098500626e-15,
+          "objective": 9.992007221626409e-16
+        },
+        "dissipation": 0.999997988595,
+        "work": [
+          0.0,
+          1.0000000000000044
+        ],
+        "value": 0.999997988595
+      },
+      "raw_lower_errors": {},
+      "physical_pass": true,
+      "witness": true,
+      "numerical_gate": false,
+      "discrete_root_search": {
+        "mode": "upper",
+        "root_complete": true,
+        "bracket": [
+          0.6901588260388777,
+          0.6902587260388777
+        ],
+        "bracket_width": 9.990000000004162e-05,
+        "fs_tolerance": 0.0001,
+        "endpoint": 0.6902587260388777,
+        "trials": 2,
+        "seconds": 4.942775400006212,
+        "mesh_id": "44c89fcad8854b4b5ef36f061999d3033613a1e5b7193b2e2ef4a8eb0a8b7fbc",
+        "physical_model_id": "08cc8e73e85408e7a82cbe79b5716ef007cb917d00e021872c40e510b5d17525",
+        "elements": 8739,
+        "q": 8,
+        "case": "P06N",
+        "policy": "hold_initial",
+        "bracket_signs": [
+          1,
+          -1
+        ],
+        "opposite_numerical_endpoint_is_continuum_bound": false,
+        "budget_exhausted": false,
+        "budget_error": null,
+        "case_budget": {
+          "case_seconds": 30.0,
+          "solve_seconds": 1.0,
+          "elapsed_seconds": 4.943315399985295,
+          "remaining_seconds": 25.056683800008614,
+          "exhausted": false,
+          "expired_at": null,
+          "solver_time_allocations": [],
+          "scope": "cooperative wall deadline; OS watchdog required for in-flight native work"
+        },
+        "proposal_method": "bounded_bisection",
+        "pilot_trial_limit": null,
+        "new_points": 0,
+        "pilot_trial_limit_reached": false,
+        "pilot_stop_reason": null
+      }
+    },
+    "policy": "hold_initial",
+    "source_hashes": {
+      "D:\\Work\\excel-vba-rpfem\\docs\\benchmarks\\G1R17_native26_20261013\\data\\inputs\\P06N.json": "389bf6c3c29d49e509a1ea0f270ca0fae3594910da0cb8dd594edfea9cefec2b",
+      "D:\\Work\\excel-vba-rpfem\\validation\\G1R19_python26_dual_linear_repair_20261016\\results\\P06N_repair_20261016T125042Z\\best_upper_certificate.json": "735136ec34239d23d819b8e69db0852d31ce4a95bf61c543f872ee4b2b3d36a0",
+      "D:\\Work\\excel-vba-rpfem\\validation\\G1R19_python26_dual_linear_repair_20261016\\results\\P06N_repair_20261016T125042Z\\best_upper_mesh.npz": "50ae0414cbf1d4cd64ae41fda6d368a9318dd6fec2af94c1826930788e5d15f5",
+      "D:\\Work\\excel-vba-rpfem\\validation\\G1R19_python26_dual_linear_repair_20261016\\results\\P06N_repair_20261016T125042Z\\best_upper_field.npz": "5137bdfec7f6f792d4def8863c7551c6a4054ae13feb955ec167b43d69b8c097"
+    }
+  },
+  "relative_width_symmetric": 0.019723805913033424,
+  "execution_scope": {
+    "kind": "known_recipe_geometry_replay",
+    "historical_geometry_imported": true,
+    "historical_field_imported": false,
+    "historical_fs_imported": false,
+    "generic_cold_start": false,
+    "posthoc_independent_original_q8_collection": true
+  },
+  "component_manifest": {
+    "path": "COMPONENT_MANIFEST.json",
+    "sha256": "a34dbb67f87dcf204920c6a264b5407876ff23a43a76584d0aca82a5048c6b69"
+  },
+  "physics_and_root_gates_unchanged": true,
+  "physical_gate_tolerance": 1e-07,
+  "dual_cone_tolerance": 1e-08,
+  "root_normalized_fs_tolerance": 0.0001,
+  "strict_interval_arithmetic_proof": false
+}

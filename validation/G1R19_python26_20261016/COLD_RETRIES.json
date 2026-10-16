@@ -1,0 +1,27 @@
+[
+  {
+    "case": "D01A",
+    "version": "v2_lower_only",
+    "seconds": 76.88892279998981,
+    "reason": "Retain the fresh geometry-derived upper; refine and re-root only the fresh lower",
+    "audit": "validation/G1R19_python26_v2_20261016/results/D01A_lower_only_20261016T110935Z/INDEPENDENT_AUDIT.json",
+    "summary": "validation/G1R19_python26_v2_20261016/results/D01A_lower_only_20261016T110935Z/cases/D01A/summary.json"
+  },
+  {
+    "case": "D08A",
+    "version": "water_conforming",
+    "seconds": 367.3131054,
+    "reason": "Split initial geometry at prescribed waterline so every nested mesh has the same physical hydrostatic body force",
+    "audit": "validation/G1R19_python26_water_20261016/results/fresh_common_water_D08A/INDEPENDENT_AUDIT.json",
+    "summary": "validation/G1R19_python26_water_20261016/results/fresh_common_water_D08A/cases/D08A/summary.json"
+  },
+  {
+    "case": "D05A",
+    "version": "v3_upper_units",
+    "seconds": 327.3986778,
+    "process_exit_code": null,
+    "reason": "Exact positive velocity-coordinate substitution and cone row scaling; original length x1000 coordinates and loads retained; final fields/root independently verified; worker exit code not captured",
+    "audit": "validation/G1R19_python26_v3_20261016/results/D05A_scalar_upper_20261016T111421Z/INDEPENDENT_AUDIT.json",
+    "summary": "validation/G1R19_python26_v3_20261016/results/D05A_scalar_upper_20261016T111421Z/cases/D05A/summary.json"
+  }
+]

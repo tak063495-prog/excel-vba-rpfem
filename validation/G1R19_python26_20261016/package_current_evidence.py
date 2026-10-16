@@ -72,22 +72,63 @@ def main():
     cases = []
     for row in rows:
         case = row['case']; audit_path = REPO/row['audit']; summary_path = REPO/row['summary']
-        verified = collector.validate(audit_path, summary_path, case)
+        geometry_replay = row.get('kind') == 'known_recipe_geometry_replay'
+        verified = collector.validate(audit_path, summary_path, case, geometry_replay=geometry_replay)
         audit, summary = collector.read(audit_path), collector.read(summary_path)
         add(audit_path); add(summary_path)
-        manifest_path = summary_path.parent/'source_manifest.json'
-        add(manifest_path)
-        maps = [collector.read(manifest_path)['source_sha256'], summary.get('wrapper_source_sha256', {})]
-        for mapping in maps:
-            for name, expected in mapping.items():
+        if geometry_replay:
+            manifest_path = summary_path.parent/summary['component_manifest']['path']
+            add(manifest_path, summary['component_manifest']['sha256'])
+            manifest = collector.read(manifest_path)
+            for component in manifest['components']:
+                for key in ('ownership_file', 'summary', 'execution_record',
+                            'independent_primal_audit', 'independent_dual_audit'):
+                    ref = component.get(key)
+                    if ref is not None:
+                        add(ref['path'], ref['sha256'])
+                        if key == 'independent_dual_audit':
+                            replay = collector.read(Path(ref['path']))
+                            for map_key in ('code_and_input_sha256_before', 'code_and_input_sha256_after'):
+                                for name, expected in replay.get(map_key, {}).items():
+                                    add(name, expected)
+                for key in ('component_start_source_sha256', 'component_end_source_sha256', 'input_provenance'):
+                    for name, expected in component[key].items():
+                        add(name, expected)
+                for name, expected in component['component_artifacts_sha256'].items():
+                    add(Path(component['folder'])/name, expected)
+            for name, expected in manifest['collector_reaudit_source_sha256'].items():
                 add(name, expected)
-        producer = REPO/verified['provenance']['producer_root']
-        manifest = collector.read(producer/'INPUTS_26.json')
-        entry = next(item for item in manifest['cases'] if item['case'] == case)
-        add(producer/'INPUTS_26.json')
-        add(entry['input']['path'])
-        if 'initial_mesh' in entry:
-            add(entry['initial_mesh']['path'], entry['initial_mesh']['sha256'])
+            for key in ('collector_script',):
+                ref = manifest.get(key)
+                if ref is not None:
+                    add(ref['path'], ref['sha256'])
+            for key in ('prior_timing_file',):
+                ref = manifest['timing'].get(key)
+                if ref is not None:
+                    add(ref['path'], ref['sha256'])
+            # A posthoc pair has several genuine producers, not one invented
+            # environment/start map. Its independent replay uses the base q8 auditor.
+            producer = collector.ROOT
+            base_manifest = collector.read(producer/'INPUTS_26.json')
+            base_entry = next(item for item in base_manifest['cases'] if item['case'] == case)
+            add(producer/'INPUTS_26.json')
+            add(base_entry['input']['path'])
+            if 'initial_mesh' in base_entry:
+                add(base_entry['initial_mesh']['path'], base_entry['initial_mesh']['sha256'])
+        else:
+            manifest_path = summary_path.parent/'source_manifest.json'
+            add(manifest_path)
+            maps = [collector.read(manifest_path)['source_sha256'], summary.get('wrapper_source_sha256', {})]
+            for mapping in maps:
+                for name, expected in mapping.items():
+                    add(name, expected)
+            producer = REPO/verified['provenance']['producer_root']
+            manifest = collector.read(producer/'INPUTS_26.json')
+            entry = next(item for item in manifest['cases'] if item['case'] == case)
+            add(producer/'INPUTS_26.json')
+            add(entry['input']['path'])
+            if 'initial_mesh' in entry:
+                add(entry['initial_mesh']['path'], entry['initial_mesh']['sha256'])
         for side in audit['sides'].values():
             for name, expected in side.get('tracked_file_sha256', side.get('file_sha256', {})).items():
                 add(name, expected)
@@ -110,7 +151,8 @@ def main():
                           cold_execution_verified=row.get('cold_execution_verified', False),
                           gap_percent=verified['gap_percent']))
     add(args.report)
-    for path in (Path(__file__), collector.ROOT/'collect_current.py', collector.ROOT/'evidence_provenance.py'):
+    for path in (Path(__file__), collector.ROOT/'collect_current.py', collector.ROOT/'evidence_provenance.py',
+                 collector.ROOT/'composite_provenance.py'):
         add(path)
     manifest = dict(status='ALL_NUMERICAL_PAIRS' if len(rows) == report['expected_cases'] else 'PARTIAL',
                     generated_utc=datetime.now(timezone.utc).isoformat(),

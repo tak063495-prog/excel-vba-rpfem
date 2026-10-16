@@ -9,7 +9,7 @@ D01A/D05A/D08Aの別版実験はworker終了コード未記録、P04Nはdriver�
 
 EVIDENCE.zip: 10,255,703 bytes、SHA256 318ae43a5502388f2490eaa1f11fa5341f50a5bcd12ee563be9a15dfe333ba89。
 新しい別フォルダに展開し、Python環境を用意して `python REPLAY.py --output NEW_REPLAY_DIRECTORY` を実行する。
-NumPy/SciPy/Clarabel等は検証時と同じPython参照実装の依存関係を要する。
+検証環境はPython3.13.14、NumPy2.3.5、SciPy1.17.0、Clarabel0.11.1。
 元JSONの絶対パスは計算記録として変更せず、再生はmanifestの同梱相対フォルダを使用する。
 
 独立した展開先・新規プロセスで24/24を再生し、元式・両完了根・2%を再確認した。

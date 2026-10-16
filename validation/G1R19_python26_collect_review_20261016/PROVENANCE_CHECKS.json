@@ -1,0 +1,210 @@
+{
+  "solver_calls": 0,
+  "cases": [
+    {
+      "case": "D01A",
+      "summary": "validation/G1R19_python26_v2_20261016/results/D01A_lower_only_20261016T110935Z/cases/D01A/summary.json",
+      "source_provenance_verified": true,
+      "input_provenance_verified": true,
+      "model_identity_verified": true,
+      "own_root_identity_verified": true,
+      "verified_source_count": 51,
+      "verified_source_set_sha256": "311695809f61be16dfa31adb0614ccea4654f97f2050a60127c3a32815dd9c89",
+      "producer_root": "validation/G1R19_python26_v2_20261016",
+      "producer_source_manifest_sha256": "c9701473659d9e908b6ba5446c131d3043e1a18b557fad602d3dc851b6aec040",
+      "summary_sha256": "1af4bb0e5f728a33dca7280070140083cb3952e66bfd2c0491673c1ff746fb57",
+      "input_sha256": "9b5f09ac4771f128febd047d5ade57eb40d97f171ce568265e9d3113f31f9197",
+      "input_canonical_sha256": "61064a075497006e218c00a9ab6160e73d142f6d34bd2b74495cc294def74da4",
+      "input_manifest_sha256": "971bf1c476319e11361f35590c5a3ed6017c46adbb0f211b8feaa7b915b78e0f",
+      "physical_model_id": "93d1091474efc6505b694e0cf3bc45b44edb96f743ccbda3fb2ac1cc85445cb3",
+      "sides": {
+        "lower": {
+          "fs": 0.5768175160350021,
+          "mesh_id": "4fa53a35947630ab9134b7b86a2b1756c7ff447050ee127fb1da52ff7f6137d6",
+          "physical_model_id": "93d1091474efc6505b694e0cf3bc45b44edb96f743ccbda3fb2ac1cc85445cb3",
+          "q": 8,
+          "policy": "equal_reduced_phi",
+          "root_complete": true,
+          "root_width_normalized": 8.38860799999841e-05
+        },
+        "upper": {
+          "fs": 0.5774016348870129,
+          "mesh_id": "4b64db8ac439a2c4f5a8e3ab5edd3195ee891660c14ed4279b77321da4d05db8",
+          "physical_model_id": "93d1091474efc6505b694e0cf3bc45b44edb96f743ccbda3fb2ac1cc85445cb3",
+          "q": 8,
+          "policy": "equal_reduced_phi",
+          "root_complete": true,
+          "root_width_normalized": 6.406250000001723e-05
+        }
+      },
+      "explicit_producer_end_source_map": false,
+      "source_closure_scope": "start manifest + summary maps + current complete file set; explicit end map when available",
+      "cold_execution_status_verified": false,
+      "execution_note": "Worker exit status, supervisor termination and budget are separate from scientific/source provenance."
+    },
+    {
+      "case": "D08A",
+      "summary": "validation/G1R19_python26_water_20261016/results/fresh_common_water_D08A/cases/D08A/summary.json",
+      "source_provenance_verified": true,
+      "input_provenance_verified": true,
+      "model_identity_verified": true,
+      "own_root_identity_verified": true,
+      "verified_source_count": 52,
+      "verified_source_set_sha256": "ae09b986749a7a5707c8bc4847272ddb047bf43d10d4f743e1b1d5b619efbe25",
+      "producer_root": "validation/G1R19_python26_water_20261016",
+      "producer_source_manifest_sha256": "1c1f7e580862b045057d9e5b39e6686db9b18c1e9af76872cce646c86ec62d83",
+      "summary_sha256": "1d0e7b4d6e71c28f9424d28280a17d3ffbca9615fb39950567a38f4bfac49372",
+      "input_sha256": "c3650aff7307ff93f79dfdf7af70ba63892b8e15c098178c71614fcbbf216b08",
+      "input_canonical_sha256": "1e84f58bdd743a5794cef64dba3396046e3f8c0ee63b651d2ad1feefe26bf122",
+      "input_manifest_sha256": "e2ae045ca85a0054119dc344bcc8c830ad1620c0750fac7a3418a6064cc2ef03",
+      "physical_model_id": "984af41b3d0fe16abf5f0ecd1f924014c2086e7b01180d89de4b80ee6cb8117d",
+      "sides": {
+        "lower": {
+          "fs": 1.3030466812080705,
+          "mesh_id": "bca164dbaa17da7b3c2b866cfe048e1d67f539fdeb261b8594e90e23673e1280",
+          "physical_model_id": "984af41b3d0fe16abf5f0ecd1f924014c2086e7b01180d89de4b80ee6cb8117d",
+          "q": 8,
+          "policy": "equal_reduced_phi",
+          "root_complete": true,
+          "root_width_normalized": 4.866965755376293e-05
+        },
+        "upper": {
+          "fs": 1.327746999471792,
+          "mesh_id": "bca164dbaa17da7b3c2b866cfe048e1d67f539fdeb261b8594e90e23673e1280",
+          "physical_model_id": "984af41b3d0fe16abf5f0ecd1f924014c2086e7b01180d89de4b80ee6cb8117d",
+          "q": 8,
+          "policy": "equal_reduced_phi",
+          "root_complete": true,
+          "root_width_normalized": 7.14525630963372e-05
+        }
+      },
+      "explicit_producer_end_source_map": false,
+      "source_closure_scope": "start manifest + summary maps + current complete file set; explicit end map when available",
+      "cold_execution_status_verified": false,
+      "execution_note": "Worker exit status, supervisor termination and budget are separate from scientific/source provenance."
+    },
+    {
+      "case": "D05A",
+      "summary": "validation/G1R19_python26_v3_20261016/results/D05A_scalar_upper_20261016T111421Z/cases/D05A/summary.json",
+      "source_provenance_verified": true,
+      "input_provenance_verified": true,
+      "model_identity_verified": true,
+      "own_root_identity_verified": true,
+      "verified_source_count": 51,
+      "verified_source_set_sha256": "b0521c263f18fd4c8e9f09c704db47e04d77c55aff295b14b3c161ba57f4286f",
+      "producer_root": "validation/G1R19_python26_v3_20261016",
+      "producer_source_manifest_sha256": "126d494fd2340b2cd4bac7268601eab90867771566ace091ac7aad25ba445d6c",
+      "summary_sha256": "d99d38a24b7402e51ba5c031e0973c44af56d49ea5ac4bc685581ecbe09998e4",
+      "input_sha256": "b9c7b2b34a74889f0274f220b1895405acd68409f8df3b13571d5f62f27fa7e2",
+      "input_canonical_sha256": "2320c3ed03c576233d6b49b9488525cf5b9693e024f0afbdd0e7d205a7d5e041",
+      "input_manifest_sha256": "971bf1c476319e11361f35590c5a3ed6017c46adbb0f211b8feaa7b915b78e0f",
+      "physical_model_id": "3c270d5c79373766e05b2c3b7da528746236aa01a62325df98ebf25efe728347",
+      "sides": {
+        "lower": {
+          "fs": 1.3028266247689342,
+          "mesh_id": "d957c8a2111c7efeb68411b152cae857439ac62bb8c5123612f337483912df7b",
+          "physical_model_id": "3c270d5c79373766e05b2c3b7da528746236aa01a62325df98ebf25efe728347",
+          "q": 8,
+          "policy": "equal_reduced_phi",
+          "root_complete": true,
+          "root_width_normalized": 4.8551188258054866e-05
+        },
+        "upper": {
+          "fs": 1.3254379799492289,
+          "mesh_id": "d957c8a2111c7efeb68411b152cae857439ac62bb8c5123612f337483912df7b",
+          "physical_model_id": "3c270d5c79373766e05b2c3b7da528746236aa01a62325df98ebf25efe728347",
+          "q": 8,
+          "policy": "equal_reduced_phi",
+          "root_complete": true,
+          "root_width_normalized": 5.155835116387987e-05
+        }
+      },
+      "explicit_producer_end_source_map": false,
+      "source_closure_scope": "start manifest + summary maps + current complete file set; explicit end map when available",
+      "cold_execution_status_verified": false,
+      "execution_note": "Worker exit status, supervisor termination and budget are separate from scientific/source provenance."
+    },
+    {
+      "case": "D02A",
+      "summary": "validation\\G1R19_python26_20261016\\results\\cold_auto_c0_20261016_2003\\cases\\D02A\\summary.json",
+      "source_provenance_verified": true,
+      "input_provenance_verified": true,
+      "model_identity_verified": true,
+      "own_root_identity_verified": true,
+      "verified_source_count": 51,
+      "verified_source_set_sha256": "986545dabf7c32b40d26b00a2ea6c7b888b2bcc785d154e5e4fbfd3223746339",
+      "producer_root": "validation/G1R19_python26_20261016",
+      "producer_source_manifest_sha256": "dd5cc1c7dddaada6f07827719bb2a52c5e6bb0a3acdd47a26ae0142cc9ab9025",
+      "summary_sha256": "aa62f518837e16d5123c985275694013c17456cd8014ef8d6f85cf27b1c92d7e",
+      "input_sha256": "97c4f88a81575120452a427fdc80621a630a0abf4f09d5da119b3a64f6512a5b",
+      "input_canonical_sha256": "3911bed529d59055e7a1c1d928fba7adf667b7d00118f2331e01a643de53bf99",
+      "input_manifest_sha256": "971bf1c476319e11361f35590c5a3ed6017c46adbb0f211b8feaa7b915b78e0f",
+      "physical_model_id": "88804f72c1e9025c7ad0606e33e33d648b0f0532c402edf97fde7ca082f595ea",
+      "sides": {
+        "lower": {
+          "fs": 1.4999745740800001,
+          "mesh_id": "8acfacdcc08aec684ec702723b768da44b22e46841377bd373bd366ccfcef1ad",
+          "physical_model_id": "88804f72c1e9025c7ad0606e33e33d648b0f0532c402edf97fde7ca082f595ea",
+          "q": 8,
+          "policy": "equal_reduced_phi",
+          "root_complete": true,
+          "root_width_normalized": 3.1457318439984424e-05
+        },
+        "upper": {
+          "fs": 1.500142126501501,
+          "mesh_id": "9703420430c972b1a92609d00013ee105d3ba2930c8bd15701336a31a2ae276a",
+          "physical_model_id": "88804f72c1e9025c7ad0606e33e33d648b0f0532c402edf97fde7ca082f595ea",
+          "q": 8,
+          "policy": "equal_reduced_phi",
+          "root_complete": true,
+          "root_width_normalized": 8.541222158682688e-05
+        }
+      },
+      "explicit_producer_end_source_map": false,
+      "source_closure_scope": "start manifest + summary maps + current complete file set; explicit end map when available",
+      "cold_execution_status_verified": false,
+      "execution_note": "Worker exit status, supervisor termination and budget are separate from scientific/source provenance."
+    },
+    {
+      "case": "P04N",
+      "summary": "validation\\G1R19_python26_20261016\\results\\cold_auto_c0_20261016_2003\\cases\\P04N\\summary.json",
+      "source_provenance_verified": true,
+      "input_provenance_verified": true,
+      "model_identity_verified": true,
+      "own_root_identity_verified": true,
+      "verified_source_count": 51,
+      "verified_source_set_sha256": "986545dabf7c32b40d26b00a2ea6c7b888b2bcc785d154e5e4fbfd3223746339",
+      "producer_root": "validation/G1R19_python26_20261016",
+      "producer_source_manifest_sha256": "dd5cc1c7dddaada6f07827719bb2a52c5e6bb0a3acdd47a26ae0142cc9ab9025",
+      "summary_sha256": "0f8f970ffbb76f6706e728fb4cb4bbaae5ffc0f15d71a36ffbb9e9d718fbc253",
+      "input_sha256": "2aa99fceb305627ba7b39447ed9a2435dfd40c8202157f385b8a1478e852bff7",
+      "input_canonical_sha256": "541db3701c417b59faa655006909b13b7f7c76138a6fd7977e457146b9ae186b",
+      "input_manifest_sha256": "971bf1c476319e11361f35590c5a3ed6017c46adbb0f211b8feaa7b915b78e0f",
+      "physical_model_id": "85797037b5af7e3e6cc48a8bbb7b86f30470211580ca3bdfc016a082462386e2",
+      "sides": {
+        "lower": {
+          "fs": 2.1434168509911893,
+          "mesh_id": "2955abe39c6516a053f284dd6b4e91729f19c0e345c7915f52a3ff0638f9d527",
+          "physical_model_id": "85797037b5af7e3e6cc48a8bbb7b86f30470211580ca3bdfc016a082462386e2",
+          "q": 8,
+          "policy": "hold_initial",
+          "root_complete": true,
+          "root_width_normalized": 5.064056799375631e-05
+        },
+        "upper": {
+          "fs": 2.1843375021806315,
+          "mesh_id": "aca1f78f69a823caa854715ffba96a8b1e11ec39d2194ea0aa6c47d03ed42dbb",
+          "physical_model_id": "85797037b5af7e3e6cc48a8bbb7b86f30470211580ca3bdfc016a082462386e2",
+          "q": 8,
+          "policy": "hold_initial",
+          "root_complete": true,
+          "root_width_normalized": 3.3791966771488055e-05
+        }
+      },
+      "explicit_producer_end_source_map": false,
+      "source_closure_scope": "start manifest + summary maps + current complete file set; explicit end map when available",
+      "cold_execution_status_verified": false,
+      "execution_note": "Worker exit status, supervisor termination and budget are separate from scientific/source provenance."
+    }
+  ]
+}

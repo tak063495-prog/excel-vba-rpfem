@@ -11,6 +11,7 @@ import hashlib
 import json
 import math
 from evidence_provenance import verify_source_provenance
+from composite_provenance import verify_composite_provenance
 
 ROOT = Path(__file__).resolve().parent
 REPO = ROOT.parents[1]
@@ -24,13 +25,13 @@ def relative(path):
     return path.resolve().relative_to(REPO.resolve()).as_posix()
 
 
-def validate(audit_path, summary_path, case):
+def validate(audit_path, summary_path, case, *, geometry_replay=False):
     audit, summary = read(audit_path), read(summary_path)
     if audit.get('case') != case or summary.get('case') != case:
         raise ValueError('Case identity differs')
     if not audit.get('target_met') or not audit.get('root_complete'):
         raise ValueError('Independent audit does not certify the target and both roots')
-    if not summary.get('source_unchanged'):
+    if not geometry_replay and not summary.get('source_unchanged'):
         raise ValueError('The producer did not verify unchanged sources')
     lower, upper = audit['lower_fs'], audit['upper_fs']
     if not all(math.isfinite(v) for v in (lower, upper)) or not 0 < lower <= upper:
@@ -73,7 +74,8 @@ def validate(audit_path, summary_path, case):
         if read(verification).get('status') != 'PASS':
             raise ValueError('Common-load geometry verification failed')
     rounded = [str(Decimal(str(v)).quantize(Decimal('.01'), rounding=ROUND_HALF_UP)) for v in (lower, upper)]
-    provenance = verify_source_provenance(summary_path, case, repo=REPO, audit=audit)
+    verifier = verify_composite_provenance if geometry_replay else verify_source_provenance
+    provenance = verifier(summary_path, case, repo=REPO, audit=audit)
     return dict(lower_fs=lower, upper_fs=upper, gap_percent=gap*100,
                 lower_elements=audit['sides']['lower']['elements'],
                 upper_elements=audit['sides']['upper']['elements'],
@@ -148,6 +150,8 @@ def main():
     ap.add_argument('--batch', type=Path, required=True)
     ap.add_argument('--additional-batch', type=Path, action='append', default=[])
     ap.add_argument('--supervised-batch', type=Path, action='append', default=[])
+    ap.add_argument('--geometry-pair', type=Path, action='append', default=[],
+                    help='Explicit posthoc pair with real per-component source provenance; never a normal cold run')
     ap.add_argument('--retries', type=Path, default=ROOT/'COLD_RETRIES.json')
     ap.add_argument('--output', type=Path, default=ROOT)
     args = ap.parse_args()
@@ -198,6 +202,27 @@ def main():
             except (KeyError, ValueError, OSError) as error:
                 attempt.update(status='EVIDENCE_REJECTED', error=str(error))
             attempts.append(attempt)
+    for folder in args.geometry_pair:
+        summary_path = folder/'summary.json'
+        summary = read(summary_path)
+        case = summary['case']
+        if case not in rows:
+            raise ValueError('Geometry replay is outside the 26-case catalog')
+        attempt = dict(case=case, version=folder.name, kind='known_recipe_geometry_replay',
+                       status='EVIDENCE_REJECTED', selected=False, verified=False,
+                       cold_execution_verified=False, process_exit_code=None,
+                       timing_scope='Explicit posthoc geometry replay; component process sums, not a generic cold-run time')
+        try:
+            attempt.update(validate(folder.parent/(folder.name+'_INDEPENDENT_AUDIT.json'), summary_path,
+                                    case, geometry_replay=True), verified=True,
+                           status='VERIFIED_PAIR_GEOMETRY_REPLAY')
+            timing = attempt['provenance']['timing']
+            attempt['seconds'] = timing['adopted_geometry_solve_component_process_sum_seconds']
+            attempt['adopted_path_seconds'] = timing['adopted_components_plus_fresh_hint_path_process_sum_seconds']
+            attempt['all_current_session_trial_seconds'] = timing['all_current_session_attempt_process_sum_seconds']
+        except (KeyError, ValueError, OSError) as error:
+            attempt['error'] = str(error)
+        attempts.append(attempt)
     for attempt in attempts:
         row = rows[attempt['case']]
         row['attempts'].append(attempt)
@@ -212,7 +237,7 @@ def main():
                 break
     count = sum(r['verified'] for r in rows.values())
     completed = sum(r['cold_execution_verified'] for r in rows.values())
-    report = dict(scope='All 26 catalog cases; fresh solves and explicitly labelled continuations; no historical replay counted',
+    report = dict(scope='All 26 catalog cases; fresh solves, explicit continuations and separately labelled historical-geometry replays; no historical field replay counted',
                   verified_cases=count, expected_cases=len(rows), all_26_verified=count == len(rows),
                   completed_cold_runs=completed, all_26_cold_runs_completed=completed == len(rows),
                   completion_note='A reassembled physical pair with completed own roots can be scientifically verified after a timeout; that does not establish normal cold-run completion or a captured successful worker exit',
@@ -227,7 +252,7 @@ def main():
     with (args.output/'CURRENT_RESULTS.csv').open('w', encoding='utf8', newline='') as stream:
         writer = csv.DictWriter(stream, fieldnames=fields, extrasaction='ignore')
         writer.writeheader(); writer.writerows(rows.values())
-    print(f'{count}/{len(rows)} fresh physical pairs independently verified at GAP <= 2%; {completed}/{len(rows)} normal cold executions verified')
+    print(f'{count}/{len(rows)} physical pairs independently verified at GAP <= 2%; {completed}/{len(rows)} normal cold executions verified')
     for row in rows.values():
         if row['status'] != 'PENDING':
             print(row['case'], row['status'], row.get('version'), row.get('gap_percent'))

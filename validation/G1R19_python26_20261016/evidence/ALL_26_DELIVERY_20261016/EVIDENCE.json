@@ -1,0 +1,10 @@
+{
+  "status": "ALL_NUMERICAL_PAIRS",
+  "verified_cases": 26,
+  "file_count": 1105,
+  "archive": "EVIDENCE.zip",
+  "bytes": 98287686,
+  "sha256": "9121db1fa2f60ebdddf35d8c6123d4562cf631a3808c61cb02d2a36702e2960a",
+  "crc_and_all_member_sha256": "PASS",
+  "saved_field_replay_not_yet_run": true
+}

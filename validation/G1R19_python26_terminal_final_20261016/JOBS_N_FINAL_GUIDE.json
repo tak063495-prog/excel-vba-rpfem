@@ -1,0 +1,23 @@
+[
+  {
+    "label": "P06N_upper8739_final_guide",
+    "case": "P06N",
+    "mode": "upper",
+    "script": "close_current_side.py",
+    "case_seconds": 120,
+    "argv": [
+      "--case",
+      "P06N",
+      "--mode",
+      "upper",
+      "--source",
+      "D:\\Work\\excel-vba-rpfem\\validation\\G1R19_python26_terminal_final_20261016\\results\\P06N_immutable_20261016T124645Z",
+      "--output",
+      "{OUTPUT}",
+      "--case-seconds",
+      "120",
+      "--solve-seconds",
+      "60"
+    ]
+  }
+]

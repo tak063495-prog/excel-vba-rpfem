@@ -1,0 +1,26 @@
+Traceback (most recent call last):
+  File "D:\Work\rpfem_full26_portable_check_20261016\validation\G1R19_python26_20261016\audit_case.py", line 57, in <module>
+    if __name__=='__main__':main()
+                            ~~~~^^
+  File "D:\Work\rpfem_full26_portable_check_20261016\validation\G1R19_python26_20261016\audit_case.py", line 53, in main
+    result=audit(args.case,args.folder.resolve(),args.target_gap)
+  File "D:\Work\rpfem_full26_portable_check_20261016\validation\G1R19_python26_20261016\audit_case.py", line 17, in audit
+    _,record=benchmark_models.load_model(case)
+             ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "D:\Work\rpfem_full26_portable_check_20261016\validation\G1R19_python26_20261016\python\benchmark_models.py", line 169, in load_model
+    raw = path.read_bytes()
+  File "C:\Users\link_\AppData\Local\Programs\Python\Python313\Lib\pathlib\_abc.py", line 625, in read_bytes
+    with self.open(mode='rb') as f:
+         ~~~~~~~~~^^^^^^^^^^^
+  File "C:\Users\link_\AppData\Local\Programs\Python\Python313\Lib\pathlib\_local.py", line 537, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'D:\\Work\\rpfem_full26_portable_check_20261016\\versions\\G1R17\\results\\geometry25\\P06A_new_vba_mesh.bin'
+Traceback (most recent call last):
+  File "D:\Work\rpfem_full26_portable_check_20261016\REPLAY.py", line 15, in <module>
+    subprocess.run(command,cwd=root,check=True,timeout=180)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\link_\AppData\Local\Programs\Python\Python313\Lib\subprocess.py", line 577, in run
+    raise CalledProcessError(retcode, process.args,
+                             output=stdout, stderr=stderr)
+subprocess.CalledProcessError: Command '['D:\\Work\\rpfem-venv\\Scripts\\python.exe', '-X', 'utf8', 'D:\\Work\\rpfem_full26_portable_check_20261016\\validation\\G1R19_python26_20261016\\audit_case.py', '--case', 'P06A', '--folder', 'D:\\Work\\rpfem_full26_portable_check_20261016\\validation\\G1R19_python26_geometry_replay_20261016\\results\\P06A_COMPOSITE_20261016T122851Z', '--target-gap', '.02', '--output', 'D:\\Work\\excel-vba-rpfem\\validation\\G1R19_python26_collect_review_20261016\\results\\portable_20261016T130200Z\\replayed_cases\\P06A.json']' returned non-zero exit status 1.

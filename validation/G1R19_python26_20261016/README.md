@@ -44,3 +44,11 @@ supervisor・solver・独立監査の正常終了、sourceの開始/終了/現�
 `cold_execution_verified`（初期状態からのdriverも正常終了）を区別する。
 前者だけがtrueの場合、時間切れ・worker終了コード未記録などの理由をstatusに残す。
 この場合はGAP到達の証拠にはなるが、規定時間内の正常完了や本番での速度を保証しない。
+
+既知メッシュの形状だけからの新規求解は `--geometry-pair FOLDER` で明示追加する。
+この分類では過去応力・速度・Fsを入力せず、実際の各componentの開始/終了ソース・入力・場・根の記録を照合する。
+後段で集めた対を単一のcold実行と表示することはない。過去保存場そのものの再生も26例の新規求解には数えない。
+
+P06Aでは既知形状から新しい場・根を求め、GAP1.8173754281%を別プロセス原q8監査で確認した。
+`composite_provenance.py` は後付けで架空の開始manifestを作らず、各求解componentの実記録へ結び付ける。
+従来のPARTIAL_24of26 ZIPはその時点の不変snapshotとして保持する。
