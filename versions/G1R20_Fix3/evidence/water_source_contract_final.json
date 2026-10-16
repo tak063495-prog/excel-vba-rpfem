@@ -1,0 +1,15 @@
+{
+  "status": "PASS",
+  "scope": "portable static contract only",
+  "checks": [
+    "utf8_cp932_source_identity",
+    "lossless_journal_fail_closed_ordering",
+    "producer_and_consumer_source_checks_precede_eligibility_cache",
+    "all_modes_scope_and_relevant_input_footprint",
+    "seep_and_water_numerical_formulas_unchanged"
+  ],
+  "sources": {
+    "RPX_Water.bas": "3b6b98c937035aa911410b68fb536a9e4098306fe3a6d675a8cd41dd34f9611c",
+    "RPX_Seep.bas": "4dd738b46ebb59786f231cb3e70972b5314f30fcd64ae37430917374ceb13224"
+  }
+}

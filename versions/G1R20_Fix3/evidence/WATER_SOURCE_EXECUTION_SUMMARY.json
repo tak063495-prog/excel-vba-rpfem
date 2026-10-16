@@ -1,0 +1,126 @@
+{
+  "status": "PASS",
+  "created_utc": "2026-10-16T20:17:22.967333+00:00",
+  "scope": "Water provenance/source storage/lifecycle; conic_optimizer_calls=0; no full26/P06 Fs claim",
+  "negative_public_fix2": {
+    "status": "CONFIRMED_NEGATIVE",
+    "modes": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "reproduced": 4,
+    "entrypoint": "RPX_SeepRunSilent -> edit hydraulic input -> RPX_CreateMesh",
+    "owned_excel_exited": true,
+    "all_monitored_sha_unchanged": true
+  },
+  "positive_fix3": {
+    "status": "PASS",
+    "top_level_cases": 21,
+    "case_names": [
+      "WaterSourceRecordRoundTrip",
+      "WaterSourceAllModes",
+      "WaterSourceProducerChange",
+      "WaterSourceMalformedProof",
+      "WaterSourceManualFormula",
+      "restart_mode_0_healthy",
+      "restart_mode_0_changed",
+      "restart_mode_0_recovered",
+      "restart_mode_1_healthy",
+      "restart_mode_1_changed",
+      "restart_mode_1_recovered",
+      "restart_mode_2_healthy",
+      "restart_mode_2_changed",
+      "restart_mode_2_recovered",
+      "restart_mode_3_healthy",
+      "restart_mode_3_changed",
+      "restart_mode_3_recovered",
+      "public_mode_0",
+      "public_mode_1",
+      "public_mode_2",
+      "public_mode_3"
+    ],
+    "same_excel_process_book_save_close_reopen_modes": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "same_process_reopen_conditions": 12,
+    "public_producer_modes": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "utf16_lossless_code_units": 86016,
+    "owned_excel_exited": true,
+    "all_monitored_sha_unchanged": true
+  },
+  "true_process_restart": {
+    "status": "PASS",
+    "mode": 2,
+    "owned_processes": [
+      {
+        "pid": 12132,
+        "birth": 1792181776.4505608,
+        "cmdline": [
+          "C:\\Program Files\\Microsoft Office\\Root\\Office16\\EXCEL.EXE",
+          "/automation",
+          "-Embedding"
+        ],
+        "owned_excel_exited": true
+      },
+      {
+        "pid": 22856,
+        "birth": 1792181786.1802838,
+        "cmdline": [
+          "C:\\Program Files\\Microsoft Office\\Root\\Office16\\EXCEL.EXE",
+          "/automation",
+          "-Embedding"
+        ],
+        "owned_excel_exited": true
+      }
+    ],
+    "sequence": "final delivery Fix3 copy -> public mode2 healthy producer -> edit -> save -> process1 quit -> distinct process2 with events disabled -> SEEP_SOURCE_CHANGED rejection -> public mode2 regeneration accepted",
+    "all_monitored_sha_unchanged": true
+  },
+  "evidence": {
+    "negative_fixture_attempt": {
+      "path": "results/water_source_negative_01/summary.json",
+      "sha256": "a1a6e12b31202f8507da6f03de9a8ddf4fbdf730b740e485e2d73405922d6383"
+    },
+    "negative_fixture_later_exit": {
+      "path": "results/water_source_negative_01/POST_RUN_EXIT_CHECK.json",
+      "sha256": "67612133bf35aea9b92e62c3e92bdeaa8d0af77330a33515d8fc439c47224bb0"
+    },
+    "negative_all_modes": {
+      "path": "results/water_source_negative_02/summary.json",
+      "sha256": "5dda6c21b7d06c0d394acaafb62411ae81cff04dc8d3afbefa2db45a3ba3135a"
+    },
+    "positive_source_and_book_reopen": {
+      "path": "results/water_source_positive_01/summary.json",
+      "sha256": "cb31678d197b473d0e5bfbec230cd35b15498ba0d6072081320657f972a3144c"
+    },
+    "positive_true_process_restart": {
+      "path": "results/water_source_process_restart_01/summary.json",
+      "sha256": "dbb489fca8d1bd6115964784ff65091e14263e592a0247c0c8ed3a68f6e9a537"
+    },
+    "portable_contract": {
+      "path": "evidence/water_source_contract_final.json",
+      "sha256": "901a6330fb2e874590ee7fbbf2e8f4d47bacee059be43aae1edf1f63df813544"
+    }
+  },
+  "failed_attempt_policy": {
+    "original_summary_preserved": true,
+    "reason": "fixture Q:T face loads blank; explicit zero in next attempt only",
+    "original_owned_exit_false": true,
+    "later_exit_check": "results/water_source_negative_01/POST_RUN_EXIT_CHECK.json"
+  },
+  "old_fix1_probe_note": "The historical WaterCacheFix1Probe deliberately switches B3 among modes while reusing a mode1 result. Fix3 must reject this source mismatch, so that old acceptance expectation is intentionally obsolete. Historical files/evidence are unchanged; WaterSourceAllModes provides fresh context per mode.",
+  "product_sha256": {
+    "RPX_Water.bas": "3b6b98c937035aa911410b68fb536a9e4098306fe3a6d675a8cd41dd34f9611c",
+    "RPX_Seep.bas": "4dd738b46ebb59786f231cb3e70972b5314f30fcd64ae37430917374ceb13224"
+  }
+}

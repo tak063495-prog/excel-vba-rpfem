@@ -1,0 +1,188 @@
+{
+  "status": "PASS",
+  "archive": "EXECUTION_EVIDENCE.zip",
+  "bytes": 156106374,
+  "sha256": "2c7cfeefa51980b8e16e0443ebb1766417341193f3e5b16e4c79fead7943f64d",
+  "members": 2884,
+  "source_file_count": 2883,
+  "member_sha256_and_crc": "PASS",
+  "run_summaries": [
+    {
+      "path": "versions/G1R20_Fix3/results/candidate_final_01/delivery/WORKBOOK_VALIDATION.json",
+      "status": "PASS",
+      "sha256": "0b2eb931cb5ec2a4d9a1e5231372cb655e4ceeb57f5a8560ce6345cb2895c1b0"
+    },
+    {
+      "path": "versions/G1R20_Fix3/results/owned_excel_1792182017045637900/summary.json",
+      "status": "PASS",
+      "sha256": "7a1551db441864a73dff60f016b0412cc2080f5459a16320504ba5b58ffd4d8b",
+      "original_owned_excel_exited": true,
+      "later_exit_observation": null
+    },
+    {
+      "path": "versions/G1R20_Fix3/results/read_model_before_1792180801994581100/summary.json",
+      "status": "FAIL",
+      "sha256": "9afb3274fa0fdffbbc1ece6cc30d06034043e52f65a997a7fabc9c7a3973d9d3",
+      "original_owned_excel_exited": true,
+      "later_exit_observation": null
+    },
+    {
+      "path": "versions/G1R20_Fix3/results/read_model_before_1792180821978626500/summary.json",
+      "status": "FAIL",
+      "sha256": "c7aa09e5e7248acc42f02a1d6eb46b571b3727af48b1cc48bd707629fc234038",
+      "original_owned_excel_exited": true,
+      "later_exit_observation": null
+    },
+    {
+      "path": "versions/G1R20_Fix3/results/read_model_before_1792180838940624500/summary.json",
+      "status": "PASS",
+      "sha256": "016bde7fa0f0ad147b3141b861f74c687a95ce8c100637ff56e2014cddc80695",
+      "original_owned_excel_exited": true,
+      "later_exit_observation": null
+    },
+    {
+      "path": "versions/G1R20_Fix3/results/read_model_before_1792181535091900600/summary.json",
+      "status": "PASS",
+      "sha256": "2ccfb0b3bc60c11ffe9bf3d226f5753a5b2b1212405d9d8992fdf8186b4a857d",
+      "original_owned_excel_exited": true,
+      "later_exit_observation": null
+    },
+    {
+      "path": "versions/G1R20_Fix3/results/read_model_fixed_1792181257720530400/summary.json",
+      "status": "FAIL",
+      "sha256": "f227b9ad405fa2e9b07d65d47c2c12abaf11eb13d484818eb4931cc449b4e03b",
+      "original_owned_excel_exited": true,
+      "later_exit_observation": null
+    },
+    {
+      "path": "versions/G1R20_Fix3/results/read_model_fixed_1792181286402870100/summary.json",
+      "status": "FAIL",
+      "sha256": "a2295e218147bfb261c9fdca912523279bb573fb5a689436d2772de6311e1a60",
+      "original_owned_excel_exited": true,
+      "later_exit_observation": null
+    },
+    {
+      "path": "versions/G1R20_Fix3/results/read_model_fixed_1792181547034306500/summary.json",
+      "status": "PASS",
+      "sha256": "a309b1ddfc8fd9460447c10e12df710709c2e9a94dc2df67f0f57803d1f5ef78",
+      "original_owned_excel_exited": true,
+      "later_exit_observation": null
+    },
+    {
+      "path": "versions/G1R20_Fix3/results/saved_formula_negative_01/summary.json",
+      "status": "CONFIRMED_NEGATIVE",
+      "sha256": "7b2db8a60cb0c7570b1f59764f6c91736457e34276f9912b38b41d92db7861bb",
+      "original_owned_excel_exited": true,
+      "later_exit_observation": null
+    },
+    {
+      "path": "versions/G1R20_Fix3/results/saved_formula_positive_01/summary.json",
+      "status": "PASS",
+      "sha256": "d54948c7a66a0a686702c34849d4cd82ff1e2b2a7f9a5d3d8d7030eed2150852",
+      "original_owned_excel_exited": true,
+      "later_exit_observation": null
+    },
+    {
+      "path": "versions/G1R20_Fix3/results/saved_formula_positive_02/summary.json",
+      "status": "PASS",
+      "sha256": "d3ad034e9585afcc07ef76a0be9d7dc0e23449521351ac9dd4777a6f1662c585",
+      "original_owned_excel_exited": true,
+      "later_exit_observation": null
+    },
+    {
+      "path": "versions/G1R20_Fix3/results/saved_formula_positive_final_edit_01/summary.json",
+      "status": "PASS",
+      "sha256": "dc2003ddfe9be01f23027f8119d095fe0b5b80592b522850d96338c5016163a5",
+      "original_owned_excel_exited": true,
+      "later_exit_observation": null
+    },
+    {
+      "path": "versions/G1R20_Fix3/results/saved_formula_positive_final_missingproof_01/summary.json",
+      "status": "PASS",
+      "sha256": "9b57a93fc42f4a9f909d081c603de5bcbaabbfec4f3d30337d0fe085f4048495",
+      "original_owned_excel_exited": true,
+      "later_exit_observation": null
+    },
+    {
+      "path": "versions/G1R20_Fix3/results/saved_formula_positive_final_openchanged_01/summary.json",
+      "status": "PASS",
+      "sha256": "21eaff0e3b8aa1634adc6be728daf9aa48875f58dd54f506dfc69f2e570afe8a",
+      "original_owned_excel_exited": true,
+      "later_exit_observation": null
+    },
+    {
+      "path": "versions/G1R20_Fix3/results/seep_ui_negative_01/summary.json",
+      "status": "CONFIRMED_NEGATIVE",
+      "sha256": "ff59c928ce85bdb05b46c332b49f7a7d9a797b890325dce3757878ca538544cd",
+      "original_owned_excel_exited": true,
+      "later_exit_observation": null
+    },
+    {
+      "path": "versions/G1R20_Fix3/results/seep_ui_positive_final_01/summary.json",
+      "status": "PASS",
+      "sha256": "2829080c0f5f21fb79151d85d797620dacad8cdb98a7060c90d6cf2458f7e235",
+      "original_owned_excel_exited": true,
+      "later_exit_observation": null
+    },
+    {
+      "path": "versions/G1R20_Fix3/results/ui_preset_final_01/summary.json",
+      "status": "PASS",
+      "sha256": "8373f7455cbe08516f276d1d3159231df7497670dd8187ee1b1c4fb3a2269d2e",
+      "original_owned_excel_exited": true,
+      "later_exit_observation": null
+    },
+    {
+      "path": "versions/G1R20_Fix3/results/ui_setup_final_01/summary.json",
+      "status": "PASS",
+      "sha256": "1d1bcb2d326fd112d62b1393c6bcd2c0f2767d3f2fff7370c037e3ae8fa406ea",
+      "original_owned_excel_exited": true,
+      "later_exit_observation": null
+    },
+    {
+      "path": "versions/G1R20_Fix3/results/water_native_fixed_1792182274225164700/summary.json",
+      "status": "PASS",
+      "sha256": "a3afc06671767b060ca4e2d1e2a07154602024f2bdce373889266c8be7b564a8",
+      "original_owned_excel_exited": true,
+      "later_exit_observation": null
+    },
+    {
+      "path": "versions/G1R20_Fix3/results/water_source_negative_01/summary.json",
+      "status": "FAIL",
+      "sha256": "a1a6e12b31202f8507da6f03de9a8ddf4fbdf730b740e485e2d73405922d6383",
+      "original_owned_excel_exited": false,
+      "later_exit_observation": {
+        "observed_utc": "2026-10-16T20:14:17.505576+00:00",
+        "original_summary": "summary.json",
+        "original_owned_excel_exited": false,
+        "owned_pid": 14720,
+        "owned_birth": 1792181580.4779737,
+        "pid_exists": false,
+        "observed_birth": null,
+        "same_owned_process_exists": false,
+        "ownership_exit_verified": true
+      }
+    },
+    {
+      "path": "versions/G1R20_Fix3/results/water_source_negative_02/summary.json",
+      "status": "CONFIRMED_NEGATIVE",
+      "sha256": "5dda6c21b7d06c0d394acaafb62411ae81cff04dc8d3afbefa2db45a3ba3135a",
+      "original_owned_excel_exited": true,
+      "later_exit_observation": null
+    },
+    {
+      "path": "versions/G1R20_Fix3/results/water_source_positive_01/summary.json",
+      "status": "PASS",
+      "sha256": "cb31678d197b473d0e5bfbec230cd35b15498ba0d6072081320657f972a3144c",
+      "original_owned_excel_exited": true,
+      "later_exit_observation": null
+    },
+    {
+      "path": "versions/G1R20_Fix3/results/water_source_process_restart_01/summary.json",
+      "status": "PASS",
+      "sha256": "dbb489fca8d1bd6115964784ff65091e14263e592a0247c0c8ed3a68f6e9a537",
+      "original_owned_excel_exited": true,
+      "later_exit_observation": null
+    }
+  ],
+  "scope": "Owned-test source snapshots, configured copies, raw fields and logs; no original G1R20 evidence replaced"
+}
