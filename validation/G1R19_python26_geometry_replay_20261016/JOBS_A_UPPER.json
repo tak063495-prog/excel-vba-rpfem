@@ -1,0 +1,27 @@
+[
+  {
+    "label": "P06A_known_flow2904",
+    "case": "P06A",
+    "mode": "upper",
+    "script": "geometry_recipe_candidate.py",
+    "case_seconds": 450,
+    "argv": [
+      "--case",
+      "P06A",
+      "--mode",
+      "upper",
+      "--geometry",
+      "D:/Work/excel-vba-rpfem/validation/accuracy_20261013/results/a_flowflip/P06A/best_upper_mesh.npz",
+      "--hint-summary",
+      "D:/Work/excel-vba-rpfem/validation/G1R19_python26_v5_20261016/results/continuation_20261016T115858Z/cases/P06A/summary.json",
+      "--output",
+      "{OUTPUT}",
+      "--case-seconds",
+      "450",
+      "--solve-seconds",
+      "30",
+      "--initial-span",
+      ".005"
+    ]
+  }
+]

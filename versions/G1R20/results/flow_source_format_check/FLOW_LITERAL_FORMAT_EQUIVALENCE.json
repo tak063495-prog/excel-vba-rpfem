@@ -1,0 +1,10 @@
+{
+  "scope": "G1R20 only: two identical Double literals use the spelling emitted by VBE; frozen upstream unchanged",
+  "old_source_sha256": "213b05ff156e15f6d6aa3028f0eb9411b167f86932c768878d1203291ed21129",
+  "new_source_sha256": "1016edee32d4527f27db395c7b3082df5f84cb9df1ca6003363e1aa4b165db69",
+  "old_literal": "0.00000000000000000001",
+  "new_literal": "1E-20",
+  "ieee_double_bits_equal": true,
+  "source_loaded_reopened_code_key_equal": true,
+  "code_key": "fe0115e1bfa581b1a2da5bf64af47cb05a5cebf585b98c0d6162100a65162a9d"
+}

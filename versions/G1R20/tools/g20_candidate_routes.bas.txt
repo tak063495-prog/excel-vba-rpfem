@@ -1,0 +1,216 @@
+' G1R20 optional geometry candidates. No field or sign crosses a new mesh.
+Private g20BalancedAttempted As Boolean, g20FlowSource As String
+
+Private Function G20MeshOption(ByVal key As String, ByVal upper As Long) As Long
+    Dim v As Double
+    v = CDbl(RPX_Setting(key, 0))
+    If Not RPX_SchurFinite(v) Or v <> Fix(v) Or v < 0# Or v > upper Then err.Raise 5, "RPX_Adapt", "INVALID_" & key
+    G20MeshOption = CLng(v)
+End Function
+Private Sub G20MaterialMoments(ByRef result() As Double)
+    Dim e As Long, j As Long, k As Long, m As Long, x As Double, y As Double
+    ReDim result(0 To RM - 1, 0 To 6)
+    For e = 0 To re - 1
+        m = RMatId(e): x = 0#: y = 0#
+        If RRigidId(e) <> -1 Or RArea(e) <= 0# Then err.Raise 5, "RPX_Adapt", "G20_GEOMETRY_SCOPE"
+        For k = 0 To 2: x = x + RXY(RTri(e, k), 0) / 3#: y = y + RXY(RTri(e, k), 1) / 3#: Next k
+        result(m, 0) = result(m, 0) + RArea(e)
+        result(m, 1) = result(m, 1) + RArea(e) * x: result(m, 2) = result(m, 2) + RArea(e) * y
+        For j = 0 To 1
+            result(m, 3 + j) = result(m, 3 + j) + RArea(e) * (RBody0(e, j) + RBody1(e, j))
+        Next j
+        result(m, 5) = result(m, 5) + RArea(e) * x * (RBody0(e, 1) + RBody1(e, 1))
+        result(m, 6) = result(m, 6) + RArea(e) * y * (RBody0(e, 1) + RBody1(e, 1))
+    Next e
+End Sub
+Private Sub G20CompareMoments(ByRef expected() As Double)
+    Dim actual() As Double, m As Long, j As Long
+    Call G20MaterialMoments(actual)
+    For m = 0 To RM - 1: For j = 0 To 6
+        If Abs(actual(m, j) - expected(m, j)) > 0.0000000001 + 0.000000000001 * Abs(expected(m, j)) Then err.Raise 5, "RPX_Adapt", "G20_MATERIAL_LOAD_MOMENT_CHANGED"
+    Next j: Next m
+End Sub
+Private Function G20BuildBalancedLower(ByVal target As Long, ByVal cap As Long) As Boolean
+    Dim score() As Double, e As Long, before As Long, savedTarget As Long, original() As Double
+    RPX_AssertInputs "g20_balanced_geometry"
+    If RR <> 0 Or RPX_WaterCouplingOn() Then err.Raise 5, "RPX_Adapt", "G20_BALANCED_UNSUPPORTED"
+    If target < 16 Or target > 50000 Or cap < target Or cap > 50000 Then err.Raise 5, "RPX_Adapt", "G20_BALANCED_ARGUMENT"
+    savedTarget = DTarget
+    Call RPX_ReadInputs: DTarget = target
+    Call RPX_GenerateMesh: Call RPX_TotalReferenceLoads
+    Call G20MaterialMoments(original)
+    before = re
+    If 4# * before > cap Then
+        DTarget = savedTarget
+        RPX_DiagEvent "g20_balanced_skipped", "source_elements=" & before & ";candidate_elements=" & (4# * before) & ";cap=" & cap & ";old_witnesses_retained=1"
+        Exit Function
+    End If
+    ReDim score(0 To re - 1): For e = 0 To re - 1: score(e) = 1#: Next e
+    RPX_RefineMesh score, 1#, False, True
+    Call RPX_TotalReferenceLoads
+    DTarget = savedTarget
+    If re > cap Then err.Raise 5, "RPX_Adapt", "G20_BALANCED_CAP"
+    Call G20CompareMoments(original)
+    Call RPX_FsBracketReset: RProgramKind = "": Call RPX_ResetPreparedState
+    RPX_DiagEvent "g20_balanced_geometry", "target=" & target & ";source_elements=" & before & ";elements=" & re & ";uniform_red4=1;old_field_used=0;certificate=0"
+    G20BuildBalancedLower = True
+End Function
+Private Function G20BuildFlowUpper(ByRef seed As RPX_MeshState, ByVal passes As Long) As Boolean
+    Dim child() As Long, info As Object, original() As Double, perMaterial() As Double, seen() As Boolean
+    Dim e As Long, j As Long, m As Long, key As Variant, got As Variant, want As Variant
+    Dim sourceObjective As Double, sourceAudit As Double, sourceRaw() As Double
+    If RPX_WaterCouplingOn() Or RR <> 0 Or seed.q <> 8 Or passes < 1 Or passes > 5 Then Exit Function
+    If seed.originalModel <> RPX_ExactModel() Or seed.phase <> "reference_total" Then Exit Function
+    If Not RPX_FieldGate("upper", seed.field, seed.factor, 8, seed.objective, sourceObjective, sourceAudit, sourceRaw) Then Exit Function
+    If sourceObjective > 0.999999 Then Exit Function
+    ' Body must be constant within each material; material-only flips cannot
+    ' transport a varying body field. Water and rigid models remain on old routes.
+    ReDim perMaterial(0 To RM - 1, 0 To 3): ReDim seen(0 To RM - 1)
+    For e = 0 To re - 1
+        m = RMatId(e)
+        For j = 0 To 1
+            If seen(m) Then
+                If RBody0(e, j) <> perMaterial(m, 2 * j) Or RBody1(e, j) <> perMaterial(m, 2 * j + 1) Then Exit Function
+            Else
+                perMaterial(m, 2 * j) = RBody0(e, j): perMaterial(m, 2 * j + 1) = RBody1(e, j)
+            End If
+        Next j
+        seen(m) = True
+    Next e
+    If Not RPX_FlowMeshCandidate(seed.xy, seed.triangles, seed.materialId, seed.field, seed.constraints, child, info, passes) Then Exit Function
+    If CBool(info("certificate")) Or CBool(info("nested")) Or Not CBool(info("requires_new_original_q8_field_and_root")) Then err.Raise 5, "RPX_Adapt", "G20_FLOW_SCOPE"
+    If CLng(info("flips")) = 0 Then Exit Function
+    Call G20MaterialMoments(original)
+    RTri = child: Set RBoundary = Nothing
+    Call RPX_Topology: Call RPX_MapFaces: Call RPX_TotalReferenceLoads
+    If rn <> seed.nodes Or re <> seed.elements Or RM <> seed.materialN Or RR <> 0 Then err.Raise 5, "RPX_Adapt", "G20_FLOW_DIMENSIONS_CHANGED"
+    Call G20CompareMoments(original)
+    If RBoundary.count <> seed.boundary.count Then err.Raise 5, "RPX_Adapt", "G20_FLOW_BOUNDARY_COUNT"
+    For Each key In seed.boundary.keys
+        If Not RBoundary.Exists(key) Then err.Raise 5, "RPX_Adapt", "G20_FLOW_BOUNDARY_EDGE"
+        got = RBoundary(key): want = seed.boundary(key)
+        For j = 0 To 5: If got(j) <> want(j) Then err.Raise 5, "RPX_Adapt", "G20_FLOW_BOUNDARY_LOAD"
+        Next j
+    Next key
+    Call RPX_FsBracketReset: RProgramKind = "": Call RPX_ResetPreparedState
+    RPX_DiagEvent "g20_flow_geometry", "elements=" & re & ";flips=" & info("flips") & ";passes=" & passes & ";new_original_field_root_required=1;certificate=0"
+    G20BuildFlowUpper = True
+End Function
+Private Function G20TryCandidate(ByVal side As String, ByVal parameter As Long) As Boolean
+    Dim baseline As RPX_MeshState, seed As RPX_MeshState, pending As RPX_MeshState
+    Dim field() As Double, eta() As Double, factor As Double, objective As Double, a As Double, b As Double
+    Dim savedQ As Long, savedTarget As Long, savedTol As Double, oldIncomplete As Boolean
+    Dim accepted As Boolean, number As Long, source As String, message As String, label As String
+    Dim savedAudit As RPX_AuditSnapshot, originalNumber As Long, originalSource As String, originalMessage As String
+    Dim oldStatus As String, oldValue As Double, oldObjective As Double, oldRAudit As Double, oldRejected As Boolean, oldGate As Boolean, oldReason As String
+    Dim oldRaw(1 To 4) As Double, oldDissipation As Double, oldReference As Double, oldFixed As Double, i As Long
+    Dim oldX() As Double, hadX As Boolean, oldFactor As Double
+    If Not currentPairValid Or Not RBestLower.complete Or Not RBestUpper.complete Or RR <> 0 Or RPX_WaterCouplingOn() Then Exit Function
+    CloneState baseline, RCurrent
+    savedQ = RSubdivisions: savedTol = RFsTolerance: savedTarget = DTarget: oldIncomplete = RFsSearchIncomplete
+    oldStatus = XStatus: oldValue = RValue: oldObjective = XObjective: oldRAudit = RAudit: oldFactor = RStrengthFactor
+    oldRejected = RPX_AuditRejected: oldGate = RPhysicalGateAccepted: oldReason = RPhysicalGateReason
+    oldDissipation = RDissipation: oldReference = RReferenceWork: oldFixed = RFixedWork
+    For i = 1 To 4: oldRaw(i) = RRawLowerAudit(i): Next i
+    hadX = VectorReady(xx, 0): If hadX Then oldX = xx
+    RPX_DiagAuditSave savedAudit
+    On Error GoTo CandidateFailed
+    RFsActive = False
+    If side = "lower" Then
+        label = "g20_balanced_lower": CloneState seed, RBestLower
+        If Not G20BuildBalancedLower(parameter, adaptAccuracyCap) Then GoTo CandidateDone
+    ElseIf side = "upper" Then
+        label = "g20_flow_upper": CloneState seed, RBestUpper
+        If seed.q <> 8 Or Not seed.upperRootValid Or seed.searchIncomplete Then GoTo CandidateDone
+        Call RPX_RestoreWitnessState(seed)
+        If Not G20BuildFlowUpper(seed, parameter) Then GoTo CandidateDone
+    Else
+        err.Raise 5, "RPX_Adapt", "G20_CANDIDATE_SIDE"
+    End If
+    RSubdivisions = 8: RFsTolerance = CDbl(RPX_Setting("FS_TOL", 0.0001))
+    If RFsTolerance <= 0# Or RFsTolerance > 0.0001 Then err.Raise 5, "RPX_Adapt", "G20_ROOT_TOLERANCE"
+    RPX_DiagCandidate label: RPX_TestHook label
+    RFsActive = True: RFsCalls = 0: RFsSearchIncomplete = False: RFsLargestRootBracket = 0#: RFsSearchNote = ""
+    factor = RPX_FsEndpoint(side, seed.value, AdaptFsHintRatio)
+    objective = XObjective
+    If side = "upper" Then
+        ReDim field(0 To 12 * re + 3 * RR - 1)
+        For i = 0 To UBound(field): field(i) = xx(i): Next i
+    Else
+        field = xx
+    End If
+    If side = "lower" Then RLowerFs = factor: RLowerField = field: Erase RUpperField Else RUpperFs = factor: RUpperField = field: Erase RLowerField
+    ReDim eta(0 To re - 1)
+    If Not RFsSearchIncomplete And RPX_ActualRootBracket(side, a, b, factor) Then
+        If side = "lower" Then
+            If factor >= RBestLower.value And factor <= RBestUpper.value Then
+                If SaveState(pending, field, eta, factor, factor, RBestUpper.value, label, side, objective) Then
+                    If pending.lowerRootValid And Not pending.searchIncomplete Then CloneState RBestLower, pending: RPX_CertFromAdapt side: accepted = True
+                End If
+            End If
+        Else
+            If factor >= RBestLower.value And factor <= RBestUpper.value Then
+                If SaveState(pending, field, eta, factor, RBestLower.value, factor, label, side, objective) Then
+                    If pending.upperRootValid And Not pending.searchIncomplete Then CloneState RBestUpper, pending: RPX_CertFromAdapt side: accepted = True
+                End If
+            End If
+        End If
+    End If
+    adaptFsCallsTotal = adaptFsCallsTotal + RFsCalls
+    RPX_DiagEvent "g20_candidate_end", "side=" & side & ";accepted=" & accepted & ";Fs=" & factor & ";q=8;elements=" & re & ";root_a=" & a & ";root_b=" & b & ";other_own_mesh_retained=1"
+CandidateDone:
+    On Error GoTo RestoreFailed
+    RFsActive = False: RFsTolerance = savedTol: DTarget = savedTarget
+    Call RPX_RestoreWitnessState(baseline): CloneState RCurrent, baseline
+    RSubdivisions = savedQ: RFsSearchIncomplete = oldIncomplete
+    Call RPX_DiagAuditRestore(savedAudit): Call RestoreFinalBounds("Fs")
+    RStrengthFactor = oldFactor: XStatus = oldStatus: RValue = oldValue: XObjective = oldObjective: RAudit = oldRAudit
+    RPX_AuditRejected = oldRejected: RPhysicalGateAccepted = oldGate: RPhysicalGateReason = oldReason
+    RDissipation = oldDissipation: RReferenceWork = oldReference: RFixedWork = oldFixed
+    For i = 1 To 4: RRawLowerAudit(i) = oldRaw(i): Next i
+    If hadX Then xx = oldX Else Erase xx
+    G20TryCandidate = accepted
+    On Error GoTo 0
+    If originalNumber <> 0 Then
+        If originalNumber = 18 Then err.Raise 18, originalSource, "ANALYSIS_CANCELLED"
+        err.Raise originalNumber, originalSource, originalMessage
+    End If
+    Exit Function
+CandidateFailed:
+    number = err.number: source = err.source: message = err.description
+    On Error GoTo 0
+    RPX_ErrorEvidence number, source, message, 0, "g20_candidate"
+    If number = 18 Or XCancel Then
+        originalNumber = 18: originalSource = source: originalMessage = message
+    ElseIf Not RPX_Recoverable(number, message, "evaluate", True) Then
+        originalNumber = number: originalSource = source: originalMessage = message
+    End If
+    RPX_DiagEvent "g20_candidate_rejected", "side=" & side & ";old_own_witnesses_retained=1;message=" & message
+    GoTo CandidateDone
+RestoreFailed:
+    number = err.number: source = err.source: message = err.description
+    On Error GoTo 0
+    If originalNumber = 18 Or number = 18 Or XCancel Then err.Raise 18, source, "ANALYSIS_CANCELLED G20_RESTORE_FAILED " & message
+    err.Raise number, source, "G20_CANDIDATE_RESTORE_FAILED original=" & originalNumber & ":" & originalMessage & ";restore=" & message
+End Function
+Private Sub G20TryGeometryCandidates(ByVal mode As String)
+    Dim target As Long, passes As Long, sourceKey As String, accepted As Boolean
+    If mode <> "Fs" Or Not currentPairValid Or RR <> 0 Or RPX_WaterCouplingOn() Then Exit Sub
+    If GapRatio(RBestLower.value, RBestUpper.value) <= CDbl(RPX_Setting("GAP", 0.02)) Then Exit Sub
+    target = G20MeshOption("ADAPT_BALANCED_LOWER_TARGET", 50000)
+    passes = G20MeshOption("ADAPT_UPPER_FLOW_PASSES", 5)
+    If target > 0 And Not g20BalancedAttempted Then
+        g20BalancedAttempted = True
+        accepted = G20TryCandidate("lower", target)
+        If accepted Then Call RecheckIndependentQuadrature(mode)
+    End If
+    If GapRatio(RBestLower.value, RBestUpper.value) <= CDbl(RPX_Setting("GAP", 0.02)) Then Exit Sub
+    If passes > 0 And RBestUpper.complete And RBestUpper.q = 8 Then
+        sourceKey = RBestUpper.originalModel & "|" & RPX_ExactDouble(RBestUpper.value)
+        If sourceKey <> g20FlowSource Then
+            g20FlowSource = sourceKey
+            accepted = G20TryCandidate("upper", passes)
+            If accepted Then Call RecheckIndependentQuadrature(mode)
+        End If
+    End If
+End Sub

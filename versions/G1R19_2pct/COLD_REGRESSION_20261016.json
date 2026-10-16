@@ -1,0 +1,101 @@
+{
+  "scope": "Isolated candidate, published G1R19 unchanged",
+  "cases": {
+    "D01A": {
+      "status": "PASS",
+      "cold_initial_input": true,
+      "imported_field_or_root": false,
+      "seconds": 358.12011640000856,
+      "lower": 0.57733154296875,
+      "upper": 0.5774156487217974,
+      "gap_percent": 0.0145669552006916,
+      "elements": [
+        369,
+        8
+      ],
+      "q": [
+        8,
+        8
+      ],
+      "own_root_valid": [
+        true,
+        true
+      ],
+      "root_width": [
+        6.103515625e-05,
+        6.250540724606068e-05
+      ],
+      "root_width_rule": "FS_TOL*max(1,bracket midpoint), unchanged G1R19",
+      "incomplete": false,
+      "owned_excel_exited": true,
+      "native_fullproofs_replayed": 37,
+      "summary": "versions\\G1R19_2pct\\results\\owned_excel_1792150058120949800\\summary.json",
+      "summary_sha256": "f68ffae16f355e28bc07a924a880d0db6c4a7ee31ffd4fcfa465d9269663139a",
+      "source_sha256": {
+        "RPX_Adapt": "3ef322342b42f802d865998fc5172a422ebcfe5de10520510af99af63781b45e",
+        "RPX_Fs": "947dfe184026b4c7c45c34e112e8742150e9b0f9a3836f6c5c441126c7696eb2",
+        "RPX_UI": "57916e9ee821ae477e4ef2fc21496726ef6ee68ec590bbb7a96dee5360f57886",
+        "RPX_AccuracyNative": "2495d5882e040d7f19156ae38b6a517f34c672eca4087957ef56d1d2c9aa2247"
+      },
+      "settings": {
+        "GAP": 0.02,
+        "TARGET": 1000.0,
+        "QUADRATURE": 8.0,
+        "FS_TOL": 0.0001,
+        "DIRECT_DLL": 1.0,
+        "ADAPT_PRECISION_FROM_START": 1.0,
+        "ADAPT_C0_WEDGE_AUTO": 1.0,
+        "LOWER_MODEL_CACHE": 0.0,
+        "ANALYSIS_POLICY": "ASSOCIATED"
+      }
+    },
+    "D02A": {
+      "status": "PASS",
+      "cold_initial_input": true,
+      "imported_field_or_root": false,
+      "seconds": 168.79146949999267,
+      "lower": 1.5,
+      "upper": 1.500051451551501,
+      "gap_percent": 0.0034300446063679412,
+      "elements": [
+        360,
+        8
+      ],
+      "q": [
+        8,
+        8
+      ],
+      "own_root_valid": [
+        true,
+        true
+      ],
+      "root_width": [
+        0.0001220703125,
+        0.00012500416250005308
+      ],
+      "root_width_rule": "FS_TOL*max(1,bracket midpoint), unchanged G1R19",
+      "incomplete": false,
+      "owned_excel_exited": true,
+      "native_fullproofs_replayed": 36,
+      "summary": "versions\\G1R19_2pct\\results\\owned_excel_1792149830248919100\\summary.json",
+      "summary_sha256": "e732cbfd16c8c7c2b35056ac09cd09376bec17d39eed45722106dfe33acecdd5",
+      "source_sha256": {
+        "RPX_Adapt": "3ef322342b42f802d865998fc5172a422ebcfe5de10520510af99af63781b45e",
+        "RPX_Fs": "947dfe184026b4c7c45c34e112e8742150e9b0f9a3836f6c5c441126c7696eb2",
+        "RPX_UI": "57916e9ee821ae477e4ef2fc21496726ef6ee68ec590bbb7a96dee5360f57886",
+        "RPX_AccuracyNative": "2495d5882e040d7f19156ae38b6a517f34c672eca4087957ef56d1d2c9aa2247"
+      },
+      "settings": {
+        "GAP": 0.02,
+        "TARGET": 1000.0,
+        "QUADRATURE": 8.0,
+        "FS_TOL": 0.0001,
+        "DIRECT_DLL": 1.0,
+        "ADAPT_PRECISION_FROM_START": 1.0,
+        "ADAPT_C0_WEDGE_AUTO": 1.0,
+        "LOWER_MODEL_CACHE": 0.0,
+        "ANALYSIS_POLICY": "ASSOCIATED"
+      }
+    }
+  }
+}

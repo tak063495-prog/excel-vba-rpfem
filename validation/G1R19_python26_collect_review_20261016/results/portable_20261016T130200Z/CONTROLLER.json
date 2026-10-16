@@ -1,0 +1,117 @@
+{
+  "source": "D:\\Work\\excel-vba-rpfem\\validation\\G1R19_python26_collect_review_20261016\\verify_portable_replay.py",
+  "sha256": "a7d27922b70768281ab5827d0117ac9f047ebd70c57809b423feaaad8568d0a9",
+  "current_process": {
+    "pid": 164,
+    "create_time": 1792155623.4651504,
+    "cmdline": [
+      "D:\\Work\\rpfem-venv\\Scripts\\python.exe",
+      "-X",
+      "utf8",
+      "validation/G1R19_python26_collect_review_20261016/verify_portable_replay.py",
+      "--archive",
+      "D:/Work/excel-vba-rpfem/validation/G1R19_python26_20261016/evidence/ALL_26_FINAL_20261016/EVIDENCE.zip",
+      "--extract",
+      "D:/Work/rpfem_full26_portable_check_20261016",
+      "--output",
+      "D:/Work/excel-vba-rpfem/validation/G1R19_python26_collect_review_20261016/results/portable_20261016T130200Z",
+      "--python",
+      "D:/Work/rpfem-venv/Scripts/python.exe",
+      "--seconds",
+      "600"
+    ],
+    "exe": "C:\\Users\\link_\\AppData\\Local\\Programs\\Python\\Python313\\python.exe"
+  },
+  "invoking_ancestry": [
+    {
+      "pid": 164,
+      "create_time": 1792155623.4651504,
+      "cmdline": [
+        "D:\\Work\\rpfem-venv\\Scripts\\python.exe",
+        "-X",
+        "utf8",
+        "validation/G1R19_python26_collect_review_20261016/verify_portable_replay.py",
+        "--archive",
+        "D:/Work/excel-vba-rpfem/validation/G1R19_python26_20261016/evidence/ALL_26_FINAL_20261016/EVIDENCE.zip",
+        "--extract",
+        "D:/Work/rpfem_full26_portable_check_20261016",
+        "--output",
+        "D:/Work/excel-vba-rpfem/validation/G1R19_python26_collect_review_20261016/results/portable_20261016T130200Z",
+        "--python",
+        "D:/Work/rpfem-venv/Scripts/python.exe",
+        "--seconds",
+        "600"
+      ],
+      "exe": "C:\\Users\\link_\\AppData\\Local\\Programs\\Python\\Python313\\python.exe"
+    },
+    {
+      "pid": 21600,
+      "create_time": 1792155623.4478455,
+      "cmdline": [
+        "D:\\Work\\rpfem-venv\\Scripts\\python.exe",
+        "-X",
+        "utf8",
+        "validation/G1R19_python26_collect_review_20261016/verify_portable_replay.py",
+        "--archive",
+        "D:/Work/excel-vba-rpfem/validation/G1R19_python26_20261016/evidence/ALL_26_FINAL_20261016/EVIDENCE.zip",
+        "--extract",
+        "D:/Work/rpfem_full26_portable_check_20261016",
+        "--output",
+        "D:/Work/excel-vba-rpfem/validation/G1R19_python26_collect_review_20261016/results/portable_20261016T130200Z",
+        "--python",
+        "D:/Work/rpfem-venv/Scripts/python.exe",
+        "--seconds",
+        "600"
+      ],
+      "exe": "D:\\Work\\rpfem-venv\\Scripts\\python.exe"
+    },
+    {
+      "pid": 18612,
+      "create_time": 1792155623.1431704,
+      "cmdline": [
+        "C:\\Users\\link_\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\powershell\\pwsh.exe",
+        "-Command",
+        "try { [Console]::OutputEncoding=[System.Text.Encoding]::UTF8 } catch {}\n& 'D:/Work/rpfem-venv/Scripts/python.exe' -X utf8 validation/G1R19_python26_collect_review_20261016/verify_portable_replay.py --archive D:/Work/excel-vba-rpfem/validation/G1R19_python26_20261016/evidence/ALL_26_FINAL_20261016/EVIDENCE.zip --extract D:/Work/rpfem_full26_portable_check_20261016 --output D:/Work/excel-vba-rpfem/validation/G1R19_python26_collect_review_20261016/results/portable_20261016T130200Z --python D:/Work/rpfem-venv/Scripts/python.exe --seconds 600"
+      ],
+      "exe": "C:\\Users\\link_\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\powershell\\pwsh.exe"
+    },
+    {
+      "pid": 21176,
+      "create_time": 1792147553.8769157,
+      "cmdline": [
+        "C:\\Users\\link_\\AppData\\Local\\OpenAI\\Codex\\bin\\e78bad9887fa50cf\\codex.exe",
+        "-c",
+        "features.code_mode_host=true",
+        "app-server",
+        "--analytics-default-enabled",
+        "-c",
+        "features.prefer_mxc=true",
+        "-c",
+        "plugins.codex-app-tools@openai-bundled.mcp_servers.codex_app.enabled=true",
+        "-c",
+        "plugins.code-review@openai-bundled.mcp_servers.code-review.enabled=true"
+      ],
+      "exe": "C:\\Users\\link_\\AppData\\Local\\OpenAI\\Codex\\bin\\e78bad9887fa50cf\\codex.exe"
+    },
+    {
+      "pid": 17316,
+      "create_time": 1792147544.8482385,
+      "cmdline": [
+        "C:\\Program Files\\WindowsApps\\OpenAI.Codex_26.1013.3656.0_x64__2p2nqsd0c76g0\\app\\ChatGPT.exe"
+      ],
+      "exe": "C:\\Program Files\\WindowsApps\\OpenAI.Codex_26.1013.3656.0_x64__2p2nqsd0c76g0\\app\\ChatGPT.exe"
+    },
+    {
+      "pid": 7260,
+      "create_time": 1792147315.5546732,
+      "cmdline": [
+        "sihost.exe"
+      ],
+      "exe": "C:\\Windows\\System32\\sihost.exe"
+    }
+  ],
+  "started_epoch": 1792155623.6253529,
+  "deadline_epoch": 1792156223.6253529,
+  "deadline_seconds": 600.0,
+  "optimizer_calls": 0
+}

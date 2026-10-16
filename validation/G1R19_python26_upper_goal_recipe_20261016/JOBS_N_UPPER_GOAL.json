@@ -1,0 +1,29 @@
+[
+  {
+    "label": "P06N_known_upper8739_goal",
+    "case": "P06N",
+    "mode": "upper",
+    "script": "upper_goal_recipe.py",
+    "case_seconds": 600,
+    "argv": [
+      "--case",
+      "P06N",
+      "--geometry",
+      "D:/Work/excel-vba-rpfem/validation/accuracy_20261013/results/n_flow8739_cap_qp_helper_close/P06N/best_upper_mesh.npz",
+      "--lower-source",
+      "D:/Work/excel-vba-rpfem/validation/G1R19_python26_geometry_replay_20261016/results/known_lower_20261016T122636Z/P06N_known_lower5966",
+      "--output",
+      "{OUTPUT}",
+      "--case-seconds",
+      "600",
+      "--solve-seconds",
+      "30",
+      "--qp-seconds",
+      "90",
+      "--target-gap",
+      ".02",
+      "--schedule-gap",
+      ".019999"
+    ]
+  }
+]

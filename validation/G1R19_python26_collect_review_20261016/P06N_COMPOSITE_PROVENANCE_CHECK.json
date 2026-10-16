@@ -1,0 +1,113 @@
+{
+  "source_provenance_verified": true,
+  "input_provenance_verified": true,
+  "model_identity_verified": true,
+  "own_root_identity_verified": true,
+  "evidence_kind": "known_recipe_geometry_replay",
+  "historical_geometry_imported": true,
+  "historical_field_imported": false,
+  "historical_fs_imported": false,
+  "posthoc_composite": true,
+  "cold_execution_status_verified": false,
+  "explicit_producer_end_source_map": true,
+  "components": [
+    {
+      "role": "lower_adopted_fresh_solve",
+      "adopted": true,
+      "process_seconds": 428.5881597995758,
+      "process_exit_code": 0,
+      "folder": "validation/G1R19_python26_geometry_replay_20261016/results/known_lower_20261016T122636Z/P06N_known_lower5966"
+    },
+    {
+      "role": "upper_initial_fresh_lp_qp",
+      "adopted": true,
+      "process_seconds": 608.9780416488647,
+      "process_exit_code": 2,
+      "folder": "validation/G1R19_python26_upper_goal_recipe_20261016/results/upper_goal_20261016T123423Z/P06N_known_upper8739_goal"
+    },
+    {
+      "role": "upper_original_dual_source_before_linear_repair",
+      "adopted": true,
+      "process_seconds": 69.40772485733032,
+      "process_exit_code": 2,
+      "folder": "validation/G1R19_python26_terminal_final_20261016/results/final_guide_20261016T124646Z/P06N_upper8739_final_guide"
+    },
+    {
+      "role": "rejected_original_dual_recenter_reference",
+      "adopted": false,
+      "process_seconds": 66.7850353717804,
+      "process_exit_code": 2,
+      "folder": "validation/G1R19_python26_dual_recenter_20261016/results/recenter_20261016T124407Z/P06N_upper8739_recenter_close"
+    },
+    {
+      "role": "upper_adopted_linear_repair_closure",
+      "adopted": true,
+      "process_seconds": null,
+      "wrapper_seconds": 16.406209500011755,
+      "process_exit_code": 0,
+      "execution_method": "captured_exec_without_pid_record",
+      "supervised_execution_verified": false,
+      "folder": "validation/G1R19_python26_dual_linear_repair_20261016/results/P06N_repair_20261016T125042Z"
+    }
+  ],
+  "verified_source_count": 221,
+  "physical_model_id": "08cc8e73e85408e7a82cbe79b5716ef007cb917d00e021872c40e510b5d17525",
+  "sides": {
+    "lower": {
+      "fs": 0.6767771508826014,
+      "mesh_id": "0b1cffd134d60c92b20ec7480cbbbbfe27695c3a725f6f5d31ec5ca097587cc8",
+      "physical_model_id": "08cc8e73e85408e7a82cbe79b5716ef007cb917d00e021872c40e510b5d17525",
+      "q": 8,
+      "policy": "hold_initial",
+      "root_complete": true,
+      "root_width_normalized": 7.812500000003997e-05
+    },
+    "upper": {
+      "fs": 0.6902587260388777,
+      "mesh_id": "44c89fcad8854b4b5ef36f061999d3033613a1e5b7193b2e2ef4a8eb0a8b7fbc",
+      "physical_model_id": "08cc8e73e85408e7a82cbe79b5716ef007cb917d00e021872c40e510b5d17525",
+      "q": 8,
+      "policy": "hold_initial",
+      "root_complete": true,
+      "root_width_normalized": 9.990000000004162e-05
+    }
+  },
+  "component_manifest_sha256": "a34dbb67f87dcf204920c6a264b5407876ff23a43a76584d0aca82a5048c6b69",
+  "independent_original_dual_audits": [
+    {
+      "path": "validation/G1R19_python26_dual_linear_repair_20261016/results/P06N_repair_20261016T125042Z_INDEPENDENT_DUAL_AUDIT.json",
+      "sha256": "3dabb7bb7e18cd21e797e252fe94c4337845375d10eebdcb5275286e944adc40",
+      "fs": 0.6901588260388777,
+      "audit": {
+        "accepted": true,
+        "dual_stationarity": 8.924587658563085e-08,
+        "dual_cone_error": 5.661386886634395e-13,
+        "dual_objective": 1.0000030000010307,
+        "threshold": 1.000003,
+        "method": "original_dual_feasibility",
+        "scope": "discrete_root_search_only",
+        "publishes_primal_bound": false,
+        "search_sign": 1
+      },
+      "full_original_vector_sha256": "416797367e8eb700067dbeb0d8e7c1d019ecfb78dec166e8c1751fdad152c34a"
+    }
+  ],
+  "summary_sha256": "ec1f39e6af448dd78217acd40be1602bbcff50a23c9eed756403941da57b25ef",
+  "timing": {
+    "adopted_geometry_solve_component_process_sum_seconds": 1106.9739263057709,
+    "all_recipe_trial_process_sum_seconds": 1173.7589616775513,
+    "unsupervised_repair_wrapper_seconds": 16.406209500011755,
+    "unsupervised_repair_process_wall_seconds": null,
+    "fresh_hint_dependency_v1_plus_v5_seconds": 1826.2188773999806,
+    "adopted_components_plus_fresh_hint_path_process_sum_seconds": 2933.1928037057514,
+    "all_current_session_attempt_process_sum_seconds": 3600.196320901625,
+    "prior_timing_file": {
+      "path": "D:\\Work\\excel-vba-rpfem\\validation\\G1R19_python26_v5_20261016\\results\\continuation_20261016T115858Z\\TIMING_SUPPLEMENT.json",
+      "sha256": "008187a0f89b9553d2bea6a806603e72d56f5abcaf240e0410e7f29b8707f0b2"
+    },
+    "scope": "Process sums contain only supervised measured process durations. Add the separately measured repair wrapper duration for known elapsed work, not an invented OS duration. Parallel wall is separate; original archived geometry generation, collector/audits and the unmeasured offline projection are excluded."
+  },
+  "input_sha256": "389bf6c3c29d49e509a1ea0f270ca0fae3594910da0cb8dd594edfea9cefec2b",
+  "input_canonical_sha256": "244ca67bac194a3b4d20ffe6f9eeceabf6b19d732dc0aba31177bb581d4c2f26",
+  "source_closure_scope": "Actual supervised component start/end maps plus one explicitly captured, unowned no-optimizer repair with actual producer maps and independent original-dual replay; no invented PID/process timing or combined start"
+}

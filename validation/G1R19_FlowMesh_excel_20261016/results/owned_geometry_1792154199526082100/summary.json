@@ -1,0 +1,200 @@
+{
+  "status": "PASS",
+  "token": "f559b6eb58754271aac919ca105813ee",
+  "solver_calls": 0,
+  "certificate": false,
+  "model_installation": false,
+  "input_candidate_book_sha256": "0ab98297993536b8b40372e36d440f27a6b1cfee8ccad648a2f5e149b08722ef",
+  "flow_manifest_sha256": "32fe459e26590730d59a368cd2cdc2528b770420136c4457a9a998ee12ffa75b",
+  "harness_sha256": "28bbd32451368787ebecbabdd9f1121c34c7b3a9e9c04ad3cb51f954b93b7c54",
+  "source_sha256": {
+    "RPX_FlowMesh": "213b05ff156e15f6d6aa3028f0eb9411b167f86932c768878d1203291ed21129",
+    "FlowMeshArrayProbe": "a5cefb5dae1e3720fe4d533794700c8795626ccd42e8ba387a531bf94e760f9a"
+  },
+  "fixture_manifest_sha256": "2033b42d8163fbe1fdefde4a2591dd167655235d49e62d00f5b2919c9bbed4b3",
+  "base_source_manifest_sha256": "5876f5b622df39f8ecfbce6ed1787ebd56596203d7385c314509246d6211b2d0",
+  "prior_excel_pids": [],
+  "dialogs": [],
+  "fixtures": {
+    "P06A_actual2904": {
+      "result": "PASS geometry_only;flips=773;passes=5;seconds=0.46875;solver_calls=0;certificate=False",
+      "wall_seconds": 0.6011969999817666,
+      "input_sha256": "a426a0824ba2b17748254ab471e7fdc3ca36fa9b5091d0bb1152cd44fef032e0",
+      "output_sha256": "c4361be2b6a24c34bf189f1ad0293a66abc6b549daab46787219feff0c0ceb26",
+      "global_state_unchanged": true
+    },
+    "P06N_actual2914": {
+      "result": "PASS geometry_only;flips=362;passes=5;seconds=0.3984375;solver_calls=0;certificate=False",
+      "wall_seconds": 0.4942960999906063,
+      "input_sha256": "96ebb891f41e9931cb93d77e6bc2abaad2b5f96ba7ff400b1a932c92622cd2e3",
+      "output_sha256": "22f758853f4794b3b8b84f655149abba8a58605a4270a360a7a7cd9aa76b6e4f",
+      "global_state_unchanged": true
+    },
+    "P06N_actual2914_constraints": {
+      "result": "PASS geometry_only;flips=354;passes=5;seconds=0.3671875;solver_calls=0;certificate=False",
+      "wall_seconds": 0.48763280001003295,
+      "input_sha256": "34b171cda2c371712d3bc40a23ae7fbf21433b74229d768a9b3bd82e43506c42",
+      "output_sha256": "c78c364e1b390e46e647964bce88a56247960551575aaebd59eab026a51660ad",
+      "global_state_unchanged": true
+    }
+  },
+  "owned_excel_pid": 20476,
+  "owned_excel_creation_time": 1792154199.54279,
+  "compile": "PASS",
+  "loaded_code_sha256": {
+    "RPX_AccuracyMesh": "e79ff2bca9be047512f214d2fd50196da92e057c77d9663cd76a6d2e5234090c",
+    "RPX_AccuracyNative": "9e03d56da9617f0af6102a9b66e8576fce1de1606b03362c01f3b97bf98ff9c8",
+    "RPX_Adapt": "0b2ab289daaac643624ee2a249de744035823afb3b2ffe98397b588e81696050",
+    "RPX_Affine": "7ab31aab284e6954fdf179604af0dffdd85780957188d18145e053c792a17ca3",
+    "RPX_AHO3": "6c75820480ef41b79af83f68d0ff4e8956816a37b095eb3d78ba69e7bed5bb7c",
+    "RPX_Audit": "286f1cd92df63c8f8637334f2531b468486e1103408cb93c19840a2d73580364",
+    "RPX_Bearing": "83e374cbd72b9c5c9a938e78394dfe195b3656ecfa244d5df1dba02e370d36a9",
+    "RPX_C0Guides": "af1576de9ff0adcbfb6c0f8d3c8e91769e7e4cf9e498a1a80e08f9dafddecf4c",
+    "RPX_C0Select": "b4ceabe7aa99448029fbbd14ff88d13f6ee422e02dd4c4451343a2a23f0da1c1",
+    "RPX_Certificate": "024f69ccda1441608f26732b4e19edc7a2c9c0c11bfad13021c8d9ec6259b90f",
+    "RPX_ColumnOrder": "265a56e0d36dc9457c64b4cca628db10b4bb0c9de6838ada27a55afccc6e6abf",
+    "RPX_Conic": "33fb979d408ae3b08bdb30e0ae03a1052c5f26803fb958d4d32ea775d34914f6",
+    "RPX_Control": "1bb7bea56745fa9ab13922a644276840cf2e14efa65059a9c8c0f51b15c6fd4a",
+    "RPX_Definition": "3b101beae315023a6e1230433c5ac24497b8e12928b9890c624570500160f6da",
+    "RPX_Diagnostics": "8309fd417428ac247c75d4798302bc8382d96c114f2d0eb50674918efee8a6d4",
+    "RPX_Exchange": "52ac41874657d441b23ab1e97d713777366b3f81a913dcc5136f04e6e6bd46a1",
+    "RPX_FactorFree": "eaf601c4ddab186fae76158ebc9713da163a212a418529759325f02a4a15dea2",
+    "RPX_FixedLowerRecovery": "a4c812c72115b4ea9760d2b26467bebccfa24ca59a90fd82a5cb5abbf3ddb52b",
+    "RPX_FixedWitness": "af4fc7eb93870a180a81efbe20f88d21f4a8127444fa1fb0e6f893b9dcb014ab",
+    "RPX_FreeFaceSplit": "8f38a4ce6e6fff44bfd7561216decf721cc5db37c31b6f096860acb8b73cee01",
+    "RPX_Fs": "0ee85b92ebd652e05bdbec4c16d0b2605a626b9592fa103e71fcb470d477e4e0",
+    "RPX_Guard": "cea30fb5d6a6227db4d1ed079fbcf42f02b76934c899af538f6656429cb52743",
+    "RPX_HSDCandidate": "224e25e4308215f2f6e9a13b076cc5fe924d3aae0b324e441215fe21446474c0",
+    "RPX_HSDLu": "987006a15fc2d2390f2941b475367ef46fc900a625dcc003c909948394fc68b9",
+    "RPX_HSDPrecision": "0571fedb64596b7e853b168276c8155cfaedbd6c3bf81532ba0e2663ac62b1ed",
+    "RPX_HSDQuality": "ee03248ff3c0d711120ea0922fb4d9f08e821e53b0a1a1406dcd9ce37d6ff264",
+    "RPX_Indicator": "852991cd2027e2779a3356431531ff5a797bcc9cf625a7f424ab3fc33d15977e",
+    "RPX_KktCapture": "6ef95283077e76cc7bfd5e6c10003ffc712d6a9686c024d47f8443d3421203dd",
+    "RPX_LDL": "8e8a9a4801c138572e7b38279b5f1775bc6088a9ab20a20c1c61a52e17d047ea",
+    "RPX_LoadStepMesh": "f482ec20a07a2ba5ef974e6783c3ab1cfcaa392f68ad9b4a7ed7583534d7e6be",
+    "RPX_Lower": "95beadde56edfbb0af7e29b16d367aab92814162584e15e8cb3d8fa7d8a9538c",
+    "RPX_LowerCache": "13805dec08f41c7ba6aa3af5f27999800063182f0cda4bcc576dfbb1a3c98874",
+    "RPX_Mesh": "056be330d5ca08ffc2430fd83e2ccdc0e6b68a6bcdc90944b06541209e484678",
+    "RPX_MeshGuard": "bcd8274f2e57a890e3ea209aef2ca69f23a2add41ac9b963024ad949dec6f452",
+    "RPX_MeshTests": "5b9d2620e80bc35bb6282a054a86ed45f17a6f1a5aa90ba0c48f74f4170bb12d",
+    "RPX_Model": "21e308e41f07e8a96ee9fd324893fcf2be7d6a02c32be20f270a590262285fb1",
+    "RPX_Native": "685bbaee8accf4c899e5b6932ee865ec1adfcc0e64f919f7b76dfc99ff8511c4",
+    "RPX_NativeBulk": "91aea0d80d0b1261dff9626c8b1ae407bd8c8e97dc94c826a481b7de451e3fe9",
+    "RPX_NativeGuard": "487072a9948ec3e70f6377a5f903f3741f2b44704a236c0976364a1c50cb836c",
+    "RPX_NativeLU": "9e626bbbc1a96a18beecdf4aaacc1da8f4fad4f17ebb4f581352f211c117396a",
+    "RPX_NativeMesh": "3b5d2b21e008d6a1deaee9f1ddf4105dc85b19eb3e0a5000fde13da324abfe00",
+    "RPX_NativeSolver": "99ab2549bea2c455f5698db8e6a33bb26bfb369e88335c8cdd3e3186f3306f39",
+    "RPX_NT": "beb857a4657ecc3a2f7d493f00c5f0965619a5265e6b49459b8afdb01d62e7b6",
+    "RPX_NTPrecision": "a1a7bcaf8fae91496d68defd7089c322129d3a48db30fcef9b7932834bb198d5",
+    "RPX_Order": "86d5595f792d1a9565b3a73b54bcd3666d1e5ba77ba4e0fc22971030c4906c2e",
+    "RPX_Output": "0a4e075cdb8bfc576410c6cd6ff15247bd42a1800e58b7f9890035551b8b63ae",
+    "RPX_P4": "3a2d7552c698cd82643f69e3a8ba53271417f1d5d1ba4cdeeec5819929395731",
+    "RPX_Profile": "c3bd2fc2e31791e3dbfc0048fb157f73fec8bf8957bce3ee7f5388625feebad1",
+    "RPX_Refine": "2e58e55d07bee1e1c3806a70b9c356b06154d47b601ec699f180b568d11960b0",
+    "RPX_Robust": "17a7e0223759756f8c249d7d018c584980db99e6aadb57871e9011a05d165823",
+    "RPX_Schur": "6b878bc222235c7bfddd57ef757f3038f1ad3b641f1dbe0738899cdee862cd5f",
+    "RPX_SchurCache": "a90f05826771509f46eae837f5a04cb57c8deec07e17cb94484413a76b41b018",
+    "RPX_SchurLDL": "c2bf4a7cbe04a67a2f5ca4f74843647d4549ff27f29e851ba0654c793c208a8b",
+    "RPX_Seep": "f7c434e1a430d8892829800caf0fdedaea250c0eb67f9f561a1202bb4207786a",
+    "RPX_SeepUI": "7ac08085f112cfebcd3e46e09f6b87f27c817e9b2821a969115b4127c4412a8c",
+    "RPX_SeepWT": "d215076c9e50d55b818dd13a93c299be0789b96c6f539d70efc6561620fff75f",
+    "RPX_Seismic": "7464c871b695bf5abb2be707f448aaa840db908aa03edc5ab5ad0d85f14568a4",
+    "RPX_Solve": "ee4113638321786be25be22530e2fc03e009d7190029f5b62d6cc69b6fc53c9e",
+    "RPX_UI": "64033c39f37d7193bab14bcf4ff105741236a81450764dd7fd96bfe339af9b28",
+    "RPX_Upper": "3da92afe5678b5cb13f3d31f65e804ffba974ca149603d2af57dbfe6922909b8",
+    "RPX_Water": "6d35a972383eabfb25b20a16422ecb033781d0a9afbfeeb49c801c769913222f",
+    "RPX_WorkPrecision": "0b72bc5bb034c55adc17c6f352629de9f77603a759ef08ff9b1f4965c2e2fb1f",
+    "RPX_FlowMesh": "d3fce037e266aff1963e7f69283d498ab6283c18ee0e2613c8bb23e401513c0b",
+    "FlowMeshArrayProbe": "d0999550e3853751ee8a3c483d18c3e49a3d620b187c6da6584bb18dab22bf64",
+    "FlowScopeProbe": "2ce443302e7ceca8bf1111db68c8db213bb69eb4f35b29b060d1992fab795d0d"
+  },
+  "global_scope_canonical_input_sha256": "97c4f88a81575120452a427fdc80621a630a0abf4f09d5da119b3a64f6512a5b",
+  "scope_prepare": "PASS fresh_global_geometry;solver0",
+  "global_scope_before_sha256": "0db9a7f9b84a80ddca0bbd9720db9b16f0ef9e0f27867f77e19dda7b8c1e6f4c",
+  "owned_excel_exited": true,
+  "python_comparison": {
+    "status": "EXCEL_PYTHON_EXACT_GEOMETRY_PASS",
+    "solver_calls": 0,
+    "fixtures": [
+      {
+        "name": "P06A_actual2904",
+        "exact_python_connectivity": true,
+        "python_flips": 773,
+        "vba_flips": 773,
+        "vba_seconds": 0.46875,
+        "independent_geometry_pass": true,
+        "certificate": false,
+        "solver_calls": 0,
+        "output_sha256": "c4361be2b6a24c34bf189f1ad0293a66abc6b549daab46787219feff0c0ceb26"
+      },
+      {
+        "name": "P06N_actual2914",
+        "exact_python_connectivity": true,
+        "python_flips": 362,
+        "vba_flips": 362,
+        "vba_seconds": 0.3984375,
+        "independent_geometry_pass": true,
+        "certificate": false,
+        "solver_calls": 0,
+        "output_sha256": "22f758853f4794b3b8b84f655149abba8a58605a4270a360a7a7cd9aa76b6e4f"
+      },
+      {
+        "name": "P06N_actual2914_constraints",
+        "exact_python_connectivity": true,
+        "python_flips": 354,
+        "vba_flips": 354,
+        "vba_seconds": 0.3671875,
+        "independent_geometry_pass": true,
+        "certificate": false,
+        "solver_calls": 0,
+        "output_sha256": "c78c364e1b390e46e647964bce88a56247960551575aaebd59eab026a51660ad"
+      }
+    ]
+  },
+  "files": {
+    "FlowMeshArrayProbe.bas": {
+      "bytes": 4575,
+      "sha256": "a5cefb5dae1e3720fe4d533794700c8795626ccd42e8ba387a531bf94e760f9a"
+    },
+    "FlowMeshGeometry.xlsm": {
+      "bytes": 2043967,
+      "sha256": "51e098800e8dc62fa758e17e1b647d2802a0001463417debaaaca4f2c9abab50"
+    },
+    "FlowScopeProbe.bas": {
+      "bytes": 2158,
+      "sha256": "d76b66828b4c972c35da60d69d0181886a7ddd72cf4bacb1427d8ce5ac6ed7c6"
+    },
+    "FLOW_SOURCE_MANIFEST.json": {
+      "bytes": 3663,
+      "sha256": "32fe459e26590730d59a368cd2cdc2528b770420136c4457a9a998ee12ffa75b"
+    },
+    "harness_snapshot.py": {
+      "bytes": 9953,
+      "sha256": "28bbd32451368787ebecbabdd9f1121c34c7b3a9e9c04ad3cb51f954b93b7c54"
+    },
+    "rpfem_native_x64.dll": {
+      "bytes": 1521664,
+      "sha256": "66da1a21be43cd2b3a3bfbaa9d13aad5fb1fd1960e1bf2507cc4e1cfa9ebe70b"
+    },
+    "RPX_FlowMesh.bas": {
+      "bytes": 18418,
+      "sha256": "213b05ff156e15f6d6aa3028f0eb9411b167f86932c768878d1203291ed21129"
+    },
+    "scope_input_record.json": {
+      "bytes": 4897,
+      "sha256": "97c4f88a81575120452a427fdc80621a630a0abf4f09d5da119b3a64f6512a5b"
+    },
+    "outputs\\P06A_actual2904.bin": {
+      "bytes": 62708,
+      "sha256": "c4361be2b6a24c34bf189f1ad0293a66abc6b549daab46787219feff0c0ceb26"
+    },
+    "outputs\\P06N_actual2914.bin": {
+      "bytes": 48032,
+      "sha256": "22f758853f4794b3b8b84f655149abba8a58605a4270a360a7a7cd9aa76b6e4f"
+    },
+    "outputs\\P06N_actual2914_constraints.bin": {
+      "bytes": 47744,
+      "sha256": "c78c364e1b390e46e647964bce88a56247960551575aaebd59eab026a51660ad"
+    }
+  }
+}

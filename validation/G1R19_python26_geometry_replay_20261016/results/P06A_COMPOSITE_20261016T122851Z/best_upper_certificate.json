@@ -1,0 +1,94 @@
+{
+  "case": "P06A",
+  "mode": "upper",
+  "q": 8,
+  "fs": 0.859615052748042,
+  "mesh_id": "421a73f3c0d79988c71d7bd9fd92c8c59d28b8ebdd8259565c56d3ad01bbfce6",
+  "physical_model_id": "f67b757898e3bcc3f45c5ea9b5a8e290955fad53f5900c5cd8c31b9637d51875",
+  "elements": 2904,
+  "source": "D:\\Work\\excel-vba-rpfem\\validation\\G1R19_python26_terminal_dual_20261016\\results\\dual_close_20261016T122655Z\\P06A_known_flow2904_close\\best_upper_certificate.json",
+  "root_complete": true,
+  "mesh_path": "best_upper_mesh.npz",
+  "field_path": "best_upper_field.npz",
+  "audit": {
+    "objective": 0.9996967314409745,
+    "value": 0.9996967314409795,
+    "eq_error": 5.967448757360216e-16,
+    "cone_error": 4.8118636186700314e-08,
+    "audit": {
+      "pass": true,
+      "errors": {
+        "flow": 2.2944277588976547e-08,
+        "jump": 2.851996082522506e-11,
+        "bonded_interface": 0.0,
+        "boundary": 0.0,
+        "work": 5.329070518200751e-15,
+        "objective": 4.9960036108132044e-15
+      },
+      "dissipation": 0.9996967314409795,
+      "work": [
+        0.0,
+        0.9999999999999947
+      ],
+      "value": 0.9996967314409795
+    },
+    "raw_lower_errors": {},
+    "physical_pass": true,
+    "witness": true,
+    "numerical_gate": false,
+    "discrete_root_search": {
+      "mode": "upper",
+      "root_complete": true,
+      "bracket": [
+        0.859520052748042,
+        0.859615052748042
+      ],
+      "bracket_width": 9.499999999995623e-05,
+      "fs_tolerance": 0.0001,
+      "endpoint": 0.859615052748042,
+      "trials": 2,
+      "seconds": 1.7565605999843683,
+      "mesh_id": "421a73f3c0d79988c71d7bd9fd92c8c59d28b8ebdd8259565c56d3ad01bbfce6",
+      "physical_model_id": "f67b757898e3bcc3f45c5ea9b5a8e290955fad53f5900c5cd8c31b9637d51875",
+      "elements": 2904,
+      "q": 8,
+      "case": "P06A",
+      "policy": "equal_reduced_phi",
+      "bracket_signs": [
+        1,
+        -1
+      ],
+      "opposite_numerical_endpoint_is_continuum_bound": false,
+      "budget_exhausted": false,
+      "budget_error": null,
+      "case_budget": {
+        "case_seconds": 180.0,
+        "solve_seconds": 30.0,
+        "elapsed_seconds": 18.48634370000218,
+        "remaining_seconds": 161.513655799994,
+        "exhausted": false,
+        "expired_at": null,
+        "solver_time_allocations": [
+          {
+            "stage": "terminal_original_dual",
+            "time_limit": 30.0,
+            "elapsed_seconds": 4.107105200004298
+          }
+        ],
+        "scope": "cooperative wall deadline; OS watchdog required for in-flight native work"
+      },
+      "proposal_method": "bounded_bisection",
+      "pilot_trial_limit": null,
+      "new_points": 0,
+      "pilot_trial_limit_reached": false,
+      "pilot_stop_reason": null
+    }
+  },
+  "policy": "equal_reduced_phi",
+  "source_hashes": {
+    "D:\\Work\\excel-vba-rpfem\\docs\\benchmarks\\G1R17_native26_20261013\\data\\inputs\\P06A.json": "723491feaccb2c8b64c191dccf0564416816e09d3c2fe4c297e06c7505cf3215",
+    "D:\\Work\\excel-vba-rpfem\\validation\\G1R19_python26_terminal_dual_20261016\\results\\dual_close_20261016T122655Z\\P06A_known_flow2904_close\\best_upper_certificate.json": "a3cca6369074c030edeb9e9f03846ca0f8f65c1032bb39eda1bc0dd347e4795b",
+    "D:\\Work\\excel-vba-rpfem\\validation\\G1R19_python26_terminal_dual_20261016\\results\\dual_close_20261016T122655Z\\P06A_known_flow2904_close\\best_upper_mesh.npz": "49f4c4dc7d93d7e66e98c1fc0c10ec26a9b5e217a0e3be62b0224ec32f6b6f04",
+    "D:\\Work\\excel-vba-rpfem\\validation\\G1R19_python26_terminal_dual_20261016\\results\\dual_close_20261016T122655Z\\P06A_known_flow2904_close\\best_upper_field.npz": "95520f68ae3279889973eb962cc3438e90bdaf2784edaf97932297440c56bb71"
+  }
+}

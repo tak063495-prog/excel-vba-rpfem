@@ -1,0 +1,26 @@
+{
+  "checked_unix": 1792153293.1815841,
+  "checks": [
+    {
+      "summary": "D:\\Work\\excel-vba-rpfem\\validation\\G1R19_StateReset_excel_20261016\\results\\positive_\\1792153112527086400\\summary.json",
+      "owned_pid": 23436,
+      "owned_creation": 1792153116.0091505,
+      "original_summary_exited": false,
+      "original_owned_process_exited": true
+    },
+    {
+      "summary": "D:\\Work\\excel-vba-rpfem\\validation\\G1R19_StateReset_excel_20261016\\results\\positive_\\1792153150603266400\\summary.json",
+      "owned_pid": 11000,
+      "owned_creation": 1792153152.502215,
+      "original_summary_exited": true,
+      "original_owned_process_exited": true
+    },
+    {
+      "summary": "D:\\Work\\excel-vba-rpfem\\validation\\G1R19_StateReset_excel_20261016\\results\\negative_\\1792153181625821100\\summary.json",
+      "owned_pid": 5992,
+      "owned_creation": 1792153183.5509956,
+      "original_summary_exited": true,
+      "original_owned_process_exited": true
+    }
+  ]
+}

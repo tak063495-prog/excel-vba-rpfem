@@ -22,3 +22,17 @@ versions/G1R19/** -text
 versions/G1R19_Issue11/** -text
 # G1R19 2% preset rerun logs: keep UTF-16LE/CP932/CRLF bytes exactly.
 validation/G1R19_preset2pct_20261016/** -text
+# Preserve frozen 2% experiments and source/import manifests byte for byte.
+validation/G1R19_python26*_20261016/** -text
+validation/G1R19_D02_route_audit_20261016/** -text
+validation/G1R19_c0_lower8_20261016/** -text
+versions/G1R19_2pct/** -text
+versions/G1R19_WaterCommon_20261016/** -text
+versions/G1R19_StateReset_20261016/** -text
+versions/G1R19_FlowMesh_20261016/** -text
+versions/G1R19_Combined_20261016/** -text
+versions/G1R20/** -text
+versions/G1R19_*_20261016/** -text
+# Dated audits also bind original JSON/source/archive byte hashes.
+validation/G1R19_*_20261016/** -text
+validation/G1R20_*_20261016/** -text

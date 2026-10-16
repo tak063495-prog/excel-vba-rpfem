@@ -1,0 +1,66 @@
+{
+  "schema": "rpfem.combined.overlay.v1",
+  "candidate_only": true,
+  "release": false,
+  "scope": "Four accuracy corrections, pinned prescribed-water common mesh, four explicit entry calls",
+  "p06_target_claimed": false,
+  "upstream_manifest_sha256": {
+    "G1R19_2pct": "909071d2d6bc3d4979ad92a2e4251131eca3745c74f7050c28dda45d7ee3a3c3",
+    "G1R19_WaterCommon_20261016": "e25c0748e7a0c1b8127a2baa540d29448fe6d788ed04691cd601e931946e2f5c",
+    "G1R19_StateReset_20261016": "a26beb0538dfccd33021c4ea603a702957a2452b44ed08dc23bfbe75b088a147"
+  },
+  "modules": {
+    "RPX_AccuracyNative.bas": {
+      "source": "G1R19_2pct\\src\\vba\\RPX_AccuracyNative.bas",
+      "utf8_sha256": "2495d5882e040d7f19156ae38b6a517f34c672eca4087957ef56d1d2c9aa2247",
+      "cp932_sha256": "2495d5882e040d7f19156ae38b6a517f34c672eca4087957ef56d1d2c9aa2247"
+    },
+    "RPX_Adapt.bas": {
+      "source": "G1R19_2pct\\src\\vba\\RPX_Adapt.bas",
+      "utf8_sha256": "3ef322342b42f802d865998fc5172a422ebcfe5de10520510af99af63781b45e",
+      "cp932_sha256": "3ef322342b42f802d865998fc5172a422ebcfe5de10520510af99af63781b45e"
+    },
+    "RPX_Fs.bas": {
+      "source": "G1R19_StateReset_20261016\\src\\vba\\RPX_Fs.bas",
+      "utf8_sha256": "5cae700fe650f804e69ae37ad3cfb9ce87ec9c05a2af0cfbef4819f65cdf4698",
+      "cp932_sha256": "5cae700fe650f804e69ae37ad3cfb9ce87ec9c05a2af0cfbef4819f65cdf4698"
+    },
+    "RPX_UI.bas": {
+      "source": "G1R19_2pct\\src\\vba\\RPX_UI.bas",
+      "utf8_sha256": "b01520f496fa43f09633e567f6ed24fc4a2478efbe7cb13588f26af4a25956ee",
+      "cp932_sha256": "9b7572b2912621097a0be7d20b54716ee256f46ee21498c76f7d303e9afc3ae0"
+    },
+    "RPX_Guard.bas": {
+      "source": "G1R19_WaterCommon_20261016\\src\\vba\\RPX_Guard.bas",
+      "utf8_sha256": "128d4e719beb2a4c2569402ab9ffeb6f860748644b860c2b1c60b6640b7e8fc0",
+      "cp932_sha256": "5bc6df7f72d89f0fd7e491ff2274443732e15a7d3e3d87c85accfb38a2336962"
+    },
+    "RPX_Mesh.bas": {
+      "source": "G1R19_WaterCommon_20261016\\src\\vba\\RPX_Mesh.bas",
+      "utf8_sha256": "c82481797853e4f5f956c41fbdb911c421da41ef518771a382eb0451ce3bb78c",
+      "cp932_sha256": "c82481797853e4f5f956c41fbdb911c421da41ef518771a382eb0451ce3bb78c"
+    },
+    "RPX_Water.bas": {
+      "source": "G1R19_WaterCommon_20261016\\src\\vba\\RPX_Water.bas",
+      "utf8_sha256": "48532ee33f4b6723375f7a454d10208994a4e3c00c94784d42743d6213cf02b3",
+      "cp932_sha256": "246137927129136e1c3a8020bea39853d44086ffc958d8980c2d2df68e4835f6"
+    },
+    "RPX_Conic.bas": {
+      "source": "G1R19_StateReset_20261016\\src\\vba\\RPX_Conic.bas",
+      "utf8_sha256": "79b8b4152638fd9c7aa29eed34324c195b8c8f74041ee1440dbb06dcd3c37840",
+      "cp932_sha256": "79b8b4152638fd9c7aa29eed34324c195b8c8f74041ee1440dbb06dcd3c37840"
+    },
+    "RPX_Seep.bas": {
+      "source": "G1R19_StateReset_20261016\\src\\vba\\RPX_Seep.bas",
+      "utf8_sha256": "d68aa0ee1612330298951d9015b938fc81c19201193cce69f254f6232b0ca50a",
+      "cp932_sha256": "ace78fef8dd295e6028e89c92f7ecd46b5e9c7de0c92ef3a22eb1147dcae1cd6"
+    },
+    "RPX_Solve.bas": {
+      "source": "G1R19_StateReset_20261016\\src\\vba\\RPX_Solve.bas",
+      "utf8_sha256": "f844f91dc407f06b3fbf62cd6f5f0d280bba4f2aab3afe32322ffa5583a54dd8",
+      "cp932_sha256": "f844f91dc407f06b3fbf62cd6f5f0d280bba4f2aab3afe32322ffa5583a54dd8"
+    }
+  },
+  "warning": "D08 cold proof used the seven-module composition before the four explicit-call changes; do not relabel it as a ten-module numerical run",
+  "upstream_manifest_update_note": "StateReset test-only trap moved before HEnsureDD; four product source/import bytes unchanged"
+}

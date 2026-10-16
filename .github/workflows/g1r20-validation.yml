@@ -1,0 +1,41 @@
+name: G1R20 source and audit controls
+on:
+  pull_request:
+    paths:
+      - 'versions/G1R20/**'
+      - 'versions/G1R19_WaterCommon_20261016/**'
+      - 'versions/G1R19_StateReset_20261016/**'
+      - 'versions/G1R19_FlowMesh_20261016/**'
+      - 'validation/G1R19_python26_20261016/**'
+      - '.github/workflows/g1r20-validation.yml'
+  workflow_dispatch:
+jobs:
+  source-and-audit-controls:
+    runs-on: ubuntu-latest
+    env:
+      OPENBLAS_NUM_THREADS: '1'
+      OMP_NUM_THREADS: '1'
+      MKL_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Install pinned numerical reference libraries
+        run: python -X utf8 -m pip install -r validation/accuracy_20261013/requirements.txt
+      - name: Check the G1R20 sources and single-DLL delivery
+        run: python -X utf8 versions/G1R20/tools/check_release_sources.py --require-delivery
+      - name: Check original-source overlay byte identities
+        run: |
+          python -X utf8 versions/G1R19_WaterCommon_20261016/make_overlay_manifest.py --check
+          python -X utf8 versions/G1R19_StateReset_20261016/make_overlay_manifest.py --check
+          python -X utf8 versions/G1R19_FlowMesh_20261016/make_manifest.py --check
+      - name: Verify source-provenance and execution-status rejection controls
+        run: |
+          python -X utf8 -m unittest discover -s validation/G1R19_python26_20261016 -p test_collector.py -v
+          python -X utf8 -m unittest discover -s validation/G1R19_python26_20261016 -p test_evidence_provenance.py -v
+      - name: Verify water, initialization and geometry contracts without Excel
+        run: |
+          python -X utf8 -m unittest discover -s versions/G1R19_WaterCommon_20261016/tests -p 'test_*.py' -v
+          python -X utf8 -m unittest discover -s versions/G1R19_StateReset_20261016/tests -p test_contract.py -v
+          python -X utf8 -m unittest discover -s versions/G1R19_FlowMesh_20261016/tests -p test_contract.py -v

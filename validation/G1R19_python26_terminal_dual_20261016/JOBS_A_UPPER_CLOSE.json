@@ -1,0 +1,23 @@
+[
+  {
+    "label": "P06A_known_flow2904_close",
+    "case": "P06A",
+    "mode": "upper",
+    "script": "close_current_side.py",
+    "case_seconds": 180,
+    "argv": [
+      "--case",
+      "P06A",
+      "--mode",
+      "upper",
+      "--source",
+      "D:/Work/excel-vba-rpfem/validation/G1R19_python26_geometry_replay_20261016/results/known_upper_20261016T121742Z/P06A_known_flow2904",
+      "--output",
+      "{OUTPUT}",
+      "--case-seconds",
+      "180",
+      "--solve-seconds",
+      "30"
+    ]
+  }
+]

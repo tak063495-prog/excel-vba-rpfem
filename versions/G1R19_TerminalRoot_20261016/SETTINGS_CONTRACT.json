@@ -1,0 +1,26 @@
+{
+  "schema": "rpfem.terminal_root.settings.v1",
+  "ui_owner": "G1R20 integration; this sibling does not modify RPX_UI",
+  "ordinary_defaults_unchanged": true,
+  "FS_TERMINAL_SCHEDULE": {
+    "type": "finite integer 0 or 1",
+    "default": 0,
+    "G1R20_precision_profile": 1,
+    "scope": "q8 and Accuracy enabled; existing root width still greater than tau and at most 2.5*tau",
+    "tau": "FS_TOL*max(1,(a+b)/2)",
+    "lower": "At most original a+.3span then original a+.7span, only while strictly inside updated bracket; full TryFsTrialPoint gates; two UNKNOWN preserve endpoints and stop incomplete",
+    "upper": "Context-bound one-shot original-dual helper first inside DirectBound after original export; shared existing original_dual_helper commit"
+  },
+  "G1R20_precision_profile": {
+    "DIRECT_DLL": 1,
+    "ACCURACY_DLL_RECOVERY": 1,
+    "DIRECT_DLL_SECONDS": 30,
+    "ACCURACY_DLL_DUAL_SECONDS": 30,
+    "QUADRATURE": 8,
+    "ADAPT_PRECISION_FROM_START": 1,
+    "FS_TOL": 0.0001,
+    "GAP": 0.02
+  },
+  "budgets": "Helper-first has its declared dual budget; failed helper may then use the separately declared original-LP budget. No second helper in that DirectBound invocation. Existing HSD/recovery fallback and external total-run watchdog remain separate.",
+  "acceptance": "All original physical, objective, cone, stationarity, separation, endpoint and normalized root-width gates unchanged. Solver time/status is never evidence."
+}

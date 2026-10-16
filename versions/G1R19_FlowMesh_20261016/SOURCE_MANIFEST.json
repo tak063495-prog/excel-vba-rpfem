@@ -1,0 +1,51 @@
+{
+  "schema": "rpfem.flowmesh.pure_array.v1",
+  "status": "STATIC_AND_PYTHON_REFERENCE_ONLY; VBA_COMPILE_AND_RUNTIME_PENDING",
+  "production_artifacts_modified": false,
+  "solver_calls": 0,
+  "excel_runs": 0,
+  "module": {
+    "source": "src/vba/RPX_FlowMesh.bas",
+    "source_sha256": "213b05ff156e15f6d6aa3028f0eb9411b167f86932c768878d1203291ed21129",
+    "imported": "import/RPX_FlowMesh.bas",
+    "import_sha256": "213b05ff156e15f6d6aa3028f0eb9411b167f86932c768878d1203291ed21129",
+    "decoded_text_equal": true
+  },
+  "reference": {
+    "path": "validation/G1R19_python26_20261016/python/mesh_geometry.py",
+    "sha256": "e5a5f41a9af249fa8e75f2aa634bda9b4202b89fb5518ff8d478de1b4406d68e"
+  },
+  "scope": "Pure geometry candidate only; no global model/field/Fs/root access; new original q8 witness and own roots required",
+  "semantics": {
+    "default_passes": 5,
+    "source_metric": "Fixed source centroid P2 J.T@J by original element ID",
+    "spectral_floor": "eigenvalues >= max(lambda_max,1e-20)/9; normalize by max(lambda_max,1e-20)",
+    "metric_quality": "after > 1.05*before+1e-10",
+    "geometric_quality": "after >= .6*before",
+    "cavity_twice_area_absolute_tolerance": 1e-10,
+    "minimum_positive_twice_area": 1e-12,
+    "material_area": "abs(delta) <= 1e-10+1e-12*abs(source_area)",
+    "extra_guards": "Explicit RConstraints plus intrinsic exterior/material edge protection",
+    "ordering": "Descending gain; stable original edge discovery ordinal for exact ties",
+    "limits": "0..5 passes; exact finite 12*ne physical velocity prefix only"
+  },
+  "implementation_difference": "Symmetric 2x2 spectral floor uses an analytic polynomial rather than an eigenvector routine; rounding may affect near-tied geometric choices. Extra explicit-convexity/existing-diagonal guards reject invalid cavities.",
+  "files": {
+    "README_JA.md": "d218747f996147121f1521dabbd9540c0031c59072ea2c28847b9b01607dd618",
+    "tests/FlowMeshArrayProbe.bas": "a5cefb5dae1e3720fe4d533794700c8795626ccd42e8ba387a531bf94e760f9a",
+    "tests/reference_fixtures.py": "9a34b28d50f1b78a0bd69db857f189f6a8ffcd6defab178f70f5fab07c733d88",
+    "tests/test_contract.py": "8b92bb59474a3156c2de11a2c3441caf80770c6636db8dcb425d37d889bc3026",
+    "tests/compare_excel.py": "3fd9a45e80a8e78f1164508b5dd284398eef9ec5e533dd7480842559cd34cbe7",
+    "make_manifest.py": "e117fb5bdae7c8bf6d116f5179f82af975b78327aa98c7eeb9b3cf6794b2bccc",
+    "tests/fixtures/FIXTURES.json": "2033b42d8163fbe1fdefde4a2591dd167655235d49e62d00f5b2919c9bbed4b3",
+    "tests/fixtures/P06A_actual2904.bin": "a426a0824ba2b17748254ab471e7fdc3ca36fa9b5091d0bb1152cd44fef032e0",
+    "tests/fixtures/P06A_actual2904_expected.json": "29ae919a0c2e01b745e38a8170ec8265a70de9e06ea5894e79528546b9d176d4",
+    "tests/fixtures/P06A_actual2904_expected.npz": "779cc423e70c5a7e453036bd69dc95d23d1a1b027ba547200c25c02c15063ffb",
+    "tests/fixtures/P06N_actual2914.bin": "96ebb891f41e9931cb93d77e6bc2abaad2b5f96ba7ff400b1a932c92622cd2e3",
+    "tests/fixtures/P06N_actual2914_constraints.bin": "34b171cda2c371712d3bc40a23ae7fbf21433b74229d768a9b3bd82e43506c42",
+    "tests/fixtures/P06N_actual2914_constraints_expected.json": "f289d8d66f129fa64796ef4b44e0366b7b76a3f12c08af6ec06adc1f88a5f726",
+    "tests/fixtures/P06N_actual2914_constraints_expected.npz": "0ad02b52469b99ad98019cb8092e9ec17a96bf5b79723ad5ea5f903ceacc3e94",
+    "tests/fixtures/P06N_actual2914_expected.json": "4d06b6bf033390f6622d0f8b198276ce071e7d7a9db83566cc2e29c117c108fc",
+    "tests/fixtures/P06N_actual2914_expected.npz": "52c05962e8c3d14638a42f47fda8a8d52f28f65dd50b5477fef740ac5676753c"
+  }
+}
