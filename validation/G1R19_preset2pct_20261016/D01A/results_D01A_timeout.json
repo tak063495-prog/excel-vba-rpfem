@@ -1,0 +1,6 @@
+{
+  "case": "D01A",
+  "timeout_s": 5400,
+  "utc": "2026-10-16T08:30:56.514485+00:00",
+  "action": "cooperative RPX_Stop"
+}
