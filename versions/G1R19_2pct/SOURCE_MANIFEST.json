@@ -1,0 +1,31 @@
+{
+  "base": "origin/main@3823666",
+  "base_adapt": "G1R19_Issue11",
+  "published_artifacts_modified": false,
+  "changes": [
+    "Zero cohesive dissipation uses existing kinematic indicator; normal positive score remains unchanged",
+    "Optional generic homogeneous c0 slope wedge tried before expensive continuation; all original q8 field/root gates retained",
+    "Only homogeneous original lower HSD ray: finite same-Fs load-margin copy is freshly full-audited before becoming a physical witness; original root gate unchanged",
+    "Use bisection for sign-only guide/witness endpoints instead of arbitrary ray or feasibility-objective secant magnitudes; acceptance gates unchanged",
+    "Original direct lower candidates also use the same strictly homogeneous positive primal normalization before HSD fallback; no status-based acceptance",
+    "Two-percent speed preset explicitly uses precision-from-start=1, matching verified D01/D02 cold profile; ordinary default remains0"
+  ],
+  "modules": {
+    "RPX_AccuracyNative.bas": {
+      "utf8_sha256": "2495d5882e040d7f19156ae38b6a517f34c672eca4087957ef56d1d2c9aa2247",
+      "cp932_sha256": "2495d5882e040d7f19156ae38b6a517f34c672eca4087957ef56d1d2c9aa2247"
+    },
+    "RPX_Adapt.bas": {
+      "utf8_sha256": "3ef322342b42f802d865998fc5172a422ebcfe5de10520510af99af63781b45e",
+      "cp932_sha256": "3ef322342b42f802d865998fc5172a422ebcfe5de10520510af99af63781b45e"
+    },
+    "RPX_Fs.bas": {
+      "utf8_sha256": "947dfe184026b4c7c45c34e112e8742150e9b0f9a3836f6c5c441126c7696eb2",
+      "cp932_sha256": "947dfe184026b4c7c45c34e112e8742150e9b0f9a3836f6c5c441126c7696eb2"
+    },
+    "RPX_UI.bas": {
+      "utf8_sha256": "b01520f496fa43f09633e567f6ed24fc4a2478efbe7cb13588f26af4a25956ee",
+      "cp932_sha256": "9b7572b2912621097a0be7d20b54716ee256f46ee21498c76f7d303e9afc3ae0"
+    }
+  }
+}

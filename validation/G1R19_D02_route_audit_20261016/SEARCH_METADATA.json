@@ -1,0 +1,20 @@
+{
+  "checked_utc": "2026-10-16T11:14:36.513862+00:00",
+  "source": "GitHub REST via authenticated gh; read only",
+  "issue_count": 19,
+  "recent_comment_count": 9,
+  "D02_preset_main_commits": 0,
+  "input_source": "docs/benchmarks/G1R17_native26_20261013/data/inputs/D02A.json",
+  "input_bytes_sha256": "97c4f88a81575120452a427fdc80621a630a0abf4f09d5da119b3a64f6512a5b",
+  "input_canonical_json_sha256": "3911bed529d59055e7a1c1d928fba7adf667b7d00118f2331e01a643de53bf99",
+  "D02_official_workbook_hash_confirmed": false,
+  "D02_official_DLL_hash_confirmed": false,
+  "new_evidence_received": {
+    "commit": "303922050bea7ddaaf6f26fe560c1a4d10c76121",
+    "path": "validation/G1R19_preset2pct_20261016/D02A",
+    "pr": 20,
+    "official_workbook_sha256": "3533073bfe883b254143cf68285235ddbe729e8f0e272f4180f2b730f9c63a6f",
+    "official_DLL_sha256": "66da1a21be43cd2b3a3bfbaa9d13aad5fb1fd1960e1bf2507cc4e1cfa9ebe70b",
+    "original_file_count": 13
+  }
+}
