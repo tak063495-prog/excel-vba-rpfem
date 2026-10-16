@@ -1,0 +1,11 @@
+{
+  "pid": 8760,
+  "birth": 1792156590.3354428,
+  "command": [
+    "C:\\Program Files\\Microsoft Office\\Root\\Office16\\EXCEL.EXE",
+    "/automation",
+    "-Embedding"
+  ],
+  "reason": "Dedicated format-check workbook; COM close did not return; no solver or user workbook",
+  "owned_exit_confirmed": true
+}

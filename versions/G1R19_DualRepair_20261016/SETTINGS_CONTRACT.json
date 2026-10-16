@@ -1,0 +1,12 @@
+{
+  "schema": "rpfem.original_dual.free_y_settings.v1",
+  "ui_owner": "G1R20 integration; this sibling changes no RPX_UI",
+  "ACCURACY_DLL_DUAL_LINEAR_REPAIR": {"type": "finite integer 0 or 1", "default": 0, "G1R20_precision_profile": 1, "scope": "original upper q8 only; never cap/floor QP dual"},
+  "ACCURACY_DLL_DUAL_REGULARIZATION": {"default": 0, "G1R20_precision_profile": 1e-8, "scope": "flag1 upper original-dual-feasibility auxiliary Pdiag only; original cost and all original constraints unchanged"},
+  "ACCURACY_DLL_DUAL_SECONDS": {"ordinary_default": 20, "G1R20_precision_profile": 60},
+  "ACCURACY_DLL_DUAL_EQUILIBRATE": {"ordinary_default": 1, "G1R20_precision_profile": 1},
+  "ACCURACY_DLL_EQUILIBRATE": {"ordinary_default": 0, "G1R20_precision_profile": 0},
+  "fixed_linear_budget": {"attempts_per_source_vector": 1, "max_iterations": 200, "atol": 1e-15, "btol": 1e-15, "conlim": 1e12, "maximum_seconds": 10, "optimizer_calls": 0},
+  "acceptance": "After y-only correction, original unscaled stationarity<=1e-7, cone<=1e-8, separation>=1.000003, finite/current original model/Fs/cost/layout/input epoch/q, z bitwise invariant. No LSMR return status or norm is proof. No physical bound/field from a dual guide.",
+  "total_budget": "Direct LP30 + dual60 + QP90*2; fresh LP30 only if no finite original center. At most300s solve caps for the full fallback combination, plus possible original LP-dual and helper-dual linear corrections each<=10s. Total case watchdog remains separate."
+}

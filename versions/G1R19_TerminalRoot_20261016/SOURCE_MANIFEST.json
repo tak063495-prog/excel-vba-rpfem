@@ -1,0 +1,69 @@
+{
+  "schema": "rpfem.terminal_root.scheduling.v1",
+  "status": "ISOLATED_SCHEDULING_PROTOTYPE; EXCEL_RUNTIME_PENDING",
+  "base": "Frozen Combined10",
+  "production_artifacts_modified": false,
+  "solver_calls": 0,
+  "modules": [
+    {
+      "name": "RPX_Fs.bas",
+      "baseline": "versions/G1R19_Combined_20261016/src/vba/RPX_Fs.bas",
+      "baseline_sha256": "5cae700fe650f804e69ae37ad3cfb9ce87ec9c05a2af0cfbef4819f65cdf4698",
+      "source": "src/vba/RPX_Fs.bas",
+      "source_sha256": "3fe2e2bcfcf25d0b65d9c2a913291115a31be8c3ea1b609ffdf38b5970b10d8a",
+      "imported": "import/RPX_Fs.bas",
+      "import_sha256": "3fe2e2bcfcf25d0b65d9c2a913291115a31be8c3ea1b609ffdf38b5970b10d8a"
+    },
+    {
+      "name": "RPX_AccuracyNative.bas",
+      "baseline": "versions/G1R19_Combined_20261016/src/vba/RPX_AccuracyNative.bas",
+      "baseline_sha256": "2495d5882e040d7f19156ae38b6a517f34c672eca4087957ef56d1d2c9aa2247",
+      "source": "src/vba/RPX_AccuracyNative.bas",
+      "source_sha256": "60d08e6f0b38f3710482be355502d62f8752873e808015ca9a28b247d0a62803",
+      "imported": "import/RPX_AccuracyNative.bas",
+      "import_sha256": "60d08e6f0b38f3710482be355502d62f8752873e808015ca9a28b247d0a62803"
+    }
+  ],
+  "unchanged": [
+    "Original primal/dual physical equations and gates",
+    "ActualRootBracket",
+    "TryFsTrialPoint",
+    "SaveBracket",
+    "Original dual feasibility program/separation threshold",
+    "Forty root iterations",
+    "Physical field/Fs unchanged"
+  ],
+  "profile": {
+    "schema": "rpfem.terminal_root.settings.v1",
+    "ui_owner": "G1R20 integration; this sibling does not modify RPX_UI",
+    "ordinary_defaults_unchanged": true,
+    "FS_TERMINAL_SCHEDULE": {
+      "type": "finite integer 0 or 1",
+      "default": 0,
+      "G1R20_precision_profile": 1,
+      "scope": "q8 and Accuracy enabled; existing root width still greater than tau and at most 2.5*tau",
+      "tau": "FS_TOL*max(1,(a+b)/2)",
+      "lower": "At most original a+.3span then original a+.7span, only while strictly inside updated bracket; full TryFsTrialPoint gates; two UNKNOWN preserve endpoints and stop incomplete",
+      "upper": "Context-bound one-shot original-dual helper first inside DirectBound after original export; shared existing original_dual_helper commit"
+    },
+    "G1R20_precision_profile": {
+      "DIRECT_DLL": 1,
+      "ACCURACY_DLL_RECOVERY": 1,
+      "DIRECT_DLL_SECONDS": 30,
+      "ACCURACY_DLL_DUAL_SECONDS": 30,
+      "QUADRATURE": 8,
+      "ADAPT_PRECISION_FROM_START": 1,
+      "FS_TOL": 0.0001,
+      "GAP": 0.02
+    },
+    "budgets": "Helper-first has its declared dual budget; failed helper may then use the separately declared original-LP budget. No second helper in that DirectBound invocation. Existing HSD/recovery fallback and external total-run watchdog remain separate.",
+    "acceptance": "All original physical, objective, cone, stationarity, separation, endpoint and normalized root-width gates unchanged. Solver time/status is never evidence."
+  },
+  "files": {
+    "README_JA.md": "4e8ea48612962d2faf561509e3751aabc37c68f1e834f781100c5c96329b0210",
+    "SETTINGS_CONTRACT.json": "870515b4131143053c4b20c60a9c3f84573bbec4f5d93a08ee6835621049725c",
+    "tests/test_contract.py": "7a9784aa7923ed593dfc145e70d2070221abef2980bf13da24f801030ad2eb91",
+    "tests/MICROTEST_JA.md": "2225000e471aa3a5b763e0e6a672fa6dd69590982b0e1c7982d224580ed810e1",
+    "build_overlay.py": "c1b3a274f186c9eeffdade25485034b74644ae7a62f60763f60d0e6bfc5103e8"
+  }
+}

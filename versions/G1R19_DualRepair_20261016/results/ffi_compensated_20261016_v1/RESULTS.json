@@ -1,0 +1,53 @@
+{
+  "status": "PASS",
+  "optimizer_calls": 0,
+  "method": "one_native_lsmr_with_VBA_compensated_original_CSR_rhs",
+  "before": {
+    "accepted": false,
+    "dual_stationarity": 1.7849141851393815e-07,
+    "dual_cone_error": 5.661386886634395e-13,
+    "dual_objective": 1.0000030000004765,
+    "threshold": 1.000003,
+    "method": "original_dual_feasibility",
+    "scope": "discrete_root_search_only",
+    "publishes_primal_bound": false,
+    "reason": "ORIGINAL_RAW_DUAL_GATE_REJECTED"
+  },
+  "after": {
+    "accepted": true,
+    "dual_stationarity": 8.92458766547894e-08,
+    "dual_cone_error": 5.661386886634395e-13,
+    "dual_objective": 1.0000030000010307,
+    "threshold": 1.000003,
+    "method": "original_dual_feasibility",
+    "scope": "discrete_root_search_only",
+    "publishes_primal_bound": false,
+    "search_sign": 1
+  },
+  "linear": {
+    "returncode": 0,
+    "seconds": 0.007771200005663559,
+    "n": 1210,
+    "m": 104868,
+    "nnz": 28506,
+    "stop": 2,
+    "iterations": 5,
+    "scipy_stop": 2,
+    "scipy_iterations": 5,
+    "maximum_correction_difference": 1.852884572118782e-22,
+    "optimizer_calls": 0
+  },
+  "compensated_before_stat": 1.7849141865228235e-07,
+  "compensated_after_stat": 8.924587665483503e-08,
+  "compensated_vs_numpy_rhs_maxdifference": 4.704570066849101e-15,
+  "z_bitwise_unchanged": true,
+  "source_vector_unchanged": true,
+  "original_files_unchanged": true,
+  "input_sha256": {
+    "D:\\Work\\excel-vba-rpfem\\versions\\G1R19_DualRepair_20261016\\tests\\vba_rhs_probe.py": "c158c0eb6495c9ef7ad25f677f05dc60ad72aa6549986cf32bf10e6076cb9402",
+    "D:\\Work\\excel-vba-rpfem\\versions\\G1R19_DualRepair_20261016\\tests\\native_lsmr_probe.py": "fbd5d422fefb471548baed82150a3840ae38a191d306905f4b5c447b9cf696f6",
+    "D:\\Work\\excel-vba-rpfem\\versions\\G1R19\\delivery\\rpfem_native_x64.dll": "66da1a21be43cd2b3a3bfbaa9d13aad5fb1fd1960e1bf2507cc4e1cfa9ebe70b",
+    "D:\\Work\\excel-vba-rpfem\\validation\\G1R19_python26_terminal_final_20261016\\results\\P06N_immutable_20261016T124645Z\\best_upper_mesh.npz": "50ae0414cbf1d4cd64ae41fda6d368a9318dd6fec2af94c1826930788e5d15f5",
+    "D:\\Work\\excel-vba-rpfem\\validation\\G1R19_python26_terminal_final_20261016\\results\\final_guide_20261016T124646Z\\P06N_upper8739_final_guide\\terminal_original_dual.npz": "f516dce66b9c1f3ea9f763e6b1b2a4c17082a878e60600280139baaf83b5367c"
+  }
+}

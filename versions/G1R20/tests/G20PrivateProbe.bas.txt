@@ -1,0 +1,18 @@
+' TEST COPY ONLY: appended inside RPX_Adapt to access geometry builders.
+Public Function G20BalancedGeometryUnit(ByVal target As Long, ByVal path As String) As Variant
+    Dim area As Double, e As Long, originalModel As String, oldCalls As Long
+    On Error GoTo Failed
+    Call RPX_InputBegin: Call RPX_ReadInputs
+    oldCalls = RFsCalls
+    If Not G20BuildBalancedLower(target, 50000) Then err.Raise 5, , "UNEXPECTED_BALANCED_CAP_REJECTION"
+    For e = 0 To re - 1: area = area + RArea(e): Next e
+    If re Mod 4 <> 0 Or RFsCalls <> oldCalls Then err.Raise 5, , "BALANCED_GEOMETRY_NOT_RED4_SOLVER0 elements=" & re & ";calls=" & RFsCalls & ";oldCalls=" & oldCalls
+    Call GeometryReplayProbe.GeometryReplayExportCurrent(path)
+    G20BalancedGeometryUnit = Array("PASS", target, re \ 4, re, rn, area, "geometry_only;solver0;certificate0")
+Cleanup:
+    Call RPX_InputEnd
+    Exit Function
+Failed:
+    G20BalancedGeometryUnit = Array("FAIL", err.Number, err.Description)
+    Resume Cleanup
+End Function

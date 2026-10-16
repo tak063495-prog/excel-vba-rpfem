@@ -1,0 +1,60 @@
+{
+  "schema": "rpfem.original_dual.free_y_repair.v1",
+  "status": "ISOLATED_OPT_IN_PROTOTYPE; EXCEL_RUNTIME_PENDING",
+  "production_artifacts_modified": false,
+  "dll_modified": false,
+  "optimizer_calls": 0,
+  "baseline": "versions/G1R19_UpperRecovery_20261016/src/vba/RPX_AccuracyNative.bas",
+  "baseline_sha256": "02795e4c36c3ef50f7629e75483e54707154f73ad396e99a4bf811f565fc28ae",
+  "source": "src/vba/RPX_AccuracyNative.bas",
+  "source_sha256": "f5b206b220371076248734f0221bee5c9f5162e8c25f57134a20257c5f7049be",
+  "imported": "import/RPX_AccuracyNative.bas",
+  "import_sha256": "f5b206b220371076248734f0221bee5c9f5162e8c25f57134a20257c5f7049be",
+  "profile": {
+    "schema": "rpfem.original_dual.free_y_settings.v1",
+    "ui_owner": "G1R20 integration; this sibling changes no RPX_UI",
+    "ACCURACY_DLL_DUAL_LINEAR_REPAIR": {
+      "type": "finite integer 0 or 1",
+      "default": 0,
+      "G1R20_precision_profile": 1,
+      "scope": "original upper q8 only; never cap/floor QP dual"
+    },
+    "ACCURACY_DLL_DUAL_REGULARIZATION": {
+      "default": 0,
+      "G1R20_precision_profile": 1e-08,
+      "scope": "flag1 upper original-dual-feasibility auxiliary Pdiag only; original cost and all original constraints unchanged"
+    },
+    "ACCURACY_DLL_DUAL_SECONDS": {
+      "ordinary_default": 20,
+      "G1R20_precision_profile": 60
+    },
+    "ACCURACY_DLL_DUAL_EQUILIBRATE": {
+      "ordinary_default": 1,
+      "G1R20_precision_profile": 1
+    },
+    "ACCURACY_DLL_EQUILIBRATE": {
+      "ordinary_default": 0,
+      "G1R20_precision_profile": 0
+    },
+    "fixed_linear_budget": {
+      "attempts_per_source_vector": 1,
+      "max_iterations": 200,
+      "atol": 1e-15,
+      "btol": 1e-15,
+      "conlim": 1000000000000.0,
+      "maximum_seconds": 10,
+      "optimizer_calls": 0
+    },
+    "acceptance": "After y-only correction, original unscaled stationarity<=1e-7, cone<=1e-8, separation>=1.000003, finite/current original model/Fs/cost/layout/input epoch/q, z bitwise invariant. No LSMR return status or norm is proof. No physical bound/field from a dual guide.",
+    "total_budget": "Direct LP30 + dual60 + QP90*2; fresh LP30 only if no finite original center. At most300s solve caps for the full fallback combination, plus possible original LP-dual and helper-dual linear corrections each<=10s. Total case watchdog remains separate."
+  },
+  "files": {
+    "build_overlay.py": "de2c9188b3ada4c7fe112381dfe0eb0b6a13c3d142c8f6dacaaa41a83d979191",
+    "README_JA.md": "6bf0c1973a4506568c091a77ab8c675ffc22232ae47bf9e6fa44ccfdaae2cd12",
+    "SETTINGS_CONTRACT.json": "97c1dd3adc5e653ea2609730c2cf68f4f2b5e155cb191d684a48be6d09c3cdd9",
+    "tests/test_contract.py": "1f8ba72795a129e24a1928754ffb7a47739c9c970f29631a3874318ea0da4deb",
+    "tests/native_lsmr_probe.py": "fbd5d422fefb471548baed82150a3840ae38a191d306905f4b5c447b9cf696f6",
+    "tests/vba_rhs_probe.py": "c158c0eb6495c9ef7ad25f677f05dc60ad72aa6549986cf32bf10e6076cb9402",
+    "tests/MICROTEST_JA.md": "6ee0c33d2ebe31c0376652d984f9d6abfab3020df916b89b036b84f10fd4aad6"
+  }
+}

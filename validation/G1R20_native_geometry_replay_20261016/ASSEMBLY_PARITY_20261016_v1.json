@@ -1,0 +1,54 @@
+{
+  "case": "P06N",
+  "side": "upper",
+  "fs": 0.690448726038878,
+  "q": 8,
+  "elements": 8739,
+  "nodes": 4399,
+  "scope": "Same geometry/fixed Fs original-program and optional primal checkpoint only; no own root or full adaptive-run claim",
+  "optimizer_calls": 0,
+  "comparisons": {
+    "E": {
+      "equal_shape": true,
+      "max_absolute_difference": 6.5156213757688874e-15,
+      "tolerance": 1e-10,
+      "pass_": true
+    },
+    "b": {
+      "equal_shape": true,
+      "max_absolute_difference": 9.617306950815419e-15,
+      "tolerance": 1e-10,
+      "pass_": true
+    },
+    "G": {
+      "equal_shape": true,
+      "max_absolute_difference": 1.0913936421275139e-11,
+      "tolerance": 1e-10,
+      "pass_": true
+    },
+    "h": {
+      "equal_shape": true,
+      "max_absolute_difference": 0.0,
+      "tolerance": 1e-10,
+      "pass_": true
+    },
+    "cost": {
+      "equal_shape": true,
+      "max_absolute_difference": 1.1102230246251565e-15,
+      "tolerance": 1e-10,
+      "pass_": true
+    },
+    "cone_dimensions": {
+      "pass_": true
+    }
+  },
+  "canonical_material_body_boundary_exact": true,
+  "physical_model_id": "08cc8e73e85408e7a82cbe79b5716ef007cb917d00e021872c40e510b5d17525",
+  "python_policy": "hold_initial",
+  "source_sha256": {
+    "validation\\G1R20_native_geometry_replay_20261016\\geometry\\P06N_upper.bin": "6acd541392aac8048b691141547d737522ce80d97079b1cfd3cce46b1382df8d",
+    "validation\\G1R20_native_geometry_replay_20261016\\results\\owned_fixed_1792155949750670200\\fixed_original_assembled.bin": "8c648a12750835d43855152c2c23698a6167f9b00dbfef7433cbab2fcad961f1",
+    "versions\\G1R20\\tests\\audit_geometry_replay.py": "1ff1d5ef58531168f2fc93dfd10fccccc1d66bd293dcd958c81c95d17c9ea135"
+  },
+  "status": "ASSEMBLY_PARITY_PASS"
+}

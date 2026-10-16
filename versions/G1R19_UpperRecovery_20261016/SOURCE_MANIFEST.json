@@ -1,0 +1,61 @@
+{
+  "schema": "rpfem.upper_recovery.same_fs.v1",
+  "status": "ISOLATED_OPT_IN_PROTOTYPE; EXCEL_RUNTIME_PENDING",
+  "production_artifacts_modified": false,
+  "solver_calls": 0,
+  "baseline": "versions/G1R19_TerminalRoot_20261016/src/vba/RPX_AccuracyNative.bas",
+  "baseline_sha256": "60d08e6f0b38f3710482be355502d62f8752873e808015ca9a28b247d0a62803",
+  "baseline_manifest": "versions/G1R19_TerminalRoot_20261016/SOURCE_MANIFEST.json",
+  "baseline_manifest_sha256": "ed020b44c7a6432d8319669a889ba7b68bce0eae60062bba07fc1bc98165766c",
+  "source": "src/vba/RPX_AccuracyNative.bas",
+  "source_sha256": "02795e4c36c3ef50f7629e75483e54707154f73ad396e99a4bf811f565fc28ae",
+  "imported": "import/RPX_AccuracyNative.bas",
+  "import_sha256": "02795e4c36c3ef50f7629e75483e54707154f73ad396e99a4bf811f565fc28ae",
+  "profile": {
+    "schema": "rpfem.upper_recovery.settings.v1",
+    "ui_owner": "G1R20 integration; this sibling does not modify RPX_UI",
+    "ACCURACY_DLL_UPPER_RECENTER": {
+      "type": "finite integer 0 or 1",
+      "default": 0,
+      "G1R20_precision_profile": 1,
+      "scope": "upper, original q8, reference_total, existing CurrentProgram, exactly one nonzero equality rhs and all cone rhs exactly zero",
+      "legacy": "flag0 and every lower call use the complete unchanged legacy RecoverPrimal body"
+    },
+    "ACCURACY_DLL_UPPER_LP_SECONDS": {
+      "default": 30,
+      "G1R20_precision_profile": 30,
+      "range": "finite 0 < seconds <= 600"
+    },
+    "existing_settings": {
+      "ACCURACY_DLL_ALPHA": {
+        "ordinary_default": 0.01,
+        "G1R20_precision_profile": 0.01
+      },
+      "ACCURACY_DLL_SECONDS": {
+        "ordinary_default": 120,
+        "G1R20_precision_profile": 90,
+        "meaning_in_opt_in_upper": "per QP solve, maximum two solves"
+      },
+      "ACCURACY_DLL_EQUILIBRATE": {
+        "ordinary_default": 0,
+        "meaning": "existing explicit DLL internal equilibration setting, distinct from physical gates"
+      },
+      "ACCURACY_DLL_CONE_SCALING": {
+        "ordinary_default": 0,
+        "meaning_in_opt_in_upper": "not applied to LP/two-QP recipe; literal original rows and cap retained, as in Python solve_candidate(cone_scaling=False)"
+      }
+    },
+    "algorithm": "DirectBound: after original LP and original dual/helper all rejected, reuse the finite same-original-program LP candidate; if absent/invalid only, fresh original LP. Public RecoverPrimal entry starts a fresh original LP. Positive work normalization and original q8 primal/physical audit; if rejected, cap-QP(alpha .01, cap .999998), normalize and audit; if rejected, use that normalized candidate as the next center at exactly the same Fs and perform one final QP. Accepted original dual/helper always takes priority and skips this recipe.",
+    "budgets": "Direct original LP <=30s + separately scheduled dual <=30s + at most two QPs <=90s each; fresh LP <=30s only if original center absent/invalid. Up to270s solver caps with all fallback solves in this explicit profile, not a total case guarantee. Existing HSD fallback and external total-run deadline remain separate.",
+    "proof": "Only unchanged original PrimalAudit plus FieldGate plus finite value<=.999999 returns a candidate. All returned modified duals erased. No root is created; existing caller must close the original signed bracket."
+  },
+  "files": {
+    "build_overlay.py": "03357c99e1c84514f30dae052760083206153be10cce9d6eb5a245eb0a4d9310",
+    "README_JA.md": "f75ef3fe7fc5126a054322a989d74165fdeab8ff1f43c7d837b51ffea5a105dc",
+    "SETTINGS_CONTRACT.json": "2ad4c942e83f047b176bafb5ceedf51af3854fd2d25b1edc56836487901ed33f",
+    "tests/test_contract.py": "c1717347f560f9ad53f14383a347d495886b3dc4ee88da5318e848ccfef9449c",
+    "tests/normalization_reference.py": "4e3fbf6633d500dcf1f51c108c41ec454023a62629cabd5fd570eb4f277af3fa",
+    "tests/UpperRecoveryArrayProbe.bas": "5273766da5f3478b32ccc39fac0202fa655397819bebe1bccdfa83aa1a9db7b0",
+    "tests/MICROTEST_JA.md": "a444ff6367fb8c59eac937627698a0cfc79750b6bc355a66e7f29829cf486338"
+  }
+}

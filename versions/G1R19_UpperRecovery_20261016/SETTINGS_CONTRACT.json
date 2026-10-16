@@ -1,0 +1,21 @@
+{
+  "schema": "rpfem.upper_recovery.settings.v1",
+  "ui_owner": "G1R20 integration; this sibling does not modify RPX_UI",
+  "ACCURACY_DLL_UPPER_RECENTER": {
+    "type": "finite integer 0 or 1",
+    "default": 0,
+    "G1R20_precision_profile": 1,
+    "scope": "upper, original q8, reference_total, existing CurrentProgram, exactly one nonzero equality rhs and all cone rhs exactly zero",
+    "legacy": "flag0 and every lower call use the complete unchanged legacy RecoverPrimal body"
+  },
+  "ACCURACY_DLL_UPPER_LP_SECONDS": {"default": 30, "G1R20_precision_profile": 30, "range": "finite 0 < seconds <= 600"},
+  "existing_settings": {
+    "ACCURACY_DLL_ALPHA": {"ordinary_default": 0.01, "G1R20_precision_profile": 0.01},
+    "ACCURACY_DLL_SECONDS": {"ordinary_default": 120, "G1R20_precision_profile": 90, "meaning_in_opt_in_upper": "per QP solve, maximum two solves"},
+    "ACCURACY_DLL_EQUILIBRATE": {"ordinary_default": 0, "meaning": "existing explicit DLL internal equilibration setting, distinct from physical gates"},
+    "ACCURACY_DLL_CONE_SCALING": {"ordinary_default": 0, "meaning_in_opt_in_upper": "not applied to LP/two-QP recipe; literal original rows and cap retained, as in Python solve_candidate(cone_scaling=False)"}
+  },
+  "algorithm": "DirectBound: after original LP and original dual/helper all rejected, reuse the finite same-original-program LP candidate; if absent/invalid only, fresh original LP. Public RecoverPrimal entry starts a fresh original LP. Positive work normalization and original q8 primal/physical audit; if rejected, cap-QP(alpha .01, cap .999998), normalize and audit; if rejected, use that normalized candidate as the next center at exactly the same Fs and perform one final QP. Accepted original dual/helper always takes priority and skips this recipe.",
+  "budgets": "Direct original LP <=30s + separately scheduled dual <=30s + at most two QPs <=90s each; fresh LP <=30s only if original center absent/invalid. Up to270s solver caps with all fallback solves in this explicit profile, not a total case guarantee. Existing HSD fallback and external total-run deadline remain separate.",
+  "proof": "Only unchanged original PrimalAudit plus FieldGate plus finite value<=.999999 returns a candidate. All returned modified duals erased. No root is created; existing caller must close the original signed bracket."
+}

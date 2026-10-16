@@ -1,0 +1,35 @@
+{
+  "status": "PASS",
+  "scope": "Known-geometry replay entry, not automatic cold meshing",
+  "case": "P06N",
+  "nodes": 3078,
+  "elements": 5966,
+  "q_for_new_solve": 8,
+  "mesh_source": "D:\\Work\\excel-vba-rpfem\\validation\\G1R19_python26_geometry_replay_20261016\\results\\known_lower_20261016T122636Z\\P06N_known_lower5966\\best_lower_mesh.npz",
+  "mesh_source_sha256": "63e9120241b7796c1f224091454c922ff117eb86fd7fb7061809b3198a59fe98",
+  "archive_keys": [
+    "xy",
+    "tri",
+    "material_id"
+  ],
+  "read_arrays": [
+    "xy",
+    "tri",
+    "material_id"
+  ],
+  "canonical_input": "D:\\Work\\excel-vba-rpfem\\docs\\benchmarks\\G1R17_native26_20261013\\data\\inputs\\P06N.json",
+  "canonical_input_sha256": "389bf6c3c29d49e509a1ea0f270ca0fae3594910da0cb8dd594edfea9cefec2b",
+  "physical_model_id": "08cc8e73e85408e7a82cbe79b5716ef007cb917d00e021872c40e510b5d17525",
+  "geometry_id": "0b1cffd134d60c92b20ec7480cbbbbfe27695c3a725f6f5d31ec5ca097587cc8",
+  "source_field_opened": false,
+  "Fs_root_status_imported": false,
+  "solver_calls": 0,
+  "binary": "D:\\Work\\excel-vba-rpfem\\validation\\G1R20_native_geometry_replay_20261016\\geometry\\P06N_lower.bin",
+  "binary_sha256": "a577590d404782909c836fc02bbd648057ad9f2dba2016aaa027e46c66ad8f64",
+  "binary_bytes": 368640,
+  "exporter_sha256": "ea305f5c04d1ee51bf47895d9695fe8bb50969a6ead2e114fe79f9cee54a1834",
+  "python_source_sha256": {
+    "experiment_core.py": "9a9e60b6d69ba4008ea89608f433bb716b433436715c45566bd209418ee9238e",
+    "benchmark_models.py": "5e0078fedef71ec757184ed2d0b40c548a82c303737a9ef7b1f0fa8715e94141"
+  }
+}

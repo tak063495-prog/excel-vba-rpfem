@@ -1,0 +1,39 @@
+' TEST COPY ONLY: appended inside RPX_AccuracyNative for private state access.
+Public Function G20TerminalRequestUnit() As Variant
+    Dim target As Double, oldQ As Long, oldSolve As Long, oldPhase As String, i As Long
+    Dim oldPhysical As Boolean, oldReason As String, oldActive As Boolean
+    On Error GoTo Failed
+    target = 1#: oldQ = RSubdivisions: oldPhase = RPX_LoadPhase: oldSolve = P4Solve
+    oldPhysical = RPhysicalGateAccepted: oldReason = RPhysicalGateReason: oldActive = RFsActive: RFsActive = True
+    RSubdivisions = 8: RPX_LoadPhase = "reference_total"
+    Call RPX_AccuracyUpperDualFirstArm(target)
+    If Not ConsumeUpperDualFirst(target, "upper") Then err.Raise 5, , "EXACT_REQUEST_REJECTED"
+    If ConsumeUpperDualFirst(target, "upper") Then err.Raise 5, , "REQUEST_REUSED"
+    For i = 1 To 10
+        Call RPX_AccuracyUpperDualFirstArm(target)
+        Select Case i
+            Case 1: upperFirstFactor = target + 0.001
+            Case 2: upperFirstEpoch = upperFirstEpoch - 1
+            Case 3: upperFirstQ = 4
+            Case 4: upperFirstModel = upperFirstModel & "FOREIGN"
+            Case 5: upperFirstPolicy = upperFirstPolicy & "FOREIGN"
+            Case 6: upperFirstPhase = "raw"
+            Case 7: upperFirstSolve = upperFirstSolve - 1
+            Case 8: upperFirstCandidate = upperFirstCandidate - 1
+            Case 9: Call RPX_AccuracyUpperDualFirstReset
+            Case 10
+                If ConsumeUpperDualFirst(target, "lower") Then err.Raise 5, , "WRONG_MODE_ACCEPTED"
+        End Select
+        If ConsumeUpperDualFirst(target, "upper") Then err.Raise 5, , "STALE_REQUEST_ACCEPTED_" & i
+        If upperFirstReady Then err.Raise 5, , "REQUEST_NOT_CONSUMED_" & i
+    Next i
+    If oldPhysical <> RPhysicalGateAccepted Or oldReason <> RPhysicalGateReason Then err.Raise 5, , "REQUEST_CHANGED_PHYSICAL_EVIDENCE"
+    G20TerminalRequestUnit = Array("PASS", "one_shot", "10_mismatch_reset_rejections", "solver0;certificate0")
+Cleanup:
+    Call RPX_AccuracyUpperDualFirstReset
+    RSubdivisions = oldQ: RPX_LoadPhase = oldPhase: P4Solve = oldSolve: RFsActive = oldActive
+    Exit Function
+Failed:
+    G20TerminalRequestUnit = Array("FAIL", err.Number, err.Description)
+    Resume Cleanup
+End Function

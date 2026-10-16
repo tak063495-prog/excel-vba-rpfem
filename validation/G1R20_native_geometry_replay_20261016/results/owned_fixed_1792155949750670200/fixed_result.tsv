@@ -1,0 +1,5 @@
+geometry_replay=True;original_primal_imported=False;root_imported=False;root_complete=False
+side=upper;Fs_exact=E9DB3CED2718E63F;q=8
+native_primal_accepted=True;original_dual_guide=False;raw_eq=1.55054696025272E-09;raw_cone=6.46308803867157E-10
+native_dims=104868,337861,3424716;equality=1210;cones=284218
+objective_exact=54FD1DCEFBFFEF3F;measured_exact=65FD1DCEFBFFEF3F

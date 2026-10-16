@@ -1,0 +1,9 @@
+{
+  "status": "PASS",
+  "scope": "G1R20 actual geometry/guard and original fixed-point parity proofs; no full P06 adaptive or root completion claim",
+  "member_count": 392,
+  "bytes": 34721218,
+  "sha256": "277528730a019e96dccb1a5634405f10fe2d35910c648750d003f6ec2fcafdf1",
+  "archive": "G1R20_PARITY_EVIDENCE.zip",
+  "all_member_sha256_and_crc": "PASS"
+}
