@@ -1,0 +1,4 @@
+' TEST ONLY: append to the disposable RPX_Water CodeModule, never product.
+Public Function RPX_TestFix1WaterCacheNodes() As Long
+    RPX_TestFix1WaterCacheNodes = wN
+End Function

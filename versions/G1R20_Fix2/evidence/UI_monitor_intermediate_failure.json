@@ -1,0 +1,26 @@
+{
+  "classification": "INTERMEDIATE_MONITOR_FAILURE",
+  "recorded_epoch": 1792179392.0956671,
+  "original_summary_unmodified": true,
+  "original_summary_sha256": "104b2f374116eb4df57cfc9c4499e1a1c4a7d6a1a839fc94db5cb571b3652558",
+  "original_main_status": "PASS",
+  "state_conditions_passed": 18,
+  "state_conditions_total": 18,
+  "full_run_monitor_verified": false,
+  "included_in_final_acceptance": false,
+  "observed_when": {
+    "elapsed_seconds_at_following_summary_inspection": 130.04381465911865,
+    "case_count_at_following_inspection": 15,
+    "exact_exception_epoch_recorded": false,
+    "provenance": "Captured process stderr returned by write_stdin, followed by summary inspection; the monitoring thread did not timestamp its exception."
+  },
+  "observed_exception": {
+    "type": "pywintypes.error",
+    "code": 1400,
+    "function": "GetClassName",
+    "message": "ウィンドウ ハンドルが無効です。"
+  },
+  "stderr_file": "monitor_observed_stderr.txt",
+  "stderr_provenance": "Exact observed process stderr copied from tool output; not an original disk capture.",
+  "final_replacement_run": "UI_setup_control_fixed_04"
+}

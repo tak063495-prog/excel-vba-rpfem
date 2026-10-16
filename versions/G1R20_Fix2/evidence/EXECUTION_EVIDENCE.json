@@ -1,0 +1,77 @@
+{
+  "status": "PASS",
+  "archive": "EXECUTION_EVIDENCE.zip",
+  "bytes": 319326620,
+  "sha256": "af0a7e16d675f4d48ab53a79d6d828594b5bc64c04fcc7c3b258165476494e5d",
+  "members": 1980,
+  "source_file_count": 1979,
+  "member_sha256_and_crc": "PASS",
+  "run_summaries": [
+    {
+      "path": "versions/G1R20_Fix2/results/owned_excel_1792179899106973000/summary.json",
+      "status": "PASS",
+      "sha256": "8221184d491e1309cac3d3e2e4e28d9b87f65811ad232a30f1ef6ab5f0bc59ab"
+    },
+    {
+      "path": "versions/G1R20_Fix2/results/UI_preset_migration_fixed_01/summary.json",
+      "status": "PASS",
+      "sha256": "2037ff9401da0377098abf20e1a7291c412425a8cacd08f0aae7b95be6f62a70"
+    },
+    {
+      "path": "versions/G1R20_Fix2/results/UI_setup_control_fixed_01/summary.json",
+      "status": "FAIL",
+      "sha256": "559d37794b6964afba1456a4b133b7413cf9ebc833e8e85dccb6b0a8e3aea718"
+    },
+    {
+      "path": "versions/G1R20_Fix2/results/UI_setup_control_fixed_02/summary.json",
+      "status": "PASS",
+      "sha256": "db805f4636c25ca126ed158b9ea5fa16e18c5e06b224f31d5ca4e206754ffad0"
+    },
+    {
+      "path": "versions/G1R20_Fix2/results/UI_setup_control_fixed_03/summary.json",
+      "status": "PASS",
+      "sha256": "104b2f374116eb4df57cfc9c4499e1a1c4a7d6a1a839fc94db5cb571b3652558"
+    },
+    {
+      "path": "versions/G1R20_Fix2/results/UI_setup_control_fixed_04/summary.json",
+      "status": "PASS",
+      "sha256": "11e49a9279362345e0e6aef34ab892029e1dfe32b2095f25d06499029cba7273"
+    },
+    {
+      "path": "versions/G1R20_Fix2/results/UI_setup_control_negative_01/summary.json",
+      "status": "CONFIRMED_NEGATIVE",
+      "sha256": "5fcd42bbb69d153f26397ecd50a665d78562f21e14c0dd0ccf86cd4ca5119798"
+    },
+    {
+      "path": "versions/G1R20_Fix2/results/UI_setup_control_negative_02/summary.json",
+      "status": "CONFIRMED_NEGATIVE",
+      "sha256": "eb5d64f16e0ef3c70ccaf169199743fcd39ddd3ee5ab55adbdd773a0ca41f4be"
+    },
+    {
+      "path": "versions/G1R20_Fix2/results/UI_setup_control_negative_03/summary.json",
+      "status": "CONFIRMED_NEGATIVE",
+      "sha256": "c1b82482940fcdb19dcb145a52059276d4224bb352437950accd946b6a50cb78"
+    },
+    {
+      "path": "versions/G1R20_Fix2/results/water_cache_1792179828721908800/summary.json",
+      "status": "PASS",
+      "sha256": "564dc06f76493e7f8d95bba430d29ac7285c91c110d9ed0e74ee2bc80e8604c5"
+    },
+    {
+      "path": "versions/G1R20_Fix2/results/water_journal_dirty_1792179801538499300/summary.json",
+      "status": "PASS",
+      "sha256": "e7eb5244d1b833093e7a6c9d6554ce82ce71409689d3553994c1893addeec7a1"
+    },
+    {
+      "path": "versions/G1R20_Fix2/results/water_native_fixed_1792180140622655400/summary.json",
+      "status": "PASS",
+      "sha256": "59df9f7abae8131f2c88a7a4e073ca547d1f58a1d1e4659bf520a83b90a41f7f"
+    },
+    {
+      "path": "versions/G1R20_Fix2/results/water_restart_1792179575536356000/summary.json",
+      "status": "PASS",
+      "sha256": "40d2245a9cde3d2a62fb56badfd226922ab52de3c8ecde3e10dc1bcddfdd5395"
+    }
+  ],
+  "scope": "Owned-test source snapshots, configured copies, raw fields and logs; no original G1R20 evidence replaced"
+}

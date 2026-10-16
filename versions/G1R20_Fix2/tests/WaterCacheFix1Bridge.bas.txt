@@ -1,0 +1,5 @@
+' TEST ONLY: append these lines to the disposable workbook's RPX_SeepUI
+' CodeModule. Do not ship this private-helper access bridge in the product.
+Public Sub RPX_TestFix1InvalidateSeepResult()
+    Call RPX_SeepInvalidateResult
+End Sub
