@@ -1,0 +1,114 @@
+{
+  "excel_version": "16.0",
+  "excel_pid": 32096,
+  "base_sha256": "3533073bfe883b254143cf68285235ddbe729e8f0e272f4180f2b730f9c63a6f",
+  "patched_source_sha256": "b853ae3d99fbf7bac2db6f0556cbc6c3a864ccf7a13f12bf056ed71953f4f3f1",
+  "baseline": {
+    "q8_from_start=1": {
+      "result": "OK;error=;lower=EFAB399022B0E33F;upper=52FF6C52C24CE73F;lower_q=8;upper_q=8;phase=reference_total;model_match=1",
+      "seconds": 7.623096800001804,
+      "diagnostic_log": "20261016_123829_32096_analysis.tsv",
+      "events": {
+        "final_evaluations": 1,
+        "terminal_pair_reuse": [
+          "q=8;original_fields_reaudited=2;new_endpoint_calls=0;lower=0.615250856103897;upper=0.728120003688654;run=1"
+        ],
+        "terminal_pair_reuse_rejected": 0,
+        "adapt_eval": [
+          "label=coarse_0;coarse=True;fs_tolerance=0.0001;quadrature=8;elements=20;nodes=19",
+          "label=final;coarse=False;fs_tolerance=0.0001;quadrature=8;elements=20;nodes=19"
+        ],
+        "adapt_outcome": [
+          "route=conventional;fallback_used=0;complete_pair=1;target_met=1;calls=4;initial_lower_skipped=0"
+        ],
+        "run_end": [
+          "7.096527"
+        ]
+      },
+      "saved_pair_probe": "PASS;actual_q8_fields=2;invalid_context_or_field_cases=16;new_endpoint_calls=0;field_bytes_unchanged=1;bounds_unchanged=1"
+    },
+    "q8_from_start=0": {
+      "result": "OK;error=;lower=EFAB399022B0E33F;upper=52FF6C52C24CE73F;lower_q=8;upper_q=8;phase=reference_total;model_match=1",
+      "seconds": 6.370522400015034,
+      "diagnostic_log": "20261016_123840_32096_analysis.tsv",
+      "events": {
+        "final_evaluations": 1,
+        "terminal_pair_reuse": [
+          "q=8;original_fields_reaudited=2;new_endpoint_calls=0;lower=0.615250856103897;upper=0.728120003688654;run=1"
+        ],
+        "terminal_pair_reuse_rejected": 0,
+        "adapt_eval": [
+          "label=coarse_0;coarse=True;fs_tolerance=0.001;quadrature=4;elements=20;nodes=19",
+          "label=final;coarse=False;fs_tolerance=0.0001;quadrature=8;elements=20;nodes=19"
+        ],
+        "adapt_outcome": [
+          "route=conventional;fallback_used=0;complete_pair=1;target_met=1;calls=4;initial_lower_skipped=0"
+        ],
+        "run_end": [
+          "6.126880"
+        ]
+      }
+    }
+  },
+  "patched": {
+    "q8_from_start=1": {
+      "result": "OK;error=;lower=EFAB399022B0E33F;upper=52FF6C52C24CE73F;lower_q=8;upper_q=8;phase=reference_total;model_match=1",
+      "seconds": 4.442852600011975,
+      "diagnostic_log": "20261016_123851_32096_analysis.tsv",
+      "events": {
+        "final_evaluations": 0,
+        "terminal_pair_reuse": [
+          "q=8;original_fields_reaudited=2;new_endpoint_calls=0;lower=0.615250856103897;upper=0.728120003688654;run=1"
+        ],
+        "terminal_pair_reuse_rejected": 0,
+        "adapt_eval": [
+          "label=coarse_0;coarse=True;fs_tolerance=0.0001;quadrature=8;elements=20;nodes=19"
+        ],
+        "adapt_outcome": [
+          "route=conventional;fallback_used=0;complete_pair=1;target_met=1;calls=2;initial_lower_skipped=0"
+        ],
+        "run_end": [
+          "4.200122"
+        ]
+      },
+      "saved_pair_probe": "PASS;actual_q8_fields=2;invalid_context_or_field_cases=16;new_endpoint_calls=0;field_bytes_unchanged=1;bounds_unchanged=1"
+    },
+    "q8_from_start=0": {
+      "result": "OK;error=;lower=EFAB399022B0E33F;upper=52FF6C52C24CE73F;lower_q=8;upper_q=8;phase=reference_total;model_match=1",
+      "seconds": 6.495167899993248,
+      "diagnostic_log": "20261016_123900_32096_analysis.tsv",
+      "events": {
+        "final_evaluations": 1,
+        "terminal_pair_reuse": [
+          "q=8;original_fields_reaudited=2;new_endpoint_calls=0;lower=0.615250856103897;upper=0.728120003688654;run=1"
+        ],
+        "terminal_pair_reuse_rejected": 0,
+        "adapt_eval": [
+          "label=coarse_0;coarse=True;fs_tolerance=0.001;quadrature=4;elements=20;nodes=19",
+          "label=final;coarse=False;fs_tolerance=0.0001;quadrature=8;elements=20;nodes=19"
+        ],
+        "adapt_outcome": [
+          "route=conventional;fallback_used=0;complete_pair=1;target_met=1;calls=4;initial_lower_skipped=0"
+        ],
+        "run_end": [
+          "6.256673"
+        ]
+      }
+    }
+  },
+  "delivery": {
+    "name": "RPFEM_20261016_G1R19_Issue11.xlsm",
+    "compile": "PASS",
+    "reopen": "PASS",
+    "source_match": true,
+    "casing_only": [
+      "RPX_AccuracyNative",
+      "RPX_C0Select",
+      "RPX_FixedLowerRecovery",
+      "RPX_MeshTests",
+      "RPX_Schur"
+    ],
+    "sha256": "04bf60eb116dd78f5c7e826a8434eb030d5fff3bbd41ee34dbd0f7bf14879c69"
+  },
+  "status": "DONE"
+}

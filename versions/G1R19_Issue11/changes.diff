@@ -1,0 +1,55 @@
+--- G1R19/src/vba/RPX_Adapt.bas	2026-10-16 12:33:25.069127146 +0900
++++ G1R19_Issue11/src/vba/RPX_Adapt.bas	2026-10-16 12:34:18.457127146 +0900
+@@ -1450,6 +1450,7 @@
+ End Function
+ Public Function RPX_TryTerminalPairReuse(ByVal mode As String) As Boolean
+     Dim baseline As RPX_MeshState, q As Long, savedQ As Long, accepted As Boolean
++    Dim entryPhase As String, witnessRestoreBack As Boolean
+     Dim savedTol As Double, savedFactor As Double, savedIncomplete As Boolean, savedWidth As Double, savedNote As String
+     Dim number As Long, source As String, message As String
+     If mode <> "Fs" Or Not currentPairValid Or XCancel Or RPX_AuditRejected Then Exit Function
+@@ -1458,13 +1459,25 @@
+     q = CLng(RPX_Setting("ADAPT_CERT_QUADRATURE", 0))
+     If q <> 8 Then Exit Function
+     If Not RPX_TargetMet(mode, RBestLower.value, RBestUpper.value, currentPairValid) Then Exit Function
+-    If Not TerminalOwnMetadataReady("lower", q, RBestLower) Then Exit Function
+-    If Not TerminalOwnMetadataReady("upper", q, RBestUpper) Then Exit Function
+-    If RCurrent.originalModel <> RPX_ExactModel() Then Exit Function
++    If Not RCurrent.complete Or Len(RCurrent.originalModel) = 0 Then Exit Function
++    entryPhase = RPX_LoadPhase
++    ' Same-phase entry keeps the G1R19 behaviour (exact-model gate first,
++    ' witness restore afterwards). Only a raw-phase entry takes the new path.
++    witnessRestoreBack = (entryPhase = RCurrent.phase)
++    If witnessRestoreBack And RCurrent.originalModel <> RPX_ExactModel() Then Exit Function
++    If RCurrent.inputEpoch <> RPX_InputEpoch Or RCurrent.policy <> RPX_AnalysisPolicy() Then Exit Function
+     CloneState baseline, RCurrent
+     savedQ = RSubdivisions: savedTol = RFsTolerance: savedFactor = RStrengthFactor
+     savedIncomplete = RFsSearchIncomplete: savedWidth = RFsLargestRootBracket: savedNote = RFsSearchNote
+     On Error GoTo CandidateFailed
++    ' Issue #11: AfterCycles restored the pair through RPX_ReadInputs (phase
++    ' "raw"), while the saved fields were produced in "reference_total". Restore
++    ' the pair's own saved load/material/model context (with its identity check)
++    ' before comparing, instead of weakening the phase or exact-model checks.
++    Call RPX_RestoreWitnessState(RCurrent)
++    If RCurrent.originalModel <> RPX_ExactModel() Then GoTo RestoreBaseline
++    If Not TerminalOwnMetadataReady("lower", q, RBestLower) Then GoTo RestoreBaseline
++    If Not TerminalOwnMetadataReady("upper", q, RBestUpper) Then GoTo RestoreBaseline
+     RPX_AssertInputs "terminal_pair_reuse"
+     RPX_TestHook "terminal_pair_reuse"
+     If Not TerminalOwnFieldReady("lower", RBestLower) Then GoTo RestoreBaseline
+@@ -1474,7 +1487,14 @@
+     accepted = True
+ RestoreBaseline:
+     On Error GoTo RestoreFailed
+-    Call RPX_RestoreWitnessState(baseline): CloneState RCurrent, baseline
++    If accepted Or witnessRestoreBack Then
++        ' Accepted pair continues in its saved reference_total context, as after
++        ' Evaluate("final"), so output-side exact-model checks still hold.
++        Call RPX_RestoreWitnessState(baseline): CloneState RCurrent, baseline
++    Else
++        ' Rejected: return to the same raw-input state AfterCycles had built.
++        Call RPX_RestoreState(baseline): CloneState RCurrent, baseline
++    End If
+     RSubdivisions = savedQ: RFsTolerance = savedTol: RStrengthFactor = savedFactor
+     RFsSearchIncomplete = savedIncomplete: RFsLargestRootBracket = savedWidth: RFsSearchNote = savedNote
+     If accepted Then
