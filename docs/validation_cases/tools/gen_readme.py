@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 """docs/validation_cases/README.md を入力JSONとTest_Case_Catalog.mdから生成する。"""
-import json, os, re
+import json, os, re, sys
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from geom import geometry
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", ".."))
 INP = os.path.join(ROOT, "docs/benchmarks/G1R17_native26_20261013/data/inputs")
 CAT = os.path.join(ROOT, "validation/G1R12_native25_20261009/Test_Case_Catalog.md")
@@ -39,7 +41,11 @@ for cid in ids:
     reff = " / ".join(sorted({r[1] for r in refs}, key=float)) if refs else "記載なし"
     if refs: reff = f"{min(float(r[1]) for r in refs):g}〜{max(float(r[1]) for r in refs):g}" if len(refs) > 1 else refs[0][1]
     load = "天端 20 kPa（x=2〜8）" if s.get("surcharge") else "なし"
-    rows.append(f"| [{cid}](#{cid.lower()}) | {lst[cid][1]} | 幅{f(W)}×高{f(H)} m | {mats} | {water} | {load} | {fl} | {reff} | {PURPOSE[cid[:3]]} |")
+    g = geometry(s["outline"])
+    qs = [b for b in d["boundary_explicit"] if b["load0"] not in ([0.0, 0.0], [0, 0])]
+    qtxt = ", ".join(f'{abs(b["load0"][1]):g}' for b in qs) or "なし"
+    def col(k): return " / ".join(f(m[k]) for m in s["materials"])
+    rows.append(f"| [{cid}](#{cid.lower()}) | {lst[cid][1]} | {f(g['H'])} | {g['beta']:.1f}（1:{g['n']:g}） | {col('c')} | {col('phi')} | {col('gamma')} | {qtxt} | {water} | {fl} | {reff} | {PURPOSE[cid[:3]]} |")
     src = re.search(r"- 出典箇所: (.*)", sec); kind = re.search(r"- 由来区分: `(.*?)`", sec)
     notes = re.search(r"補足仮定・制限:\n(.*?)(?=\n\n|\n[^-]|\Z)", sec, re.S)
     extra = [l for l in sec.splitlines() if l.startswith(("不変性試験", "tan45", "追加荷重", "間隙水圧"))]
@@ -49,9 +55,23 @@ for cid in ids:
          f"- 外形（反時計回り, m）: `{' → '.join(f'({f(x)}, {f(y)})' for x, y in s['outline'])}`",
          f"- 面積: {f(s['area'])} m² ／ 総重量: {f(d['total_weight'])} kN/m ／ メッシュ目標h (M0/M1/M2): {' / '.join(f(h) for h in s['h'])} m",
          f"- 流れ則: {fl}（ψ政策 `{s['policy']}`）", f"- 水: {water} ／ 地震: kh={f(d['settings']['SEISMIC_KH'])}（なし） ／ 荷重: {load}",
+         "", "#### 形状（座標から算出）", "", "| 項目 | 値 |", "|---|---|",
+         f"| 斜面高さ H（法尻〜天端, 算出） | {f(g['H'])} m |",
+         f"| 法面勾配 β（法尻〜天端の全体, 算出） | {g['beta']:.2f}°（1:{g['n']:.4g}） |"]
+    if len(g["segs"]) > 1:
+        b += [f"| 法面区間 ({f(sg['a'][0])},{f(sg['a'][1])})→({f(sg['b'][0])},{f(sg['b'][1])})（算出） | {sg['beta']:.2f}°（1:{sg['n']:.4g}） |" for sg in g["segs"]]
+    b += [f"| 法面水平長（算出） | {f(g['run'])} m |", f"| 天端幅（左端〜法肩, 算出） | {f(g['crest_w'])} m |",
+         f"| 法尻側平坦部（法尻〜右端, 算出） | {f(g['toe_w'])} m{'（法尻がモデル右下端）' if g['toe_w']==0 else ''} |",
+         f"| 基礎深さ（底面〜法尻, 算出） | {f(g['fdepth'])} m |", f"| モデル全幅 × 全高（算出） | {f(g['W'])} m × {f(g['Ht'])} m |",
+         f"| 法肩 / 法尻座標（入力） | ({f(g['crest'][0])}, {f(g['crest'][1])}) / ({f(g['toe'][0])}, {f(g['toe'][1])}) |",
+         f"| 地層境界（入力の領域座標） | " + "<br>".join(f"{r['name']}: " + " → ".join(f"({f(x)},{f(y)})" for x, y in r['xy']) for r in s['regions']) + " |", "",
+         "#### 荷重・水", "", "| 項目 | 値 |", "|---|---|",
+         "| 上載荷重 q | " + ("; ".join(f'{abs(bb["load0"][1]):g} kPa 鉛直下向き、x={f(min(bb["a"][0],bb["b"][0]))}〜{f(max(bb["a"][0],bb["b"][0]))} m（幅 {f(abs(bb["b"][0]-bb["a"][0]))} m, 算出）、y={f(bb["a"][1])} m の天端面' for bb in qs) or "なし") + " |",
+         "| 地下水 | " + (f'水位 y={f(w["water_table"][0][1])} m、静水圧 u=γw·max(y_w−y,0)、γw={f(w["gamma_w"])} kN/m³、固定静水圧場（カタログ: fixed_hydrostatic）' if w.get("coupling") == 1 else "なし") + " |",
+         f"| 水平震度 kh | {f(d['settings']['SEISMIC_KH'])} |", "",
          "- 境界: 底面 固定XY、左右鉛直端 固定X（鉛直ローラー）、その他 自由" + ("（右鉛直端なし）" if cid.startswith("P07") else ""), "",
-         "| 材料 | E (kPa) | ν | γ (kN/m³) | c (kPa) | φ (°) | ψ (°) |", "|---|---:|---:|---:|---:|---:|---:|"]
-    b += [f'| {m["name"]} | {f(m["E"])} | {f(m["nu"])} | {f(m["gamma"])} | {f(m["c"])} | {f(m["phi"])} | {f(m["psi"])} |' for m in s["materials"]]
+         "#### 材料", "", "| 領域 | c (kPa) | φ (°) | γ (kN/m³) | ψ (°) | 流れ則 | E (kPa) | ν |", "|---|---:|---:|---:|---:|---|---:|---:|"]
+    b += [f'| {m["name"]} | {f(m["c"])} | {f(m["phi"])} | {f(m["gamma"])} | {f(m["psi"])} | {fl} | {f(m["E"])} | {f(m["nu"])} |' for m in s["materials"]]
     b.append("")
     if refs:
         b += ["参照Fs（文献の方法別報告値。本メッシュの保証値ではない）:", "", "| 方法 | Fs | 出典 |", "|---|---:|---|"]
@@ -87,8 +107,10 @@ head = """# 検証26ケースの条件（図説）
 
 ## 一覧
 
-| ID | 名称 | 形状 | 材料（c kPa, φ°, ψ°, γ kN/m³） | 水 | 荷重 | 流れ則 | 参照Fs | 目的 |
-|---|---|---|---|---|---|---|---|---|
+H・β は入力座標からの算出値。複数材料は「/」区切りで材料順（図の 茶/緑/灰 の順）。
+
+| ID | 名称 | H (m, 算出) | β (°, 算出) | c (kPa) | φ (°) | γ (kN/m³) | q (kPa) | 水 | 流れ則 | 参照Fs | 目的 |
+|---|---|---:|---|---|---|---|---|---|---|---|---|
 """
 tail = """
 ## 不明・記載なし
