@@ -32,3 +32,33 @@ jobs:
         run: python -B -X utf8 validation/issue28_d05a_python_analysis_20261017/VERIFY_MICRO.py --output "$env:RUNNER_TEMP/D05A_MICRO_REAUDIT.json"
       - name: Reaudit D05A historical pair and raw dual acceptance and rejection
         run: python -B -X utf8 validation/issue28_d05a_python_analysis_20261017/VERIFY_HISTORICAL.py --output "$env:RUNNER_TEMP/D05A_HISTORICAL_REAUDIT.json"
+      - name: Capture original assemblies if a replay fails
+        if: failure()
+        run: |
+          @'
+          import json, os, platform, sys
+          from pathlib import Path
+          sys.path.insert(0, str(Path('validation/issue28_d05a_python_analysis_20261017').resolve()))
+          from run_fixed_point_experiment import core, frozen_hashes, load_model, program_digest
+          report = dict(python=sys.version, platform=platform.platform(), numpy=core.np.__version__, scipy=__import__('scipy').__version__, source_hashes=frozen_hashes(), programs={})
+          for case in ('P02A', 'D05A'):
+              mesh, _ = load_model(case)
+              pr = core.Prepared(mesh, 1., 'upper', 8, reduction='none')
+              arrays = {}
+              for i, value in enumerate(pr.original):
+                  if core.sparse.issparse(value):
+                      for field in ('data', 'indices', 'indptr'):
+                          arrays[f'{i}_{field}'] = getattr(value, field)
+                      arrays[f'{i}_shape'] = value.shape
+                  else:
+                      arrays[str(i)] = core.np.asarray(value)
+              core.np.savez_compressed(Path(os.environ['RUNNER_TEMP']) / f'micro-programs-{case}.npz', **arrays)
+              report['programs'][case] = program_digest(pr.original)
+          (Path(os.environ['RUNNER_TEMP']) / 'micro-programs-environment.json').write_text(json.dumps(report, indent=2), encoding='utf-8')
+          print(json.dumps(report))
+          '@ | python -B -X utf8 -
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: micro-replay-assembly-diagnostics
+          path: ${{ runner.temp }}/micro-programs-*
