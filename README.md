@@ -96,6 +96,7 @@ Issue #8の水理修正も取り込み済みです。[水理修正の検証](ver
 |[使い方](docs/USAGE_JA.md)|動作環境、ダウンロード、P06Nの実行、各入力表・設定・出力の読み方、支持力モード、ログの保存|
 |[解析の原理](docs/PRINCIPLES_JA.md)|剛塑性と上下界、2次三角形要素、Mohr–Coulomb条件、強度低減・Davis変換、SOCP・内点法・HSD、適応メッシュとコードの対応|
 |[注意事項・不具合時の確認](docs/NOTES_JA.md)|検証の範囲、GAPと根幅、解析領域・多層・剛体界面、c=0/小さいc、数値失敗、速度図・応力係数、マクロ・復元|
+|[検証26ケースの条件（図説）](docs/validation_cases/README.md)|26検証ケース（P01A〜P10A, D01A〜D09A）の命名規則・形状図・材料・水・荷重・境界・流れ則・文献参照Fs|
 
 ### 最初の実行
 
@@ -114,6 +115,7 @@ G1R20の改善経路は「設定」の「G1R20・改善候補を選択」ボタ�
 
 ![G1R17・26ケースの主解析時間](docs/benchmarks/G1R17_native26_20261013/figures/runtime_26.png)
 
+- **[検証26ケースの条件（形状図・材料・参照Fs）](docs/validation_cases/README.md)**
 - **[全26ケースの結果表・Fs上下界図・GAP図・速度比較・計測条件](docs/benchmarks/G1R17_native26_20261013/README.md)**
 - [結果CSV](docs/benchmarks/G1R17_native26_20261013/data/RESULTS.csv) / [処理区間別CSV](docs/benchmarks/G1R17_native26_20261013/data/PHASE_TIMINGS.csv) / [採用精度と最終確認の記録](docs/benchmarks/G1R17_native26_20261013/QUALITY_NOTES.md)
 - **[結果XLSM26冊・DLL・入力・原ログ・保存場・独立監査の証拠ZIP（約83 MiB）](https://github.com/tak063495-prog/excel-vba-rpfem/raw/refs/heads/main/downloads/RPFEM_G1R17_Native26_20261012.zip)**
