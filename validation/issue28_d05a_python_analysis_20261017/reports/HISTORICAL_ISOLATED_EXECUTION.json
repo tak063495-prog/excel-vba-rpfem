@@ -1,0 +1,24 @@
+{
+  "status": "PASS",
+  "command": [
+    "D:\\Work\\rpfem-venv\\Scripts\\python.exe",
+    "-B",
+    "-X",
+    "utf8",
+    "D:\\Work\\rpfem_issue29_review_20261017\\issue28_historical_bundle_isolated_1792237610127066800\\extracted\\VERIFY_HISTORICAL.py",
+    "--output",
+    "D:\\Work\\rpfem_issue29_review_20261017\\issue28_historical_bundle_isolated_1792237610127066800\\ISOLATED_REPLAY_RESULT.json"
+  ],
+  "cwd": "D:\\Work\\rpfem_issue29_review_20261017\\issue28_historical_bundle_isolated_1792237610127066800",
+  "wrapper_pid": 7784,
+  "wrapper_birth": 1792237610.2602224,
+  "returncode": 0,
+  "wall_seconds": 4.496712923049927,
+  "archive_sha256": "f3d33d00d2676a810a9816b0cd0a2007ecacedaf3aa0b330c203f27474259706",
+  "archive_bytes": 1993089,
+  "manifest_sha256": "e167574e9582257c09ee3a683e237fc1a9e75c88843dcdcea84aeecf060d2678",
+  "files_unchanged": true,
+  "member_count": 73,
+  "output": "D:\\Work\\rpfem_issue29_review_20261017\\issue28_historical_bundle_isolated_1792237610127066800\\ISOLATED_REPLAY_RESULT.json",
+  "scope": "Actual new subprocess in independently extracted archive outside repository; original physical pair and both expected full dual outcomes; no optimizer"
+}

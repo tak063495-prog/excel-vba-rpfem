@@ -1,0 +1,38 @@
+{
+  "before": {
+    "accepted": false,
+    "dual_stationarity": 1.7849141851393815e-07,
+    "dual_cone_error": 5.661386886634395e-13,
+    "dual_objective": 1.0000030000004765,
+    "threshold": 1.000003,
+    "method": "original_dual_feasibility",
+    "scope": "discrete_root_search_only",
+    "publishes_primal_bound": false,
+    "reason": "ORIGINAL_RAW_DUAL_GATE_REJECTED"
+  },
+  "after": {
+    "accepted": true,
+    "dual_stationarity": 8.924587658563085e-08,
+    "dual_cone_error": 5.661386886634395e-13,
+    "dual_objective": 1.0000030000010307,
+    "threshold": 1.000003,
+    "method": "original_dual_feasibility",
+    "scope": "discrete_root_search_only",
+    "publishes_primal_bound": false,
+    "search_sign": 1
+  },
+  "accepted": true,
+  "method": "one_lsmr_free_original_y_correction_z_unchanged",
+  "equation": "E.T * dy = -(cost + E.T*y - G.T*z)",
+  "seconds": 0.0021880000131204724,
+  "maximum_seconds": 10.0,
+  "maximum_iterations": 200,
+  "stop": 2,
+  "iterations": 5,
+  "normr": 3.5501976318490957e-07,
+  "normar": 9.986080248284616e-25,
+  "z_bitwise_unchanged": true,
+  "optimizer_calls": 0,
+  "no_second_attempt": true,
+  "scope": "original dual guide only; no primal bound from linear correction"
+}

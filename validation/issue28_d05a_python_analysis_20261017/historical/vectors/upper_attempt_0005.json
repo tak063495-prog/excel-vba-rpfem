@@ -1,0 +1,124 @@
+{
+  "objective": 1.2185187346997666,
+  "value": 1.2185187346997686,
+  "eq_error": 6.390111054421794e-22,
+  "cone_error": 9.807979784714756e-19,
+  "audit": {
+    "pass": true,
+    "errors": {
+      "flow": 3.3109062070292507e-19,
+      "jump": 2.6215669717520595e-19,
+      "boundary": 6.390111054421794e-22,
+      "work": 0.0,
+      "objective": 1.9984014443252818e-15
+    },
+    "dissipation": 1.2185187346997686,
+    "work": [
+      0.0,
+      1.0
+    ],
+    "value": 1.2185187346997686
+  },
+  "raw_lower_errors": {},
+  "physical_pass": true,
+  "witness": false,
+  "dual_objective": 1.2185187346997646,
+  "dual_stationarity": 3.410605131648481e-10,
+  "dual_cone_error": 0.0,
+  "dual_gap": 1.9984014443252818e-15,
+  "numerical_gate": true,
+  "case": "D05A",
+  "mode": "upper",
+  "q": 8,
+  "fs": 1.3,
+  "elements": 214,
+  "status": "AlmostSolved",
+  "iterations": 30,
+  "solver_seconds": 0.243674,
+  "build_seconds": 0.02704960000119172,
+  "end_to_end_seconds": 0.43965169999864884,
+  "settings_overrides": {
+    "equilibrate_enable": false,
+    "time_limit": 30.0,
+    "tol_gap_abs": 1e-13,
+    "tol_gap_rel": 1e-13,
+    "tol_feas": 1e-13,
+    "iterative_refinement_max_iter": 30,
+    "iterative_refinement_abstol": 1e-15,
+    "iterative_refinement_reltol": 1e-15
+  },
+  "max_iter": 350,
+  "reduced_numerical_gate": false,
+  "dual_restore": {
+    "method": "exact_original_full_space_positive_coordinate_restore"
+  },
+  "original_program_sha256": "596559008a18ecd2e54213407febd4a0346778007d11046898090c7a4702ab32",
+  "original_program_unchanged": true,
+  "velocity_coordinate_scale": 7.874940184445002e-05,
+  "common_positive_cone_row_scaling": true,
+  "raw_before_work_normalization": {
+    "objective": 1.2185187346997666,
+    "value": 1.2185187346997686,
+    "eq_error": 6.390111054421794e-22,
+    "cone_error": 9.807979784714756e-19,
+    "audit": {
+      "pass": true,
+      "errors": {
+        "flow": 3.3109062070292507e-19,
+        "jump": 2.6215669717520595e-19,
+        "boundary": 6.390111054421794e-22,
+        "work": 0.0,
+        "objective": 1.9984014443252818e-15
+      },
+      "dissipation": 1.2185187346997686,
+      "work": [
+        0.0,
+        1.0
+      ],
+      "value": 1.2185187346997686
+    },
+    "raw_lower_errors": {},
+    "physical_pass": true,
+    "witness": false,
+    "dual_objective": 1.2185187346997646,
+    "dual_stationarity": 3.410605131648481e-10,
+    "dual_cone_error": 0.0,
+    "dual_gap": 1.9984014443252818e-15,
+    "numerical_gate": true
+  },
+  "upper_work_recovery": {
+    "attempted": true,
+    "accepted": true,
+    "work_before": 1.0,
+    "positive_scale": 1.0,
+    "audit": {
+      "objective": 1.2185187346997666,
+      "value": 1.2185187346997686,
+      "eq_error": 6.390111054421794e-22,
+      "cone_error": 9.807979784714756e-19,
+      "audit": {
+        "pass": true,
+        "errors": {
+          "flow": 3.3109062070292507e-19,
+          "jump": 2.6215669717520595e-19,
+          "boundary": 6.390111054421794e-22,
+          "work": 0.0,
+          "objective": 1.9984014443252818e-15
+        },
+        "dissipation": 1.2185187346997686,
+        "work": [
+          0.0,
+          1.0
+        ],
+        "value": 1.2185187346997686
+      },
+      "raw_lower_errors": {},
+      "physical_pass": true,
+      "witness": false,
+      "numerical_gate": false
+    },
+    "scope": "same original coordinates, strength, loads and quadrature; primal candidate only",
+    "selected": false
+  },
+  "provenance": "same original full LP; exact positive scalar velocity units; original primal and original dual gates"
+}

@@ -42,3 +42,6 @@ validation/G1R20_*_20261016/** -text
 versions/G1R20_Fix3/** -text
 
 versions/G1R20_Fix4/** -text
+
+validation/issue29_p06n_python_evidence_20261017/** -text
+validation/issue28_d05a_python_analysis_20261017/** -text

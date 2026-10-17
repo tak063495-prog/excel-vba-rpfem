@@ -1,0 +1,185 @@
+{
+  "status": "COMPLETED",
+  "case": "D05A",
+  "route": "normalized_objective",
+  "fs": 1.0,
+  "q": 8,
+  "pid": 15556,
+  "started_utc": "2026-10-17T11:45:29.934443+00:00",
+  "source_data_hashes_before": {
+    "python_snapshot/experiment_core.py": "9a9e60b6d69ba4008ea89608f433bb716b433436715c45566bd209418ee9238e",
+    "python_snapshot/reduction.py": "cbc32e1e0764e10e3f56f67b804b08867166aafbd32a64ddcbe481b18d083ca5",
+    "python_snapshot/vendor/independent_audit.py": "79ea1b0e4e72b2a61a4110e6115e3f33929ae5990fb054e20f41d345a694f37b",
+    "python_snapshot/vendor/model_support/__init__.py": "7eb70257593da06f682a3ddda54a9d260d4fc514f645237f5ca74b08f8da61a6",
+    "python_snapshot/vendor/model_support/io_case.py": "acd8d38c56020951621b1be5e4803e3d02898ad087c7f0c2d04e1d47ac6b87e3",
+    "python_snapshot/vendor/model_support/lower_assembly.py": "b3c482c8950205b32a5e38cd0f1e720e5efeb48491bbd8ff02b728ef54f51047",
+    "python_snapshot/vendor/model_support/p2.py": "7c243a234d22e5d8c209c5d55f6aedc834af7b507538022c2731a71046e0969f",
+    "python_snapshot/vendor/model_support/schema.py": "24db1fadeb9d16de2fd0593c87b0ce113b4f0720118b4617622af7450b957ca0",
+    "python_snapshot/vendor/model_support/upper_assembly.py": "d0e03aeb87dcc52ae8001b422d836064275850f22c8a69640ce722cb2213d065",
+    "inputs/P02A.json": "9587c4b45eae1c22d9e7190ee1470f5ad2e38145305f6c374894f91240ae7e1b",
+    "inputs/P02A_coarse_geometry.bin": "65fe6462d0cc1d832d1a2656494ade80858d5c491c7d14f6f8a6f8c168f2c79b",
+    "inputs/D05A.json": "b9c7b2b34a74889f0274f220b1895405acd68409f8df3b13571d5f62f27fa7e2",
+    "inputs/D05A_coarse_geometry.bin": "8f9849b3fb0b4238aa7e15f039d7321373cdc7b5c621b40b037d14c604d01983",
+    "history/INDEPENDENT_AUDIT.json": "d9865ae57943d4e848385bf4f8a3d72b444e0cc141a4fbf27302af0148996a6d",
+    "history/cases/D05A/best_lower_certificate.json": "322b45b75a494b7e09601e71667b999f305cb92bde7ad21c5c484d5ca74961bb",
+    "history/cases/D05A/best_lower_field.npz": "51350c1bda240e849b270aa27d753e2983d513da9ed913b3f3cec8c690d5bcf0",
+    "history/cases/D05A/best_lower_mesh.npz": "9749331752333b4050301bc86d5712234e79a850debeafc8e2055ed4cac1187b",
+    "history/cases/D05A/best_upper_certificate.json": "dfe9eda78feb5532f2c9d3fd3209b1b165d05804c182d959776ba249f0a9c788",
+    "history/cases/D05A/best_upper_field.npz": "472a0e70a598cb15e94f389fa97db0a6d51abee3151e2aac44fd56dcb18c6203",
+    "history/cases/D05A/best_upper_mesh.npz": "9749331752333b4050301bc86d5712234e79a850debeafc8e2055ed4cac1187b",
+    "history/cases/D05A/source_manifest.json": "126d494fd2340b2cd4bac7268601eab90867771566ace091ac7aad25ba445d6c",
+    "history/cases/D05A/summary.json": "d99d38a24b7402e51ba5c031e0973c44af56d49ea5ac4bc685581ecbe09998e4",
+    "history/producer_run_case.py": "54edbccbdfb0a59e8b2bb325efe1b28d784630586c47910ec1a171c676add498",
+    "history/CURRENT_RESULT_D05A.json": "4839a4afb49c8b9cc6f12ac08b6ad0a6478aab342c7a020957c77d841a2764b8",
+    "run_fixed_point_experiment.py": "321cbd2ccff30bff4bf084fbdaf8f2de32e26d14864e657c9a894dc4fbdd0718"
+  },
+  "python": "3.13.14 (tags/v3.13.14:fd17997, Jun 10 2026, 13:03:48) [MSC v.1944 64 bit (AMD64)]",
+  "platform": "Windows-11-10.0.26300-SP0",
+  "numpy_version": "2.3.5",
+  "scipy_version": "1.17.0",
+  "clarabel_version": "0.11.1",
+  "solver_threads": 1,
+  "solve_time_limit_seconds": 20.0,
+  "optimizer_calls": 1,
+  "scope": "Fresh fixed-point upper LP diagnostic. No root search or GAP2% completion claim; not Fix4 HSD/native execution.",
+  "model": {
+    "nodes": 130,
+    "elements": 214,
+    "mesh_id": "7459b33ab144cb52ae084be55ed3f6b808194af7fee2588f9962f5d0bc476ff6",
+    "physical_model_id": "3c270d5c79373766e05b2c3b7da528746236aa01a62325df98ebf25efe728347",
+    "policy": "equal_reduced_phi",
+    "canonical_area_error": 5.960464477539063e-08,
+    "body_force_gamma": 0.02
+  },
+  "original_program": {
+    "sha256": "fc17d46079603bf552f4e987cb9bcb282d66e8678702bb09765ca8e87dc3c213",
+    "variables": 2568,
+    "equalities": 124,
+    "cone_rows": 7906,
+    "cone_blocks": 6622,
+    "matrix_nonzeros": 79322,
+    "max_abs_original_cost": 1906.2283737862776,
+    "VBA_style_QScale": 1906.2283737862776,
+    "max_abs_normalized_cost": 1.0,
+    "zero_original_dual": {
+      "stationarity": 1906.2283737862776,
+      "cone_error": 0.0,
+      "objective": -0.0,
+      "original_upper_inverse_guide_accepted": false,
+      "thresholds": {
+        "raw_stationarity": 1e-07,
+        "dual_cone": 1e-08,
+        "original_dual_objective_min": 1.000003
+      },
+      "scope": "discrete upper root sign guide only; not a continuum primal bound"
+    },
+    "zero_candidate_normalized_objective_stationarity": 1.0,
+    "zero_candidate_passes_relative_stationarity_if_1e7_times_cost": false
+  },
+  "result": {
+    "status": "AlmostSolved",
+    "iterations": 34,
+    "solver_seconds": 0.1870150999748148,
+    "backend_solve_seconds": 0.2001318,
+    "audit": {
+      "objective": 2.5831538724900254,
+      "value": 2.583153872490021,
+      "eq_error": 1.3129225652627405e-10,
+      "cone_error": 5.414677688593757e-10,
+      "audit": {
+        "pass": false,
+        "errors": {
+          "flow": 2.232121280201946e-12,
+          "jump": 5.414677688593755e-10,
+          "boundary": 1.417153882761811e-11,
+          "work": 1.66721592065322e-06,
+          "objective": 4.440892098500626e-15
+        },
+        "dissipation": 2.583153872490021,
+        "work": [
+          0.0,
+          0.9999983327840793
+        ],
+        "value": 2.583153872490021
+      },
+      "raw_lower_errors": {},
+      "physical_pass": false,
+      "witness": false,
+      "dual_objective": 2.58315387249346,
+      "dual_stationarity": 1.9474555301712826e-10,
+      "dual_cone_error": 0.0,
+      "dual_gap": 3.4345859489803843e-12,
+      "numerical_gate": false
+    },
+    "transform": {
+      "route": "normalized_objective",
+      "objective_scale": 0.0005245961154243725,
+      "coordinate_scale": 1.0,
+      "common_positive_cone_row_scaling": false,
+      "transformed_reported_primal_objective": 0.0013551124870516918,
+      "original_primal_objective": 2.5831538724900254,
+      "restore_original_objective": 2.5831538724900245,
+      "objective_restore_absolute_error": 8.881784197001252e-16
+    },
+    "original_dual": {
+      "stationarity": 1.9474555301712826e-10,
+      "cone_error": 0.0,
+      "objective": 2.58315387249346,
+      "original_upper_inverse_guide_accepted": true,
+      "thresholds": {
+        "raw_stationarity": 1e-07,
+        "dual_cone": 1e-08,
+        "original_dual_objective_min": 1.000003
+      },
+      "scope": "discrete upper root sign guide only; not a continuum primal bound"
+    },
+    "incorrect_unrestored_dual_diagnostic": {
+      "stationarity": 1905.2283737862776,
+      "cone_error": 0.0,
+      "objective": 0.001355112487053494,
+      "original_upper_inverse_guide_accepted": false,
+      "thresholds": {
+        "raw_stationarity": 1e-07,
+        "dual_cone": 1e-08,
+        "original_dual_objective_min": 1.000003
+      },
+      "scope": "discrete upper root sign guide only; not a continuum primal bound"
+    },
+    "scope": "Exactly restored original full program; transformed solver status alone supplies no sign or physical certificate"
+  },
+  "original_program_unchanged": true,
+  "output_hashes": {
+    "mesh.npz": "7d75b2f901e3013333b9d354869d045ea98df7b5aeb6304c94b7cf35c502327d",
+    "vectors.npz": "7e3b059d96394840d14d0ce3a81e790f1fcc40ed4a09339b73411e1ce9b50107"
+  },
+  "source_data_hashes_after": {
+    "python_snapshot/experiment_core.py": "9a9e60b6d69ba4008ea89608f433bb716b433436715c45566bd209418ee9238e",
+    "python_snapshot/reduction.py": "cbc32e1e0764e10e3f56f67b804b08867166aafbd32a64ddcbe481b18d083ca5",
+    "python_snapshot/vendor/independent_audit.py": "79ea1b0e4e72b2a61a4110e6115e3f33929ae5990fb054e20f41d345a694f37b",
+    "python_snapshot/vendor/model_support/__init__.py": "7eb70257593da06f682a3ddda54a9d260d4fc514f645237f5ca74b08f8da61a6",
+    "python_snapshot/vendor/model_support/io_case.py": "acd8d38c56020951621b1be5e4803e3d02898ad087c7f0c2d04e1d47ac6b87e3",
+    "python_snapshot/vendor/model_support/lower_assembly.py": "b3c482c8950205b32a5e38cd0f1e720e5efeb48491bbd8ff02b728ef54f51047",
+    "python_snapshot/vendor/model_support/p2.py": "7c243a234d22e5d8c209c5d55f6aedc834af7b507538022c2731a71046e0969f",
+    "python_snapshot/vendor/model_support/schema.py": "24db1fadeb9d16de2fd0593c87b0ce113b4f0720118b4617622af7450b957ca0",
+    "python_snapshot/vendor/model_support/upper_assembly.py": "d0e03aeb87dcc52ae8001b422d836064275850f22c8a69640ce722cb2213d065",
+    "inputs/P02A.json": "9587c4b45eae1c22d9e7190ee1470f5ad2e38145305f6c374894f91240ae7e1b",
+    "inputs/P02A_coarse_geometry.bin": "65fe6462d0cc1d832d1a2656494ade80858d5c491c7d14f6f8a6f8c168f2c79b",
+    "inputs/D05A.json": "b9c7b2b34a74889f0274f220b1895405acd68409f8df3b13571d5f62f27fa7e2",
+    "inputs/D05A_coarse_geometry.bin": "8f9849b3fb0b4238aa7e15f039d7321373cdc7b5c621b40b037d14c604d01983",
+    "history/INDEPENDENT_AUDIT.json": "d9865ae57943d4e848385bf4f8a3d72b444e0cc141a4fbf27302af0148996a6d",
+    "history/cases/D05A/best_lower_certificate.json": "322b45b75a494b7e09601e71667b999f305cb92bde7ad21c5c484d5ca74961bb",
+    "history/cases/D05A/best_lower_field.npz": "51350c1bda240e849b270aa27d753e2983d513da9ed913b3f3cec8c690d5bcf0",
+    "history/cases/D05A/best_lower_mesh.npz": "9749331752333b4050301bc86d5712234e79a850debeafc8e2055ed4cac1187b",
+    "history/cases/D05A/best_upper_certificate.json": "dfe9eda78feb5532f2c9d3fd3209b1b165d05804c182d959776ba249f0a9c788",
+    "history/cases/D05A/best_upper_field.npz": "472a0e70a598cb15e94f389fa97db0a6d51abee3151e2aac44fd56dcb18c6203",
+    "history/cases/D05A/best_upper_mesh.npz": "9749331752333b4050301bc86d5712234e79a850debeafc8e2055ed4cac1187b",
+    "history/cases/D05A/source_manifest.json": "126d494fd2340b2cd4bac7268601eab90867771566ace091ac7aad25ba445d6c",
+    "history/cases/D05A/summary.json": "d99d38a24b7402e51ba5c031e0973c44af56d49ea5ac4bc685581ecbe09998e4",
+    "history/producer_run_case.py": "54edbccbdfb0a59e8b2bb325efe1b28d784630586c47910ec1a171c676add498",
+    "history/CURRENT_RESULT_D05A.json": "4839a4afb49c8b9cc6f12ac08b6ad0a6478aab342c7a020957c77d841a2764b8",
+    "run_fixed_point_experiment.py": "321cbd2ccff30bff4bf084fbdaf8f2de32e26d14864e657c9a894dc4fbdd0718"
+  },
+  "source_data_unchanged": true,
+  "finished_utc": "2026-10-17T11:45:30.433689+00:00",
+  "process_elapsed_seconds": 0.4992744000046514
+}

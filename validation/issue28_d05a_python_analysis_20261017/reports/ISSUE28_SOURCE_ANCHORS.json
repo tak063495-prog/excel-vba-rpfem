@@ -1,0 +1,2732 @@
+{
+  "schema": "RPFEM_ISSUE28_STATIC_SOURCE_ANCHORS_V1",
+  "created_utc": "2026-10-17T11:43:53.233067+00:00",
+  "repo": "D:\\Work\\rpfem-g20-fix1-20261017",
+  "git_head": "1ab383bbc1764249a4320ca28ed3ac6682c8fbac",
+  "excel_runs": 0,
+  "optimizer_calls": 0,
+  "scope": "Static source reading only; Issue-reported failure values are not reproduced measurements.",
+  "sources": [
+    {
+      "path": "versions/G1R20_Fix4/src/vba/RPX_Fs.bas",
+      "bytes": 53210,
+      "sha256": "6b6b91e759dff8a589d4dc4cf28f9e57747020cecf9414c1cb00f39c24b7885a",
+      "anchors": [
+        {
+          "first_line": 248,
+          "last_line": 277,
+          "lines": [
+            {
+              "line": 248,
+              "text": "Private Function FsValue(ByVal factor As Double, ByVal mode As String, ByVal target As Double, Optional ByVal allowRecovery As Boolean = True) As Double"
+            },
+            {
+              "line": 249,
+              "text": "    Dim enabled As Boolean, nativeEnabled As Boolean, recovered() As Double, seconds As Double, number As Long, source As String, message As String"
+            },
+            {
+              "line": 250,
+              "text": "    enabled = (allowRecovery And mode = \"lower\" And RSubdivisions = 8 And FixedLowerFsEnabled())"
+            },
+            {
+              "line": 251,
+              "text": "    nativeEnabled = (allowRecovery And RSubdivisions = 8 And RPX_AccuracyEnabled())"
+            },
+            {
+              "line": 252,
+              "text": "    Call RPX_AccuracyGuideReset"
+            },
+            {
+              "line": 253,
+              "text": "    On Error GoTo Failed"
+            },
+            {
+              "line": 254,
+              "text": "    RFsCalls = RFsCalls + 1: FsValue = RPX_Bound(mode, factor, allowRecovery) - target"
+            },
+            {
+              "line": 255,
+              "text": "    If nativeEnabled And mode = \"lower\" And XStatus = \"UNBOUNDED\" Then"
+            },
+            {
+              "line": 256,
+              "text": "        If RPX_AccuracyLowerRayWitness(factor, recovered) Then"
+            },
+            {
+              "line": 257,
+              "text": "            xx = recovered: XObjective = -AccuracyNativeValue"
+            },
+            {
+              "line": 258,
+              "text": "            RStrengthFactor = factor: Call RPX_AuditLower"
+            },
+            {
+              "line": 259,
+              "text": "            If RPX_AuditRejected Or Not RPhysicalGateAccepted Or RValue < target Then err.Raise 5, \"RPX_Fs\", \"HSD_RAY_PRIMAL_GATE_REJECTED\""
+            },
+            {
+              "line": 260,
+              "text": "            XStatus = \"ORIGINAL_FIXED_LOWER_WITNESS\""
+            },
+            {
+              "line": 261,
+              "text": "            FsValue = RValue - target"
+            },
+            {
+              "line": 262,
+              "text": "            Exit Function"
+            },
+            {
+              "line": 263,
+              "text": "        End If"
+            },
+            {
+              "line": 264,
+              "text": "    End If"
+            },
+            {
+              "line": 265,
+              "text": "    If nativeEnabled And RPX_AccuracyGuideCurrent(factor, mode) Then"
+            },
+            {
+              "line": 266,
+              "text": "        Erase xx: Erase XSlack: RProgramKind = \"\": RProgramFs = factor"
+            },
+            {
+              "line": 267,
+              "text": "        Exit Function"
+            },
+            {
+              "line": 268,
+              "text": "    End If"
+            },
+            {
+              "line": 269,
+              "text": "    If XStatus = \"ORIGINAL_ACCURACY_UPPER_WITNESS\" Or XStatus = \"ORIGINAL_FIXED_LOWER_WITNESS\" Then Exit Function"
+            },
+            {
+              "line": 270,
+              "text": "    If nativeEnabled Then RPX_TestHook \"fs_accuracy_original\""
+            },
+            {
+              "line": 271,
+              "text": "    If nativeEnabled And mode = \"upper\" And (XStatus = \"OPTIMAL\" Or XStatus = \"INFEASIBLE\") And FsValue >= 0# Then"
+            },
+            {
+              "line": 272,
+              "text": "        If Not RPX_AccuracyRecoverDual(factor, mode) Then err.Raise 5, \"RPX_Fs\", \"HSD_NOT_CONVERGED\""
+            },
+            {
+              "line": 273,
+              "text": "        XStatus = \"ORIGINAL_ACCURACY_DUAL_GUIDE\": XObjective = AccuracyNativeDualObjective"
+            },
+            {
+              "line": 274,
+              "text": "        If Not RPX_AccuracyGuideCurrent(factor, mode) Then err.Raise 5, \"RPX_Fs\", \"ACCURACY_DUAL_CONTEXT_REJECTED\""
+            },
+            {
+              "line": 275,
+              "text": "        FsValue = AccuracyNativeDualObjective - target"
+            },
+            {
+              "line": 276,
+              "text": "        Erase xx: Erase XSlack: RProgramKind = \"\": RProgramFs = factor"
+            },
+            {
+              "line": 277,
+              "text": "        Exit Function"
+            }
+          ]
+        },
+        {
+          "first_line": 296,
+          "last_line": 306,
+          "lines": [
+            {
+              "line": 296,
+              "text": "Failed:"
+            },
+            {
+              "line": 297,
+              "text": "    number = err.number: source = err.source: message = err.description"
+            },
+            {
+              "line": 298,
+              "text": "    On Error GoTo 0"
+            },
+            {
+              "line": 299,
+              "text": "    If number = 18 Then err.Raise number, source, message"
+            },
+            {
+              "line": 300,
+              "text": "    If Not enabled And Not nativeEnabled Then err.Raise number, source, message"
+            },
+            {
+              "line": 301,
+              "text": "    If Not FsNumericRecoverable(number, message) Then err.Raise number, source, message"
+            },
+            {
+              "line": 302,
+              "text": "    XStatus = \"NUMERICAL_UNKNOWN\": RProgramKind = \"\""
+            },
+            {
+              "line": 303,
+              "text": "    If nativeEnabled Then"
+            },
+            {
+              "line": 304,
+              "text": "        If AccuracyFsRecover(factor, mode, target, FsValue) Then Exit Function"
+            },
+            {
+              "line": 305,
+              "text": "    End If"
+            },
+            {
+              "line": 306,
+              "text": "    If Not enabled Then err.Raise number, source, message"
+            }
+          ]
+        },
+        {
+          "first_line": 889,
+          "last_line": 917,
+          "lines": [
+            {
+              "line": 889,
+              "text": "Private Function AccuracyFsRecover(ByVal factor As Double, ByVal mode As String, ByVal target As Double, ByRef residual As Double) As Boolean"
+            },
+            {
+              "line": 890,
+              "text": "    Dim recovered() As Double"
+            },
+            {
+              "line": 891,
+              "text": "    ' A separate original-dual feasibility primal is an original program dual."
+            },
+            {
+              "line": 892,
+              "text": "    ' No auxiliary QP dual enters a root; no dual guide enters a physical field."
+            },
+            {
+              "line": 893,
+              "text": "    If RPX_AccuracyRecoverDual(factor, mode) Then"
+            },
+            {
+              "line": 894,
+              "text": "        XObjective = AccuracyNativeDualObjective"
+            },
+            {
+              "line": 895,
+              "text": "        If mode = \"upper\" Then"
+            },
+            {
+              "line": 896,
+              "text": "            XStatus = \"ORIGINAL_ACCURACY_DUAL_GUIDE\": residual = AccuracyNativeDualObjective - target"
+            },
+            {
+              "line": 897,
+              "text": "        Else"
+            },
+            {
+              "line": 898,
+              "text": "            XStatus = \"ORIGINAL_LOWER_DUAL_GUIDE\": residual = -AccuracyNativeDualObjective - target"
+            },
+            {
+              "line": 899,
+              "text": "        End If"
+            },
+            {
+              "line": 900,
+              "text": "        If Not RPX_AccuracyGuideCurrent(factor, mode) Then err.Raise 5, \"RPX_Fs\", \"ACCURACY_DUAL_CONTEXT_REJECTED\""
+            },
+            {
+              "line": 901,
+              "text": "        Erase xx: Erase XSlack"
+            },
+            {
+              "line": 902,
+              "text": "        RProgramKind = \"\": RProgramFs = factor"
+            },
+            {
+              "line": 903,
+              "text": "        AccuracyFsRecover = True: Exit Function"
+            },
+            {
+              "line": 904,
+              "text": "    End If"
+            },
+            {
+              "line": 905,
+              "text": "    If RPX_AccuracyRecoverPrimal(factor, mode, recovered) Then"
+            },
+            {
+              "line": 906,
+              "text": "        xx = recovered"
+            },
+            {
+              "line": 907,
+              "text": "        If mode = \"lower\" Then"
+            },
+            {
+              "line": 908,
+              "text": "            XObjective = -AccuracyNativeValue: Call RPX_AuditLower"
+            },
+            {
+              "line": 909,
+              "text": "            XStatus = \"ORIGINAL_FIXED_LOWER_WITNESS\""
+            },
+            {
+              "line": 910,
+              "text": "        Else"
+            },
+            {
+              "line": 911,
+              "text": "            XObjective = AccuracyNativeValue: Call RPX_AuditUpper"
+            },
+            {
+              "line": 912,
+              "text": "            XStatus = \"ORIGINAL_ACCURACY_UPPER_WITNESS\""
+            },
+            {
+              "line": 913,
+              "text": "        End If"
+            },
+            {
+              "line": 914,
+              "text": "        If RPX_AuditRejected Or Not RPhysicalGateAccepted Then err.Raise 5, \"RPX_Fs\", \"ACCURACY_RECOVERY_ENDPOINT_GATE_REJECTED\""
+            },
+            {
+              "line": 915,
+              "text": "        RProgramKind = mode: RProgramFs = factor: residual = RValue - target"
+            },
+            {
+              "line": 916,
+              "text": "        AccuracyFsRecover = True"
+            },
+            {
+              "line": 917,
+              "text": "    End If"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "path": "versions/G1R20_Fix4/src/vba/RPX_AccuracyNative.bas",
+      "bytes": 75871,
+      "sha256": "f5b206b220371076248734f0221bee5c9f5162e8c25f57134a20257c5f7049be",
+      "anchors": [
+        {
+          "first_line": 131,
+          "last_line": 181,
+          "lines": [
+            {
+              "line": 131,
+              "text": "Public Function RPX_AccuracyExport(ByVal factor As Double, ByVal mode As String, ByRef pr As RPX_AccuracyProgram) As Boolean"
+            },
+            {
+              "line": 132,
+              "text": "    Dim blank As RPX_AccuracyProgram, i As Long, j As Long, k As Long, r As Long, row As Long, p As Long, nz As Double"
+            },
+            {
+              "line": 133,
+              "text": "    pr = blank: AccuracyNativeReason = \"ORIGINAL_PROGRAM_SCOPE_REJECTED\""
+            },
+            {
+              "line": 134,
+              "text": "    If XCancel Or AFActive Or Not RFsActive Or RSubdivisions <> 8 Or RR <> 0 Or Not RRawAuditEnabled Then Exit Function"
+            },
+            {
+              "line": 135,
+              "text": "    If mode <> \"lower\" And mode <> \"upper\" Then Exit Function"
+            },
+            {
+              "line": 136,
+              "text": "    If mode <> RPX_OrderMode Or RPX_LoadPhase <> \"reference_total\" Then Exit Function"
+            },
+            {
+              "line": 137,
+              "text": "    If Not RPX_SchurFinite(factor) Or factor <= 0# Or factor <> RStrengthFactor Then Exit Function"
+            },
+            {
+              "line": 138,
+              "text": "    If Not XOriginalCompiled.ready Or XOriginalCompiled.affine Then Exit Function"
+            },
+            {
+              "line": 139,
+              "text": "    If XOriginalCompiled.n <> XN Or XOriginalCompiled.m <> XM Or XOriginalCompiled.s <> XS Or XOriginalCompiled.b <> XB Then Exit Function"
+            },
+            {
+              "line": 140,
+              "text": "    If XOriginalCompiled.inputEpoch <> RPX_InputEpoch Or XOriginalCompiled.subdivisions <> 8 Then Exit Function"
+            },
+            {
+              "line": 141,
+              "text": "    If XOriginalCompiled.modelKey <> RPX_ExactModel() Or XOriginalCompiled.modeName <> mode Or XOriginalCompiled.loadPhase <> RPX_LoadPhase Then Exit Function"
+            },
+            {
+              "line": 142,
+              "text": "    If Not RPX_SchurFinite(XOriginalCompiled.strengthFactor) Or XOriginalCompiled.strengthFactor <> factor Then Exit Function"
+            },
+            {
+              "line": 143,
+              "text": "    If XN <= 0 Or XM <= 0 Or XS <= 0 Or XB <= 0 Then Exit Function"
+            },
+            {
+              "line": 144,
+              "text": "    If LBound(XOriginalCompiled.cost) <> 0 Or UBound(XOriginalCompiled.cost) <> XN - 1 Then Exit Function"
+            },
+            {
+              "line": 145,
+              "text": "    If mode = \"lower\" And (RLoadVariable < 0 Or RLoadVariable >= XN) Then Exit Function"
+            },
+            {
+              "line": 146,
+              "text": "    For i = 0 To XN - 1"
+            },
+            {
+              "line": 147,
+              "text": "        If Not RPX_SchurFinite(XOriginalCompiled.cost(i)) Then Exit Function"
+            },
+            {
+              "line": 148,
+              "text": "        If mode = \"lower\" Then"
+            },
+            {
+              "line": 149,
+              "text": "            If i = RLoadVariable Then"
+            },
+            {
+              "line": 150,
+              "text": "                If XOriginalCompiled.cost(i) <> -1# Then Exit Function"
+            },
+            {
+              "line": 151,
+              "text": "            Else"
+            },
+            {
+              "line": 152,
+              "text": "                If XOriginalCompiled.cost(i) <> 0# Then Exit Function"
+            },
+            {
+              "line": 153,
+              "text": "            End If"
+            },
+            {
+              "line": 154,
+              "text": "        End If"
+            },
+            {
+              "line": 155,
+              "text": "    Next i"
+            },
+            {
+              "line": 156,
+              "text": "    nz = XEPtr(XM)"
+            },
+            {
+              "line": 157,
+              "text": "    For k = 0 To XB - 1"
+            },
+            {
+              "line": 158,
+              "text": "        If XC(k).dimn <> 1 And XC(k).dimn <> 3 Then Exit Function"
+            },
+            {
+              "line": 159,
+              "text": "        For r = 0 To XC(k).dimn - 1"
+            },
+            {
+              "line": 160,
+              "text": "            If Not RPX_SchurFinite(XC(k).offset(r)) Then Exit Function"
+            },
+            {
+              "line": 161,
+              "text": "            For j = 0 To XC(k).count - 1"
+            },
+            {
+              "line": 162,
+              "text": "                If XC(k).ids(j) < 0 Or XC(k).ids(j) >= XN Or Not RPX_SchurFinite(XC(k).coef(r, j)) Then Exit Function"
+            },
+            {
+              "line": 163,
+              "text": "                If XC(k).coef(r, j) <> 0# Then nz = nz + 1#"
+            },
+            {
+              "line": 164,
+              "text": "            Next j"
+            },
+            {
+              "line": 165,
+              "text": "        Next r"
+            },
+            {
+              "line": 166,
+              "text": "    Next k"
+            },
+            {
+              "line": 167,
+              "text": "    If nz <= 0# Or nz > 2147483000# Then err.Raise 5, \"RPX_AccuracyNative\", \"ACCURACY_SPARSE_LIMIT\""
+            },
+            {
+              "line": 168,
+              "text": "    pr.n = XN: pr.m = XM + XS: pr.nnz = CLng(nz): pr.equalityCount = XM: pr.coneCount = XB + 1"
+            },
+            {
+              "line": 169,
+              "text": "    pr.originalCost = XOriginalCompiled.cost: pr.cost = pr.originalCost"
+            },
+            {
+              "line": 170,
+              "text": "    pr.model = RPX_ExactModel(): pr.policy = RPX_AnalysisPolicy(): pr.epoch = RPX_InputEpoch"
+            },
+            {
+              "line": 171,
+              "text": "    pr.q = RSubdivisions: pr.factor = factor: pr.mode = mode: pr.phase = RPX_LoadPhase"
+            },
+            {
+              "line": 172,
+              "text": "    ReDim pr.rowPtr(0 To pr.m): ReDim pr.colId(0 To pr.nnz - 1): ReDim pr.values(0 To pr.nnz - 1)"
+            },
+            {
+              "line": 173,
+              "text": "    ReDim pr.rhs(0 To pr.m - 1): ReDim pr.pdiag(0 To pr.n - 1)"
+            },
+            {
+              "line": 174,
+              "text": "    ReDim pr.coneKind(0 To pr.coneCount - 1): ReDim pr.coneDim(0 To pr.coneCount - 1)"
+            },
+            {
+              "line": 175,
+              "text": "    pr.coneKind(0) = 0: pr.coneDim(0) = XM"
+            },
+            {
+              "line": 176,
+              "text": "    For i = 0 To XM - 1"
+            },
+            {
+              "line": 177,
+              "text": "        pr.rowPtr(i) = p: pr.rhs(i) = XOriginalCompiled.rhs(i)"
+            },
+            {
+              "line": 178,
+              "text": "        If Not RPX_SchurFinite(pr.rhs(i)) Then Exit Function"
+            },
+            {
+              "line": 179,
+              "text": "        For j = XEPtr(i) To XEPtr(i + 1) - 1"
+            },
+            {
+              "line": 180,
+              "text": "            If XEId(j) < 0 Or XEId(j) >= XN Or Not RPX_SchurFinite(XOriginalCompiled.values(j)) Then Exit Function"
+            },
+            {
+              "line": 181,
+              "text": "            pr.colId(p) = XEId(j): pr.values(p) = XOriginalCompiled.values(j): p = p + 1"
+            }
+          ]
+        },
+        {
+          "first_line": 263,
+          "last_line": 285,
+          "lines": [
+            {
+              "line": 263,
+              "text": "    AccuracyNativeSolverStatus = ReadLong(progress, 12): AccuracyNativeIterations = ReadLong(progress, 16)"
+            },
+            {
+              "line": 264,
+              "text": "    If state <> 2 Or cancelled Then GoTo Cleanup"
+            },
+            {
+              "line": 265,
+              "text": "    ReDim answer(0 To pr.n - 1): ReDim modifiedDual(0 To pr.m - 1)"
+            },
+            {
+              "line": 266,
+              "text": "    rc = NResult(handle, VarPtr(answer(0)), pr.n, VarPtr(modifiedDual(0)), pr.m, VarPtr(progress(0)))"
+            },
+            {
+              "line": 267,
+              "text": "    If rc <> 0 Then GoTo Cleanup"
+            },
+            {
+              "line": 268,
+              "text": "    For i = 0 To pr.n - 1: If Not RPX_SchurFinite(answer(i)) Then GoTo Cleanup"
+            },
+            {
+              "line": 269,
+              "text": "    Next i"
+            },
+            {
+              "line": 270,
+              "text": "    For i = 0 To pr.m - 1: If Not RPX_SchurFinite(modifiedDual(i)) Then GoTo Cleanup"
+            },
+            {
+              "line": 271,
+              "text": "    Next i"
+            },
+            {
+              "line": 272,
+              "text": "    valid = True"
+            },
+            {
+              "line": 273,
+              "text": "Cleanup:"
+            },
+            {
+              "line": 274,
+              "text": "    If handle <> 0 Then"
+            },
+            {
+              "line": 275,
+              "text": "        Do"
+            },
+            {
+              "line": 276,
+              "text": "            rc = NDestroy(handle)"
+            },
+            {
+              "line": 277,
+              "text": "            If rc <> -8 Then Exit Do"
+            },
+            {
+              "line": 278,
+              "text": "            rc = NCancel(handle): DoEvents: Idle 10"
+            },
+            {
+              "line": 279,
+              "text": "        Loop"
+            },
+            {
+              "line": 280,
+              "text": "        If rc <> 0 Then valid = False"
+            },
+            {
+              "line": 281,
+              "text": "        handle = 0"
+            },
+            {
+              "line": 282,
+              "text": "    End If"
+            },
+            {
+              "line": 283,
+              "text": "    If Not valid Then Erase answer: Erase modifiedDual"
+            },
+            {
+              "line": 284,
+              "text": "    If valid Then AccuracyNativeReason = \"CANDIDATE_REQUIRES_ORIGINAL_AUDIT\" Else AccuracyNativeReason = \"ACCURACY_DLL_NO_FINITE_CANDIDATE\""
+            },
+            {
+              "line": 285,
+              "text": "    If XCancel Then err.Raise 18, \"RPX_AccuracyNative\", \"ANALYSIS_CANCELLED\""
+            }
+          ]
+        },
+        {
+          "first_line": 500,
+          "last_line": 590,
+          "lines": [
+            {
+              "line": 500,
+              "text": "Public Sub RPX_AccuracyDualProblem(ByRef original As RPX_AccuracyProgram, ByRef dualProgram As RPX_AccuracyProgram)"
+            },
+            {
+              "line": 501,
+              "text": "    Dim pr As RPX_AccuracyProgram, counts() As Long, cursor() As Long, i As Long, j As Long, row As Long, col As Long, p As Long, threshold As Double"
+            },
+            {
+              "line": 502,
+              "text": "    pr.n = original.m: pr.m = original.n + original.m - original.equalityCount + 1"
+            },
+            {
+              "line": 503,
+              "text": "    pr.coneCount = original.coneCount + 1"
+            },
+            {
+              "line": 504,
+              "text": "    ReDim counts(0 To pr.m - 1): ReDim cursor(0 To pr.m - 1)"
+            },
+            {
+              "line": 505,
+              "text": "    For i = 0 To original.m - 1"
+            },
+            {
+              "line": 506,
+              "text": "        For j = original.rowPtr(i) To original.rowPtr(i + 1) - 1: counts(original.colId(j)) = counts(original.colId(j)) + 1: Next j"
+            },
+            {
+              "line": 507,
+              "text": "    Next i"
+            },
+            {
+              "line": 508,
+              "text": "    For i = original.n To pr.m - 2: counts(i) = 1: Next i"
+            },
+            {
+              "line": 509,
+              "text": "    For i = 0 To original.m - 1: If original.rhs(i) <> 0# Then counts(pr.m - 1) = counts(pr.m - 1) + 1"
+            },
+            {
+              "line": 510,
+              "text": "    Next i"
+            },
+            {
+              "line": 511,
+              "text": "    ReDim pr.rowPtr(0 To pr.m)"
+            },
+            {
+              "line": 512,
+              "text": "    For i = 0 To pr.m - 1: pr.rowPtr(i + 1) = pr.rowPtr(i) + counts(i): cursor(i) = pr.rowPtr(i): Next i"
+            },
+            {
+              "line": 513,
+              "text": "    pr.nnz = pr.rowPtr(pr.m)"
+            },
+            {
+              "line": 514,
+              "text": "    ReDim pr.colId(0 To pr.nnz - 1): ReDim pr.values(0 To pr.nnz - 1): ReDim pr.rhs(0 To pr.m - 1)"
+            },
+            {
+              "line": 515,
+              "text": "    ReDim pr.cost(0 To pr.n - 1): ReDim pr.pdiag(0 To pr.n - 1)"
+            },
+            {
+              "line": 516,
+              "text": "    ReDim pr.coneKind(0 To pr.coneCount - 1): ReDim pr.coneDim(0 To pr.coneCount - 1)"
+            },
+            {
+              "line": 517,
+              "text": "    For i = 0 To original.m - 1"
+            },
+            {
+              "line": 518,
+              "text": "        For j = original.rowPtr(i) To original.rowPtr(i + 1) - 1"
+            },
+            {
+              "line": 519,
+              "text": "            row = original.colId(j): p = cursor(row): cursor(row) = p + 1"
+            },
+            {
+              "line": 520,
+              "text": "            pr.colId(p) = i: pr.values(p) = original.values(j)"
+            },
+            {
+              "line": 521,
+              "text": "        Next j"
+            },
+            {
+              "line": 522,
+              "text": "    Next i"
+            },
+            {
+              "line": 523,
+              "text": "    For i = 0 To original.n - 1: pr.rhs(i) = -original.originalCost(i): Next i"
+            },
+            {
+              "line": 524,
+              "text": "    For i = original.n To pr.m - 2"
+            },
+            {
+              "line": 525,
+              "text": "        p = pr.rowPtr(i): pr.colId(p) = original.equalityCount + i - original.n: pr.values(p) = -1#"
+            },
+            {
+              "line": 526,
+              "text": "    Next i"
+            },
+            {
+              "line": 527,
+              "text": "    p = pr.rowPtr(pr.m - 1)"
+            },
+            {
+              "line": 528,
+              "text": "    For i = 0 To original.m - 1"
+            },
+            {
+              "line": 529,
+              "text": "        If original.rhs(i) <> 0# Then pr.colId(p) = i: pr.values(p) = original.rhs(i): p = p + 1"
+            },
+            {
+              "line": 530,
+              "text": "    Next i"
+            },
+            {
+              "line": 531,
+              "text": "    If original.mode = \"upper\" Then threshold = 1.000003 Else threshold = -0.999998"
+            },
+            {
+              "line": 532,
+              "text": "    pr.rhs(pr.m - 1) = -threshold"
+            },
+            {
+              "line": 533,
+              "text": "    pr.coneKind(0) = 0: pr.coneDim(0) = original.n"
+            },
+            {
+              "line": 534,
+              "text": "    For i = 1 To original.coneCount - 1: pr.coneKind(i) = original.coneKind(i): pr.coneDim(i) = original.coneDim(i): Next i"
+            },
+            {
+              "line": 535,
+              "text": "    pr.coneKind(pr.coneCount - 1) = 1: pr.coneDim(pr.coneCount - 1) = 1"
+            },
+            {
+              "line": 536,
+              "text": "    dualProgram = pr"
+            },
+            {
+              "line": 537,
+              "text": "End Sub"
+            },
+            {
+              "line": 538,
+              "text": "Public Function RPX_AccuracyDualAudit(ByRef original As RPX_AccuracyProgram, ByRef candidate() As Double) As Boolean"
+            },
+            {
+              "line": 539,
+              "text": "    Dim stat() As Double, corr() As Double, i As Long, j As Long, k As Long, row As Long, total As Double, correction As Double, violation As Double, threshold As Double"
+            },
+            {
+              "line": 540,
+              "text": "    AccuracyNativeDualStat = 0#: AccuracyNativeDualCone = 0#: AccuracyNativeDualObjective = 0#"
+            },
+            {
+              "line": 541,
+              "text": "    On Error GoTo Rejected"
+            },
+            {
+              "line": 542,
+              "text": "    If Not CurrentProgram(original) Or LBound(candidate) <> 0 Or UBound(candidate) <> original.m - 1 Then Exit Function"
+            },
+            {
+              "line": 543,
+              "text": "    ReDim stat(0 To original.n - 1): ReDim corr(0 To original.n - 1): stat = original.originalCost"
+            },
+            {
+              "line": 544,
+              "text": "    For i = 0 To original.m - 1"
+            },
+            {
+              "line": 545,
+              "text": "        If Not RPX_SchurFinite(candidate(i)) Then Exit Function"
+            },
+            {
+              "line": 546,
+              "text": "        AddTerm AccuracyNativeDualObjective, correction, -original.rhs(i) * candidate(i)"
+            },
+            {
+              "line": 547,
+              "text": "        For j = original.rowPtr(i) To original.rowPtr(i + 1) - 1: AddTerm stat(original.colId(j)), corr(original.colId(j)), original.values(j) * candidate(i): Next j"
+            },
+            {
+              "line": 548,
+              "text": "    Next i"
+            },
+            {
+              "line": 549,
+              "text": "    For i = 0 To original.n - 1: AccuracyNativeDualStat = WorksheetFunction.Max(AccuracyNativeDualStat, Abs(stat(i))): Next i"
+            },
+            {
+              "line": 550,
+              "text": "    row = original.equalityCount"
+            },
+            {
+              "line": 551,
+              "text": "    For k = 1 To original.coneCount - 1"
+            },
+            {
+              "line": 552,
+              "text": "        violation = -candidate(row)"
+            },
+            {
+              "line": 553,
+              "text": "        If original.coneDim(k) = 3 Then violation = Norm2(candidate(row + 1), candidate(row + 2)) - candidate(row)"
+            },
+            {
+              "line": 554,
+              "text": "        AccuracyNativeDualCone = WorksheetFunction.Max(AccuracyNativeDualCone, violation): row = row + original.coneDim(k)"
+            },
+            {
+              "line": 555,
+              "text": "    Next k"
+            },
+            {
+              "line": 556,
+              "text": "    If original.mode = \"upper\" Then threshold = 1.000003 Else threshold = -0.999998"
+            },
+            {
+              "line": 557,
+              "text": "    RPX_AccuracyDualAudit = AccuracyNativeDualStat <= 0.0000001 And AccuracyNativeDualCone <= 0.00000001 And AccuracyNativeDualObjective >= threshold"
+            },
+            {
+              "line": 558,
+              "text": "    Exit Function"
+            },
+            {
+              "line": 559,
+              "text": "Rejected:"
+            },
+            {
+              "line": 560,
+              "text": "    If err.number <> 6 And err.number <> 9 And Left$(err.description, 18) <> \"ACCURACY_NONFINITE\" Then err.Raise err.number, err.source, err.description"
+            },
+            {
+              "line": 561,
+              "text": "    err.Clear: AccuracyNativeReason = \"INVALID_ORIGINAL_DUAL\""
+            },
+            {
+              "line": 562,
+              "text": "End Function"
+            },
+            {
+              "line": 563,
+              "text": "Public Function RPX_AccuracyRecoverDual(ByVal factor As Double, ByVal mode As String, Optional ByVal budgetOverride As Double = 0#) As Boolean"
+            },
+            {
+              "line": 564,
+              "text": "    Dim original As RPX_AccuracyProgram, dp As RPX_AccuracyProgram, candidate() As Double, helperDual() As Double, seconds As Double, accepted As Boolean"
+            },
+            {
+              "line": 565,
+              "text": "    Dim useDualRepair As Boolean, finiteHelperCandidate As Boolean, repairSolveId As Long, repairCandidateId As Long"
+            },
+            {
+              "line": 566,
+              "text": "    RPX_AccuracyGuideReset"
+            },
+            {
+              "line": 567,
+              "text": "    If Not RPX_AccuracyExport(factor, mode, original) Then Exit Function"
+            },
+            {
+              "line": 568,
+              "text": "    If mode = \"upper\" Then useDualRepair = DualLinearRepairEnabled()"
+            },
+            {
+              "line": 569,
+              "text": "    repairSolveId = P4Solve: repairCandidateId = RPX_HSDCandidateId"
+            },
+            {
+              "line": 570,
+              "text": "    RPX_AccuracyDualProblem original, dp"
+            },
+            {
+              "line": 571,
+              "text": "    If useDualRepair Then SetUpperDualRegularization dp"
+            },
+            {
+              "line": 572,
+              "text": "    seconds = CDbl(RPX_Setting(\"ACCURACY_DLL_DUAL_SECONDS\", 20))"
+            },
+            {
+              "line": 573,
+              "text": "    If Not RPX_SchurFinite(budgetOverride) Or budgetOverride < 0# Or budgetOverride > 600# Then err.Raise 5, \"RPX_AccuracyNative\", \"INVALID_ACCURACY_DUAL_BUDGET\""
+            },
+            {
+              "line": 574,
+              "text": "    If budgetOverride > 0# Then seconds = budgetOverride"
+            },
+            {
+              "line": 575,
+              "text": "    If useDualRepair Then DualRepairAssert original, repairSolveId, repairCandidateId, \"original_dual_helper_before\""
+            },
+            {
+              "line": 576,
+              "text": "    finiteHelperCandidate = RPX_AccuracySolve(dp, seconds, candidate, helperDual)"
+            },
+            {
+              "line": 577,
+              "text": "    If useDualRepair Then DualRepairAssert original, repairSolveId, repairCandidateId, \"original_dual_helper_after\""
+            },
+            {
+              "line": 578,
+              "text": "    If Not finiteHelperCandidate Then Exit Function"
+            },
+            {
+              "line": 579,
+              "text": "    Erase helperDual ' The auxiliary problem's dual is not an original program dual."
+            },
+            {
+              "line": 580,
+              "text": "    accepted = RPX_AccuracyDualAudit(original, candidate)"
+            },
+            {
+              "line": 581,
+              "text": "    If Not accepted And mode = \"upper\" Then accepted = TryOriginalDualLinearRepair(original, candidate)"
+            },
+            {
+              "line": 582,
+              "text": "    If accepted Then"
+            },
+            {
+              "line": 583,
+              "text": "        guideReady = True: guideFactor = factor: guideMode = mode: guideModel = original.model: guidePolicy = original.policy"
+            },
+            {
+              "line": 584,
+              "text": "        guideEpoch = original.epoch: guideQ = original.q: guidePhase = original.phase"
+            },
+            {
+              "line": 585,
+              "text": "        guideN = XN: guideM = XM: guideS = XS: guideB = XB: guideSolve = P4Solve: guideCandidate = RPX_HSDCandidateId"
+            },
+            {
+              "line": 586,
+              "text": "        guideCost = original.originalCost: guideNormalizedCost = XQ"
+            },
+            {
+              "line": 587,
+              "text": "        CaptureAccuracyProof original, candidate, True"
+            },
+            {
+              "line": 588,
+              "text": "    End If"
+            },
+            {
+              "line": 589,
+              "text": "    RPX_DiagEvent \"accuracy_dll_original_dual\", \"accepted=\" & accepted & \";mode=\" & mode & \";Fs=\" & factor & \";q=8;raw_stat=\" & AccuracyNativeDualStat & \";raw_cone=\" & AccuracyNativeDualCone & \";original_objective=\" & AccuracyNativeDualObjective & \";physical_bound=0\""
+            },
+            {
+              "line": 590,
+              "text": "    RPX_AccuracyRecoverDual = accepted"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "path": "versions/G1R20_Fix4/src/vba/RPX_Conic.bas",
+      "bytes": 53033,
+      "sha256": "79b8b4152638fd9c7aa29eed34324c195b8c8f74041ee1440dbb06dcd3c37840",
+      "anchors": [
+        {
+          "first_line": 412,
+          "last_line": 446,
+          "lines": [
+            {
+              "line": 412,
+              "text": "    XQScale = 1#"
+            },
+            {
+              "line": 413,
+              "text": "    CopyDictKeys objective, keyIds, nKeys"
+            },
+            {
+              "line": 414,
+              "text": "    For ki = 0 To nKeys - 1"
+            },
+            {
+              "line": 415,
+              "text": "        XQ(keyIds(ki)) = objective(keyIds(ki))"
+            },
+            {
+              "line": 416,
+              "text": "        If Abs(objective(keyIds(ki))) > XQScale Then XQScale = Abs(objective(keyIds(ki)))"
+            },
+            {
+              "line": 417,
+              "text": "    Next ki"
+            },
+            {
+              "line": 418,
+              "text": "    RPX_ClearOriginalCompiled"
+            },
+            {
+              "line": 419,
+              "text": "    XOriginalCompiled.n = XN: XOriginalCompiled.m = XM: XOriginalCompiled.s = XS: XOriginalCompiled.b = XB"
+            },
+            {
+              "line": 420,
+              "text": "    XOriginalCompiled.cost = XQ"
+            },
+            {
+              "line": 421,
+              "text": "    XOriginalCompiled.modeName = RPX_OrderMode: XOriginalCompiled.subdivisions = RSubdivisions"
+            },
+            {
+              "line": 422,
+              "text": "    XOriginalCompiled.inputEpoch = RPX_InputEpoch: XOriginalCompiled.affine = AFActive"
+            },
+            {
+              "line": 423,
+              "text": "    XOriginalCompiled.loadPhase = RPX_LoadPhase: XOriginalCompiled.strengthFactor = RStrengthFactor"
+            },
+            {
+              "line": 424,
+              "text": "    If rn > 0 Then XOriginalCompiled.modelKey = RPX_ExactModel()"
+            },
+            {
+              "line": 425,
+              "text": "    For i = 0 To XN - 1: XQ(i) = XQ(i) / XQScale: Next i"
+            },
+            {
+              "line": 426,
+              "text": "    XOriginalCompiled.normalizedCost = XQ"
+            },
+            {
+              "line": 427,
+              "text": "    ReDim XEPtr(0 To XM): ReDim XERhs(0 To XM): ReDim XEqRowNorm(0 To XM)"
+            },
+            {
+              "line": 428,
+              "text": "    For i = 0 To XM - 1: XEPtr(i + 1) = XEPtr(i) + indexedRows(i + 1).count: Next i"
+            },
+            {
+              "line": 429,
+              "text": "    ReDim XEId(0 To XEPtr(XM)): ReDim XEVal(0 To XEPtr(XM))"
+            },
+            {
+              "line": 430,
+              "text": "    ReDim XOriginalCompiled.values(0 To XEPtr(XM)): ReDim XOriginalCompiled.rhs(0 To XM)"
+            },
+            {
+              "line": 431,
+              "text": "    For i = 0 To XM - 1"
+            },
+            {
+              "line": 432,
+              "text": "        Set row = indexedRows(i + 1): valueScale = 0#"
+            },
+            {
+              "line": 433,
+              "text": "        XOriginalCompiled.rhs(i) = indexedRhs(i + 1)"
+            },
+            {
+              "line": 434,
+              "text": "        CopyDictKeys row, keyIds, nKeys"
+            },
+            {
+              "line": 435,
+              "text": "        largest = 0#"
+            },
+            {
+              "line": 436,
+              "text": "        For ki = 0 To nKeys - 1"
+            },
+            {
+              "line": 437,
+              "text": "            If Abs(row(keyIds(ki))) > largest Then largest = Abs(row(keyIds(ki)))"
+            },
+            {
+              "line": 438,
+              "text": "        Next ki"
+            },
+            {
+              "line": 439,
+              "text": "        If largest = 0# Then err.Raise 5, \"RPX_Conic\", \"ZERO_EQUALITY_ROW\""
+            },
+            {
+              "line": 440,
+              "text": "        For ki = 0 To nKeys - 1"
+            },
+            {
+              "line": 441,
+              "text": "            ratio = row(keyIds(ki)) / largest: valueScale = valueScale + ratio * ratio"
+            },
+            {
+              "line": 442,
+              "text": "        Next ki"
+            },
+            {
+              "line": 443,
+              "text": "        valueScale = largest * Sqr(valueScale): XEqRowNorm(i) = valueScale: p = XEPtr(i): XERhs(i) = indexedRhs(i + 1) / valueScale"
+            },
+            {
+              "line": 444,
+              "text": "        For ki = 0 To nKeys - 1"
+            },
+            {
+              "line": 445,
+              "text": "            XOriginalCompiled.values(p) = CDbl(row(keyIds(ki)))"
+            },
+            {
+              "line": 446,
+              "text": "            XEId(p) = keyIds(ki): XEVal(p) = row(keyIds(ki)) / valueScale: p = p + 1"
+            }
+          ]
+        },
+        {
+          "first_line": 861,
+          "last_line": 905,
+          "lines": [
+            {
+              "line": 861,
+              "text": "Private Function OriginalDualAudit(ByRef y() As Double, ByRef z() As Double, Optional ByVal includeCost As Boolean = False) As Boolean"
+            },
+            {
+              "line": 862,
+              "text": "    Dim stationarity() As Double, correction() As Double, rawY As Double"
+            },
+            {
+              "line": 863,
+              "text": "    Dim sep As Double, sepCorrection As Double, value As Double, normValue As Double"
+            },
+            {
+              "line": 864,
+              "text": "    Dim i As Long, p As Long, k As Long, r As Long, j As Long, first As Long"
+            },
+            {
+              "line": 865,
+              "text": "    On Error GoTo ArithmeticRejected"
+            },
+            {
+              "line": 866,
+              "text": "    OriginalFarkasStationarity = 0#: OriginalFarkasCone = 0#: OriginalFarkasSeparation = 0#"
+            },
+            {
+              "line": 867,
+              "text": "    If LBound(y) <> 0 Or UBound(y) < XM - 1 Or UBound(y) > XM Then Exit Function"
+            },
+            {
+              "line": 868,
+              "text": "    If LBound(z) <> 0 Or UBound(z) <> XS - 1 Then Exit Function"
+            },
+            {
+              "line": 869,
+              "text": "    ReDim stationarity(0 To XN - 1): ReDim correction(0 To XN - 1)"
+            },
+            {
+              "line": 870,
+              "text": "    If includeCost Then"
+            },
+            {
+              "line": 871,
+              "text": "        For i = 0 To XN - 1"
+            },
+            {
+              "line": 872,
+              "text": "            If Not RPX_SchurFinite(XOriginalCompiled.cost(i)) Then Exit Function"
+            },
+            {
+              "line": 873,
+              "text": "            stationarity(i) = XOriginalCompiled.cost(i)"
+            },
+            {
+              "line": 874,
+              "text": "        Next i"
+            },
+            {
+              "line": 875,
+              "text": "    End If"
+            },
+            {
+              "line": 876,
+              "text": "    For i = 0 To XM - 1"
+            },
+            {
+              "line": 877,
+              "text": "        If Not RPX_SchurFinite(y(i)) Or Not RPX_SchurFinite(XEqRowNorm(i)) Then Exit Function"
+            },
+            {
+              "line": 878,
+              "text": "        If XEqRowNorm(i) <= 0# Then Exit Function"
+            },
+            {
+              "line": 879,
+              "text": "        rawY = y(i) / XEqRowNorm(i)"
+            },
+            {
+              "line": 880,
+              "text": "        If Not RPX_SchurFinite(rawY) Then Exit Function"
+            },
+            {
+              "line": 881,
+              "text": "        AddCompensated sep, sepCorrection, -XOriginalCompiled.rhs(i) * rawY"
+            },
+            {
+              "line": 882,
+              "text": "        For p = XEPtr(i) To XEPtr(i + 1) - 1"
+            },
+            {
+              "line": 883,
+              "text": "            AddCompensated stationarity(XEId(p)), correction(XEId(p)), XOriginalCompiled.values(p) * rawY"
+            },
+            {
+              "line": 884,
+              "text": "        Next p"
+            },
+            {
+              "line": 885,
+              "text": "    Next i"
+            },
+            {
+              "line": 886,
+              "text": "    For k = 0 To XB - 1"
+            },
+            {
+              "line": 887,
+              "text": "        If XC(k).dimn <> 1 And XC(k).dimn <> 3 Then Exit Function"
+            },
+            {
+              "line": 888,
+              "text": "        first = XC(k).first"
+            },
+            {
+              "line": 889,
+              "text": "        For r = 0 To XC(k).dimn - 1"
+            },
+            {
+              "line": 890,
+              "text": "            If Not RPX_SchurFinite(z(first + r)) Then Exit Function"
+            },
+            {
+              "line": 891,
+              "text": "            AddCompensated sep, sepCorrection, -XC(k).offset(r) * z(first + r)"
+            },
+            {
+              "line": 892,
+              "text": "            For j = 0 To XC(k).count - 1"
+            },
+            {
+              "line": 893,
+              "text": "                AddCompensated stationarity(XC(k).ids(j)), correction(XC(k).ids(j)), -XC(k).coef(r, j) * z(first + r)"
+            },
+            {
+              "line": 894,
+              "text": "            Next j"
+            },
+            {
+              "line": 895,
+              "text": "        Next r"
+            },
+            {
+              "line": 896,
+              "text": "        value = -z(first)"
+            },
+            {
+              "line": 897,
+              "text": "        If XC(k).dimn = 3 Then value = value + OriginalDualNorm2(z(first + 1), z(first + 2))"
+            },
+            {
+              "line": 898,
+              "text": "        If value > OriginalFarkasCone Then OriginalFarkasCone = value"
+            },
+            {
+              "line": 899,
+              "text": "    Next k"
+            },
+            {
+              "line": 900,
+              "text": "    For i = 0 To XN - 1"
+            },
+            {
+              "line": 901,
+              "text": "        If Not RPX_SchurFinite(stationarity(i)) Then Exit Function"
+            },
+            {
+              "line": 902,
+              "text": "        If Abs(stationarity(i)) > OriginalFarkasStationarity Then OriginalFarkasStationarity = Abs(stationarity(i))"
+            },
+            {
+              "line": 903,
+              "text": "    Next i"
+            },
+            {
+              "line": 904,
+              "text": "    If Not RPX_SchurFinite(sep) Or Not RPX_SchurFinite(OriginalFarkasCone) Then Exit Function"
+            },
+            {
+              "line": 905,
+              "text": "    OriginalFarkasSeparation = sep: OriginalDualAudit = True"
+            }
+          ]
+        },
+        {
+          "first_line": 968,
+          "last_line": 1003,
+          "lines": [
+            {
+              "line": 968,
+              "text": "' The opposite sign of a recovered lower witness needs the FREE-load dual."
+            },
+            {
+              "line": 969,
+              "text": "' No affine/fixed-load dual, objective scaling, or status alone is accepted."
+            },
+            {
+              "line": 970,
+              "text": "Public Function RPX_OriginalLowerDualGate(ByVal factor As Double, ByVal target As Double, Optional ByVal capture As Boolean = False) As Boolean"
+            },
+            {
+              "line": 971,
+              "text": "    Dim i As Long, cap As Double"
+            },
+            {
+              "line": 972,
+              "text": "    OriginalLowerDualReason = \"SCOPE_REJECTED\": OriginalLowerDualCap = 0#"
+            },
+            {
+              "line": 973,
+              "text": "    On Error GoTo InvalidData"
+            },
+            {
+              "line": 974,
+              "text": "    If XCancel Or AFActive Or Not RFsActive Or RSubdivisions <> 8 Or RR <> 0 Then Exit Function"
+            },
+            {
+              "line": 975,
+              "text": "    If Not RRawAuditEnabled Or RPX_LoadPhase <> \"reference_total\" Or RPX_OrderMode <> \"lower\" Then Exit Function"
+            },
+            {
+              "line": 976,
+              "text": "    If Not RPX_SchurFinite(factor) Or Not RPX_SchurFinite(target) Then Exit Function"
+            },
+            {
+              "line": 977,
+              "text": "    If Not RPX_SchurFinite(RStrengthFactor) Or Not RPX_SchurFinite(XQScale) Then Exit Function"
+            },
+            {
+              "line": 978,
+              "text": "    If factor <= 0# Or factor <> RStrengthFactor Or target <> 1.000001 Or XQScale <> 1# Then Exit Function"
+            },
+            {
+              "line": 979,
+              "text": "    If Not XOriginalCompiled.ready Or XOriginalCompiled.affine Or XOriginalCompiled.modeName <> \"lower\" Then Exit Function"
+            },
+            {
+              "line": 980,
+              "text": "    If XOriginalCompiled.inputEpoch <> RPX_InputEpoch Or XOriginalCompiled.subdivisions <> 8 Then Exit Function"
+            },
+            {
+              "line": 981,
+              "text": "    If XOriginalCompiled.modelKey <> RPX_ExactModel() Or XOriginalCompiled.loadPhase <> RPX_LoadPhase Then Exit Function"
+            },
+            {
+              "line": 982,
+              "text": "    If XOriginalCompiled.n <> XN Or XOriginalCompiled.m <> XM Or XOriginalCompiled.s <> XS Or XOriginalCompiled.b <> XB Then Exit Function"
+            },
+            {
+              "line": 983,
+              "text": "    If RLoadVariable < 0 Or RLoadVariable >= XN Then Exit Function"
+            },
+            {
+              "line": 984,
+              "text": "    If LBound(XOriginalCompiled.cost) <> 0 Or UBound(XOriginalCompiled.cost) <> XN - 1 Then Exit Function"
+            },
+            {
+              "line": 985,
+              "text": "    If UBound(XOriginalCompiled.rhs) < XM - 1 Or UBound(XOriginalCompiled.values) < XEPtr(XM) - 1 Then Exit Function"
+            },
+            {
+              "line": 986,
+              "text": "    For i = 0 To XN - 1"
+            },
+            {
+              "line": 987,
+              "text": "        If Not RPX_SchurFinite(XOriginalCompiled.cost(i)) Or Not RPX_SchurFinite(XQ(i)) Then Exit Function"
+            },
+            {
+              "line": 988,
+              "text": "        If i = RLoadVariable Then"
+            },
+            {
+              "line": 989,
+              "text": "            If XOriginalCompiled.cost(i) <> -1# Or XQ(i) <> -1# Then Exit Function"
+            },
+            {
+              "line": 990,
+              "text": "        Else"
+            },
+            {
+              "line": 991,
+              "text": "            If XOriginalCompiled.cost(i) <> 0# Or XQ(i) <> 0# Then Exit Function"
+            },
+            {
+              "line": 992,
+              "text": "        End If"
+            },
+            {
+              "line": 993,
+              "text": "    Next i"
+            },
+            {
+              "line": 994,
+              "text": "    OriginalLowerDualReason = \"ORIGINAL_DUAL_REJECTED\""
+            },
+            {
+              "line": 995,
+              "text": "    If Not OriginalDualAudit(xy, XDual, True) Then Exit Function"
+            },
+            {
+              "line": 996,
+              "text": "    cap = -OriginalFarkasSeparation"
+            },
+            {
+              "line": 997,
+              "text": "    If Not RPX_SchurFinite(cap) Or OriginalFarkasStationarity > 0.0000001 Or OriginalFarkasCone > 0.00000001 Then Exit Function"
+            },
+            {
+              "line": 998,
+              "text": "    ' A strict margin avoids a sign from the numerical uncertainty of lambda."
+            },
+            {
+              "line": 999,
+              "text": "    If cap > target - 0.000002 Then Exit Function"
+            },
+            {
+              "line": 1000,
+              "text": "    OriginalLowerDualCap = cap: OriginalLowerDualReason = \"ORIGINAL_FREE_LOAD_NEGATIVE_DUAL_GUIDE\""
+            },
+            {
+              "line": 1001,
+              "text": "    If capture Then Call CaptureOriginalLowerDual(factor)"
+            },
+            {
+              "line": 1002,
+              "text": "    RPX_DiagEvent \"original_lower_dual_guide\", \"Fs=\" & factor & \";q=8;stationarity=\" & OriginalFarkasStationarity & \";cone=\" & OriginalFarkasCone & \";lambda_cap=\" & cap & \";fixed_dual_used=0;physical_bound=0\""
+            },
+            {
+              "line": 1003,
+              "text": "    RPX_OriginalLowerDualGate = True"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "path": "versions/G1R20_Fix4/src/vba/RPX_HSDCandidate.bas",
+      "bytes": 22041,
+      "sha256": "db4aba8cf8c0f2f45ef21230aff5b757c57487cc8724e0bd0f6319a0711dc689",
+      "anchors": [
+        {
+          "first_line": 104,
+          "last_line": 110,
+          "lines": [
+            {
+              "line": 104,
+              "text": "    candidate.x = xx: candidate.y = xy: candidate.slack = XSlack: candidate.dual = XDual"
+            },
+            {
+              "line": 105,
+              "text": "    Select Case kind"
+            },
+            {
+              "line": 106,
+              "text": "        Case \"OPTIMAL_POINT\""
+            },
+            {
+              "line": 107,
+              "text": "            candidate.outputStatus = \"OPTIMAL\""
+            },
+            {
+              "line": 108,
+              "text": "            For i = 0 To XN - 1: candidate.x(i) = candidate.x(i) / divisor: Next i"
+            },
+            {
+              "line": 109,
+              "text": "            For i = 0 To XM - 1: candidate.y(i) = candidate.y(i) / divisor: Next i"
+            },
+            {
+              "line": 110,
+              "text": "            For i = 0 To XS - 1: candidate.slack(i) = candidate.slack(i) / divisor: candidate.dual(i) = candidate.dual(i) / divisor: Next i"
+            }
+          ]
+        },
+        {
+          "first_line": 197,
+          "last_line": 211,
+          "lines": [
+            {
+              "line": 197,
+              "text": "    oldX = xx: oldObjective = XObjective"
+            },
+            {
+              "line": 198,
+              "text": "    oldValue = RValue: oldAudit = RAudit: oldDissipation = RDissipation"
+            },
+            {
+              "line": 199,
+              "text": "    oldReference = RReferenceWork: oldFixed = RFixedWork: oldRejected = RPX_AuditRejected"
+            },
+            {
+              "line": 200,
+              "text": "    oldGate = RPhysicalGateAccepted: oldReason = RPhysicalGateReason"
+            },
+            {
+              "line": 201,
+              "text": "    For i = 1 To 4: oldRaw(i) = RRawLowerAudit(i): Next i"
+            },
+            {
+              "line": 202,
+              "text": "    RPX_DiagAuditSave auditState"
+            },
+            {
+              "line": 203,
+              "text": "    On Error GoTo Failed"
+            },
+            {
+              "line": 204,
+              "text": "    If candidate.mode = \"upper\" Then"
+            },
+            {
+              "line": 205,
+              "text": "        If RPX_NormalizeZeroCostUpper(candidate) Then candidate.field = candidate.x"
+            },
+            {
+              "line": 206,
+              "text": "    End If"
+            },
+            {
+              "line": 207,
+              "text": "    installed = True: xx = candidate.field: XObjective = candidate.objective"
+            },
+            {
+              "line": 208,
+              "text": "    RPX_TestHook \"hsd_candidate_audit\""
+            },
+            {
+              "line": 209,
+              "text": "    LogRawResidual candidate.field"
+            },
+            {
+              "line": 210,
+              "text": "    If candidate.mode = \"upper\" Then Call RPX_AuditUpper(True) Else Call RPX_AuditLower(True)"
+            },
+            {
+              "line": 211,
+              "text": "    accepted = RPhysicalGateAccepted"
+            }
+          ]
+        },
+        {
+          "first_line": 255,
+          "last_line": 267,
+          "lines": [
+            {
+              "line": 255,
+              "text": "Public Sub RPX_HSDCommitCandidate(ByRef candidate As RPX_HsdCandidateState)"
+            },
+            {
+              "line": 256,
+              "text": "    AssertCandidateContext candidate"
+            },
+            {
+              "line": 257,
+              "text": "    If Not candidate.valid Or Not candidate.numericalGate Or Not candidate.physicalGate Then err.Raise 5, \"RPX_HSDCandidate\", \"HSD_UNVALIDATED_COMMIT\""
+            },
+            {
+              "line": 258,
+              "text": "    If candidate.outputStatus = \"ORIGINAL_FARKAS_GUIDE\" Then"
+            },
+            {
+              "line": 259,
+              "text": "        Erase xx: Erase XSlack"
+            },
+            {
+              "line": 260,
+              "text": "        xy = candidate.y: XDual = candidate.dual"
+            },
+            {
+              "line": 261,
+              "text": "    Else"
+            },
+            {
+              "line": 262,
+              "text": "        xx = candidate.x: xy = candidate.y: XSlack = candidate.slack: XDual = candidate.dual"
+            },
+            {
+              "line": 263,
+              "text": "    End If"
+            },
+            {
+              "line": 264,
+              "text": "    XObjective = candidate.objective: XGap = candidate.gap: XStatus = candidate.outputStatus"
+            },
+            {
+              "line": 265,
+              "text": "    If candidate.kind = \"LOAD_RECESSION_CERT\" Then RPX_HSDProofX = candidate.x"
+            },
+            {
+              "line": 266,
+              "text": "    RPX_AuditRejected = False"
+            },
+            {
+              "line": 267,
+              "text": "    RPX_DiagEvent \"hsd_commit\", \"id=\" & RPX_HSDCandidateId & \";kind=\" & candidate.kind & \";status=\" & XStatus & \";solve_epoch=\" & P4Solve & \";physical_gate=\" & candidate.physicalGate"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "path": "versions/G1R20_Fix4/src/vba/RPX_Solve.bas",
+      "bytes": 111641,
+      "sha256": "f844f91dc407f06b3fbf62cd6f5f0d280bba4f2aab3afe32322ffa5583a54dd8",
+      "anchors": [
+        {
+          "first_line": 274,
+          "last_line": 303,
+          "lines": [
+            {
+              "line": 274,
+              "text": "Private Function Residuals(Optional ByVal tau As Double = 1#) As Double"
+            },
+            {
+              "line": 275,
+              "text": "    Dim i As Long, p As Long, value As Double"
+            },
+            {
+              "line": 276,
+              "text": "    RPX_DiagBegin dpResiduals"
+            },
+            {
+              "line": 277,
+              "text": "    If RPX_NativeResidual(tau, rg, rd, rp, XPrimalResidual, XDualResidual) Then"
+            },
+            {
+              "line": 278,
+              "text": "        Residuals = XPrimalResidual: If XDualResidual > Residuals Then Residuals = XDualResidual"
+            },
+            {
+              "line": 279,
+              "text": "        RPX_DiagEnd dpResiduals: Exit Function"
+            },
+            {
+              "line": 280,
+              "text": "    End If"
+            },
+            {
+              "line": 281,
+              "text": "    ReDim rp(0 To XM): ReDim rd(0 To XN - 1)"
+            },
+            {
+              "line": 282,
+              "text": "    RPX_GProduct xx, rg, True"
+            },
+            {
+              "line": 283,
+              "text": "    Dim cone As Long, component As Long"
+            },
+            {
+              "line": 284,
+              "text": "    For cone = 0 To XB - 1"
+            },
+            {
+              "line": 285,
+              "text": "        For component = 0 To XC(cone).dimn - 1"
+            },
+            {
+              "line": 286,
+              "text": "            p = XC(cone).first + component: rg(p) = rg(p) + (tau - 1#) * XC(cone).offset(component)"
+            },
+            {
+              "line": 287,
+              "text": "        Next component"
+            },
+            {
+              "line": 288,
+              "text": "    Next cone"
+            },
+            {
+              "line": 289,
+              "text": "    For i = 0 To XS - 1: rg(i) = rg(i) - XSlack(i): Next i"
+            },
+            {
+              "line": 290,
+              "text": "    For i = 0 To XN - 1: rd(i) = tau * XQ(i): Next i"
+            },
+            {
+              "line": 291,
+              "text": "    For i = 0 To XM - 1"
+            },
+            {
+              "line": 292,
+              "text": "        value = -tau * XERhs(i)"
+            },
+            {
+              "line": 293,
+              "text": "        For p = XEPtr(i) To XEPtr(i + 1) - 1"
+            },
+            {
+              "line": 294,
+              "text": "            value = value + XEVal(p) * xx(XEId(p))"
+            },
+            {
+              "line": 295,
+              "text": "            rd(XEId(p)) = rd(XEId(p)) + XEVal(p) * xy(i)"
+            },
+            {
+              "line": 296,
+              "text": "        Next p"
+            },
+            {
+              "line": 297,
+              "text": "        rp(i) = value"
+            },
+            {
+              "line": 298,
+              "text": "    Next i"
+            },
+            {
+              "line": 299,
+              "text": "    RPX_GTAdd XDual, rd, -1#"
+            },
+            {
+              "line": 300,
+              "text": "    XPrimalResidual = 0#: XDualResidual = 0#"
+            },
+            {
+              "line": 301,
+              "text": "    For i = 0 To XN - 1: If Abs(rd(i)) > XDualResidual Then XDualResidual = Abs(rd(i))"
+            },
+            {
+              "line": 302,
+              "text": "    Next i"
+            },
+            {
+              "line": 303,
+              "text": "    For i = 0 To XM - 1: If Abs(rp(i)) > XPrimalResidual Then XPrimalResidual = Abs(rp(i))"
+            }
+          ]
+        },
+        {
+          "first_line": 1827,
+          "last_line": 1831,
+          "lines": [
+            {
+              "line": 1827,
+              "text": "        If hTau > 0.0000000001 Then"
+            },
+            {
+              "line": 1828,
+              "text": "            If XPrimalResidual / hTau < 0.00000001 And XDualResidual / hTau < 0.0000001 And gap / hTau ^ 2 < 0.00000001 * (1# + Abs(objective / hTau)) Then"
+            },
+            {
+              "line": 1829,
+              "text": "                If TryHsdCandidate(\"OPTIMAL_POINT\", hTau, 0#, objective, 0#, objective / hTau * XQScale, gap / hTau ^ 2 * XQScale) Then"
+            },
+            {
+              "line": 1830,
+              "text": "                    XResidual = Residuals(): EmitRefineSummary: StoreWarm \"hsd\": Exit Sub"
+            },
+            {
+              "line": 1831,
+              "text": "                End If"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "path": "versions/G1R20_Fix4/src/vba/RPX_Upper.bas",
+      "bytes": 13689,
+      "sha256": "97b097e62a025dbf3db07c1c124b8e4bfb7037b3892e63f424e54db82c5defd1",
+      "anchors": [
+        {
+          "first_line": 205,
+          "last_line": 215,
+          "lines": [
+            {
+              "line": 205,
+              "text": "Public Sub RPX_RefreshUpper(ByVal oldFactor As Double)"
+            },
+            {
+              "line": 206,
+              "text": "    RPX_NativeBulkReset"
+            },
+            {
+              "line": 207,
+              "text": "    Dim sinPhi As Double, cosPhi As Double, tanPhi As Double"
+            },
+            {
+              "line": 208,
+              "text": "    Dim i As Long, j As Long, e As Long, side As Long, k As Long, component As Long, q As Long, b As Long"
+            },
+            {
+              "line": 209,
+              "text": "    Dim c As Double, phi As Double, oldSin As Double, w0(0 To 2) As Double, w1(0 To 2) As Double, wM(0 To 2) As Double"
+            },
+            {
+              "line": 210,
+              "text": "    Dim bw(0 To 2) As Double, direction As Double, item As Variant"
+            },
+            {
+              "line": 211,
+              "text": "    For Each item In zeroPhiCosts: XQ(CLng(item)) = XQ(CLng(item)) * oldFactor / RStrengthFactor: Next item"
+            },
+            {
+              "line": 212,
+              "text": "    If XOriginalCompiled.ready And Not XOriginalCompiled.affine Then"
+            },
+            {
+              "line": 213,
+              "text": "        For i = 0 To XN - 1: XOriginalCompiled.cost(i) = XQ(i) * XQScale: Next i"
+            },
+            {
+              "line": 214,
+              "text": "        XOriginalCompiled.normalizedCost = XQ"
+            },
+            {
+              "line": 215,
+              "text": "        XOriginalCompiled.strengthFactor = RStrengthFactor"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "path": "versions/G1R20_Fix4/src/vba/RPX_Audit.bas",
+      "bytes": 18873,
+      "sha256": "6bd8c4adcd3ed0dc4feace1b0fecc26817c99cc415a0e6900b4708b2170c57d5",
+      "anchors": [
+        {
+          "first_line": 289,
+          "last_line": 298,
+          "lines": [
+            {
+              "line": 289,
+              "text": "    If RPX_ZeroCostUpperModel() Then"
+            },
+            {
+              "line": 290,
+              "text": "        RReferenceWork = RPX_PreciseUpperWork(xx)"
+            },
+            {
+              "line": 291,
+              "text": "        RPX_DiagEvent \"upper_work_precision\", \"method=DD;W=\" & RReferenceWork & \";tolerance=0.0000001\""
+            },
+            {
+              "line": 292,
+              "text": "    End If"
+            },
+            {
+              "line": 293,
+              "text": "    CheckError Abs(RReferenceWork - 1#), 12, -1: RValue = RDissipation - RFixedWork"
+            },
+            {
+              "line": 294,
+              "text": "    RPX_DiagAuditCheck 13, Abs(RValue - XObjective), -1"
+            },
+            {
+              "line": 295,
+              "text": "    If RAudit > 0.0000001 Or Abs(RValue - XObjective) > 0.000002 Then"
+            },
+            {
+              "line": 296,
+              "text": "        RPhysicalGateAccepted = False: RPhysicalGateReason = \"UPPER_PHYSICAL_AUDIT_FAILED \" & RAudit"
+            },
+            {
+              "line": 297,
+              "text": "        If Not candidateCheck Then err.Raise 5, \"RPX_Audit\", RPhysicalGateReason"
+            },
+            {
+              "line": 298,
+              "text": "    End If"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "path": "versions/G1R19/native/unified/accuracy/src/lib.rs",
+      "bytes": 13991,
+      "sha256": "6bc9cbd369fbfa06b41c326141fb7ca387cf5429d49ada2b9a6c6a4941f713d7",
+      "anchors": [
+        {
+          "first_line": 108,
+          "last_line": 124,
+          "lines": [
+            {
+              "line": 108,
+              "text": "    let solved=catch_unwind(AssertUnwindSafe(||->Result<Output,i32>{"
+            },
+            {
+              "line": 109,
+              "text": "        if j.cancel.load(Ordering::Acquire){return Err(STATE)}"
+            },
+            {
+              "line": 110,
+              "text": "        let p=CscMatrix::new(data.n,data.n,(0..=data.n).collect(),(0..data.n).collect(),data.p);"
+            },
+            {
+              "line": 111,
+              "text": "        let mut solver=DefaultSolver::new(&p,&data.q,&data.a,&data.b,&data.cones,settings(&j.settings)?).map_err(|_|SOLVER)?;"
+            },
+            {
+              "line": 112,
+              "text": "        let callback=j.clone();solver.set_termination_callback(move |info:&DefaultInfo<f64>|{"
+            },
+            {
+              "line": 113,
+              "text": "            let mut s=lock(&callback.state);s.progress.iterations=info.iterations;s.progress.solver_status=info.status as u32;"
+            },
+            {
+              "line": 114,
+              "text": "            diagnostics(&mut s.progress,info.solve_time,info.cost_primal,info.cost_dual,info.res_primal,info.res_dual);"
+            },
+            {
+              "line": 115,
+              "text": "            callback.cancel.load(Ordering::Acquire)"
+            },
+            {
+              "line": 116,
+              "text": "        });solver.solve();"
+            },
+            {
+              "line": 117,
+              "text": "        let sol=&solver.solution;if sol.x.len()!=data.n||sol.z.len()!=data.m||!finite(&sol.x)||!finite(&sol.z){return Err(SOLVER)}"
+            },
+            {
+              "line": 118,
+              "text": "        let mut s=lock(&j.state);s.progress.iterations=sol.iterations;s.progress.solver_status=sol.status as u32;"
+            },
+            {
+              "line": 119,
+              "text": "        diagnostics(&mut s.progress,sol.solve_time,sol.obj_val,sol.obj_val_dual,sol.r_prim,sol.r_dual);"
+            },
+            {
+              "line": 120,
+              "text": "        Ok(Output{x:sol.x.clone(),z:sol.z.clone()})"
+            },
+            {
+              "line": 121,
+              "text": "    }));"
+            },
+            {
+              "line": 122,
+              "text": "    let mut s=lock(&j.state);s.progress.cancel_requested=j.cancel.load(Ordering::Acquire) as u32;"
+            },
+            {
+              "line": 123,
+              "text": "    match solved {Ok(Ok(out))=>{s.output=Some(out);s.progress.state=if s.progress.cancel_requested!=0{CANCELLED}else{DONE}},"
+            },
+            {
+              "line": 124,
+              "text": "        _=>{s.progress.state=if s.progress.cancel_requested!=0{CANCELLED}else{ERROR};}}"
+            }
+          ]
+        },
+        {
+          "first_line": 150,
+          "last_line": 157,
+          "lines": [
+            {
+              "line": 150,
+              "text": "#[no_mangle] pub unsafe extern \"C\" fn rpfem_accuracy_result(h:u64,x:*mut f64,nx:u32,z:*mut f64,nz:u32,out:*mut RpaProgress)->i32{ffi(||{"
+            },
+            {
+              "line": 151,
+              "text": "    header(out)?;let j=job(h)?;let s=lock(&j.state);if s.progress.state!=DONE&&s.progress.state!=CANCELLED{return Err(STATE)}"
+            },
+            {
+              "line": 152,
+              "text": "    if nx!=s.progress.n||nz!=s.progress.m{return Err(BUFFER)} checked_ptr(x,nx as usize)?;checked_ptr(z,nz as usize)?;"
+            },
+            {
+              "line": 153,
+              "text": "    if overlap(x,nx as usize,z,nz as usize)||overlap(x,nx as usize,out,1)||overlap(z,nz as usize,out,1){return Err(INVALID)}"
+            },
+            {
+              "line": 154,
+              "text": "    let data=s.output.as_ref().ok_or(STATE)?;if !finite(&data.x)||!finite(&data.z){return Err(SOLVER)}"
+            },
+            {
+              "line": 155,
+              "text": "    if nx!=0{ptr::copy_nonoverlapping(data.x.as_ptr(),x,nx as usize)} if nz!=0{ptr::copy_nonoverlapping(data.z.as_ptr(),z,nz as usize)}"
+            },
+            {
+              "line": 156,
+              "text": "    let mut progress=s.progress;progress.cancel_requested=j.cancel.load(Ordering::Acquire) as u32;"
+            },
+            {
+              "line": 157,
+              "text": "    ptr::write(out,progress);Ok(())})}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "path": "validation/G1R19_python26_20261016/python/experiment_core.py",
+      "bytes": 41505,
+      "sha256": "9a9e60b6d69ba4008ea89608f433bb716b433436715c45566bd209418ee9238e",
+      "anchors": [
+        {
+          "first_line": 169,
+          "last_line": 224,
+          "lines": [
+            {
+              "line": 169,
+              "text": "def program(m,fs,mode,q=8,fixed_load=None,include_row_norm=False):"
+            },
+            {
+              "line": 170,
+              "text": "    if mode=='lower':"
+            },
+            {
+              "line": 171,
+              "text": "        assembled=assemble_lower(m,fs,fixed_load)"
+            },
+            {
+              "line": 172,
+              "text": "        E,b,G,h,dims,zero=assembled"
+            },
+            {
+              "line": 173,
+              "text": "        row_norm=assembled.row_norm"
+            },
+            {
+              "line": 174,
+              "text": "        cost=np.zeros(E.shape[1]);cost[-1]=-1. if fixed_load is None else 0."
+            },
+            {
+              "line": 175,
+              "text": "    else:"
+            },
+            {
+              "line": 176,
+              "text": "        p=assemble_upper(m,fs,q);E,b,G,h,dims,cost=p.eq,p.rhs,p.G,np.zeros(p.G.shape[0]),p.dims,p.objective"
+            },
+            {
+              "line": 177,
+              "text": "        row_norm=p.row_norm"
+            },
+            {
+              "line": 178,
+              "text": "    result=E.tocsc(),np.asarray(b),G.tocsc(),np.asarray(h),list(dims),cost"
+            },
+            {
+              "line": 179,
+              "text": "    return (result,row_norm) if include_row_norm else result"
+            },
+            {
+              "line": 180,
+              "text": ""
+            },
+            {
+              "line": 181,
+              "text": "class Prepared:"
+            },
+            {
+              "line": 182,
+              "text": "    def __init__(self,m,fs,mode,q=8,reduction='none',fixed_load=None):"
+            },
+            {
+              "line": 183,
+              "text": "        self.m,self.fs,self.mode,self.q,self.kind=m,fs,mode,q,reduction"
+            },
+            {
+              "line": 184,
+              "text": "        t=time.perf_counter()"
+            },
+            {
+              "line": 185,
+              "text": "        if mode=='lower':"
+            },
+            {
+              "line": 186,
+              "text": "            self.original,self.original_row_norm=program(m,fs,mode,q,fixed_load,include_row_norm=True)"
+            },
+            {
+              "line": 187,
+              "text": "        else:"
+            },
+            {
+              "line": 188,
+              "text": "            self.original=program(m,fs,mode,q,fixed_load)"
+            },
+            {
+              "line": 189,
+              "text": "            self.original_row_norm=None"
+            },
+            {
+              "line": 190,
+              "text": "        self.assembly_seconds=time.perf_counter()-t"
+            },
+            {
+              "line": 191,
+              "text": "        E,b,G,h,dims,cost=self.original;self.T=None;self.off=np.zeros(len(cost));self.cone_ids=np.arange(len(dims));self.stats=[]"
+            },
+            {
+              "line": 192,
+              "text": "        # Bind this physical optimization objective and layout before any"
+            },
+            {
+              "line": 193,
+              "text": "        # auxiliary feasibility program can copy and change this preparation."
+            },
+            {
+              "line": 194,
+              "text": "        self.physical_original_objective=cost.copy()"
+            },
+            {
+              "line": 195,
+              "text": "        self.physical_original_objective.setflags(write=False)"
+            },
+            {
+              "line": 196,
+              "text": "        self.physical_original_layout=(E.shape,G.shape,len(b),len(h),tuple(dims))"
+            },
+            {
+              "line": 197,
+              "text": "        t=time.perf_counter()"
+            },
+            {
+              "line": 198,
+              "text": "        if reduction=='zero':"
+            },
+            {
+              "line": 199,
+              "text": "            er=E.tocsr();single=np.flatnonzero(np.diff(er.indptr)==1)"
+            },
+            {
+              "line": 200,
+              "text": "            cols=np.unique([er.indices[er.indptr[i]] for i in single if b[i]==0])"
+            },
+            {
+              "line": 201,
+              "text": "            keep=np.setdiff1d(np.arange(len(cost)),cols)"
+            },
+            {
+              "line": 202,
+              "text": "            self.T=sparse.eye(len(cost),format='csc')[:,keep];EE=(E@self.T).tocsc();GG=(G@self.T).tocsc()"
+            },
+            {
+              "line": 203,
+              "text": "            active=np.asarray(EE.getnnz(axis=1)).ravel()!=0"
+            },
+            {
+              "line": 204,
+              "text": "            assert np.max(np.abs(b[~active]),initial=0)<2e-11"
+            },
+            {
+              "line": 205,
+              "text": "            E,b,G=EE[active],b[active],GG"
+            },
+            {
+              "line": 206,
+              "text": "            # Keep constant cones for a simple exact map; Clarabel may presolve them."
+            },
+            {
+              "line": 207,
+              "text": "            self.stats=[{'removed_variables':len(cols),'removed_equalities':int((~active).sum())}]"
+            },
+            {
+              "line": 208,
+              "text": "        elif reduction=='affine':"
+            },
+            {
+              "line": 209,
+              "text": "            if mode=='lower':"
+            },
+            {
+              "line": 210,
+              "text": "                E,b,G,h,dims,self.T,self.off,self.stats,self.history,self.final_keep=affine_reduce_tracked(E,b,G,h,dims,cost)"
+            },
+            {
+              "line": 211,
+              "text": "            else:E,b,G,h,dims,self.T,self.off,self.stats=affine_reduce(E,b,G,h,dims)"
+            },
+            {
+              "line": 212,
+              "text": "            self.cone_ids=np.asarray(self.stats[-1]['retained_original_cones'],int)"
+            },
+            {
+              "line": 213,
+              "text": "        elif reduction!='none':raise ValueError(reduction)"
+            },
+            {
+              "line": 214,
+              "text": "        self.cost=np.asarray(cost@self.T).ravel() if self.T is not None else cost.copy()"
+            },
+            {
+              "line": 215,
+              "text": "        self.objective_offset=float(cost@self.off)"
+            },
+            {
+              "line": 216,
+              "text": "        self.reduced=E.tocsc(),b,G.tocsc(),h,dims,self.cost"
+            },
+            {
+              "line": 217,
+              "text": "        self.transform_seconds=time.perf_counter()-t"
+            },
+            {
+              "line": 218,
+              "text": "        self.A=sparse.vstack([E,-G],format='csc');self.rhs=np.r_[b,h]"
+            },
+            {
+              "line": 219,
+              "text": "        self.cones=[clarabel.ZeroConeT(len(b))]+[clarabel.NonnegativeConeT(d) if d==1 else clarabel.SecondOrderConeT(d) for d in dims]"
+            },
+            {
+              "line": 220,
+              "text": "    def restore(self,x):"
+            },
+            {
+              "line": 221,
+              "text": "        return np.asarray(self.T@x+self.off).ravel() if self.T is not None else np.asarray(x).copy()"
+            },
+            {
+              "line": 222,
+              "text": "    def restore_dual(self,z):"
+            },
+            {
+              "line": 223,
+              "text": "        E0,b0,G0,h0,dims0,cost0=self.original;E,b,G,h,dims,cost=self.reduced"
+            },
+            {
+              "line": 224,
+              "text": "        if self.T is None:return np.asarray(z),{'method':'identity','seconds':0.}"
+            }
+          ]
+        },
+        {
+          "first_line": 260,
+          "last_line": 296,
+          "lines": [
+            {
+              "line": 260,
+              "text": "            z0[len(b0)+offs0[j]:len(b0)+offs0[j+1]]=z[k:k+d];k+=d"
+            },
+            {
+              "line": 261,
+              "text": "        EE=(E0@self.T).tocsr();EE.eliminate_zeros();active=np.flatnonzero(np.diff(EE.indptr)>0)"
+            },
+            {
+              "line": 262,
+              "text": "        compatible=len(active)==len(b) and EE[active].shape==E.shape"
+            },
+            {
+              "line": 263,
+              "text": "        if compatible:"
+            },
+            {
+              "line": 264,
+              "text": "            difference=EE[active]-E;compatible=np.max(np.abs(difference.data),initial=0)<2e-10"
+            },
+            {
+              "line": 265,
+              "text": "        if compatible:"
+            },
+            {
+              "line": 266,
+              "text": "            z0[active]=z[:len(b)];removed=np.setdiff1d(np.arange(len(b0)),active)"
+            },
+            {
+              "line": 267,
+              "text": "            residual=cost0+E0.T@z0[:len(b0)]-G0.T@z0[len(b0):]"
+            },
+            {
+              "line": 268,
+              "text": "            M=E0[removed].T.tocsc();rhs=-residual"
+            },
+            {
+              "line": 269,
+              "text": "            ls=lsmr(M,rhs,atol=1e-13,btol=1e-13,maxiter=5000)"
+            },
+            {
+              "line": 270,
+              "text": "            z0[removed]=ls[0];method='removed_equalities_lsmr'"
+            },
+            {
+              "line": 271,
+              "text": "        else:"
+            },
+            {
+              "line": 272,
+              "text": "            # Face-exposed conic duals need additional restoration; do not claim"
+            },
+            {
+              "line": 273,
+              "text": "            # validity if this least-squares attempt leaves a stationarity defect."
+            },
+            {
+              "line": 274,
+              "text": "            rhs=-cost0+G0.T@z0[len(b0):]"
+            },
+            {
+              "line": 275,
+              "text": "            ls=lsmr(E0.T,rhs,atol=1e-13,btol=1e-13,maxiter=10000)"
+            },
+            {
+              "line": 276,
+              "text": "            z0[:len(b0)]=ls[0];method='full_equalities_lsmr'"
+            },
+            {
+              "line": 277,
+              "text": "        return z0,{'method':method,'seconds':time.perf_counter()-t,'lsmr_flag':ls[1],'lsmr_iterations':ls[2]}"
+            },
+            {
+              "line": 278,
+              "text": ""
+            },
+            {
+              "line": 279,
+              "text": "def evaluate(pr,x,z=None):"
+            },
+            {
+              "line": 280,
+              "text": "    E,b,G,h,dims,cost=pr.original;m=pr.m"
+            },
+            {
+              "line": 281,
+              "text": "    if not np.isfinite(x).all():return {'physical_pass':False,'numerical_gate':False,'witness':False,"
+            },
+            {
+              "line": 282,
+              "text": "        'value':float('nan'),'objective':float('nan'),'eq_error':float('inf'),'cone_error':float('inf'),"
+            },
+            {
+              "line": 283,
+              "text": "        'audit':{'pass':False,'errors':{}},'raw_lower_errors':{},'reason':'NONFINITE'}"
+            },
+            {
+              "line": 284,
+              "text": "    a=audit(m,x,pr.mode,pr.fs,pr.q,float(cost@x),18*len(m.tri))"
+            },
+            {
+              "line": 285,
+              "text": "    eq=float(np.max(np.abs(E@x-b),initial=0));cone=cone_error(G@x+h,dims)"
+            },
+            {
+              "line": 286,
+              "text": "    raw={k:float(v*m.stress_scale) for k,v in a['errors'].items()} if pr.mode=='lower' else {}"
+            },
+            {
+              "line": 287,
+              "text": "    physical=bool(a['pass'] and eq<=PHYSICAL_TOL and cone<=PHYSICAL_TOL and max(raw.values(),default=0)<=RAW_STRESS_TOL)"
+            },
+            {
+              "line": 288,
+              "text": "    r={'objective':float(cost@x),'value':float(a['value']),'eq_error':eq,'cone_error':cone,"
+            },
+            {
+              "line": 289,
+              "text": "       'audit':a,'raw_lower_errors':raw,'physical_pass':physical,"
+            },
+            {
+              "line": 290,
+              "text": "       'witness':bool(physical and (a['value']>=LOWER_TARGET if pr.mode=='lower' else a['value']<=UPPER_TARGET))}"
+            },
+            {
+              "line": 291,
+              "text": "    if z is not None and np.isfinite(z).all():"
+            },
+            {
+              "line": 292,
+              "text": "        y=z[:len(b)];zz=z[len(b):];dual=-float(b@y+h@zz)"
+            },
+            {
+              "line": 293,
+              "text": "        stat=float(np.max(np.abs(cost+E.T@y-G.T@zz),initial=0));dc=cone_error(zz,dims)"
+            },
+            {
+              "line": 294,
+              "text": "        gap=abs(float(cost@x)-dual)"
+            },
+            {
+              "line": 295,
+              "text": "        r.update(dual_objective=dual,dual_stationarity=stat,dual_cone_error=dc,dual_gap=gap,"
+            },
+            {
+              "line": 296,
+              "text": "                 numerical_gate=bool(physical and eq<1e-8 and stat<1e-7 and dc<=1e-8 and gap<1e-8*(1+abs(float(cost@x)))))"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "path": "validation/G1R19_python26_20261016/python/original_dual.py",
+      "bytes": 5035,
+      "sha256": "c0025181b07b742b0d4608656489c3495b6ea90b4ed8084438420e8312b6467d",
+      "anchors": [
+        {
+          "first_line": 27,
+          "last_line": 45,
+          "lines": [
+            {
+              "line": 27,
+              "text": "def threshold(prepared):"
+            },
+            {
+              "line": 28,
+              "text": "    return UPPER_TARGET+4e-6 if prepared.mode=='upper' else -LOWER_TARGET+3e-6"
+            },
+            {
+              "line": 29,
+              "text": ""
+            },
+            {
+              "line": 30,
+              "text": ""
+            },
+            {
+              "line": 31,
+              "text": "def audit_original_dual(prepared,dual):"
+            },
+            {
+              "line": 32,
+              "text": "    reason=eligibility(prepared)"
+            },
+            {
+              "line": 33,
+              "text": "    if reason:return {'accepted':False,'reason':reason}"
+            },
+            {
+              "line": 34,
+              "text": "    E,b,G,h,dims,cost=prepared.original;dual=np.asarray(dual)"
+            },
+            {
+              "line": 35,
+              "text": "    if dual.ndim!=1 or len(dual)!=len(b)+len(h) or not np.isfinite(dual).all():"
+            },
+            {
+              "line": 36,
+              "text": "        return {'accepted':False,'reason':'NONFINITE_OR_WRONG_SIZE_DUAL'}"
+            },
+            {
+              "line": 37,
+              "text": "    y,z=dual[:len(b)],dual[len(b):]"
+            },
+            {
+              "line": 38,
+              "text": "    stat=float(np.max(np.abs(cost+E.T@y-G.T@z),initial=0.))"
+            },
+            {
+              "line": 39,
+              "text": "    cone=cone_error(z,dims);objective=-float(b@y+h@z);required=threshold(prepared)"
+            },
+            {
+              "line": 40,
+              "text": "    accepted=bool(np.isfinite([stat,cone,objective]).all() and stat<=1e-7 and cone<=1e-8 and objective>=required)"
+            },
+            {
+              "line": 41,
+              "text": "    result={'accepted':accepted,'dual_stationarity':stat,'dual_cone_error':cone,"
+            },
+            {
+              "line": 42,
+              "text": "        'dual_objective':objective,'threshold':required,'method':'original_dual_feasibility',"
+            },
+            {
+              "line": 43,
+              "text": "        'scope':'discrete_root_search_only','publishes_primal_bound':False}"
+            },
+            {
+              "line": 44,
+              "text": "    if accepted:result['search_sign']=1 if prepared.mode=='upper' else -1"
+            },
+            {
+              "line": 45,
+              "text": "    else:result['reason']='ORIGINAL_RAW_DUAL_GATE_REJECTED'"
+            }
+          ]
+        },
+        {
+          "first_line": 49,
+          "last_line": 79,
+          "lines": [
+            {
+              "line": 49,
+              "text": "def solve_original_dual(prepared,seconds=20.,return_dual=False,*,equilibrate=True,regularization=0.,equality_scale=False):"
+            },
+            {
+              "line": 50,
+              "text": "    \"\"\"Return raw audited original evidence; optionally include its full dual.\"\"\""
+            },
+            {
+              "line": 51,
+              "text": "    started=time.perf_counter();reason=eligibility(prepared)"
+            },
+            {
+              "line": 52,
+              "text": "    if reason:return {'accepted':False,'reason':reason,'method':'original_dual_feasibility','seconds':0.}"
+            },
+            {
+              "line": 53,
+              "text": "    if not np.isfinite(seconds) or seconds<=0:"
+            },
+            {
+              "line": 54,
+              "text": "        return {'accepted':False,'reason':'INVALID_TIME_LIMIT','method':'original_dual_feasibility','seconds':0.}"
+            },
+            {
+              "line": 55,
+              "text": "    if not np.isfinite(regularization) or regularization<0:"
+            },
+            {
+              "line": 56,
+              "text": "        return {'accepted':False,'reason':'INVALID_AUXILIARY_REGULARIZATION','method':'original_dual_feasibility','seconds':0.}"
+            },
+            {
+              "line": 57,
+              "text": "    E,b,G,h,dims,cost=prepared.original;ny,nz=len(b),len(h);nv=ny+nz"
+            },
+            {
+              "line": 58,
+              "text": "    stationary=sparse.hstack([E.T,-G.T],format='csc')"
+            },
+            {
+              "line": 59,
+              "text": "    conic=sparse.hstack([sparse.csc_matrix((nz,ny)),-sparse.eye(nz,format='csc')],format='csc')"
+            },
+            {
+              "line": 60,
+              "text": "    separation=sparse.csc_matrix(np.r_[b,h].reshape(1,-1))"
+            },
+            {
+              "line": 61,
+              "text": "    A=sparse.vstack([stationary,conic,separation],format='csc')"
+            },
+            {
+              "line": 62,
+              "text": "    rhs=np.r_[-cost,np.zeros(nz),-threshold(prepared)]"
+            },
+            {
+              "line": 63,
+              "text": "    cones=[clarabel.ZeroConeT(len(cost))]+[clarabel.NonnegativeConeT(d) if d==1 else clarabel.SecondOrderConeT(d) for d in dims]+[clarabel.NonnegativeConeT(1)]"
+            },
+            {
+              "line": 64,
+              "text": "    if equality_scale:"
+            },
+            {
+              "line": 65,
+              "text": "        factor=np.asarray(abs(stationary).max(axis=1).toarray()).ravel()"
+            },
+            {
+              "line": 66,
+              "text": "        factor=1./np.maximum(1.,factor)"
+            },
+            {
+              "line": 67,
+              "text": "        A=sparse.diags(np.r_[factor,np.ones(nz+1)])@A;rhs[:len(cost)]*=factor"
+            },
+            {
+              "line": 68,
+              "text": "    config={'equilibrate_enable':bool(equilibrate),'time_limit':float(seconds)}"
+            },
+            {
+              "line": 69,
+              "text": "    build=time.perf_counter()-started"
+            },
+            {
+              "line": 70,
+              "text": "    try:"
+            },
+            {
+              "line": 71,
+              "text": "        P=sparse.eye(nv,format='csc')*regularization if regularization else sparse.csc_matrix((nv,nv))"
+            },
+            {
+              "line": 72,
+              "text": "        solver=clarabel.DefaultSolver(P,np.zeros(nv),A.tocsc(),rhs,cones,settings(config,350))"
+            },
+            {
+              "line": 73,
+              "text": "        solver.solve();solution=solver.get_solution();dual=np.asarray(solution.x)"
+            },
+            {
+              "line": 74,
+              "text": "        evidence=audit_original_dual(prepared,dual)"
+            },
+            {
+              "line": 75,
+              "text": "        evidence.update(status=str(solution.status),iterations=solution.iterations,settings=config,max_iter=350,"
+            },
+            {
+              "line": 76,
+              "text": "            build_seconds=build,seconds=time.perf_counter()-started,fs=prepared.fs,mode=prepared.mode,q=8,"
+            },
+            {
+              "line": 77,
+              "text": "            mesh_id=prepared.m.mesh_id,physical_model_id=prepared.m.physical_model_id,case=prepared.m.provenance['case'])"
+            },
+            {
+              "line": 78,
+              "text": "        evidence.update(auxiliary_regularization=regularization,equality_scale=bool(equality_scale))"
+            },
+            {
+              "line": 79,
+              "text": "        if return_dual:evidence['dual']=dual"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "path": "validation/G1R19_python26_20261016/python/accuracy_driver.py",
+      "bytes": 36188,
+      "sha256": "6dc57380371a575c5f73425c0cecd77a47cb6e41e34f682e8c431874f39bdcb3",
+      "anchors": [
+        {
+          "first_line": 150,
+          "last_line": 163,
+          "lines": [
+            {
+              "line": 150,
+              "text": "def sign(result, mode):"
+            },
+            {
+              "line": 151,
+              "text": "    target = core.LOWER_TARGET if mode == 'lower' else core.UPPER_TARGET"
+            },
+            {
+              "line": 152,
+              "text": "    if result.get('witness',False) and result.get('physical_pass',False) and finite(result.get('value')):"
+            },
+            {
+              "line": 153,
+              "text": "        return 1 if mode == 'lower' else -1"
+            },
+            {
+              "line": 154,
+              "text": "    if result.get('numerical_gate',False) and finite(result.get('value')):"
+            },
+            {
+              "line": 155,
+              "text": "        return 1 if result['value'] >= target else -1"
+            },
+            {
+              "line": 156,
+              "text": "    if not finite(result.get('dual_stationarity'),result.get('dual_cone_error'),result.get('dual_objective')):"
+            },
+            {
+              "line": 157,
+              "text": "        return None"
+            },
+            {
+              "line": 158,
+              "text": "    if result.get('dual_stationarity', 1) > 1e-7 or result.get('dual_cone_error', 1) > 1e-8:"
+            },
+            {
+              "line": 159,
+              "text": "        return None"
+            },
+            {
+              "line": 160,
+              "text": "    if mode == 'lower' and -result['dual_objective'] <= target - 2e-6:"
+            },
+            {
+              "line": 161,
+              "text": "        return -1"
+            },
+            {
+              "line": 162,
+              "text": "    if mode == 'upper' and result['dual_objective'] >= target + 2e-6:"
+            },
+            {
+              "line": 163,
+              "text": "        return 1"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "report": {
+    "path": "ISSUE28_CODE_FINDINGS.md",
+    "bytes": 11561,
+    "sha256": "b536b7fc4510bd209ddd38754ca74d3c2c9ced1cd00ec357e436e99466dd6582"
+  },
+  "extractor": {
+    "path": "D:\\Work\\rpfem_issue29_review_20261017\\capture_issue28_source_anchors.py",
+    "bytes": 3424,
+    "sha256": "43c2386a912a11945c7b93b8469ed1fae932d378213e7711d9cf2be36222992c"
+  }
+}

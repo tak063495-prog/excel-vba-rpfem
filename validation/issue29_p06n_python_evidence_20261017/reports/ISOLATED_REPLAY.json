@@ -1,0 +1,152 @@
+{
+  "schema": "issue29_p06n_saved_pair_verification_v1",
+  "status": "PASS",
+  "verified_utc": "2026-10-17T11:40:24.244708+00:00",
+  "case": "P06N",
+  "evidence_scope": "saved_pair_original_q8_reaudit_and_full_upper_original_dual_reaudit",
+  "new_optimization": false,
+  "optimizer_calls": 0,
+  "new_cold_execution": false,
+  "generic_cold_two_percent_achievement_proved": false,
+  "source_and_input_bytes_unchanged": true,
+  "manifest_sha256": "09c7b5324edb1bc17030953b326c8e9d8b9881f748aaa5d75fb33f02b36ab880",
+  "verified_file_count": 82,
+  "lower_fs": 0.6767771508826014,
+  "upper_fs": 0.6902587260388777,
+  "relative_gap": 0.019723805913033424,
+  "gap_percent": 1.9723805913033423,
+  "target_gap": 0.02,
+  "physical_pair_within_two_percent": true,
+  "recorded_both_root_contracts_pass": true,
+  "opposite_root_signs_recomputed_from_full_vectors": {
+    "lower": false,
+    "upper": true
+  },
+  "lower_opposite_sign_limit": "The historical trial/identity/width record is retained; no full opposite-endpoint lower vector was saved. Its sign is not independently regenerated here.",
+  "sides": {
+    "lower": {
+      "fs": 0.6767771508826014,
+      "q": 8,
+      "elements": 5966,
+      "mesh_id": "0b1cffd134d60c92b20ec7480cbbbbfe27695c3a725f6f5d31ec5ca097587cc8",
+      "physical_model_id": "08cc8e73e85408e7a82cbe79b5716ef007cb917d00e021872c40e510b5d17525",
+      "policy": "hold_initial",
+      "original_q8_physical_and_witness_pass": true,
+      "audit": {
+        "objective": -1.000154212143018,
+        "value": 1.000154212143018,
+        "eq_error": 1.8078594177239893e-13,
+        "cone_error": 0.0,
+        "audit": {
+          "pass": true,
+          "errors": {
+            "yield": 0.0,
+            "equilibrium": 5.965129381928485e-11,
+            "internal_traction": 2.557398737224048e-13,
+            "boundary_traction": 5.551115123125783e-17
+          },
+          "load": 1.000154212143018,
+          "value": 1.000154212143018
+        },
+        "raw_lower_errors": {
+          "yield": 0.0,
+          "equilibrium": 1.193025876385697e-09,
+          "internal_traction": 5.114797474448096e-12,
+          "boundary_traction": 1.1102230246251565e-15
+        },
+        "physical_pass": true,
+        "witness": true,
+        "numerical_gate": false
+      },
+      "root_record": {
+        "bracket": [
+          0.6767771508826014,
+          0.6768552758826014
+        ],
+        "normalized_width": 7.812500000003997e-05,
+        "recorded_identity_signs_and_width_pass": true,
+        "opposite_sign_recomputed_from_full_vector": false
+      }
+    },
+    "upper": {
+      "fs": 0.6902587260388777,
+      "q": 8,
+      "elements": 8739,
+      "mesh_id": "44c89fcad8854b4b5ef36f061999d3033613a1e5b7193b2e2ef4a8eb0a8b7fbc",
+      "physical_model_id": "08cc8e73e85408e7a82cbe79b5716ef007cb917d00e021872c40e510b5d17525",
+      "policy": "hold_initial",
+      "original_q8_physical_and_witness_pass": true,
+      "audit": {
+        "objective": 0.999997988594999,
+        "value": 0.999997988595,
+        "eq_error": 9.784808295050365e-10,
+        "cone_error": 2.163433515667279e-08,
+        "audit": {
+          "pass": true,
+          "errors": {
+            "flow": 3.91246291799448e-10,
+            "jump": 2.1634334422942686e-08,
+            "bonded_interface": 1.3625546545484687e-09,
+            "boundary": 9.784808295050365e-10,
+            "work": 4.440892098500626e-15,
+            "objective": 9.992007221626409e-16
+          },
+          "dissipation": 0.999997988595,
+          "work": [
+            0.0,
+            1.0000000000000044
+          ],
+          "value": 0.999997988595
+        },
+        "raw_lower_errors": {},
+        "physical_pass": true,
+        "witness": true,
+        "numerical_gate": false
+      },
+      "root_record": {
+        "bracket": [
+          0.6901588260388777,
+          0.6902587260388777
+        ],
+        "normalized_width": 9.990000000004162e-05,
+        "recorded_identity_signs_and_width_pass": true,
+        "opposite_sign_recomputed_from_full_vector": true
+      }
+    }
+  },
+  "upper_original_dual": {
+    "before_repair": {
+      "accepted": false,
+      "dual_stationarity": 1.7849141851393815e-07,
+      "dual_cone_error": 5.661386886634395e-13,
+      "dual_objective": 1.0000030000004765,
+      "threshold": 1.000003,
+      "method": "original_dual_feasibility",
+      "scope": "discrete_root_search_only",
+      "publishes_primal_bound": false,
+      "reason": "ORIGINAL_RAW_DUAL_GATE_REJECTED"
+    },
+    "after_repair": {
+      "accepted": true,
+      "dual_stationarity": 8.924587658563085e-08,
+      "dual_cone_error": 5.661386886634395e-13,
+      "dual_objective": 1.0000030000010307,
+      "threshold": 1.000003,
+      "method": "original_dual_feasibility",
+      "scope": "discrete_root_search_only",
+      "publishes_primal_bound": false,
+      "search_sign": 1
+    }
+  },
+  "historical_repair_cone_z_bitwise_unchanged": true,
+  "elapsed_seconds": 15.57377739995718,
+  "environment": {
+    "python": "3.13.14",
+    "platform": "Windows-11-10.0.26300-SP0",
+    "dependencies": {
+      "numpy": "2.3.5",
+      "scipy": "1.17.0",
+      "clarabel": "0.11.1"
+    }
+  }
+}

@@ -12,6 +12,8 @@ Excel VBAによる2次元RPFEM解析のソース、XLSM、検証資料です。
 - Fs実行後に固定自重の地震荷重が比例側へ入る不具合、浸透の中止無視、単位体積重量の不整合、失敗後の旧連成結果の有効表示も修正しました。
 - 63標準モジュール・ThisWorkbookイベントと統合DLL1個を配布します。**更新後は旧版の通常解析結果・浸透結果を再計算してください。**
 - P06の通常初期状態からのVBA本番2%自動完走と全26ケースのVBA再計算は今回の確認範囲に含めません。
+- [Issue #29：P06NのPythonコード・入力・保存場・専用ZIP](validation/issue29_p06n_python_evidence_20261017/README_JA.md)と[通常解析との原因比較](validation/issue29_p06n_python_evidence_20261017/ANALYSIS_JA.md)を公開しています。過去の1.97238%は既知形状から新規求解した対で、通常初期メッシュからの自動達成とは区別します。
+- [Issue #28：D05AのPython固定点比較・保存dualデータ・専用ZIP](validation/issue28_d05a_python_analysis_20261017/README_JA.md)と[スケール／原dual棄却の考察](validation/issue28_d05a_python_analysis_20261017/ANALYSIS_JA.md)を追加しました。原監査の閾値を保った変数単位の比較であり、VBA修正完了の報告ではありません。
 
 ## G1R20 Fix3 — Fix2レビューによる保存入力・浸透連成・Fs経路の修正（2026-10-17）
 

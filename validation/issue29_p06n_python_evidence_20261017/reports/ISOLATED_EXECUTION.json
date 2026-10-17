@@ -1,0 +1,23 @@
+{
+  "status": "PASS",
+  "returncode": 0,
+  "posthoc_execution_ledger": true,
+  "execution_ledger_note": "The verifier subprocess returned exit0; post-run comparison initially failed because another worker added unrelated history files after ZIP creation. Comparison now uses exactly the captured ZIP member list. The verifier output and stdout were already saved unchanged.",
+  "command": [
+    "D:\\Work\\rpfem-venv\\Scripts\\python.exe",
+    "-B",
+    "-X",
+    "utf8",
+    "D:\\Work\\rpfem_fix4_review_20261017\\issue29_p06n_isolated_1792237208183826300\\extracted\\VERIFY.py",
+    "--output",
+    "D:\\Work\\rpfem_fix4_review_20261017\\issue29_p06n_isolated_1792237208183826300\\ISOLATED_REPLAY.json"
+  ],
+  "cwd": "D:\\Work\\rpfem_fix4_review_20261017\\issue29_p06n_isolated_1792237208183826300",
+  "archive_sha256": "fe343955d8c013457c5bf33327b51c7b0787aca1f5b8d6c1e4473a45ccc355dc",
+  "archive_bytes": 7086213,
+  "manifest_sha256": "09c7b5324edb1bc17030953b326c8e9d8b9881f748aaa5d75fb33f02b36ab880",
+  "result": "D:\\Work\\rpfem_fix4_review_20261017\\issue29_p06n_isolated_1792237208183826300\\ISOLATED_REPLAY.json",
+  "source_bundle_member_count": 85,
+  "source_bundle_captured_members_identical_after": true,
+  "scope": "Independent ZIP extraction into a folder outside the repository; original absolute locations never opened by verifier; no optimizer or cold solve"
+}

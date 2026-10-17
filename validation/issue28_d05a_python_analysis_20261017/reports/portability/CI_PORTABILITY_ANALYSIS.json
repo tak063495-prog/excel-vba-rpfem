@@ -1,0 +1,854 @@
+{
+  "status": "PASS",
+  "optimizer_calls": 0,
+  "actual_CI_artifact_source": "micro-replay-assembly-diagnostics from workflow artifact39030547569",
+  "actual_CI_environment": {
+    "python": "3.13.16 (tags/v3.13.16:cbc944f, Sep 30 2026, 19:17:50) [MSC v.1944 64 bit (AMD64)]",
+    "platform": "Windows-2025Server-10.0.26100-SP0",
+    "numpy": "2.3.5",
+    "scipy": "1.17.0",
+    "source_hashes": {
+      "python_snapshot/experiment_core.py": "9a9e60b6d69ba4008ea89608f433bb716b433436715c45566bd209418ee9238e",
+      "python_snapshot/reduction.py": "cbc32e1e0764e10e3f56f67b804b08867166aafbd32a64ddcbe481b18d083ca5",
+      "python_snapshot/vendor/independent_audit.py": "79ea1b0e4e72b2a61a4110e6115e3f33929ae5990fb054e20f41d345a694f37b",
+      "python_snapshot/vendor/model_support/__init__.py": "7eb70257593da06f682a3ddda54a9d260d4fc514f645237f5ca74b08f8da61a6",
+      "python_snapshot/vendor/model_support/io_case.py": "acd8d38c56020951621b1be5e4803e3d02898ad087c7f0c2d04e1d47ac6b87e3",
+      "python_snapshot/vendor/model_support/lower_assembly.py": "b3c482c8950205b32a5e38cd0f1e720e5efeb48491bbd8ff02b728ef54f51047",
+      "python_snapshot/vendor/model_support/p2.py": "7c243a234d22e5d8c209c5d55f6aedc834af7b507538022c2731a71046e0969f",
+      "python_snapshot/vendor/model_support/schema.py": "24db1fadeb9d16de2fd0593c87b0ce113b4f0720118b4617622af7450b957ca0",
+      "python_snapshot/vendor/model_support/upper_assembly.py": "d0e03aeb87dcc52ae8001b422d836064275850f22c8a69640ce722cb2213d065",
+      "inputs/P02A.json": "9587c4b45eae1c22d9e7190ee1470f5ad2e38145305f6c374894f91240ae7e1b",
+      "inputs/P02A_coarse_geometry.bin": "65fe6462d0cc1d832d1a2656494ade80858d5c491c7d14f6f8a6f8c168f2c79b",
+      "inputs/D05A.json": "b9c7b2b34a74889f0274f220b1895405acd68409f8df3b13571d5f62f27fa7e2",
+      "inputs/D05A_coarse_geometry.bin": "8f9849b3fb0b4238aa7e15f039d7321373cdc7b5c621b40b037d14c604d01983",
+      "history/INDEPENDENT_AUDIT.json": "d9865ae57943d4e848385bf4f8a3d72b444e0cc141a4fbf27302af0148996a6d",
+      "history/cases/D05A/best_lower_certificate.json": "322b45b75a494b7e09601e71667b999f305cb92bde7ad21c5c484d5ca74961bb",
+      "history/cases/D05A/best_lower_field.npz": "51350c1bda240e849b270aa27d753e2983d513da9ed913b3f3cec8c690d5bcf0",
+      "history/cases/D05A/best_lower_mesh.npz": "9749331752333b4050301bc86d5712234e79a850debeafc8e2055ed4cac1187b",
+      "history/cases/D05A/best_upper_certificate.json": "dfe9eda78feb5532f2c9d3fd3209b1b165d05804c182d959776ba249f0a9c788",
+      "history/cases/D05A/best_upper_field.npz": "472a0e70a598cb15e94f389fa97db0a6d51abee3151e2aac44fd56dcb18c6203",
+      "history/cases/D05A/best_upper_mesh.npz": "9749331752333b4050301bc86d5712234e79a850debeafc8e2055ed4cac1187b",
+      "history/cases/D05A/source_manifest.json": "126d494fd2340b2cd4bac7268601eab90867771566ace091ac7aad25ba445d6c",
+      "history/cases/D05A/summary.json": "d99d38a24b7402e51ba5c031e0973c44af56d49ea5ac4bc685581ecbe09998e4",
+      "history/producer_run_case.py": "54edbccbdfb0a59e8b2bb325efe1b28d784630586c47910ec1a171c676add498",
+      "history/CURRENT_RESULT_D05A.json": "4839a4afb49c8b9cc6f12ac08b6ad0a6478aab342c7a020957c77d841a2764b8",
+      "run_fixed_point_experiment.py": "321cbd2ccff30bff4bf084fbdaf8f2de32e26d14864e657c9a894dc4fbdd0718"
+    },
+    "programs": {
+      "P02A": "a6a0a86f3901c0fde0b5776a2f93cb5eb8b5971d036c4d53f0ff7544a8e5de83",
+      "D05A": "94130390430056c4a230d59e6b6afdd65e282004560a805fc87c1ea02dc3ea52"
+    }
+  },
+  "actual_CI_source_and_input_hashes_match": true,
+  "environment_file_sha256": "f0074764e0eb1fb44b8f97044a653dd60779b0d1c1591c6c3dd3b858bd97e1d3",
+  "program_comparisons": {
+    "P02A": {
+      "status": "PASS",
+      "raw_sha256_identical": false,
+      "observed_raw_sha256": "a6a0a86f3901c0fde0b5776a2f93cb5eb8b5971d036c4d53f0ff7544a8e5de83",
+      "reference_raw_sha256": "a869e390bbcb585b1706844dc1f8b5d86924675912548b39fa966fc1c681bf62",
+      "float_comparison_formula": "32 * binary64_epsilon * max(1, max(abs(reference_array)))",
+      "physical_acceptance_thresholds_changed": false,
+      "arrays": [
+        {
+          "name": "E_shape",
+          "kind": "exact_integer_structure",
+          "shape": [
+            2
+          ],
+          "dtype": "int64",
+          "bitwise_equal": true
+        },
+        {
+          "name": "E_indptr",
+          "kind": "exact_integer_structure",
+          "shape": [
+            2569
+          ],
+          "dtype": "int32",
+          "bitwise_equal": true
+        },
+        {
+          "name": "E_indices",
+          "kind": "exact_integer_structure",
+          "shape": [
+            765
+          ],
+          "dtype": "int32",
+          "bitwise_equal": true
+        },
+        {
+          "name": "G_shape",
+          "kind": "exact_integer_structure",
+          "shape": [
+            2
+          ],
+          "dtype": "int64",
+          "bitwise_equal": true
+        },
+        {
+          "name": "G_indptr",
+          "kind": "exact_integer_structure",
+          "shape": [
+            2569
+          ],
+          "dtype": "int32",
+          "bitwise_equal": true
+        },
+        {
+          "name": "G_indices",
+          "kind": "exact_integer_structure",
+          "shape": [
+            78557
+          ],
+          "dtype": "int32",
+          "bitwise_equal": true
+        },
+        {
+          "name": "dims",
+          "kind": "exact_integer_structure",
+          "shape": [
+            6622
+          ],
+          "dtype": "int64",
+          "bitwise_equal": true
+        },
+        {
+          "name": "E_data",
+          "kind": "float64_coefficient",
+          "shape": [
+            765
+          ],
+          "dtype": "float64",
+          "bitwise_equal": true,
+          "different_entries": 0,
+          "max_absolute_difference": 0.0,
+          "roundoff_bound": 7.105427357601002e-15,
+          "max_abs_reference": 1.0
+        },
+        {
+          "name": "b",
+          "kind": "float64_coefficient",
+          "shape": [
+            124
+          ],
+          "dtype": "float64",
+          "bitwise_equal": true,
+          "different_entries": 0,
+          "max_absolute_difference": 0.0,
+          "roundoff_bound": 7.105427357601002e-15,
+          "max_abs_reference": 0.07874940184445026
+        },
+        {
+          "name": "G_data",
+          "kind": "float64_coefficient",
+          "shape": [
+            78557
+          ],
+          "dtype": "float64",
+          "bitwise_equal": false,
+          "different_entries": 4784,
+          "max_absolute_difference": 2.220446049250313e-16,
+          "roundoff_bound": 1.370400117425216e-13,
+          "max_abs_reference": 19.286667056827145
+        },
+        {
+          "name": "h",
+          "kind": "float64_coefficient",
+          "shape": [
+            7906
+          ],
+          "dtype": "float64",
+          "bitwise_equal": true,
+          "different_entries": 0,
+          "max_absolute_difference": 0.0,
+          "roundoff_bound": 7.105427357601002e-15,
+          "max_abs_reference": 0.0
+        },
+        {
+          "name": "cost",
+          "kind": "float64_coefficient",
+          "shape": [
+            2568
+          ],
+          "dtype": "float64",
+          "bitwise_equal": false,
+          "different_entries": 121,
+          "max_absolute_difference": 2.220446049250313e-16,
+          "roundoff_bound": 1.3544567236936286e-14,
+          "max_abs_reference": 1.9062283737862777
+        }
+      ],
+      "ci_artifact_path": "reports/ci_assembly/micro-programs-P02A.npz",
+      "ci_artifact_sha256": "febaba06664bde072e3ee23981ba945020b0ef430cc5791453d9a75dd46a8681",
+      "actual_CI_digest_matches_environment_exactly": true,
+      "old_record_binding": "exact_frozen_reference_digest",
+      "new_current_host_record_binding": "exact_current_assembly_digest"
+    },
+    "D05A": {
+      "status": "PASS",
+      "raw_sha256_identical": false,
+      "observed_raw_sha256": "94130390430056c4a230d59e6b6afdd65e282004560a805fc87c1ea02dc3ea52",
+      "reference_raw_sha256": "fc17d46079603bf552f4e987cb9bcb282d66e8678702bb09765ca8e87dc3c213",
+      "float_comparison_formula": "32 * binary64_epsilon * max(1, max(abs(reference_array)))",
+      "physical_acceptance_thresholds_changed": false,
+      "arrays": [
+        {
+          "name": "E_shape",
+          "kind": "exact_integer_structure",
+          "shape": [
+            2
+          ],
+          "dtype": "int64",
+          "bitwise_equal": true
+        },
+        {
+          "name": "E_indptr",
+          "kind": "exact_integer_structure",
+          "shape": [
+            2569
+          ],
+          "dtype": "int32",
+          "bitwise_equal": true
+        },
+        {
+          "name": "E_indices",
+          "kind": "exact_integer_structure",
+          "shape": [
+            765
+          ],
+          "dtype": "int32",
+          "bitwise_equal": true
+        },
+        {
+          "name": "G_shape",
+          "kind": "exact_integer_structure",
+          "shape": [
+            2
+          ],
+          "dtype": "int64",
+          "bitwise_equal": true
+        },
+        {
+          "name": "G_indptr",
+          "kind": "exact_integer_structure",
+          "shape": [
+            2569
+          ],
+          "dtype": "int32",
+          "bitwise_equal": true
+        },
+        {
+          "name": "G_indices",
+          "kind": "exact_integer_structure",
+          "shape": [
+            78557
+          ],
+          "dtype": "int32",
+          "bitwise_equal": true
+        },
+        {
+          "name": "dims",
+          "kind": "exact_integer_structure",
+          "shape": [
+            6622
+          ],
+          "dtype": "int64",
+          "bitwise_equal": true
+        },
+        {
+          "name": "E_data",
+          "kind": "float64_coefficient",
+          "shape": [
+            765
+          ],
+          "dtype": "float64",
+          "bitwise_equal": true,
+          "different_entries": 0,
+          "max_absolute_difference": 0.0,
+          "roundoff_bound": 7.105427357601002e-15,
+          "max_abs_reference": 1.0
+        },
+        {
+          "name": "b",
+          "kind": "float64_coefficient",
+          "shape": [
+            124
+          ],
+          "dtype": "float64",
+          "bitwise_equal": true,
+          "different_entries": 0,
+          "max_absolute_difference": 0.0,
+          "roundoff_bound": 7.105427357601002e-15,
+          "max_abs_reference": 7.874940184445002e-05
+        },
+        {
+          "name": "G_data",
+          "kind": "float64_coefficient",
+          "shape": [
+            78557
+          ],
+          "dtype": "float64",
+          "bitwise_equal": false,
+          "different_entries": 2120,
+          "max_absolute_difference": 2.220446049250313e-16,
+          "roundoff_bound": 7.839922258654692e-15,
+          "max_abs_reference": 1.1033709675840915
+        },
+        {
+          "name": "h",
+          "kind": "float64_coefficient",
+          "shape": [
+            7906
+          ],
+          "dtype": "float64",
+          "bitwise_equal": true,
+          "different_entries": 0,
+          "max_absolute_difference": 0.0,
+          "roundoff_bound": 7.105427357601002e-15,
+          "max_abs_reference": 0.0
+        },
+        {
+          "name": "cost",
+          "kind": "float64_coefficient",
+          "shape": [
+            2568
+          ],
+          "dtype": "float64",
+          "bitwise_equal": false,
+          "different_entries": 58,
+          "max_absolute_difference": 2.2737367544323206e-13,
+          "roundoff_bound": 1.3544567236936286e-11,
+          "max_abs_reference": 1906.2283737862776
+        }
+      ],
+      "ci_artifact_path": "reports/ci_assembly/micro-programs-D05A.npz",
+      "ci_artifact_sha256": "7d98047df521d7dfd7cdfc1011539876ea93a0b34924b1057c79157f1ff8ef80",
+      "actual_CI_digest_matches_environment_exactly": true,
+      "old_record_binding": "exact_frozen_reference_digest",
+      "new_current_host_record_binding": "exact_current_assembly_digest"
+    }
+  },
+  "actual_CI_coefficient_saved_vector_checks": [
+    {
+      "name": "D05A_affine",
+      "all_original_gate_decisions_unchanged": true,
+      "physical_pass": false,
+      "original_dual_guide_accepted": false,
+      "metrics": [
+        {
+          "name": "objective",
+          "absolute_difference": 0.0,
+          "roundoff_bound": 7.105427357601002e-15,
+          "bitwise_equal": true
+        },
+        {
+          "name": "value",
+          "absolute_difference": 0.0,
+          "roundoff_bound": 7.105427357601002e-15,
+          "bitwise_equal": true
+        },
+        {
+          "name": "eq_error",
+          "absolute_difference": 0.0,
+          "roundoff_bound": 7.105427357601002e-15,
+          "bitwise_equal": true
+        },
+        {
+          "name": "cone_error",
+          "absolute_difference": 0.0,
+          "roundoff_bound": 7.105427357601002e-15,
+          "bitwise_equal": true
+        },
+        {
+          "name": "dual_objective",
+          "absolute_difference": 0.0,
+          "roundoff_bound": 7.105427357601002e-15,
+          "bitwise_equal": true
+        },
+        {
+          "name": "dual_stationarity",
+          "absolute_difference": 0.0,
+          "roundoff_bound": 7.105427357601002e-15,
+          "bitwise_equal": true
+        },
+        {
+          "name": "dual_cone_error",
+          "absolute_difference": 0.0,
+          "roundoff_bound": 7.105427357601002e-15,
+          "bitwise_equal": true
+        },
+        {
+          "name": "dual_gap",
+          "absolute_difference": 0.0,
+          "roundoff_bound": 7.105427357601002e-15,
+          "bitwise_equal": true
+        },
+        {
+          "name": "dual.stationarity",
+          "absolute_difference": 0.0,
+          "roundoff_bound": 7.105427357601002e-15,
+          "bitwise_equal": true
+        },
+        {
+          "name": "dual.cone_error",
+          "absolute_difference": 0.0,
+          "roundoff_bound": 7.105427357601002e-15,
+          "bitwise_equal": true
+        },
+        {
+          "name": "dual.objective",
+          "absolute_difference": 0.0,
+          "roundoff_bound": 7.105427357601002e-15,
+          "bitwise_equal": true
+        }
+      ],
+      "scope": "Actual CI coefficient matrices with saved vectors, re-audited locally; full CI host rerun remains a separate workflow record."
+    },
+    {
+      "name": "D05A_none",
+      "all_original_gate_decisions_unchanged": true,
+      "physical_pass": false,
+      "original_dual_guide_accepted": false,
+      "metrics": [
+        {
+          "name": "objective",
+          "absolute_difference": 0.0,
+          "roundoff_bound": 7.105427357601002e-15,
+          "bitwise_equal": true
+        },
+        {
+          "name": "value",
+          "absolute_difference": 0.0,
+          "roundoff_bound": 7.105427357601002e-15,
+          "bitwise_equal": true
+        },
+        {
+          "name": "eq_error",
+          "absolute_difference": 0.0,
+          "roundoff_bound": 7.105427357601002e-15,
+          "bitwise_equal": true
+        },
+        {
+          "name": "cone_error",
+          "absolute_difference": 0.0,
+          "roundoff_bound": 7.105427357601002e-15,
+          "bitwise_equal": true
+        },
+        {
+          "name": "dual_objective",
+          "absolute_difference": 0.0,
+          "roundoff_bound": 7.105427357601002e-15,
+          "bitwise_equal": true
+        },
+        {
+          "name": "dual_stationarity",
+          "absolute_difference": 0.0,
+          "roundoff_bound": 7.105427357601002e-15,
+          "bitwise_equal": true
+        },
+        {
+          "name": "dual_cone_error",
+          "absolute_difference": 0.0,
+          "roundoff_bound": 7.105427357601002e-15,
+          "bitwise_equal": true
+        },
+        {
+          "name": "dual_gap",
+          "absolute_difference": 0.0,
+          "roundoff_bound": 7.105427357601002e-15,
+          "bitwise_equal": true
+        },
+        {
+          "name": "dual.stationarity",
+          "absolute_difference": 0.0,
+          "roundoff_bound": 7.105427357601002e-15,
+          "bitwise_equal": true
+        },
+        {
+          "name": "dual.cone_error",
+          "absolute_difference": 0.0,
+          "roundoff_bound": 7.105427357601002e-15,
+          "bitwise_equal": true
+        },
+        {
+          "name": "dual.objective",
+          "absolute_difference": 0.0,
+          "roundoff_bound": 7.105427357601002e-15,
+          "bitwise_equal": true
+        }
+      ],
+      "scope": "Actual CI coefficient matrices with saved vectors, re-audited locally; full CI host rerun remains a separate workflow record."
+    },
+    {
+      "name": "D05A_normalized_objective",
+      "all_original_gate_decisions_unchanged": true,
+      "physical_pass": false,
+      "original_dual_guide_accepted": true,
+      "metrics": [
+        {
+          "name": "objective",
+          "absolute_difference": 0.0,
+          "roundoff_bound": 1.8354412194483596e-14,
+          "bitwise_equal": true
+        },
+        {
+          "name": "value",
+          "absolute_difference": 0.0,
+          "roundoff_bound": 1.8354412194483565e-14,
+          "bitwise_equal": true
+        },
+        {
+          "name": "eq_error",
+          "absolute_difference": 0.0,
+          "roundoff_bound": 7.105427357601002e-15,
+          "bitwise_equal": true
+        },
+        {
+          "name": "cone_error",
+          "absolute_difference": 0.0,
+          "roundoff_bound": 7.105427357601002e-15,
+          "bitwise_equal": true
+        },
+        {
+          "name": "dual_objective",
+          "absolute_difference": 0.0,
+          "roundoff_bound": 1.8354412194508e-14,
+          "bitwise_equal": true
+        },
+        {
+          "name": "dual_stationarity",
+          "absolute_difference": 0.0,
+          "roundoff_bound": 7.105427357601002e-15,
+          "bitwise_equal": true
+        },
+        {
+          "name": "dual_cone_error",
+          "absolute_difference": 0.0,
+          "roundoff_bound": 7.105427357601002e-15,
+          "bitwise_equal": true
+        },
+        {
+          "name": "dual_gap",
+          "absolute_difference": 0.0,
+          "roundoff_bound": 7.105427357601002e-15,
+          "bitwise_equal": true
+        },
+        {
+          "name": "dual.stationarity",
+          "absolute_difference": 0.0,
+          "roundoff_bound": 7.105427357601002e-15,
+          "bitwise_equal": true
+        },
+        {
+          "name": "dual.cone_error",
+          "absolute_difference": 0.0,
+          "roundoff_bound": 7.105427357601002e-15,
+          "bitwise_equal": true
+        },
+        {
+          "name": "dual.objective",
+          "absolute_difference": 0.0,
+          "roundoff_bound": 1.8354412194508e-14,
+          "bitwise_equal": true
+        }
+      ],
+      "scope": "Actual CI coefficient matrices with saved vectors, re-audited locally; full CI host rerun remains a separate workflow record."
+    },
+    {
+      "name": "D05A_velocity_units",
+      "all_original_gate_decisions_unchanged": true,
+      "physical_pass": true,
+      "original_dual_guide_accepted": true,
+      "metrics": [
+        {
+          "name": "objective",
+          "absolute_difference": 4.440892098500626e-16,
+          "roundoff_bound": 1.8354448395893903e-14,
+          "bitwise_equal": false
+        },
+        {
+          "name": "value",
+          "absolute_difference": 0.0,
+          "roundoff_bound": 1.8354448395893884e-14,
+          "bitwise_equal": true
+        },
+        {
+          "name": "eq_error",
+          "absolute_difference": 0.0,
+          "roundoff_bound": 7.105427357601002e-15,
+          "bitwise_equal": true
+        },
+        {
+          "name": "cone_error",
+          "absolute_difference": 0.0,
+          "roundoff_bound": 7.105427357601002e-15,
+          "bitwise_equal": true
+        },
+        {
+          "name": "dual_objective",
+          "absolute_difference": 0.0,
+          "roundoff_bound": 1.8354448395891366e-14,
+          "bitwise_equal": true
+        },
+        {
+          "name": "dual_stationarity",
+          "absolute_difference": 0.0,
+          "roundoff_bound": 7.105427357601002e-15,
+          "bitwise_equal": true
+        },
+        {
+          "name": "dual_cone_error",
+          "absolute_difference": 0.0,
+          "roundoff_bound": 7.105427357601002e-15,
+          "bitwise_equal": true
+        },
+        {
+          "name": "dual_gap",
+          "absolute_difference": 4.440892098500626e-16,
+          "roundoff_bound": 7.105427357601002e-15,
+          "bitwise_equal": false
+        },
+        {
+          "name": "dual.stationarity",
+          "absolute_difference": 0.0,
+          "roundoff_bound": 7.105427357601002e-15,
+          "bitwise_equal": true
+        },
+        {
+          "name": "dual.cone_error",
+          "absolute_difference": 0.0,
+          "roundoff_bound": 7.105427357601002e-15,
+          "bitwise_equal": true
+        },
+        {
+          "name": "dual.objective",
+          "absolute_difference": 0.0,
+          "roundoff_bound": 1.8354448395891366e-14,
+          "bitwise_equal": true
+        }
+      ],
+      "scope": "Actual CI coefficient matrices with saved vectors, re-audited locally; full CI host rerun remains a separate workflow record."
+    },
+    {
+      "name": "P02A_affine",
+      "all_original_gate_decisions_unchanged": true,
+      "physical_pass": true,
+      "original_dual_guide_accepted": true,
+      "metrics": [
+        {
+          "name": "objective",
+          "absolute_difference": 0.0,
+          "roundoff_bound": 1.8354448394610322e-14,
+          "bitwise_equal": true
+        },
+        {
+          "name": "value",
+          "absolute_difference": 0.0,
+          "roundoff_bound": 1.8354448394610293e-14,
+          "bitwise_equal": true
+        },
+        {
+          "name": "eq_error",
+          "absolute_difference": 0.0,
+          "roundoff_bound": 7.105427357601002e-15,
+          "bitwise_equal": true
+        },
+        {
+          "name": "cone_error",
+          "absolute_difference": 0.0,
+          "roundoff_bound": 7.105427357601002e-15,
+          "bitwise_equal": true
+        },
+        {
+          "name": "dual_objective",
+          "absolute_difference": 0.0,
+          "roundoff_bound": 1.835444839461e-14,
+          "bitwise_equal": true
+        },
+        {
+          "name": "dual_stationarity",
+          "absolute_difference": 0.0,
+          "roundoff_bound": 7.105427357601002e-15,
+          "bitwise_equal": true
+        },
+        {
+          "name": "dual_cone_error",
+          "absolute_difference": 0.0,
+          "roundoff_bound": 7.105427357601002e-15,
+          "bitwise_equal": true
+        },
+        {
+          "name": "dual_gap",
+          "absolute_difference": 0.0,
+          "roundoff_bound": 7.105427357601002e-15,
+          "bitwise_equal": true
+        },
+        {
+          "name": "dual.stationarity",
+          "absolute_difference": 0.0,
+          "roundoff_bound": 7.105427357601002e-15,
+          "bitwise_equal": true
+        },
+        {
+          "name": "dual.cone_error",
+          "absolute_difference": 0.0,
+          "roundoff_bound": 7.105427357601002e-15,
+          "bitwise_equal": true
+        },
+        {
+          "name": "dual.objective",
+          "absolute_difference": 0.0,
+          "roundoff_bound": 1.835444839461e-14,
+          "bitwise_equal": true
+        }
+      ],
+      "scope": "Actual CI coefficient matrices with saved vectors, re-audited locally; full CI host rerun remains a separate workflow record."
+    },
+    {
+      "name": "P02A_none",
+      "all_original_gate_decisions_unchanged": true,
+      "physical_pass": true,
+      "original_dual_guide_accepted": true,
+      "metrics": [
+        {
+          "name": "objective",
+          "absolute_difference": 0.0,
+          "roundoff_bound": 1.835444838557292e-14,
+          "bitwise_equal": true
+        },
+        {
+          "name": "value",
+          "absolute_difference": 0.0,
+          "roundoff_bound": 1.8354448385572923e-14,
+          "bitwise_equal": true
+        },
+        {
+          "name": "eq_error",
+          "absolute_difference": 0.0,
+          "roundoff_bound": 7.105427357601002e-15,
+          "bitwise_equal": true
+        },
+        {
+          "name": "cone_error",
+          "absolute_difference": 0.0,
+          "roundoff_bound": 7.105427357601002e-15,
+          "bitwise_equal": true
+        },
+        {
+          "name": "dual_objective",
+          "absolute_difference": 0.0,
+          "roundoff_bound": 1.8354448385570847e-14,
+          "bitwise_equal": true
+        },
+        {
+          "name": "dual_stationarity",
+          "absolute_difference": 0.0,
+          "roundoff_bound": 7.105427357601002e-15,
+          "bitwise_equal": true
+        },
+        {
+          "name": "dual_cone_error",
+          "absolute_difference": 0.0,
+          "roundoff_bound": 7.105427357601002e-15,
+          "bitwise_equal": true
+        },
+        {
+          "name": "dual_gap",
+          "absolute_difference": 0.0,
+          "roundoff_bound": 7.105427357601002e-15,
+          "bitwise_equal": true
+        },
+        {
+          "name": "dual.stationarity",
+          "absolute_difference": 0.0,
+          "roundoff_bound": 7.105427357601002e-15,
+          "bitwise_equal": true
+        },
+        {
+          "name": "dual.cone_error",
+          "absolute_difference": 0.0,
+          "roundoff_bound": 7.105427357601002e-15,
+          "bitwise_equal": true
+        },
+        {
+          "name": "dual.objective",
+          "absolute_difference": 0.0,
+          "roundoff_bound": 1.8354448385570847e-14,
+          "bitwise_equal": true
+        }
+      ],
+      "scope": "Actual CI coefficient matrices with saved vectors, re-audited locally; full CI host rerun remains a separate workflow record."
+    }
+  ],
+  "CPU_dispatch_replays": {
+    "DEFAULT": {
+      "path": "reports/portability/DEFAULT_REPLAY.json",
+      "sha256": "4ed41899cee939c0bab28fd7d6402a7862e42e5f539170bc2a07fcd3e9c4b834",
+      "status": "PASS",
+      "optimizer_calls": 0,
+      "raw_program_digests": {
+        "P02A_none": "a869e390bbcb585b1706844dc1f8b5d86924675912548b39fa966fc1c681bf62",
+        "P02A_affine": "a869e390bbcb585b1706844dc1f8b5d86924675912548b39fa966fc1c681bf62",
+        "D05A_none": "fc17d46079603bf552f4e987cb9bcb282d66e8678702bb09765ca8e87dc3c213",
+        "D05A_affine": "fc17d46079603bf552f4e987cb9bcb282d66e8678702bb09765ca8e87dc3c213",
+        "D05A_normalized_objective": "fc17d46079603bf552f4e987cb9bcb282d66e8678702bb09765ca8e87dc3c213",
+        "D05A_velocity_units": "fc17d46079603bf552f4e987cb9bcb282d66e8678702bb09765ca8e87dc3c213"
+      },
+      "raw_mismatch_count": 0
+    },
+    "SANDYBRIDGE": {
+      "path": "reports/portability/SANDYBRIDGE_REPLAY.json",
+      "sha256": "c69c7ec32c10c5e015f7f7ab98cc2b2f35b0a0f38bcadc73a5d14faddd1b7af0",
+      "status": "PASS",
+      "optimizer_calls": 0,
+      "raw_program_digests": {
+        "P02A_none": "a6a0a86f3901c0fde0b5776a2f93cb5eb8b5971d036c4d53f0ff7544a8e5de83",
+        "P02A_affine": "a6a0a86f3901c0fde0b5776a2f93cb5eb8b5971d036c4d53f0ff7544a8e5de83",
+        "D05A_none": "94130390430056c4a230d59e6b6afdd65e282004560a805fc87c1ea02dc3ea52",
+        "D05A_affine": "94130390430056c4a230d59e6b6afdd65e282004560a805fc87c1ea02dc3ea52",
+        "D05A_normalized_objective": "94130390430056c4a230d59e6b6afdd65e282004560a805fc87c1ea02dc3ea52",
+        "D05A_velocity_units": "94130390430056c4a230d59e6b6afdd65e282004560a805fc87c1ea02dc3ea52"
+      },
+      "raw_mismatch_count": 6
+    },
+    "NEHALEM": {
+      "path": "reports/portability/NEHALEM_REPLAY.json",
+      "sha256": "65f9de5ade9c110a833aa7d0662a15d9f12b934b85857535e8c422be304f5d38",
+      "status": "PASS",
+      "optimizer_calls": 0,
+      "raw_program_digests": {
+        "P02A_none": "a6a0a86f3901c0fde0b5776a2f93cb5eb8b5971d036c4d53f0ff7544a8e5de83",
+        "P02A_affine": "a6a0a86f3901c0fde0b5776a2f93cb5eb8b5971d036c4d53f0ff7544a8e5de83",
+        "D05A_none": "94130390430056c4a230d59e6b6afdd65e282004560a805fc87c1ea02dc3ea52",
+        "D05A_affine": "94130390430056c4a230d59e6b6afdd65e282004560a805fc87c1ea02dc3ea52",
+        "D05A_normalized_objective": "94130390430056c4a230d59e6b6afdd65e282004560a805fc87c1ea02dc3ea52",
+        "D05A_velocity_units": "94130390430056c4a230d59e6b6afdd65e282004560a805fc87c1ea02dc3ea52"
+      },
+      "raw_mismatch_count": 6
+    }
+  },
+  "negative_tests": {
+    "path": "reports/portability/NEGATIVE_CONTROLS.json",
+    "sha256": "0f527d24d4dae9dd078e025d5e47f2f7115acf40be70a9ab2592e7e17c9c6749",
+    "test_count": 16,
+    "status": "PASS"
+  },
+  "coefficient_guard": "Exact CSC structure/shapes/dtypes/integer cones. Finite float64 arrays allow only32*eps*max(1,maxabs(reference)). Reference bytes/SHA/digest bind every old original record.",
+  "audit_value_guard": "Recorded/replayed scalar metric differences allow only32*eps*max(1,abs(recorded metric)); every physical/witness/numerical/dual-sign acceptance flag remains exact.",
+  "physical_thresholds_unchanged": {
+    "primal_and_physical": 1e-07,
+    "original_dual_stationarity": 1e-07,
+    "dual_cone": 1e-08,
+    "original_upper_dual_objective_min": 1.000003
+  },
+  "failure_retained": "Original CI job failed because raw assembly bytes differed, although immutable source/inputs matched. Original producer/core/runs/metadata and first strict verifier remain unchanged; first verifier preserved as reports/VERIFY_MICRO_v1_exact_hash.py.",
+  "fresh_run_behavior": "A recorded digest must equal either the exact frozen reference or the current reconstructed program. Unknown third-host digests without coefficient evidence fail. Actual CI program tests exercise both binding paths without creating a new-solve claim.",
+  "explanation": "Changing only OPENBLAS_CORETYPE to Sandybridge or Nehalem reproduces actual CI raw program digests. np.linalg.norm of two-coordinate edge vectors changes final bits under BLAS dispatch; derived G/cost coefficients change while sparse structure and original acceptance decisions remain identical.",
+  "source_data_unchanged": true,
+  "producer_script_unchanged": true,
+  "comparator_sha256": "5204f04b2b6aba60f39d839e0f03576c9bfa5dde60b283adc9525eefe633ac90",
+  "verifier_sha256": "7c95a4815166ec973a933cf1363b2aaf1337741bd124ba23f35bf92bf6fa2c88",
+  "program_reference_manifest_sha256": "722e7dd1420966df2a0b36e7786a4af8a49f4c0ec33c80a2539d569b431723b3",
+  "analysis_script_sha256": "3229bd84b4e7afb6053049f49a6052f0841f2b03493b7a45d72f2434489f5522"
+}

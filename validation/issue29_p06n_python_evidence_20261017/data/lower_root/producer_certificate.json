@@ -1,0 +1,261 @@
+{
+  "case": "P06N",
+  "mode": "lower",
+  "q": 8,
+  "fs": 0.6767771508826014,
+  "mesh_id": "0b1cffd134d60c92b20ec7480cbbbbfe27695c3a725f6f5d31ec5ca097587cc8",
+  "physical_model_id": "08cc8e73e85408e7a82cbe79b5716ef007cb917d00e021872c40e510b5d17525",
+  "elements": 5966,
+  "source": "P06N_new_lower_known_geometry",
+  "root_complete": true,
+  "mesh_path": "best_lower_mesh.npz",
+  "field_path": "best_lower_field.npz",
+  "audit": {
+    "objective": -1.000154212143018,
+    "value": 1.000154212143018,
+    "eq_error": 1.8078594177239893e-13,
+    "cone_error": 0.0,
+    "audit": {
+      "pass": true,
+      "errors": {
+        "yield": 0.0,
+        "equilibrium": 5.965129381928485e-11,
+        "internal_traction": 2.557398737224048e-13,
+        "boundary_traction": 5.551115123125783e-17
+      },
+      "load": 1.000154212143018,
+      "value": 1.000154212143018
+    },
+    "raw_lower_errors": {
+      "yield": 0.0,
+      "equilibrium": 1.193025876385697e-09,
+      "internal_traction": 5.114797474448096e-12,
+      "boundary_traction": 1.1102230246251565e-15
+    },
+    "physical_pass": true,
+    "witness": true,
+    "dual_objective": -1.0002426998598213,
+    "dual_stationarity": 9.742805834642156e-09,
+    "dual_cone_error": 0.0,
+    "dual_gap": 8.848771680325385e-05,
+    "numerical_gate": false,
+    "reduced_dual_objective": -1.0002426998598213,
+    "reduced_dual_stationarity": 9.742805834642158e-09,
+    "reduced_dual_cone_error": 0.0,
+    "reduced_dual_gap": 8.848771680325385e-05,
+    "reduced_numerical_gate": false,
+    "case": "P06N",
+    "elements": 5966,
+    "fs": 0.6767771508826014,
+    "mode": "lower",
+    "q": 8,
+    "reduction": "affine",
+    "status": "NumericalError",
+    "iterations": 30,
+    "solver_seconds": 26.258012300007977,
+    "build_seconds": 0.3025305999908596,
+    "backend_solve_seconds": 26.4917586,
+    "audit_seconds": 0.6816848999878857,
+    "dual_restore": {
+      "method": "reverse_elimination_graph",
+      "seconds": 0.0883851999824401,
+      "sweeps": 6
+    },
+    "assembly_seconds": 0.020624400000087917,
+    "transform_seconds": 0.0,
+    "original_variables": 107389,
+    "original_equalities": 90753,
+    "variables": 103022,
+    "equalities": 85595,
+    "cones": 35414,
+    "solver_reported_gap": 8.848771680480816e-05,
+    "settings_overrides": {
+      "equilibrate_enable": false,
+      "tol_gap_abs": 1e-13,
+      "tol_gap_rel": 1e-13,
+      "tol_feas": 1e-13,
+      "iterative_refinement_max_iter": 30,
+      "iterative_refinement_abstol": 1e-15,
+      "iterative_refinement_reltol": 1e-15,
+      "time_limit": 30.0
+    },
+    "max_iter": 350,
+    "early": false,
+    "callback_trigger": [],
+    "cone_scaling": true,
+    "primal_polish": {},
+    "end_to_end_seconds": 27.35123739996925,
+    "attempts": [
+      {
+        "status": "NumericalError",
+        "physical_pass": true,
+        "witness": false,
+        "numerical_gate": false,
+        "end_to_end_seconds": 21.974706299981335
+      },
+      {
+        "status": "NumericalError",
+        "physical_pass": true,
+        "witness": false,
+        "numerical_gate": false,
+        "end_to_end_seconds": 22.75844430003781
+      },
+      {
+        "status": "NumericalError",
+        "physical_pass": true,
+        "witness": true,
+        "numerical_gate": false,
+        "end_to_end_seconds": 27.35123739996925
+      }
+    ],
+    "original_dual_recovery_attempts": [
+      {
+        "dual_objective": -1.0008880508113536,
+        "dual_stationarity": 8.010240848399519e-08,
+        "dual_cone_error": 0.0,
+        "reduced_dual_objective": -1.0008880508113536,
+        "reduced_dual_stationarity": 8.010240972286214e-08,
+        "reduced_dual_cone_error": 0.0
+      },
+      {
+        "dual_objective": -1.0008880441235801,
+        "dual_stationarity": 8.009421414989504e-08,
+        "dual_cone_error": 0.0,
+        "reduced_dual_objective": -1.0008880441235801,
+        "reduced_dual_stationarity": 8.009421551629309e-08,
+        "reduced_dual_cone_error": 0.0
+      },
+      {
+        "dual_objective": -1.0002426998598213,
+        "dual_stationarity": 9.742805834642156e-09,
+        "dual_cone_error": 0.0,
+        "reduced_dual_objective": -1.0002426998598213,
+        "reduced_dual_stationarity": 9.742805834642158e-09,
+        "reduced_dual_cone_error": 0.0
+      }
+    ],
+    "search_sign": 1,
+    "discrete_root_search": {
+      "mode": "lower",
+      "root_complete": true,
+      "bracket": [
+        0.6767771508826014,
+        0.6768552758826014
+      ],
+      "bracket_width": 7.812500000003997e-05,
+      "fs_tolerance": 0.0001,
+      "endpoint": 0.6767771508826014,
+      "trials": 10,
+      "seconds": 427.03100620000623,
+      "mesh_id": "0b1cffd134d60c92b20ec7480cbbbbfe27695c3a725f6f5d31ec5ca097587cc8",
+      "physical_model_id": "08cc8e73e85408e7a82cbe79b5716ef007cb917d00e021872c40e510b5d17525",
+      "elements": 5966,
+      "q": 8,
+      "case": "P06N",
+      "policy": "hold_initial",
+      "bracket_signs": [
+        1,
+        -1
+      ],
+      "opposite_numerical_endpoint_is_continuum_bound": false,
+      "budget_exhausted": false,
+      "budget_error": null,
+      "case_budget": {
+        "case_seconds": 450.0,
+        "solve_seconds": 30.0,
+        "elapsed_seconds": 427.43719609998516,
+        "remaining_seconds": 22.562803300010273,
+        "exhausted": false,
+        "expired_at": null,
+        "solver_time_allocations": [
+          {
+            "stage": "P06N_new_lower_known_geometry:LP_attempt_1",
+            "time_limit": 30.0,
+            "elapsed_seconds": 8.488305099977879
+          },
+          {
+            "stage": "P06N_new_lower_known_geometry:LP_attempt_1",
+            "time_limit": 30.0,
+            "elapsed_seconds": 49.87943129998166
+          },
+          {
+            "stage": "P06N_new_lower_known_geometry:LP_attempt_1",
+            "time_limit": 30.0,
+            "elapsed_seconds": 72.92349879999529
+          },
+          {
+            "stage": "P06N_new_lower_known_geometry:LP_attempt_1",
+            "time_limit": 30.0,
+            "elapsed_seconds": 97.57549960000324
+          },
+          {
+            "stage": "P06N_new_lower_known_geometry:LP_attempt_1",
+            "time_limit": 30.0,
+            "elapsed_seconds": 120.65106010000454
+          },
+          {
+            "stage": "P06N_new_lower_known_geometry:LP_attempt_1",
+            "time_limit": 30.0,
+            "elapsed_seconds": 145.96232959997724
+          },
+          {
+            "stage": "P06N_new_lower_known_geometry:LP_attempt_1",
+            "time_limit": 30.0,
+            "elapsed_seconds": 170.66632309998386
+          },
+          {
+            "stage": "P06N_new_lower_known_geometry:LP_attempt_1",
+            "time_limit": 30.0,
+            "elapsed_seconds": 193.4559926999791
+          },
+          {
+            "stage": "P06N_new_lower_known_geometry:LP_attempt_1",
+            "time_limit": 30.0,
+            "elapsed_seconds": 218.0433353999979
+          },
+          {
+            "stage": "P06N_new_lower_known_geometry:LP_attempt_2",
+            "time_limit": 30.0,
+            "elapsed_seconds": 240.09184879998793
+          },
+          {
+            "stage": "P06N_new_lower_known_geometry:LP_attempt_3",
+            "time_limit": 30.0,
+            "elapsed_seconds": 262.9180382999766
+          },
+          {
+            "stage": "P06N_new_lower_known_geometry:LP_attempt_1",
+            "time_limit": 30.0,
+            "elapsed_seconds": 290.4131827999954
+          },
+          {
+            "stage": "P06N_new_lower_known_geometry:LP_attempt_2",
+            "time_limit": 30.0,
+            "elapsed_seconds": 314.38809559997753
+          },
+          {
+            "stage": "P06N_new_lower_known_geometry:LP_attempt_3",
+            "time_limit": 30.0,
+            "elapsed_seconds": 338.33249189998605
+          },
+          {
+            "stage": "P06N_new_lower_known_geometry:LP_attempt_4",
+            "time_limit": 30.0,
+            "elapsed_seconds": 379.4025214999856
+          },
+          {
+            "stage": "P06N_new_lower_known_geometry:original_dual",
+            "time_limit": 30.0,
+            "elapsed_seconds": 396.94604949999484
+          }
+        ],
+        "scope": "cooperative wall deadline; OS watchdog required for in-flight native work"
+      },
+      "proposal_method": "bounded_bisection",
+      "pilot_trial_limit": null,
+      "new_points": 10,
+      "pilot_trial_limit_reached": false,
+      "pilot_stop_reason": null
+    }
+  }
+}

@@ -1,0 +1,66 @@
+name: Issues 28 and 29 Python evidence
+on:
+  pull_request:
+    paths:
+      - 'validation/issue28_d05a_python_analysis_20261017/**'
+      - 'validation/issue29_p06n_python_evidence_20261017/**'
+      - '.github/workflows/issues28-29-python-evidence.yml'
+  workflow_dispatch:
+jobs:
+  saved-vectors-and-diagnostic-packages:
+    runs-on: windows-latest
+    timeout-minutes: 15
+    env:
+      OPENBLAS_NUM_THREADS: '1'
+      OMP_NUM_THREADS: '1'
+      MKL_NUM_THREADS: '1'
+      NUMEXPR_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Install the recorded numerical dependencies
+        run: python -m pip install -r validation/issue29_p06n_python_evidence_20261017/requirements.txt
+      - name: Check dedicated ZIP bytes and CRC
+        run: |
+          python -B -X utf8 validation/issue29_p06n_python_evidence_20261017/PACKAGE.py --check
+          python -B -X utf8 validation/issue28_d05a_python_analysis_20261017/PACKAGE.py --check
+      - name: Reject altered structure, coefficients and unbound recorded programs
+        run: python -B -X utf8 validation/issue28_d05a_python_analysis_20261017/TEST_PORTABLE_AUDIT.py --output "$env:RUNNER_TEMP/D05A_PORTABILITY_NEGATIVE_CONTROLS.json"
+      - name: Reassemble P06N original q8 fields and upper original dual
+        run: python -B -X utf8 validation/issue29_p06n_python_evidence_20261017/VERIFY.py --output "$env:RUNNER_TEMP/P06N_REAUDIT.json"
+      - name: Reaudit all six D05A scaling diagnostics without optimization
+        run: python -B -X utf8 validation/issue28_d05a_python_analysis_20261017/VERIFY_MICRO.py --output "$env:RUNNER_TEMP/D05A_MICRO_REAUDIT.json"
+      - name: Reaudit D05A historical pair and raw dual acceptance and rejection
+        run: python -B -X utf8 validation/issue28_d05a_python_analysis_20261017/VERIFY_HISTORICAL.py --output "$env:RUNNER_TEMP/D05A_HISTORICAL_REAUDIT.json"
+      - name: Capture original assemblies if a replay fails
+        if: failure()
+        run: |
+          @'
+          import json, os, platform, sys
+          from pathlib import Path
+          sys.path.insert(0, str(Path('validation/issue28_d05a_python_analysis_20261017').resolve()))
+          from run_fixed_point_experiment import core, frozen_hashes, load_model, program_digest
+          report = dict(python=sys.version, platform=platform.platform(), numpy=core.np.__version__, scipy=__import__('scipy').__version__, source_hashes=frozen_hashes(), programs={})
+          for case in ('P02A', 'D05A'):
+              mesh, _ = load_model(case)
+              pr = core.Prepared(mesh, 1., 'upper', 8, reduction='none')
+              arrays = {}
+              for i, value in enumerate(pr.original):
+                  if core.sparse.issparse(value):
+                      for field in ('data', 'indices', 'indptr'):
+                          arrays[f'{i}_{field}'] = getattr(value, field)
+                      arrays[f'{i}_shape'] = value.shape
+                  else:
+                      arrays[str(i)] = core.np.asarray(value)
+              core.np.savez_compressed(Path(os.environ['RUNNER_TEMP']) / f'micro-programs-{case}.npz', **arrays)
+              report['programs'][case] = program_digest(pr.original)
+          (Path(os.environ['RUNNER_TEMP']) / 'micro-programs-environment.json').write_text(json.dumps(report, indent=2), encoding='utf-8')
+          print(json.dumps(report))
+          '@ | python -B -X utf8 -
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: micro-replay-assembly-diagnostics
+          path: ${{ runner.temp }}/micro-programs-*

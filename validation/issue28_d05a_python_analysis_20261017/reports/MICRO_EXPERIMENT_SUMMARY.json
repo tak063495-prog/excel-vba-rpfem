@@ -1,0 +1,281 @@
+{
+  "status": "DIAGNOSTIC_EXPERIMENT_COMPLETE",
+  "scope": "Six bounded fixed-point Clarabel upper-LP comparisons; no Fs root or GAP target claim.",
+  "new_optimizer_calls_final_run": 6,
+  "initial_run_optimizer_calls": 6,
+  "new_optimizer_calls_total_including_harness_failures": 12,
+  "final_run_elapsed_seconds": 9.27507010003319,
+  "per_solve_time_limit_seconds": 20.0,
+  "geometry_elements": 214,
+  "fs": 1.0,
+  "q": 8,
+  "rows": [
+    {
+      "name": "P02A_none",
+      "solver_status": "Solved",
+      "iterations": 22,
+      "solver_seconds": 0.13673909998033196,
+      "original_objective": 2.5831589659330376,
+      "physical_pass": true,
+      "original_work_error": 3.3306690738754696e-15,
+      "original_eq_error": 6.954655875310655e-15,
+      "original_cone_error": 8.18782206158566e-12,
+      "original_dual_stationarity": 1.5847667622637118e-10,
+      "original_dual_cone_error": 0.0,
+      "original_dual_objective": 2.583158965932746,
+      "original_dual_guide_accepted": true,
+      "primal_witness": false,
+      "root_complete": false,
+      "process_exit_code": 0,
+      "result_path": "results\\fixed_point_02\\P02A_none\\result.json",
+      "result_sha256": "a26316349f17cde97a309cf034a896efae30a6f2bd79a920e1be25996a9d4fd9"
+    },
+    {
+      "name": "P02A_affine",
+      "solver_status": "Solved",
+      "iterations": 22,
+      "solver_seconds": 0.12589810002828017,
+      "original_objective": 2.583158967204939,
+      "physical_pass": true,
+      "original_work_error": 6.661338147750939e-16,
+      "original_eq_error": 5.551115123125783e-17,
+      "original_cone_error": 1.1229338706577975e-12,
+      "original_dual_stationarity": 2.1550539130998914e-11,
+      "original_dual_cone_error": 0.0,
+      "original_dual_objective": 2.5831589672048936,
+      "original_dual_guide_accepted": true,
+      "primal_witness": false,
+      "root_complete": false,
+      "process_exit_code": 0,
+      "result_path": "results\\fixed_point_02\\P02A_affine\\result.json",
+      "result_sha256": "d6e99f499183de301c2d95bcda53ef7551c7893299be0b2a767e2c6cdcc6afde"
+    },
+    {
+      "name": "D05A_none",
+      "solver_status": "AlmostSolved",
+      "iterations": 150,
+      "solver_seconds": 0.7677981999586336,
+      "original_objective": 0.22437745784692933,
+      "physical_pass": false,
+      "original_work_error": 0.0027010319765385926,
+      "original_eq_error": 4.935780597425795e-07,
+      "original_cone_error": 4.1860813973806707e-07,
+      "original_dual_stationarity": 5.4001247917767614e-12,
+      "original_dual_cone_error": 0.0,
+      "original_dual_objective": 0.2243777599134169,
+      "original_dual_guide_accepted": false,
+      "primal_witness": false,
+      "root_complete": false,
+      "process_exit_code": 0,
+      "result_path": "results\\fixed_point_02\\D05A_none\\result.json",
+      "result_sha256": "3c6828f60e8766e76a8579595c32711a93482db97077cb277eaf79e38ba57514"
+    },
+    {
+      "name": "D05A_affine",
+      "solver_status": "AlmostSolved",
+      "iterations": 43,
+      "solver_seconds": 0.23178830003598705,
+      "original_objective": 0.11526766645478376,
+      "physical_pass": false,
+      "original_work_error": 0.005288436642586936,
+      "original_eq_error": 4.1646122229596887e-07,
+      "original_cone_error": 1.8628999562207586e-07,
+      "original_dual_stationarity": 1.0048974807830291e-07,
+      "original_dual_cone_error": 0.0,
+      "original_dual_objective": 0.1152679729969494,
+      "original_dual_guide_accepted": false,
+      "primal_witness": false,
+      "root_complete": false,
+      "process_exit_code": 0,
+      "result_path": "results\\fixed_point_02\\D05A_affine\\result.json",
+      "result_sha256": "c232d30810fd6013d83edaa5a09324263c64c82bbd92f8603fd3015f3fef5a11"
+    },
+    {
+      "name": "D05A_normalized_objective",
+      "solver_status": "AlmostSolved",
+      "iterations": 34,
+      "solver_seconds": 0.1870150999748148,
+      "original_objective": 2.5831538724900254,
+      "physical_pass": false,
+      "original_work_error": 1.66721592065322e-06,
+      "original_eq_error": 1.3129225652627405e-10,
+      "original_cone_error": 5.414677688593757e-10,
+      "original_dual_stationarity": 1.9474555301712826e-10,
+      "original_dual_cone_error": 0.0,
+      "original_dual_objective": 2.58315387249346,
+      "original_dual_guide_accepted": true,
+      "primal_witness": false,
+      "root_complete": false,
+      "process_exit_code": 0,
+      "result_path": "results\\fixed_point_02\\D05A_normalized_objective\\result.json",
+      "result_sha256": "163177864b97565727b16dfd2157add9ae253368f91226fcd6a18258ceb165a2"
+    },
+    {
+      "name": "D05A_velocity_units",
+      "solver_status": "AlmostSolved",
+      "iterations": 24,
+      "solver_seconds": 0.17600019997917116,
+      "original_objective": 2.583158967385587,
+      "physical_pass": true,
+      "original_work_error": 6.661338147750939e-16,
+      "original_eq_error": 6.776263578034403e-20,
+      "original_cone_error": 3.471797468382245e-17,
+      "original_dual_stationarity": 6.140354713579654e-08,
+      "original_dual_cone_error": 0.0,
+      "original_dual_objective": 2.5831589673852298,
+      "original_dual_guide_accepted": true,
+      "primal_witness": false,
+      "root_complete": false,
+      "process_exit_code": 0,
+      "result_path": "results\\fixed_point_02\\D05A_velocity_units\\result.json",
+      "result_sha256": "123e13f57f014c2bbefc0110e83d67c13207288c3df5348372bb1b4898cbe65e"
+    }
+  ],
+  "similarity_law": {
+    "base_case": "P02A",
+    "scaled_case": "D05A",
+    "length_scale": 1000.0,
+    "gamma_scale": 0.001,
+    "tri_connectivity_equal": true,
+    "material_ids_equal": true,
+    "coordinates_x1000_max_abs_error": 3.637978807091713e-12,
+    "c_phi_psi_equal": true,
+    "gamma_div1000_equal": true,
+    "upper_original_E_max_abs_error": 2.5673907444456745e-16,
+    "upper_original_b_div1000_max_abs_error": 2.303929616531697e-19,
+    "upper_original_strain_G_div1000_max_abs_error": 6.418476861114186e-17,
+    "upper_original_jump_G_max_abs_error": 4.107825191113079e-15,
+    "upper_original_cost_x1000_max_abs_error": 1.5916157281026244e-12,
+    "q8_cone_layout_equal": true,
+    "primal_similarity_maps": [
+      {
+        "source_route": "none",
+        "original_q8_D05A_audit": {
+          "objective": 2.583158965933038,
+          "value": 2.583158965933039,
+          "eq_error": 6.954655875310655e-18,
+          "cone_error": 2.541348398844986e-15,
+          "audit": {
+            "pass": true,
+            "errors": {
+              "flow": 3.460323127109484e-18,
+              "jump": 2.5413482929658674e-15,
+              "boundary": 6.954655875310655e-18,
+              "work": 2.6645352591003757e-15,
+              "objective": 8.881784197001252e-16
+            },
+            "dissipation": 2.583158965933039,
+            "work": [
+              0.0,
+              0.9999999999999973
+            ],
+            "value": 2.583158965933039
+          },
+          "raw_lower_errors": {},
+          "physical_pass": true,
+          "witness": false,
+          "dual_objective": 2.5831589659327383,
+          "dual_stationarity": 1.584824076417135e-07,
+          "dual_cone_error": 0.0,
+          "dual_gap": 2.9976021664879227e-13,
+          "numerical_gate": false
+        },
+        "original_dual": {
+          "stationarity": 1.584824076417135e-07,
+          "cone_error": 0.0,
+          "objective": 2.5831589659327383,
+          "original_upper_inverse_guide_accepted": false,
+          "thresholds": {
+            "raw_stationarity": 1e-07,
+            "dual_cone": 1e-08,
+            "original_dual_objective_min": 1.000003
+          },
+          "scope": "discrete upper root sign guide only; not a continuum primal bound"
+        },
+        "primal_scale": 0.001,
+        "dual_equality_and_jump_scale": 1000.0,
+        "dual_strain_scale": 1000000.0,
+        "scope": "Exact positive similarity coordinate map; residuals and fields rechecked on original D05A, not accepted by a relative gate."
+      },
+      {
+        "source_route": "affine",
+        "original_q8_D05A_audit": {
+          "objective": 2.583158967204939,
+          "value": 2.5831589672049353,
+          "eq_error": 1.0842021724855044e-19,
+          "cone_error": 3.4590326818671226e-16,
+          "audit": {
+            "pass": true,
+            "errors": {
+              "flow": 4.745723604671538e-19,
+              "jump": 3.4590337406583066e-16,
+              "boundary": 0.0,
+              "work": 8.881784197001252e-16,
+              "objective": 3.552713678800501e-15
+            },
+            "dissipation": 2.5831589672049353,
+            "work": [
+              0.0,
+              1.0000000000000009
+            ],
+            "value": 2.5831589672049353
+          },
+          "raw_lower_errors": {},
+          "physical_pass": true,
+          "witness": false,
+          "dual_objective": 2.583158967204886,
+          "dual_stationarity": 2.1557070795097388e-08,
+          "dual_cone_error": 0.0,
+          "dual_gap": 5.284661597215745e-14,
+          "numerical_gate": true
+        },
+        "original_dual": {
+          "stationarity": 2.1557070795097388e-08,
+          "cone_error": 0.0,
+          "objective": 2.583158967204886,
+          "original_upper_inverse_guide_accepted": true,
+          "thresholds": {
+            "raw_stationarity": 1e-07,
+            "dual_cone": 1e-08,
+            "original_dual_objective_min": 1.000003
+          },
+          "scope": "discrete upper root sign guide only; not a continuum primal bound"
+        },
+        "primal_scale": 0.001,
+        "dual_equality_and_jump_scale": 1000.0,
+        "dual_strain_scale": 1000000.0,
+        "scope": "Exact positive similarity coordinate map; residuals and fields rechecked on original D05A, not accepted by a relative gate."
+      }
+    ]
+  },
+  "zero_dual_analysis": {
+    "D05A_raw_stationarity": 1906.2283737862776,
+    "normalized_cost_stationarity": 1.0,
+    "relative_1e_minus_7_times_maxcost_limit": 0.00019062283737862775,
+    "relative_gate_would_accept_zero": false,
+    "original_dual_objective": -0.0,
+    "required_original_dual_objective_min": 1.000003,
+    "conclusion": "A near-zero dual cannot be made useful just by replacing 1e-7 with 1e-7*max(1,max(abs(cost))). Zero gives normalized stationarity=1 and objective=0, both reject."
+  },
+  "inference": "Coordinate/cone conditioning is a supported experimental suspect; these Clarabel LPs do not identify a bug in the unavailable current 400-element HSD/helper vectors.",
+  "negative_control": "Normalized-objective route obtains a valid original dual sign guide but its primal physical work error is above 1e-7; do not publish that primal as a bound.",
+  "initial_harness_failure": {
+    "run": "results/fixed_point_01",
+    "status": "EXPERIMENT_HAS_ERRORS",
+    "failed_children": [
+      "P02A_affine",
+      "D05A_affine"
+    ],
+    "cause": "New wrapper interpreted unchanged experiment_core.solve third return as restored original dual. It is canonical reduced dual. Explicit pr.restore_dual fixes wrapper; core/source/gates unchanged.",
+    "preserved_original_script": "reports/harness_initial_v1.py",
+    "preserved_script_sha256": "785893fcd938655f0f9b132603f2f4fce1da56f730d6264b0dceaa69df5881ab",
+    "final_script_sha256": "321cbd2ccff30bff4bf084fbdaf8f2de32e26d14864e657c9a894dc4fbdd0718"
+  },
+  "source_data_unchanged": true,
+  "native_or_VBA_executed": false,
+  "new_root_or_gap_target_certified": false,
+  "new_vector_replay_report": "reports/MICRO_REPLAY_RESULT.json",
+  "new_vector_replay_status": "PASS",
+  "new_vector_replay_optimizer_calls": 0,
+  "published_report_vs_actual_reproduction": "Issue28 reports 400-element Fs1 objective2.40457/raw_stat1429.67127988363. This new 214-element diagnostic has original objective near2.583159/maxcost1906.2283737862776. It verifies the scale mechanism, not those exact runtime numbers."
+}

@@ -1,0 +1,1293 @@
+{
+  "schema": "RPFEM_LITERAL_PRESET_ASSIGNMENTS_V1",
+  "created_utc": "2026-10-17T11:38:43.450548+00:00",
+  "repo": "D:\\Work\\rpfem-g20-fix1-20261017",
+  "git_head": "1ab383bbc1764249a4320ca28ed3ac6682c8fbac",
+  "source": {
+    "path": "versions/G1R20_Fix4/src/vba/RPX_UI.bas",
+    "bytes": 39813,
+    "sha256": "1c68869505a589889e5585e8dcaf308c59fbdc3ff33c0fe258dfef4f192d471a"
+  },
+  "reference_sources": [
+    {
+      "path": "versions/G1R20_Fix4/src/vba/RPX_UI.bas",
+      "bytes": 39813,
+      "sha256": "1c68869505a589889e5585e8dcaf308c59fbdc3ff33c0fe258dfef4f192d471a"
+    },
+    {
+      "path": "versions/G1R20_Fix4/src/vba/RPX_Adapt.bas",
+      "bytes": 124244,
+      "sha256": "5ffcd094983b63bf0e39a74ee90ac9966f7f85b4aa3a4c46374cb7b8573a5678"
+    },
+    {
+      "path": "versions/G1R20_Fix4/src/vba/RPX_AccuracyNative.bas",
+      "bytes": 75871,
+      "sha256": "f5b206b220371076248734f0221bee5c9f5162e8c25f57134a20257c5f7049be"
+    },
+    {
+      "path": "versions/G1R20_Fix4/src/vba/RPX_Fs.bas",
+      "bytes": 53210,
+      "sha256": "6b6b91e759dff8a589d4dc4cf28f9e57747020cecf9414c1cb00f39c24b7885a"
+    },
+    {
+      "path": "versions/G1R20_Fix4/src/vba/RPX_Robust.bas",
+      "bytes": 6122,
+      "sha256": "b53c71817f688da2456af74dcd1c7d52cd66eae1bdc7af43c2b20076cd347117"
+    },
+    {
+      "path": "validation/G1R19_python26_20261016/python/accuracy_driver.py",
+      "bytes": 36188,
+      "sha256": "6dc57380371a575c5f73425c0cecd77a47cb6e41e34f682e8c431874f39bdcb3"
+    },
+    {
+      "path": "validation/G1R19_python26_20261016/python/experiment_core.py",
+      "bytes": 41505,
+      "sha256": "9a9e60b6d69ba4008ea89608f433bb716b433436715c45566bd209418ee9238e"
+    },
+    {
+      "path": "validation/G1R19_python26_dual_linear_repair_20261016/G1R20_RECIPE.md",
+      "bytes": 10214,
+      "sha256": "0a6eb21782bbae4c11b3bc8a3f935b45f5471e6a3f9ccb93eba81f55c67ae39c"
+    },
+    {
+      "path": "versions/G1R20/README_JA.md",
+      "bytes": 3628,
+      "sha256": "5d80ff421eadf7c9e8b5a165f7a848b5b52939bd99c721969a23c30ec5e3d7d5"
+    },
+    {
+      "path": "versions/G1R20/TEST_RESULTS.md",
+      "bytes": 5886,
+      "sha256": "ae13ed0e8207bd0deab12d03c0ed48c4b46994c83f50edc3a09cf14fde878bee"
+    }
+  ],
+  "extractor": {
+    "path": "D:\\Work\\rpfem_issue29_review_20261017\\extract_preset_assignments.py",
+    "bytes": 6045,
+    "sha256": "9b9e2b654b498504af69919eb58fa064c78401b5a58d5e47710ea5408fa64095"
+  },
+  "scope": "Literal AccuracySet assignments and explicit preset calls only; no Excel, no solve.",
+  "limitations": [
+    "EnsureSettingRow/EnsureG1R18Settings only create missing settings; their conditional effects are not executed.",
+    "Existing workbook settings not explicitly assigned by these presets may remain in effect.",
+    "This table does not prove the settings actually used by an Issue #29 Excel session."
+  ],
+  "profiles": {
+    "RPX_AccuracyPreset": {
+      "final_assignments": {
+        "ACCURACY_DLL_CONE_SCALING": 1,
+        "ACCURACY_DLL_DUAL_SECONDS": 20,
+        "ACCURACY_DLL_RECOVERY": 1,
+        "ACCURACY_DLL_SECONDS": 120,
+        "ADAPT": 1,
+        "ADAPT_ACCURACY_CAP": 24000,
+        "ADAPT_ACCURACY_ROUNDS": 8,
+        "ADAPT_CERT_QUADRATURE": 8,
+        "ADAPT_LOWER_FAN_ROUNDS": 1,
+        "ADAPT_LOWER_TARGET": 4000,
+        "C0_AUTO": 0,
+        "CYCLES": 8,
+        "FS_TOL": 0.0001,
+        "GAP": 0.02,
+        "HSD_SOLVE_SECONDS": 300,
+        "MODE": "Fs",
+        "QUADRATURE": 8,
+        "RAW_LOWER_AUDIT": 1,
+        "TARGET": 1000
+      },
+      "last_assignment_source": {
+        "ACCURACY_DLL_CONE_SCALING": {
+          "procedure": "RPX_AccuracyPreset",
+          "line": 496
+        },
+        "ACCURACY_DLL_DUAL_SECONDS": {
+          "procedure": "RPX_AccuracyPreset",
+          "line": 495
+        },
+        "ACCURACY_DLL_RECOVERY": {
+          "procedure": "RPX_AccuracyPreset",
+          "line": 495
+        },
+        "ACCURACY_DLL_SECONDS": {
+          "procedure": "RPX_AccuracyPreset",
+          "line": 495
+        },
+        "ADAPT": {
+          "procedure": "RPX_AccuracyPreset",
+          "line": 492
+        },
+        "ADAPT_ACCURACY_CAP": {
+          "procedure": "RPX_AccuracyPreset",
+          "line": 493
+        },
+        "ADAPT_ACCURACY_ROUNDS": {
+          "procedure": "RPX_AccuracyPreset",
+          "line": 493
+        },
+        "ADAPT_CERT_QUADRATURE": {
+          "procedure": "RPX_AccuracyPreset",
+          "line": 494
+        },
+        "ADAPT_LOWER_FAN_ROUNDS": {
+          "procedure": "RPX_AccuracyPreset",
+          "line": 494
+        },
+        "ADAPT_LOWER_TARGET": {
+          "procedure": "RPX_AccuracyPreset",
+          "line": 494
+        },
+        "C0_AUTO": {
+          "procedure": "RPX_AccuracyPreset",
+          "line": 492
+        },
+        "CYCLES": {
+          "procedure": "RPX_AccuracyPreset",
+          "line": 492
+        },
+        "FS_TOL": {
+          "procedure": "RPX_AccuracyPreset",
+          "line": 491
+        },
+        "GAP": {
+          "procedure": "RPX_AccuracyPreset",
+          "line": 491
+        },
+        "HSD_SOLVE_SECONDS": {
+          "procedure": "RPX_AccuracyPreset",
+          "line": 496
+        },
+        "MODE": {
+          "procedure": "RPX_AccuracyPreset",
+          "line": 491
+        },
+        "QUADRATURE": {
+          "procedure": "RPX_AccuracyPreset",
+          "line": 491
+        },
+        "RAW_LOWER_AUDIT": {
+          "procedure": "RPX_AccuracyPreset",
+          "line": 492
+        },
+        "TARGET": {
+          "procedure": "RPX_AccuracyPreset",
+          "line": 491
+        }
+      },
+      "ordered_assignments": [
+        {
+          "key": "MODE",
+          "value": "Fs",
+          "procedure": "RPX_AccuracyPreset",
+          "line": 491
+        },
+        {
+          "key": "TARGET",
+          "value": 1000,
+          "procedure": "RPX_AccuracyPreset",
+          "line": 491
+        },
+        {
+          "key": "QUADRATURE",
+          "value": 8,
+          "procedure": "RPX_AccuracyPreset",
+          "line": 491
+        },
+        {
+          "key": "FS_TOL",
+          "value": 0.0001,
+          "procedure": "RPX_AccuracyPreset",
+          "line": 491
+        },
+        {
+          "key": "GAP",
+          "value": 0.02,
+          "procedure": "RPX_AccuracyPreset",
+          "line": 491
+        },
+        {
+          "key": "ADAPT",
+          "value": 1,
+          "procedure": "RPX_AccuracyPreset",
+          "line": 492
+        },
+        {
+          "key": "CYCLES",
+          "value": 8,
+          "procedure": "RPX_AccuracyPreset",
+          "line": 492
+        },
+        {
+          "key": "RAW_LOWER_AUDIT",
+          "value": 1,
+          "procedure": "RPX_AccuracyPreset",
+          "line": 492
+        },
+        {
+          "key": "C0_AUTO",
+          "value": 0,
+          "procedure": "RPX_AccuracyPreset",
+          "line": 492
+        },
+        {
+          "key": "ADAPT_ACCURACY_CAP",
+          "value": 24000,
+          "procedure": "RPX_AccuracyPreset",
+          "line": 493
+        },
+        {
+          "key": "ADAPT_ACCURACY_ROUNDS",
+          "value": 8,
+          "procedure": "RPX_AccuracyPreset",
+          "line": 493
+        },
+        {
+          "key": "ADAPT_LOWER_TARGET",
+          "value": 4000,
+          "procedure": "RPX_AccuracyPreset",
+          "line": 494
+        },
+        {
+          "key": "ADAPT_LOWER_FAN_ROUNDS",
+          "value": 1,
+          "procedure": "RPX_AccuracyPreset",
+          "line": 494
+        },
+        {
+          "key": "ADAPT_CERT_QUADRATURE",
+          "value": 8,
+          "procedure": "RPX_AccuracyPreset",
+          "line": 494
+        },
+        {
+          "key": "ACCURACY_DLL_RECOVERY",
+          "value": 1,
+          "procedure": "RPX_AccuracyPreset",
+          "line": 495
+        },
+        {
+          "key": "ACCURACY_DLL_SECONDS",
+          "value": 120,
+          "procedure": "RPX_AccuracyPreset",
+          "line": 495
+        },
+        {
+          "key": "ACCURACY_DLL_DUAL_SECONDS",
+          "value": 20,
+          "procedure": "RPX_AccuracyPreset",
+          "line": 495
+        },
+        {
+          "key": "ACCURACY_DLL_CONE_SCALING",
+          "value": 1,
+          "procedure": "RPX_AccuracyPreset",
+          "line": 496
+        },
+        {
+          "key": "HSD_SOLVE_SECONDS",
+          "value": 300,
+          "procedure": "RPX_AccuracyPreset",
+          "line": 496
+        }
+      ]
+    },
+    "RPX_Speed2pctPreset": {
+      "final_assignments": {
+        "ACCURACY_DLL_CONE_SCALING": 1,
+        "ACCURACY_DLL_DUAL_LINEAR_REPAIR": 0,
+        "ACCURACY_DLL_DUAL_REGULARIZATION": 0,
+        "ACCURACY_DLL_DUAL_SECONDS": 20,
+        "ACCURACY_DLL_RECOVERY": 1,
+        "ACCURACY_DLL_SECONDS": 120,
+        "ACCURACY_DLL_UPPER_RECENTER": 0,
+        "ADAPT": 1,
+        "ADAPT_ACCURACY_CAP": 24000,
+        "ADAPT_ACCURACY_ROUNDS": 8,
+        "ADAPT_BALANCED_LOWER_TARGET": 0,
+        "ADAPT_C0_WEDGE_AUTO": 1,
+        "ADAPT_CERT_QUADRATURE": 8,
+        "ADAPT_LOWER_FAN_ROUNDS": 1,
+        "ADAPT_LOWER_TARGET": 4000,
+        "ADAPT_PRECISION_FROM_START": 1,
+        "ADAPT_UPPER_FLOW_PASSES": 0,
+        "C0_AUTO": 0,
+        "CYCLES": 8,
+        "DIRECT_DLL": 1,
+        "DIRECT_DLL_SECONDS": 5,
+        "FS_TERMINAL_SCHEDULE": 0,
+        "FS_TOL": 0.0001,
+        "GAP": 0.02,
+        "HSD_SOLVE_SECONDS": 300,
+        "MODE": "Fs",
+        "QUADRATURE": 8,
+        "RAW_LOWER_AUDIT": 1,
+        "TARGET": 1000
+      },
+      "last_assignment_source": {
+        "ACCURACY_DLL_CONE_SCALING": {
+          "procedure": "RPX_AccuracyPreset",
+          "line": 496
+        },
+        "ACCURACY_DLL_DUAL_LINEAR_REPAIR": {
+          "procedure": "RPX_Speed2pctPreset",
+          "line": 523
+        },
+        "ACCURACY_DLL_DUAL_REGULARIZATION": {
+          "procedure": "RPX_Speed2pctPreset",
+          "line": 523
+        },
+        "ACCURACY_DLL_DUAL_SECONDS": {
+          "procedure": "RPX_Speed2pctPreset",
+          "line": 524
+        },
+        "ACCURACY_DLL_RECOVERY": {
+          "procedure": "RPX_AccuracyPreset",
+          "line": 495
+        },
+        "ACCURACY_DLL_SECONDS": {
+          "procedure": "RPX_Speed2pctPreset",
+          "line": 524
+        },
+        "ACCURACY_DLL_UPPER_RECENTER": {
+          "procedure": "RPX_Speed2pctPreset",
+          "line": 522
+        },
+        "ADAPT": {
+          "procedure": "RPX_AccuracyPreset",
+          "line": 492
+        },
+        "ADAPT_ACCURACY_CAP": {
+          "procedure": "RPX_AccuracyPreset",
+          "line": 493
+        },
+        "ADAPT_ACCURACY_ROUNDS": {
+          "procedure": "RPX_AccuracyPreset",
+          "line": 493
+        },
+        "ADAPT_BALANCED_LOWER_TARGET": {
+          "procedure": "RPX_Speed2pctPreset",
+          "line": 521
+        },
+        "ADAPT_C0_WEDGE_AUTO": {
+          "procedure": "RPX_Speed2pctPreset",
+          "line": 520
+        },
+        "ADAPT_CERT_QUADRATURE": {
+          "procedure": "RPX_AccuracyPreset",
+          "line": 494
+        },
+        "ADAPT_LOWER_FAN_ROUNDS": {
+          "procedure": "RPX_AccuracyPreset",
+          "line": 494
+        },
+        "ADAPT_LOWER_TARGET": {
+          "procedure": "RPX_AccuracyPreset",
+          "line": 494
+        },
+        "ADAPT_PRECISION_FROM_START": {
+          "procedure": "RPX_Speed2pctPreset",
+          "line": 519
+        },
+        "ADAPT_UPPER_FLOW_PASSES": {
+          "procedure": "RPX_Speed2pctPreset",
+          "line": 521
+        },
+        "C0_AUTO": {
+          "procedure": "RPX_AccuracyPreset",
+          "line": 492
+        },
+        "CYCLES": {
+          "procedure": "RPX_AccuracyPreset",
+          "line": 492
+        },
+        "DIRECT_DLL": {
+          "procedure": "RPX_Speed2pctPreset",
+          "line": 518
+        },
+        "DIRECT_DLL_SECONDS": {
+          "procedure": "RPX_Speed2pctPreset",
+          "line": 524
+        },
+        "FS_TERMINAL_SCHEDULE": {
+          "procedure": "RPX_Speed2pctPreset",
+          "line": 521
+        },
+        "FS_TOL": {
+          "procedure": "RPX_AccuracyPreset",
+          "line": 491
+        },
+        "GAP": {
+          "procedure": "RPX_Speed2pctPreset",
+          "line": 518
+        },
+        "HSD_SOLVE_SECONDS": {
+          "procedure": "RPX_AccuracyPreset",
+          "line": 496
+        },
+        "MODE": {
+          "procedure": "RPX_AccuracyPreset",
+          "line": 491
+        },
+        "QUADRATURE": {
+          "procedure": "RPX_AccuracyPreset",
+          "line": 491
+        },
+        "RAW_LOWER_AUDIT": {
+          "procedure": "RPX_AccuracyPreset",
+          "line": 492
+        },
+        "TARGET": {
+          "procedure": "RPX_AccuracyPreset",
+          "line": 491
+        }
+      },
+      "ordered_assignments": [
+        {
+          "key": "MODE",
+          "value": "Fs",
+          "procedure": "RPX_AccuracyPreset",
+          "line": 491
+        },
+        {
+          "key": "TARGET",
+          "value": 1000,
+          "procedure": "RPX_AccuracyPreset",
+          "line": 491
+        },
+        {
+          "key": "QUADRATURE",
+          "value": 8,
+          "procedure": "RPX_AccuracyPreset",
+          "line": 491
+        },
+        {
+          "key": "FS_TOL",
+          "value": 0.0001,
+          "procedure": "RPX_AccuracyPreset",
+          "line": 491
+        },
+        {
+          "key": "GAP",
+          "value": 0.02,
+          "procedure": "RPX_AccuracyPreset",
+          "line": 491
+        },
+        {
+          "key": "ADAPT",
+          "value": 1,
+          "procedure": "RPX_AccuracyPreset",
+          "line": 492
+        },
+        {
+          "key": "CYCLES",
+          "value": 8,
+          "procedure": "RPX_AccuracyPreset",
+          "line": 492
+        },
+        {
+          "key": "RAW_LOWER_AUDIT",
+          "value": 1,
+          "procedure": "RPX_AccuracyPreset",
+          "line": 492
+        },
+        {
+          "key": "C0_AUTO",
+          "value": 0,
+          "procedure": "RPX_AccuracyPreset",
+          "line": 492
+        },
+        {
+          "key": "ADAPT_ACCURACY_CAP",
+          "value": 24000,
+          "procedure": "RPX_AccuracyPreset",
+          "line": 493
+        },
+        {
+          "key": "ADAPT_ACCURACY_ROUNDS",
+          "value": 8,
+          "procedure": "RPX_AccuracyPreset",
+          "line": 493
+        },
+        {
+          "key": "ADAPT_LOWER_TARGET",
+          "value": 4000,
+          "procedure": "RPX_AccuracyPreset",
+          "line": 494
+        },
+        {
+          "key": "ADAPT_LOWER_FAN_ROUNDS",
+          "value": 1,
+          "procedure": "RPX_AccuracyPreset",
+          "line": 494
+        },
+        {
+          "key": "ADAPT_CERT_QUADRATURE",
+          "value": 8,
+          "procedure": "RPX_AccuracyPreset",
+          "line": 494
+        },
+        {
+          "key": "ACCURACY_DLL_RECOVERY",
+          "value": 1,
+          "procedure": "RPX_AccuracyPreset",
+          "line": 495
+        },
+        {
+          "key": "ACCURACY_DLL_SECONDS",
+          "value": 120,
+          "procedure": "RPX_AccuracyPreset",
+          "line": 495
+        },
+        {
+          "key": "ACCURACY_DLL_DUAL_SECONDS",
+          "value": 20,
+          "procedure": "RPX_AccuracyPreset",
+          "line": 495
+        },
+        {
+          "key": "ACCURACY_DLL_CONE_SCALING",
+          "value": 1,
+          "procedure": "RPX_AccuracyPreset",
+          "line": 496
+        },
+        {
+          "key": "HSD_SOLVE_SECONDS",
+          "value": 300,
+          "procedure": "RPX_AccuracyPreset",
+          "line": 496
+        },
+        {
+          "key": "GAP",
+          "value": 0.02,
+          "procedure": "RPX_Speed2pctPreset",
+          "line": 518
+        },
+        {
+          "key": "DIRECT_DLL",
+          "value": 1,
+          "procedure": "RPX_Speed2pctPreset",
+          "line": 518
+        },
+        {
+          "key": "ADAPT_PRECISION_FROM_START",
+          "value": 1,
+          "procedure": "RPX_Speed2pctPreset",
+          "line": 519
+        },
+        {
+          "key": "ADAPT_C0_WEDGE_AUTO",
+          "value": 1,
+          "procedure": "RPX_Speed2pctPreset",
+          "line": 520
+        },
+        {
+          "key": "ADAPT_BALANCED_LOWER_TARGET",
+          "value": 0,
+          "procedure": "RPX_Speed2pctPreset",
+          "line": 521
+        },
+        {
+          "key": "ADAPT_UPPER_FLOW_PASSES",
+          "value": 0,
+          "procedure": "RPX_Speed2pctPreset",
+          "line": 521
+        },
+        {
+          "key": "FS_TERMINAL_SCHEDULE",
+          "value": 0,
+          "procedure": "RPX_Speed2pctPreset",
+          "line": 521
+        },
+        {
+          "key": "ACCURACY_DLL_UPPER_RECENTER",
+          "value": 0,
+          "procedure": "RPX_Speed2pctPreset",
+          "line": 522
+        },
+        {
+          "key": "ACCURACY_DLL_DUAL_LINEAR_REPAIR",
+          "value": 0,
+          "procedure": "RPX_Speed2pctPreset",
+          "line": 523
+        },
+        {
+          "key": "ACCURACY_DLL_DUAL_REGULARIZATION",
+          "value": 0,
+          "procedure": "RPX_Speed2pctPreset",
+          "line": 523
+        },
+        {
+          "key": "DIRECT_DLL_SECONDS",
+          "value": 5,
+          "procedure": "RPX_Speed2pctPreset",
+          "line": 524
+        },
+        {
+          "key": "ACCURACY_DLL_DUAL_SECONDS",
+          "value": 20,
+          "procedure": "RPX_Speed2pctPreset",
+          "line": 524
+        },
+        {
+          "key": "ACCURACY_DLL_SECONDS",
+          "value": 120,
+          "procedure": "RPX_Speed2pctPreset",
+          "line": 524
+        }
+      ]
+    },
+    "RPX_G20ImprovementPreset": {
+      "final_assignments": {
+        "ACCURACY_DLL_ALPHA": 0.01,
+        "ACCURACY_DLL_CONE_SCALING": 1,
+        "ACCURACY_DLL_DUAL_EQUILIBRATE": 1,
+        "ACCURACY_DLL_DUAL_LINEAR_REPAIR": 1,
+        "ACCURACY_DLL_DUAL_REGULARIZATION": 1e-08,
+        "ACCURACY_DLL_DUAL_SECONDS": 60,
+        "ACCURACY_DLL_EQUILIBRATE": 0,
+        "ACCURACY_DLL_RECOVERY": 1,
+        "ACCURACY_DLL_SECONDS": 90,
+        "ACCURACY_DLL_UPPER_LP_SECONDS": 30,
+        "ACCURACY_DLL_UPPER_RECENTER": 1,
+        "ADAPT": 1,
+        "ADAPT_ACCURACY_CAP": 24000,
+        "ADAPT_ACCURACY_ROUNDS": 8,
+        "ADAPT_BALANCED_LOWER_TARGET": 1000,
+        "ADAPT_C0_WEDGE_AUTO": 1,
+        "ADAPT_CERT_QUADRATURE": 8,
+        "ADAPT_LOWER_FAN_ROUNDS": 0,
+        "ADAPT_LOWER_TARGET": 0,
+        "ADAPT_PRECISION_FROM_START": 1,
+        "ADAPT_UPPER_FLOW_PASSES": 5,
+        "C0_AUTO": 0,
+        "CYCLES": 8,
+        "DIRECT_DLL": 1,
+        "DIRECT_DLL_SECONDS": 30,
+        "FS_TERMINAL_SCHEDULE": 1,
+        "FS_TOL": 0.0001,
+        "GAP": 0.02,
+        "HSD_SOLVE_SECONDS": 300,
+        "MODE": "Fs",
+        "QUADRATURE": 8,
+        "RAW_LOWER_AUDIT": 1,
+        "TARGET": 1000
+      },
+      "last_assignment_source": {
+        "ACCURACY_DLL_ALPHA": {
+          "procedure": "RPX_G20ImprovementPreset",
+          "line": 553
+        },
+        "ACCURACY_DLL_CONE_SCALING": {
+          "procedure": "RPX_AccuracyPreset",
+          "line": 496
+        },
+        "ACCURACY_DLL_DUAL_EQUILIBRATE": {
+          "procedure": "RPX_G20ImprovementPreset",
+          "line": 555
+        },
+        "ACCURACY_DLL_DUAL_LINEAR_REPAIR": {
+          "procedure": "RPX_G20ImprovementPreset",
+          "line": 551
+        },
+        "ACCURACY_DLL_DUAL_REGULARIZATION": {
+          "procedure": "RPX_G20ImprovementPreset",
+          "line": 555
+        },
+        "ACCURACY_DLL_DUAL_SECONDS": {
+          "procedure": "RPX_G20ImprovementPreset",
+          "line": 554
+        },
+        "ACCURACY_DLL_EQUILIBRATE": {
+          "procedure": "RPX_G20ImprovementPreset",
+          "line": 553
+        },
+        "ACCURACY_DLL_RECOVERY": {
+          "procedure": "RPX_AccuracyPreset",
+          "line": 495
+        },
+        "ACCURACY_DLL_SECONDS": {
+          "procedure": "RPX_G20ImprovementPreset",
+          "line": 552
+        },
+        "ACCURACY_DLL_UPPER_LP_SECONDS": {
+          "procedure": "RPX_G20ImprovementPreset",
+          "line": 552
+        },
+        "ACCURACY_DLL_UPPER_RECENTER": {
+          "procedure": "RPX_G20ImprovementPreset",
+          "line": 550
+        },
+        "ADAPT": {
+          "procedure": "RPX_AccuracyPreset",
+          "line": 492
+        },
+        "ADAPT_ACCURACY_CAP": {
+          "procedure": "RPX_AccuracyPreset",
+          "line": 493
+        },
+        "ADAPT_ACCURACY_ROUNDS": {
+          "procedure": "RPX_AccuracyPreset",
+          "line": 493
+        },
+        "ADAPT_BALANCED_LOWER_TARGET": {
+          "procedure": "RPX_G20ImprovementPreset",
+          "line": 547
+        },
+        "ADAPT_C0_WEDGE_AUTO": {
+          "procedure": "RPX_Speed2pctPreset",
+          "line": 520
+        },
+        "ADAPT_CERT_QUADRATURE": {
+          "procedure": "RPX_AccuracyPreset",
+          "line": 494
+        },
+        "ADAPT_LOWER_FAN_ROUNDS": {
+          "procedure": "RPX_G20ImprovementPreset",
+          "line": 548
+        },
+        "ADAPT_LOWER_TARGET": {
+          "procedure": "RPX_G20ImprovementPreset",
+          "line": 548
+        },
+        "ADAPT_PRECISION_FROM_START": {
+          "procedure": "RPX_Speed2pctPreset",
+          "line": 519
+        },
+        "ADAPT_UPPER_FLOW_PASSES": {
+          "procedure": "RPX_G20ImprovementPreset",
+          "line": 547
+        },
+        "C0_AUTO": {
+          "procedure": "RPX_AccuracyPreset",
+          "line": 492
+        },
+        "CYCLES": {
+          "procedure": "RPX_AccuracyPreset",
+          "line": 492
+        },
+        "DIRECT_DLL": {
+          "procedure": "RPX_Speed2pctPreset",
+          "line": 518
+        },
+        "DIRECT_DLL_SECONDS": {
+          "procedure": "RPX_G20ImprovementPreset",
+          "line": 554
+        },
+        "FS_TERMINAL_SCHEDULE": {
+          "procedure": "RPX_G20ImprovementPreset",
+          "line": 549
+        },
+        "FS_TOL": {
+          "procedure": "RPX_AccuracyPreset",
+          "line": 491
+        },
+        "GAP": {
+          "procedure": "RPX_Speed2pctPreset",
+          "line": 518
+        },
+        "HSD_SOLVE_SECONDS": {
+          "procedure": "RPX_AccuracyPreset",
+          "line": 496
+        },
+        "MODE": {
+          "procedure": "RPX_AccuracyPreset",
+          "line": 491
+        },
+        "QUADRATURE": {
+          "procedure": "RPX_AccuracyPreset",
+          "line": 491
+        },
+        "RAW_LOWER_AUDIT": {
+          "procedure": "RPX_AccuracyPreset",
+          "line": 492
+        },
+        "TARGET": {
+          "procedure": "RPX_AccuracyPreset",
+          "line": 491
+        }
+      },
+      "ordered_assignments": [
+        {
+          "key": "MODE",
+          "value": "Fs",
+          "procedure": "RPX_AccuracyPreset",
+          "line": 491
+        },
+        {
+          "key": "TARGET",
+          "value": 1000,
+          "procedure": "RPX_AccuracyPreset",
+          "line": 491
+        },
+        {
+          "key": "QUADRATURE",
+          "value": 8,
+          "procedure": "RPX_AccuracyPreset",
+          "line": 491
+        },
+        {
+          "key": "FS_TOL",
+          "value": 0.0001,
+          "procedure": "RPX_AccuracyPreset",
+          "line": 491
+        },
+        {
+          "key": "GAP",
+          "value": 0.02,
+          "procedure": "RPX_AccuracyPreset",
+          "line": 491
+        },
+        {
+          "key": "ADAPT",
+          "value": 1,
+          "procedure": "RPX_AccuracyPreset",
+          "line": 492
+        },
+        {
+          "key": "CYCLES",
+          "value": 8,
+          "procedure": "RPX_AccuracyPreset",
+          "line": 492
+        },
+        {
+          "key": "RAW_LOWER_AUDIT",
+          "value": 1,
+          "procedure": "RPX_AccuracyPreset",
+          "line": 492
+        },
+        {
+          "key": "C0_AUTO",
+          "value": 0,
+          "procedure": "RPX_AccuracyPreset",
+          "line": 492
+        },
+        {
+          "key": "ADAPT_ACCURACY_CAP",
+          "value": 24000,
+          "procedure": "RPX_AccuracyPreset",
+          "line": 493
+        },
+        {
+          "key": "ADAPT_ACCURACY_ROUNDS",
+          "value": 8,
+          "procedure": "RPX_AccuracyPreset",
+          "line": 493
+        },
+        {
+          "key": "ADAPT_LOWER_TARGET",
+          "value": 4000,
+          "procedure": "RPX_AccuracyPreset",
+          "line": 494
+        },
+        {
+          "key": "ADAPT_LOWER_FAN_ROUNDS",
+          "value": 1,
+          "procedure": "RPX_AccuracyPreset",
+          "line": 494
+        },
+        {
+          "key": "ADAPT_CERT_QUADRATURE",
+          "value": 8,
+          "procedure": "RPX_AccuracyPreset",
+          "line": 494
+        },
+        {
+          "key": "ACCURACY_DLL_RECOVERY",
+          "value": 1,
+          "procedure": "RPX_AccuracyPreset",
+          "line": 495
+        },
+        {
+          "key": "ACCURACY_DLL_SECONDS",
+          "value": 120,
+          "procedure": "RPX_AccuracyPreset",
+          "line": 495
+        },
+        {
+          "key": "ACCURACY_DLL_DUAL_SECONDS",
+          "value": 20,
+          "procedure": "RPX_AccuracyPreset",
+          "line": 495
+        },
+        {
+          "key": "ACCURACY_DLL_CONE_SCALING",
+          "value": 1,
+          "procedure": "RPX_AccuracyPreset",
+          "line": 496
+        },
+        {
+          "key": "HSD_SOLVE_SECONDS",
+          "value": 300,
+          "procedure": "RPX_AccuracyPreset",
+          "line": 496
+        },
+        {
+          "key": "GAP",
+          "value": 0.02,
+          "procedure": "RPX_Speed2pctPreset",
+          "line": 518
+        },
+        {
+          "key": "DIRECT_DLL",
+          "value": 1,
+          "procedure": "RPX_Speed2pctPreset",
+          "line": 518
+        },
+        {
+          "key": "ADAPT_PRECISION_FROM_START",
+          "value": 1,
+          "procedure": "RPX_Speed2pctPreset",
+          "line": 519
+        },
+        {
+          "key": "ADAPT_C0_WEDGE_AUTO",
+          "value": 1,
+          "procedure": "RPX_Speed2pctPreset",
+          "line": 520
+        },
+        {
+          "key": "ADAPT_BALANCED_LOWER_TARGET",
+          "value": 0,
+          "procedure": "RPX_Speed2pctPreset",
+          "line": 521
+        },
+        {
+          "key": "ADAPT_UPPER_FLOW_PASSES",
+          "value": 0,
+          "procedure": "RPX_Speed2pctPreset",
+          "line": 521
+        },
+        {
+          "key": "FS_TERMINAL_SCHEDULE",
+          "value": 0,
+          "procedure": "RPX_Speed2pctPreset",
+          "line": 521
+        },
+        {
+          "key": "ACCURACY_DLL_UPPER_RECENTER",
+          "value": 0,
+          "procedure": "RPX_Speed2pctPreset",
+          "line": 522
+        },
+        {
+          "key": "ACCURACY_DLL_DUAL_LINEAR_REPAIR",
+          "value": 0,
+          "procedure": "RPX_Speed2pctPreset",
+          "line": 523
+        },
+        {
+          "key": "ACCURACY_DLL_DUAL_REGULARIZATION",
+          "value": 0,
+          "procedure": "RPX_Speed2pctPreset",
+          "line": 523
+        },
+        {
+          "key": "DIRECT_DLL_SECONDS",
+          "value": 5,
+          "procedure": "RPX_Speed2pctPreset",
+          "line": 524
+        },
+        {
+          "key": "ACCURACY_DLL_DUAL_SECONDS",
+          "value": 20,
+          "procedure": "RPX_Speed2pctPreset",
+          "line": 524
+        },
+        {
+          "key": "ACCURACY_DLL_SECONDS",
+          "value": 120,
+          "procedure": "RPX_Speed2pctPreset",
+          "line": 524
+        },
+        {
+          "key": "ADAPT_BALANCED_LOWER_TARGET",
+          "value": 1000,
+          "procedure": "RPX_G20ImprovementPreset",
+          "line": 547
+        },
+        {
+          "key": "ADAPT_UPPER_FLOW_PASSES",
+          "value": 5,
+          "procedure": "RPX_G20ImprovementPreset",
+          "line": 547
+        },
+        {
+          "key": "ADAPT_LOWER_TARGET",
+          "value": 0,
+          "procedure": "RPX_G20ImprovementPreset",
+          "line": 548
+        },
+        {
+          "key": "ADAPT_LOWER_FAN_ROUNDS",
+          "value": 0,
+          "procedure": "RPX_G20ImprovementPreset",
+          "line": 548
+        },
+        {
+          "key": "FS_TERMINAL_SCHEDULE",
+          "value": 1,
+          "procedure": "RPX_G20ImprovementPreset",
+          "line": 549
+        },
+        {
+          "key": "ACCURACY_DLL_UPPER_RECENTER",
+          "value": 1,
+          "procedure": "RPX_G20ImprovementPreset",
+          "line": 550
+        },
+        {
+          "key": "ACCURACY_DLL_DUAL_LINEAR_REPAIR",
+          "value": 1,
+          "procedure": "RPX_G20ImprovementPreset",
+          "line": 551
+        },
+        {
+          "key": "ACCURACY_DLL_UPPER_LP_SECONDS",
+          "value": 30,
+          "procedure": "RPX_G20ImprovementPreset",
+          "line": 552
+        },
+        {
+          "key": "ACCURACY_DLL_SECONDS",
+          "value": 90,
+          "procedure": "RPX_G20ImprovementPreset",
+          "line": 552
+        },
+        {
+          "key": "ACCURACY_DLL_ALPHA",
+          "value": 0.01,
+          "procedure": "RPX_G20ImprovementPreset",
+          "line": 553
+        },
+        {
+          "key": "ACCURACY_DLL_EQUILIBRATE",
+          "value": 0,
+          "procedure": "RPX_G20ImprovementPreset",
+          "line": 553
+        },
+        {
+          "key": "DIRECT_DLL_SECONDS",
+          "value": 30,
+          "procedure": "RPX_G20ImprovementPreset",
+          "line": 554
+        },
+        {
+          "key": "ACCURACY_DLL_DUAL_SECONDS",
+          "value": 60,
+          "procedure": "RPX_G20ImprovementPreset",
+          "line": 554
+        },
+        {
+          "key": "ACCURACY_DLL_DUAL_REGULARIZATION",
+          "value": 1e-08,
+          "procedure": "RPX_G20ImprovementPreset",
+          "line": 555
+        },
+        {
+          "key": "ACCURACY_DLL_DUAL_EQUILIBRATE",
+          "value": 1,
+          "procedure": "RPX_G20ImprovementPreset",
+          "line": 555
+        }
+      ]
+    }
+  },
+  "comparison": [
+    {
+      "key": "ACCURACY_DLL_ALPHA",
+      "speed": null,
+      "improvement": 0.01,
+      "different": true
+    },
+    {
+      "key": "ACCURACY_DLL_CONE_SCALING",
+      "speed": 1,
+      "improvement": 1,
+      "different": false
+    },
+    {
+      "key": "ACCURACY_DLL_DUAL_EQUILIBRATE",
+      "speed": null,
+      "improvement": 1,
+      "different": true
+    },
+    {
+      "key": "ACCURACY_DLL_DUAL_LINEAR_REPAIR",
+      "speed": 0,
+      "improvement": 1,
+      "different": true
+    },
+    {
+      "key": "ACCURACY_DLL_DUAL_REGULARIZATION",
+      "speed": 0,
+      "improvement": 1e-08,
+      "different": true
+    },
+    {
+      "key": "ACCURACY_DLL_DUAL_SECONDS",
+      "speed": 20,
+      "improvement": 60,
+      "different": true
+    },
+    {
+      "key": "ACCURACY_DLL_EQUILIBRATE",
+      "speed": null,
+      "improvement": 0,
+      "different": true
+    },
+    {
+      "key": "ACCURACY_DLL_RECOVERY",
+      "speed": 1,
+      "improvement": 1,
+      "different": false
+    },
+    {
+      "key": "ACCURACY_DLL_SECONDS",
+      "speed": 120,
+      "improvement": 90,
+      "different": true
+    },
+    {
+      "key": "ACCURACY_DLL_UPPER_LP_SECONDS",
+      "speed": null,
+      "improvement": 30,
+      "different": true
+    },
+    {
+      "key": "ACCURACY_DLL_UPPER_RECENTER",
+      "speed": 0,
+      "improvement": 1,
+      "different": true
+    },
+    {
+      "key": "ADAPT",
+      "speed": 1,
+      "improvement": 1,
+      "different": false
+    },
+    {
+      "key": "ADAPT_ACCURACY_CAP",
+      "speed": 24000,
+      "improvement": 24000,
+      "different": false
+    },
+    {
+      "key": "ADAPT_ACCURACY_ROUNDS",
+      "speed": 8,
+      "improvement": 8,
+      "different": false
+    },
+    {
+      "key": "ADAPT_BALANCED_LOWER_TARGET",
+      "speed": 0,
+      "improvement": 1000,
+      "different": true
+    },
+    {
+      "key": "ADAPT_C0_WEDGE_AUTO",
+      "speed": 1,
+      "improvement": 1,
+      "different": false
+    },
+    {
+      "key": "ADAPT_CERT_QUADRATURE",
+      "speed": 8,
+      "improvement": 8,
+      "different": false
+    },
+    {
+      "key": "ADAPT_LOWER_FAN_ROUNDS",
+      "speed": 1,
+      "improvement": 0,
+      "different": true
+    },
+    {
+      "key": "ADAPT_LOWER_TARGET",
+      "speed": 4000,
+      "improvement": 0,
+      "different": true
+    },
+    {
+      "key": "ADAPT_PRECISION_FROM_START",
+      "speed": 1,
+      "improvement": 1,
+      "different": false
+    },
+    {
+      "key": "ADAPT_UPPER_FLOW_PASSES",
+      "speed": 0,
+      "improvement": 5,
+      "different": true
+    },
+    {
+      "key": "C0_AUTO",
+      "speed": 0,
+      "improvement": 0,
+      "different": false
+    },
+    {
+      "key": "CYCLES",
+      "speed": 8,
+      "improvement": 8,
+      "different": false
+    },
+    {
+      "key": "DIRECT_DLL",
+      "speed": 1,
+      "improvement": 1,
+      "different": false
+    },
+    {
+      "key": "DIRECT_DLL_SECONDS",
+      "speed": 5,
+      "improvement": 30,
+      "different": true
+    },
+    {
+      "key": "FS_TERMINAL_SCHEDULE",
+      "speed": 0,
+      "improvement": 1,
+      "different": true
+    },
+    {
+      "key": "FS_TOL",
+      "speed": 0.0001,
+      "improvement": 0.0001,
+      "different": false
+    },
+    {
+      "key": "GAP",
+      "speed": 0.02,
+      "improvement": 0.02,
+      "different": false
+    },
+    {
+      "key": "HSD_SOLVE_SECONDS",
+      "speed": 300,
+      "improvement": 300,
+      "different": false
+    },
+    {
+      "key": "MODE",
+      "speed": "Fs",
+      "improvement": "Fs",
+      "different": false
+    },
+    {
+      "key": "QUADRATURE",
+      "speed": 8,
+      "improvement": 8,
+      "different": false
+    },
+    {
+      "key": "RAW_LOWER_AUDIT",
+      "speed": 1,
+      "improvement": 1,
+      "different": false
+    },
+    {
+      "key": "TARGET",
+      "speed": 1000,
+      "improvement": 1000,
+      "different": false
+    }
+  ]
+}

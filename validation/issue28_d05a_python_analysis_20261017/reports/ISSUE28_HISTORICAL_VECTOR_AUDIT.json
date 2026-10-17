@@ -1,0 +1,117 @@
+{
+  "source": "D:\\Work\\rpfem-g20-fix1-20261017\\validation\\G1R19_python26_v3_20261016\\python",
+  "initial_elements": 214,
+  "initial_mesh_id": "7459b33ab144cb52ae084be55ed3f6b808194af7fee2588f9962f5d0bc476ff6",
+  "zero_dual_stationarity": {
+    "4": {
+      "cost_inf": 1906.2283737862776,
+      "work_rhs": [
+        7.874940184445002e-05
+      ],
+      "physical_model_id": "3c270d5c79373766e05b2c3b7da528746236aa01a62325df98ebf25efe728347",
+      "original_program_sha256": "6b7299af071c745b1b7921da4262a2227ca91a47fe13f2edf9c5270cd154350b"
+    },
+    "8": {
+      "cost_inf": 1906.2283737862776,
+      "work_rhs": [
+        7.874940184445002e-05
+      ],
+      "physical_model_id": "3c270d5c79373766e05b2c3b7da528746236aa01a62325df98ebf25efe728347",
+      "original_program_sha256": "fc17d46079603bf552f4e987cb9bcb282d66e8678702bb09765ca8e87dc3c213"
+    }
+  },
+  "full_vector_replays": [
+    {
+      "file": "D:\\Work\\excel-vba-rpfem\\validation\\G1R19_python26_v3_20261016\\results\\D05A_scalar_upper_20261016T111421Z\\cases\\D05A\\scaled_upper_attempts\\upper_attempt_0005.npz",
+      "sha256": "c84ee4192f4ff03d7105ce5e79b47e15534f0026ac652ecaf77f8f0409d9aa99",
+      "metadata_sha256": "e8e3b70a63c76e0d90bc2a7690f20a0934e6532411f458e65751f11c3b3425bf",
+      "fs": 1.3,
+      "elements": 214,
+      "mesh_id": "7459b33ab144cb52ae084be55ed3f6b808194af7fee2588f9962f5d0bc476ff6",
+      "original_program_sha256": "596559008a18ecd2e54213407febd4a0346778007d11046898090c7a4702ab32",
+      "recorded_program_digest_equal": true,
+      "status_recorded": "AlmostSolved",
+      "raw_audit": {
+        "objective": 1.2185187346997666,
+        "value": 1.2185187346997686,
+        "eq_error": 6.390111054421794e-22,
+        "cone_error": 9.807979784714756e-19,
+        "audit": {
+          "pass": true,
+          "errors": {
+            "flow": 3.3109062070292507e-19,
+            "jump": 2.6215669717520595e-19,
+            "boundary": 6.390111054421794e-22,
+            "work": 0.0,
+            "objective": 1.9984014443252818e-15
+          },
+          "dissipation": 1.2185187346997686,
+          "work": [
+            0.0,
+            1.0
+          ],
+          "value": 1.2185187346997686
+        },
+        "raw_lower_errors": {},
+        "physical_pass": true,
+        "witness": false,
+        "dual_objective": 1.2185187346997646,
+        "dual_stationarity": 3.410605131648481e-10,
+        "dual_cone_error": 0.0,
+        "dual_gap": 1.9984014443252818e-15,
+        "numerical_gate": true
+      },
+      "recorded_stationarity": 3.410605131648481e-10,
+      "stationarity_recomputed_equal": true,
+      "restored_full_original_dual_byte_equal": true,
+      "velocity_scale": 7.874940184445002e-05,
+      "solver_calls": 0
+    },
+    {
+      "file": "D:\\Work\\excel-vba-rpfem\\validation\\G1R19_python26_v3_20261016\\results\\D05A_scalar_upper_20261016T111421Z\\cases\\D05A\\scaled_upper_attempts\\upper_attempt_0065.npz",
+      "sha256": "20cb5e468caef1c6420c434fae5841feb0b701121fbfd3c6bf4ce5ffd1027a84",
+      "metadata_sha256": "47736644880a81ef38c240d21584855e474695dc8b3a62b1c2dc3fc2c8c654ce",
+      "fs": 1.3254379799492289,
+      "elements": 1622,
+      "mesh_id": "d957c8a2111c7efeb68411b152cae857439ac62bb8c5123612f337483912df7b",
+      "original_program_sha256": "788c5a5875c365100f2e7ce619a9cb6b159b6230a398d953ffcadf24fcc2db77",
+      "recorded_program_digest_equal": true,
+      "status_recorded": "AlmostSolved",
+      "raw_audit": {
+        "objective": 0.9999449632100554,
+        "value": 0.9999449632100524,
+        "eq_error": 5.594821455873456e-20,
+        "cone_error": 3.7446987784933716e-16,
+        "audit": {
+          "pass": true,
+          "errors": {
+            "flow": 3.900260482072462e-17,
+            "jump": 3.7446995621578903e-16,
+            "boundary": 5.594821455873456e-20,
+            "work": 1.3322676295501878e-15,
+            "objective": 2.9976021664879227e-15
+          },
+          "dissipation": 0.9999449632100524,
+          "work": [
+            0.0,
+            1.0000000000000013
+          ],
+          "value": 0.9999449632100524
+        },
+        "raw_lower_errors": {},
+        "physical_pass": true,
+        "witness": true,
+        "dual_objective": 0.9999449632067199,
+        "dual_stationarity": 3.8948192404575366e-07,
+        "dual_cone_error": 0.0,
+        "dual_gap": 3.3355540551838203e-12,
+        "numerical_gate": false
+      },
+      "recorded_stationarity": 3.8948192404575366e-07,
+      "stationarity_recomputed_equal": true,
+      "restored_full_original_dual_byte_equal": true,
+      "velocity_scale": 8.407700801880601e-05,
+      "solver_calls": 0
+    }
+  ]
+}

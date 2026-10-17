@@ -1,0 +1,10 @@
+{
+  "status": "PASS",
+  "scope": "A one-byte mutation of archived lower physical field must fail closed before assembly or solver creation",
+  "subprocess_returncode": 1,
+  "output_not_created": true,
+  "expected_error_found": true,
+  "stdout": "",
+  "stderr": "Traceback (most recent call last):\n  File \"D:\\Work\\rpfem_fix4_review_20261017\\issue29_p06n_isolated_1792237208183826300\\corrupted_copy\\VERIFY.py\", line 248, in <module>\n    main()\n    ~~~~^^\n  File \"D:\\Work\\rpfem_fix4_review_20261017\\issue29_p06n_isolated_1792237208183826300\\corrupted_copy\\VERIFY.py\", line 112, in main\n    require(path.is_file() and path.stat().st_size == item[\"bytes\"] and sha(path) == item[\"sha256\"],\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n            \"Evidence bytes differ: \" + name)\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"D:\\Work\\rpfem_fix4_review_20261017\\issue29_p06n_isolated_1792237208183826300\\corrupted_copy\\VERIFY.py\", line 30, in require\n    raise ValueError(message)\nValueError: Evidence bytes differ: data/pair/best_lower_field.npz\n",
+  "original_source_bytes_unchanged": true
+}

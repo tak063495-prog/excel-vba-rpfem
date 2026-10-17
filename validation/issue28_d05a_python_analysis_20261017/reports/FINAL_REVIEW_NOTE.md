@@ -1,0 +1,9 @@
+# Publication review correction
+
+The independent final review found that the draft README used an output directory outside the bundle for a fresh six-route experiment. The recorded producer intentionally records result paths relative to its bundle root, so that example would fail at `folder.relative_to(ROOT)` after the first child execution.
+
+The published README now documents that existing constraint and uses `results/fixed_point_new` inside the bundle. The producer, numerical sources, thresholds, manifests, and recorded experiment results are unchanged. The saved-vector verification output may still be outside the bundle.
+
+The initial unpublished ZIP, its checksums, and its successful extracted verification records remain preserved outside the repository in the review workspace. A new distribution ZIP was built after this documentation correction; its actual SHA256 is in PACKAGE.json and SHA256SUMS.txt. No additional optimizer calls were made for this documentation change.
+
+The first two pull-request Windows CI runs then exposed a separate portability defect in the new replay harness: exact raw assembly digests varied with OpenBLAS CPU dispatch, despite identical source/input bytes. The actual CI assemblies were collected, and selecting Sandybridge/Nehalem dispatch locally reproduced the CI digest. Portable adapters now retain exact old-digest reference programs, enforce exact sparse/integer structure and a documented coefficient roundoff comparison, and independently retain the original physical/dual acceptance gates. Original producer, numerical source, vectors, manifests, and initial failed CI records were preserved; this correction makes zero new optimizer calls. The final ZIP includes both accepted and rejected examples and the portability diagnostics/negative controls.

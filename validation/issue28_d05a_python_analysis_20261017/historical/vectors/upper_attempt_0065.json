@@ -1,0 +1,124 @@
+{
+  "objective": 0.9999449632100554,
+  "value": 0.9999449632100524,
+  "eq_error": 5.594821455873456e-20,
+  "cone_error": 3.7446987784933716e-16,
+  "audit": {
+    "pass": true,
+    "errors": {
+      "flow": 3.900260482072462e-17,
+      "jump": 3.7446995621578903e-16,
+      "boundary": 5.594821455873456e-20,
+      "work": 1.3322676295501878e-15,
+      "objective": 2.9976021664879227e-15
+    },
+    "dissipation": 0.9999449632100524,
+    "work": [
+      0.0,
+      1.0000000000000013
+    ],
+    "value": 0.9999449632100524
+  },
+  "raw_lower_errors": {},
+  "physical_pass": true,
+  "witness": true,
+  "dual_objective": 0.9999449632067199,
+  "dual_stationarity": 3.8948192404575366e-07,
+  "dual_cone_error": 0.0,
+  "dual_gap": 3.3355540551838203e-12,
+  "numerical_gate": false,
+  "case": "D05A",
+  "mode": "upper",
+  "q": 8,
+  "fs": 1.3254379799492289,
+  "elements": 1622,
+  "status": "AlmostSolved",
+  "iterations": 40,
+  "solver_seconds": 4.0257938,
+  "build_seconds": 0.19495949998963624,
+  "end_to_end_seconds": 5.354404799989425,
+  "settings_overrides": {
+    "equilibrate_enable": false,
+    "time_limit": 30.0,
+    "tol_gap_abs": 1e-13,
+    "tol_gap_rel": 1e-13,
+    "tol_feas": 1e-13,
+    "iterative_refinement_max_iter": 30,
+    "iterative_refinement_abstol": 1e-15,
+    "iterative_refinement_reltol": 1e-15
+  },
+  "max_iter": 350,
+  "reduced_numerical_gate": false,
+  "dual_restore": {
+    "method": "exact_original_full_space_positive_coordinate_restore"
+  },
+  "original_program_sha256": "788c5a5875c365100f2e7ce619a9cb6b159b6230a398d953ffcadf24fcc2db77",
+  "original_program_unchanged": true,
+  "velocity_coordinate_scale": 8.407700801880601e-05,
+  "common_positive_cone_row_scaling": true,
+  "raw_before_work_normalization": {
+    "objective": 0.9999449632100554,
+    "value": 0.9999449632100524,
+    "eq_error": 5.594821455873456e-20,
+    "cone_error": 3.7446987784933716e-16,
+    "audit": {
+      "pass": true,
+      "errors": {
+        "flow": 3.900260482072462e-17,
+        "jump": 3.7446995621578903e-16,
+        "boundary": 5.594821455873456e-20,
+        "work": 1.3322676295501878e-15,
+        "objective": 2.9976021664879227e-15
+      },
+      "dissipation": 0.9999449632100524,
+      "work": [
+        0.0,
+        1.0000000000000013
+      ],
+      "value": 0.9999449632100524
+    },
+    "raw_lower_errors": {},
+    "physical_pass": true,
+    "witness": true,
+    "dual_objective": 0.9999449632067199,
+    "dual_stationarity": 3.8948192404575366e-07,
+    "dual_cone_error": 0.0,
+    "dual_gap": 3.3355540551838203e-12,
+    "numerical_gate": false
+  },
+  "upper_work_recovery": {
+    "attempted": true,
+    "accepted": true,
+    "work_before": 1.0000000000000004,
+    "positive_scale": 0.9999999999999996,
+    "audit": {
+      "objective": 0.9999449632100552,
+      "value": 0.9999449632100524,
+      "eq_error": 5.594821455873453e-20,
+      "cone_error": 3.7446987784933716e-16,
+      "audit": {
+        "pass": true,
+        "errors": {
+          "flow": 3.900292907552474e-17,
+          "jump": 3.7446995621578903e-16,
+          "boundary": 5.594821455873453e-20,
+          "work": 8.881784197001252e-16,
+          "objective": 2.7755575615628914e-15
+        },
+        "dissipation": 0.9999449632100524,
+        "work": [
+          0.0,
+          1.0000000000000009
+        ],
+        "value": 0.9999449632100524
+      },
+      "raw_lower_errors": {},
+      "physical_pass": true,
+      "witness": true,
+      "numerical_gate": false
+    },
+    "scope": "same original coordinates, strength, loads and quadrature; primal candidate only",
+    "selected": false
+  },
+  "provenance": "same original full LP; exact positive scalar velocity units; original primal and original dual gates"
+}
