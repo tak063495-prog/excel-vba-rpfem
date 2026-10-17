@@ -1,0 +1,6 @@
+{
+  "utc": "2026-10-17T02:00:59.082754+00:00",
+  "reason": "D08A smoke gate failed",
+  "status": "HARNESS_OR_EXPORT_ERROR",
+  "error": "AssertionError(('SETTING_MISSING', 'SEISMIC_KH'))"
+}

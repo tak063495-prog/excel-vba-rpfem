@@ -1,0 +1,307 @@
+# triangulation 0/211 54176.7
+# zero stress fan eligibility 0 54176.9
+# native mesh fan nodes 0 54176.98
+# native mesh fan elements 0 54177.03
+# native mesh fan elements 256 54177.07
+# native mesh fan edges 0 54177.12
+# native mesh fan edges 256 54177.15
+# native mesh fan edges 512 54177.2
+# native zero stress fan planning 54177.3
+# zero stress fan insertion 0 54177.42
+# zero stress fan insertion 256 54177.47
+# zero stress fan eligibility 0 54177.59
+# native mesh fan nodes 0 54177.68
+# native mesh fan elements 0 54177.72
+# native mesh fan elements 256 54177.75
+# native mesh fan edges 0 54177.8
+# native mesh fan edges 256 54177.85
+# native mesh fan edges 512 54177.88
+# native zero stress fan planning 54177.97
+# zero stress fan eligibility 0 54178.35
+# native mesh fan nodes 0 54178.45
+# native mesh fan elements 0 54178.48
+# native mesh fan elements 256 54178.53
+# native mesh fan edges 0 54178.57
+# native mesh fan edges 256 54178.62
+# native mesh fan edges 512 54178.65
+# native zero stress fan planning 54178.75
+# upper F=1 54178.97
+# upper elements 0/360 54179.02
+# upper elements 256/360 54180.58
+# upper edges 0/572 54181.24
+# upper edges 512/572 54183.01
+# compile arrays 54183.25
+# ordering 4507 54183.39
+# ordering complete 54183.54
+# symbolic factorization 54183.61
+# symbolic complete 146911 54183.69
+# upper F=2 54184.71
+# upper elements 0/360 54184.77
+# upper elements 256/360 54186.37
+# upper edges 0/572 54187.03
+# upper edges 512/572 54188.81
+# compile arrays 54189.05
+# ordering complete 54189.19
+# symbolic factorization 54189.25
+# symbolic complete 146911 54189.33
+# upper F=1.5 54189.88
+# upper F=1.25 54190.55
+# upper F=1.375 54191.65
+# upper elements 0/360 54191.71
+# upper elements 256/360 54193.29
+# upper edges 0/572 54193.96
+# upper edges 512/572 54195.74
+# compile arrays 54195.99
+# ordering complete 54196.13
+# symbolic factorization 54196.19
+# symbolic complete 146911 54196.27
+# upper F=1.3125 54196.94
+# upper F=1.34375 54198.13
+# upper elements 0/360 54198.18
+# upper elements 256/360 54199.79
+# upper edges 0/572 54200.46
+# upper edges 512/572 54202.29
+# compile arrays 54202.55
+# ordering complete 54202.68
+# symbolic factorization 54202.74
+# symbolic complete 146911 54202.82
+# upper F=1.359375 54204.02
+# upper elements 0/360 54204.07
+# upper elements 256/360 54205.65
+# upper edges 0/572 54206.32
+# upper edges 512/572 54208.12
+# compile arrays 54208.37
+# ordering complete 54208.5
+# symbolic factorization 54208.56
+# symbolic complete 146911 54208.64
+# upper F=1.3671875 54209.87
+# upper elements 0/360 54209.92
+# upper elements 256/360 54211.51
+# upper edges 0/572 54212.18
+# upper edges 512/572 54213.96
+# compile arrays 54214.21
+# ordering complete 54214.34
+# symbolic factorization 54214.41
+# symbolic complete 146911 54214.49
+# upper F=1.36328125 54215.22
+# upper F=1.365234375 54216.45
+# upper elements 0/360 54216.5
+# upper elements 256/360 54218.07
+# upper edges 0/572 54218.72
+# upper edges 512/572 54220.48
+# compile arrays 54220.71
+# ordering complete 54220.84
+# symbolic factorization 54220.91
+# symbolic complete 146911 54220.98
+# upper F=1.3662109375 54222.22
+# upper elements 0/360 54222.29
+# upper elements 256/360 54223.84
+# upper edges 0/572 54224.5
+# upper edges 512/572 54226.25
+# compile arrays 54226.5
+# ordering complete 54226.63
+# symbolic factorization 54226.69
+# symbolic complete 146911 54226.77
+# upper F=1.36669921875 54228.03
+# upper elements 0/360 54228.09
+# upper elements 256/360 54229.64
+# upper edges 0/572 54230.28
+# upper edges 512/572 54232.05
+# compile arrays 54232.29
+# ordering complete 54232.42
+# symbolic factorization 54232.49
+# symbolic complete 146911 54232.57
+# upper F=1.366943359375 54233.96
+# upper elements 0/360 54234.01
+# upper elements 256/360 54235.55
+# upper edges 0/572 54236.2
+# upper edges 512/572 54237.95
+# compile arrays 54238.19
+# ordering complete 54238.31
+# symbolic factorization 54238.36
+# symbolic complete 146911 54238.44
+# upper F=1.3668212890625 54239.17
+# lower F=1 54240.13
+# compile arrays 54245.87
+# ordering 12214 54246.03
+# ordering complete 54246.23
+# symbolic factorization 54246.31
+# symbolic complete 207707 54246.41
+# lower F=2 54247.61
+# lower F=1.5 54248.22
+# compile arrays 54253.99
+# ordering complete 54254.14
+# symbolic factorization 54254.2
+# symbolic complete 207707 54254.28
+# lower F=1.25 54254.91
+# compile arrays 54260.65
+# ordering complete 54260.79
+# symbolic factorization 54260.86
+# symbolic complete 207707 54260.95
+# lower F=1.125 54261.62
+# compile arrays 54267.38
+# ordering complete 54267.52
+# symbolic factorization 54267.58
+# symbolic complete 207707 54267.68
+# lower F=1.0625 54268.34
+# compile arrays 54274.08
+# ordering complete 54274.25
+# symbolic factorization 54274.3
+# symbolic complete 207707 54274.4
+# lower F=1.09375 54275.6
+# lower F=1.109375 54275.98
+# lower F=1.1171875 54277.2
+# lower F=1.12109375 54278.44
+# lower F=1.119140625 54279.12
+# compile arrays 54284.84
+# ordering complete 54284.98
+# symbolic factorization 54285.04
+# symbolic complete 207707 54285.13
+# lower F=1.1181640625 54285.82
+# compile arrays 54291.6
+# ordering complete 54291.75
+# symbolic factorization 54291.81
+# symbolic complete 207707 54291.89
+# lower F=1.11767578125 54292.65
+# compile arrays 54298.38
+# ordering complete 54298.53
+# symbolic factorization 54298.59
+# symbolic complete 207707 54298.68
+# lower F=1.117919921875 54299.92
+# lower F=1.1180419921875 54301.17
+# lower F=1.11798095703125 54301.93
+# compile arrays 54307.66
+# ordering complete 54307.81
+# symbolic factorization 54307.87
+# symbolic complete 207707 54307.96
+# upper F=1.11809756997695 54310.63
+# upper elements 0/8 54310.66
+# upper edges 0/15 54310.76
+# compile arrays 54310.85
+# ordering 109 54310.94
+# ordering complete 54310.98
+# symbolic factorization 54311.02
+# symbolic complete 1352 54311.06
+# HSD 0 residual=3.6E+02 gap=2.0E+02 54311.17
+# HSD 1 residual=1.4E+02 gap=8.2E+01 54311.27
+# HSD 2 residual=8.0E+01 gap=4.5E+01 54311.31
+# HSD 3 residual=2.9E+01 gap=1.7E+01 54311.38
+# HSD 4 residual=6.9E+00 gap=4.0E+00 54311.43
+# HSD 5 residual=3.7E-01 gap=2.3E-01 54311.49
+# HSD 6 residual=7.8E-02 gap=1.4E-01 54311.54
+# HSD 7 residual=9.6E-02 gap=1.3E+00 54311.58
+# HSD 8 residual=1.2E-01 gap=5.2E+01 54311.64
+# HSD 9 residual=1.9E-01 gap=2.0E+03 54311.7
+# HSD 10 residual=2.1E-01 gap=5.2E+03 54311.76
+# HSD 11 residual=2.1E-01 gap=7.9E+03 54311.8
+# HSD 12 residual=2.3E-01 gap=3.1E+04 54311.85
+# HSD 13 residual=2.4E-01 gap=7.0E+04 54311.96
+# HSD 14 residual=2.3E-01 gap=7.3E+04 54312.01
+# HSD 15 residual=1.6E-01 gap=6.9E+04 54312.06
+# HSD 16 residual=6.3E-02 gap=3.9E+04 54312.12
+# HSD 17 residual=2.3E-02 gap=1.8E+04 54312.17
+# HSD 18 residual=3.7E-03 gap=4.7E+03 54312.27
+# HSD 19 residual=1.6E-03 gap=2.3E+03 54312.31
+# HSD 20 residual=3.6E-05 gap=5.3E+01 54312.38
+# HSD 21 residual=1.3E-06 gap=1.5E+00 54312.43
+# HSD 22 residual=1.6E-07 gap=3.0E-02 54312.49
+# HSD 23 residual=8.3E-08 gap=6.0E-04 54312.54
+# HSD 24 residual=1.3E-07 gap=6.0E-06 54312.59
+# HSD 25 residual=6.4E-08 gap=8.8E-07 54312.63
+# HSD 26 residual=1.7E-07 gap=8.8E-09 54312.7
+# HSD 27 residual=1.1E-07 gap=8.8E-11 54312.74
+# HSD 28 residual=4.3E-08 gap=8.8E-13 54312.79
+# HSD 29 residual=8.6E-08 gap=8.8E-15 54312.85
+# upper F=1.12209774854078 54313.09
+# upper F=0.559048784988475 54313.2
+# upper F=0.838573177482713 54313.31
+# upper elements 0/8 54313.36
+# upper edges 0/15 54313.45
+# compile arrays 54313.55
+# ordering complete 54313.63
+# symbolic factorization 54313.68
+# symbolic complete 1352 54313.71
+# upper F=0.978335373729831 54313.84
+# upper elements 0/8 54313.86
+# upper edges 0/15 54313.96
+# compile arrays 54314.05
+# ordering complete 54314.13
+# symbolic factorization 54314.18
+# symbolic complete 1352 54314.21
+# upper F=1.04821647185339 54314.34
+# upper elements 0/8 54314.37
+# upper edges 0/15 54314.46
+# compile arrays 54314.56
+# ordering complete 54314.64
+# symbolic factorization 54314.69
+# symbolic complete 1352 54314.74
+# upper F=1.08315702091517 54314.86
+# upper elements 0/8 54314.89
+# upper edges 0/15 54314.98
+# compile arrays 54315.08
+# ordering complete 54315.18
+# symbolic factorization 54315.22
+# symbolic complete 1352 54315.25
+# upper F=1.10062729544606 54315.38
+# upper elements 0/8 54315.41
+# upper edges 0/15 54315.51
+# compile arrays 54315.6
+# ordering complete 54315.7
+# symbolic factorization 54315.73
+# symbolic complete 1352 54315.78
+# upper F=1.10936243271151 54315.89
+# upper elements 0/8 54315.93
+# upper edges 0/15 54316.03
+# compile arrays 54316.13
+# ordering complete 54316.22
+# symbolic factorization 54316.27
+# symbolic complete 1352 54316.3
+# upper F=1.11373000134423 54316.43
+# upper elements 0/8 54316.47
+# upper edges 0/15 54316.55
+# compile arrays 54316.66
+# ordering complete 54316.74
+# symbolic factorization 54316.79
+# symbolic complete 1352 54316.84
+# upper F=1.11591378566059 54316.95
+# upper elements 0/8 54316.98
+# upper edges 0/15 54317.07
+# compile arrays 54317.17
+# ordering complete 54317.27
+# symbolic factorization 54317.31
+# symbolic complete 1352 54317.34
+# upper F=1.11700567781877 54317.47
+# upper elements 0/8 54317.5
+# upper edges 0/15 54317.6
+# compile arrays 54317.69
+# ordering complete 54317.79
+# symbolic factorization 54317.84
+# symbolic complete 1352 54317.87
+# upper F=1.11755162389786 54317.99
+# upper elements 0/8 54318.02
+# upper edges 0/15 54318.12
+# compile arrays 54318.21
+# ordering complete 54318.31
+# symbolic factorization 54318.36
+# symbolic complete 1352 54318.39
+# upper F=1.1178245969374 54318.52
+# upper elements 0/8 54318.55
+# upper edges 0/15 54318.64
+# compile arrays 54318.73
+# ordering complete 54318.83
+# symbolic factorization 54318.88
+# symbolic complete 1352 54318.91
+# upper F=1.11796108345718 54319.04
+# upper elements 0/8 54319.07
+# upper edges 0/15 54319.16
+# compile arrays 54319.26
+# ordering complete 54319.35
+# symbolic factorization 54319.4
+# symbolic complete 1352 54319.45
+# upper F=1.11802932671706 54319.56
+# upper elements 0/8 54319.61
+# upper edges 0/15 54319.68
+# compile arrays 54319.78
+# ordering complete 54319.87
+# symbolic factorization 54319.92
+# symbolic complete 1352 54319.95

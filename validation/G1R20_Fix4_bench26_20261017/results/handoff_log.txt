@@ -1,0 +1,8 @@
+﻿2026-10-17 11:19:21 watcher start
+2026-10-17 11:24:10 handoff worker seen: handoff_worker_P01N.json
+2026-10-17 11:24:10 kill python pid 18132: "C:\Users\link_\rpfem_bench\.venv\Scripts\python.exe"  -X utf8 scripts\runner.py batch 
+2026-10-17 11:24:10 kill python pid 30472: "C:\Users\link_\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\python.exe" -X utf8 scripts\runner.py batch 
+2026-10-17 11:24:10 kill python pid 9336: C:\Users\link_\rpfem_bench\.venv\Scripts\python.exe -X utf8 C:\Users\link_\rpfem_bench\validation\G1R20_Fix4_bench26\scripts\runner.py case P01N
+2026-10-17 11:24:10 kill python pid 33780: "C:\Users\link_\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\python.exe" -X utf8 C:\Users\link_\rpfem_bench\validation\G1R20_Fix4_bench26\scripts\runner.py case P01N
+2026-10-17 11:24:11 main task state: Ready
+2026-10-17 11:24:11 main task restarted with revised timeouts
