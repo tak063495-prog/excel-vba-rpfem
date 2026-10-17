@@ -1,0 +1,731 @@
+{
+  "case": "D05A",
+  "mode": "lower",
+  "q": 8,
+  "fs": 1.3028266247689342,
+  "mesh_id": "d957c8a2111c7efeb68411b152cae857439ac62bb8c5123612f337483912df7b",
+  "physical_model_id": "3c270d5c79373766e05b2c3b7da528746236aa01a62325df98ebf25efe728347",
+  "elements": 1622,
+  "source": "D:\\Work\\excel-vba-rpfem\\validation\\G1R19_python26_v3_20261016\\results\\D05A_scalar_upper_20261016T111421Z\\cases\\D05A\\generic_fallback\\D05A\\best_lower_certificate.json",
+  "root_complete": true,
+  "mesh_path": "best_lower_mesh.npz",
+  "field_path": "best_lower_field.npz",
+  "audit": {
+    "objective": -1.0000286476215972,
+    "value": 1.0000286476215972,
+    "eq_error": 3.3506530883187224e-13,
+    "cone_error": 0.0,
+    "audit": {
+      "pass": true,
+      "errors": {
+        "yield": 0.0,
+        "equilibrium": 1.1604215852112354e-14,
+        "internal_traction": 4.742872761198669e-13,
+        "boundary_traction": 1.1102230246251565e-16
+      },
+      "load": 1.0000286476215972,
+      "value": 1.0000286476215972
+    },
+    "raw_lower_errors": {
+      "yield": 0.0,
+      "equilibrium": 1.1604215852112354e-13,
+      "internal_traction": 4.742872761198669e-12,
+      "boundary_traction": 1.1102230246251565e-15
+    },
+    "physical_pass": true,
+    "witness": true,
+    "numerical_gate": false,
+    "discrete_root_search": {
+      "mode": "lower",
+      "root_complete": true,
+      "bracket": [
+        1.3028266247689342,
+        1.3028898800852213
+      ],
+      "bracket_width": 6.325531628714742e-05,
+      "fs_tolerance": 0.0001,
+      "endpoint": 1.3028266247689342,
+      "trials": 8,
+      "seconds": 51.765189600002486,
+      "mesh_id": "d957c8a2111c7efeb68411b152cae857439ac62bb8c5123612f337483912df7b",
+      "physical_model_id": "3c270d5c79373766e05b2c3b7da528746236aa01a62325df98ebf25efe728347",
+      "elements": 1622,
+      "q": 8,
+      "case": "D05A",
+      "policy": "equal_reduced_phi",
+      "bracket_signs": [
+        1,
+        -1
+      ],
+      "opposite_numerical_endpoint_is_continuum_bound": false,
+      "budget_exhausted": false,
+      "budget_error": null,
+      "case_budget": {
+        "case_seconds": 899.9494165999931,
+        "solve_seconds": 30.0,
+        "elapsed_seconds": 205.65408050001133,
+        "remaining_seconds": 694.2953358999803,
+        "exhausted": false,
+        "expired_at": null,
+        "solver_time_allocations": [
+          {
+            "stage": "D05A_C0_lower:LP_attempt_1",
+            "time_limit": 30.0,
+            "elapsed_seconds": 0.48106220000772737
+          },
+          {
+            "stage": "D05A_C0_lower:LP_attempt_1",
+            "time_limit": 30.0,
+            "elapsed_seconds": 0.7006426000152715
+          },
+          {
+            "stage": "D05A_C0_lower:LP_attempt_1",
+            "time_limit": 30.0,
+            "elapsed_seconds": 0.9285457000078168
+          },
+          {
+            "stage": "D05A_C0_lower:LP_attempt_1",
+            "time_limit": 30.0,
+            "elapsed_seconds": 1.1391686999995727
+          },
+          {
+            "stage": "D05A_C0_lower:LP_attempt_1",
+            "time_limit": 30.0,
+            "elapsed_seconds": 1.3496875000128057
+          },
+          {
+            "stage": "D05A_C0_lower:LP_attempt_1",
+            "time_limit": 30.0,
+            "elapsed_seconds": 1.5878965000156313
+          },
+          {
+            "stage": "D05A_C0_lower:LP_attempt_1",
+            "time_limit": 30.0,
+            "elapsed_seconds": 1.8020461999985855
+          },
+          {
+            "stage": "D05A_C0_lower:LP_attempt_1",
+            "time_limit": 30.0,
+            "elapsed_seconds": 2.0247495000076015
+          },
+          {
+            "stage": "D05A_C0_lower:LP_attempt_2",
+            "time_limit": 30.0,
+            "elapsed_seconds": 2.4781123000138905
+          },
+          {
+            "stage": "D05A_C0_lower:LP_attempt_1",
+            "time_limit": 30.0,
+            "elapsed_seconds": 2.713157999998657
+          },
+          {
+            "stage": "D05A_C0_lower:LP_attempt_1",
+            "time_limit": 30.0,
+            "elapsed_seconds": 2.9315364000212867
+          },
+          {
+            "stage": "D05A_C0_upper:LP_attempt_1",
+            "time_limit": 30.0,
+            "elapsed_seconds": 3.61041190000833
+          },
+          {
+            "stage": "D05A_C0_upper:LP_attempt_2",
+            "time_limit": 30.0,
+            "elapsed_seconds": 3.9227703000069596
+          },
+          {
+            "stage": "D05A_C0_upper:LP_attempt_3",
+            "time_limit": 30.0,
+            "elapsed_seconds": 4.2282704999961425
+          },
+          {
+            "stage": "D05A_C0_upper:LP_attempt_4",
+            "time_limit": 30.0,
+            "elapsed_seconds": 4.539183300017612
+          },
+          {
+            "stage": "D05A_C0_upper:original_dual",
+            "time_limit": 30.0,
+            "elapsed_seconds": 4.855529699998442
+          },
+          {
+            "stage": "D05A_C0_upper:LP_attempt_1",
+            "time_limit": 30.0,
+            "elapsed_seconds": 5.437945400015451
+          },
+          {
+            "stage": "D05A_C0_upper:LP_attempt_1",
+            "time_limit": 30.0,
+            "elapsed_seconds": 6.298054300015792
+          },
+          {
+            "stage": "D05A_C0_upper:LP_attempt_1",
+            "time_limit": 30.0,
+            "elapsed_seconds": 7.196656800020719
+          },
+          {
+            "stage": "D05A_C0_upper:LP_attempt_1",
+            "time_limit": 30.0,
+            "elapsed_seconds": 8.23349050001707
+          },
+          {
+            "stage": "D05A_C0_upper:LP_attempt_1",
+            "time_limit": 30.0,
+            "elapsed_seconds": 9.165110200003255
+          },
+          {
+            "stage": "D05A_C0_upper:LP_attempt_1",
+            "time_limit": 30.0,
+            "elapsed_seconds": 10.055463900003815
+          },
+          {
+            "stage": "D05A_C0_upper:LP_attempt_1",
+            "time_limit": 30.0,
+            "elapsed_seconds": 11.054120200016769
+          },
+          {
+            "stage": "D05A_C0_upper:LP_attempt_1",
+            "time_limit": 30.0,
+            "elapsed_seconds": 12.024932400003308
+          },
+          {
+            "stage": "D05A_C0_upper:LP_attempt_1",
+            "time_limit": 30.0,
+            "elapsed_seconds": 13.053523400012637
+          },
+          {
+            "stage": "D05A_C0_upper:LP_attempt_1",
+            "time_limit": 30.0,
+            "elapsed_seconds": 13.962871700001415
+          },
+          {
+            "stage": "D05A_C0_upper:LP_attempt_1",
+            "time_limit": 30.0,
+            "elapsed_seconds": 14.925403400004143
+          },
+          {
+            "stage": "D05A_C1_lower:LP_attempt_1",
+            "time_limit": 30.0,
+            "elapsed_seconds": 16.07199359999504
+          },
+          {
+            "stage": "D05A_C1_lower:LP_attempt_1",
+            "time_limit": 30.0,
+            "elapsed_seconds": 16.402622800000245
+          },
+          {
+            "stage": "D05A_C1_lower:LP_attempt_1",
+            "time_limit": 30.0,
+            "elapsed_seconds": 16.697824200004106
+          },
+          {
+            "stage": "D05A_C1_lower:LP_attempt_1",
+            "time_limit": 30.0,
+            "elapsed_seconds": 17.00867599999765
+          },
+          {
+            "stage": "D05A_C1_lower:LP_attempt_2",
+            "time_limit": 30.0,
+            "elapsed_seconds": 17.649162400019122
+          },
+          {
+            "stage": "D05A_C1_lower:LP_attempt_3",
+            "time_limit": 30.0,
+            "elapsed_seconds": 18.304407500021625
+          },
+          {
+            "stage": "D05A_C1_lower:LP_attempt_4",
+            "time_limit": 30.0,
+            "elapsed_seconds": 18.99100440001348
+          },
+          {
+            "stage": "D05A_C1_lower:LP_attempt_1",
+            "time_limit": 30.0,
+            "elapsed_seconds": 19.315594600018812
+          },
+          {
+            "stage": "D05A_C1_lower:LP_attempt_2",
+            "time_limit": 30.0,
+            "elapsed_seconds": 19.990942500007804
+          },
+          {
+            "stage": "D05A_C1_lower:LP_attempt_1",
+            "time_limit": 30.0,
+            "elapsed_seconds": 20.348430800018832
+          },
+          {
+            "stage": "D05A_C1_lower:LP_attempt_1",
+            "time_limit": 30.0,
+            "elapsed_seconds": 20.658253100002185
+          },
+          {
+            "stage": "D05A_C1_lower:LP_attempt_2",
+            "time_limit": 30.0,
+            "elapsed_seconds": 21.286296500009485
+          },
+          {
+            "stage": "D05A_C1_lower:LP_attempt_1",
+            "time_limit": 30.0,
+            "elapsed_seconds": 21.57709679999971
+          },
+          {
+            "stage": "D05A_C1_lower:LP_attempt_2",
+            "time_limit": 30.0,
+            "elapsed_seconds": 22.164891799999168
+          },
+          {
+            "stage": "D05A_C1_upper:LP_attempt_1",
+            "time_limit": 30.0,
+            "elapsed_seconds": 23.31989870002144
+          },
+          {
+            "stage": "D05A_C1_upper:LP_attempt_1",
+            "time_limit": 30.0,
+            "elapsed_seconds": 24.436338600004092
+          },
+          {
+            "stage": "D05A_C1_upper:LP_attempt_1",
+            "time_limit": 30.0,
+            "elapsed_seconds": 25.766138700011652
+          },
+          {
+            "stage": "D05A_C1_upper:LP_attempt_1",
+            "time_limit": 30.0,
+            "elapsed_seconds": 26.892688199994154
+          },
+          {
+            "stage": "D05A_C1_upper:LP_attempt_1",
+            "time_limit": 30.0,
+            "elapsed_seconds": 28.028866700013168
+          },
+          {
+            "stage": "D05A_C1_upper:LP_attempt_1",
+            "time_limit": 30.0,
+            "elapsed_seconds": 29.169738600001438
+          },
+          {
+            "stage": "D05A_C1_upper:LP_attempt_1",
+            "time_limit": 30.0,
+            "elapsed_seconds": 30.38127740001073
+          },
+          {
+            "stage": "D05A_C2_lower:LP_attempt_1",
+            "time_limit": 30.0,
+            "elapsed_seconds": 32.029467500018654
+          },
+          {
+            "stage": "D05A_C2_lower:LP_attempt_2",
+            "time_limit": 30.0,
+            "elapsed_seconds": 33.07362850001664
+          },
+          {
+            "stage": "D05A_C2_lower:LP_attempt_1",
+            "time_limit": 30.0,
+            "elapsed_seconds": 33.623827700008405
+          },
+          {
+            "stage": "D05A_C2_lower:LP_attempt_1",
+            "time_limit": 30.0,
+            "elapsed_seconds": 34.15083270001924
+          },
+          {
+            "stage": "D05A_C2_lower:LP_attempt_1",
+            "time_limit": 30.0,
+            "elapsed_seconds": 34.84962690001703
+          },
+          {
+            "stage": "D05A_C2_lower:LP_attempt_1",
+            "time_limit": 30.0,
+            "elapsed_seconds": 35.440918100008275
+          },
+          {
+            "stage": "D05A_C2_lower:LP_attempt_1",
+            "time_limit": 30.0,
+            "elapsed_seconds": 35.97524130000966
+          },
+          {
+            "stage": "D05A_C2_lower:LP_attempt_2",
+            "time_limit": 30.0,
+            "elapsed_seconds": 37.05182750002132
+          },
+          {
+            "stage": "D05A_C2_lower:LP_attempt_3",
+            "time_limit": 30.0,
+            "elapsed_seconds": 38.052375300001586
+          },
+          {
+            "stage": "D05A_C2_lower:LP_attempt_1",
+            "time_limit": 30.0,
+            "elapsed_seconds": 38.624186400003964
+          },
+          {
+            "stage": "D05A_C2_lower:LP_attempt_2",
+            "time_limit": 30.0,
+            "elapsed_seconds": 39.706916700000875
+          },
+          {
+            "stage": "D05A_C2_lower:LP_attempt_3",
+            "time_limit": 30.0,
+            "elapsed_seconds": 40.88934850000078
+          },
+          {
+            "stage": "D05A_C2_lower:LP_attempt_4",
+            "time_limit": 30.0,
+            "elapsed_seconds": 42.03383990001748
+          },
+          {
+            "stage": "D05A_C2_lower:LP_attempt_1",
+            "time_limit": 30.0,
+            "elapsed_seconds": 42.56283640000038
+          },
+          {
+            "stage": "D05A_C2_lower:LP_attempt_2",
+            "time_limit": 30.0,
+            "elapsed_seconds": 43.60866530000931
+          },
+          {
+            "stage": "D05A_C2_upper:LP_attempt_1",
+            "time_limit": 30.0,
+            "elapsed_seconds": 45.56346649999614
+          },
+          {
+            "stage": "D05A_C2_upper:LP_attempt_1",
+            "time_limit": 30.0,
+            "elapsed_seconds": 47.748519200016744
+          },
+          {
+            "stage": "D05A_C2_upper:LP_attempt_1",
+            "time_limit": 30.0,
+            "elapsed_seconds": 49.863478700019186
+          },
+          {
+            "stage": "D05A_C2_upper:LP_attempt_1",
+            "time_limit": 30.0,
+            "elapsed_seconds": 52.13482289999956
+          },
+          {
+            "stage": "D05A_C2_upper:LP_attempt_1",
+            "time_limit": 30.0,
+            "elapsed_seconds": 54.33374339999864
+          },
+          {
+            "stage": "D05A_C2_upper:LP_attempt_1",
+            "time_limit": 30.0,
+            "elapsed_seconds": 56.40737070000614
+          },
+          {
+            "stage": "D05A_C2_upper:LP_attempt_1",
+            "time_limit": 30.0,
+            "elapsed_seconds": 58.4906499000208
+          },
+          {
+            "stage": "D05A_C2_upper:LP_attempt_1",
+            "time_limit": 30.0,
+            "elapsed_seconds": 60.675878500012914
+          },
+          {
+            "stage": "D05A_C3_lower:LP_attempt_1",
+            "time_limit": 30.0,
+            "elapsed_seconds": 63.554236399999354
+          },
+          {
+            "stage": "D05A_C3_lower:LP_attempt_2",
+            "time_limit": 30.0,
+            "elapsed_seconds": 65.81683330002124
+          },
+          {
+            "stage": "D05A_C3_lower:LP_attempt_1",
+            "time_limit": 30.0,
+            "elapsed_seconds": 67.4323246999993
+          },
+          {
+            "stage": "D05A_C3_lower:LP_attempt_1",
+            "time_limit": 30.0,
+            "elapsed_seconds": 68.77728390000993
+          },
+          {
+            "stage": "D05A_C3_lower:LP_attempt_1",
+            "time_limit": 30.0,
+            "elapsed_seconds": 70.48832500001299
+          },
+          {
+            "stage": "D05A_C3_lower:LP_attempt_1",
+            "time_limit": 30.0,
+            "elapsed_seconds": 72.05747420000262
+          },
+          {
+            "stage": "D05A_C3_lower:LP_attempt_1",
+            "time_limit": 30.0,
+            "elapsed_seconds": 73.60320510002202
+          },
+          {
+            "stage": "D05A_C3_lower:LP_attempt_2",
+            "time_limit": 30.0,
+            "elapsed_seconds": 76.1918153000006
+          },
+          {
+            "stage": "D05A_C3_lower:LP_attempt_1",
+            "time_limit": 30.0,
+            "elapsed_seconds": 78.02358380000805
+          },
+          {
+            "stage": "D05A_C3_lower:LP_attempt_2",
+            "time_limit": 30.0,
+            "elapsed_seconds": 80.59296030001133
+          },
+          {
+            "stage": "D05A_C3_lower:LP_attempt_1",
+            "time_limit": 30.0,
+            "elapsed_seconds": 81.8744709000166
+          },
+          {
+            "stage": "D05A_C3_upper:LP_attempt_1",
+            "time_limit": 30.0,
+            "elapsed_seconds": 85.79583730001468
+          },
+          {
+            "stage": "D05A_C3_upper:LP_attempt_2",
+            "time_limit": 30.0,
+            "elapsed_seconds": 88.46373310001218
+          },
+          {
+            "stage": "D05A_C3_upper:LP_attempt_3",
+            "time_limit": 30.0,
+            "elapsed_seconds": 91.04487720000907
+          },
+          {
+            "stage": "D05A_C3_upper:LP_attempt_4",
+            "time_limit": 30.0,
+            "elapsed_seconds": 93.71654449999915
+          },
+          {
+            "stage": "D05A_C3_upper:LP_attempt_1",
+            "time_limit": 30.0,
+            "elapsed_seconds": 97.768201400002
+          },
+          {
+            "stage": "D05A_C3_upper:LP_attempt_1",
+            "time_limit": 30.0,
+            "elapsed_seconds": 101.99270610001986
+          },
+          {
+            "stage": "D05A_C3_upper:LP_attempt_1",
+            "time_limit": 30.0,
+            "elapsed_seconds": 106.52078610000899
+          },
+          {
+            "stage": "D05A_C3_upper:LP_attempt_2",
+            "time_limit": 30.0,
+            "elapsed_seconds": 109.00583400001051
+          },
+          {
+            "stage": "D05A_C3_upper:LP_attempt_3",
+            "time_limit": 30.0,
+            "elapsed_seconds": 111.76360659999773
+          },
+          {
+            "stage": "D05A_C3_upper:LP_attempt_4",
+            "time_limit": 30.0,
+            "elapsed_seconds": 114.85214820000692
+          },
+          {
+            "stage": "D05A_C3_upper:original_dual",
+            "time_limit": 30.0,
+            "elapsed_seconds": 117.26260170000023
+          },
+          {
+            "stage": "D05A_C3_upper:LP_attempt_1",
+            "time_limit": 30.0,
+            "elapsed_seconds": 120.47350740002003
+          },
+          {
+            "stage": "D05A_C3_upper:LP_attempt_2",
+            "time_limit": 30.0,
+            "elapsed_seconds": 123.29878840001766
+          },
+          {
+            "stage": "D05A_C3_upper:LP_attempt_3",
+            "time_limit": 30.0,
+            "elapsed_seconds": 125.66740350000327
+          },
+          {
+            "stage": "D05A_C3_upper:LP_attempt_4",
+            "time_limit": 30.0,
+            "elapsed_seconds": 128.07676320002065
+          },
+          {
+            "stage": "D05A_C3_upper:original_dual",
+            "time_limit": 30.0,
+            "elapsed_seconds": 130.44689920000383
+          },
+          {
+            "stage": "D05A_C3_upper:LP_attempt_1",
+            "time_limit": 30.0,
+            "elapsed_seconds": 133.55481130001135
+          },
+          {
+            "stage": "D05A_C3_upper:LP_attempt_1",
+            "time_limit": 30.0,
+            "elapsed_seconds": 137.68009510001866
+          },
+          {
+            "stage": "D05A_C3_upper:LP_attempt_1",
+            "time_limit": 30.0,
+            "elapsed_seconds": 141.81635360000655
+          },
+          {
+            "stage": "D05A_C3_upper:LP_attempt_2",
+            "time_limit": 30.0,
+            "elapsed_seconds": 144.06629539999994
+          },
+          {
+            "stage": "D05A_C3_upper:LP_attempt_3",
+            "time_limit": 30.0,
+            "elapsed_seconds": 146.3744949999964
+          },
+          {
+            "stage": "D05A_C3_upper:LP_attempt_4",
+            "time_limit": 30.0,
+            "elapsed_seconds": 148.86146670000744
+          },
+          {
+            "stage": "D05A_C3_upper:original_dual",
+            "time_limit": 30.0,
+            "elapsed_seconds": 151.20212930001435
+          },
+          {
+            "stage": "D05A_C4_lower:LP_attempt_1",
+            "time_limit": 30.0,
+            "elapsed_seconds": 156.752942000021
+          },
+          {
+            "stage": "D05A_C4_lower:LP_attempt_1",
+            "time_limit": 30.0,
+            "elapsed_seconds": 162.8609848000051
+          },
+          {
+            "stage": "D05A_C4_lower:LP_attempt_1",
+            "time_limit": 30.0,
+            "elapsed_seconds": 168.7296806999948
+          },
+          {
+            "stage": "D05A_C4_lower:LP_attempt_1",
+            "time_limit": 30.0,
+            "elapsed_seconds": 174.4706868000212
+          },
+          {
+            "stage": "D05A_C4_lower:LP_attempt_1",
+            "time_limit": 30.0,
+            "elapsed_seconds": 180.95678969999426
+          },
+          {
+            "stage": "D05A_C4_lower:LP_attempt_1",
+            "time_limit": 30.0,
+            "elapsed_seconds": 187.59321190000628
+          },
+          {
+            "stage": "D05A_C4_lower:LP_attempt_1",
+            "time_limit": 30.0,
+            "elapsed_seconds": 193.56780099999742
+          },
+          {
+            "stage": "D05A_C4_lower:LP_attempt_1",
+            "time_limit": 30.0,
+            "elapsed_seconds": 199.22944580001058
+          },
+          {
+            "stage": "D05A_C4_upper:LP_attempt_1",
+            "time_limit": 30.0,
+            "elapsed_seconds": 210.60707170001115
+          },
+          {
+            "stage": "D05A_C4_upper:LP_attempt_2",
+            "time_limit": 30.0,
+            "elapsed_seconds": 216.21055489999708
+          },
+          {
+            "stage": "D05A_C4_upper:LP_attempt_3",
+            "time_limit": 30.0,
+            "elapsed_seconds": 221.7314804000198
+          },
+          {
+            "stage": "D05A_C4_upper:LP_attempt_4",
+            "time_limit": 30.0,
+            "elapsed_seconds": 227.49387110001408
+          },
+          {
+            "stage": "D05A_C4_upper:original_dual",
+            "time_limit": 30.0,
+            "elapsed_seconds": 233.04771549999714
+          },
+          {
+            "stage": "D05A_C4_upper:LP_attempt_1",
+            "time_limit": 30.0,
+            "elapsed_seconds": 239.71783520001918
+          },
+          {
+            "stage": "D05A_C4_upper:LP_attempt_2",
+            "time_limit": 30.0,
+            "elapsed_seconds": 246.0700820000202
+          },
+          {
+            "stage": "D05A_C4_upper:LP_attempt_3",
+            "time_limit": 30.0,
+            "elapsed_seconds": 252.02294350002194
+          },
+          {
+            "stage": "D05A_C4_upper:LP_attempt_4",
+            "time_limit": 30.0,
+            "elapsed_seconds": 257.87431860002107
+          },
+          {
+            "stage": "D05A_C4_upper:original_dual",
+            "time_limit": 30.0,
+            "elapsed_seconds": 264.27115509999567
+          },
+          {
+            "stage": "D05A_C4_upper:LP_attempt_1",
+            "time_limit": 30.0,
+            "elapsed_seconds": 271.6290377000114
+          },
+          {
+            "stage": "D05A_C4_upper:LP_attempt_1",
+            "time_limit": 30.0,
+            "elapsed_seconds": 281.42106640001293
+          },
+          {
+            "stage": "D05A_C4_upper:LP_attempt_1",
+            "time_limit": 30.0,
+            "elapsed_seconds": 290.2018011000182
+          },
+          {
+            "stage": "D05A_C4_upper:LP_attempt_2",
+            "time_limit": 30.0,
+            "elapsed_seconds": 296.27798630000325
+          },
+          {
+            "stage": "D05A_C4_upper:LP_attempt_3",
+            "time_limit": 30.0,
+            "elapsed_seconds": 302.41738110000733
+          },
+          {
+            "stage": "D05A_C4_upper:LP_attempt_4",
+            "time_limit": 30.0,
+            "elapsed_seconds": 307.7208201000176
+          },
+          {
+            "stage": "D05A_C4_upper:original_dual",
+            "time_limit": 30.0,
+            "elapsed_seconds": 312.68629320000764
+          },
+          {
+            "stage": "D05A_C4_upper:LP_attempt_1",
+            "time_limit": 30.0,
+            "elapsed_seconds": 319.51209820000804
+          }
+        ],
+        "scope": "cooperative wall deadline; OS watchdog required for in-flight native work"
+      }
+    }
+  }
+}

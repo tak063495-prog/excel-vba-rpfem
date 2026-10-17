@@ -1,0 +1,127 @@
+{
+  "schema": "issue28_d05a_source_data_v1",
+  "public_archive_sha256": "9121db1fa2f60ebdddf35d8c6123d4562cf631a3808c61cb02d2a36702e2960a",
+  "source_and_data_files": {
+    "python_snapshot/experiment_core.py": {
+      "bytes": 41505,
+      "sha256": "9a9e60b6d69ba4008ea89608f433bb716b433436715c45566bd209418ee9238e",
+      "source": "validation/issue29_p06n_python_evidence_20261017/python_snapshot/experiment_core.py"
+    },
+    "python_snapshot/reduction.py": {
+      "bytes": 9105,
+      "sha256": "cbc32e1e0764e10e3f56f67b804b08867166aafbd32a64ddcbe481b18d083ca5",
+      "source": "validation/issue29_p06n_python_evidence_20261017/python_snapshot/reduction.py"
+    },
+    "python_snapshot/vendor/independent_audit.py": {
+      "bytes": 4450,
+      "sha256": "79ea1b0e4e72b2a61a4110e6115e3f33929ae5990fb054e20f41d345a694f37b",
+      "source": "validation/issue29_p06n_python_evidence_20261017/python_snapshot/vendor/independent_audit.py"
+    },
+    "python_snapshot/vendor/model_support/__init__.py": {
+      "bytes": 2,
+      "sha256": "7eb70257593da06f682a3ddda54a9d260d4fc514f645237f5ca74b08f8da61a6",
+      "source": "validation/issue29_p06n_python_evidence_20261017/python_snapshot/vendor/model_support/__init__.py"
+    },
+    "python_snapshot/vendor/model_support/io_case.py": {
+      "bytes": 4797,
+      "sha256": "acd8d38c56020951621b1be5e4803e3d02898ad087c7f0c2d04e1d47ac6b87e3",
+      "source": "validation/issue29_p06n_python_evidence_20261017/python_snapshot/vendor/model_support/io_case.py"
+    },
+    "python_snapshot/vendor/model_support/lower_assembly.py": {
+      "bytes": 3788,
+      "sha256": "b3c482c8950205b32a5e38cd0f1e720e5efeb48491bbd8ff02b728ef54f51047",
+      "source": "validation/issue29_p06n_python_evidence_20261017/python_snapshot/vendor/model_support/lower_assembly.py"
+    },
+    "python_snapshot/vendor/model_support/p2.py": {
+      "bytes": 924,
+      "sha256": "7c243a234d22e5d8c209c5d55f6aedc834af7b507538022c2731a71046e0969f",
+      "source": "validation/issue29_p06n_python_evidence_20261017/python_snapshot/vendor/model_support/p2.py"
+    },
+    "python_snapshot/vendor/model_support/schema.py": {
+      "bytes": 3449,
+      "sha256": "24db1fadeb9d16de2fd0593c87b0ce113b4f0720118b4617622af7450b957ca0",
+      "source": "validation/issue29_p06n_python_evidence_20261017/python_snapshot/vendor/model_support/schema.py"
+    },
+    "python_snapshot/vendor/model_support/upper_assembly.py": {
+      "bytes": 7546,
+      "sha256": "d0e03aeb87dcc52ae8001b422d836064275850f22c8a69640ce722cb2213d065",
+      "source": "validation/issue29_p06n_python_evidence_20261017/python_snapshot/vendor/model_support/upper_assembly.py"
+    },
+    "inputs/P02A.json": {
+      "bytes": 4912,
+      "sha256": "9587c4b45eae1c22d9e7190ee1470f5ad2e38145305f6c374894f91240ae7e1b",
+      "source": "docs/benchmarks/G1R17_native26_20261013/data/inputs/P02A.json"
+    },
+    "inputs/P02A_coarse_geometry.bin": {
+      "bytes": 5512,
+      "sha256": "65fe6462d0cc1d832d1a2656494ade80858d5c491c7d14f6f8a6f8c168f2c79b",
+      "source": "versions/G1R17/results/geometry25/P02A_new_vba_mesh.bin"
+    },
+    "inputs/D05A.json": {
+      "bytes": 5032,
+      "sha256": "b9c7b2b34a74889f0274f220b1895405acd68409f8df3b13571d5f62f27fa7e2",
+      "source": "docs/benchmarks/G1R17_native26_20261013/data/inputs/D05A.json"
+    },
+    "inputs/D05A_coarse_geometry.bin": {
+      "bytes": 5512,
+      "sha256": "8f9849b3fb0b4238aa7e15f039d7321373cdc7b5c621b40b037d14c604d01983",
+      "source": "versions/G1R17/results/geometry25/D05A_new_vba_mesh.bin"
+    },
+    "history/INDEPENDENT_AUDIT.json": {
+      "bytes": 56102,
+      "sha256": "d9865ae57943d4e848385bf4f8a3d72b444e0cc141a4fbf27302af0148996a6d",
+      "source": "G1R20/EVIDENCE.zip:validation/G1R19_python26_v3_20261016/results/D05A_scalar_upper_20261016T111421Z/INDEPENDENT_AUDIT.json"
+    },
+    "history/cases/D05A/best_lower_certificate.json": {
+      "bytes": 23870,
+      "sha256": "322b45b75a494b7e09601e71667b999f305cb92bde7ad21c5c484d5ca74961bb",
+      "source": "G1R20/EVIDENCE.zip:validation/G1R19_python26_v3_20261016/results/D05A_scalar_upper_20261016T111421Z/cases/D05A/best_lower_certificate.json"
+    },
+    "history/cases/D05A/best_lower_field.npz": {
+      "bytes": 197136,
+      "sha256": "51350c1bda240e849b270aa27d753e2983d513da9ed913b3f3cec8c690d5bcf0",
+      "source": "G1R20/EVIDENCE.zip:validation/G1R19_python26_v3_20261016/results/D05A_scalar_upper_20261016T111421Z/cases/D05A/best_lower_field.npz"
+    },
+    "history/cases/D05A/best_lower_mesh.npz": {
+      "bytes": 13463,
+      "sha256": "9749331752333b4050301bc86d5712234e79a850debeafc8e2055ed4cac1187b",
+      "source": "G1R20/EVIDENCE.zip:validation/G1R19_python26_v3_20261016/results/D05A_scalar_upper_20261016T111421Z/cases/D05A/best_lower_mesh.npz"
+    },
+    "history/cases/D05A/best_upper_certificate.json": {
+      "bytes": 23820,
+      "sha256": "dfe9eda78feb5532f2c9d3fd3209b1b165d05804c182d959776ba249f0a9c788",
+      "source": "G1R20/EVIDENCE.zip:validation/G1R19_python26_v3_20261016/results/D05A_scalar_upper_20261016T111421Z/cases/D05A/best_upper_certificate.json"
+    },
+    "history/cases/D05A/best_upper_field.npz": {
+      "bytes": 137779,
+      "sha256": "472a0e70a598cb15e94f389fa97db0a6d51abee3151e2aac44fd56dcb18c6203",
+      "source": "G1R20/EVIDENCE.zip:validation/G1R19_python26_v3_20261016/results/D05A_scalar_upper_20261016T111421Z/cases/D05A/best_upper_field.npz"
+    },
+    "history/cases/D05A/best_upper_mesh.npz": {
+      "bytes": 13463,
+      "sha256": "9749331752333b4050301bc86d5712234e79a850debeafc8e2055ed4cac1187b",
+      "source": "G1R20/EVIDENCE.zip:validation/G1R19_python26_v3_20261016/results/D05A_scalar_upper_20261016T111421Z/cases/D05A/best_upper_mesh.npz"
+    },
+    "history/cases/D05A/source_manifest.json": {
+      "bytes": 7420,
+      "sha256": "126d494fd2340b2cd4bac7268601eab90867771566ace091ac7aad25ba445d6c",
+      "source": "G1R20/EVIDENCE.zip:validation/G1R19_python26_v3_20261016/results/D05A_scalar_upper_20261016T111421Z/cases/D05A/source_manifest.json"
+    },
+    "history/cases/D05A/summary.json": {
+      "bytes": 80590,
+      "sha256": "d99d38a24b7402e51ba5c031e0973c44af56d49ea5ac4bc685581ecbe09998e4",
+      "source": "G1R20/EVIDENCE.zip:validation/G1R19_python26_v3_20261016/results/D05A_scalar_upper_20261016T111421Z/cases/D05A/summary.json"
+    },
+    "history/producer_run_case.py": {
+      "bytes": 21135,
+      "sha256": "54edbccbdfb0a59e8b2bb325efe1b28d784630586c47910ec1a171c676add498",
+      "source": "G1R20/EVIDENCE.zip:validation/G1R19_python26_v3_20261016/run_case.py"
+    },
+    "history/CURRENT_RESULT_D05A.json": {
+      "bytes": 7116,
+      "sha256": "4839a4afb49c8b9cc6f12ac08b6ad0a6478aab342c7a020957c77d841a2764b8",
+      "source": "validation/G1R19_python26_20261016/CURRENT_RESULTS.json:cases[D05A]"
+    }
+  },
+  "scope": "Exact immutable source snapshot and historical/canonical data; new fixed-point experiments are separate."
+}

@@ -1,0 +1,41 @@
+{
+  "mode": "upper",
+  "root_complete": true,
+  "bracket": [
+    0.6901588260388777,
+    0.6902587260388777
+  ],
+  "bracket_width": 9.990000000004162e-05,
+  "fs_tolerance": 0.0001,
+  "endpoint": 0.6902587260388777,
+  "trials": 2,
+  "seconds": 4.942775400006212,
+  "mesh_id": "44c89fcad8854b4b5ef36f061999d3033613a1e5b7193b2e2ef4a8eb0a8b7fbc",
+  "physical_model_id": "08cc8e73e85408e7a82cbe79b5716ef007cb917d00e021872c40e510b5d17525",
+  "elements": 8739,
+  "q": 8,
+  "case": "P06N",
+  "policy": "hold_initial",
+  "bracket_signs": [
+    1,
+    -1
+  ],
+  "opposite_numerical_endpoint_is_continuum_bound": false,
+  "budget_exhausted": false,
+  "budget_error": null,
+  "case_budget": {
+    "case_seconds": 30.0,
+    "solve_seconds": 1.0,
+    "elapsed_seconds": 4.943315399985295,
+    "remaining_seconds": 25.056683800008614,
+    "exhausted": false,
+    "expired_at": null,
+    "solver_time_allocations": [],
+    "scope": "cooperative wall deadline; OS watchdog required for in-flight native work"
+  },
+  "proposal_method": "bounded_bisection",
+  "pilot_trial_limit": null,
+  "new_points": 0,
+  "pilot_trial_limit_reached": false,
+  "pilot_stop_reason": null
+}

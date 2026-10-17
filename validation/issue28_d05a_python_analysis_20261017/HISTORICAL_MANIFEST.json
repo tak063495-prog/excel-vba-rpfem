@@ -1,0 +1,782 @@
+{
+  "schema": "issue28_d05a_historical_v1",
+  "created_utc": "2026-10-17T11:46:13.360919+00:00",
+  "case": "D05A",
+  "files": {
+    "historical/python_snapshot/accuracy_driver.py": {
+      "sha256": "6dc57380371a575c5f73425c0cecd77a47cb6e41e34f682e8c431874f39bdcb3",
+      "bytes": 36188,
+      "source_relative_path": "validation/G1R19_python26_v3_20261016/python/accuracy_driver.py",
+      "source_url": "https://github.com/tak063495-prog/excel-vba-rpfem/blob/G1R20/validation/G1R19_python26_v3_20261016/python/accuracy_driver.py",
+      "purpose": "Exact complete v3 source snapshot; no historical source modification",
+      "in_original_public_full_archive": true
+    },
+    "historical/python_snapshot/benchmark_models.py": {
+      "sha256": "5e0078fedef71ec757184ed2d0b40c548a82c303737a9ef7b1f0fa8715e94141",
+      "bytes": 14280,
+      "source_relative_path": "validation/G1R19_python26_v3_20261016/python/benchmark_models.py",
+      "source_url": "https://github.com/tak063495-prog/excel-vba-rpfem/blob/G1R20/validation/G1R19_python26_v3_20261016/python/benchmark_models.py",
+      "purpose": "Exact complete v3 source snapshot; no historical source modification",
+      "in_original_public_full_archive": true
+    },
+    "historical/python_snapshot/c0_slope_wedge_driver.py": {
+      "sha256": "bd70baaba33fe74204dd74989738358080c5e7b5829624756c4fce05cb52c4f7",
+      "bytes": 7318,
+      "source_relative_path": "validation/G1R19_python26_v3_20261016/python/c0_slope_wedge_driver.py",
+      "source_url": "https://github.com/tak063495-prog/excel-vba-rpfem/blob/G1R20/validation/G1R19_python26_v3_20261016/python/c0_slope_wedge_driver.py",
+      "purpose": "Exact complete v3 source snapshot; no historical source modification",
+      "in_original_public_full_archive": true
+    },
+    "historical/python_snapshot/check_report_accuracy.py": {
+      "sha256": "01863560ce73332b3e4d95042083d6ae3e8dce79bbb088a4b6aa9d16a7e717ea",
+      "bytes": 4444,
+      "source_relative_path": "validation/G1R19_python26_v3_20261016/python/check_report_accuracy.py",
+      "source_url": "https://github.com/tak063495-prog/excel-vba-rpfem/blob/G1R20/validation/G1R19_python26_v3_20261016/python/check_report_accuracy.py",
+      "purpose": "Exact complete v3 source snapshot; no historical source modification",
+      "in_original_public_full_archive": true
+    },
+    "historical/python_snapshot/check_zero_phi.py": {
+      "sha256": "ba88cf481de8e11b5480404eb744b22627f69b9080ea1c3c4709d508fdcf0eab",
+      "bytes": 11525,
+      "source_relative_path": "validation/G1R19_python26_v3_20261016/python/check_zero_phi.py",
+      "source_url": "https://github.com/tak063495-prog/excel-vba-rpfem/blob/G1R20/validation/G1R19_python26_v3_20261016/python/check_zero_phi.py",
+      "purpose": "Exact complete v3 source snapshot; no historical source modification",
+      "in_original_public_full_archive": true
+    },
+    "historical/python_snapshot/combine_seeds.py": {
+      "sha256": "a9f5a3bf3a98186df9fd7d4627ec18bbc71a42b7070bf0cc08824a6aba4d961d",
+      "bytes": 3398,
+      "source_relative_path": "validation/G1R19_python26_v3_20261016/python/combine_seeds.py",
+      "source_url": "https://github.com/tak063495-prog/excel-vba-rpfem/blob/G1R20/validation/G1R19_python26_v3_20261016/python/combine_seeds.py",
+      "purpose": "Exact complete v3 source snapshot; no historical source modification",
+      "in_original_public_full_archive": true
+    },
+    "historical/python_snapshot/diagnose_dual_restoration.py": {
+      "sha256": "f175427b6b3efe8437f5db8ad56022a3e358904ac311d896602453aba9f95bd2",
+      "bytes": 4476,
+      "source_relative_path": "validation/G1R19_python26_v3_20261016/python/diagnose_dual_restoration.py",
+      "source_url": "https://github.com/tak063495-prog/excel-vba-rpfem/blob/G1R20/validation/G1R19_python26_v3_20261016/python/diagnose_dual_restoration.py",
+      "purpose": "Exact complete v3 source snapshot; no historical source modification",
+      "in_original_public_full_archive": true
+    },
+    "historical/python_snapshot/diagnose_farkas.py": {
+      "sha256": "565c43c9636c3537b8e8a37534d15a18546a98ae407f0d0a88f3a7afdb356054",
+      "bytes": 5700,
+      "source_relative_path": "validation/G1R19_python26_v3_20261016/python/diagnose_farkas.py",
+      "source_url": "https://github.com/tak063495-prog/excel-vba-rpfem/blob/G1R20/validation/G1R19_python26_v3_20261016/python/diagnose_farkas.py",
+      "purpose": "Exact complete v3 source snapshot; no historical source modification",
+      "in_original_public_full_archive": true
+    },
+    "historical/python_snapshot/diagnose_farkas_projection.py": {
+      "sha256": "52d355ad832acc4f354c82c01c648f07210e9fd8e1091adf8ef9be6641ef1d14",
+      "bytes": 4267,
+      "source_relative_path": "validation/G1R19_python26_v3_20261016/python/diagnose_farkas_projection.py",
+      "source_url": "https://github.com/tak063495-prog/excel-vba-rpfem/blob/G1R20/validation/G1R19_python26_v3_20261016/python/diagnose_farkas_projection.py",
+      "purpose": "Exact complete v3 source snapshot; no historical source modification",
+      "in_original_public_full_archive": true
+    },
+    "historical/python_snapshot/diagnose_original_dual.py": {
+      "sha256": "86494255cfbb421a7565752c83ef656805789717d52614ea194d9fc9dd1e6027",
+      "bytes": 2582,
+      "source_relative_path": "validation/G1R19_python26_v3_20261016/python/diagnose_original_dual.py",
+      "source_url": "https://github.com/tak063495-prog/excel-vba-rpfem/blob/G1R20/validation/G1R19_python26_v3_20261016/python/diagnose_original_dual.py",
+      "purpose": "Exact complete v3 source snapshot; no historical source modification",
+      "in_original_public_full_archive": true
+    },
+    "historical/python_snapshot/diagnose_ray_scaling.py": {
+      "sha256": "aa38aff6dd96730ee366908649289d7ba910540188babfdac7cce0838080c053",
+      "bytes": 3274,
+      "source_relative_path": "validation/G1R19_python26_v3_20261016/python/diagnose_ray_scaling.py",
+      "source_url": "https://github.com/tak063495-prog/excel-vba-rpfem/blob/G1R20/validation/G1R19_python26_v3_20261016/python/diagnose_ray_scaling.py",
+      "purpose": "Exact complete v3 source snapshot; no historical source modification",
+      "in_original_public_full_archive": true
+    },
+    "historical/python_snapshot/diagnose_upper_interpolation.py": {
+      "sha256": "1fca56609c997fb79869558388243319a953ec875e4418a1c0b027cc086a35ee",
+      "bytes": 6424,
+      "source_relative_path": "validation/G1R19_python26_v3_20261016/python/diagnose_upper_interpolation.py",
+      "source_url": "https://github.com/tak063495-prog/excel-vba-rpfem/blob/G1R20/validation/G1R19_python26_v3_20261016/python/diagnose_upper_interpolation.py",
+      "purpose": "Exact complete v3 source snapshot; no historical source modification",
+      "in_original_public_full_archive": true
+    },
+    "historical/python_snapshot/diagnose_velocity_continuation.py": {
+      "sha256": "6d60c4449cd43bf44688111e7c16483f9db0564ac1d8c679ad1e9539541e5567",
+      "bytes": 1799,
+      "source_relative_path": "validation/G1R19_python26_v3_20261016/python/diagnose_velocity_continuation.py",
+      "source_url": "https://github.com/tak063495-prog/excel-vba-rpfem/blob/G1R20/validation/G1R19_python26_v3_20261016/python/diagnose_velocity_continuation.py",
+      "purpose": "Exact complete v3 source snapshot; no historical source modification",
+      "in_original_public_full_archive": true
+    },
+    "historical/python_snapshot/diagnose_zero_cost_primal_qp.py": {
+      "sha256": "a560732318e59bb5738cff35c4af5a8f174679aef060c1a59febe8e8c2bde547",
+      "bytes": 3419,
+      "source_relative_path": "validation/G1R19_python26_v3_20261016/python/diagnose_zero_cost_primal_qp.py",
+      "source_url": "https://github.com/tak063495-prog/excel-vba-rpfem/blob/G1R20/validation/G1R19_python26_v3_20261016/python/diagnose_zero_cost_primal_qp.py",
+      "purpose": "Exact complete v3 source snapshot; no historical source modification",
+      "in_original_public_full_archive": true
+    },
+    "historical/python_snapshot/experiment_core.py": {
+      "sha256": "9a9e60b6d69ba4008ea89608f433bb716b433436715c45566bd209418ee9238e",
+      "bytes": 41505,
+      "source_relative_path": "validation/G1R19_python26_v3_20261016/python/experiment_core.py",
+      "source_url": "https://github.com/tak063495-prog/excel-vba-rpfem/blob/G1R20/validation/G1R19_python26_v3_20261016/python/experiment_core.py",
+      "purpose": "Exact complete v3 source snapshot; no historical source modification",
+      "in_original_public_full_archive": true
+    },
+    "historical/python_snapshot/import_history.py": {
+      "sha256": "3866b0f4b5a5e2d68956884ca88bc6366770e8558a9d46b3585403ad23c818ee",
+      "bytes": 3114,
+      "source_relative_path": "validation/G1R19_python26_v3_20261016/python/import_history.py",
+      "source_url": "https://github.com/tak063495-prog/excel-vba-rpfem/blob/G1R20/validation/G1R19_python26_v3_20261016/python/import_history.py",
+      "purpose": "Exact complete v3 source snapshot; no historical source modification",
+      "in_original_public_full_archive": true
+    },
+    "historical/python_snapshot/import_native.py": {
+      "sha256": "6c9f61294c4c1b8fe7285b5b6b3e28366544aab2475a83637137e3322d7b37d9",
+      "bytes": 6668,
+      "source_relative_path": "validation/G1R19_python26_v3_20261016/python/import_native.py",
+      "source_url": "https://github.com/tak063495-prog/excel-vba-rpfem/blob/G1R20/validation/G1R19_python26_v3_20261016/python/import_native.py",
+      "purpose": "Exact complete v3 source snapshot; no historical source modification",
+      "in_original_public_full_archive": true
+    },
+    "historical/python_snapshot/lower_accuracy_driver.py": {
+      "sha256": "f85799c3364aab5225102edee8f7b9c83fb56065e21b7c265bd33b2341d4ba5f",
+      "bytes": 8825,
+      "source_relative_path": "validation/G1R19_python26_v3_20261016/python/lower_accuracy_driver.py",
+      "source_url": "https://github.com/tak063495-prog/excel-vba-rpfem/blob/G1R20/validation/G1R19_python26_v3_20261016/python/lower_accuracy_driver.py",
+      "purpose": "Exact complete v3 source snapshot; no historical source modification",
+      "in_original_public_full_archive": true
+    },
+    "historical/python_snapshot/mesh_accuracy.py": {
+      "sha256": "9553fa8d1d6caa1ab49fff92bfece2b14da97348a3334181e0653c5dde81a860",
+      "bytes": 4899,
+      "source_relative_path": "validation/G1R19_python26_v3_20261016/python/mesh_accuracy.py",
+      "source_url": "https://github.com/tak063495-prog/excel-vba-rpfem/blob/G1R20/validation/G1R19_python26_v3_20261016/python/mesh_accuracy.py",
+      "purpose": "Exact complete v3 source snapshot; no historical source modification",
+      "in_original_public_full_archive": true
+    },
+    "historical/python_snapshot/mesh_geometry.py": {
+      "sha256": "e5a5f41a9af249fa8e75f2aa634bda9b4202b89fb5518ff8d478de1b4406d68e",
+      "bytes": 8429,
+      "source_relative_path": "validation/G1R19_python26_v3_20261016/python/mesh_geometry.py",
+      "source_url": "https://github.com/tak063495-prog/excel-vba-rpfem/blob/G1R20/validation/G1R19_python26_v3_20261016/python/mesh_geometry.py",
+      "purpose": "Exact complete v3 source snapshot; no historical source modification",
+      "in_original_public_full_archive": true
+    },
+    "historical/python_snapshot/original_dual.py": {
+      "sha256": "c0025181b07b742b0d4608656489c3495b6ea90b4ed8084438420e8312b6467d",
+      "bytes": 5035,
+      "source_relative_path": "validation/G1R19_python26_v3_20261016/python/original_dual.py",
+      "source_url": "https://github.com/tak063495-prog/excel-vba-rpfem/blob/G1R20/validation/G1R19_python26_v3_20261016/python/original_dual.py",
+      "purpose": "Exact complete v3 source snapshot; no historical source modification",
+      "in_original_public_full_archive": true
+    },
+    "historical/python_snapshot/original_farkas.py": {
+      "sha256": "58ccb3af92e92d6b466c8acab8040fa88582a2deb5588a18d0ce92d3135f3672",
+      "bytes": 4333,
+      "source_relative_path": "validation/G1R19_python26_v3_20261016/python/original_farkas.py",
+      "source_url": "https://github.com/tak063495-prog/excel-vba-rpfem/blob/G1R20/validation/G1R19_python26_v3_20261016/python/original_farkas.py",
+      "purpose": "Exact complete v3 source snapshot; no historical source modification",
+      "in_original_public_full_archive": true
+    },
+    "historical/python_snapshot/precision_interpolation.py": {
+      "sha256": "e6badaa0787a6ccbee13cb30a5c4414df0b9db1997701102fada1e0fb3b2b707",
+      "bytes": 4565,
+      "source_relative_path": "validation/G1R19_python26_v3_20261016/python/precision_interpolation.py",
+      "source_url": "https://github.com/tak063495-prog/excel-vba-rpfem/blob/G1R20/validation/G1R19_python26_v3_20261016/python/precision_interpolation.py",
+      "purpose": "Exact complete v3 source snapshot; no historical source modification",
+      "in_original_public_full_archive": true
+    },
+    "historical/python_snapshot/reduction.py": {
+      "sha256": "cbc32e1e0764e10e3f56f67b804b08867166aafbd32a64ddcbe481b18d083ca5",
+      "bytes": 9105,
+      "source_relative_path": "validation/G1R19_python26_v3_20261016/python/reduction.py",
+      "source_url": "https://github.com/tak063495-prog/excel-vba-rpfem/blob/G1R20/validation/G1R19_python26_v3_20261016/python/reduction.py",
+      "purpose": "Exact complete v3 source snapshot; no historical source modification",
+      "in_original_public_full_archive": true
+    },
+    "historical/python_snapshot/report_accuracy.py": {
+      "sha256": "23aef211e2c18c940d71a65b7aae27848163ee7e6815022377fa89a972aecd98",
+      "bytes": 15739,
+      "source_relative_path": "validation/G1R19_python26_v3_20261016/python/report_accuracy.py",
+      "source_url": "https://github.com/tak063495-prog/excel-vba-rpfem/blob/G1R20/validation/G1R19_python26_v3_20261016/python/report_accuracy.py",
+      "purpose": "Exact complete v3 source snapshot; no historical source modification",
+      "in_original_public_full_archive": true
+    },
+    "historical/python_snapshot/restart_d03_latest.py": {
+      "sha256": "410939489bfac79463318aebc2fcbe0c1e274f15ff4fecba3dbad12b9441dad9",
+      "bytes": 2379,
+      "source_relative_path": "validation/G1R19_python26_v3_20261016/python/restart_d03_latest.py",
+      "source_url": "https://github.com/tak063495-prog/excel-vba-rpfem/blob/G1R20/validation/G1R19_python26_v3_20261016/python/restart_d03_latest.py",
+      "purpose": "Exact complete v3 source snapshot; no historical source modification",
+      "in_original_public_full_archive": true
+    },
+    "historical/python_snapshot/retain_d03_wedge_transition.py": {
+      "sha256": "93f6195030fff21720f95052b9b64ea4b2e2d4a66f0c9da1e2f0b3153440df37",
+      "bytes": 2380,
+      "source_relative_path": "validation/G1R19_python26_v3_20261016/python/retain_d03_wedge_transition.py",
+      "source_url": "https://github.com/tak063495-prog/excel-vba-rpfem/blob/G1R20/validation/G1R19_python26_v3_20261016/python/retain_d03_wedge_transition.py",
+      "purpose": "Exact complete v3 source snapshot; no historical source modification",
+      "in_original_public_full_archive": true
+    },
+    "historical/python_snapshot/run_d_suite.py": {
+      "sha256": "031b343525ae86dfa1d557f8534a57266d9eedbf8c31a9fd918252e5bd6b4d25",
+      "bytes": 4264,
+      "source_relative_path": "validation/G1R19_python26_v3_20261016/python/run_d_suite.py",
+      "source_url": "https://github.com/tak063495-prog/excel-vba-rpfem/blob/G1R20/validation/G1R19_python26_v3_20261016/python/run_d_suite.py",
+      "purpose": "Exact complete v3 source snapshot; no historical source modification",
+      "in_original_public_full_archive": true
+    },
+    "historical/python_snapshot/run_suite.py": {
+      "sha256": "47b95cc52537cd40f216af620f9dad10af023f2faba06f8e1db81ec4c9e97759",
+      "bytes": 2650,
+      "source_relative_path": "validation/G1R19_python26_v3_20261016/python/run_suite.py",
+      "source_url": "https://github.com/tak063495-prog/excel-vba-rpfem/blob/G1R20/validation/G1R19_python26_v3_20261016/python/run_suite.py",
+      "purpose": "Exact complete v3 source snapshot; no historical source modification",
+      "in_original_public_full_archive": true
+    },
+    "historical/python_snapshot/test_c0_slope_wedge.py": {
+      "sha256": "d8671244b8ac2d8deb087a3fb40b3e4a796e7f18cda4004b70e9f4bdbbf77e13",
+      "bytes": 3844,
+      "source_relative_path": "validation/G1R19_python26_v3_20261016/python/test_c0_slope_wedge.py",
+      "source_url": "https://github.com/tak063495-prog/excel-vba-rpfem/blob/G1R20/validation/G1R19_python26_v3_20261016/python/test_c0_slope_wedge.py",
+      "purpose": "Exact complete v3 source snapshot; no historical source modification",
+      "in_original_public_full_archive": true
+    },
+    "historical/python_snapshot/test_inverse_dual_guide.py": {
+      "sha256": "ffd48d176ec9197adcf615cbdc9014fbf41ba814736982b343d3aa8c725d3a82",
+      "bytes": 3676,
+      "source_relative_path": "validation/G1R19_python26_v3_20261016/python/test_inverse_dual_guide.py",
+      "source_url": "https://github.com/tak063495-prog/excel-vba-rpfem/blob/G1R20/validation/G1R19_python26_v3_20261016/python/test_inverse_dual_guide.py",
+      "purpose": "Exact complete v3 source snapshot; no historical source modification",
+      "in_original_public_full_archive": true
+    },
+    "historical/python_snapshot/test_lower_accuracy_driver.py": {
+      "sha256": "37bee4cb832674cc5de48fc27cb5158b1a91a14b7539fb7fc37ca5a9d7788569",
+      "bytes": 3066,
+      "source_relative_path": "validation/G1R19_python26_v3_20261016/python/test_lower_accuracy_driver.py",
+      "source_url": "https://github.com/tak063495-prog/excel-vba-rpfem/blob/G1R20/validation/G1R19_python26_v3_20261016/python/test_lower_accuracy_driver.py",
+      "purpose": "Exact complete v3 source snapshot; no historical source modification",
+      "in_original_public_full_archive": true
+    },
+    "historical/python_snapshot/test_lower_row_norm.py": {
+      "sha256": "543b7270d4e216705e4b181a063190a55358e74bce2d65dd397311d7d759ada4",
+      "bytes": 3812,
+      "source_relative_path": "validation/G1R19_python26_v3_20261016/python/test_lower_row_norm.py",
+      "source_url": "https://github.com/tak063495-prog/excel-vba-rpfem/blob/G1R20/validation/G1R19_python26_v3_20261016/python/test_lower_row_norm.py",
+      "purpose": "Exact complete v3 source snapshot; no historical source modification",
+      "in_original_public_full_archive": true
+    },
+    "historical/python_snapshot/test_mesh_accuracy.py": {
+      "sha256": "ec469acda335ddfecc5cf25300e63a3390ce071eb75388b7e1495359a5c7e509",
+      "bytes": 7751,
+      "source_relative_path": "validation/G1R19_python26_v3_20261016/python/test_mesh_accuracy.py",
+      "source_url": "https://github.com/tak063495-prog/excel-vba-rpfem/blob/G1R20/validation/G1R19_python26_v3_20261016/python/test_mesh_accuracy.py",
+      "purpose": "Exact complete v3 source snapshot; no historical source modification",
+      "in_original_public_full_archive": true
+    },
+    "historical/python_snapshot/test_mesh_geometry.py": {
+      "sha256": "24ce1742b54d8a9013bc4c2f5091a89369256cf782edbb732df65f29ad5acb5b",
+      "bytes": 3936,
+      "source_relative_path": "validation/G1R19_python26_v3_20261016/python/test_mesh_geometry.py",
+      "source_url": "https://github.com/tak063495-prog/excel-vba-rpfem/blob/G1R20/validation/G1R19_python26_v3_20261016/python/test_mesh_geometry.py",
+      "purpose": "Exact complete v3 source snapshot; no historical source modification",
+      "in_original_public_full_archive": true
+    },
+    "historical/python_snapshot/test_primal_row_recovery.py": {
+      "sha256": "6e3cbf228922b96c5d545829280c44e369a87c645f88d281c7d09b25cad727e0",
+      "bytes": 5678,
+      "source_relative_path": "validation/G1R19_python26_v3_20261016/python/test_primal_row_recovery.py",
+      "source_url": "https://github.com/tak063495-prog/excel-vba-rpfem/blob/G1R20/validation/G1R19_python26_v3_20261016/python/test_primal_row_recovery.py",
+      "purpose": "Exact complete v3 source snapshot; no historical source modification",
+      "in_original_public_full_archive": true
+    },
+    "historical/python_snapshot/upper_directional_candidate.py": {
+      "sha256": "a2ca13fff3c2a1a97f10207a4e728a33edf4b5761808322189eeaa933ebe9939",
+      "bytes": 9659,
+      "source_relative_path": "validation/G1R19_python26_v3_20261016/python/upper_directional_candidate.py",
+      "source_url": "https://github.com/tak063495-prog/excel-vba-rpfem/blob/G1R20/validation/G1R19_python26_v3_20261016/python/upper_directional_candidate.py",
+      "purpose": "Exact complete v3 source snapshot; no historical source modification",
+      "in_original_public_full_archive": true
+    },
+    "historical/python_snapshot/upper_geometry_driver.py": {
+      "sha256": "2ddb0d9a36b02ee7912c35b0ac84ea05e6ba29eebddd3648e00487a3fea13590",
+      "bytes": 6283,
+      "source_relative_path": "validation/G1R19_python26_v3_20261016/python/upper_geometry_driver.py",
+      "source_url": "https://github.com/tak063495-prog/excel-vba-rpfem/blob/G1R20/validation/G1R19_python26_v3_20261016/python/upper_geometry_driver.py",
+      "purpose": "Exact complete v3 source snapshot; no historical source modification",
+      "in_original_public_full_archive": true
+    },
+    "historical/python_snapshot/upper_proximal_candidate.py": {
+      "sha256": "c255de912262bcef362b2bb761a3de58bf72e0954fabd5593cfabe859d0479a3",
+      "bytes": 11897,
+      "source_relative_path": "validation/G1R19_python26_v3_20261016/python/upper_proximal_candidate.py",
+      "source_url": "https://github.com/tak063495-prog/excel-vba-rpfem/blob/G1R20/validation/G1R19_python26_v3_20261016/python/upper_proximal_candidate.py",
+      "purpose": "Exact complete v3 source snapshot; no historical source modification",
+      "in_original_public_full_archive": true
+    },
+    "historical/python_snapshot/upper_witness_recovery.py": {
+      "sha256": "eb9b3226a4690b9f04b16297679b72141993dbdc5b258663ff268f19ce0a5018",
+      "bytes": 3952,
+      "source_relative_path": "validation/G1R19_python26_v3_20261016/python/upper_witness_recovery.py",
+      "source_url": "https://github.com/tak063495-prog/excel-vba-rpfem/blob/G1R20/validation/G1R19_python26_v3_20261016/python/upper_witness_recovery.py",
+      "purpose": "Exact complete v3 source snapshot; no historical source modification",
+      "in_original_public_full_archive": true
+    },
+    "historical/python_snapshot/vendor/independent_audit.py": {
+      "sha256": "79ea1b0e4e72b2a61a4110e6115e3f33929ae5990fb054e20f41d345a694f37b",
+      "bytes": 4450,
+      "source_relative_path": "validation/G1R19_python26_v3_20261016/python/vendor/independent_audit.py",
+      "source_url": "https://github.com/tak063495-prog/excel-vba-rpfem/blob/G1R20/validation/G1R19_python26_v3_20261016/python/vendor/independent_audit.py",
+      "purpose": "Exact complete v3 source snapshot; no historical source modification",
+      "in_original_public_full_archive": true
+    },
+    "historical/python_snapshot/vendor/model_support/__init__.py": {
+      "sha256": "7eb70257593da06f682a3ddda54a9d260d4fc514f645237f5ca74b08f8da61a6",
+      "bytes": 2,
+      "source_relative_path": "validation/G1R19_python26_v3_20261016/python/vendor/model_support/__init__.py",
+      "source_url": "https://github.com/tak063495-prog/excel-vba-rpfem/blob/G1R20/validation/G1R19_python26_v3_20261016/python/vendor/model_support/__init__.py",
+      "purpose": "Exact complete v3 source snapshot; no historical source modification",
+      "in_original_public_full_archive": true
+    },
+    "historical/python_snapshot/vendor/model_support/io_case.py": {
+      "sha256": "acd8d38c56020951621b1be5e4803e3d02898ad087c7f0c2d04e1d47ac6b87e3",
+      "bytes": 4797,
+      "source_relative_path": "validation/G1R19_python26_v3_20261016/python/vendor/model_support/io_case.py",
+      "source_url": "https://github.com/tak063495-prog/excel-vba-rpfem/blob/G1R20/validation/G1R19_python26_v3_20261016/python/vendor/model_support/io_case.py",
+      "purpose": "Exact complete v3 source snapshot; no historical source modification",
+      "in_original_public_full_archive": true
+    },
+    "historical/python_snapshot/vendor/model_support/lower_assembly.py": {
+      "sha256": "b3c482c8950205b32a5e38cd0f1e720e5efeb48491bbd8ff02b728ef54f51047",
+      "bytes": 3788,
+      "source_relative_path": "validation/G1R19_python26_v3_20261016/python/vendor/model_support/lower_assembly.py",
+      "source_url": "https://github.com/tak063495-prog/excel-vba-rpfem/blob/G1R20/validation/G1R19_python26_v3_20261016/python/vendor/model_support/lower_assembly.py",
+      "purpose": "Exact complete v3 source snapshot; no historical source modification",
+      "in_original_public_full_archive": true
+    },
+    "historical/python_snapshot/vendor/model_support/p2.py": {
+      "sha256": "7c243a234d22e5d8c209c5d55f6aedc834af7b507538022c2731a71046e0969f",
+      "bytes": 924,
+      "source_relative_path": "validation/G1R19_python26_v3_20261016/python/vendor/model_support/p2.py",
+      "source_url": "https://github.com/tak063495-prog/excel-vba-rpfem/blob/G1R20/validation/G1R19_python26_v3_20261016/python/vendor/model_support/p2.py",
+      "purpose": "Exact complete v3 source snapshot; no historical source modification",
+      "in_original_public_full_archive": true
+    },
+    "historical/python_snapshot/vendor/model_support/schema.py": {
+      "sha256": "24db1fadeb9d16de2fd0593c87b0ce113b4f0720118b4617622af7450b957ca0",
+      "bytes": 3449,
+      "source_relative_path": "validation/G1R19_python26_v3_20261016/python/vendor/model_support/schema.py",
+      "source_url": "https://github.com/tak063495-prog/excel-vba-rpfem/blob/G1R20/validation/G1R19_python26_v3_20261016/python/vendor/model_support/schema.py",
+      "purpose": "Exact complete v3 source snapshot; no historical source modification",
+      "in_original_public_full_archive": true
+    },
+    "historical/python_snapshot/vendor/model_support/upper_assembly.py": {
+      "sha256": "d0e03aeb87dcc52ae8001b422d836064275850f22c8a69640ce722cb2213d065",
+      "bytes": 7546,
+      "source_relative_path": "validation/G1R19_python26_v3_20261016/python/vendor/model_support/upper_assembly.py",
+      "source_url": "https://github.com/tak063495-prog/excel-vba-rpfem/blob/G1R20/validation/G1R19_python26_v3_20261016/python/vendor/model_support/upper_assembly.py",
+      "purpose": "Exact complete v3 source snapshot; no historical source modification",
+      "in_original_public_full_archive": true
+    },
+    "historical/python_snapshot/zero_phi_signed_transport.py": {
+      "sha256": "8b92df31da30b36b3256a15e2bd998e9fe9205d9c3b7707e59c0b415b6bcb508",
+      "bytes": 7325,
+      "source_relative_path": "validation/G1R19_python26_v3_20261016/python/zero_phi_signed_transport.py",
+      "source_url": "https://github.com/tak063495-prog/excel-vba-rpfem/blob/G1R20/validation/G1R19_python26_v3_20261016/python/zero_phi_signed_transport.py",
+      "purpose": "Exact complete v3 source snapshot; no historical source modification",
+      "in_original_public_full_archive": true
+    },
+    "historical/python_snapshot/zero_phi_transport.py": {
+      "sha256": "a95589afd8ab9ca0a69829782ad36e2ba83b16e7fcbe74781b26dc03ea974c79",
+      "bytes": 3981,
+      "source_relative_path": "validation/G1R19_python26_v3_20261016/python/zero_phi_transport.py",
+      "source_url": "https://github.com/tak063495-prog/excel-vba-rpfem/blob/G1R20/validation/G1R19_python26_v3_20261016/python/zero_phi_transport.py",
+      "purpose": "Exact complete v3 source snapshot; no historical source modification",
+      "in_original_public_full_archive": true
+    },
+    "historical/run_case.py": {
+      "sha256": "54edbccbdfb0a59e8b2bb325efe1b28d784630586c47910ec1a171c676add498",
+      "bytes": 21135,
+      "source_relative_path": "validation/G1R19_python26_v3_20261016/run_case.py",
+      "source_url": "https://github.com/tak063495-prog/excel-vba-rpfem/blob/G1R20/validation/G1R19_python26_v3_20261016/run_case.py",
+      "purpose": "Original historical implementation or canonical input/initial geometry",
+      "in_original_public_full_archive": true
+    },
+    "historical/VBA_HANDOFF.md": {
+      "sha256": "dcaba9f7fab203c32f9bfebb9080ff34e7810a6b3e26c12b583ae5a599a76d44",
+      "bytes": 4783,
+      "source_relative_path": "validation/G1R19_python26_v3_20261016/VBA_HANDOFF.md",
+      "source_url": "https://github.com/tak063495-prog/excel-vba-rpfem/blob/G1R20/validation/G1R19_python26_v3_20261016/VBA_HANDOFF.md",
+      "purpose": "Original historical implementation or canonical input/initial geometry",
+      "in_original_public_full_archive": false
+    },
+    "historical/inputs/INPUTS_26.json": {
+      "sha256": "971bf1c476319e11361f35590c5a3ed6017c46adbb0f211b8feaa7b915b78e0f",
+      "bytes": 141703,
+      "source_relative_path": "validation/G1R19_python26_v3_20261016/INPUTS_26.json",
+      "source_url": "https://github.com/tak063495-prog/excel-vba-rpfem/blob/G1R20/validation/G1R19_python26_v3_20261016/INPUTS_26.json",
+      "purpose": "Original historical implementation or canonical input/initial geometry",
+      "in_original_public_full_archive": true
+    },
+    "historical/inputs/D05A.json": {
+      "sha256": "b9c7b2b34a74889f0274f220b1895405acd68409f8df3b13571d5f62f27fa7e2",
+      "bytes": 5032,
+      "source_relative_path": "docs/benchmarks/G1R17_native26_20261013/data/inputs/D05A.json",
+      "source_url": "https://github.com/tak063495-prog/excel-vba-rpfem/blob/G1R20/docs/benchmarks/G1R17_native26_20261013/data/inputs/D05A.json",
+      "purpose": "Original historical implementation or canonical input/initial geometry",
+      "in_original_public_full_archive": true
+    },
+    "historical/inputs/D05A_new_vba_mesh.bin": {
+      "sha256": "8f9849b3fb0b4238aa7e15f039d7321373cdc7b5c621b40b037d14c604d01983",
+      "bytes": 5512,
+      "source_relative_path": "versions/G1R17/results/geometry25/D05A_new_vba_mesh.bin",
+      "source_url": "https://github.com/tak063495-prog/excel-vba-rpfem/releases/download/G1R20/EVIDENCE.zip",
+      "purpose": "Original historical implementation or canonical input/initial geometry",
+      "in_original_public_full_archive": true,
+      "public_archive_member": "versions/G1R17/results/geometry25/D05A_new_vba_mesh.bin",
+      "publication_note": "Exact original archive member, newly exposed by this focused bundle"
+    },
+    "historical/pair/best_lower_certificate.json": {
+      "sha256": "322b45b75a494b7e09601e71667b999f305cb92bde7ad21c5c484d5ca74961bb",
+      "bytes": 23870,
+      "source_relative_path": "validation/G1R19_python26_v3_20261016/results/D05A_scalar_upper_20261016T111421Z/cases/D05A/best_lower_certificate.json",
+      "source_url": "https://github.com/tak063495-prog/excel-vba-rpfem/releases/download/G1R20/EVIDENCE.zip",
+      "purpose": "Original archived physical pair and retained root/provenance records",
+      "in_original_public_full_archive": true,
+      "public_archive_member": "validation/G1R19_python26_v3_20261016/results/D05A_scalar_upper_20261016T111421Z/cases/D05A/best_lower_certificate.json",
+      "publication_note": "Exact original archive member, newly exposed by this focused bundle"
+    },
+    "historical/pair/best_upper_certificate.json": {
+      "sha256": "dfe9eda78feb5532f2c9d3fd3209b1b165d05804c182d959776ba249f0a9c788",
+      "bytes": 23820,
+      "source_relative_path": "validation/G1R19_python26_v3_20261016/results/D05A_scalar_upper_20261016T111421Z/cases/D05A/best_upper_certificate.json",
+      "source_url": "https://github.com/tak063495-prog/excel-vba-rpfem/releases/download/G1R20/EVIDENCE.zip",
+      "purpose": "Original archived physical pair and retained root/provenance records",
+      "in_original_public_full_archive": true,
+      "public_archive_member": "validation/G1R19_python26_v3_20261016/results/D05A_scalar_upper_20261016T111421Z/cases/D05A/best_upper_certificate.json",
+      "publication_note": "Exact original archive member, newly exposed by this focused bundle"
+    },
+    "historical/pair/best_lower_mesh.npz": {
+      "sha256": "9749331752333b4050301bc86d5712234e79a850debeafc8e2055ed4cac1187b",
+      "bytes": 13463,
+      "source_relative_path": "validation/G1R19_python26_v3_20261016/results/D05A_scalar_upper_20261016T111421Z/cases/D05A/best_lower_mesh.npz",
+      "source_url": "https://github.com/tak063495-prog/excel-vba-rpfem/releases/download/G1R20/EVIDENCE.zip",
+      "purpose": "Original archived physical pair and retained root/provenance records",
+      "in_original_public_full_archive": true,
+      "public_archive_member": "validation/G1R19_python26_v3_20261016/results/D05A_scalar_upper_20261016T111421Z/cases/D05A/best_lower_mesh.npz",
+      "publication_note": "Exact original archive member, newly exposed by this focused bundle"
+    },
+    "historical/pair/best_upper_mesh.npz": {
+      "sha256": "9749331752333b4050301bc86d5712234e79a850debeafc8e2055ed4cac1187b",
+      "bytes": 13463,
+      "source_relative_path": "validation/G1R19_python26_v3_20261016/results/D05A_scalar_upper_20261016T111421Z/cases/D05A/best_upper_mesh.npz",
+      "source_url": "https://github.com/tak063495-prog/excel-vba-rpfem/releases/download/G1R20/EVIDENCE.zip",
+      "purpose": "Original archived physical pair and retained root/provenance records",
+      "in_original_public_full_archive": true,
+      "public_archive_member": "validation/G1R19_python26_v3_20261016/results/D05A_scalar_upper_20261016T111421Z/cases/D05A/best_upper_mesh.npz",
+      "publication_note": "Exact original archive member, newly exposed by this focused bundle"
+    },
+    "historical/pair/best_lower_field.npz": {
+      "sha256": "51350c1bda240e849b270aa27d753e2983d513da9ed913b3f3cec8c690d5bcf0",
+      "bytes": 197136,
+      "source_relative_path": "validation/G1R19_python26_v3_20261016/results/D05A_scalar_upper_20261016T111421Z/cases/D05A/best_lower_field.npz",
+      "source_url": "https://github.com/tak063495-prog/excel-vba-rpfem/releases/download/G1R20/EVIDENCE.zip",
+      "purpose": "Original archived physical pair and retained root/provenance records",
+      "in_original_public_full_archive": true,
+      "public_archive_member": "validation/G1R19_python26_v3_20261016/results/D05A_scalar_upper_20261016T111421Z/cases/D05A/best_lower_field.npz",
+      "publication_note": "Exact original archive member, newly exposed by this focused bundle"
+    },
+    "historical/pair/best_upper_field.npz": {
+      "sha256": "472a0e70a598cb15e94f389fa97db0a6d51abee3151e2aac44fd56dcb18c6203",
+      "bytes": 137779,
+      "source_relative_path": "validation/G1R19_python26_v3_20261016/results/D05A_scalar_upper_20261016T111421Z/cases/D05A/best_upper_field.npz",
+      "source_url": "https://github.com/tak063495-prog/excel-vba-rpfem/releases/download/G1R20/EVIDENCE.zip",
+      "purpose": "Original archived physical pair and retained root/provenance records",
+      "in_original_public_full_archive": true,
+      "public_archive_member": "validation/G1R19_python26_v3_20261016/results/D05A_scalar_upper_20261016T111421Z/cases/D05A/best_upper_field.npz",
+      "publication_note": "Exact original archive member, newly exposed by this focused bundle"
+    },
+    "historical/pair/summary.json": {
+      "sha256": "d99d38a24b7402e51ba5c031e0973c44af56d49ea5ac4bc685581ecbe09998e4",
+      "bytes": 80590,
+      "source_relative_path": "validation/G1R19_python26_v3_20261016/results/D05A_scalar_upper_20261016T111421Z/cases/D05A/summary.json",
+      "source_url": "https://github.com/tak063495-prog/excel-vba-rpfem/releases/download/G1R20/EVIDENCE.zip",
+      "purpose": "Original archived physical pair and retained root/provenance records",
+      "in_original_public_full_archive": true,
+      "public_archive_member": "validation/G1R19_python26_v3_20261016/results/D05A_scalar_upper_20261016T111421Z/cases/D05A/summary.json",
+      "publication_note": "Exact original archive member, newly exposed by this focused bundle"
+    },
+    "historical/pair/source_manifest.json": {
+      "sha256": "126d494fd2340b2cd4bac7268601eab90867771566ace091ac7aad25ba445d6c",
+      "bytes": 7420,
+      "source_relative_path": "validation/G1R19_python26_v3_20261016/results/D05A_scalar_upper_20261016T111421Z/cases/D05A/source_manifest.json",
+      "source_url": "https://github.com/tak063495-prog/excel-vba-rpfem/releases/download/G1R20/EVIDENCE.zip",
+      "purpose": "Original archived physical pair and retained root/provenance records",
+      "in_original_public_full_archive": true,
+      "public_archive_member": "validation/G1R19_python26_v3_20261016/results/D05A_scalar_upper_20261016T111421Z/cases/D05A/source_manifest.json",
+      "publication_note": "Exact original archive member, newly exposed by this focused bundle"
+    },
+    "historical/vectors/upper_attempt_0005.json": {
+      "sha256": "e8e3b70a63c76e0d90bc2a7690f20a0934e6532411f458e65751f11c3b3425bf",
+      "bytes": 3687,
+      "source_relative_path": "validation/G1R19_python26_v3_20261016/results/D05A_scalar_upper_20261016T111421Z/cases/D05A/scaled_upper_attempts/upper_attempt_0005.json",
+      "source_url": null,
+      "purpose": "Original full vectors and raw numerical gate metadata: one accepted, one rejected",
+      "in_original_public_full_archive": false,
+      "public_archive_member": null,
+      "publication_note": "Preserved original local evidence, newly published in this focused bundle; no prior individual GitHub file URL claimed"
+    },
+    "historical/vectors/upper_attempt_0005.npz": {
+      "sha256": "c84ee4192f4ff03d7105ce5e79b47e15534f0026ac652ecaf77f8f0409d9aa99",
+      "bytes": 167790,
+      "source_relative_path": "validation/G1R19_python26_v3_20261016/results/D05A_scalar_upper_20261016T111421Z/cases/D05A/scaled_upper_attempts/upper_attempt_0005.npz",
+      "source_url": null,
+      "purpose": "Original full vectors and raw numerical gate metadata: one accepted, one rejected",
+      "in_original_public_full_archive": false,
+      "public_archive_member": null,
+      "publication_note": "Preserved original local evidence, newly published in this focused bundle; no prior individual GitHub file URL claimed"
+    },
+    "historical/vectors/upper_attempt_0065.json": {
+      "sha256": "47736644880a81ef38c240d21584855e474695dc8b3a62b1c2dc3fc2c8c654ce",
+      "bytes": 3834,
+      "source_relative_path": "validation/G1R19_python26_v3_20261016/results/D05A_scalar_upper_20261016T111421Z/cases/D05A/scaled_upper_attempts/upper_attempt_0065.json",
+      "source_url": null,
+      "purpose": "Original full vectors and raw numerical gate metadata: one accepted, one rejected",
+      "in_original_public_full_archive": false,
+      "public_archive_member": null,
+      "publication_note": "Preserved original local evidence, newly published in this focused bundle; no prior individual GitHub file URL claimed"
+    },
+    "historical/vectors/upper_attempt_0065.npz": {
+      "sha256": "20cb5e468caef1c6420c434fae5841feb0b701121fbfd3c6bf4ce5ffd1027a84",
+      "bytes": 1259953,
+      "source_relative_path": "validation/G1R19_python26_v3_20261016/results/D05A_scalar_upper_20261016T111421Z/cases/D05A/scaled_upper_attempts/upper_attempt_0065.npz",
+      "source_url": null,
+      "purpose": "Original full vectors and raw numerical gate metadata: one accepted, one rejected",
+      "in_original_public_full_archive": false,
+      "public_archive_member": null,
+      "publication_note": "Preserved original local evidence, newly published in this focused bundle; no prior individual GitHub file URL claimed"
+    },
+    "historical/provenance/COMPLETION.json": {
+      "sha256": "f9a358c583fc3de21d55dc504c8a93d43021eda34287ae98554c0d99e44b5cc6",
+      "bytes": 794,
+      "source_relative_path": "validation/G1R19_python26_v3_20261016/results/D05A_scalar_upper_20261016T111421Z/COMPLETION.json",
+      "source_url": null,
+      "purpose": "Original historical execution/audit evidence; worker OS exit remains unknown",
+      "in_original_public_full_archive": false,
+      "public_archive_member": null,
+      "publication_note": "Preserved original local evidence, newly published in this focused bundle; no prior individual GitHub file URL claimed"
+    },
+    "historical/provenance/OWNERSHIP.json": {
+      "sha256": "664013f134a8968403a58b3a8cbc46e1a02a2032db76adb9c938fdd521828f1b",
+      "bytes": 10161,
+      "source_relative_path": "validation/G1R19_python26_v3_20261016/results/D05A_scalar_upper_20261016T111421Z/OWNERSHIP.json",
+      "source_url": null,
+      "purpose": "Original historical execution/audit evidence; worker OS exit remains unknown",
+      "in_original_public_full_archive": false,
+      "public_archive_member": null,
+      "publication_note": "Preserved original local evidence, newly published in this focused bundle; no prior individual GitHub file URL claimed"
+    },
+    "historical/provenance/D05A.log": {
+      "sha256": "a0cacc029ccf314bb14dbe822c4f2a270da465824a235fb9d15966aa68543b2c",
+      "bytes": 6891,
+      "source_relative_path": "validation/G1R19_python26_v3_20261016/results/D05A_scalar_upper_20261016T111421Z/D05A.log",
+      "source_url": null,
+      "purpose": "Original historical execution/audit evidence; worker OS exit remains unknown",
+      "in_original_public_full_archive": false,
+      "public_archive_member": null,
+      "publication_note": "Preserved original local evidence, newly published in this focused bundle; no prior individual GitHub file URL claimed"
+    },
+    "historical/provenance/INDEPENDENT_AUDIT.json": {
+      "sha256": "d9865ae57943d4e848385bf4f8a3d72b444e0cc141a4fbf27302af0148996a6d",
+      "bytes": 56102,
+      "source_relative_path": "validation/G1R19_python26_v3_20261016/results/D05A_scalar_upper_20261016T111421Z/INDEPENDENT_AUDIT.json",
+      "source_url": "https://github.com/tak063495-prog/excel-vba-rpfem/releases/download/G1R20/EVIDENCE.zip",
+      "purpose": "Original historical execution/audit evidence; worker OS exit remains unknown",
+      "in_original_public_full_archive": true,
+      "public_archive_member": "validation/G1R19_python26_v3_20261016/results/D05A_scalar_upper_20261016T111421Z/INDEPENDENT_AUDIT.json",
+      "publication_note": "Exact original archive member, newly exposed by this focused bundle"
+    },
+    "historical/provenance/RESULTS.csv": {
+      "sha256": "0f22652f56b4c0625ecacf6067f9830346867079d05d6d7752458747f582935c",
+      "bytes": 257,
+      "source_relative_path": "validation/G1R19_python26_v3_20261016/results/D05A_scalar_upper_20261016T111421Z/RESULTS.csv",
+      "source_url": null,
+      "purpose": "Original historical execution/audit evidence; worker OS exit remains unknown",
+      "in_original_public_full_archive": false,
+      "public_archive_member": null,
+      "publication_note": "Preserved original local evidence, newly published in this focused bundle; no prior individual GitHub file URL claimed"
+    },
+    "VERIFY_HISTORICAL.py": {
+      "sha256": "1a3bc12d4fdf955ef86fef4163039392bf478b6693dfd77d3f1018da8347b812",
+      "bytes": 12901,
+      "purpose": "New independent read-only historical original q8 physical/raw dual verifier"
+    }
+  },
+  "read_only_relocation": {
+    "validation/G1R19_python26_v3_20261016/python/accuracy_driver.py": "historical/python_snapshot/accuracy_driver.py",
+    "validation/G1R19_python26_v3_20261016/python/benchmark_models.py": "historical/python_snapshot/benchmark_models.py",
+    "validation/G1R19_python26_v3_20261016/python/c0_slope_wedge_driver.py": "historical/python_snapshot/c0_slope_wedge_driver.py",
+    "validation/G1R19_python26_v3_20261016/python/check_report_accuracy.py": "historical/python_snapshot/check_report_accuracy.py",
+    "validation/G1R19_python26_v3_20261016/python/check_zero_phi.py": "historical/python_snapshot/check_zero_phi.py",
+    "validation/G1R19_python26_v3_20261016/python/combine_seeds.py": "historical/python_snapshot/combine_seeds.py",
+    "validation/G1R19_python26_v3_20261016/python/diagnose_dual_restoration.py": "historical/python_snapshot/diagnose_dual_restoration.py",
+    "validation/G1R19_python26_v3_20261016/python/diagnose_farkas.py": "historical/python_snapshot/diagnose_farkas.py",
+    "validation/G1R19_python26_v3_20261016/python/diagnose_farkas_projection.py": "historical/python_snapshot/diagnose_farkas_projection.py",
+    "validation/G1R19_python26_v3_20261016/python/diagnose_original_dual.py": "historical/python_snapshot/diagnose_original_dual.py",
+    "validation/G1R19_python26_v3_20261016/python/diagnose_ray_scaling.py": "historical/python_snapshot/diagnose_ray_scaling.py",
+    "validation/G1R19_python26_v3_20261016/python/diagnose_upper_interpolation.py": "historical/python_snapshot/diagnose_upper_interpolation.py",
+    "validation/G1R19_python26_v3_20261016/python/diagnose_velocity_continuation.py": "historical/python_snapshot/diagnose_velocity_continuation.py",
+    "validation/G1R19_python26_v3_20261016/python/diagnose_zero_cost_primal_qp.py": "historical/python_snapshot/diagnose_zero_cost_primal_qp.py",
+    "validation/G1R19_python26_v3_20261016/python/experiment_core.py": "historical/python_snapshot/experiment_core.py",
+    "validation/G1R19_python26_v3_20261016/python/import_history.py": "historical/python_snapshot/import_history.py",
+    "validation/G1R19_python26_v3_20261016/python/import_native.py": "historical/python_snapshot/import_native.py",
+    "validation/G1R19_python26_v3_20261016/python/lower_accuracy_driver.py": "historical/python_snapshot/lower_accuracy_driver.py",
+    "validation/G1R19_python26_v3_20261016/python/mesh_accuracy.py": "historical/python_snapshot/mesh_accuracy.py",
+    "validation/G1R19_python26_v3_20261016/python/mesh_geometry.py": "historical/python_snapshot/mesh_geometry.py",
+    "validation/G1R19_python26_v3_20261016/python/original_dual.py": "historical/python_snapshot/original_dual.py",
+    "validation/G1R19_python26_v3_20261016/python/original_farkas.py": "historical/python_snapshot/original_farkas.py",
+    "validation/G1R19_python26_v3_20261016/python/precision_interpolation.py": "historical/python_snapshot/precision_interpolation.py",
+    "validation/G1R19_python26_v3_20261016/python/reduction.py": "historical/python_snapshot/reduction.py",
+    "validation/G1R19_python26_v3_20261016/python/report_accuracy.py": "historical/python_snapshot/report_accuracy.py",
+    "validation/G1R19_python26_v3_20261016/python/restart_d03_latest.py": "historical/python_snapshot/restart_d03_latest.py",
+    "validation/G1R19_python26_v3_20261016/python/retain_d03_wedge_transition.py": "historical/python_snapshot/retain_d03_wedge_transition.py",
+    "validation/G1R19_python26_v3_20261016/python/run_d_suite.py": "historical/python_snapshot/run_d_suite.py",
+    "validation/G1R19_python26_v3_20261016/python/run_suite.py": "historical/python_snapshot/run_suite.py",
+    "validation/G1R19_python26_v3_20261016/python/test_c0_slope_wedge.py": "historical/python_snapshot/test_c0_slope_wedge.py",
+    "validation/G1R19_python26_v3_20261016/python/test_inverse_dual_guide.py": "historical/python_snapshot/test_inverse_dual_guide.py",
+    "validation/G1R19_python26_v3_20261016/python/test_lower_accuracy_driver.py": "historical/python_snapshot/test_lower_accuracy_driver.py",
+    "validation/G1R19_python26_v3_20261016/python/test_lower_row_norm.py": "historical/python_snapshot/test_lower_row_norm.py",
+    "validation/G1R19_python26_v3_20261016/python/test_mesh_accuracy.py": "historical/python_snapshot/test_mesh_accuracy.py",
+    "validation/G1R19_python26_v3_20261016/python/test_mesh_geometry.py": "historical/python_snapshot/test_mesh_geometry.py",
+    "validation/G1R19_python26_v3_20261016/python/test_primal_row_recovery.py": "historical/python_snapshot/test_primal_row_recovery.py",
+    "validation/G1R19_python26_v3_20261016/python/upper_directional_candidate.py": "historical/python_snapshot/upper_directional_candidate.py",
+    "validation/G1R19_python26_v3_20261016/python/upper_geometry_driver.py": "historical/python_snapshot/upper_geometry_driver.py",
+    "validation/G1R19_python26_v3_20261016/python/upper_proximal_candidate.py": "historical/python_snapshot/upper_proximal_candidate.py",
+    "validation/G1R19_python26_v3_20261016/python/upper_witness_recovery.py": "historical/python_snapshot/upper_witness_recovery.py",
+    "validation/G1R19_python26_v3_20261016/python/vendor/independent_audit.py": "historical/python_snapshot/vendor/independent_audit.py",
+    "validation/G1R19_python26_v3_20261016/python/vendor/model_support/__init__.py": "historical/python_snapshot/vendor/model_support/__init__.py",
+    "validation/G1R19_python26_v3_20261016/python/vendor/model_support/io_case.py": "historical/python_snapshot/vendor/model_support/io_case.py",
+    "validation/G1R19_python26_v3_20261016/python/vendor/model_support/lower_assembly.py": "historical/python_snapshot/vendor/model_support/lower_assembly.py",
+    "validation/G1R19_python26_v3_20261016/python/vendor/model_support/p2.py": "historical/python_snapshot/vendor/model_support/p2.py",
+    "validation/G1R19_python26_v3_20261016/python/vendor/model_support/schema.py": "historical/python_snapshot/vendor/model_support/schema.py",
+    "validation/G1R19_python26_v3_20261016/python/vendor/model_support/upper_assembly.py": "historical/python_snapshot/vendor/model_support/upper_assembly.py",
+    "validation/G1R19_python26_v3_20261016/python/zero_phi_signed_transport.py": "historical/python_snapshot/zero_phi_signed_transport.py",
+    "validation/G1R19_python26_v3_20261016/python/zero_phi_transport.py": "historical/python_snapshot/zero_phi_transport.py",
+    "validation/G1R19_python26_v3_20261016/run_case.py": "historical/run_case.py",
+    "validation/G1R19_python26_v3_20261016/VBA_HANDOFF.md": "historical/VBA_HANDOFF.md",
+    "validation/G1R19_python26_v3_20261016/INPUTS_26.json": "historical/inputs/INPUTS_26.json",
+    "docs/benchmarks/G1R17_native26_20261013/data/inputs/D05A.json": "historical/inputs/D05A.json",
+    "versions/G1R17/results/geometry25/D05A_new_vba_mesh.bin": "historical/inputs/D05A_new_vba_mesh.bin",
+    "validation/G1R19_python26_v3_20261016/results/D05A_scalar_upper_20261016T111421Z/cases/D05A/best_lower_certificate.json": "historical/pair/best_lower_certificate.json",
+    "validation/G1R19_python26_v3_20261016/results/D05A_scalar_upper_20261016T111421Z/cases/D05A/best_upper_certificate.json": "historical/pair/best_upper_certificate.json",
+    "validation/G1R19_python26_v3_20261016/results/D05A_scalar_upper_20261016T111421Z/cases/D05A/best_lower_mesh.npz": "historical/pair/best_lower_mesh.npz",
+    "validation/G1R19_python26_v3_20261016/results/D05A_scalar_upper_20261016T111421Z/cases/D05A/best_upper_mesh.npz": "historical/pair/best_upper_mesh.npz",
+    "validation/G1R19_python26_v3_20261016/results/D05A_scalar_upper_20261016T111421Z/cases/D05A/best_lower_field.npz": "historical/pair/best_lower_field.npz",
+    "validation/G1R19_python26_v3_20261016/results/D05A_scalar_upper_20261016T111421Z/cases/D05A/best_upper_field.npz": "historical/pair/best_upper_field.npz",
+    "validation/G1R19_python26_v3_20261016/results/D05A_scalar_upper_20261016T111421Z/cases/D05A/summary.json": "historical/pair/summary.json",
+    "validation/G1R19_python26_v3_20261016/results/D05A_scalar_upper_20261016T111421Z/cases/D05A/source_manifest.json": "historical/pair/source_manifest.json",
+    "validation/G1R19_python26_v3_20261016/results/D05A_scalar_upper_20261016T111421Z/cases/D05A/scaled_upper_attempts/upper_attempt_0005.json": "historical/vectors/upper_attempt_0005.json",
+    "validation/G1R19_python26_v3_20261016/results/D05A_scalar_upper_20261016T111421Z/cases/D05A/scaled_upper_attempts/upper_attempt_0005.npz": "historical/vectors/upper_attempt_0005.npz",
+    "validation/G1R19_python26_v3_20261016/results/D05A_scalar_upper_20261016T111421Z/cases/D05A/scaled_upper_attempts/upper_attempt_0065.json": "historical/vectors/upper_attempt_0065.json",
+    "validation/G1R19_python26_v3_20261016/results/D05A_scalar_upper_20261016T111421Z/cases/D05A/scaled_upper_attempts/upper_attempt_0065.npz": "historical/vectors/upper_attempt_0065.npz",
+    "validation/G1R19_python26_v3_20261016/results/D05A_scalar_upper_20261016T111421Z/COMPLETION.json": "historical/provenance/COMPLETION.json",
+    "validation/G1R19_python26_v3_20261016/results/D05A_scalar_upper_20261016T111421Z/OWNERSHIP.json": "historical/provenance/OWNERSHIP.json",
+    "validation/G1R19_python26_v3_20261016/results/D05A_scalar_upper_20261016T111421Z/D05A.log": "historical/provenance/D05A.log",
+    "validation/G1R19_python26_v3_20261016/results/D05A_scalar_upper_20261016T111421Z/INDEPENDENT_AUDIT.json": "historical/provenance/INDEPENDENT_AUDIT.json",
+    "validation/G1R19_python26_v3_20261016/results/D05A_scalar_upper_20261016T111421Z/RESULTS.csv": "historical/provenance/RESULTS.csv"
+  },
+  "historical_solver_wrapper": "historical/run_case.py",
+  "historical_worker_OS_exitcode": null,
+  "historical_wrapper_seconds": 327.3986777999962,
+  "scope": "Saved historical pair and two full-vector replay; no fresh solve, no current VBA run",
+  "expected_pair": {
+    "lower": 1.3028266247689342,
+    "upper": 1.3254379799492289,
+    "gap_percent": 1.7206300415645823,
+    "elements_each_side": 1622
+  },
+  "expected_vector_outcomes": {
+    "5": {
+      "original_raw_numerical_gate": true,
+      "physical_upper_witness": false,
+      "raw_stationarity": 3.410605131648481e-10
+    },
+    "65": {
+      "original_raw_numerical_gate": false,
+      "physical_upper_witness": true,
+      "raw_stationarity": 3.8948192404575366e-07
+    }
+  },
+  "limits": [
+    "Worker OS exitcode was not captured; wrapper PASS and saved pair are different from verified normal process completion.",
+    "Retained root identity/width/sign records are checked but opposite endpoint full vectors are not regenerated.",
+    "Two full vectors show both raw numerical acceptance and rejection; neither AlmostSolved nor small dualgap overrides original raw gates.",
+    "Fresh generic refinement, current VBA convergence and issue28 rawstat1429 source identity are not demonstrated by this historical replay."
+  ],
+  "full_archive": {
+    "url": "https://github.com/tak063495-prog/excel-vba-rpfem/releases/download/G1R20/EVIDENCE.zip",
+    "bytes": 98287686,
+    "sha256": "9121db1fa2f60ebdddf35d8c6123d4562cf631a3808c61cb02d2a36702e2960a",
+    "note": "Contains final D05A pair and audit dependencies; the two historical scaled attempt vectors are newly included here from preserved original local files."
+  },
+  "recorded_environment": {
+    "python": "3.13.14",
+    "numpy": "2.3.5",
+    "clarabel": "0.11.1",
+    "threads": 1,
+    "source_sha256": {
+      "validation/G1R19_python26_v3_20261016/python/accuracy_driver.py": "6dc57380371a575c5f73425c0cecd77a47cb6e41e34f682e8c431874f39bdcb3",
+      "validation/G1R19_python26_v3_20261016/python/benchmark_models.py": "5e0078fedef71ec757184ed2d0b40c548a82c303737a9ef7b1f0fa8715e94141",
+      "validation/G1R19_python26_v3_20261016/python/c0_slope_wedge_driver.py": "bd70baaba33fe74204dd74989738358080c5e7b5829624756c4fce05cb52c4f7",
+      "validation/G1R19_python26_v3_20261016/python/check_report_accuracy.py": "01863560ce73332b3e4d95042083d6ae3e8dce79bbb088a4b6aa9d16a7e717ea",
+      "validation/G1R19_python26_v3_20261016/python/check_zero_phi.py": "ba88cf481de8e11b5480404eb744b22627f69b9080ea1c3c4709d508fdcf0eab",
+      "validation/G1R19_python26_v3_20261016/python/combine_seeds.py": "a9f5a3bf3a98186df9fd7d4627ec18bbc71a42b7070bf0cc08824a6aba4d961d",
+      "validation/G1R19_python26_v3_20261016/python/diagnose_dual_restoration.py": "f175427b6b3efe8437f5db8ad56022a3e358904ac311d896602453aba9f95bd2",
+      "validation/G1R19_python26_v3_20261016/python/diagnose_farkas.py": "565c43c9636c3537b8e8a37534d15a18546a98ae407f0d0a88f3a7afdb356054",
+      "validation/G1R19_python26_v3_20261016/python/diagnose_farkas_projection.py": "52d355ad832acc4f354c82c01c648f07210e9fd8e1091adf8ef9be6641ef1d14",
+      "validation/G1R19_python26_v3_20261016/python/diagnose_original_dual.py": "86494255cfbb421a7565752c83ef656805789717d52614ea194d9fc9dd1e6027",
+      "validation/G1R19_python26_v3_20261016/python/diagnose_ray_scaling.py": "aa38aff6dd96730ee366908649289d7ba910540188babfdac7cce0838080c053",
+      "validation/G1R19_python26_v3_20261016/python/diagnose_upper_interpolation.py": "1fca56609c997fb79869558388243319a953ec875e4418a1c0b027cc086a35ee",
+      "validation/G1R19_python26_v3_20261016/python/diagnose_velocity_continuation.py": "6d60c4449cd43bf44688111e7c16483f9db0564ac1d8c679ad1e9539541e5567",
+      "validation/G1R19_python26_v3_20261016/python/diagnose_zero_cost_primal_qp.py": "a560732318e59bb5738cff35c4af5a8f174679aef060c1a59febe8e8c2bde547",
+      "validation/G1R19_python26_v3_20261016/python/experiment_core.py": "9a9e60b6d69ba4008ea89608f433bb716b433436715c45566bd209418ee9238e",
+      "validation/G1R19_python26_v3_20261016/python/import_history.py": "3866b0f4b5a5e2d68956884ca88bc6366770e8558a9d46b3585403ad23c818ee",
+      "validation/G1R19_python26_v3_20261016/python/import_native.py": "6c9f61294c4c1b8fe7285b5b6b3e28366544aab2475a83637137e3322d7b37d9",
+      "validation/G1R19_python26_v3_20261016/python/lower_accuracy_driver.py": "f85799c3364aab5225102edee8f7b9c83fb56065e21b7c265bd33b2341d4ba5f",
+      "validation/G1R19_python26_v3_20261016/python/mesh_accuracy.py": "9553fa8d1d6caa1ab49fff92bfece2b14da97348a3334181e0653c5dde81a860",
+      "validation/G1R19_python26_v3_20261016/python/mesh_geometry.py": "e5a5f41a9af249fa8e75f2aa634bda9b4202b89fb5518ff8d478de1b4406d68e",
+      "validation/G1R19_python26_v3_20261016/python/original_dual.py": "c0025181b07b742b0d4608656489c3495b6ea90b4ed8084438420e8312b6467d",
+      "validation/G1R19_python26_v3_20261016/python/original_farkas.py": "58ccb3af92e92d6b466c8acab8040fa88582a2deb5588a18d0ce92d3135f3672",
+      "validation/G1R19_python26_v3_20261016/python/precision_interpolation.py": "e6badaa0787a6ccbee13cb30a5c4414df0b9db1997701102fada1e0fb3b2b707",
+      "validation/G1R19_python26_v3_20261016/python/reduction.py": "cbc32e1e0764e10e3f56f67b804b08867166aafbd32a64ddcbe481b18d083ca5",
+      "validation/G1R19_python26_v3_20261016/python/report_accuracy.py": "23aef211e2c18c940d71a65b7aae27848163ee7e6815022377fa89a972aecd98",
+      "validation/G1R19_python26_v3_20261016/python/restart_d03_latest.py": "410939489bfac79463318aebc2fcbe0c1e274f15ff4fecba3dbad12b9441dad9",
+      "validation/G1R19_python26_v3_20261016/python/retain_d03_wedge_transition.py": "93f6195030fff21720f95052b9b64ea4b2e2d4a66f0c9da1e2f0b3153440df37",
+      "validation/G1R19_python26_v3_20261016/python/run_d_suite.py": "031b343525ae86dfa1d557f8534a57266d9eedbf8c31a9fd918252e5bd6b4d25",
+      "validation/G1R19_python26_v3_20261016/python/run_suite.py": "47b95cc52537cd40f216af620f9dad10af023f2faba06f8e1db81ec4c9e97759",
+      "validation/G1R19_python26_v3_20261016/python/test_c0_slope_wedge.py": "d8671244b8ac2d8deb087a3fb40b3e4a796e7f18cda4004b70e9f4bdbbf77e13",
+      "validation/G1R19_python26_v3_20261016/python/test_inverse_dual_guide.py": "ffd48d176ec9197adcf615cbdc9014fbf41ba814736982b343d3aa8c725d3a82",
+      "validation/G1R19_python26_v3_20261016/python/test_lower_accuracy_driver.py": "37bee4cb832674cc5de48fc27cb5158b1a91a14b7539fb7fc37ca5a9d7788569",
+      "validation/G1R19_python26_v3_20261016/python/test_lower_row_norm.py": "543b7270d4e216705e4b181a063190a55358e74bce2d65dd397311d7d759ada4",
+      "validation/G1R19_python26_v3_20261016/python/test_mesh_accuracy.py": "ec469acda335ddfecc5cf25300e63a3390ce071eb75388b7e1495359a5c7e509",
+      "validation/G1R19_python26_v3_20261016/python/test_mesh_geometry.py": "24ce1742b54d8a9013bc4c2f5091a89369256cf782edbb732df65f29ad5acb5b",
+      "validation/G1R19_python26_v3_20261016/python/test_primal_row_recovery.py": "6e3cbf228922b96c5d545829280c44e369a87c645f88d281c7d09b25cad727e0",
+      "validation/G1R19_python26_v3_20261016/python/upper_directional_candidate.py": "a2ca13fff3c2a1a97f10207a4e728a33edf4b5761808322189eeaa933ebe9939",
+      "validation/G1R19_python26_v3_20261016/python/upper_geometry_driver.py": "2ddb0d9a36b02ee7912c35b0ac84ea05e6ba29eebddd3648e00487a3fea13590",
+      "validation/G1R19_python26_v3_20261016/python/upper_proximal_candidate.py": "c255de912262bcef362b2bb761a3de58bf72e0954fabd5593cfabe859d0479a3",
+      "validation/G1R19_python26_v3_20261016/python/upper_witness_recovery.py": "eb9b3226a4690b9f04b16297679b72141993dbdc5b258663ff268f19ce0a5018",
+      "validation/G1R19_python26_v3_20261016/python/vendor/independent_audit.py": "79ea1b0e4e72b2a61a4110e6115e3f33929ae5990fb054e20f41d345a694f37b",
+      "validation/G1R19_python26_v3_20261016/python/vendor/model_support/__init__.py": "7eb70257593da06f682a3ddda54a9d260d4fc514f645237f5ca74b08f8da61a6",
+      "validation/G1R19_python26_v3_20261016/python/vendor/model_support/io_case.py": "acd8d38c56020951621b1be5e4803e3d02898ad087c7f0c2d04e1d47ac6b87e3",
+      "validation/G1R19_python26_v3_20261016/python/vendor/model_support/lower_assembly.py": "b3c482c8950205b32a5e38cd0f1e720e5efeb48491bbd8ff02b728ef54f51047",
+      "validation/G1R19_python26_v3_20261016/python/vendor/model_support/p2.py": "7c243a234d22e5d8c209c5d55f6aedc834af7b507538022c2731a71046e0969f",
+      "validation/G1R19_python26_v3_20261016/python/vendor/model_support/schema.py": "24db1fadeb9d16de2fd0593c87b0ce113b4f0720118b4617622af7450b957ca0",
+      "validation/G1R19_python26_v3_20261016/python/vendor/model_support/upper_assembly.py": "d0e03aeb87dcc52ae8001b422d836064275850f22c8a69640ce722cb2213d065",
+      "validation/G1R19_python26_v3_20261016/python/zero_phi_signed_transport.py": "8b92df31da30b36b3256a15e2bd998e9fe9205d9c3b7707e59c0b415b6bcb508",
+      "validation/G1R19_python26_v3_20261016/python/zero_phi_transport.py": "a95589afd8ab9ca0a69829782ad36e2ba83b16e7fcbe74781b26dc03ea974c79",
+      "validation/G1R19_python26_v3_20261016/run_case.py": "54edbccbdfb0a59e8b2bb325efe1b28d784630586c47910ec1a171c676add498",
+      "validation/G1R19_python26_v3_20261016/INPUTS_26.json": "971bf1c476319e11361f35590c5a3ed6017c46adbb0f211b8feaa7b915b78e0f"
+    }
+  }
+}

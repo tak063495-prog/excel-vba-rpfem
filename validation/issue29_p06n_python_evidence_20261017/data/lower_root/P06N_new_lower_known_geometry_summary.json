@@ -1,0 +1,122 @@
+{
+  "mode": "lower",
+  "root_complete": true,
+  "bracket": [
+    0.6767771508826014,
+    0.6768552758826014
+  ],
+  "bracket_width": 7.812500000003997e-05,
+  "fs_tolerance": 0.0001,
+  "endpoint": 0.6767771508826014,
+  "trials": 10,
+  "seconds": 427.03100620000623,
+  "mesh_id": "0b1cffd134d60c92b20ec7480cbbbbfe27695c3a725f6f5d31ec5ca097587cc8",
+  "physical_model_id": "08cc8e73e85408e7a82cbe79b5716ef007cb917d00e021872c40e510b5d17525",
+  "elements": 5966,
+  "q": 8,
+  "case": "P06N",
+  "policy": "hold_initial",
+  "bracket_signs": [
+    1,
+    -1
+  ],
+  "opposite_numerical_endpoint_is_continuum_bound": false,
+  "budget_exhausted": false,
+  "budget_error": null,
+  "case_budget": {
+    "case_seconds": 450.0,
+    "solve_seconds": 30.0,
+    "elapsed_seconds": 427.43719609998516,
+    "remaining_seconds": 22.562803300010273,
+    "exhausted": false,
+    "expired_at": null,
+    "solver_time_allocations": [
+      {
+        "stage": "P06N_new_lower_known_geometry:LP_attempt_1",
+        "time_limit": 30.0,
+        "elapsed_seconds": 8.488305099977879
+      },
+      {
+        "stage": "P06N_new_lower_known_geometry:LP_attempt_1",
+        "time_limit": 30.0,
+        "elapsed_seconds": 49.87943129998166
+      },
+      {
+        "stage": "P06N_new_lower_known_geometry:LP_attempt_1",
+        "time_limit": 30.0,
+        "elapsed_seconds": 72.92349879999529
+      },
+      {
+        "stage": "P06N_new_lower_known_geometry:LP_attempt_1",
+        "time_limit": 30.0,
+        "elapsed_seconds": 97.57549960000324
+      },
+      {
+        "stage": "P06N_new_lower_known_geometry:LP_attempt_1",
+        "time_limit": 30.0,
+        "elapsed_seconds": 120.65106010000454
+      },
+      {
+        "stage": "P06N_new_lower_known_geometry:LP_attempt_1",
+        "time_limit": 30.0,
+        "elapsed_seconds": 145.96232959997724
+      },
+      {
+        "stage": "P06N_new_lower_known_geometry:LP_attempt_1",
+        "time_limit": 30.0,
+        "elapsed_seconds": 170.66632309998386
+      },
+      {
+        "stage": "P06N_new_lower_known_geometry:LP_attempt_1",
+        "time_limit": 30.0,
+        "elapsed_seconds": 193.4559926999791
+      },
+      {
+        "stage": "P06N_new_lower_known_geometry:LP_attempt_1",
+        "time_limit": 30.0,
+        "elapsed_seconds": 218.0433353999979
+      },
+      {
+        "stage": "P06N_new_lower_known_geometry:LP_attempt_2",
+        "time_limit": 30.0,
+        "elapsed_seconds": 240.09184879998793
+      },
+      {
+        "stage": "P06N_new_lower_known_geometry:LP_attempt_3",
+        "time_limit": 30.0,
+        "elapsed_seconds": 262.9180382999766
+      },
+      {
+        "stage": "P06N_new_lower_known_geometry:LP_attempt_1",
+        "time_limit": 30.0,
+        "elapsed_seconds": 290.4131827999954
+      },
+      {
+        "stage": "P06N_new_lower_known_geometry:LP_attempt_2",
+        "time_limit": 30.0,
+        "elapsed_seconds": 314.38809559997753
+      },
+      {
+        "stage": "P06N_new_lower_known_geometry:LP_attempt_3",
+        "time_limit": 30.0,
+        "elapsed_seconds": 338.33249189998605
+      },
+      {
+        "stage": "P06N_new_lower_known_geometry:LP_attempt_4",
+        "time_limit": 30.0,
+        "elapsed_seconds": 379.4025214999856
+      },
+      {
+        "stage": "P06N_new_lower_known_geometry:original_dual",
+        "time_limit": 30.0,
+        "elapsed_seconds": 396.94604949999484
+      }
+    ],
+    "scope": "cooperative wall deadline; OS watchdog required for in-flight native work"
+  },
+  "proposal_method": "bounded_bisection",
+  "pilot_trial_limit": null,
+  "new_points": 10,
+  "pilot_trial_limit_reached": false,
+  "pilot_stop_reason": null
+}

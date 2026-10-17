@@ -1,0 +1,10 @@
+{
+  "body": "## 概要\nG1R20 Fix4 の26ケース速度計測（Triela, 2%・速度優先プリセット, DLL使用）で、D05A が解析開始11.4秒で `FAILED / HSD_NOT_CONVERGED` となり、Fs が出力されない。タイムアウトではない。\n\n- workbook SHA256: b010ab89…\n- DLL SHA256: 66da1a21…\n- 発生: 2026-10-17 15:10:02 JST\n- G1R17 DLL5 では D05A は約364秒で完了していた\n\n## D05A について\n全長さ×1000・γ÷1000 の幾何相似則テスト。元ケースと同じ Fs になるべきケース。\n\n## 経過（cases\\\\D05A\\\\analysis.tsv）\n1. 粗メッシュ・Fs=1 の上界 HSD 解法は **OPTIMAL**（56反復, 7.07秒, 目的関数 2.40457, primal残差 2.8e-12, dual残差 5.0e-11, gap 1.0e-6）。物理監査はすべて合格。\n2. 直後の精度DLL復元 `RPX_AccuracyRecoverDual` が2回とも不合格: raw_stat=1429.67127988363, raw_cone=4.3e-6, 双対目的関数≈0。\n3. `accuracy_dll_primal` も不合格（raw_eq=1, value=0）。\n4. `RPX_Fs` stage=evaluate でエラー送出。\n\n3回の試行で raw_stat が完全に同一で、時間予算も使い切っていない。\n\n## 該当箇所\n`versions/G1R20_Fix4/src/vba/RPX_Fs.bas` 272行目付近:\n```vb\nIf nativeEnabled And mode = \"upper\" And (XStatus = \"OPTIMAL\" Or XStatus = \"INFEASIBLE\") And FsValue >= 0# Then\n    If Not RPX_AccuracyRecoverDual(factor, mode) Then err.Raise 5, \"RPX_Fs\", \"HSD_NOT_CONVERGED\"\n```\n監査済みの OPTIMAL 結果があっても、双対復元が不合格だとケース全体が打ち切られる。エラー名も実態（復元の不合格）と合っていない。\n\n## 推定原因（未確定）\n`RPX_AccuracyDualAudit`（`RPX_AccuracyNative.bas`）は stat = max|cost − Aᵀy| ≤ **1e-7** をスケーリングなしの絶対値で判定している。候補 y がほぼゼロのとき stat = max|cost| となり、1429.67 は D05A の生のコスト係数（通常ケースの約1000倍）の大きさと推定される。HSD は正規化コスト（`XQ`/`XQScale`）で解くため収束するが、精度DLL側は生の `originalCost` を使うため、スケール依存で不合格になっていると考えられる。\n\n## 確認予定\nベンチ完了後、D05A のみ `ACCURACY_DLL_RECOVERY=0` で再実行して原因を確認し、結果をこの issue に追記する。\n\n## 修正方針案（G1R20 Fix5）\n- 双対復元が不合格でも、監査済みの HSD OPTIMAL 結果で継続する（ケース全体を打ち切らない）\n- 合格判定をコスト係数の大きさに対する相対値にする（例: 1e-7 × max(1, ‖cost‖∞)）、または精度DLLにも正規化コストを渡す\n- エラーコードを実態に合わせて分ける（例: `ACCURACY_DUAL_RECOVERY_REJECTED`）\n- 修正後、D05A・元スケールのケース・残り25ケースで回帰確認",
+  "comments": [],
+  "createdAt": "2026-10-17T08:52:53Z",
+  "number": 28,
+  "state": "OPEN",
+  "title": "G1R20 Fix4: D05A（×1000相似則）が HSD_NOT_CONVERGED で即時失敗する（実際は HSD は OPTIMAL）",
+  "updatedAt": "2026-10-17T08:52:53Z",
+  "url": "https://github.com/tak063495-prog/excel-vba-rpfem/issues/28"
+}

@@ -1,0 +1,420 @@
+{
+  "schema": "RPFEM_ISSUES28_29_READ_ONLY_PEER_REVIEW_V1",
+  "reviewed_utc": "2026-10-17T11:48:40.020681+00:00",
+  "git_head": "1ab383bbc1764249a4320ca28ed3ac6682c8fbac",
+  "status": "NO_HIGH_CONFIDENCE_FINDINGS",
+  "scope": "Read-only source/math/provenance/hash review; no third execution replay, no optimizer or Excel.",
+  "new_optimizer_calls": 0,
+  "new_Excel_runs": 0,
+  "product_changes": false,
+  "checks": [
+    {
+      "manifest": "validation/issue29_p06n_python_evidence_20261017/MANIFEST.json",
+      "checked_files": 82,
+      "failures": []
+    },
+    {
+      "manifest": "validation/issue28_d05a_python_analysis_20261017/SOURCE_DATA_MANIFEST.json",
+      "checked_files": 24,
+      "failures": []
+    },
+    {
+      "manifest": "validation/issue28_d05a_python_analysis_20261017/HISTORICAL_MANIFEST.json",
+      "checked_files": 72,
+      "failures": []
+    }
+  ],
+  "syntax_checked_scripts": 4,
+  "references": [
+    {
+      "path": "validation/issue29_p06n_python_evidence_20261017/VERIFY.py",
+      "bytes": 13640,
+      "sha256": "37589553cd34e55d9c7e07d07dfa78b67b1a845ec0528c1095def67abf84ce49"
+    },
+    {
+      "path": "validation/issue29_p06n_python_evidence_20261017/MANIFEST.json",
+      "bytes": 49092,
+      "sha256": "09c7b5324edb1bc17030953b326c8e9d8b9881f748aaa5d75fb33f02b36ab880"
+    },
+    {
+      "path": "validation/issue29_p06n_python_evidence_20261017/README_JA.md",
+      "bytes": 4389,
+      "sha256": "1e39f2a9fd2c12023164ade8d2f92c241b2d54074fdb56be7a44d56bb1b18f72"
+    },
+    {
+      "path": "validation/issue29_p06n_python_evidence_20261017/ANALYSIS_JA.md",
+      "bytes": 7351,
+      "sha256": "978af71309256dee5584db49acda41a68fc491cf3e8d3817617daf79d72d71d4"
+    },
+    {
+      "path": "validation/issue29_p06n_python_evidence_20261017/reports/ISOLATED_REPLAY.json",
+      "bytes": 5311,
+      "sha256": "fe29e0e605f062ea604c80241cc28bc273ca6388d55dc9a46f1cf2af046be480"
+    },
+    {
+      "path": "validation/issue29_p06n_python_evidence_20261017/reports/ISOLATED_EXECUTION.json",
+      "bytes": 1402,
+      "sha256": "05aef648ef64c189e4d7cdafd464adb95134a431bd166e1d39c8f792edd6a9ba"
+    },
+    {
+      "path": "validation/issue29_p06n_python_evidence_20261017/reports/NEGATIVE_FIELD_TAMPER.json",
+      "bytes": 1201,
+      "sha256": "42ec71024074dd4405fa9efdf22e6673852af1f31fd2c735d2e663371efacfca"
+    },
+    {
+      "path": "validation/issue29_p06n_python_evidence_20261017/reports/PRESET_ASSIGNMENTS.json",
+      "bytes": 34927,
+      "sha256": "de329873ff6cbe246d731b9e2a0092a546cfa665c69d8c1ff36dfb5aa53cea5e"
+    },
+    {
+      "path": "validation/issue28_d05a_python_analysis_20261017/run_fixed_point_experiment.py",
+      "bytes": 15725,
+      "sha256": "321cbd2ccff30bff4bf084fbdaf8f2de32e26d14864e657c9a894dc4fbdd0718"
+    },
+    {
+      "path": "validation/issue28_d05a_python_analysis_20261017/VERIFY_MICRO.py",
+      "bytes": 3260,
+      "sha256": "d132117da2a5429f4cd8614590352b54936fd8b8ea36cc633a08ef5694f2a447"
+    },
+    {
+      "path": "validation/issue28_d05a_python_analysis_20261017/VERIFY_HISTORICAL.py",
+      "bytes": 12901,
+      "sha256": "1a3bc12d4fdf955ef86fef4163039392bf478b6693dfd77d3f1018da8347b812"
+    },
+    {
+      "path": "validation/issue28_d05a_python_analysis_20261017/SOURCE_DATA_MANIFEST.json",
+      "bytes": 7086,
+      "sha256": "f293693ff53214cc5463e25faaabb90a2ab61a279765303ccba159e9eb0f2178"
+    },
+    {
+      "path": "validation/issue28_d05a_python_analysis_20261017/HISTORICAL_MANIFEST.json",
+      "bytes": 62977,
+      "sha256": "e167574e9582257c09ee3a683e237fc1a9e75c88843dcdcea84aeecf060d2678"
+    },
+    {
+      "path": "validation/issue28_d05a_python_analysis_20261017/reports/MICRO_EXPERIMENT_SUMMARY.md",
+      "bytes": 3869,
+      "sha256": "91eafe43a5b0712bec34d681ced37b5ad46ae21af383417d2f6c9a62088f113b"
+    },
+    {
+      "path": "validation/issue28_d05a_python_analysis_20261017/reports/MICRO_REPLAY_RESULT.json",
+      "bytes": 11374,
+      "sha256": "770291ed58542509c9d904e0838872d2507b0540fa30d69dedcab25ee90ae3a3"
+    },
+    {
+      "path": "validation/issue28_d05a_python_analysis_20261017/reports/HISTORICAL_REPLAY_RESULT.json",
+      "bytes": 6928,
+      "sha256": "c7ac615ddc7a59399b4c20ef4f4c467ba6b219e199f20eb58bc30039071cce17"
+    },
+    {
+      "path": "validation/issue28_d05a_python_analysis_20261017/reports/harness_initial_v1.py",
+      "bytes": 15342,
+      "sha256": "785893fcd938655f0f9b132603f2f4fce1da56f730d6264b0dceaa69df5881ab"
+    },
+    {
+      "path": "validation/issue28_d05a_python_analysis_20261017/results/fixed_point_01/summary.json",
+      "bytes": 15122,
+      "sha256": "65cf1b76fe5493b1846ade133a633a282e6dcbc4d87df5fa36714c2f3ce23412"
+    },
+    {
+      "path": "validation/issue28_d05a_python_analysis_20261017/results/fixed_point_02/summary.json",
+      "bytes": 16967,
+      "sha256": "20d7fc24e9e181af2cb973841d328636a4a2249890c463453ba7d8f132d9c5e5"
+    },
+    {
+      "path": "validation/issue28_d05a_python_analysis_20261017/README_JA.md",
+      "bytes": 4293,
+      "sha256": "f07b80a7bfd7835a6d46d3fe5c05511e2494867d3d33e09d3587d9dfea7ac0ea"
+    },
+    {
+      "path": "validation/issue28_d05a_python_analysis_20261017/ANALYSIS_JA.md",
+      "bytes": 7291,
+      "sha256": "c252989f5b254ff06a3b17ac6899ac64cadcefae4b806e2304a3b15f19e6bcc9"
+    }
+  ],
+  "fixed_point_attempt_records": [
+    {
+      "path": "validation/issue28_d05a_python_analysis_20261017/results/fixed_point_01/D05A_affine/result.json",
+      "sha256": "ea291fa85d4014f077b63d21cd3ad38c138b240904091d4b14d96c99304d1ada",
+      "case": "D05A",
+      "route": "affine",
+      "status": "ERROR",
+      "optimizer_calls": 1,
+      "source_data_unchanged": true,
+      "error": "ValueError('matmul: dimension mismatch with signature (n,k=7906),(k=7783,1?)->(n,1?)')"
+    },
+    {
+      "path": "validation/issue28_d05a_python_analysis_20261017/results/fixed_point_01/D05A_none/result.json",
+      "sha256": "7565ee00690c9479a82d691713d0b74d43bb41e64520436868530922141f7874",
+      "case": "D05A",
+      "route": "none",
+      "status": "COMPLETED",
+      "optimizer_calls": 1,
+      "source_data_unchanged": true,
+      "solver_status": "AlmostSolved",
+      "physical_pass": false,
+      "witness": false,
+      "original_dual": {
+        "stationarity": 5.4001247917767614e-12,
+        "cone_error": 0.0,
+        "objective": 0.2243777599134169,
+        "original_upper_inverse_guide_accepted": false,
+        "thresholds": {
+          "raw_stationarity": 1e-07,
+          "dual_cone": 1e-08,
+          "original_dual_objective_min": 1.000003
+        },
+        "scope": "discrete upper root sign guide only; not a continuum primal bound"
+      }
+    },
+    {
+      "path": "validation/issue28_d05a_python_analysis_20261017/results/fixed_point_01/D05A_normalized_objective/result.json",
+      "sha256": "d7ed89dd2c9b4b9ecc5c93cec169d49dae7fe96488ceb99f32571c38a7bc0322",
+      "case": "D05A",
+      "route": "normalized_objective",
+      "status": "COMPLETED",
+      "optimizer_calls": 1,
+      "source_data_unchanged": true,
+      "solver_status": "AlmostSolved",
+      "physical_pass": false,
+      "witness": false,
+      "original_dual": {
+        "stationarity": 1.9474555301712826e-10,
+        "cone_error": 0.0,
+        "objective": 2.58315387249346,
+        "original_upper_inverse_guide_accepted": true,
+        "thresholds": {
+          "raw_stationarity": 1e-07,
+          "dual_cone": 1e-08,
+          "original_dual_objective_min": 1.000003
+        },
+        "scope": "discrete upper root sign guide only; not a continuum primal bound"
+      }
+    },
+    {
+      "path": "validation/issue28_d05a_python_analysis_20261017/results/fixed_point_01/D05A_velocity_units/result.json",
+      "sha256": "d5e7634d4e77b890e7c6c971c4a4d9cd7e8a0563701052785cfc613119e6f773",
+      "case": "D05A",
+      "route": "velocity_units",
+      "status": "COMPLETED",
+      "optimizer_calls": 1,
+      "source_data_unchanged": true,
+      "solver_status": "AlmostSolved",
+      "physical_pass": true,
+      "witness": false,
+      "original_dual": {
+        "stationarity": 6.140354713579654e-08,
+        "cone_error": 0.0,
+        "objective": 2.5831589673852298,
+        "original_upper_inverse_guide_accepted": true,
+        "thresholds": {
+          "raw_stationarity": 1e-07,
+          "dual_cone": 1e-08,
+          "original_dual_objective_min": 1.000003
+        },
+        "scope": "discrete upper root sign guide only; not a continuum primal bound"
+      }
+    },
+    {
+      "path": "validation/issue28_d05a_python_analysis_20261017/results/fixed_point_01/P02A_affine/result.json",
+      "sha256": "ab8dea7b7065d01947361e5bd1014183deb00f29a237ed1298a25897a1487fdd",
+      "case": "P02A",
+      "route": "affine",
+      "status": "ERROR",
+      "optimizer_calls": 1,
+      "source_data_unchanged": true,
+      "error": "ValueError('matmul: dimension mismatch with signature (n,k=7906),(k=7783,1?)->(n,1?)')"
+    },
+    {
+      "path": "validation/issue28_d05a_python_analysis_20261017/results/fixed_point_01/P02A_none/result.json",
+      "sha256": "6f25185f5650fefee58e15df6c23a6b9f517c55674975063929fd67cceb476d0",
+      "case": "P02A",
+      "route": "none",
+      "status": "COMPLETED",
+      "optimizer_calls": 1,
+      "source_data_unchanged": true,
+      "solver_status": "Solved",
+      "physical_pass": true,
+      "witness": false,
+      "original_dual": {
+        "stationarity": 1.5847667622637118e-10,
+        "cone_error": 0.0,
+        "objective": 2.583158965932746,
+        "original_upper_inverse_guide_accepted": true,
+        "thresholds": {
+          "raw_stationarity": 1e-07,
+          "dual_cone": 1e-08,
+          "original_dual_objective_min": 1.000003
+        },
+        "scope": "discrete upper root sign guide only; not a continuum primal bound"
+      }
+    },
+    {
+      "path": "validation/issue28_d05a_python_analysis_20261017/results/fixed_point_02/D05A_affine/result.json",
+      "sha256": "c232d30810fd6013d83edaa5a09324263c64c82bbd92f8603fd3015f3fef5a11",
+      "case": "D05A",
+      "route": "affine",
+      "status": "COMPLETED",
+      "optimizer_calls": 1,
+      "source_data_unchanged": true,
+      "solver_status": "AlmostSolved",
+      "physical_pass": false,
+      "witness": false,
+      "original_dual": {
+        "stationarity": 1.0048974807830291e-07,
+        "cone_error": 0.0,
+        "objective": 0.1152679729969494,
+        "original_upper_inverse_guide_accepted": false,
+        "thresholds": {
+          "raw_stationarity": 1e-07,
+          "dual_cone": 1e-08,
+          "original_dual_objective_min": 1.000003
+        },
+        "scope": "discrete upper root sign guide only; not a continuum primal bound"
+      }
+    },
+    {
+      "path": "validation/issue28_d05a_python_analysis_20261017/results/fixed_point_02/D05A_none/result.json",
+      "sha256": "3c6828f60e8766e76a8579595c32711a93482db97077cb277eaf79e38ba57514",
+      "case": "D05A",
+      "route": "none",
+      "status": "COMPLETED",
+      "optimizer_calls": 1,
+      "source_data_unchanged": true,
+      "solver_status": "AlmostSolved",
+      "physical_pass": false,
+      "witness": false,
+      "original_dual": {
+        "stationarity": 5.4001247917767614e-12,
+        "cone_error": 0.0,
+        "objective": 0.2243777599134169,
+        "original_upper_inverse_guide_accepted": false,
+        "thresholds": {
+          "raw_stationarity": 1e-07,
+          "dual_cone": 1e-08,
+          "original_dual_objective_min": 1.000003
+        },
+        "scope": "discrete upper root sign guide only; not a continuum primal bound"
+      }
+    },
+    {
+      "path": "validation/issue28_d05a_python_analysis_20261017/results/fixed_point_02/D05A_normalized_objective/result.json",
+      "sha256": "163177864b97565727b16dfd2157add9ae253368f91226fcd6a18258ceb165a2",
+      "case": "D05A",
+      "route": "normalized_objective",
+      "status": "COMPLETED",
+      "optimizer_calls": 1,
+      "source_data_unchanged": true,
+      "solver_status": "AlmostSolved",
+      "physical_pass": false,
+      "witness": false,
+      "original_dual": {
+        "stationarity": 1.9474555301712826e-10,
+        "cone_error": 0.0,
+        "objective": 2.58315387249346,
+        "original_upper_inverse_guide_accepted": true,
+        "thresholds": {
+          "raw_stationarity": 1e-07,
+          "dual_cone": 1e-08,
+          "original_dual_objective_min": 1.000003
+        },
+        "scope": "discrete upper root sign guide only; not a continuum primal bound"
+      }
+    },
+    {
+      "path": "validation/issue28_d05a_python_analysis_20261017/results/fixed_point_02/D05A_velocity_units/result.json",
+      "sha256": "123e13f57f014c2bbefc0110e83d67c13207288c3df5348372bb1b4898cbe65e",
+      "case": "D05A",
+      "route": "velocity_units",
+      "status": "COMPLETED",
+      "optimizer_calls": 1,
+      "source_data_unchanged": true,
+      "solver_status": "AlmostSolved",
+      "physical_pass": true,
+      "witness": false,
+      "original_dual": {
+        "stationarity": 6.140354713579654e-08,
+        "cone_error": 0.0,
+        "objective": 2.5831589673852298,
+        "original_upper_inverse_guide_accepted": true,
+        "thresholds": {
+          "raw_stationarity": 1e-07,
+          "dual_cone": 1e-08,
+          "original_dual_objective_min": 1.000003
+        },
+        "scope": "discrete upper root sign guide only; not a continuum primal bound"
+      }
+    },
+    {
+      "path": "validation/issue28_d05a_python_analysis_20261017/results/fixed_point_02/P02A_affine/result.json",
+      "sha256": "d6e99f499183de301c2d95bcda53ef7551c7893299be0b2a767e2c6cdcc6afde",
+      "case": "P02A",
+      "route": "affine",
+      "status": "COMPLETED",
+      "optimizer_calls": 1,
+      "source_data_unchanged": true,
+      "solver_status": "Solved",
+      "physical_pass": true,
+      "witness": false,
+      "original_dual": {
+        "stationarity": 2.1550539130998914e-11,
+        "cone_error": 0.0,
+        "objective": 2.5831589672048936,
+        "original_upper_inverse_guide_accepted": true,
+        "thresholds": {
+          "raw_stationarity": 1e-07,
+          "dual_cone": 1e-08,
+          "original_dual_objective_min": 1.000003
+        },
+        "scope": "discrete upper root sign guide only; not a continuum primal bound"
+      }
+    },
+    {
+      "path": "validation/issue28_d05a_python_analysis_20261017/results/fixed_point_02/P02A_none/result.json",
+      "sha256": "a26316349f17cde97a309cf034a896efae30a6f2bd79a920e1be25996a9d4fd9",
+      "case": "P02A",
+      "route": "none",
+      "status": "COMPLETED",
+      "optimizer_calls": 1,
+      "source_data_unchanged": true,
+      "solver_status": "Solved",
+      "physical_pass": true,
+      "witness": false,
+      "original_dual": {
+        "stationarity": 1.5847667622637118e-10,
+        "cone_error": 0.0,
+        "objective": 2.583158965932746,
+        "original_upper_inverse_guide_accepted": true,
+        "thresholds": {
+          "raw_stationarity": 1e-07,
+          "dual_cone": 1e-08,
+          "original_dual_objective_min": 1.000003
+        },
+        "scope": "discrete upper root sign guide only; not a continuum primal bound"
+      }
+    }
+  ],
+  "math_findings": {
+    "positive_coordinate_objective_cone_transform": "x=k*xprime; Aprime=R*A; rhsprime=R*rhs/k; cprime=a*k*c; zoriginal=R*zprime/(a*k); objective_original=objprime/a",
+    "cone_scale_preserves_blocks": true,
+    "P02A_D05A_similarity_dual_scaling_correct": true,
+    "canonical_region_area_proxy_changes_only_builder_assertion": true,
+    "original_physical_and_raw_dual_thresholds_unchanged": true,
+    "AlmostSolved_not_blindly_accepted": true,
+    "fixed_Fs1_not_FOS_or_two_percent_completion": true,
+    "initial_reduced_dual_harness_errors_retained": true,
+    "all_six_micro_NPZ_mode_q_fs_dimensions_and_finiteness": "PASS",
+    "both_micro_transform_saved_vector_inverse_mappings_exact": "PASS",
+    "issue28_final_readme_analysis_rounded_table_and_scope": "PASS"
+  },
+  "limitations": [
+    "Issue-machine raw full logs/vectors not acquired.",
+    "Historical opposite-root signs are recorded contracts except P06N upper full original dual replay.",
+    "Current VBA cold success and DLL defect are not proved.",
+    "Review does not itself rerun positive saved-field audits."
+  ],
+  "report": {
+    "path": "ISSUES28_29_PEER_REVIEW.md",
+    "sha256": "b50d4bfbcb1f04a5b29c0aa356a42594b31d6407065c45e5af436411c356eb23"
+  }
+}

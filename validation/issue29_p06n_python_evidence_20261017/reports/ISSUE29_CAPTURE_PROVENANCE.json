@@ -1,0 +1,11 @@
+{
+  "observed_utc": "2026-10-17T11:38:39.494744+00:00",
+  "repository_base_commit": "1ab383bbc1764249a4320ca28ed3ac6682c8fbac",
+  "source": "GitHub issue text and existing comments; current Triela raw status/analysis/stage files were not accessible to this reviewer",
+  "issue_url": "https://github.com/tak063495-prog/excel-vba-rpfem/issues/29",
+  "reported_p06n_gap_percent": 30.5,
+  "reported_analysis_seconds": 16193,
+  "original_comment_url": "https://github.com/tak063495-prog/excel-vba-rpfem/issues/29#issuecomment-6233406927",
+  "issue_snapshot_sha256": "2856a8a4a6fc382b31d47a4adfdadbaed32ea8969f80a6aff784c5cf1d13761c",
+  "raw_log_reaggregated": false
+}

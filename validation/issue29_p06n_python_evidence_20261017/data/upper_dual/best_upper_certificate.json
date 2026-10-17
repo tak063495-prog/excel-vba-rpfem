@@ -1,0 +1,82 @@
+{
+  "case": "P06N",
+  "mode": "upper",
+  "q": 8,
+  "fs": 0.6902587260388777,
+  "mesh_id": "44c89fcad8854b4b5ef36f061999d3033613a1e5b7193b2e2ef4a8eb0a8b7fbc",
+  "physical_model_id": "08cc8e73e85408e7a82cbe79b5716ef007cb917d00e021872c40e510b5d17525",
+  "elements": 8739,
+  "source": "P06N_linear_repair",
+  "root_complete": true,
+  "mesh_path": "best_upper_mesh.npz",
+  "field_path": "best_upper_field.npz",
+  "audit": {
+    "objective": 0.999997988594999,
+    "value": 0.999997988595,
+    "eq_error": 9.784808295050365e-10,
+    "cone_error": 2.163433515667279e-08,
+    "audit": {
+      "pass": true,
+      "errors": {
+        "flow": 3.91246291799448e-10,
+        "jump": 2.1634334422942686e-08,
+        "bonded_interface": 1.3625546545484687e-09,
+        "boundary": 9.784808295050365e-10,
+        "work": 4.440892098500626e-15,
+        "objective": 9.992007221626409e-16
+      },
+      "dissipation": 0.999997988595,
+      "work": [
+        0.0,
+        1.0000000000000044
+      ],
+      "value": 0.999997988595
+    },
+    "raw_lower_errors": {},
+    "physical_pass": true,
+    "witness": true,
+    "numerical_gate": false,
+    "origin": "independently_reaudited_same_mesh_witness",
+    "discrete_root_search": {
+      "mode": "upper",
+      "root_complete": true,
+      "bracket": [
+        0.6901588260388777,
+        0.6902587260388777
+      ],
+      "bracket_width": 9.990000000004162e-05,
+      "fs_tolerance": 0.0001,
+      "endpoint": 0.6902587260388777,
+      "trials": 2,
+      "seconds": 4.942775400006212,
+      "mesh_id": "44c89fcad8854b4b5ef36f061999d3033613a1e5b7193b2e2ef4a8eb0a8b7fbc",
+      "physical_model_id": "08cc8e73e85408e7a82cbe79b5716ef007cb917d00e021872c40e510b5d17525",
+      "elements": 8739,
+      "q": 8,
+      "case": "P06N",
+      "policy": "hold_initial",
+      "bracket_signs": [
+        1,
+        -1
+      ],
+      "opposite_numerical_endpoint_is_continuum_bound": false,
+      "budget_exhausted": false,
+      "budget_error": null,
+      "case_budget": {
+        "case_seconds": 30.0,
+        "solve_seconds": 1.0,
+        "elapsed_seconds": 4.943315399985295,
+        "remaining_seconds": 25.056683800008614,
+        "exhausted": false,
+        "expired_at": null,
+        "solver_time_allocations": [],
+        "scope": "cooperative wall deadline; OS watchdog required for in-flight native work"
+      },
+      "proposal_method": "bounded_bisection",
+      "pilot_trial_limit": null,
+      "new_points": 0,
+      "pilot_trial_limit_reached": false,
+      "pilot_stop_reason": null
+    }
+  }
+}

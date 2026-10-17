@@ -1,0 +1,56 @@
+[
+  {
+    "objective": 0.999997988594999,
+    "value": 0.999997988595,
+    "eq_error": 9.784808295050365e-10,
+    "cone_error": 2.163433515667279e-08,
+    "audit": {
+      "pass": true,
+      "errors": {
+        "flow": 3.91246291799448e-10,
+        "jump": 2.1634334422942686e-08,
+        "bonded_interface": 1.3625546545484687e-09,
+        "boundary": 9.784808295050365e-10,
+        "work": 4.440892098500626e-15,
+        "objective": 9.992007221626409e-16
+      },
+      "dissipation": 0.999997988595,
+      "work": [
+        0.0,
+        1.0000000000000044
+      ],
+      "value": 0.999997988595
+    },
+    "raw_lower_errors": {},
+    "physical_pass": true,
+    "witness": true,
+    "numerical_gate": false,
+    "origin": "independently_reaudited_same_mesh_witness"
+  },
+  {
+    "accepted": true,
+    "dual_stationarity": 8.924587658563085e-08,
+    "dual_cone_error": 5.661386886634395e-13,
+    "dual_objective": 1.0000030000010307,
+    "threshold": 1.000003,
+    "method": "original_dual_feasibility",
+    "scope": "discrete_root_search_only; no primal field or continuum bound",
+    "publishes_primal_bound": false,
+    "search_sign": 1,
+    "case": "P06N",
+    "mode": "upper",
+    "q": 8,
+    "fs": 0.6901588260388777,
+    "mesh_id": "44c89fcad8854b4b5ef36f061999d3033613a1e5b7193b2e2ef4a8eb0a8b7fbc",
+    "physical_model_id": "08cc8e73e85408e7a82cbe79b5716ef007cb917d00e021872c40e510b5d17525",
+    "policy": "hold_initial",
+    "physical_pass": false,
+    "witness": false,
+    "numerical_gate": false,
+    "value": 0.0,
+    "dual_guide_only": true,
+    "origin": "independently_reaudited_initial_original_dual",
+    "dual_proof_path": "P06N_linear_repair_original_dual_guide_1.npz",
+    "dual_proof_sha256": "416797367e8eb700067dbeb0d8e7c1d019ecfb78dec166e8c1751fdad152c34a"
+  }
+]

@@ -1,0 +1,315 @@
+{
+  "issue_url": "https://github.com/tak063495-prog/excel-vba-rpfem/issues/28",
+  "scope": "Independent read-only historical audit, no new optimization or Excel run",
+  "public_archive": {
+    "path": "D:\\Work\\rpfem_issue29_review_20261017\\G1R20_PUBLIC_EVIDENCE.zip",
+    "sha256": "9121db1fa2f60ebdddf35d8c6123d4562cf631a3808c61cb02d2a36702e2960a",
+    "bytes": 98287686
+  },
+  "historical_run": {
+    "root": "validation/G1R19_python26_v3_20261016/results/D05A_scalar_upper_20261016T111421Z",
+    "lower": 1.3028266247689342,
+    "upper": 1.3254379799492289,
+    "gap_percent": 1.7206300415645823,
+    "elements": 1622,
+    "wrapper_seconds": 327.3986777999962,
+    "process_exit_code": null,
+    "independent_audit_exitcode": 0,
+    "classification": "VERIFIED_PAIR_EXIT_UNRECORDED",
+    "historical_execution_scope": {
+      "kind": "fresh_original_model_with_exact_upper_velocity_units_v3",
+      "description": "Fresh original coordinates and loads; exact LP variable substitution and original q8 audits; no historical seed or Fs",
+      "q": 8,
+      "root_fs_tolerance": 0.0001,
+      "not_an_excel_timing_test": true
+    },
+    "limitations": [
+      "No recorded worker OS exit code, no VBA cold-completion proof.",
+      "Saved pair audit checks original q8 primal witnesses and retained root metadata; it does not regenerate all original opposite-endpoint full vectors."
+    ]
+  },
+  "scaled_attempt_inventory": {
+    "count": 65,
+    "statuses": {
+      "PrimalInfeasible": 4,
+      "AlmostSolved": 52,
+      "Solved": 9
+    },
+    "original_program_unchanged_all": true,
+    "physical_pass": 61,
+    "numerical_gate_pass": 28,
+    "witness_pass": 19,
+    "minimum_raw_dual_stationarity": 7.560174708487466e-11,
+    "maximum_raw_dual_stationarity": 1906.228373705471,
+    "strict_original_stationarity_threshold": 1e-07
+  },
+  "new_saved_pair_reaudit": {
+    "path": "D:\\Work\\rpfem_issue29_review_20261017\\issue28_historical_replay_1792237382183040900\\D05A_SAVED_PAIR_REAUDIT.json",
+    "sha256": "bbea882c6ba57d6f25375bd66f9f0a9e714e30c3a45f4dee6bf5b16e79f5bf29",
+    "status": "VERIFIED_2PCT",
+    "relative_gap": 0.017206300415645824,
+    "target_met": true,
+    "root_complete_record_checked": true,
+    "execution": "D:\\Work\\rpfem_issue29_review_20261017\\issue28_historical_replay_1792237382183040900\\EXECUTION.json",
+    "new_optimizer_calls": 0
+  },
+  "full_vector_reaudit": {
+    "source": "D:\\Work\\rpfem-g20-fix1-20261017\\validation\\G1R19_python26_v3_20261016\\python",
+    "initial_elements": 214,
+    "initial_mesh_id": "7459b33ab144cb52ae084be55ed3f6b808194af7fee2588f9962f5d0bc476ff6",
+    "zero_dual_stationarity": {
+      "4": {
+        "cost_inf": 1906.2283737862776,
+        "work_rhs": [
+          7.874940184445002e-05
+        ],
+        "physical_model_id": "3c270d5c79373766e05b2c3b7da528746236aa01a62325df98ebf25efe728347",
+        "original_program_sha256": "6b7299af071c745b1b7921da4262a2227ca91a47fe13f2edf9c5270cd154350b"
+      },
+      "8": {
+        "cost_inf": 1906.2283737862776,
+        "work_rhs": [
+          7.874940184445002e-05
+        ],
+        "physical_model_id": "3c270d5c79373766e05b2c3b7da528746236aa01a62325df98ebf25efe728347",
+        "original_program_sha256": "fc17d46079603bf552f4e987cb9bcb282d66e8678702bb09765ca8e87dc3c213"
+      }
+    },
+    "full_vector_replays": [
+      {
+        "file": "D:\\Work\\excel-vba-rpfem\\validation\\G1R19_python26_v3_20261016\\results\\D05A_scalar_upper_20261016T111421Z\\cases\\D05A\\scaled_upper_attempts\\upper_attempt_0005.npz",
+        "sha256": "c84ee4192f4ff03d7105ce5e79b47e15534f0026ac652ecaf77f8f0409d9aa99",
+        "metadata_sha256": "e8e3b70a63c76e0d90bc2a7690f20a0934e6532411f458e65751f11c3b3425bf",
+        "fs": 1.3,
+        "elements": 214,
+        "mesh_id": "7459b33ab144cb52ae084be55ed3f6b808194af7fee2588f9962f5d0bc476ff6",
+        "original_program_sha256": "596559008a18ecd2e54213407febd4a0346778007d11046898090c7a4702ab32",
+        "recorded_program_digest_equal": true,
+        "status_recorded": "AlmostSolved",
+        "raw_audit": {
+          "objective": 1.2185187346997666,
+          "value": 1.2185187346997686,
+          "eq_error": 6.390111054421794e-22,
+          "cone_error": 9.807979784714756e-19,
+          "audit": {
+            "pass": true,
+            "errors": {
+              "flow": 3.3109062070292507e-19,
+              "jump": 2.6215669717520595e-19,
+              "boundary": 6.390111054421794e-22,
+              "work": 0.0,
+              "objective": 1.9984014443252818e-15
+            },
+            "dissipation": 1.2185187346997686,
+            "work": [
+              0.0,
+              1.0
+            ],
+            "value": 1.2185187346997686
+          },
+          "raw_lower_errors": {},
+          "physical_pass": true,
+          "witness": false,
+          "dual_objective": 1.2185187346997646,
+          "dual_stationarity": 3.410605131648481e-10,
+          "dual_cone_error": 0.0,
+          "dual_gap": 1.9984014443252818e-15,
+          "numerical_gate": true
+        },
+        "recorded_stationarity": 3.410605131648481e-10,
+        "stationarity_recomputed_equal": true,
+        "restored_full_original_dual_byte_equal": true,
+        "velocity_scale": 7.874940184445002e-05,
+        "solver_calls": 0
+      },
+      {
+        "file": "D:\\Work\\excel-vba-rpfem\\validation\\G1R19_python26_v3_20261016\\results\\D05A_scalar_upper_20261016T111421Z\\cases\\D05A\\scaled_upper_attempts\\upper_attempt_0065.npz",
+        "sha256": "20cb5e468caef1c6420c434fae5841feb0b701121fbfd3c6bf4ce5ffd1027a84",
+        "metadata_sha256": "47736644880a81ef38c240d21584855e474695dc8b3a62b1c2dc3fc2c8c654ce",
+        "fs": 1.3254379799492289,
+        "elements": 1622,
+        "mesh_id": "d957c8a2111c7efeb68411b152cae857439ac62bb8c5123612f337483912df7b",
+        "original_program_sha256": "788c5a5875c365100f2e7ce619a9cb6b159b6230a398d953ffcadf24fcc2db77",
+        "recorded_program_digest_equal": true,
+        "status_recorded": "AlmostSolved",
+        "raw_audit": {
+          "objective": 0.9999449632100554,
+          "value": 0.9999449632100524,
+          "eq_error": 5.594821455873456e-20,
+          "cone_error": 3.7446987784933716e-16,
+          "audit": {
+            "pass": true,
+            "errors": {
+              "flow": 3.900260482072462e-17,
+              "jump": 3.7446995621578903e-16,
+              "boundary": 5.594821455873456e-20,
+              "work": 1.3322676295501878e-15,
+              "objective": 2.9976021664879227e-15
+            },
+            "dissipation": 0.9999449632100524,
+            "work": [
+              0.0,
+              1.0000000000000013
+            ],
+            "value": 0.9999449632100524
+          },
+          "raw_lower_errors": {},
+          "physical_pass": true,
+          "witness": true,
+          "dual_objective": 0.9999449632067199,
+          "dual_stationarity": 3.8948192404575366e-07,
+          "dual_cone_error": 0.0,
+          "dual_gap": 3.3355540551838203e-12,
+          "numerical_gate": false
+        },
+        "recorded_stationarity": 3.8948192404575366e-07,
+        "stationarity_recomputed_equal": true,
+        "restored_full_original_dual_byte_equal": true,
+        "velocity_scale": 8.407700801880601e-05,
+        "solver_calls": 0
+      }
+    ]
+  },
+  "hypothesis_review": {
+    "precise_issue_1429_coefficient_identity": "Not proved by the historical214-element Python mesh. Its Fs1 costinf is1906.2283737862776 for bothq4/q8; currentVBA mesh must be separately checked.",
+    "near_zero_dual_inference": "If A.T*y is tiny then stationarity approaches||cost||inf. Repeated1429 alone does not establish whether helper solver failed, wrong scaling/restore was applied, or the correct model gave an unusable candidate.",
+    "relative_tolerance_not_a_fix": "1e-7*1429.671=1.4297e-4 still rejects1429 by a factor1e7. Preserve raw gates; verify exact solver scaling and inverse dual maps.",
+    "safe_boundary": "A physical HSD output with value>1 may guide root search only when the existing numerical sign contract also passes; a physical field alone must not substitute for a missing dual root sign.",
+    "exact_transform": "x=s*u; cost_new=s*cost; A_new=[L*E;-R*G]; rhs_new=[L*b;R*h]/s; y_original=L*y_new/s; z_original=R*z_new/s. L positive row scale; R common positive multiplier per full cone block. Keep raw physical arrays unchanged."
+  },
+  "files_sha256": {
+    "validation/G1R19_python26_v3_20261016/results/D05A_scalar_upper_20261016T111421Z/COMPLETION.json": {
+      "sha256": "f9a358c583fc3de21d55dc504c8a93d43021eda34287ae98554c0d99e44b5cc6",
+      "bytes": 794,
+      "in_public_full_archive": false
+    },
+    "validation/G1R19_python26_v3_20261016/results/D05A_scalar_upper_20261016T111421Z/OWNERSHIP.json": {
+      "sha256": "664013f134a8968403a58b3a8cbc46e1a02a2032db76adb9c938fdd521828f1b",
+      "bytes": 10161,
+      "in_public_full_archive": false
+    },
+    "validation/G1R19_python26_v3_20261016/results/D05A_scalar_upper_20261016T111421Z/D05A.log": {
+      "sha256": "a0cacc029ccf314bb14dbe822c4f2a270da465824a235fb9d15966aa68543b2c",
+      "bytes": 6891,
+      "in_public_full_archive": false
+    },
+    "validation/G1R19_python26_v3_20261016/results/D05A_scalar_upper_20261016T111421Z/INDEPENDENT_AUDIT.json": {
+      "sha256": "d9865ae57943d4e848385bf4f8a3d72b444e0cc141a4fbf27302af0148996a6d",
+      "bytes": 56102,
+      "in_public_full_archive": true
+    },
+    "validation/G1R19_python26_v3_20261016/results/D05A_scalar_upper_20261016T111421Z/RESULTS.csv": {
+      "sha256": "0f22652f56b4c0625ecacf6067f9830346867079d05d6d7752458747f582935c",
+      "bytes": 257,
+      "in_public_full_archive": false
+    },
+    "validation/G1R19_python26_v3_20261016/results/D05A_scalar_upper_20261016T111421Z/cases/D05A/source_manifest.json": {
+      "sha256": "126d494fd2340b2cd4bac7268601eab90867771566ace091ac7aad25ba445d6c",
+      "bytes": 7420,
+      "in_public_full_archive": true
+    },
+    "validation/G1R19_python26_v3_20261016/results/D05A_scalar_upper_20261016T111421Z/cases/D05A/summary.json": {
+      "sha256": "d99d38a24b7402e51ba5c031e0973c44af56d49ea5ac4bc685581ecbe09998e4",
+      "bytes": 80590,
+      "in_public_full_archive": true
+    },
+    "validation/G1R19_python26_v3_20261016/results/D05A_scalar_upper_20261016T111421Z/cases/D05A/best_lower_certificate.json": {
+      "sha256": "322b45b75a494b7e09601e71667b999f305cb92bde7ad21c5c484d5ca74961bb",
+      "bytes": 23870,
+      "in_public_full_archive": true
+    },
+    "validation/G1R19_python26_v3_20261016/results/D05A_scalar_upper_20261016T111421Z/cases/D05A/best_upper_certificate.json": {
+      "sha256": "dfe9eda78feb5532f2c9d3fd3209b1b165d05804c182d959776ba249f0a9c788",
+      "bytes": 23820,
+      "in_public_full_archive": true
+    },
+    "validation/G1R19_python26_v3_20261016/results/D05A_scalar_upper_20261016T111421Z/cases/D05A/best_lower_field.npz": {
+      "sha256": "51350c1bda240e849b270aa27d753e2983d513da9ed913b3f3cec8c690d5bcf0",
+      "bytes": 197136,
+      "in_public_full_archive": true
+    },
+    "validation/G1R19_python26_v3_20261016/results/D05A_scalar_upper_20261016T111421Z/cases/D05A/best_upper_field.npz": {
+      "sha256": "472a0e70a598cb15e94f389fa97db0a6d51abee3151e2aac44fd56dcb18c6203",
+      "bytes": 137779,
+      "in_public_full_archive": true
+    },
+    "validation/G1R19_python26_v3_20261016/results/D05A_scalar_upper_20261016T111421Z/cases/D05A/best_lower_mesh.npz": {
+      "sha256": "9749331752333b4050301bc86d5712234e79a850debeafc8e2055ed4cac1187b",
+      "bytes": 13463,
+      "in_public_full_archive": true
+    },
+    "validation/G1R19_python26_v3_20261016/results/D05A_scalar_upper_20261016T111421Z/cases/D05A/best_upper_mesh.npz": {
+      "sha256": "9749331752333b4050301bc86d5712234e79a850debeafc8e2055ed4cac1187b",
+      "bytes": 13463,
+      "in_public_full_archive": true
+    },
+    "validation/G1R19_python26_v3_20261016/results/D05A_scalar_upper_20261016T111421Z/cases/D05A/scaled_upper_attempts/upper_attempt_0005.json": {
+      "sha256": "e8e3b70a63c76e0d90bc2a7690f20a0934e6532411f458e65751f11c3b3425bf",
+      "bytes": 3687,
+      "in_public_full_archive": false
+    },
+    "validation/G1R19_python26_v3_20261016/results/D05A_scalar_upper_20261016T111421Z/cases/D05A/scaled_upper_attempts/upper_attempt_0005.npz": {
+      "sha256": "c84ee4192f4ff03d7105ce5e79b47e15534f0026ac652ecaf77f8f0409d9aa99",
+      "bytes": 167790,
+      "in_public_full_archive": false
+    },
+    "validation/G1R19_python26_v3_20261016/results/D05A_scalar_upper_20261016T111421Z/cases/D05A/scaled_upper_attempts/upper_attempt_0065.json": {
+      "sha256": "47736644880a81ef38c240d21584855e474695dc8b3a62b1c2dc3fc2c8c654ce",
+      "bytes": 3834,
+      "in_public_full_archive": false
+    },
+    "validation/G1R19_python26_v3_20261016/results/D05A_scalar_upper_20261016T111421Z/cases/D05A/scaled_upper_attempts/upper_attempt_0065.npz": {
+      "sha256": "20cb5e468caef1c6420c434fae5841feb0b701121fbfd3c6bf4ce5ffd1027a84",
+      "bytes": 1259953,
+      "in_public_full_archive": false
+    },
+    "validation/G1R19_python26_v3_20261016/run_case.py": {
+      "sha256": "54edbccbdfb0a59e8b2bb325efe1b28d784630586c47910ec1a171c676add498",
+      "bytes": 21135,
+      "in_public_full_archive": true,
+      "source_url": "https://github.com/tak063495-prog/excel-vba-rpfem/blob/G1R20_Fix4/validation/G1R19_python26_v3_20261016/run_case.py"
+    },
+    "validation/G1R19_python26_v3_20261016/VBA_HANDOFF.md": {
+      "sha256": "dcaba9f7fab203c32f9bfebb9080ff34e7810a6b3e26c12b583ae5a599a76d44",
+      "bytes": 4783,
+      "in_public_full_archive": false,
+      "source_url": "https://github.com/tak063495-prog/excel-vba-rpfem/blob/G1R20_Fix4/validation/G1R19_python26_v3_20261016/VBA_HANDOFF.md"
+    },
+    "validation/G1R19_python26_v3_20261016/python/experiment_core.py": {
+      "sha256": "9a9e60b6d69ba4008ea89608f433bb716b433436715c45566bd209418ee9238e",
+      "bytes": 41505,
+      "in_public_full_archive": true,
+      "source_url": "https://github.com/tak063495-prog/excel-vba-rpfem/blob/G1R20_Fix4/validation/G1R19_python26_v3_20261016/python/experiment_core.py"
+    },
+    "validation/G1R19_python26_v3_20261016/python/benchmark_models.py": {
+      "sha256": "5e0078fedef71ec757184ed2d0b40c548a82c303737a9ef7b1f0fa8715e94141",
+      "bytes": 14280,
+      "in_public_full_archive": true,
+      "source_url": "https://github.com/tak063495-prog/excel-vba-rpfem/blob/G1R20_Fix4/validation/G1R19_python26_v3_20261016/python/benchmark_models.py"
+    },
+    "validation/G1R19_python26_v3_20261016/python/original_dual.py": {
+      "sha256": "c0025181b07b742b0d4608656489c3495b6ea90b4ed8084438420e8312b6467d",
+      "bytes": 5035,
+      "in_public_full_archive": true,
+      "source_url": "https://github.com/tak063495-prog/excel-vba-rpfem/blob/G1R20_Fix4/validation/G1R19_python26_v3_20261016/python/original_dual.py"
+    },
+    "docs/benchmarks/G1R17_native26_20261013/data/inputs/D05A.json": {
+      "sha256": "b9c7b2b34a74889f0274f220b1895405acd68409f8df3b13571d5f62f27fa7e2",
+      "bytes": 5032,
+      "in_public_full_archive": true,
+      "source_url": "https://github.com/tak063495-prog/excel-vba-rpfem/blob/G1R20_Fix4/docs/benchmarks/G1R17_native26_20261013/data/inputs/D05A.json"
+    },
+    "versions/G1R20_Fix4/src/vba/RPX_Fs.bas": {
+      "sha256": "6b6b91e759dff8a589d4dc4cf28f9e57747020cecf9414c1cb00f39c24b7885a",
+      "bytes": 53210,
+      "in_public_full_archive": false,
+      "source_url": "https://github.com/tak063495-prog/excel-vba-rpfem/blob/G1R20_Fix4/versions/G1R20_Fix4/src/vba/RPX_Fs.bas"
+    },
+    "versions/G1R20_Fix4/src/vba/RPX_AccuracyNative.bas": {
+      "sha256": "f5b206b220371076248734f0221bee5c9f5162e8c25f57134a20257c5f7049be",
+      "bytes": 75871,
+      "in_public_full_archive": false,
+      "source_url": "https://github.com/tak063495-prog/excel-vba-rpfem/blob/G1R20_Fix4/versions/G1R20_Fix4/src/vba/RPX_AccuracyNative.bas"
+    }
+  }
+}

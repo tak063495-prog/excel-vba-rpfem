@@ -1,0 +1,16 @@
+{
+  "status": "PASS",
+  "case": "D05A",
+  "case_seconds": 327.3986777999962,
+  "source_before_after_sha256_pass": true,
+  "independent_audit_exitcode": 0,
+  "cold_numerical_process_exitcode": null,
+  "exitcode_capture_limitation": "Detached Popen launcher exited before numerical process; OS exit code was not captured. Normal PASS summary and independent audit PASS are retained separately.",
+  "parent_and_solver_child_exited": true,
+  "external_guard_termination": false,
+  "evidence_sha256": {
+    "INDEPENDENT_AUDIT.json": "d9865ae57943d4e848385bf4f8a3d72b444e0cc141a4fbf27302af0148996a6d",
+    "RESULTS.csv": "0f22652f56b4c0625ecacf6067f9830346867079d05d6d7752458747f582935c",
+    "OWNERSHIP.json": "664013f134a8968403a58b3a8cbc46e1a02a2032db76adb9c938fdd521828f1b"
+  }
+}

@@ -1,0 +1,2 @@
+﻿case,status,lower_fs,upper_fs,gap_percent,q,lower_elements,upper_elements,root_complete,target_met,seconds,scope
+D05A,PASS,1.3028266247689342,1.3254379799492289,1.7206300415645823,8,1622,1622,True,True,327.3986777999962,fresh_cold_v3_exact_upper_units
