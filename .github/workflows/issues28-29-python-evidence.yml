@@ -26,6 +26,8 @@ jobs:
         run: |
           python -B -X utf8 validation/issue29_p06n_python_evidence_20261017/PACKAGE.py --check
           python -B -X utf8 validation/issue28_d05a_python_analysis_20261017/PACKAGE.py --check
+      - name: Reject altered structure, coefficients and unbound recorded programs
+        run: python -B -X utf8 validation/issue28_d05a_python_analysis_20261017/TEST_PORTABLE_AUDIT.py --output "$env:RUNNER_TEMP/D05A_PORTABILITY_NEGATIVE_CONTROLS.json"
       - name: Reassemble P06N original q8 fields and upper original dual
         run: python -B -X utf8 validation/issue29_p06n_python_evidence_20261017/VERIFY.py --output "$env:RUNNER_TEMP/P06N_REAUDIT.json"
       - name: Reaudit all six D05A scaling diagnostics without optimization

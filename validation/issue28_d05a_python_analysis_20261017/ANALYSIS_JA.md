@@ -66,6 +66,18 @@ z_original    = s_Q*z_HSD
 
 今回追加公開する2本の歴史的full vectorを原式へ戻すと、attempt0005はraw stat3.4106e-10で数値合格、attempt0065は物理上界が合格してもraw stat3.8948e-7で数値不合格でした。小さなsolver gapや物理場の合格を、原dualの保証へ読み替えていません。後者が不合格であることもそのまま再現する検証です。
 
+## 再監査コード自身のCPU差も確認した
+
+初回のWindows CIでは、同じ入力・ソースのSHAが一致しても、再構築した原行列のバイトSHAが一致せず停止しました。CIで原配列を保存し、ローカルでOpenBLASのCPU別演算経路を切り替えると同じ差を再現しました。これは今回追加したPython再監査の移植性の問題であり、報告されたVBAの原dual回復失敗を説明する証拠にはしません。
+
+実CI配列の最大差は、P02AのG／costで2.22e-16、D05AのGで2.22e-16・costで2.274e-13でした。疎構造は完全一致です。元配列は`reports/ci_assembly/`、全6ベクトルの元門の再計算と比較結果は`reports/portability/CI_PORTABILITY_ANALYSIS.json`にあります。
+
+保存時の原行列SHAと完全一致する参照配列を保全し、参照NPZ・元ソース・入力のSHAを先に検査します。再構築行列との形・型・CSCのindex/pointer・cone構成は完全一致を要求し、有限の浮動小数配列だけに`32*eps*max(1, max(abs(参照配列)))`の係数丸め幅を使います。バイトSHAが異なることは結果に明記します。
+
+その後も原問題でのstationarity1e-7・cone1e-8・目的値1.000003の門を維持し、保存例の合格・棄却を別々に再計算します。係数同一性の比較幅と、物理・dualの合格条件は別です。旧manifestと旧verifier原本は保持し、新adapter・参照行列のhash記録を別に追加しました。通常・Sandybridge・Nehalemの実行経路を切り替える検証と、許容係数差を超える変更を拒否する負例も収録しています。
+
+新規runの記録SHAは、参照原行列か現在の再構築行列のいずれかと厳密一致する必要があります。そのどちらとも一致しない第三のSHAには行列証拠がないため、明示的に拒否します。6条件の不足・重複、ヘッダやメタデータの不一致、構造・型・非有限値・参照NPZ改変等を含む16条件の検査もPASSしました。
+
 ## 次の修正候補を判断するために
 
 1. Issue実行のoriginalCost・XQScale・等式行ノルム、HSDのcommit済みx/y/z、native helperのfull x/zとsolver statusを同じFs・q・メッシュIDで保存する。

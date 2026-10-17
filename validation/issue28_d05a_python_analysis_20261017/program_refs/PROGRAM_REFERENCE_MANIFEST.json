@@ -1,0 +1,206 @@
+{
+  "schema": "issue28_micro_original_program_references_v1",
+  "generated_utc": "2026-10-17T11:58:51.476838+00:00",
+  "scope": "Original-host coefficient snapshots only; each raw program digest equals the frozen experiment metadata. No optimizer call.",
+  "optimizer_calls": 0,
+  "source_data_manifest_sha256": "f293693ff53214cc5463e25faaabb90a2ab61a279765303ccba159e9eb0f2178",
+  "producer_script_sha256": "321cbd2ccff30bff4bf084fbdaf8f2de32e26d14864e657c9a894dc4fbdd0718",
+  "comparator_sha256": "5204f04b2b6aba60f39d839e0f03576c9bfa5dde60b283adc9525eefe633ac90",
+  "builder_sha256": "c4ade2fb2d0c608c693adb2cffb2ddfa71eb609e8725cd20399c1abd9b298ba7",
+  "programs": {
+    "P02A": {
+      "path": "program_refs/P02A_original_program.npz",
+      "bytes": 126918,
+      "sha256": "c1975c1357ff3dfbe309075a51915bf1e1095991a3c4ecef3eac3bc09945a215",
+      "original_program_sha256": "a869e390bbcb585b1706844dc1f8b5d86924675912548b39fa966fc1c681bf62",
+      "array_layout": {
+        "E_shape": {
+          "shape": [
+            2
+          ],
+          "dtype": "int64"
+        },
+        "E_indptr": {
+          "shape": [
+            2569
+          ],
+          "dtype": "int32"
+        },
+        "E_indices": {
+          "shape": [
+            765
+          ],
+          "dtype": "int32"
+        },
+        "E_data": {
+          "shape": [
+            765
+          ],
+          "dtype": "float64"
+        },
+        "b": {
+          "shape": [
+            124
+          ],
+          "dtype": "float64"
+        },
+        "G_shape": {
+          "shape": [
+            2
+          ],
+          "dtype": "int64"
+        },
+        "G_indptr": {
+          "shape": [
+            2569
+          ],
+          "dtype": "int32"
+        },
+        "G_indices": {
+          "shape": [
+            78557
+          ],
+          "dtype": "int32"
+        },
+        "G_data": {
+          "shape": [
+            78557
+          ],
+          "dtype": "float64"
+        },
+        "h": {
+          "shape": [
+            7906
+          ],
+          "dtype": "float64"
+        },
+        "dims": {
+          "shape": [
+            6622
+          ],
+          "dtype": "int64"
+        },
+        "cost": {
+          "shape": [
+            2568
+          ],
+          "dtype": "float64"
+        }
+      },
+      "frozen_producer_records": [
+        {
+          "path": "results/fixed_point_02/P02A_affine/result.json",
+          "sha256": "d6e99f499183de301c2d95bcda53ef7551c7893299be0b2a767e2c6cdcc6afde",
+          "recorded_original_program_sha256": "a869e390bbcb585b1706844dc1f8b5d86924675912548b39fa966fc1c681bf62"
+        },
+        {
+          "path": "results/fixed_point_02/P02A_none/result.json",
+          "sha256": "a26316349f17cde97a309cf034a896efae30a6f2bd79a920e1be25996a9d4fd9",
+          "recorded_original_program_sha256": "a869e390bbcb585b1706844dc1f8b5d86924675912548b39fa966fc1c681bf62"
+        }
+      ]
+    },
+    "D05A": {
+      "path": "program_refs/D05A_original_program.npz",
+      "bytes": 126980,
+      "sha256": "a1c5863c2f3171046c0370124b86af625ed353e729f9fb66933d78d367cb9032",
+      "original_program_sha256": "fc17d46079603bf552f4e987cb9bcb282d66e8678702bb09765ca8e87dc3c213",
+      "array_layout": {
+        "E_shape": {
+          "shape": [
+            2
+          ],
+          "dtype": "int64"
+        },
+        "E_indptr": {
+          "shape": [
+            2569
+          ],
+          "dtype": "int32"
+        },
+        "E_indices": {
+          "shape": [
+            765
+          ],
+          "dtype": "int32"
+        },
+        "E_data": {
+          "shape": [
+            765
+          ],
+          "dtype": "float64"
+        },
+        "b": {
+          "shape": [
+            124
+          ],
+          "dtype": "float64"
+        },
+        "G_shape": {
+          "shape": [
+            2
+          ],
+          "dtype": "int64"
+        },
+        "G_indptr": {
+          "shape": [
+            2569
+          ],
+          "dtype": "int32"
+        },
+        "G_indices": {
+          "shape": [
+            78557
+          ],
+          "dtype": "int32"
+        },
+        "G_data": {
+          "shape": [
+            78557
+          ],
+          "dtype": "float64"
+        },
+        "h": {
+          "shape": [
+            7906
+          ],
+          "dtype": "float64"
+        },
+        "dims": {
+          "shape": [
+            6622
+          ],
+          "dtype": "int64"
+        },
+        "cost": {
+          "shape": [
+            2568
+          ],
+          "dtype": "float64"
+        }
+      },
+      "frozen_producer_records": [
+        {
+          "path": "results/fixed_point_02/D05A_affine/result.json",
+          "sha256": "c232d30810fd6013d83edaa5a09324263c64c82bbd92f8603fd3015f3fef5a11",
+          "recorded_original_program_sha256": "fc17d46079603bf552f4e987cb9bcb282d66e8678702bb09765ca8e87dc3c213"
+        },
+        {
+          "path": "results/fixed_point_02/D05A_none/result.json",
+          "sha256": "3c6828f60e8766e76a8579595c32711a93482db97077cb277eaf79e38ba57514",
+          "recorded_original_program_sha256": "fc17d46079603bf552f4e987cb9bcb282d66e8678702bb09765ca8e87dc3c213"
+        },
+        {
+          "path": "results/fixed_point_02/D05A_normalized_objective/result.json",
+          "sha256": "163177864b97565727b16dfd2157add9ae253368f91226fcd6a18258ceb165a2",
+          "recorded_original_program_sha256": "fc17d46079603bf552f4e987cb9bcb282d66e8678702bb09765ca8e87dc3c213"
+        },
+        {
+          "path": "results/fixed_point_02/D05A_velocity_units/result.json",
+          "sha256": "123e13f57f014c2bbefc0110e83d67c13207288c3df5348372bb1b4898cbe65e",
+          "recorded_original_program_sha256": "fc17d46079603bf552f4e987cb9bcb282d66e8678702bb09765ca8e87dc3c213"
+        }
+      ]
+    }
+  }
+}

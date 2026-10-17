@@ -1,0 +1,37 @@
+{
+  "python": "3.13.16 (tags/v3.13.16:cbc944f, Sep 30 2026, 19:17:50) [MSC v.1944 64 bit (AMD64)]",
+  "platform": "Windows-2025Server-10.0.26100-SP0",
+  "numpy": "2.3.5",
+  "scipy": "1.17.0",
+  "source_hashes": {
+    "python_snapshot/experiment_core.py": "9a9e60b6d69ba4008ea89608f433bb716b433436715c45566bd209418ee9238e",
+    "python_snapshot/reduction.py": "cbc32e1e0764e10e3f56f67b804b08867166aafbd32a64ddcbe481b18d083ca5",
+    "python_snapshot/vendor/independent_audit.py": "79ea1b0e4e72b2a61a4110e6115e3f33929ae5990fb054e20f41d345a694f37b",
+    "python_snapshot/vendor/model_support/__init__.py": "7eb70257593da06f682a3ddda54a9d260d4fc514f645237f5ca74b08f8da61a6",
+    "python_snapshot/vendor/model_support/io_case.py": "acd8d38c56020951621b1be5e4803e3d02898ad087c7f0c2d04e1d47ac6b87e3",
+    "python_snapshot/vendor/model_support/lower_assembly.py": "b3c482c8950205b32a5e38cd0f1e720e5efeb48491bbd8ff02b728ef54f51047",
+    "python_snapshot/vendor/model_support/p2.py": "7c243a234d22e5d8c209c5d55f6aedc834af7b507538022c2731a71046e0969f",
+    "python_snapshot/vendor/model_support/schema.py": "24db1fadeb9d16de2fd0593c87b0ce113b4f0720118b4617622af7450b957ca0",
+    "python_snapshot/vendor/model_support/upper_assembly.py": "d0e03aeb87dcc52ae8001b422d836064275850f22c8a69640ce722cb2213d065",
+    "inputs/P02A.json": "9587c4b45eae1c22d9e7190ee1470f5ad2e38145305f6c374894f91240ae7e1b",
+    "inputs/P02A_coarse_geometry.bin": "65fe6462d0cc1d832d1a2656494ade80858d5c491c7d14f6f8a6f8c168f2c79b",
+    "inputs/D05A.json": "b9c7b2b34a74889f0274f220b1895405acd68409f8df3b13571d5f62f27fa7e2",
+    "inputs/D05A_coarse_geometry.bin": "8f9849b3fb0b4238aa7e15f039d7321373cdc7b5c621b40b037d14c604d01983",
+    "history/INDEPENDENT_AUDIT.json": "d9865ae57943d4e848385bf4f8a3d72b444e0cc141a4fbf27302af0148996a6d",
+    "history/cases/D05A/best_lower_certificate.json": "322b45b75a494b7e09601e71667b999f305cb92bde7ad21c5c484d5ca74961bb",
+    "history/cases/D05A/best_lower_field.npz": "51350c1bda240e849b270aa27d753e2983d513da9ed913b3f3cec8c690d5bcf0",
+    "history/cases/D05A/best_lower_mesh.npz": "9749331752333b4050301bc86d5712234e79a850debeafc8e2055ed4cac1187b",
+    "history/cases/D05A/best_upper_certificate.json": "dfe9eda78feb5532f2c9d3fd3209b1b165d05804c182d959776ba249f0a9c788",
+    "history/cases/D05A/best_upper_field.npz": "472a0e70a598cb15e94f389fa97db0a6d51abee3151e2aac44fd56dcb18c6203",
+    "history/cases/D05A/best_upper_mesh.npz": "9749331752333b4050301bc86d5712234e79a850debeafc8e2055ed4cac1187b",
+    "history/cases/D05A/source_manifest.json": "126d494fd2340b2cd4bac7268601eab90867771566ace091ac7aad25ba445d6c",
+    "history/cases/D05A/summary.json": "d99d38a24b7402e51ba5c031e0973c44af56d49ea5ac4bc685581ecbe09998e4",
+    "history/producer_run_case.py": "54edbccbdfb0a59e8b2bb325efe1b28d784630586c47910ec1a171c676add498",
+    "history/CURRENT_RESULT_D05A.json": "4839a4afb49c8b9cc6f12ac08b6ad0a6478aab342c7a020957c77d841a2764b8",
+    "run_fixed_point_experiment.py": "321cbd2ccff30bff4bf084fbdaf8f2de32e26d14864e657c9a894dc4fbdd0718"
+  },
+  "programs": {
+    "P02A": "a6a0a86f3901c0fde0b5776a2f93cb5eb8b5971d036c4d53f0ff7544a8e5de83",
+    "D05A": "94130390430056c4a230d59e6b6afdd65e282004560a805fc87c1ea02dc3ea52"
+  }
+}

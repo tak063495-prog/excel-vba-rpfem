@@ -1,7 +1,7 @@
 {
   "status": "PASS",
-  "archive_sha256": "629d2ed293ef073817a6a76889dac890b602052e0bb61b74b3a93c5d29c5bce0",
-  "archive_bytes": 4226375,
+  "archive_sha256": "36bcdcdf2ad5c0e4bd79994c363efafb92b02fafbe26e679f9049be30bd6df56",
+  "archive_bytes": 5496912,
   "records": [
     {
       "command": [
@@ -9,23 +9,280 @@
         "-B",
         "-X",
         "utf8",
-        "D:\\Work\\rpfem_issue29_review_20261017\\issue28_final_zip_ktg9pnhp\\issue28_d05a_python_analysis_20261017\\VERIFY_MICRO.py",
+        "D:\\Work\\rpfem_issue29_review_20261017\\issue28_final_zip_a6yw5c8_\\issue28_d05a_python_analysis_20261017\\VERIFY_MICRO.py",
         "--output",
-        "D:\\Work\\rpfem_issue29_review_20261017\\issue28_final_zip_ktg9pnhp\\MICRO_REPLAY.json"
+        "D:\\Work\\rpfem_issue29_review_20261017\\issue28_final_zip_a6yw5c8_\\MICRO_REPLAY.json"
       ],
-      "cwd": "D:\\Work\\rpfem_issue29_review_20261017\\issue28_final_zip_ktg9pnhp",
+      "cwd": "D:\\Work\\rpfem_issue29_review_20261017\\issue28_final_zip_a6yw5c8_",
       "exit_code": 0,
-      "seconds": 1.9053288000286557,
+      "seconds": 2.3304267000057735,
       "optimizer_counter_key": "optimizer_calls",
-      "result_sha256": "770291ed58542509c9d904e0838872d2507b0540fa30d69dedcab25ee90ae3a3",
+      "result_sha256": "4ed41899cee939c0bab28fd7d6402a7862e42e5f539170bc2a07fcd3e9c4b834",
       "result": {
         "status": "PASS",
         "optimizer_calls": 0,
         "records": [
           {
             "name": "P02A_none",
-            "status": "REPLAY_MATCH",
+            "status": "PORTABLE_REPLAY_MATCH",
             "original_program_sha256": "a869e390bbcb585b1706844dc1f8b5d86924675912548b39fa966fc1c681bf62",
+            "recorded_original_program_sha256": "a869e390bbcb585b1706844dc1f8b5d86924675912548b39fa966fc1c681bf62",
+            "recorded_program_digest_binding": "exact_frozen_reference_digest",
+            "reference_npz_sha256": "c1975c1357ff3dfbe309075a51915bf1e1095991a3c4ecef3eac3bc09945a215",
+            "coefficient_comparison": {
+              "status": "PASS",
+              "raw_sha256_identical": true,
+              "observed_raw_sha256": "a869e390bbcb585b1706844dc1f8b5d86924675912548b39fa966fc1c681bf62",
+              "reference_raw_sha256": "a869e390bbcb585b1706844dc1f8b5d86924675912548b39fa966fc1c681bf62",
+              "float_comparison_formula": "32 * binary64_epsilon * max(1, max(abs(reference_array)))",
+              "physical_acceptance_thresholds_changed": false,
+              "arrays": [
+                {
+                  "name": "E_shape",
+                  "kind": "exact_integer_structure",
+                  "shape": [
+                    2
+                  ],
+                  "dtype": "int64",
+                  "bitwise_equal": true
+                },
+                {
+                  "name": "E_indptr",
+                  "kind": "exact_integer_structure",
+                  "shape": [
+                    2569
+                  ],
+                  "dtype": "int32",
+                  "bitwise_equal": true
+                },
+                {
+                  "name": "E_indices",
+                  "kind": "exact_integer_structure",
+                  "shape": [
+                    765
+                  ],
+                  "dtype": "int32",
+                  "bitwise_equal": true
+                },
+                {
+                  "name": "G_shape",
+                  "kind": "exact_integer_structure",
+                  "shape": [
+                    2
+                  ],
+                  "dtype": "int64",
+                  "bitwise_equal": true
+                },
+                {
+                  "name": "G_indptr",
+                  "kind": "exact_integer_structure",
+                  "shape": [
+                    2569
+                  ],
+                  "dtype": "int32",
+                  "bitwise_equal": true
+                },
+                {
+                  "name": "G_indices",
+                  "kind": "exact_integer_structure",
+                  "shape": [
+                    78557
+                  ],
+                  "dtype": "int32",
+                  "bitwise_equal": true
+                },
+                {
+                  "name": "dims",
+                  "kind": "exact_integer_structure",
+                  "shape": [
+                    6622
+                  ],
+                  "dtype": "int64",
+                  "bitwise_equal": true
+                },
+                {
+                  "name": "E_data",
+                  "kind": "float64_coefficient",
+                  "shape": [
+                    765
+                  ],
+                  "dtype": "float64",
+                  "bitwise_equal": true,
+                  "different_entries": 0,
+                  "max_absolute_difference": 0.0,
+                  "roundoff_bound": 7.105427357601002e-15,
+                  "max_abs_reference": 1.0
+                },
+                {
+                  "name": "b",
+                  "kind": "float64_coefficient",
+                  "shape": [
+                    124
+                  ],
+                  "dtype": "float64",
+                  "bitwise_equal": true,
+                  "different_entries": 0,
+                  "max_absolute_difference": 0.0,
+                  "roundoff_bound": 7.105427357601002e-15,
+                  "max_abs_reference": 0.07874940184445026
+                },
+                {
+                  "name": "G_data",
+                  "kind": "float64_coefficient",
+                  "shape": [
+                    78557
+                  ],
+                  "dtype": "float64",
+                  "bitwise_equal": true,
+                  "different_entries": 0,
+                  "max_absolute_difference": 0.0,
+                  "roundoff_bound": 1.370400117425216e-13,
+                  "max_abs_reference": 19.286667056827145
+                },
+                {
+                  "name": "h",
+                  "kind": "float64_coefficient",
+                  "shape": [
+                    7906
+                  ],
+                  "dtype": "float64",
+                  "bitwise_equal": true,
+                  "different_entries": 0,
+                  "max_absolute_difference": 0.0,
+                  "roundoff_bound": 7.105427357601002e-15,
+                  "max_abs_reference": 0.0
+                },
+                {
+                  "name": "cost",
+                  "kind": "float64_coefficient",
+                  "shape": [
+                    2568
+                  ],
+                  "dtype": "float64",
+                  "bitwise_equal": true,
+                  "different_entries": 0,
+                  "max_absolute_difference": 0.0,
+                  "roundoff_bound": 1.3544567236936286e-14,
+                  "max_abs_reference": 1.9062283737862777
+                }
+              ]
+            },
+            "metric_comparisons": [
+              {
+                "name": "reference.objective",
+                "absolute_difference": 0.0,
+                "roundoff_bound": 1.835444838557292e-14,
+                "bitwise_equal": true
+              },
+              {
+                "name": "reference.value",
+                "absolute_difference": 0.0,
+                "roundoff_bound": 1.8354448385572923e-14,
+                "bitwise_equal": true
+              },
+              {
+                "name": "reference.eq_error",
+                "absolute_difference": 0.0,
+                "roundoff_bound": 7.105427357601002e-15,
+                "bitwise_equal": true
+              },
+              {
+                "name": "reference.cone_error",
+                "absolute_difference": 0.0,
+                "roundoff_bound": 7.105427357601002e-15,
+                "bitwise_equal": true
+              },
+              {
+                "name": "reference.dual_objective",
+                "absolute_difference": 0.0,
+                "roundoff_bound": 1.8354448385570847e-14,
+                "bitwise_equal": true
+              },
+              {
+                "name": "reference.dual_stationarity",
+                "absolute_difference": 0.0,
+                "roundoff_bound": 7.105427357601002e-15,
+                "bitwise_equal": true
+              },
+              {
+                "name": "reference.dual_cone_error",
+                "absolute_difference": 0.0,
+                "roundoff_bound": 7.105427357601002e-15,
+                "bitwise_equal": true
+              },
+              {
+                "name": "reference.dual_gap",
+                "absolute_difference": 0.0,
+                "roundoff_bound": 7.105427357601002e-15,
+                "bitwise_equal": true
+              },
+              {
+                "name": "rebuilt.objective",
+                "absolute_difference": 0.0,
+                "roundoff_bound": 1.835444838557292e-14,
+                "bitwise_equal": true
+              },
+              {
+                "name": "rebuilt.value",
+                "absolute_difference": 0.0,
+                "roundoff_bound": 1.8354448385572923e-14,
+                "bitwise_equal": true
+              },
+              {
+                "name": "rebuilt.eq_error",
+                "absolute_difference": 0.0,
+                "roundoff_bound": 7.105427357601002e-15,
+                "bitwise_equal": true
+              },
+              {
+                "name": "rebuilt.cone_error",
+                "absolute_difference": 0.0,
+                "roundoff_bound": 7.105427357601002e-15,
+                "bitwise_equal": true
+              },
+              {
+                "name": "rebuilt.dual_objective",
+                "absolute_difference": 0.0,
+                "roundoff_bound": 1.8354448385570847e-14,
+                "bitwise_equal": true
+              },
+              {
+                "name": "rebuilt.dual_stationarity",
+                "absolute_difference": 0.0,
+                "roundoff_bound": 7.105427357601002e-15,
+                "bitwise_equal": true
+              },
+              {
+                "name": "rebuilt.dual_cone_error",
+                "absolute_difference": 0.0,
+                "roundoff_bound": 7.105427357601002e-15,
+                "bitwise_equal": true
+              },
+              {
+                "name": "rebuilt.dual_gap",
+                "absolute_difference": 0.0,
+                "roundoff_bound": 7.105427357601002e-15,
+                "bitwise_equal": true
+              },
+              {
+                "name": "original_dual.stationarity",
+                "absolute_difference": 0.0,
+                "roundoff_bound": 7.105427357601002e-15,
+                "bitwise_equal": true
+              },
+              {
+                "name": "original_dual.cone_error",
+                "absolute_difference": 0.0,
+                "roundoff_bound": 7.105427357601002e-15,
+                "bitwise_equal": true
+              },
+              {
+                "name": "original_dual.objective",
+                "absolute_difference": 0.0,
+                "roundoff_bound": 1.8354448385570847e-14,
+                "bitwise_equal": true
+              }
+            ],
             "physical_pass": true,
             "original_dual_guide_accepted": true,
             "full_original_audit": {
@@ -74,8 +331,265 @@
           },
           {
             "name": "P02A_affine",
-            "status": "REPLAY_MATCH",
+            "status": "PORTABLE_REPLAY_MATCH",
             "original_program_sha256": "a869e390bbcb585b1706844dc1f8b5d86924675912548b39fa966fc1c681bf62",
+            "recorded_original_program_sha256": "a869e390bbcb585b1706844dc1f8b5d86924675912548b39fa966fc1c681bf62",
+            "recorded_program_digest_binding": "exact_frozen_reference_digest",
+            "reference_npz_sha256": "c1975c1357ff3dfbe309075a51915bf1e1095991a3c4ecef3eac3bc09945a215",
+            "coefficient_comparison": {
+              "status": "PASS",
+              "raw_sha256_identical": true,
+              "observed_raw_sha256": "a869e390bbcb585b1706844dc1f8b5d86924675912548b39fa966fc1c681bf62",
+              "reference_raw_sha256": "a869e390bbcb585b1706844dc1f8b5d86924675912548b39fa966fc1c681bf62",
+              "float_comparison_formula": "32 * binary64_epsilon * max(1, max(abs(reference_array)))",
+              "physical_acceptance_thresholds_changed": false,
+              "arrays": [
+                {
+                  "name": "E_shape",
+                  "kind": "exact_integer_structure",
+                  "shape": [
+                    2
+                  ],
+                  "dtype": "int64",
+                  "bitwise_equal": true
+                },
+                {
+                  "name": "E_indptr",
+                  "kind": "exact_integer_structure",
+                  "shape": [
+                    2569
+                  ],
+                  "dtype": "int32",
+                  "bitwise_equal": true
+                },
+                {
+                  "name": "E_indices",
+                  "kind": "exact_integer_structure",
+                  "shape": [
+                    765
+                  ],
+                  "dtype": "int32",
+                  "bitwise_equal": true
+                },
+                {
+                  "name": "G_shape",
+                  "kind": "exact_integer_structure",
+                  "shape": [
+                    2
+                  ],
+                  "dtype": "int64",
+                  "bitwise_equal": true
+                },
+                {
+                  "name": "G_indptr",
+                  "kind": "exact_integer_structure",
+                  "shape": [
+                    2569
+                  ],
+                  "dtype": "int32",
+                  "bitwise_equal": true
+                },
+                {
+                  "name": "G_indices",
+                  "kind": "exact_integer_structure",
+                  "shape": [
+                    78557
+                  ],
+                  "dtype": "int32",
+                  "bitwise_equal": true
+                },
+                {
+                  "name": "dims",
+                  "kind": "exact_integer_structure",
+                  "shape": [
+                    6622
+                  ],
+                  "dtype": "int64",
+                  "bitwise_equal": true
+                },
+                {
+                  "name": "E_data",
+                  "kind": "float64_coefficient",
+                  "shape": [
+                    765
+                  ],
+                  "dtype": "float64",
+                  "bitwise_equal": true,
+                  "different_entries": 0,
+                  "max_absolute_difference": 0.0,
+                  "roundoff_bound": 7.105427357601002e-15,
+                  "max_abs_reference": 1.0
+                },
+                {
+                  "name": "b",
+                  "kind": "float64_coefficient",
+                  "shape": [
+                    124
+                  ],
+                  "dtype": "float64",
+                  "bitwise_equal": true,
+                  "different_entries": 0,
+                  "max_absolute_difference": 0.0,
+                  "roundoff_bound": 7.105427357601002e-15,
+                  "max_abs_reference": 0.07874940184445026
+                },
+                {
+                  "name": "G_data",
+                  "kind": "float64_coefficient",
+                  "shape": [
+                    78557
+                  ],
+                  "dtype": "float64",
+                  "bitwise_equal": true,
+                  "different_entries": 0,
+                  "max_absolute_difference": 0.0,
+                  "roundoff_bound": 1.370400117425216e-13,
+                  "max_abs_reference": 19.286667056827145
+                },
+                {
+                  "name": "h",
+                  "kind": "float64_coefficient",
+                  "shape": [
+                    7906
+                  ],
+                  "dtype": "float64",
+                  "bitwise_equal": true,
+                  "different_entries": 0,
+                  "max_absolute_difference": 0.0,
+                  "roundoff_bound": 7.105427357601002e-15,
+                  "max_abs_reference": 0.0
+                },
+                {
+                  "name": "cost",
+                  "kind": "float64_coefficient",
+                  "shape": [
+                    2568
+                  ],
+                  "dtype": "float64",
+                  "bitwise_equal": true,
+                  "different_entries": 0,
+                  "max_absolute_difference": 0.0,
+                  "roundoff_bound": 1.3544567236936286e-14,
+                  "max_abs_reference": 1.9062283737862777
+                }
+              ]
+            },
+            "metric_comparisons": [
+              {
+                "name": "reference.objective",
+                "absolute_difference": 0.0,
+                "roundoff_bound": 1.8354448394610322e-14,
+                "bitwise_equal": true
+              },
+              {
+                "name": "reference.value",
+                "absolute_difference": 0.0,
+                "roundoff_bound": 1.8354448394610293e-14,
+                "bitwise_equal": true
+              },
+              {
+                "name": "reference.eq_error",
+                "absolute_difference": 0.0,
+                "roundoff_bound": 7.105427357601002e-15,
+                "bitwise_equal": true
+              },
+              {
+                "name": "reference.cone_error",
+                "absolute_difference": 0.0,
+                "roundoff_bound": 7.105427357601002e-15,
+                "bitwise_equal": true
+              },
+              {
+                "name": "reference.dual_objective",
+                "absolute_difference": 0.0,
+                "roundoff_bound": 1.835444839461e-14,
+                "bitwise_equal": true
+              },
+              {
+                "name": "reference.dual_stationarity",
+                "absolute_difference": 0.0,
+                "roundoff_bound": 7.105427357601002e-15,
+                "bitwise_equal": true
+              },
+              {
+                "name": "reference.dual_cone_error",
+                "absolute_difference": 0.0,
+                "roundoff_bound": 7.105427357601002e-15,
+                "bitwise_equal": true
+              },
+              {
+                "name": "reference.dual_gap",
+                "absolute_difference": 0.0,
+                "roundoff_bound": 7.105427357601002e-15,
+                "bitwise_equal": true
+              },
+              {
+                "name": "rebuilt.objective",
+                "absolute_difference": 0.0,
+                "roundoff_bound": 1.8354448394610322e-14,
+                "bitwise_equal": true
+              },
+              {
+                "name": "rebuilt.value",
+                "absolute_difference": 0.0,
+                "roundoff_bound": 1.8354448394610293e-14,
+                "bitwise_equal": true
+              },
+              {
+                "name": "rebuilt.eq_error",
+                "absolute_difference": 0.0,
+                "roundoff_bound": 7.105427357601002e-15,
+                "bitwise_equal": true
+              },
+              {
+                "name": "rebuilt.cone_error",
+                "absolute_difference": 0.0,
+                "roundoff_bound": 7.105427357601002e-15,
+                "bitwise_equal": true
+              },
+              {
+                "name": "rebuilt.dual_objective",
+                "absolute_difference": 0.0,
+                "roundoff_bound": 1.835444839461e-14,
+                "bitwise_equal": true
+              },
+              {
+                "name": "rebuilt.dual_stationarity",
+                "absolute_difference": 0.0,
+                "roundoff_bound": 7.105427357601002e-15,
+                "bitwise_equal": true
+              },
+              {
+                "name": "rebuilt.dual_cone_error",
+                "absolute_difference": 0.0,
+                "roundoff_bound": 7.105427357601002e-15,
+                "bitwise_equal": true
+              },
+              {
+                "name": "rebuilt.dual_gap",
+                "absolute_difference": 0.0,
+                "roundoff_bound": 7.105427357601002e-15,
+                "bitwise_equal": true
+              },
+              {
+                "name": "original_dual.stationarity",
+                "absolute_difference": 0.0,
+                "roundoff_bound": 7.105427357601002e-15,
+                "bitwise_equal": true
+              },
+              {
+                "name": "original_dual.cone_error",
+                "absolute_difference": 0.0,
+                "roundoff_bound": 7.105427357601002e-15,
+                "bitwise_equal": true
+              },
+              {
+                "name": "original_dual.objective",
+                "absolute_difference": 0.0,
+                "roundoff_bound": 1.835444839461e-14,
+                "bitwise_equal": true
+              }
+            ],
             "physical_pass": true,
             "original_dual_guide_accepted": true,
             "full_original_audit": {
@@ -124,8 +638,265 @@
           },
           {
             "name": "D05A_none",
-            "status": "REPLAY_MATCH",
+            "status": "PORTABLE_REPLAY_MATCH",
             "original_program_sha256": "fc17d46079603bf552f4e987cb9bcb282d66e8678702bb09765ca8e87dc3c213",
+            "recorded_original_program_sha256": "fc17d46079603bf552f4e987cb9bcb282d66e8678702bb09765ca8e87dc3c213",
+            "recorded_program_digest_binding": "exact_frozen_reference_digest",
+            "reference_npz_sha256": "a1c5863c2f3171046c0370124b86af625ed353e729f9fb66933d78d367cb9032",
+            "coefficient_comparison": {
+              "status": "PASS",
+              "raw_sha256_identical": true,
+              "observed_raw_sha256": "fc17d46079603bf552f4e987cb9bcb282d66e8678702bb09765ca8e87dc3c213",
+              "reference_raw_sha256": "fc17d46079603bf552f4e987cb9bcb282d66e8678702bb09765ca8e87dc3c213",
+              "float_comparison_formula": "32 * binary64_epsilon * max(1, max(abs(reference_array)))",
+              "physical_acceptance_thresholds_changed": false,
+              "arrays": [
+                {
+                  "name": "E_shape",
+                  "kind": "exact_integer_structure",
+                  "shape": [
+                    2
+                  ],
+                  "dtype": "int64",
+                  "bitwise_equal": true
+                },
+                {
+                  "name": "E_indptr",
+                  "kind": "exact_integer_structure",
+                  "shape": [
+                    2569
+                  ],
+                  "dtype": "int32",
+                  "bitwise_equal": true
+                },
+                {
+                  "name": "E_indices",
+                  "kind": "exact_integer_structure",
+                  "shape": [
+                    765
+                  ],
+                  "dtype": "int32",
+                  "bitwise_equal": true
+                },
+                {
+                  "name": "G_shape",
+                  "kind": "exact_integer_structure",
+                  "shape": [
+                    2
+                  ],
+                  "dtype": "int64",
+                  "bitwise_equal": true
+                },
+                {
+                  "name": "G_indptr",
+                  "kind": "exact_integer_structure",
+                  "shape": [
+                    2569
+                  ],
+                  "dtype": "int32",
+                  "bitwise_equal": true
+                },
+                {
+                  "name": "G_indices",
+                  "kind": "exact_integer_structure",
+                  "shape": [
+                    78557
+                  ],
+                  "dtype": "int32",
+                  "bitwise_equal": true
+                },
+                {
+                  "name": "dims",
+                  "kind": "exact_integer_structure",
+                  "shape": [
+                    6622
+                  ],
+                  "dtype": "int64",
+                  "bitwise_equal": true
+                },
+                {
+                  "name": "E_data",
+                  "kind": "float64_coefficient",
+                  "shape": [
+                    765
+                  ],
+                  "dtype": "float64",
+                  "bitwise_equal": true,
+                  "different_entries": 0,
+                  "max_absolute_difference": 0.0,
+                  "roundoff_bound": 7.105427357601002e-15,
+                  "max_abs_reference": 1.0
+                },
+                {
+                  "name": "b",
+                  "kind": "float64_coefficient",
+                  "shape": [
+                    124
+                  ],
+                  "dtype": "float64",
+                  "bitwise_equal": true,
+                  "different_entries": 0,
+                  "max_absolute_difference": 0.0,
+                  "roundoff_bound": 7.105427357601002e-15,
+                  "max_abs_reference": 7.874940184445002e-05
+                },
+                {
+                  "name": "G_data",
+                  "kind": "float64_coefficient",
+                  "shape": [
+                    78557
+                  ],
+                  "dtype": "float64",
+                  "bitwise_equal": true,
+                  "different_entries": 0,
+                  "max_absolute_difference": 0.0,
+                  "roundoff_bound": 7.839922258654692e-15,
+                  "max_abs_reference": 1.1033709675840915
+                },
+                {
+                  "name": "h",
+                  "kind": "float64_coefficient",
+                  "shape": [
+                    7906
+                  ],
+                  "dtype": "float64",
+                  "bitwise_equal": true,
+                  "different_entries": 0,
+                  "max_absolute_difference": 0.0,
+                  "roundoff_bound": 7.105427357601002e-15,
+                  "max_abs_reference": 0.0
+                },
+                {
+                  "name": "cost",
+                  "kind": "float64_coefficient",
+                  "shape": [
+                    2568
+                  ],
+                  "dtype": "float64",
+                  "bitwise_equal": true,
+                  "different_entries": 0,
+                  "max_absolute_difference": 0.0,
+                  "roundoff_bound": 1.3544567236936286e-11,
+                  "max_abs_reference": 1906.2283737862776
+                }
+              ]
+            },
+            "metric_comparisons": [
+              {
+                "name": "reference.objective",
+                "absolute_difference": 0.0,
+                "roundoff_bound": 7.105427357601002e-15,
+                "bitwise_equal": true
+              },
+              {
+                "name": "reference.value",
+                "absolute_difference": 0.0,
+                "roundoff_bound": 7.105427357601002e-15,
+                "bitwise_equal": true
+              },
+              {
+                "name": "reference.eq_error",
+                "absolute_difference": 0.0,
+                "roundoff_bound": 7.105427357601002e-15,
+                "bitwise_equal": true
+              },
+              {
+                "name": "reference.cone_error",
+                "absolute_difference": 0.0,
+                "roundoff_bound": 7.105427357601002e-15,
+                "bitwise_equal": true
+              },
+              {
+                "name": "reference.dual_objective",
+                "absolute_difference": 0.0,
+                "roundoff_bound": 7.105427357601002e-15,
+                "bitwise_equal": true
+              },
+              {
+                "name": "reference.dual_stationarity",
+                "absolute_difference": 0.0,
+                "roundoff_bound": 7.105427357601002e-15,
+                "bitwise_equal": true
+              },
+              {
+                "name": "reference.dual_cone_error",
+                "absolute_difference": 0.0,
+                "roundoff_bound": 7.105427357601002e-15,
+                "bitwise_equal": true
+              },
+              {
+                "name": "reference.dual_gap",
+                "absolute_difference": 0.0,
+                "roundoff_bound": 7.105427357601002e-15,
+                "bitwise_equal": true
+              },
+              {
+                "name": "rebuilt.objective",
+                "absolute_difference": 0.0,
+                "roundoff_bound": 7.105427357601002e-15,
+                "bitwise_equal": true
+              },
+              {
+                "name": "rebuilt.value",
+                "absolute_difference": 0.0,
+                "roundoff_bound": 7.105427357601002e-15,
+                "bitwise_equal": true
+              },
+              {
+                "name": "rebuilt.eq_error",
+                "absolute_difference": 0.0,
+                "roundoff_bound": 7.105427357601002e-15,
+                "bitwise_equal": true
+              },
+              {
+                "name": "rebuilt.cone_error",
+                "absolute_difference": 0.0,
+                "roundoff_bound": 7.105427357601002e-15,
+                "bitwise_equal": true
+              },
+              {
+                "name": "rebuilt.dual_objective",
+                "absolute_difference": 0.0,
+                "roundoff_bound": 7.105427357601002e-15,
+                "bitwise_equal": true
+              },
+              {
+                "name": "rebuilt.dual_stationarity",
+                "absolute_difference": 0.0,
+                "roundoff_bound": 7.105427357601002e-15,
+                "bitwise_equal": true
+              },
+              {
+                "name": "rebuilt.dual_cone_error",
+                "absolute_difference": 0.0,
+                "roundoff_bound": 7.105427357601002e-15,
+                "bitwise_equal": true
+              },
+              {
+                "name": "rebuilt.dual_gap",
+                "absolute_difference": 0.0,
+                "roundoff_bound": 7.105427357601002e-15,
+                "bitwise_equal": true
+              },
+              {
+                "name": "original_dual.stationarity",
+                "absolute_difference": 0.0,
+                "roundoff_bound": 7.105427357601002e-15,
+                "bitwise_equal": true
+              },
+              {
+                "name": "original_dual.cone_error",
+                "absolute_difference": 0.0,
+                "roundoff_bound": 7.105427357601002e-15,
+                "bitwise_equal": true
+              },
+              {
+                "name": "original_dual.objective",
+                "absolute_difference": 0.0,
+                "roundoff_bound": 7.105427357601002e-15,
+                "bitwise_equal": true
+              }
+            ],
             "physical_pass": false,
             "original_dual_guide_accepted": false,
             "full_original_audit": {
@@ -174,8 +945,265 @@
           },
           {
             "name": "D05A_affine",
-            "status": "REPLAY_MATCH",
+            "status": "PORTABLE_REPLAY_MATCH",
             "original_program_sha256": "fc17d46079603bf552f4e987cb9bcb282d66e8678702bb09765ca8e87dc3c213",
+            "recorded_original_program_sha256": "fc17d46079603bf552f4e987cb9bcb282d66e8678702bb09765ca8e87dc3c213",
+            "recorded_program_digest_binding": "exact_frozen_reference_digest",
+            "reference_npz_sha256": "a1c5863c2f3171046c0370124b86af625ed353e729f9fb66933d78d367cb9032",
+            "coefficient_comparison": {
+              "status": "PASS",
+              "raw_sha256_identical": true,
+              "observed_raw_sha256": "fc17d46079603bf552f4e987cb9bcb282d66e8678702bb09765ca8e87dc3c213",
+              "reference_raw_sha256": "fc17d46079603bf552f4e987cb9bcb282d66e8678702bb09765ca8e87dc3c213",
+              "float_comparison_formula": "32 * binary64_epsilon * max(1, max(abs(reference_array)))",
+              "physical_acceptance_thresholds_changed": false,
+              "arrays": [
+                {
+                  "name": "E_shape",
+                  "kind": "exact_integer_structure",
+                  "shape": [
+                    2
+                  ],
+                  "dtype": "int64",
+                  "bitwise_equal": true
+                },
+                {
+                  "name": "E_indptr",
+                  "kind": "exact_integer_structure",
+                  "shape": [
+                    2569
+                  ],
+                  "dtype": "int32",
+                  "bitwise_equal": true
+                },
+                {
+                  "name": "E_indices",
+                  "kind": "exact_integer_structure",
+                  "shape": [
+                    765
+                  ],
+                  "dtype": "int32",
+                  "bitwise_equal": true
+                },
+                {
+                  "name": "G_shape",
+                  "kind": "exact_integer_structure",
+                  "shape": [
+                    2
+                  ],
+                  "dtype": "int64",
+                  "bitwise_equal": true
+                },
+                {
+                  "name": "G_indptr",
+                  "kind": "exact_integer_structure",
+                  "shape": [
+                    2569
+                  ],
+                  "dtype": "int32",
+                  "bitwise_equal": true
+                },
+                {
+                  "name": "G_indices",
+                  "kind": "exact_integer_structure",
+                  "shape": [
+                    78557
+                  ],
+                  "dtype": "int32",
+                  "bitwise_equal": true
+                },
+                {
+                  "name": "dims",
+                  "kind": "exact_integer_structure",
+                  "shape": [
+                    6622
+                  ],
+                  "dtype": "int64",
+                  "bitwise_equal": true
+                },
+                {
+                  "name": "E_data",
+                  "kind": "float64_coefficient",
+                  "shape": [
+                    765
+                  ],
+                  "dtype": "float64",
+                  "bitwise_equal": true,
+                  "different_entries": 0,
+                  "max_absolute_difference": 0.0,
+                  "roundoff_bound": 7.105427357601002e-15,
+                  "max_abs_reference": 1.0
+                },
+                {
+                  "name": "b",
+                  "kind": "float64_coefficient",
+                  "shape": [
+                    124
+                  ],
+                  "dtype": "float64",
+                  "bitwise_equal": true,
+                  "different_entries": 0,
+                  "max_absolute_difference": 0.0,
+                  "roundoff_bound": 7.105427357601002e-15,
+                  "max_abs_reference": 7.874940184445002e-05
+                },
+                {
+                  "name": "G_data",
+                  "kind": "float64_coefficient",
+                  "shape": [
+                    78557
+                  ],
+                  "dtype": "float64",
+                  "bitwise_equal": true,
+                  "different_entries": 0,
+                  "max_absolute_difference": 0.0,
+                  "roundoff_bound": 7.839922258654692e-15,
+                  "max_abs_reference": 1.1033709675840915
+                },
+                {
+                  "name": "h",
+                  "kind": "float64_coefficient",
+                  "shape": [
+                    7906
+                  ],
+                  "dtype": "float64",
+                  "bitwise_equal": true,
+                  "different_entries": 0,
+                  "max_absolute_difference": 0.0,
+                  "roundoff_bound": 7.105427357601002e-15,
+                  "max_abs_reference": 0.0
+                },
+                {
+                  "name": "cost",
+                  "kind": "float64_coefficient",
+                  "shape": [
+                    2568
+                  ],
+                  "dtype": "float64",
+                  "bitwise_equal": true,
+                  "different_entries": 0,
+                  "max_absolute_difference": 0.0,
+                  "roundoff_bound": 1.3544567236936286e-11,
+                  "max_abs_reference": 1906.2283737862776
+                }
+              ]
+            },
+            "metric_comparisons": [
+              {
+                "name": "reference.objective",
+                "absolute_difference": 0.0,
+                "roundoff_bound": 7.105427357601002e-15,
+                "bitwise_equal": true
+              },
+              {
+                "name": "reference.value",
+                "absolute_difference": 0.0,
+                "roundoff_bound": 7.105427357601002e-15,
+                "bitwise_equal": true
+              },
+              {
+                "name": "reference.eq_error",
+                "absolute_difference": 0.0,
+                "roundoff_bound": 7.105427357601002e-15,
+                "bitwise_equal": true
+              },
+              {
+                "name": "reference.cone_error",
+                "absolute_difference": 0.0,
+                "roundoff_bound": 7.105427357601002e-15,
+                "bitwise_equal": true
+              },
+              {
+                "name": "reference.dual_objective",
+                "absolute_difference": 0.0,
+                "roundoff_bound": 7.105427357601002e-15,
+                "bitwise_equal": true
+              },
+              {
+                "name": "reference.dual_stationarity",
+                "absolute_difference": 0.0,
+                "roundoff_bound": 7.105427357601002e-15,
+                "bitwise_equal": true
+              },
+              {
+                "name": "reference.dual_cone_error",
+                "absolute_difference": 0.0,
+                "roundoff_bound": 7.105427357601002e-15,
+                "bitwise_equal": true
+              },
+              {
+                "name": "reference.dual_gap",
+                "absolute_difference": 0.0,
+                "roundoff_bound": 7.105427357601002e-15,
+                "bitwise_equal": true
+              },
+              {
+                "name": "rebuilt.objective",
+                "absolute_difference": 0.0,
+                "roundoff_bound": 7.105427357601002e-15,
+                "bitwise_equal": true
+              },
+              {
+                "name": "rebuilt.value",
+                "absolute_difference": 0.0,
+                "roundoff_bound": 7.105427357601002e-15,
+                "bitwise_equal": true
+              },
+              {
+                "name": "rebuilt.eq_error",
+                "absolute_difference": 0.0,
+                "roundoff_bound": 7.105427357601002e-15,
+                "bitwise_equal": true
+              },
+              {
+                "name": "rebuilt.cone_error",
+                "absolute_difference": 0.0,
+                "roundoff_bound": 7.105427357601002e-15,
+                "bitwise_equal": true
+              },
+              {
+                "name": "rebuilt.dual_objective",
+                "absolute_difference": 0.0,
+                "roundoff_bound": 7.105427357601002e-15,
+                "bitwise_equal": true
+              },
+              {
+                "name": "rebuilt.dual_stationarity",
+                "absolute_difference": 0.0,
+                "roundoff_bound": 7.105427357601002e-15,
+                "bitwise_equal": true
+              },
+              {
+                "name": "rebuilt.dual_cone_error",
+                "absolute_difference": 0.0,
+                "roundoff_bound": 7.105427357601002e-15,
+                "bitwise_equal": true
+              },
+              {
+                "name": "rebuilt.dual_gap",
+                "absolute_difference": 0.0,
+                "roundoff_bound": 7.105427357601002e-15,
+                "bitwise_equal": true
+              },
+              {
+                "name": "original_dual.stationarity",
+                "absolute_difference": 0.0,
+                "roundoff_bound": 7.105427357601002e-15,
+                "bitwise_equal": true
+              },
+              {
+                "name": "original_dual.cone_error",
+                "absolute_difference": 0.0,
+                "roundoff_bound": 7.105427357601002e-15,
+                "bitwise_equal": true
+              },
+              {
+                "name": "original_dual.objective",
+                "absolute_difference": 0.0,
+                "roundoff_bound": 7.105427357601002e-15,
+                "bitwise_equal": true
+              }
+            ],
             "physical_pass": false,
             "original_dual_guide_accepted": false,
             "full_original_audit": {
@@ -224,8 +1252,265 @@
           },
           {
             "name": "D05A_normalized_objective",
-            "status": "REPLAY_MATCH",
+            "status": "PORTABLE_REPLAY_MATCH",
             "original_program_sha256": "fc17d46079603bf552f4e987cb9bcb282d66e8678702bb09765ca8e87dc3c213",
+            "recorded_original_program_sha256": "fc17d46079603bf552f4e987cb9bcb282d66e8678702bb09765ca8e87dc3c213",
+            "recorded_program_digest_binding": "exact_frozen_reference_digest",
+            "reference_npz_sha256": "a1c5863c2f3171046c0370124b86af625ed353e729f9fb66933d78d367cb9032",
+            "coefficient_comparison": {
+              "status": "PASS",
+              "raw_sha256_identical": true,
+              "observed_raw_sha256": "fc17d46079603bf552f4e987cb9bcb282d66e8678702bb09765ca8e87dc3c213",
+              "reference_raw_sha256": "fc17d46079603bf552f4e987cb9bcb282d66e8678702bb09765ca8e87dc3c213",
+              "float_comparison_formula": "32 * binary64_epsilon * max(1, max(abs(reference_array)))",
+              "physical_acceptance_thresholds_changed": false,
+              "arrays": [
+                {
+                  "name": "E_shape",
+                  "kind": "exact_integer_structure",
+                  "shape": [
+                    2
+                  ],
+                  "dtype": "int64",
+                  "bitwise_equal": true
+                },
+                {
+                  "name": "E_indptr",
+                  "kind": "exact_integer_structure",
+                  "shape": [
+                    2569
+                  ],
+                  "dtype": "int32",
+                  "bitwise_equal": true
+                },
+                {
+                  "name": "E_indices",
+                  "kind": "exact_integer_structure",
+                  "shape": [
+                    765
+                  ],
+                  "dtype": "int32",
+                  "bitwise_equal": true
+                },
+                {
+                  "name": "G_shape",
+                  "kind": "exact_integer_structure",
+                  "shape": [
+                    2
+                  ],
+                  "dtype": "int64",
+                  "bitwise_equal": true
+                },
+                {
+                  "name": "G_indptr",
+                  "kind": "exact_integer_structure",
+                  "shape": [
+                    2569
+                  ],
+                  "dtype": "int32",
+                  "bitwise_equal": true
+                },
+                {
+                  "name": "G_indices",
+                  "kind": "exact_integer_structure",
+                  "shape": [
+                    78557
+                  ],
+                  "dtype": "int32",
+                  "bitwise_equal": true
+                },
+                {
+                  "name": "dims",
+                  "kind": "exact_integer_structure",
+                  "shape": [
+                    6622
+                  ],
+                  "dtype": "int64",
+                  "bitwise_equal": true
+                },
+                {
+                  "name": "E_data",
+                  "kind": "float64_coefficient",
+                  "shape": [
+                    765
+                  ],
+                  "dtype": "float64",
+                  "bitwise_equal": true,
+                  "different_entries": 0,
+                  "max_absolute_difference": 0.0,
+                  "roundoff_bound": 7.105427357601002e-15,
+                  "max_abs_reference": 1.0
+                },
+                {
+                  "name": "b",
+                  "kind": "float64_coefficient",
+                  "shape": [
+                    124
+                  ],
+                  "dtype": "float64",
+                  "bitwise_equal": true,
+                  "different_entries": 0,
+                  "max_absolute_difference": 0.0,
+                  "roundoff_bound": 7.105427357601002e-15,
+                  "max_abs_reference": 7.874940184445002e-05
+                },
+                {
+                  "name": "G_data",
+                  "kind": "float64_coefficient",
+                  "shape": [
+                    78557
+                  ],
+                  "dtype": "float64",
+                  "bitwise_equal": true,
+                  "different_entries": 0,
+                  "max_absolute_difference": 0.0,
+                  "roundoff_bound": 7.839922258654692e-15,
+                  "max_abs_reference": 1.1033709675840915
+                },
+                {
+                  "name": "h",
+                  "kind": "float64_coefficient",
+                  "shape": [
+                    7906
+                  ],
+                  "dtype": "float64",
+                  "bitwise_equal": true,
+                  "different_entries": 0,
+                  "max_absolute_difference": 0.0,
+                  "roundoff_bound": 7.105427357601002e-15,
+                  "max_abs_reference": 0.0
+                },
+                {
+                  "name": "cost",
+                  "kind": "float64_coefficient",
+                  "shape": [
+                    2568
+                  ],
+                  "dtype": "float64",
+                  "bitwise_equal": true,
+                  "different_entries": 0,
+                  "max_absolute_difference": 0.0,
+                  "roundoff_bound": 1.3544567236936286e-11,
+                  "max_abs_reference": 1906.2283737862776
+                }
+              ]
+            },
+            "metric_comparisons": [
+              {
+                "name": "reference.objective",
+                "absolute_difference": 0.0,
+                "roundoff_bound": 1.8354412194483596e-14,
+                "bitwise_equal": true
+              },
+              {
+                "name": "reference.value",
+                "absolute_difference": 0.0,
+                "roundoff_bound": 1.8354412194483565e-14,
+                "bitwise_equal": true
+              },
+              {
+                "name": "reference.eq_error",
+                "absolute_difference": 0.0,
+                "roundoff_bound": 7.105427357601002e-15,
+                "bitwise_equal": true
+              },
+              {
+                "name": "reference.cone_error",
+                "absolute_difference": 0.0,
+                "roundoff_bound": 7.105427357601002e-15,
+                "bitwise_equal": true
+              },
+              {
+                "name": "reference.dual_objective",
+                "absolute_difference": 0.0,
+                "roundoff_bound": 1.8354412194508e-14,
+                "bitwise_equal": true
+              },
+              {
+                "name": "reference.dual_stationarity",
+                "absolute_difference": 0.0,
+                "roundoff_bound": 7.105427357601002e-15,
+                "bitwise_equal": true
+              },
+              {
+                "name": "reference.dual_cone_error",
+                "absolute_difference": 0.0,
+                "roundoff_bound": 7.105427357601002e-15,
+                "bitwise_equal": true
+              },
+              {
+                "name": "reference.dual_gap",
+                "absolute_difference": 0.0,
+                "roundoff_bound": 7.105427357601002e-15,
+                "bitwise_equal": true
+              },
+              {
+                "name": "rebuilt.objective",
+                "absolute_difference": 0.0,
+                "roundoff_bound": 1.8354412194483596e-14,
+                "bitwise_equal": true
+              },
+              {
+                "name": "rebuilt.value",
+                "absolute_difference": 0.0,
+                "roundoff_bound": 1.8354412194483565e-14,
+                "bitwise_equal": true
+              },
+              {
+                "name": "rebuilt.eq_error",
+                "absolute_difference": 0.0,
+                "roundoff_bound": 7.105427357601002e-15,
+                "bitwise_equal": true
+              },
+              {
+                "name": "rebuilt.cone_error",
+                "absolute_difference": 0.0,
+                "roundoff_bound": 7.105427357601002e-15,
+                "bitwise_equal": true
+              },
+              {
+                "name": "rebuilt.dual_objective",
+                "absolute_difference": 0.0,
+                "roundoff_bound": 1.8354412194508e-14,
+                "bitwise_equal": true
+              },
+              {
+                "name": "rebuilt.dual_stationarity",
+                "absolute_difference": 0.0,
+                "roundoff_bound": 7.105427357601002e-15,
+                "bitwise_equal": true
+              },
+              {
+                "name": "rebuilt.dual_cone_error",
+                "absolute_difference": 0.0,
+                "roundoff_bound": 7.105427357601002e-15,
+                "bitwise_equal": true
+              },
+              {
+                "name": "rebuilt.dual_gap",
+                "absolute_difference": 0.0,
+                "roundoff_bound": 7.105427357601002e-15,
+                "bitwise_equal": true
+              },
+              {
+                "name": "original_dual.stationarity",
+                "absolute_difference": 0.0,
+                "roundoff_bound": 7.105427357601002e-15,
+                "bitwise_equal": true
+              },
+              {
+                "name": "original_dual.cone_error",
+                "absolute_difference": 0.0,
+                "roundoff_bound": 7.105427357601002e-15,
+                "bitwise_equal": true
+              },
+              {
+                "name": "original_dual.objective",
+                "absolute_difference": 0.0,
+                "roundoff_bound": 1.8354412194508e-14,
+                "bitwise_equal": true
+              }
+            ],
             "physical_pass": false,
             "original_dual_guide_accepted": true,
             "full_original_audit": {
@@ -274,8 +1559,265 @@
           },
           {
             "name": "D05A_velocity_units",
-            "status": "REPLAY_MATCH",
+            "status": "PORTABLE_REPLAY_MATCH",
             "original_program_sha256": "fc17d46079603bf552f4e987cb9bcb282d66e8678702bb09765ca8e87dc3c213",
+            "recorded_original_program_sha256": "fc17d46079603bf552f4e987cb9bcb282d66e8678702bb09765ca8e87dc3c213",
+            "recorded_program_digest_binding": "exact_frozen_reference_digest",
+            "reference_npz_sha256": "a1c5863c2f3171046c0370124b86af625ed353e729f9fb66933d78d367cb9032",
+            "coefficient_comparison": {
+              "status": "PASS",
+              "raw_sha256_identical": true,
+              "observed_raw_sha256": "fc17d46079603bf552f4e987cb9bcb282d66e8678702bb09765ca8e87dc3c213",
+              "reference_raw_sha256": "fc17d46079603bf552f4e987cb9bcb282d66e8678702bb09765ca8e87dc3c213",
+              "float_comparison_formula": "32 * binary64_epsilon * max(1, max(abs(reference_array)))",
+              "physical_acceptance_thresholds_changed": false,
+              "arrays": [
+                {
+                  "name": "E_shape",
+                  "kind": "exact_integer_structure",
+                  "shape": [
+                    2
+                  ],
+                  "dtype": "int64",
+                  "bitwise_equal": true
+                },
+                {
+                  "name": "E_indptr",
+                  "kind": "exact_integer_structure",
+                  "shape": [
+                    2569
+                  ],
+                  "dtype": "int32",
+                  "bitwise_equal": true
+                },
+                {
+                  "name": "E_indices",
+                  "kind": "exact_integer_structure",
+                  "shape": [
+                    765
+                  ],
+                  "dtype": "int32",
+                  "bitwise_equal": true
+                },
+                {
+                  "name": "G_shape",
+                  "kind": "exact_integer_structure",
+                  "shape": [
+                    2
+                  ],
+                  "dtype": "int64",
+                  "bitwise_equal": true
+                },
+                {
+                  "name": "G_indptr",
+                  "kind": "exact_integer_structure",
+                  "shape": [
+                    2569
+                  ],
+                  "dtype": "int32",
+                  "bitwise_equal": true
+                },
+                {
+                  "name": "G_indices",
+                  "kind": "exact_integer_structure",
+                  "shape": [
+                    78557
+                  ],
+                  "dtype": "int32",
+                  "bitwise_equal": true
+                },
+                {
+                  "name": "dims",
+                  "kind": "exact_integer_structure",
+                  "shape": [
+                    6622
+                  ],
+                  "dtype": "int64",
+                  "bitwise_equal": true
+                },
+                {
+                  "name": "E_data",
+                  "kind": "float64_coefficient",
+                  "shape": [
+                    765
+                  ],
+                  "dtype": "float64",
+                  "bitwise_equal": true,
+                  "different_entries": 0,
+                  "max_absolute_difference": 0.0,
+                  "roundoff_bound": 7.105427357601002e-15,
+                  "max_abs_reference": 1.0
+                },
+                {
+                  "name": "b",
+                  "kind": "float64_coefficient",
+                  "shape": [
+                    124
+                  ],
+                  "dtype": "float64",
+                  "bitwise_equal": true,
+                  "different_entries": 0,
+                  "max_absolute_difference": 0.0,
+                  "roundoff_bound": 7.105427357601002e-15,
+                  "max_abs_reference": 7.874940184445002e-05
+                },
+                {
+                  "name": "G_data",
+                  "kind": "float64_coefficient",
+                  "shape": [
+                    78557
+                  ],
+                  "dtype": "float64",
+                  "bitwise_equal": true,
+                  "different_entries": 0,
+                  "max_absolute_difference": 0.0,
+                  "roundoff_bound": 7.839922258654692e-15,
+                  "max_abs_reference": 1.1033709675840915
+                },
+                {
+                  "name": "h",
+                  "kind": "float64_coefficient",
+                  "shape": [
+                    7906
+                  ],
+                  "dtype": "float64",
+                  "bitwise_equal": true,
+                  "different_entries": 0,
+                  "max_absolute_difference": 0.0,
+                  "roundoff_bound": 7.105427357601002e-15,
+                  "max_abs_reference": 0.0
+                },
+                {
+                  "name": "cost",
+                  "kind": "float64_coefficient",
+                  "shape": [
+                    2568
+                  ],
+                  "dtype": "float64",
+                  "bitwise_equal": true,
+                  "different_entries": 0,
+                  "max_absolute_difference": 0.0,
+                  "roundoff_bound": 1.3544567236936286e-11,
+                  "max_abs_reference": 1906.2283737862776
+                }
+              ]
+            },
+            "metric_comparisons": [
+              {
+                "name": "reference.objective",
+                "absolute_difference": 0.0,
+                "roundoff_bound": 1.8354448395893903e-14,
+                "bitwise_equal": true
+              },
+              {
+                "name": "reference.value",
+                "absolute_difference": 0.0,
+                "roundoff_bound": 1.8354448395893884e-14,
+                "bitwise_equal": true
+              },
+              {
+                "name": "reference.eq_error",
+                "absolute_difference": 0.0,
+                "roundoff_bound": 7.105427357601002e-15,
+                "bitwise_equal": true
+              },
+              {
+                "name": "reference.cone_error",
+                "absolute_difference": 0.0,
+                "roundoff_bound": 7.105427357601002e-15,
+                "bitwise_equal": true
+              },
+              {
+                "name": "reference.dual_objective",
+                "absolute_difference": 0.0,
+                "roundoff_bound": 1.8354448395891366e-14,
+                "bitwise_equal": true
+              },
+              {
+                "name": "reference.dual_stationarity",
+                "absolute_difference": 0.0,
+                "roundoff_bound": 7.105427357601002e-15,
+                "bitwise_equal": true
+              },
+              {
+                "name": "reference.dual_cone_error",
+                "absolute_difference": 0.0,
+                "roundoff_bound": 7.105427357601002e-15,
+                "bitwise_equal": true
+              },
+              {
+                "name": "reference.dual_gap",
+                "absolute_difference": 0.0,
+                "roundoff_bound": 7.105427357601002e-15,
+                "bitwise_equal": true
+              },
+              {
+                "name": "rebuilt.objective",
+                "absolute_difference": 0.0,
+                "roundoff_bound": 1.8354448395893903e-14,
+                "bitwise_equal": true
+              },
+              {
+                "name": "rebuilt.value",
+                "absolute_difference": 0.0,
+                "roundoff_bound": 1.8354448395893884e-14,
+                "bitwise_equal": true
+              },
+              {
+                "name": "rebuilt.eq_error",
+                "absolute_difference": 0.0,
+                "roundoff_bound": 7.105427357601002e-15,
+                "bitwise_equal": true
+              },
+              {
+                "name": "rebuilt.cone_error",
+                "absolute_difference": 0.0,
+                "roundoff_bound": 7.105427357601002e-15,
+                "bitwise_equal": true
+              },
+              {
+                "name": "rebuilt.dual_objective",
+                "absolute_difference": 0.0,
+                "roundoff_bound": 1.8354448395891366e-14,
+                "bitwise_equal": true
+              },
+              {
+                "name": "rebuilt.dual_stationarity",
+                "absolute_difference": 0.0,
+                "roundoff_bound": 7.105427357601002e-15,
+                "bitwise_equal": true
+              },
+              {
+                "name": "rebuilt.dual_cone_error",
+                "absolute_difference": 0.0,
+                "roundoff_bound": 7.105427357601002e-15,
+                "bitwise_equal": true
+              },
+              {
+                "name": "rebuilt.dual_gap",
+                "absolute_difference": 0.0,
+                "roundoff_bound": 7.105427357601002e-15,
+                "bitwise_equal": true
+              },
+              {
+                "name": "original_dual.stationarity",
+                "absolute_difference": 0.0,
+                "roundoff_bound": 7.105427357601002e-15,
+                "bitwise_equal": true
+              },
+              {
+                "name": "original_dual.cone_error",
+                "absolute_difference": 0.0,
+                "roundoff_bound": 7.105427357601002e-15,
+                "bitwise_equal": true
+              },
+              {
+                "name": "original_dual.objective",
+                "absolute_difference": 0.0,
+                "roundoff_bound": 1.8354448395891366e-14,
+                "bitwise_equal": true
+              }
+            ],
             "physical_pass": true,
             "original_dual_guide_accepted": true,
             "full_original_audit": {
@@ -324,8 +1866,10 @@
           }
         ],
         "source_data_unchanged": true,
-        "scope": "Reassembled original q8 program and independently implemented physical audit; compare to frozen six-run diagnostics. Rejects are deliberately retained. No new root or physical target certificate.",
-        "auditor_sha256": "d132117da2a5429f4cd8614590352b54936fd8b8ea36cc633a08ef5694f2a447",
+        "scope": "Reassembled original q8 program and independently implemented physical audit; exact frozen references bind old raw digests, structure is exact and coefficient roundoff is explicitly checked. All original physical/dual gates and accept/reject flags are unchanged. No new root or physical target certificate.",
+        "program_reference_manifest_sha256": "722e7dd1420966df2a0b36e7786a4af8a49f4c0ec33c80a2539d569b431723b3",
+        "comparator_sha256": "5204f04b2b6aba60f39d839e0f03576c9bfa5dde60b283adc9525eefe633ac90",
+        "auditor_sha256": "7c95a4815166ec973a933cf1363b2aaf1337741bd124ba23f35bf92bf6fa2c88",
         "producer_summary_sha256": "20d7fc24e9e181af2cb973841d328636a4a2249890c463453ba7d8f132d9c5e5"
       }
     },
@@ -335,19 +1879,19 @@
         "-B",
         "-X",
         "utf8",
-        "D:\\Work\\rpfem_issue29_review_20261017\\issue28_final_zip_ktg9pnhp\\issue28_d05a_python_analysis_20261017\\VERIFY_HISTORICAL.py",
+        "D:\\Work\\rpfem_issue29_review_20261017\\issue28_final_zip_a6yw5c8_\\issue28_d05a_python_analysis_20261017\\VERIFY_HISTORICAL.py",
         "--output",
-        "D:\\Work\\rpfem_issue29_review_20261017\\issue28_final_zip_ktg9pnhp\\HISTORICAL_REPLAY.json"
+        "D:\\Work\\rpfem_issue29_review_20261017\\issue28_final_zip_a6yw5c8_\\HISTORICAL_REPLAY.json"
       ],
-      "cwd": "D:\\Work\\rpfem_issue29_review_20261017\\issue28_final_zip_ktg9pnhp",
+      "cwd": "D:\\Work\\rpfem_issue29_review_20261017\\issue28_final_zip_a6yw5c8_",
       "exit_code": 0,
-      "seconds": 4.032144299999345,
+      "seconds": 4.60404980002204,
       "optimizer_counter_key": "new_optimizer_calls",
-      "result_sha256": "1152500a3d21cb23948d4fd045f0853e4b44bbd881097942fd13c347a9a90ffc",
+      "result_sha256": "d26b5ae9b3b07e851adac819ac08f3552fb86401fe3c9456a3d9ef9c3ce6435b",
       "result": {
         "status": "PASS",
         "scope": "saved_D05A_original_q8_pair_and_two_original_dual_vector_replay",
-        "verified_utc": "2026-10-17T11:52:30.099227+00:00",
+        "verified_utc": "2026-10-17T12:02:50.844193+00:00",
         "case": "D05A",
         "new_optimizer_calls": 0,
         "new_cold_execution": false,
@@ -453,8 +1997,177 @@
             "elements": 214,
             "mesh_id": "7459b33ab144cb52ae084be55ed3f6b808194af7fee2588f9962f5d0bc476ff6",
             "original_program_sha256": "596559008a18ecd2e54213407febd4a0346778007d11046898090c7a4702ab32",
-            "original_program_digest_equal": true,
+            "observed_program_digest_exactly_equal": true,
+            "historical_reference_program_digest_equal": true,
+            "program_comparison": {
+              "status": "PASS",
+              "raw_sha256_identical": true,
+              "observed_raw_sha256": "596559008a18ecd2e54213407febd4a0346778007d11046898090c7a4702ab32",
+              "reference_raw_sha256": "596559008a18ecd2e54213407febd4a0346778007d11046898090c7a4702ab32",
+              "float_comparison_formula": "32 * binary64_epsilon * max(1, max(abs(reference_array)))",
+              "physical_acceptance_thresholds_changed": false,
+              "arrays": [
+                {
+                  "name": "E_shape",
+                  "kind": "exact_integer_structure",
+                  "shape": [
+                    2
+                  ],
+                  "dtype": "int64",
+                  "bitwise_equal": true
+                },
+                {
+                  "name": "E_indptr",
+                  "kind": "exact_integer_structure",
+                  "shape": [
+                    2569
+                  ],
+                  "dtype": "int32",
+                  "bitwise_equal": true
+                },
+                {
+                  "name": "E_indices",
+                  "kind": "exact_integer_structure",
+                  "shape": [
+                    765
+                  ],
+                  "dtype": "int32",
+                  "bitwise_equal": true
+                },
+                {
+                  "name": "G_shape",
+                  "kind": "exact_integer_structure",
+                  "shape": [
+                    2
+                  ],
+                  "dtype": "int64",
+                  "bitwise_equal": true
+                },
+                {
+                  "name": "G_indptr",
+                  "kind": "exact_integer_structure",
+                  "shape": [
+                    2569
+                  ],
+                  "dtype": "int32",
+                  "bitwise_equal": true
+                },
+                {
+                  "name": "G_indices",
+                  "kind": "exact_integer_structure",
+                  "shape": [
+                    78557
+                  ],
+                  "dtype": "int32",
+                  "bitwise_equal": true
+                },
+                {
+                  "name": "dims",
+                  "kind": "exact_integer_structure",
+                  "shape": [
+                    6622
+                  ],
+                  "dtype": "int64",
+                  "bitwise_equal": true
+                },
+                {
+                  "name": "E_data",
+                  "kind": "float64_coefficient",
+                  "shape": [
+                    765
+                  ],
+                  "dtype": "float64",
+                  "bitwise_equal": true,
+                  "different_entries": 0,
+                  "max_absolute_difference": 0.0,
+                  "roundoff_bound": 7.105427357601002e-15,
+                  "max_abs_reference": 1.0
+                },
+                {
+                  "name": "b",
+                  "kind": "float64_coefficient",
+                  "shape": [
+                    124
+                  ],
+                  "dtype": "float64",
+                  "bitwise_equal": true,
+                  "different_entries": 0,
+                  "max_absolute_difference": 0.0,
+                  "roundoff_bound": 7.105427357601002e-15,
+                  "max_abs_reference": 7.874940184445002e-05
+                },
+                {
+                  "name": "G_data",
+                  "kind": "float64_coefficient",
+                  "shape": [
+                    78557
+                  ],
+                  "dtype": "float64",
+                  "bitwise_equal": true,
+                  "different_entries": 0,
+                  "max_absolute_difference": 0.0,
+                  "roundoff_bound": 7.548693085945183e-15,
+                  "max_abs_reference": 1.0623841052811551
+                },
+                {
+                  "name": "h",
+                  "kind": "float64_coefficient",
+                  "shape": [
+                    7906
+                  ],
+                  "dtype": "float64",
+                  "bitwise_equal": true,
+                  "different_entries": 0,
+                  "max_absolute_difference": 0.0,
+                  "roundoff_bound": 7.105427357601002e-15,
+                  "max_abs_reference": 0.0
+                },
+                {
+                  "name": "cost",
+                  "kind": "float64_coefficient",
+                  "shape": [
+                    2568
+                  ],
+                  "dtype": "float64",
+                  "bitwise_equal": true,
+                  "different_entries": 0,
+                  "max_absolute_difference": 0.0,
+                  "roundoff_bound": 1.3544567236936287e-11,
+                  "max_abs_reference": 1906.2283737862779
+                }
+              ]
+            },
             "inverse_dual_mapping_byte_equal": true,
+            "reference_program_audit": {
+              "objective": 1.2185187346997666,
+              "value": 1.2185187346997686,
+              "eq_error": 6.390111054421794e-22,
+              "cone_error": 9.807979784714756e-19,
+              "audit": {
+                "pass": true,
+                "errors": {
+                  "flow": 3.3109062070292507e-19,
+                  "jump": 2.6215669717520595e-19,
+                  "boundary": 6.390111054421794e-22,
+                  "work": 0.0,
+                  "objective": 1.9984014443252818e-15
+                },
+                "dissipation": 1.2185187346997686,
+                "work": [
+                  0.0,
+                  1.0
+                ],
+                "value": 1.2185187346997686
+              },
+              "raw_lower_errors": {},
+              "physical_pass": true,
+              "witness": false,
+              "dual_objective": 1.2185187346997646,
+              "dual_stationarity": 3.410605131648481e-10,
+              "dual_cone_error": 0.0,
+              "dual_gap": 1.9984014443252818e-15,
+              "numerical_gate": true
+            },
             "historical_solver_status": "AlmostSolved",
             "velocity_scale": 7.874940184445002e-05,
             "expected_raw_numerical_gate": true,
@@ -495,8 +2208,177 @@
             "elements": 1622,
             "mesh_id": "d957c8a2111c7efeb68411b152cae857439ac62bb8c5123612f337483912df7b",
             "original_program_sha256": "788c5a5875c365100f2e7ce619a9cb6b159b6230a398d953ffcadf24fcc2db77",
-            "original_program_digest_equal": true,
+            "observed_program_digest_exactly_equal": true,
+            "historical_reference_program_digest_equal": true,
+            "program_comparison": {
+              "status": "PASS",
+              "raw_sha256_identical": true,
+              "observed_raw_sha256": "788c5a5875c365100f2e7ce619a9cb6b159b6230a398d953ffcadf24fcc2db77",
+              "reference_raw_sha256": "788c5a5875c365100f2e7ce619a9cb6b159b6230a398d953ffcadf24fcc2db77",
+              "float_comparison_formula": "32 * binary64_epsilon * max(1, max(abs(reference_array)))",
+              "physical_acceptance_thresholds_changed": false,
+              "arrays": [
+                {
+                  "name": "E_shape",
+                  "kind": "exact_integer_structure",
+                  "shape": [
+                    2
+                  ],
+                  "dtype": "int64",
+                  "bitwise_equal": true
+                },
+                {
+                  "name": "E_indptr",
+                  "kind": "exact_integer_structure",
+                  "shape": [
+                    19465
+                  ],
+                  "dtype": "int32",
+                  "bitwise_equal": true
+                },
+                {
+                  "name": "E_indices",
+                  "kind": "exact_integer_structure",
+                  "shape": [
+                    4989
+                  ],
+                  "dtype": "int32",
+                  "bitwise_equal": true
+                },
+                {
+                  "name": "G_shape",
+                  "kind": "exact_integer_structure",
+                  "shape": [
+                    2
+                  ],
+                  "dtype": "int64",
+                  "bitwise_equal": true
+                },
+                {
+                  "name": "G_indptr",
+                  "kind": "exact_integer_structure",
+                  "shape": [
+                    19465
+                  ],
+                  "dtype": "int32",
+                  "bitwise_equal": true
+                },
+                {
+                  "name": "G_indices",
+                  "kind": "exact_integer_structure",
+                  "shape": [
+                    627485
+                  ],
+                  "dtype": "int32",
+                  "bitwise_equal": true
+                },
+                {
+                  "name": "dims",
+                  "kind": "exact_integer_structure",
+                  "shape": [
+                    52966
+                  ],
+                  "dtype": "int64",
+                  "bitwise_equal": true
+                },
+                {
+                  "name": "E_data",
+                  "kind": "float64_coefficient",
+                  "shape": [
+                    4989
+                  ],
+                  "dtype": "float64",
+                  "bitwise_equal": true,
+                  "different_entries": 0,
+                  "max_absolute_difference": 0.0,
+                  "roundoff_bound": 7.105427357601002e-15,
+                  "max_abs_reference": 1.0
+                },
+                {
+                  "name": "b",
+                  "kind": "float64_coefficient",
+                  "shape": [
+                    124
+                  ],
+                  "dtype": "float64",
+                  "bitwise_equal": true,
+                  "different_entries": 0,
+                  "max_absolute_difference": 0.0,
+                  "roundoff_bound": 7.105427357601002e-15,
+                  "max_abs_reference": 8.407700801880601e-05
+                },
+                {
+                  "name": "G_data",
+                  "kind": "float64_coefficient",
+                  "shape": [
+                    627485
+                  ],
+                  "dtype": "float64",
+                  "bitwise_equal": true,
+                  "different_entries": 0,
+                  "max_absolute_difference": 0.0,
+                  "roundoff_bound": 7.532332729463813e-15,
+                  "max_abs_reference": 1.0600815898013694
+                },
+                {
+                  "name": "h",
+                  "kind": "float64_coefficient",
+                  "shape": [
+                    62698
+                  ],
+                  "dtype": "float64",
+                  "bitwise_equal": true,
+                  "different_entries": 0,
+                  "max_absolute_difference": 0.0,
+                  "roundoff_bound": 7.105427357601002e-15,
+                  "max_abs_reference": 0.0
+                },
+                {
+                  "name": "cost",
+                  "kind": "float64_coefficient",
+                  "shape": [
+                    19464
+                  ],
+                  "dtype": "float64",
+                  "bitwise_equal": true,
+                  "different_entries": 0,
+                  "max_absolute_difference": 0.0,
+                  "roundoff_bound": 1.3544567236936289e-11,
+                  "max_abs_reference": 1906.228373786278
+                }
+              ]
+            },
             "inverse_dual_mapping_byte_equal": true,
+            "reference_program_audit": {
+              "objective": 0.9999449632100554,
+              "value": 0.9999449632100524,
+              "eq_error": 5.594821455873456e-20,
+              "cone_error": 3.7446987784933716e-16,
+              "audit": {
+                "pass": true,
+                "errors": {
+                  "flow": 3.900260482072462e-17,
+                  "jump": 3.7446995621578903e-16,
+                  "boundary": 5.594821455873456e-20,
+                  "work": 1.3322676295501878e-15,
+                  "objective": 2.9976021664879227e-15
+                },
+                "dissipation": 0.9999449632100524,
+                "work": [
+                  0.0,
+                  1.0000000000000013
+                ],
+                "value": 0.9999449632100524
+              },
+              "raw_lower_errors": {},
+              "physical_pass": true,
+              "witness": true,
+              "dual_objective": 0.9999449632067199,
+              "dual_stationarity": 3.8948192404575366e-07,
+              "dual_cone_error": 0.0,
+              "dual_gap": 3.3355540551838203e-12,
+              "numerical_gate": false
+            },
             "historical_solver_status": "AlmostSolved",
             "velocity_scale": 8.407700801880601e-05,
             "expected_raw_numerical_gate": false,
@@ -537,7 +2419,11 @@
         "historical_files_unchanged": true,
         "manifest_sha256": "e167574e9582257c09ee3a683e237fc1a9e75c88843dcdcea84aeecf060d2678",
         "checked_files": 72,
-        "elapsed_seconds": 3.7796280999900773,
+        "original_verifier_relocated_read_only": true,
+        "current_auditor_distinct_from_historical_verifier": true,
+        "reference_manifest_sha256": "50abf9db02f13ec854e30934c3532970bef69495c948445fdd9b8c23b36d0b2f",
+        "current_auditor_sha256": "aae0248c84dff415500e904e1f3fc69125ffaf2bd8ccab69bd9f5d13b511a757",
+        "elapsed_seconds": 4.335804000031203,
         "environment": {
           "python": "3.13.14",
           "dependencies": {

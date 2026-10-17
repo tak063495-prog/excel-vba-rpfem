@@ -1,0 +1,62 @@
+{
+  "schema": "issue28_historical_program_references_v1",
+  "created_utc": "2026-10-17T11:58:54.173515+00:00",
+  "original_historical_manifest_sha256": "e167574e9582257c09ee3a683e237fc1a9e75c88843dcdcea84aeecf060d2678",
+  "files": {
+    "VERIFY_HISTORICAL.py": {
+      "sha256": "aae0248c84dff415500e904e1f3fc69125ffaf2bd8ccab69bd9f5d13b511a757",
+      "bytes": 15224
+    },
+    "portable_program_audit.py": {
+      "sha256": "5204f04b2b6aba60f39d839e0f03576c9bfa5dde60b283adc9525eefe633ac90",
+      "bytes": 5308
+    },
+    "historical/program_refs/ORIGINAL_VERIFY_HISTORICAL.py": {
+      "sha256": "1a3bc12d4fdf955ef86fef4163039392bf478b6693dfd77d3f1018da8347b812",
+      "bytes": 12901
+    },
+    "historical/program_refs/upper_attempt_0005_program.npz": {
+      "sha256": "273008186780dc8619d83ae200b203928d5dd20ecdaf8eca797473b5bcd2b404",
+      "bytes": 127633
+    },
+    "historical/program_refs/upper_attempt_0065_program.npz": {
+      "sha256": "8dc3bb20e1af27743aeb32c8aaca0c7b924b4b81e314ebc29a6bac1ed52dbd65",
+      "bytes": 841238
+    }
+  },
+  "programs": {
+    "5": {
+      "path": "historical/program_refs/upper_attempt_0005_program.npz",
+      "program_digest": "596559008a18ecd2e54213407febd4a0346778007d11046898090c7a4702ab32",
+      "case": "D05A",
+      "mode": "upper",
+      "q": 8,
+      "fs": 1.3,
+      "mesh_id": "7459b33ab144cb52ae084be55ed3f6b808194af7fee2588f9962f5d0bc476ff6",
+      "physical_model_id": "3c270d5c79373766e05b2c3b7da528746236aa01a62325df98ebf25efe728347",
+      "elements": 214,
+      "kind": "posthoc_zero_optimizer_original_program_reassembly_matching_historical_producer_digest",
+      "OPENBLAS_CORETYPE": null
+    },
+    "65": {
+      "path": "historical/program_refs/upper_attempt_0065_program.npz",
+      "program_digest": "788c5a5875c365100f2e7ce619a9cb6b159b6230a398d953ffcadf24fcc2db77",
+      "case": "D05A",
+      "mode": "upper",
+      "q": 8,
+      "fs": 1.3254379799492289,
+      "mesh_id": "d957c8a2111c7efeb68411b152cae857439ac62bb8c5123612f337483912df7b",
+      "physical_model_id": "3c270d5c79373766e05b2c3b7da528746236aa01a62325df98ebf25efe728347",
+      "elements": 1622,
+      "kind": "posthoc_zero_optimizer_original_program_reassembly_matching_historical_producer_digest",
+      "OPENBLAS_CORETYPE": null
+    }
+  },
+  "old_verifier_read_only_relocation": {
+    "old_manifest_entry": "VERIFY_HISTORICAL.py",
+    "preserved_original_path": "historical/program_refs/ORIGINAL_VERIFY_HISTORICAL.py",
+    "current_auditor_is_distinct": true
+  },
+  "scope": "Current portable adapter/reference bindings, separate from immutable historical producer files; reference program bytes match each recorded original digest before only machine-roundoff coefficient comparison",
+  "coefficient_comparison": "Exact CSC shapes/pointers/indices/dtypes/cone dimensions; float arrays bounded by32eps*max(1,maxabsreference). Existing physical/rawdual acceptance gates remain unchanged."
+}

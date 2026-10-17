@@ -1,0 +1,545 @@
+{
+  "status": "PASS",
+  "scope": "saved_D05A_original_q8_pair_and_two_original_dual_vector_replay",
+  "verified_utc": "2026-10-17T11:59:15.507498+00:00",
+  "case": "D05A",
+  "new_optimizer_calls": 0,
+  "new_cold_execution": false,
+  "current_VBA_success_proved": false,
+  "historical_worker_exit_code": null,
+  "historical_wrapper_seconds": 327.3986777999962,
+  "physical_pair_within_two_percent": true,
+  "lower_fs": 1.3028266247689342,
+  "upper_fs": 1.3254379799492289,
+  "gap_percent": 1.7206300415645823,
+  "recorded_both_root_contracts_pass": true,
+  "opposite_root_signs_regenerated": false,
+  "lower_and_upper_original_physical_audits": {
+    "lower": {
+      "fs": 1.3028266247689342,
+      "elements": 1622,
+      "mesh_id": "d957c8a2111c7efeb68411b152cae857439ac62bb8c5123612f337483912df7b",
+      "physical_model_id": "3c270d5c79373766e05b2c3b7da528746236aa01a62325df98ebf25efe728347",
+      "q": 8,
+      "audit": {
+        "objective": -1.0000286476215972,
+        "value": 1.0000286476215972,
+        "eq_error": 3.3506530883187224e-13,
+        "cone_error": 0.0,
+        "audit": {
+          "pass": true,
+          "errors": {
+            "yield": 0.0,
+            "equilibrium": 1.1604215852112354e-14,
+            "internal_traction": 4.742872761198669e-13,
+            "boundary_traction": 1.1102230246251565e-16
+          },
+          "load": 1.0000286476215972,
+          "value": 1.0000286476215972
+        },
+        "raw_lower_errors": {
+          "yield": 0.0,
+          "equilibrium": 1.1604215852112354e-13,
+          "internal_traction": 4.742872761198669e-12,
+          "boundary_traction": 1.1102230246251565e-15
+        },
+        "physical_pass": true,
+        "witness": true,
+        "numerical_gate": false
+      },
+      "root_record": {
+        "bracket": [
+          1.3028266247689342,
+          1.3028898800852213
+        ],
+        "normalized_width": 4.8551188258054866e-05,
+        "recorded_contract_pass": true,
+        "opposite_sign_regenerated_from_full_vector": false
+      }
+    },
+    "upper": {
+      "fs": 1.3254379799492289,
+      "elements": 1622,
+      "mesh_id": "d957c8a2111c7efeb68411b152cae857439ac62bb8c5123612f337483912df7b",
+      "physical_model_id": "3c270d5c79373766e05b2c3b7da528746236aa01a62325df98ebf25efe728347",
+      "q": 8,
+      "audit": {
+        "objective": 0.9999449632100554,
+        "value": 0.9999449632100524,
+        "eq_error": 5.594821455873456e-20,
+        "cone_error": 3.7446987784933716e-16,
+        "audit": {
+          "pass": true,
+          "errors": {
+            "flow": 3.900260482072462e-17,
+            "jump": 3.7446995621578903e-16,
+            "boundary": 5.594821455873456e-20,
+            "work": 1.3322676295501878e-15,
+            "objective": 2.9976021664879227e-15
+          },
+          "dissipation": 0.9999449632100524,
+          "work": [
+            0.0,
+            1.0000000000000013
+          ],
+          "value": 0.9999449632100524
+        },
+        "raw_lower_errors": {},
+        "physical_pass": true,
+        "witness": true,
+        "numerical_gate": false
+      },
+      "root_record": {
+        "bracket": [
+          1.325369644314049,
+          1.3254379799492289
+        ],
+        "normalized_width": 5.155835116387987e-05,
+        "recorded_contract_pass": true,
+        "opposite_sign_regenerated_from_full_vector": false
+      }
+    }
+  },
+  "full_vector_replays": [
+    {
+      "attempt": 5,
+      "fs": 1.3,
+      "elements": 214,
+      "mesh_id": "7459b33ab144cb52ae084be55ed3f6b808194af7fee2588f9962f5d0bc476ff6",
+      "original_program_sha256": "596559008a18ecd2e54213407febd4a0346778007d11046898090c7a4702ab32",
+      "observed_program_digest_exactly_equal": true,
+      "historical_reference_program_digest_equal": true,
+      "program_comparison": {
+        "status": "PASS",
+        "raw_sha256_identical": true,
+        "observed_raw_sha256": "596559008a18ecd2e54213407febd4a0346778007d11046898090c7a4702ab32",
+        "reference_raw_sha256": "596559008a18ecd2e54213407febd4a0346778007d11046898090c7a4702ab32",
+        "float_comparison_formula": "32 * binary64_epsilon * max(1, max(abs(reference_array)))",
+        "physical_acceptance_thresholds_changed": false,
+        "arrays": [
+          {
+            "name": "E_shape",
+            "kind": "exact_integer_structure",
+            "shape": [
+              2
+            ],
+            "dtype": "int64",
+            "bitwise_equal": true
+          },
+          {
+            "name": "E_indptr",
+            "kind": "exact_integer_structure",
+            "shape": [
+              2569
+            ],
+            "dtype": "int32",
+            "bitwise_equal": true
+          },
+          {
+            "name": "E_indices",
+            "kind": "exact_integer_structure",
+            "shape": [
+              765
+            ],
+            "dtype": "int32",
+            "bitwise_equal": true
+          },
+          {
+            "name": "G_shape",
+            "kind": "exact_integer_structure",
+            "shape": [
+              2
+            ],
+            "dtype": "int64",
+            "bitwise_equal": true
+          },
+          {
+            "name": "G_indptr",
+            "kind": "exact_integer_structure",
+            "shape": [
+              2569
+            ],
+            "dtype": "int32",
+            "bitwise_equal": true
+          },
+          {
+            "name": "G_indices",
+            "kind": "exact_integer_structure",
+            "shape": [
+              78557
+            ],
+            "dtype": "int32",
+            "bitwise_equal": true
+          },
+          {
+            "name": "dims",
+            "kind": "exact_integer_structure",
+            "shape": [
+              6622
+            ],
+            "dtype": "int64",
+            "bitwise_equal": true
+          },
+          {
+            "name": "E_data",
+            "kind": "float64_coefficient",
+            "shape": [
+              765
+            ],
+            "dtype": "float64",
+            "bitwise_equal": true,
+            "different_entries": 0,
+            "max_absolute_difference": 0.0,
+            "roundoff_bound": 7.105427357601002e-15,
+            "max_abs_reference": 1.0
+          },
+          {
+            "name": "b",
+            "kind": "float64_coefficient",
+            "shape": [
+              124
+            ],
+            "dtype": "float64",
+            "bitwise_equal": true,
+            "different_entries": 0,
+            "max_absolute_difference": 0.0,
+            "roundoff_bound": 7.105427357601002e-15,
+            "max_abs_reference": 7.874940184445002e-05
+          },
+          {
+            "name": "G_data",
+            "kind": "float64_coefficient",
+            "shape": [
+              78557
+            ],
+            "dtype": "float64",
+            "bitwise_equal": true,
+            "different_entries": 0,
+            "max_absolute_difference": 0.0,
+            "roundoff_bound": 7.548693085945183e-15,
+            "max_abs_reference": 1.0623841052811551
+          },
+          {
+            "name": "h",
+            "kind": "float64_coefficient",
+            "shape": [
+              7906
+            ],
+            "dtype": "float64",
+            "bitwise_equal": true,
+            "different_entries": 0,
+            "max_absolute_difference": 0.0,
+            "roundoff_bound": 7.105427357601002e-15,
+            "max_abs_reference": 0.0
+          },
+          {
+            "name": "cost",
+            "kind": "float64_coefficient",
+            "shape": [
+              2568
+            ],
+            "dtype": "float64",
+            "bitwise_equal": true,
+            "different_entries": 0,
+            "max_absolute_difference": 0.0,
+            "roundoff_bound": 1.3544567236936287e-11,
+            "max_abs_reference": 1906.2283737862779
+          }
+        ]
+      },
+      "inverse_dual_mapping_byte_equal": true,
+      "reference_program_audit": {
+        "objective": 1.2185187346997666,
+        "value": 1.2185187346997686,
+        "eq_error": 6.390111054421794e-22,
+        "cone_error": 9.807979784714756e-19,
+        "audit": {
+          "pass": true,
+          "errors": {
+            "flow": 3.3109062070292507e-19,
+            "jump": 2.6215669717520595e-19,
+            "boundary": 6.390111054421794e-22,
+            "work": 0.0,
+            "objective": 1.9984014443252818e-15
+          },
+          "dissipation": 1.2185187346997686,
+          "work": [
+            0.0,
+            1.0
+          ],
+          "value": 1.2185187346997686
+        },
+        "raw_lower_errors": {},
+        "physical_pass": true,
+        "witness": false,
+        "dual_objective": 1.2185187346997646,
+        "dual_stationarity": 3.410605131648481e-10,
+        "dual_cone_error": 0.0,
+        "dual_gap": 1.9984014443252818e-15,
+        "numerical_gate": true
+      },
+      "historical_solver_status": "AlmostSolved",
+      "velocity_scale": 7.874940184445002e-05,
+      "expected_raw_numerical_gate": true,
+      "audit": {
+        "objective": 1.2185187346997666,
+        "value": 1.2185187346997686,
+        "eq_error": 6.390111054421794e-22,
+        "cone_error": 9.807979784714756e-19,
+        "audit": {
+          "pass": true,
+          "errors": {
+            "flow": 3.3109062070292507e-19,
+            "jump": 2.6215669717520595e-19,
+            "boundary": 6.390111054421794e-22,
+            "work": 0.0,
+            "objective": 1.9984014443252818e-15
+          },
+          "dissipation": 1.2185187346997686,
+          "work": [
+            0.0,
+            1.0
+          ],
+          "value": 1.2185187346997686
+        },
+        "raw_lower_errors": {},
+        "physical_pass": true,
+        "witness": false,
+        "dual_objective": 1.2185187346997646,
+        "dual_stationarity": 3.410605131648481e-10,
+        "dual_cone_error": 0.0,
+        "dual_gap": 1.9984014443252818e-15,
+        "numerical_gate": true
+      }
+    },
+    {
+      "attempt": 65,
+      "fs": 1.3254379799492289,
+      "elements": 1622,
+      "mesh_id": "d957c8a2111c7efeb68411b152cae857439ac62bb8c5123612f337483912df7b",
+      "original_program_sha256": "788c5a5875c365100f2e7ce619a9cb6b159b6230a398d953ffcadf24fcc2db77",
+      "observed_program_digest_exactly_equal": true,
+      "historical_reference_program_digest_equal": true,
+      "program_comparison": {
+        "status": "PASS",
+        "raw_sha256_identical": true,
+        "observed_raw_sha256": "788c5a5875c365100f2e7ce619a9cb6b159b6230a398d953ffcadf24fcc2db77",
+        "reference_raw_sha256": "788c5a5875c365100f2e7ce619a9cb6b159b6230a398d953ffcadf24fcc2db77",
+        "float_comparison_formula": "32 * binary64_epsilon * max(1, max(abs(reference_array)))",
+        "physical_acceptance_thresholds_changed": false,
+        "arrays": [
+          {
+            "name": "E_shape",
+            "kind": "exact_integer_structure",
+            "shape": [
+              2
+            ],
+            "dtype": "int64",
+            "bitwise_equal": true
+          },
+          {
+            "name": "E_indptr",
+            "kind": "exact_integer_structure",
+            "shape": [
+              19465
+            ],
+            "dtype": "int32",
+            "bitwise_equal": true
+          },
+          {
+            "name": "E_indices",
+            "kind": "exact_integer_structure",
+            "shape": [
+              4989
+            ],
+            "dtype": "int32",
+            "bitwise_equal": true
+          },
+          {
+            "name": "G_shape",
+            "kind": "exact_integer_structure",
+            "shape": [
+              2
+            ],
+            "dtype": "int64",
+            "bitwise_equal": true
+          },
+          {
+            "name": "G_indptr",
+            "kind": "exact_integer_structure",
+            "shape": [
+              19465
+            ],
+            "dtype": "int32",
+            "bitwise_equal": true
+          },
+          {
+            "name": "G_indices",
+            "kind": "exact_integer_structure",
+            "shape": [
+              627485
+            ],
+            "dtype": "int32",
+            "bitwise_equal": true
+          },
+          {
+            "name": "dims",
+            "kind": "exact_integer_structure",
+            "shape": [
+              52966
+            ],
+            "dtype": "int64",
+            "bitwise_equal": true
+          },
+          {
+            "name": "E_data",
+            "kind": "float64_coefficient",
+            "shape": [
+              4989
+            ],
+            "dtype": "float64",
+            "bitwise_equal": true,
+            "different_entries": 0,
+            "max_absolute_difference": 0.0,
+            "roundoff_bound": 7.105427357601002e-15,
+            "max_abs_reference": 1.0
+          },
+          {
+            "name": "b",
+            "kind": "float64_coefficient",
+            "shape": [
+              124
+            ],
+            "dtype": "float64",
+            "bitwise_equal": true,
+            "different_entries": 0,
+            "max_absolute_difference": 0.0,
+            "roundoff_bound": 7.105427357601002e-15,
+            "max_abs_reference": 8.407700801880601e-05
+          },
+          {
+            "name": "G_data",
+            "kind": "float64_coefficient",
+            "shape": [
+              627485
+            ],
+            "dtype": "float64",
+            "bitwise_equal": true,
+            "different_entries": 0,
+            "max_absolute_difference": 0.0,
+            "roundoff_bound": 7.532332729463813e-15,
+            "max_abs_reference": 1.0600815898013694
+          },
+          {
+            "name": "h",
+            "kind": "float64_coefficient",
+            "shape": [
+              62698
+            ],
+            "dtype": "float64",
+            "bitwise_equal": true,
+            "different_entries": 0,
+            "max_absolute_difference": 0.0,
+            "roundoff_bound": 7.105427357601002e-15,
+            "max_abs_reference": 0.0
+          },
+          {
+            "name": "cost",
+            "kind": "float64_coefficient",
+            "shape": [
+              19464
+            ],
+            "dtype": "float64",
+            "bitwise_equal": true,
+            "different_entries": 0,
+            "max_absolute_difference": 0.0,
+            "roundoff_bound": 1.3544567236936289e-11,
+            "max_abs_reference": 1906.228373786278
+          }
+        ]
+      },
+      "inverse_dual_mapping_byte_equal": true,
+      "reference_program_audit": {
+        "objective": 0.9999449632100554,
+        "value": 0.9999449632100524,
+        "eq_error": 5.594821455873456e-20,
+        "cone_error": 3.7446987784933716e-16,
+        "audit": {
+          "pass": true,
+          "errors": {
+            "flow": 3.900260482072462e-17,
+            "jump": 3.7446995621578903e-16,
+            "boundary": 5.594821455873456e-20,
+            "work": 1.3322676295501878e-15,
+            "objective": 2.9976021664879227e-15
+          },
+          "dissipation": 0.9999449632100524,
+          "work": [
+            0.0,
+            1.0000000000000013
+          ],
+          "value": 0.9999449632100524
+        },
+        "raw_lower_errors": {},
+        "physical_pass": true,
+        "witness": true,
+        "dual_objective": 0.9999449632067199,
+        "dual_stationarity": 3.8948192404575366e-07,
+        "dual_cone_error": 0.0,
+        "dual_gap": 3.3355540551838203e-12,
+        "numerical_gate": false
+      },
+      "historical_solver_status": "AlmostSolved",
+      "velocity_scale": 8.407700801880601e-05,
+      "expected_raw_numerical_gate": false,
+      "audit": {
+        "objective": 0.9999449632100554,
+        "value": 0.9999449632100524,
+        "eq_error": 5.594821455873456e-20,
+        "cone_error": 3.7446987784933716e-16,
+        "audit": {
+          "pass": true,
+          "errors": {
+            "flow": 3.900260482072462e-17,
+            "jump": 3.7446995621578903e-16,
+            "boundary": 5.594821455873456e-20,
+            "work": 1.3322676295501878e-15,
+            "objective": 2.9976021664879227e-15
+          },
+          "dissipation": 0.9999449632100524,
+          "work": [
+            0.0,
+            1.0000000000000013
+          ],
+          "value": 0.9999449632100524
+        },
+        "raw_lower_errors": {},
+        "physical_pass": true,
+        "witness": true,
+        "dual_objective": 0.9999449632067199,
+        "dual_stationarity": 3.8948192404575366e-07,
+        "dual_cone_error": 0.0,
+        "dual_gap": 3.3355540551838203e-12,
+        "numerical_gate": false
+      }
+    }
+  ],
+  "raw_rejected_vector_preserved": true,
+  "raw_stationarity_threshold": 1e-07,
+  "historical_files_unchanged": true,
+  "manifest_sha256": "e167574e9582257c09ee3a683e237fc1a9e75c88843dcdcea84aeecf060d2678",
+  "checked_files": 72,
+  "original_verifier_relocated_read_only": true,
+  "current_auditor_distinct_from_historical_verifier": true,
+  "reference_manifest_sha256": "50abf9db02f13ec854e30934c3532970bef69495c948445fdd9b8c23b36d0b2f",
+  "current_auditor_sha256": "aae0248c84dff415500e904e1f3fc69125ffaf2bd8ccab69bd9f5d13b511a757",
+  "elapsed_seconds": 4.12302949995501,
+  "environment": {
+    "python": "3.13.14",
+    "dependencies": {
+      "numpy": "2.3.5",
+      "scipy": "1.17.0",
+      "clarabel": "0.11.1"
+    }
+  }
+}

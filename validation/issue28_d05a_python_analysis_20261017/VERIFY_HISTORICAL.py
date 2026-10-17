@@ -97,9 +97,25 @@ def main():
     started = time.perf_counter()
     manifest = read(ROOT / "HISTORICAL_MANIFEST.json")
     require(manifest.get("schema") == "issue28_d05a_historical_v1", "Unexpected manifest schema")
+    references = read(ROOT / "historical/program_refs/PROGRAM_REFERENCE_MANIFEST.json")
+    require(references.get("schema") == "issue28_historical_program_references_v1" and
+            references["original_historical_manifest_sha256"] == sha(ROOT / "HISTORICAL_MANIFEST.json"),
+            "Original historical manifest differs from the portable audit binding")
+    reference_before = {}
+    for name, item in references["files"].items():
+        path = inside(name)
+        require(path.is_file() and path.stat().st_size == item["bytes"] and sha(path) == item["sha256"],
+                "Portable audit/reference bytes differ: " + name)
+        reference_before[name] = item["sha256"]
+
+    def original_file(name):
+        # The old manifest is immutable and binds the ORIGINAL verifier.  The
+        # current portable adapter has its own, separate reference manifest.
+        return inside("historical/program_refs/ORIGINAL_VERIFY_HISTORICAL.py" if name == "VERIFY_HISTORICAL.py" else name)
+
     before = {}
     for name, item in manifest["files"].items():
-        path = inside(name)
+        path = original_file(name)
         require(path.is_file() and path.stat().st_size == item["bytes"] and sha(path) == item["sha256"],
                 "Evidence bytes differ: " + name)
         before[name] = item["sha256"]
@@ -114,6 +130,7 @@ def main():
     sys.path.insert(0, str(ROOT / "historical/python_snapshot"))
     import experiment_core as core
     import benchmark_models as models
+    from portable_program_audit import compare_program, program_digest, unpack_program
     np = core.np
     calls = []
 
@@ -165,16 +182,6 @@ def main():
     cells = np.frombuffer(raw, dtype="<i4", count=4 * ne, offset=8 + 16 * nn).reshape(ne, 4)
     coarse = core.mesh_from_arrays(xy, cells[:, :3].copy(), cells[:, 3].copy(), record)
 
-    def program_digest(program):
-        digest = hashlib.sha256()
-        for value in program:
-            arrays = (value.indptr, value.indices, value.data) if core.sparse.issparse(value) else (np.asarray(value),)
-            for array in arrays:
-                digest.update(str(array.shape).encode("ascii"))
-                digest.update(str(array.dtype).encode("ascii"))
-                digest.update(array.tobytes())
-        return digest.hexdigest()
-
     vectors = []
     for number, expected_numerical in ((5, True), (65, False)):
         stem = ROOT / "historical/vectors" / ("upper_attempt_%04d" % number)
@@ -182,8 +189,12 @@ def main():
         mesh = coarse if number == 5 else meshes["upper"]
         require(metadata["elements"] == len(mesh.tri), "Vector mesh element count differs")
         prepared = core.Prepared(mesh, metadata["fs"], "upper", 8, reduction="none")
-        require(program_digest(prepared.original) == metadata["original_program_sha256"] and
+        reference_entry = references["programs"][str(number)]
+        with np.load(inside(reference_entry["path"]), allow_pickle=False) as arrays:
+            reference_program = unpack_program(arrays)
+        require(program_digest(reference_program) == reference_entry["program_digest"] == metadata["original_program_sha256"] and
                 metadata.get("original_program_unchanged") is True, "Original LP digest differs")
+        program_comparison = compare_program(prepared.original, reference_program)
         with np.load(stem.with_suffix(".npz"), allow_pickle=False) as data:
             require(float(data["fs"]) == metadata["fs"] and str(data["mode"]) == "upper" and int(data["q"]) == 8,
                     "Full vector Fs/mode/q differs")
@@ -196,19 +207,34 @@ def main():
         restored = np.r_[coordinate[:nb], rows * coordinate[nb:]] / scale
         require(restored.tobytes() == dual.tobytes(), "Full original dual inverse mapping differs")
         audit = core.evaluate(prepared, field, dual)
+        # Preserve the raw physical/numerical gates on the freshly assembled
+        # program.  Recorded residuals bind to the exact old-digest reference,
+        # because a BLAS-dependent last bit is not a new physical coefficient.
+        observed_program = prepared.original
+        prepared.original = reference_program
+        try:
+            reference_audit = core.evaluate(prepared, field, dual)
+        finally:
+            prepared.original = observed_program
+        require(reference_audit["dual_stationarity"] == metadata["dual_stationarity"] and
+                reference_audit["dual_cone_error"] == metadata["dual_cone_error"],
+                "Historical raw dual metadata differs from the exact old-digest program")
         require(audit["physical_pass"] and bool(audit["numerical_gate"]) == expected_numerical and
-                audit["dual_stationarity"] == metadata["dual_stationarity"] and
-                audit["dual_cone_error"] == metadata["dual_cone_error"], "Raw numerical acceptance/rejection did not reproduce")
+                bool(reference_audit["numerical_gate"]) == expected_numerical,
+                "Raw numerical acceptance/rejection did not reproduce under unchanged gates")
         require(bool(audit["witness"]) == (number == 65), "Expected physical witness distinction did not reproduce")
         vectors.append(dict(attempt=number, fs=metadata["fs"], elements=len(mesh.tri),
                             mesh_id=mesh.mesh_id, original_program_sha256=program_digest(prepared.original),
-                            original_program_digest_equal=True, inverse_dual_mapping_byte_equal=True,
+                            observed_program_digest_exactly_equal=program_digest(prepared.original) == metadata["original_program_sha256"],
+                            historical_reference_program_digest_equal=True, program_comparison=program_comparison,
+                            inverse_dual_mapping_byte_equal=True, reference_program_audit=reference_audit,
                             historical_solver_status=metadata["status"], velocity_scale=scale,
                             expected_raw_numerical_gate=expected_numerical, audit=audit))
     completion = read(ROOT / "historical/provenance/COMPLETION.json")
     require(completion["cold_numerical_process_exitcode"] is None and completion["independent_audit_exitcode"] == 0,
             "Historical unknown exit status was changed")
-    require(before == {name: sha(inside(name)) for name in before} and manifest_sha == sha(ROOT / "HISTORICAL_MANIFEST.json"),
+    require(before == {name: sha(original_file(name)) for name in before} and manifest_sha == sha(ROOT / "HISTORICAL_MANIFEST.json") and
+            reference_before == {name: sha(inside(name)) for name in reference_before},
             "Evidence changed during replay")
     require(not calls, "An optimizer was called")
     result = dict(status="PASS", scope="saved_D05A_original_q8_pair_and_two_original_dual_vector_replay",
@@ -220,6 +246,10 @@ def main():
                   lower_and_upper_original_physical_audits=sides, full_vector_replays=vectors,
                   raw_rejected_vector_preserved=True, raw_stationarity_threshold=1e-7,
                   historical_files_unchanged=True, manifest_sha256=manifest_sha, checked_files=len(before),
+                  original_verifier_relocated_read_only=True,
+                  current_auditor_distinct_from_historical_verifier=True,
+                  reference_manifest_sha256=sha(ROOT / "historical/program_refs/PROGRAM_REFERENCE_MANIFEST.json"),
+                  current_auditor_sha256=sha(Path(__file__)),
                   elapsed_seconds=time.perf_counter() - started,
                   environment=dict(python=platform.python_version(), dependencies={name: importlib.metadata.version(name)
                                       for name in ("numpy", "scipy", "clarabel")}))

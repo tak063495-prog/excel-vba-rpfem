@@ -1,0 +1,90 @@
+{
+  "status": "PASS",
+  "optimizer_calls": 0,
+  "tests": [
+    {
+      "name": "identical_original_program",
+      "expected": "ACCEPT",
+      "status": "PASS"
+    },
+    {
+      "name": "one_ulp_float_coefficient_with_structure_unchanged",
+      "expected": "ACCEPT",
+      "status": "PASS"
+    },
+    {
+      "name": "float_coefficient_exceeds_explicit_32eps_bound",
+      "expected": "REJECT",
+      "status": "PASS"
+    },
+    {
+      "name": "changed_CSC_row_index",
+      "expected": "REJECT",
+      "status": "PASS"
+    },
+    {
+      "name": "float32_dtype_substitution",
+      "expected": "REJECT",
+      "status": "PASS"
+    },
+    {
+      "name": "NaN_coefficient",
+      "expected": "REJECT",
+      "status": "PASS"
+    },
+    {
+      "name": "changed_integer_cone_dimensions",
+      "expected": "REJECT",
+      "status": "PASS"
+    },
+    {
+      "name": "frozen_record_digest_binds_exact_reference",
+      "expected": "ACCEPT",
+      "status": "PASS"
+    },
+    {
+      "name": "fresh_current_host_digest_binds_exact_current_program",
+      "expected": "ACCEPT",
+      "status": "PASS"
+    },
+    {
+      "name": "unknown_third_host_digest_without_coefficients",
+      "expected": "REJECT",
+      "status": "PASS"
+    },
+    {
+      "name": "six_unique_expected_route_names",
+      "expected": "ACCEPT",
+      "status": "PASS"
+    },
+    {
+      "name": "missing_route_even_if_optimizer_count_claims_six",
+      "expected": "REJECT",
+      "status": "PASS"
+    },
+    {
+      "name": "duplicate_route_replaces_required_case",
+      "expected": "REJECT",
+      "status": "PASS"
+    },
+    {
+      "name": "summary_quadrature_mismatch",
+      "expected": "REJECT",
+      "status": "PASS"
+    },
+    {
+      "name": "entry_case_route_metadata_disagrees",
+      "expected": "REJECT",
+      "status": "PASS"
+    },
+    {
+      "name": "reference_NPZ_byte_tamper_fails_actual_loader_SHA",
+      "expected": "REJECT",
+      "status": "PASS"
+    }
+  ],
+  "test_count": 16,
+  "original_reference_file_unchanged": true,
+  "auditor_sha256": "23ad7164438e8e3b9457171c247e627fc9d7939949c0d42c682c4e23f913b557",
+  "comparator_sha256": "5204f04b2b6aba60f39d839e0f03576c9bfa5dde60b283adc9525eefe633ac90"
+}

@@ -1,0 +1,94 @@
+{
+  "status": "PASS",
+  "runs": [
+    {
+      "kind": "default",
+      "command": [
+        "D:\\Work\\rpfem-venv\\Scripts\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "D:\\Work\\rpfem-g20-fix1-20261017\\validation\\issue28_d05a_python_analysis_20261017\\VERIFY_HISTORICAL.py",
+        "--output",
+        "D:\\Work\\rpfem_issue29_review_20261017\\historical_portability_1792238351189066500\\default.json"
+      ],
+      "wrapper_pid": 3948,
+      "wrapper_birth": 1792238351.1902843,
+      "returncode": 0,
+      "elapsed": 4.400434494018555,
+      "output": "D:\\Work\\rpfem_issue29_review_20261017\\historical_portability_1792238351189066500\\default.json",
+      "stdout": "{\"status\": \"PASS\", \"case\": \"D05A\", \"gap_percent\": 1.7206300415645823, \"new_optimizer_calls\": 0, \"elapsed_seconds\": 4.12302949995501}\n",
+      "stderr": "",
+      "status": "PASS",
+      "optimizer_calls": 0,
+      "original_program_raw_hashes_equal": [
+        true,
+        true
+      ],
+      "raw_stationarity": [
+        3.410605131648481e-10,
+        3.8948192404575366e-07
+      ]
+    },
+    {
+      "kind": "Sandybridge",
+      "command": [
+        "D:\\Work\\rpfem-venv\\Scripts\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "D:\\Work\\rpfem-g20-fix1-20261017\\validation\\issue28_d05a_python_analysis_20261017\\VERIFY_HISTORICAL.py",
+        "--output",
+        "D:\\Work\\rpfem_issue29_review_20261017\\historical_portability_1792238351189066500\\Sandybridge.json"
+      ],
+      "wrapper_pid": 1176,
+      "wrapper_birth": 1792238355.6004877,
+      "returncode": 0,
+      "elapsed": 4.33569598197937,
+      "output": "D:\\Work\\rpfem_issue29_review_20261017\\historical_portability_1792238351189066500\\Sandybridge.json",
+      "stdout": "{\"status\": \"PASS\", \"case\": \"D05A\", \"gap_percent\": 1.7206300415645823, \"new_optimizer_calls\": 0, \"elapsed_seconds\": 4.057826199976262}\n",
+      "stderr": "",
+      "status": "PASS",
+      "optimizer_calls": 0,
+      "original_program_raw_hashes_equal": [
+        false,
+        false
+      ],
+      "raw_stationarity": [
+        3.410605131648481e-10,
+        3.8948192404575366e-07
+      ]
+    },
+    {
+      "kind": "Nehalem",
+      "command": [
+        "D:\\Work\\rpfem-venv\\Scripts\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "D:\\Work\\rpfem-g20-fix1-20261017\\validation\\issue28_d05a_python_analysis_20261017\\VERIFY_HISTORICAL.py",
+        "--output",
+        "D:\\Work\\rpfem_issue29_review_20261017\\historical_portability_1792238351189066500\\Nehalem.json"
+      ],
+      "wrapper_pid": 15716,
+      "wrapper_birth": 1792238359.94532,
+      "returncode": 0,
+      "elapsed": 4.336757659912109,
+      "output": "D:\\Work\\rpfem_issue29_review_20261017\\historical_portability_1792238351189066500\\Nehalem.json",
+      "stdout": "{\"status\": \"PASS\", \"case\": \"D05A\", \"gap_percent\": 1.7206300415645823, \"new_optimizer_calls\": 0, \"elapsed_seconds\": 4.090397099964321}\n",
+      "stderr": "",
+      "status": "PASS",
+      "optimizer_calls": 0,
+      "original_program_raw_hashes_equal": [
+        false,
+        false
+      ],
+      "raw_stationarity": [
+        3.410605131648481e-10,
+        3.8948192404575366e-07
+      ]
+    }
+  ],
+  "original_historical_manifest_sha256": "e167574e9582257c09ee3a683e237fc1a9e75c88843dcdcea84aeecf060d2678",
+  "reference_manifest_sha256": "50abf9db02f13ec854e30934c3532970bef69495c948445fdd9b8c23b36d0b2f"
+}
