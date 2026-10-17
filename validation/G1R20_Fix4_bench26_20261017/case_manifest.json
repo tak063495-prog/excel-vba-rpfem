@@ -1,0 +1,315 @@
+{
+  "source_commit": "3a4f3e67850969fef5d4ae442149d07d7f720ba8",
+  "source": "versions\\G1R20_Fix4\\delivery\\RPFEM_20261017_G1R20_Fix4.xlsm",
+  "source_sha256": "b010ab89c4e70540277475d1aab025db2545a24fd6697ad87856998737e94be6",
+  "dll_sha256": "66da1a21be43cd2b3a3bfbaa9d13aad5fb1fd1960e1bf2507cc4e1cfa9ebe70b",
+  "preset_macro": "RPX_Speed2pctPreset",
+  "preset_expected": {
+    "MODE": "Fs",
+    "TARGET": 1000,
+    "QUADRATURE": 8,
+    "FS_TOL": 0.0001,
+    "GAP": 0.02,
+    "ADAPT": 1,
+    "CYCLES": 8,
+    "RAW_LOWER_AUDIT": 1,
+    "C0_AUTO": 0,
+    "ADAPT_ACCURACY_CAP": 24000,
+    "ADAPT_ACCURACY_ROUNDS": 8,
+    "ADAPT_LOWER_TARGET": 4000,
+    "ADAPT_LOWER_FAN_ROUNDS": 1,
+    "ADAPT_CERT_QUADRATURE": 8,
+    "ACCURACY_DLL_RECOVERY": 1,
+    "ACCURACY_DLL_SECONDS": 120,
+    "ACCURACY_DLL_DUAL_SECONDS": 20,
+    "ACCURACY_DLL_CONE_SCALING": 1,
+    "HSD_SOLVE_SECONDS": 300,
+    "DIRECT_DLL": 1,
+    "ADAPT_PRECISION_FROM_START": 1,
+    "ADAPT_C0_WEDGE_AUTO": 1,
+    "ADAPT_BALANCED_LOWER_TARGET": 0,
+    "ADAPT_UPPER_FLOW_PASSES": 0,
+    "FS_TERMINAL_SCHEDULE": 0,
+    "ACCURACY_DLL_UPPER_RECENTER": 0,
+    "ACCURACY_DLL_DUAL_LINEAR_REPAIR": 0,
+    "ACCURACY_DLL_DUAL_REGULARIZATION": 0,
+    "DIRECT_DLL_SECONDS": 5
+  },
+  "case_keys_from_input": [
+    "GRAVITY",
+    "TEST_INJECTION",
+    "HSD_CAPTURE",
+    "DIAGNOSTIC_MODE",
+    "ANALYSIS_POLICY",
+    "SEISMIC_KH",
+    "SEISMIC_DIR"
+  ],
+  "run_order": [
+    "D08A",
+    "P01A",
+    "P01N",
+    "P02A",
+    "P02N",
+    "P03A",
+    "P03N",
+    "P04A",
+    "P04N",
+    "P05A",
+    "P05N",
+    "P07A",
+    "P07N",
+    "P08A",
+    "P09A",
+    "P10A",
+    "D01A",
+    "D02A",
+    "D03N",
+    "D04A",
+    "D05A",
+    "D06A",
+    "D07A",
+    "D09A",
+    "P06N",
+    "P06A"
+  ],
+  "cases": [
+    {
+      "case": "D08A",
+      "input_sha256": "c3650aff7307ff93f79dfdf7af70ba63892b8e15c098178c71614fcbbf216b08",
+      "pore_pressure": true,
+      "area": 158.0,
+      "weight": 3160.0,
+      "best_prior_seconds": 105,
+      "timeout_seconds": 900
+    },
+    {
+      "case": "P01A",
+      "input_sha256": "c952158d3da2da80cba14b72c4c613ea13634ae667f0af35237c375e7a2e31e6",
+      "pore_pressure": false,
+      "area": 158.0,
+      "weight": 3160.0,
+      "best_prior_seconds": 265,
+      "timeout_seconds": 900
+    },
+    {
+      "case": "P01N",
+      "input_sha256": "bfca4f197eeb60d99fc2027ac947a2165c4be22c32730209d33ef68001349ca6",
+      "pore_pressure": false,
+      "area": 158.0,
+      "weight": 3160.0,
+      "best_prior_seconds": 263,
+      "timeout_seconds": 900
+    },
+    {
+      "case": "P02A",
+      "input_sha256": "9587c4b45eae1c22d9e7190ee1470f5ad2e38145305f6c374894f91240ae7e1b",
+      "pore_pressure": false,
+      "area": 158.0,
+      "weight": 3160.0,
+      "best_prior_seconds": 334,
+      "timeout_seconds": 1002
+    },
+    {
+      "case": "P02N",
+      "input_sha256": "7d8d74f5d573032e7980fe7dffde911ffab2f7bd4cef784ee145f7e0349fac31",
+      "pore_pressure": false,
+      "area": 158.0,
+      "weight": 3160.0,
+      "best_prior_seconds": 205,
+      "timeout_seconds": 900
+    },
+    {
+      "case": "P03A",
+      "input_sha256": "858297b2897751405f4cc882100ff262ba994850668b8ef6054a425cf4314e8d",
+      "pore_pressure": false,
+      "area": 158.0,
+      "weight": 3160.0,
+      "best_prior_seconds": 253,
+      "timeout_seconds": 900
+    },
+    {
+      "case": "P03N",
+      "input_sha256": "603ce099f1b440bf62c485596e202d0624930bf20601fa9b10b7010974a1db70",
+      "pore_pressure": false,
+      "area": 158.0,
+      "weight": 3160.0,
+      "best_prior_seconds": 254,
+      "timeout_seconds": 900
+    },
+    {
+      "case": "P04A",
+      "input_sha256": "8dffa91b1bcb91f018ca950f9556db561dde206ac3e76f317cef11b879330a9e",
+      "pore_pressure": false,
+      "area": 158.0,
+      "weight": 3160.0,
+      "best_prior_seconds": 209,
+      "timeout_seconds": 900
+    },
+    {
+      "case": "P04N",
+      "input_sha256": "2aa99fceb305627ba7b39447ed9a2435dfd40c8202157f385b8a1478e852bff7",
+      "pore_pressure": false,
+      "area": 158.0,
+      "weight": 3160.0,
+      "best_prior_seconds": 246,
+      "timeout_seconds": 900
+    },
+    {
+      "case": "P05A",
+      "input_sha256": "0a63a1df97061275ed31d44eae841cc248828c34caff610da24e14731e607a83",
+      "pore_pressure": false,
+      "area": 475.0,
+      "weight": 9450.0,
+      "best_prior_seconds": 284,
+      "timeout_seconds": 900
+    },
+    {
+      "case": "P05N",
+      "input_sha256": "00c0f0343591fd462869feb282b56a4d34bddb9de4570d77888235ea8c99b328",
+      "pore_pressure": false,
+      "area": 475.0,
+      "weight": 9450.0,
+      "best_prior_seconds": 553,
+      "timeout_seconds": 1659
+    },
+    {
+      "case": "P07A",
+      "input_sha256": "cb756be312cf7441b0b81c08c8fd5521ca7ff5a94d0d89021cb19ea5bc654074",
+      "pore_pressure": false,
+      "area": 220.0,
+      "weight": 4400.0,
+      "best_prior_seconds": 548,
+      "timeout_seconds": 1644
+    },
+    {
+      "case": "P07N",
+      "input_sha256": "bad1e69be28a7088ff6e97b099d30acd4a4ce72ec9f33821e8907997253eaba3",
+      "pore_pressure": false,
+      "area": 220.0,
+      "weight": 4400.0,
+      "best_prior_seconds": 747,
+      "timeout_seconds": 2241
+    },
+    {
+      "case": "P08A",
+      "input_sha256": "6edeed25559cbceb89ca2e676761ca65e933252333e676e11ecea32718dd09ef",
+      "pore_pressure": false,
+      "area": 900.0,
+      "weight": 18000.0,
+      "best_prior_seconds": 951,
+      "timeout_seconds": 2853
+    },
+    {
+      "case": "P09A",
+      "input_sha256": "b22f5dd2e83f676252b7f462214108c325da08d8da3d02543c9e0b5f23f1d3ee",
+      "pore_pressure": false,
+      "area": 900.0,
+      "weight": 18000.0,
+      "best_prior_seconds": 972,
+      "timeout_seconds": 2916
+    },
+    {
+      "case": "P10A",
+      "input_sha256": "706553eb9d63a7f3adb67fa4c73d3c1a6a56dee86b66dd2f67b31edd9509e3dc",
+      "pore_pressure": false,
+      "area": 900.0,
+      "weight": 18000.0,
+      "best_prior_seconds": 990,
+      "timeout_seconds": 2970
+    },
+    {
+      "case": "D01A",
+      "input_sha256": "9b5f09ac4771f128febd047d5ade57eb40d97f171ce568265e9d3113f31f9197",
+      "pore_pressure": false,
+      "area": 158.0,
+      "weight": 3160.0,
+      "best_prior_seconds": 1787,
+      "timeout_seconds": 5361
+    },
+    {
+      "case": "D02A",
+      "input_sha256": "97c4f88a81575120452a427fdc80621a630a0abf4f09d5da119b3a64f6512a5b",
+      "pore_pressure": false,
+      "area": 1400.0,
+      "weight": 28000.0,
+      "best_prior_seconds": 2020,
+      "timeout_seconds": 6060
+    },
+    {
+      "case": "D03N",
+      "input_sha256": "ec20faf54cbbf37b5410af6b467f9243ad08b6356fc7332dd6e53b493310bb59",
+      "pore_pressure": false,
+      "area": 1400.0,
+      "weight": 28000.0,
+      "best_prior_seconds": 2035,
+      "timeout_seconds": 6105
+    },
+    {
+      "case": "D04A",
+      "input_sha256": "0ad45375992deed59e62a4261f551c18d6a3a4a0a026abb70070fa2b15b4af82",
+      "pore_pressure": false,
+      "area": 158.0,
+      "weight": 3160.0,
+      "best_prior_seconds": 322,
+      "timeout_seconds": 966
+    },
+    {
+      "case": "D05A",
+      "input_sha256": "b9c7b2b34a74889f0274f220b1895405acd68409f8df3b13571d5f62f27fa7e2",
+      "pore_pressure": false,
+      "area": 158000000.0,
+      "weight": 3160000.0,
+      "best_prior_seconds": 364,
+      "timeout_seconds": 1092
+    },
+    {
+      "case": "D06A",
+      "input_sha256": "a83db7c48b2ded624b6ec68bbd68a314127bc09c33e562fe1eade9269f030069",
+      "pore_pressure": false,
+      "area": 158.0,
+      "weight": 3160.0,
+      "best_prior_seconds": 321,
+      "timeout_seconds": 963
+    },
+    {
+      "case": "D07A",
+      "input_sha256": "d127e3e92f7ab9ac07f8a4d0e42a96e5ae531ac67c55c297b7753eccdf6492b3",
+      "pore_pressure": false,
+      "area": 158.0,
+      "weight": 3160.0,
+      "best_prior_seconds": 153,
+      "timeout_seconds": 900
+    },
+    {
+      "case": "D09A",
+      "input_sha256": "46795043ad9bc7afc4024431fe4b0edd3a680edc56c19bc5d4c471a12efd5455",
+      "pore_pressure": false,
+      "area": 158.0,
+      "weight": 3160.0,
+      "best_prior_seconds": 323,
+      "timeout_seconds": 969
+    },
+    {
+      "case": "P06N",
+      "input_sha256": "389bf6c3c29d49e509a1ea0f270ca0fae3594910da0cb8dd594edfea9cefec2b",
+      "pore_pressure": false,
+      "area": 302.5,
+      "weight": 5747.5,
+      "best_prior_seconds": 4491,
+      "timeout_seconds": 13473
+    },
+    {
+      "case": "P06A",
+      "input_sha256": "723491feaccb2c8b64c191dccf0564416816e09d3c2fe4c297e06c7505cf3215",
+      "pore_pressure": false,
+      "area": 302.5,
+      "weight": 5747.5,
+      "best_prior_seconds": 4851,
+      "timeout_seconds": 14553
+    }
+  ],
+  "overall_limit_seconds": 108000,
+  "stop_grace_seconds": 600,
+  "inputs": "docs/benchmarks/G1R17_native26_20261013/data/inputs (same geometry/material/water as previous 26-case runs); preset-owned settings replaced by product preset",
+  "scope": "G1R20 Fix4 product preset (2% speed) sequential native Excel 26-case speed benchmark with DLL"
+}

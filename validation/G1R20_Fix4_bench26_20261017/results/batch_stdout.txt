@@ -1,0 +1,22 @@
+Traceback (most recent call last):
+  File "C:\Users\link_\rpfem_bench\validation\G1R20_Fix4_bench26\scripts\runner.py", line 317, in <module>
+    elif sys.argv[1]=='batch':batch()
+                              ^^^^^^^
+  File "C:\Users\link_\rpfem_bench\validation\G1R20_Fix4_bench26\scripts\runner.py", line 297, in batch
+    run_case(case,foreign|set(),deadline)
+  File "C:\Users\link_\rpfem_bench\validation\G1R20_Fix4_bench26\scripts\runner.py", line 231, in run_case
+    time.sleep(5);progress();now=time.time()
+                  ^^^^^^^^^^
+  File "C:\Users\link_\rpfem_bench\validation\G1R20_Fix4_bench26\scripts\runner.py", line 206, in progress
+    rows.append(json.loads(path.read_text(encoding='utf-8')) if path.exists() else {'case':case,'status':'NOT_RUN'})
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\link_\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\pathlib.py", line 1027, in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\link_\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\pathlib.py", line 1013, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [Errno 13] Permission denied: 'C:\\Users\\link_\\rpfem_bench\\validation\\G1R20_Fix4_bench26\\cases\\P04N\\status.json'
+EXIT 1 2026/10/17 12:14:12.30 
+ALL26_FINISHED
+EXIT 0 2026/10/18  0:25:23.29 

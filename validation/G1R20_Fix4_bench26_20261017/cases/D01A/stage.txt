@@ -1,0 +1,442 @@
+# triangulation 0/207 53740.11
+# zero stress fan eligibility 0 53740.32
+# native mesh fan nodes 0 53740.41
+# native mesh fan elements 0 53740.45
+# native mesh fan elements 256 53740.49
+# native mesh fan edges 0 53740.54
+# native mesh fan edges 256 53740.57
+# native mesh fan edges 512 53740.62
+# native zero stress fan planning 53740.7
+# zero stress fan insertion 0 53740.82
+# zero stress fan insertion 256 53740.87
+# zero stress fan eligibility 0 53741
+# native mesh fan nodes 0 53741.07
+# native mesh fan elements 0 53741.12
+# native mesh fan elements 256 53741.17
+# native mesh fan edges 0 53741.2
+# native mesh fan edges 256 53741.25
+# native mesh fan edges 512 53741.3
+# native zero stress fan planning 53741.38
+# zero stress fan eligibility 0 53741.7
+# native mesh fan nodes 0 53741.8
+# native mesh fan elements 0 53741.83
+# native mesh fan elements 256 53741.88
+# native mesh fan edges 0 53741.93
+# native mesh fan edges 256 53741.96
+# native mesh fan edges 512 53742
+# native zero stress fan planning 53742.08
+# upper F=1 53742.3
+# upper elements 0/369 53742.35
+# upper elements 256/369 53743.9
+# upper edges 0/582 53744.61
+# upper edges 512/582 53746.35
+# compile arrays 53746.65
+# ordering 4591 53746.77
+# ordering complete 53746.93
+# symbolic factorization 53746.98
+# symbolic complete 152886 53747.06
+# upper F=2 53747.7
+# upper F=0.5 53748.21
+# upper F=0.75 53749.28
+# upper elements 0/369 53749.33
+# upper elements 256/369 53750.88
+# upper edges 0/582 53751.58
+# upper edges 512/582 53753.32
+# compile arrays 53753.6
+# ordering complete 53753.73
+# symbolic factorization 53753.79
+# symbolic complete 152886 53753.87
+# upper F=0.625 53754.55
+# upper F=0.6875 53755.64
+# upper elements 0/369 53755.69
+# upper elements 256/369 53757.24
+# upper edges 0/582 53757.95
+# upper edges 512/582 53759.68
+# compile arrays 53759.95
+# ordering complete 53760.07
+# symbolic factorization 53760.14
+# symbolic complete 152886 53760.22
+# upper F=0.71875 53761.34
+# upper elements 0/369 53761.39
+# upper elements 256/369 53762.94
+# upper edges 0/582 53763.64
+# upper edges 512/582 53765.38
+# compile arrays 53765.66
+# ordering complete 53765.79
+# symbolic factorization 53765.85
+# symbolic complete 152886 53765.93
+# upper F=0.703125 53766.61
+# upper F=0.6953125 53767.4
+# upper F=0.69921875 53768.57
+# upper elements 0/369 53768.62
+# upper elements 256/369 53770.17
+# upper edges 0/582 53770.87
+# upper edges 512/582 53772.59
+# compile arrays 53772.88
+# ordering complete 53773
+# symbolic factorization 53773.05
+# symbolic complete 152886 53773.13
+# upper F=0.701171875 53774.32
+# upper elements 0/369 53774.37
+# upper elements 256/369 53775.92
+# upper edges 0/582 53776.63
+# upper edges 512/582 53778.37
+# compile arrays 53778.65
+# ordering complete 53778.79
+# symbolic factorization 53778.83
+# symbolic complete 152886 53778.91
+# upper F=0.7001953125 53779.66
+# HSD 0 residual=2.3E+01 gap=1.2E+04 53781.91
+# HSD 1 residual=1.6E+01 gap=8.9E+03 53782.5
+# HSD 2 residual=1.1E+01 gap=7.6E+03 53783.09
+# HSD 3 residual=8.1E+00 gap=7.4E+03 53783.56
+# HSD 4 residual=6.4E+00 gap=1.1E+04 53784.15
+# HSD 5 residual=6.0E+00 gap=2.2E+04 53784.63
+# HSD 6 residual=5.9E+00 gap=4.5E+04 53785.29
+# HSD 7 residual=5.9E+00 gap=9.6E+04 53785.76
+# HSD 8 residual=5.8E+00 gap=1.8E+05 53786.39
+# HSD 9 residual=5.8E+00 gap=3.4E+05 53786.95
+# HSD 10 residual=5.7E+00 gap=8.3E+05 53787.6
+# HSD 11 residual=5.7E+00 gap=1.4E+06 53788.27
+# HSD 12 residual=5.7E+00 gap=2.0E+06 53789.14
+# HSD 13 residual=5.7E+00 gap=2.3E+06 53789.9
+# HSD 14 residual=5.7E+00 gap=5.6E+06 53790.68
+# HSD 15 residual=5.7E+00 gap=8.7E+06 53791.35
+# HSD 16 residual=5.7E+00 gap=3.1E+07 53792.01
+# HSD 17 residual=5.7E+00 gap=5.9E+08 53792.71
+# HSD 18 residual=5.7E+00 gap=1.1E+09 53793.38
+# HSD 19 residual=5.3E+00 gap=1.1E+09 53794.03
+# HSD 20 residual=3.3E+00 gap=6.2E+08 53794.74
+# HSD 21 residual=2.2E+00 gap=4.4E+08 53795.4
+# HSD 22 residual=1.3E+00 gap=2.7E+08 53796.06
+# HSD 23 residual=6.9E-01 gap=1.5E+08 53796.7
+# HSD 24 residual=3.1E-01 gap=7.0E+07 53797.35
+# HSD 25 residual=5.2E-02 gap=1.3E+07 53798.05
+# HSD 26 residual=4.1E-03 gap=1.1E+06 53798.64
+# HSD 27 residual=1.4E-04 gap=3.6E+04 53799.21
+# HSD 28 residual=2.7E-06 gap=7.1E+02 53799.75
+# HSD 29 residual=2.2E-07 gap=7.1E+00 53800.29
+# HSD 30 residual=8.5E-07 gap=9.8E-01 53800.82
+# HSD 31 residual=1.3E-06 gap=1.3E-01 53801.36
+# HSD 32 residual=4.3E-07 gap=1.8E-02 53801.9
+# HSD 33 residual=4.2E-07 gap=2.5E-03 53802.44
+# HSD 34 residual=4.2E-07 gap=2.5E-05 53803
+# HSD 35 residual=2.1E-07 gap=2.5E-07 53803.56
+# HSD 36 residual=8.5E-07 gap=2.5E-09 53804.16
+# upper F=0.69970703125 53804.95
+# upper F=0.699951171875 53806.2
+# upper elements 0/369 53806.25
+# upper elements 256/369 53807.91
+# upper edges 0/582 53808.66
+# upper edges 512/582 53810.52
+# compile arrays 53810.81
+# ordering complete 53810.96
+# symbolic factorization 53811.01
+# symbolic complete 152886 53811.09
+# upper F=0.7000732421875 53812.28
+# upper elements 0/369 53812.32
+# upper elements 256/369 53813.92
+# upper edges 0/582 53814.64
+# upper edges 512/582 53816.44
+# compile arrays 53816.72
+# ordering complete 53816.85
+# symbolic factorization 53816.91
+# symbolic complete 152886 53816.99
+# upper F=0.70013427734375 53818.19
+# upper elements 0/369 53818.24
+# upper elements 256/369 53819.82
+# upper edges 0/582 53820.56
+# upper edges 512/582 53822.33
+# compile arrays 53822.62
+# ordering complete 53822.74
+# symbolic factorization 53822.79
+# symbolic complete 152886 53822.87
+# HSD 0 residual=2.3E+01 gap=1.2E+04 53825.43
+# HSD 1 residual=1.6E+01 gap=8.9E+03 53826.11
+# HSD 2 residual=1.1E+01 gap=7.6E+03 53826.71
+# HSD 3 residual=8.1E+00 gap=7.4E+03 53827.18
+# HSD 4 residual=6.4E+00 gap=1.1E+04 53827.77
+# HSD 5 residual=6.0E+00 gap=2.2E+04 53828.25
+# HSD 6 residual=5.9E+00 gap=4.5E+04 53828.92
+# HSD 7 residual=5.9E+00 gap=9.6E+04 53829.41
+# HSD 8 residual=5.8E+00 gap=1.8E+05 53829.99
+# HSD 9 residual=5.8E+00 gap=3.4E+05 53830.59
+# HSD 10 residual=5.7E+00 gap=8.4E+05 53831.2
+# HSD 11 residual=5.7E+00 gap=1.4E+06 53831.82
+# HSD 12 residual=5.7E+00 gap=2.1E+06 53832.42
+# HSD 13 residual=5.7E+00 gap=2.3E+06 53833.08
+# HSD 14 residual=5.7E+00 gap=5.6E+06 53833.64
+# HSD 15 residual=5.7E+00 gap=8.6E+06 53834.3
+# HSD 16 residual=5.7E+00 gap=3.4E+07 53834.9
+# HSD 17 residual=5.7E+00 gap=9.0E+08 53835.55
+# HSD 18 residual=5.7E+00 gap=3.2E+09 53836.24
+# HSD 19 residual=5.5E+00 gap=3.3E+09 53836.85
+# HSD 20 residual=3.9E+00 gap=1.9E+09 53837.67
+# HSD 21 residual=2.6E+00 gap=1.4E+09 53838.43
+# HSD 22 residual=1.6E+00 gap=9.8E+08 53839.07
+# HSD 23 residual=9.0E-01 gap=5.8E+08 53839.77
+# HSD 24 residual=4.4E-01 gap=3.1E+08 53840.52
+# HSD 25 residual=9.5E-02 gap=7.5E+07 53841.16
+# HSD 26 residual=1.1E-02 gap=9.5E+06 53841.81
+# HSD 27 residual=5.9E-04 gap=5.1E+05 53842.43
+# HSD 28 residual=1.2E-05 gap=1.0E+04 53842.92
+# HSD 29 residual=8.1E-07 gap=1.0E+02 53843.5
+# HSD 30 residual=8.1E-07 gap=1.4E+01 53843.98
+# HSD 31 residual=8.1E-07 gap=1.9E+00 53844.56
+# HSD 32 residual=1.2E-06 gap=2.6E-01 53845.05
+# HSD 33 residual=1.6E-06 gap=3.6E-02 53845.63
+# HSD 34 residual=8.1E-07 gap=4.9E-03 53846.12
+# HSD 35 residual=8.1E-07 gap=4.9E-05 53846.7
+# HSD 36 residual=8.1E-07 gap=4.9E-07 53847.2
+# HSD 37 residual=1.6E-06 gap=4.9E-09 53847.77
+# HSD 38 residual=3.4E-08 gap=4.9E-11 53848.26
+# HSD 39 residual=1.5E-07 gap=4.9E-13 53848.84
+# HSD 40 residual=1.4E-07 gap=4.9E-15 53849.32
+# HSD 41 residual=4.2E-07 gap=4.9E-17 53849.97
+# HSD 42 residual=5.1E-07 gap=4.9E-19 53851.97
+# HSD 43 residual=2.2E-07 gap=4.9E-21 53855.16
+# HSD 44 residual=3.6E-07 gap=4.9E-23 53857.01
+# HSD 45 residual=5.2E-07 gap=4.9E-25 53860.3
+# HSD DD LDL 0/4591 53864.51
+# HSD DD LDL 256/4591 53864.56
+# HSD DD LDL 512/4591 53864.59
+# HSD DD LDL 768/4591 53864.64
+# HSD DD LDL 1024/4591 53864.69
+# HSD DD LDL 1280/4591 53864.72
+# HSD DD LDL 1536/4591 53864.77
+# HSD DD LDL 1792/4591 53864.81
+# HSD DD LDL 2048/4591 53864.86
+# HSD DD LDL 2304/4591 53864.91
+# HSD DD LDL 2560/4591 53864.95
+# HSD DD LDL 2816/4591 53865
+# HSD DD LDL 3072/4591 53865.05
+# HSD DD LDL 3328/4591 53865.1
+# HSD DD LDL 3584/4591 53865.16
+# upper F=0.700103759765625 53867.93
+# upper elements 0/369 53867.98
+# upper elements 256/369 53869.56
+# upper edges 0/582 53870.27
+# upper edges 512/582 53872.07
+# compile arrays 53872.36
+# ordering complete 53872.48
+# symbolic factorization 53872.55
+# symbolic complete 152886 53872.63
+# HSD 0 residual=2.3E+01 gap=1.2E+04 53874.06
+# HSD 1 residual=1.6E+01 gap=8.9E+03 53874.75
+# HSD 2 residual=1.1E+01 gap=7.6E+03 53875.35
+# HSD 3 residual=8.1E+00 gap=7.4E+03 53875.82
+# HSD 4 residual=6.4E+00 gap=1.1E+04 53876.41
+# HSD 5 residual=6.0E+00 gap=2.2E+04 53876.89
+# HSD 6 residual=5.9E+00 gap=4.5E+04 53877.55
+# HSD 7 residual=5.9E+00 gap=9.6E+04 53878.1
+# HSD 8 residual=5.8E+00 gap=1.8E+05 53878.65
+# HSD 9 residual=5.8E+00 gap=3.5E+05 53879.25
+# HSD 10 residual=5.7E+00 gap=8.4E+05 53879.86
+# HSD 11 residual=5.7E+00 gap=1.4E+06 53880.54
+# HSD 12 residual=5.7E+00 gap=2.1E+06 53881.09
+# HSD 13 residual=5.7E+00 gap=2.3E+06 53881.75
+# HSD 14 residual=5.7E+00 gap=5.6E+06 53882.35
+# HSD 15 residual=5.7E+00 gap=8.5E+06 53882.96
+# HSD 16 residual=5.7E+00 gap=3.5E+07 53883.66
+# HSD 17 residual=5.7E+00 gap=1.2E+09 53884.24
+# HSD 18 residual=5.7E+00 gap=3.1E+10 53884.94
+# HSD 19 residual=5.7E+00 gap=7.1E+10 53885.58
+# HSD 20 residual=5.4E+00 gap=7.4E+10 53886.4
+# HSD 21 residual=3.7E+00 gap=4.8E+10 53888.16
+# HSD 22 residual=2.5E+00 gap=3.9E+10 53889.13
+# HSD 23 residual=1.6E+00 gap=2.9E+10 53890.41
+# HSD 24 residual=9.0E-01 gap=1.9E+10 53891.57
+# HSD 25 residual=4.2E-01 gap=1.0E+10 53892.41
+# HSD 26 residual=1.4E-01 gap=4.1E+09 53893.27
+# HSD 27 residual=4.1E-02 gap=1.2E+09 53894.07
+# HSD 28 residual=1.1E-02 gap=2.9E+08 53894.75
+# HSD 29 residual=3.3E-03 gap=8.7E+07 53895.36
+# HSD 30 residual=3.3E-04 gap=1.5E+06 53895.93
+# HSD 31 residual=2.6E-05 gap=3.0E+04 53896.47
+# HSD 32 residual=1.7E-05 gap=3.0E+02 53896.98
+# HSD 33 residual=1.7E-05 gap=4.1E+01 53897.55
+# HSD 34 residual=1.7E-05 gap=5.7E+00 53898.12
+# HSD 35 residual=2.6E-05 gap=7.8E-01 53898.71
+# HSD 36 residual=2.1E-05 gap=7.8E-03 53899.2
+# HSD 37 residual=1.7E-05 gap=1.6E-04 53899.77
+# HSD 38 residual=1.7E-05 gap=1.6E-06 53900.25
+# HSD DD LDL 0/4591 53906.17
+# HSD DD LDL 256/4591 53906.22
+# HSD DD LDL 512/4591 53906.27
+# HSD DD LDL 768/4591 53906.3
+# HSD DD LDL 1024/4591 53906.35
+# HSD DD LDL 1280/4591 53906.39
+# HSD DD LDL 1536/4591 53906.44
+# HSD DD LDL 1792/4591 53906.49
+# HSD DD LDL 2048/4591 53906.52
+# HSD DD LDL 2304/4591 53906.58
+# HSD DD LDL 2560/4591 53906.63
+# HSD DD LDL 2816/4591 53906.68
+# HSD DD LDL 3072/4591 53906.73
+# HSD DD LDL 3328/4591 53906.78
+# HSD DD LDL 3584/4591 53906.84
+# HSD DD LDL 3840/4591 53906.9
+# HSD DD LDL 4096/4591 53906.98
+# HSD DD LDL 4352/4591 53907.12
+# HSD 39 residual=4.3E-06 gap=1.6E-08 53907.99
+# HSD DD LDL 0/4591 53910.22
+# HSD DD LDL 256/4591 53910.25
+# HSD DD LDL 512/4591 53910.3
+# HSD DD LDL 768/4591 53910.35
+# HSD DD LDL 1024/4591 53910.38
+# HSD DD LDL 1280/4591 53910.43
+# HSD DD LDL 1536/4591 53910.48
+# HSD DD LDL 1792/4591 53910.52
+# HSD DD LDL 2048/4591 53910.55
+# HSD DD LDL 2304/4591 53910.61
+# HSD DD LDL 2560/4591 53910.65
+# HSD DD LDL 2816/4591 53910.7
+# HSD DD LDL 3072/4591 53910.75
+# HSD DD LDL 3328/4591 53910.8
+# HSD DD LDL 3584/4591 53910.86
+# HSD DD LDL 3840/4591 53910.92
+# HSD DD LDL 4096/4591 53911
+# HSD DD LDL 4352/4591 53911.14
+# HSD 40 residual=6.7E-08 gap=1.6E-10 53912.01
+# HSD DD LDL 0/4591 53914.27
+# HSD DD LDL 256/4591 53914.34
+# HSD DD LDL 512/4591 53914.37
+# HSD DD LDL 768/4591 53914.41
+# HSD DD LDL 1024/4591 53914.46
+# HSD DD LDL 1280/4591 53914.5
+# HSD DD LDL 1536/4591 53914.54
+# HSD DD LDL 1792/4591 53914.59
+# HSD DD LDL 2048/4591 53914.64
+# HSD DD LDL 2304/4591 53914.68
+# HSD DD LDL 2560/4591 53914.73
+# HSD DD LDL 2816/4591 53914.78
+# HSD DD LDL 3072/4591 53914.83
+# HSD DD LDL 3328/4591 53914.88
+# HSD DD LDL 3584/4591 53914.94
+# HSD DD LDL 3840/4591 53915
+# HSD DD LDL 4096/4591 53915.09
+# HSD DD LDL 4352/4591 53915.21
+# HSD 41 residual=1.0E-07 gap=1.6E-12 53916.09
+# HSD DD LDL 0/4591 53918.39
+# HSD DD LDL 256/4591 53918.42
+# HSD DD LDL 512/4591 53918.47
+# HSD DD LDL 768/4591 53918.52
+# HSD DD LDL 1024/4591 53918.55
+# HSD DD LDL 1280/4591 53918.59
+# HSD DD LDL 1536/4591 53918.64
+# HSD DD LDL 1792/4591 53918.68
+# HSD DD LDL 2048/4591 53918.72
+# HSD DD LDL 2304/4591 53918.77
+# HSD DD LDL 2560/4591 53918.82
+# HSD DD LDL 2816/4591 53918.87
+# HSD DD LDL 3072/4591 53918.92
+# HSD DD LDL 3328/4591 53918.96
+# HSD DD LDL 3584/4591 53919.01
+# HSD DD LDL 3840/4591 53919.07
+# HSD DD LDL 4096/4591 53919.15
+# HSD DD LDL 4352/4591 53919.3
+# lower F=1 53920.58
+# compile arrays 53926.51
+# ordering 12493 53926.67
+# ordering complete 53926.91
+# symbolic factorization 53926.97
+# symbolic complete 227907 53927.07
+# lower F=2 53927.7
+# compile arrays 53933.66
+# ordering complete 53933.81
+# symbolic factorization 53933.86
+# symbolic complete 227907 53933.95
+# lower F=0.5 53934.56
+# compile arrays 53940.51
+# ordering complete 53940.67
+# symbolic factorization 53940.71
+# symbolic complete 227907 53940.81
+# lower F=0.75 53941.16
+# lower F=0.625 53941.79
+# compile arrays 53947.7
+# ordering complete 53947.86
+# symbolic factorization 53947.92
+# symbolic complete 227907 53948.02
+# lower F=0.5625 53948.65
+# compile arrays 53954.62
+# ordering complete 53954.78
+# symbolic factorization 53954.84
+# symbolic complete 227907 53954.95
+# lower F=0.59375 53955.34
+# lower F=0.578125 53955.99
+# compile arrays 53961.89
+# ordering complete 53962.05
+# symbolic factorization 53962.1
+# symbolic complete 227907 53962.2
+# lower F=0.5703125 53962.91
+# compile arrays 53968.83
+# ordering complete 53968.99
+# symbolic factorization 53969.05
+# symbolic complete 227907 53969.13
+# lower F=0.57421875 53969.53
+# lower F=0.576171875 53969.89
+# lower F=0.5771484375 53970.29
+# lower F=0.57763671875 53970.86
+# lower F=0.577392578125 53971.57
+# compile arrays 53977.52
+# ordering complete 53977.68
+# symbolic factorization 53977.74
+# symbolic complete 227907 53977.82
+# lower F=0.5772705078125 53978.58
+# compile arrays 53984.51
+# ordering complete 53984.67
+# symbolic factorization 53984.72
+# symbolic complete 227907 53984.82
+# lower F=0.57733154296875 53985.35
+# upper F=0.575978024355137 53987.28
+# upper elements 0/8 53987.33
+# upper edges 0/15 53987.42
+# compile arrays 53987.5
+# ordering 109 53987.6
+# ordering complete 53987.63
+# symbolic factorization 53987.68
+# symbolic complete 1352 53987.71
+# upper F=0.579978370418888 53987.84
+# upper elements 0/8 53987.88
+# upper edges 0/15 53987.98
+# compile arrays 53988.06
+# ordering complete 53988.15
+# symbolic factorization 53988.18
+# symbolic complete 1352 53988.23
+# upper F=0.577978197387013 53988.34
+# upper F=0.576978110871075 53988.47
+# upper F=0.577478154129044 53988.59
+# upper elements 0/8 53988.63
+# upper edges 0/15 53988.72
+# compile arrays 53988.82
+# ordering complete 53988.9
+# symbolic factorization 53988.95
+# symbolic complete 1352 53988.98
+# upper F=0.577228132500059 53989.11
+# upper F=0.577353143314551 53989.23
+# upper elements 0/8 53989.27
+# upper edges 0/15 53989.36
+# compile arrays 53989.45
+# ordering complete 53989.53
+# symbolic factorization 53989.58
+# symbolic complete 1352 53989.63
+# HSD 0 residual=9.4E+02 gap=2.0E+02 53989.73
+# HSD 1 residual=5.6E+02 gap=1.2E+02 53989.82
+# HSD 2 residual=3.0E+02 gap=6.5E+01 53989.88
+# HSD 3 residual=9.4E+01 gap=2.1E+01 53989.93
+# HSD 4 residual=1.2E+01 gap=3.4E+00 53990
+# HSD 5 residual=2.0E+00 gap=2.0E+00 53990.04
+# HSD 6 residual=3.6E+00 gap=5.9E+01 53990.11
+# HSD 7 residual=4.5E+00 gap=5.3E+02 53990.15
+# HSD 8 residual=5.6E+00 gap=2.3E+04 53990.2
+# HSD 9 residual=6.7E+00 gap=1.9E+05 53990.25
+# HSD 10 residual=1.0E+01 gap=3.4E+06 53990.3
+# HSD 11 residual=1.1E+01 gap=9.6E+06 53990.36
+# HSD 12 residual=1.1E+01 gap=1.2E+07 53990.42
+# HSD 13 residual=1.1E+01 gap=2.5E+07 53990.47
+# HSD 14 residual=1.0E+01 gap=5.4E+07 53990.57
+# HSD 15 residual=9.9E+00 gap=1.1E+08 53990.61
+# HSD 16 residual=8.8E+00 gap=2.4E+08 53990.68
+# HSD 17 residual=6.7E+00 gap=6.2E+08 53990.73
+# HSD 18 residual=4.9E+00 gap=1.0E+09 53990.82
+# upper F=0.577415648721797 53990.98

@@ -1,0 +1,9 @@
+{
+  "changed_jst": "2026-10-17 11:2x",
+  "revision": 2,
+  "reason": "User decision: goal is speed measurement of all 26 cases; 900 s limits (3x best prior incl. G1R19 Rico times) would truncate cases. D08A smoke took 726.4 s against a 900 s limit.",
+  "old_rule": "3x min(G1R17 DLL5, available G1R19 Rico times), min 900 s, P06<=8h, overall 30h",
+  "new_rule": "3x G1R17 DLL5 (Triela, same machine), min 1200 s, P06<=8h, overall 30h (deadline unchanged from batch start 11:03 JST)",
+  "applies_to": "Cases started after the hand-off. D08A finished under old 900 s limit (726 s, PASS). P01A was running under the old 900 s limit and was not disturbed; if it times out under the old limit it is archived and re-run with the new limit.",
+  "mechanism": "New worker code idles when HANDOFF marker exists; handoff.ps1 (task RPFEM_G1R20_Fix4_bench26_handoff) then terminates only the bench runner python processes between cases (no Excel running) and restarts RPFEM_G1R20_Fix4_bench26."
+}

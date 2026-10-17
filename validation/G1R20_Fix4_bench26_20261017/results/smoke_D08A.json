@@ -1,0 +1,15 @@
+{
+  "utc": "2026-10-17T02:15:47.293159+00:00",
+  "pass": true,
+  "status": "PASS_TARGET",
+  "lower_fs": 1.3015815066522918,
+  "upper_fs": 1.3260274687490892,
+  "relative_gap": 0.018607001517844293,
+  "analysis_seconds": 726.36724,
+  "preset_check": {
+    "pass": true,
+    "checked_preset_keys": 29,
+    "checked_case_keys": 7,
+    "mismatch": {}
+  }
+}

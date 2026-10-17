@@ -1,0 +1,9 @@
+﻿{
+    "changed_jst":  "2026-10-17 12:26:34",
+    "revision":  3,
+    "reason":  "Batch runner crashed at 12:14:12 JST with PermissionError in progress() reading cases\\P04N\\status.json while the worker was replacing it (Windows sharing violation race). P04N worker kept running and finished PASS_TARGET at 12:18:20 JST; its status.json lacks runner timing fields (runner_wall_seconds etc.) because the runner was dead.",
+    "change":  "progress() now reads status.json via _read_json_retry (20 tries x 0.25 s on PermissionError/JSONDecodeError). No change to worker, solver, settings, or timeouts.",
+    "old_runner_backup":  "scripts\\runner_rev2.py.bak",
+    "new_runner_sha256":  "8465ee651fbbf08c2a8d36ba5ea950c79d818609b410913b5afe9079c00eb5eb",
+    "restart":  "RPFEM_G1R20_Fix4_bench26 restarted; batch() skips finished cases and resumes at P05A; overall deadline unchanged (batch_start.json)"
+}

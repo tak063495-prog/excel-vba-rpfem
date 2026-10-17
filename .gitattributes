@@ -45,3 +45,6 @@ versions/G1R20_Fix4/** -text
 
 validation/issue29_p06n_python_evidence_20261017/** -text
 validation/issue28_d05a_python_analysis_20261017/** -text
+
+# G1R20 Fix4 26-case bench: keep runner logs and result JSON bytes exactly.
+validation/G1R20_Fix4_bench26_20261017/** -text
