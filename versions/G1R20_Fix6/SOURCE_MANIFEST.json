@@ -337,10 +337,19 @@
   "workbook_module_count": 1,
   "runtime_dll": "rpfem_native_x64.dll",
   "runtime_dll_sha256": "66da1a21be43cd2b3a3bfbaa9d13aad5fb1fd1960e1bf2507cc4e1cfa9ebe70b",
-  "assets": {},
+  "assets": {
+    "delivery/RPFEM_20261018_G1R20_Fix6.xlsm": {
+      "bytes": 2179636,
+      "sha256": "bd1eee7cad7534883aa8e14cd1530a5cd18cdc76d8ddfe8ff1fdb8b605f8289e"
+    },
+    "delivery/rpfem_native_x64.dll": {
+      "bytes": 1521664,
+      "sha256": "66da1a21be43cd2b3a3bfbaa9d13aad5fb1fd1960e1bf2507cc4e1cfa9ebe70b"
+    }
+  },
   "p06_native_complete_claimed": false,
-  "scope": "G1R20 Fix6 candidate: HSD time limit tested after OPTIMAL check; endgame grace (HSD_ENDGAME_GRACE=0.5) - #29/P10A",
-  "validation_warning": "Candidate; Winmax2 P10A/D05A/P02A/P05A only; not published",
+  "scope": "G1R20 Fix6: HSD time limit checked after OPTIMAL/certificate test; endgame grace HSD_ENDGAME_GRACE=0.5 (#29 P10A)",
+  "validation_warning": "Operation test on Winmax2 (P10A, D05A, P02A, P05A) only; P06N/P06A not addressed, pending on another PC",
   "source_is_authoritative": "src/vba and src/workbook; UTF8 and CP932 decoded text exactly equal; all release bytes preserved by .gitattributes",
   "source_bundle_sha256": "4935dc5e490a941818e0785af8291b97921262ac59f208092d0b046d5102ae61"
 }
