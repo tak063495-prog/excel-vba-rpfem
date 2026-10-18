@@ -276,8 +276,8 @@
       "cp932_sha256": "0d46f9bfaecc310302fd48c1ba07ce1316e0e20eb70abf06f0cc2d150682ecbd"
     },
     "RPX_Robust.bas": {
-      "utf8_sha256": "0822aa96f9e62c37a7a7f57017d328f6f5c4502a9f9188190d92319ebcd299c5",
-      "cp932_sha256": "0822aa96f9e62c37a7a7f57017d328f6f5c4502a9f9188190d92319ebcd299c5"
+      "utf8_sha256": "c94b8ceaac282201b9f8e031f91510a2afb26448b65d32cf916d0823ae1b17be",
+      "cp932_sha256": "c94b8ceaac282201b9f8e031f91510a2afb26448b65d32cf916d0823ae1b17be"
     },
     "RPX_Schur.bas": {
       "utf8_sha256": "18c7814f8036e3287ebd5d8cad3b004fd45139880c0ba528905fe60aefe03370",
@@ -342,8 +342,8 @@
   "runtime_dll_sha256": "66da1a21be43cd2b3a3bfbaa9d13aad5fb1fd1960e1bf2507cc4e1cfa9ebe70b",
   "assets": {},
   "p06_native_complete_claimed": false,
-  "scope": "G1R20 Fix7 candidate (P10A speed): own-q8 reuse diagnostics, upper conic skip after failure, hopeless accuracy-round skip, final-stage reuse; rc2: own-q8 upper reuse uses the production upper acceptance tolerance (0.999999+1e-8)",
+  "scope": "G1R20 Fix7 candidate (P10A speed): own-q8 reuse diagnostics, upper conic skip after failure, hopeless accuracy-round skip, final-stage reuse; rc2: own-q8 upper reuse uses the production upper acceptance tolerance (0.999999+1e-8); rc2: upper conic skipped only after >=2 upper conic failures and no upper conic success",
   "validation_warning": "Candidate; Winmax2 P10A/D05A/P02A/P05A only; not published",
   "source_is_authoritative": "src/vba and src/workbook; UTF8 and CP932 decoded text exactly equal; all release bytes preserved by .gitattributes",
-  "source_bundle_sha256": "1599ed11475e6f2ed50012122756f90fd6dca71f3f38244c776ae9170939391e"
+  "source_bundle_sha256": "5b9a703fa8bfd74c08386b73c3e8d8b2aa02f33cd6de880c45d6c4ce459ad1f3"
 }

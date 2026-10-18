@@ -6,12 +6,14 @@ Public RPX_RobustEngine As String
 ' G1R20 Fix7 (candidate): after the ordinary conic solver has failed on an upper
 ' program of this input/policy, later upper programs go straight to the same
 ' HSD rescue (UPPER_CONIC_SKIP=1). The rescue result is audited exactly as before.
+' rc2: only after at least two upper conic failures and no upper conic success in
+' this input/policy (P05A: conic succeeds at most Fs points; skipping cost time).
 Public RPX_LastUpperHsdSeconds As Double, RPX_LastUpperHsdElements As Long
-Private upperConicFailures As Long, upperConicEpoch As Long, upperConicPolicy As String
+Private upperConicFailures As Long, upperConicSuccesses As Long, upperConicEpoch As Long, upperConicPolicy As String
 Private rejectedPoint As String, rejectedNumber As Long, rejectedSource As String, rejectedText As String
 Public Function RPX_UpperConicSkipActive() As Boolean
     If CLng(RPX_Setting("UPPER_CONIC_SKIP", 1)) <> 1 Then Exit Function
-    If upperConicFailures < 1 Then Exit Function
+    If upperConicFailures < 2 Or upperConicSuccesses > 0 Then Exit Function
     If upperConicEpoch <> RPX_InputEpoch Or upperConicPolicy <> RPX_AnalysisPolicy() Then Exit Function
     RPX_UpperConicSkipActive = True
 End Function
@@ -78,6 +80,10 @@ Public Sub RPX_OptimizeBound(ByVal prepared As Boolean, ByVal mode As String, By
     On Error GoTo LegacyFailed
     RPX_TestHook "robust_legacy"
     RPX_Optimize prepared, mode, True
+    If mode = "upper" Then
+        If upperConicEpoch <> RPX_InputEpoch Or upperConicPolicy <> RPX_AnalysisPolicy() Then upperConicFailures = 0: upperConicSuccesses = 0
+        upperConicSuccesses = upperConicSuccesses + 1: upperConicEpoch = RPX_InputEpoch: upperConicPolicy = RPX_AnalysisPolicy()
+    End If
     Exit Sub
 LegacyFailed:
     errorNumber = err.number: errorSource = err.source: errorText = err.description: errorLine = Erl
@@ -87,7 +93,7 @@ LegacyRejected:
     If Not RPX_RobustEligible(errorNumber, errorText) Then err.Raise errorNumber, errorSource, errorText
     RPX_ErrorEvidence errorNumber, errorSource, errorText, errorLine, "robust_legacy"
     If mode = "upper" Then
-        If upperConicEpoch <> RPX_InputEpoch Or upperConicPolicy <> RPX_AnalysisPolicy() Then upperConicFailures = 0
+        If upperConicEpoch <> RPX_InputEpoch Or upperConicPolicy <> RPX_AnalysisPolicy() Then upperConicFailures = 0: upperConicSuccesses = 0
         upperConicFailures = upperConicFailures + 1: upperConicEpoch = RPX_InputEpoch: upperConicPolicy = RPX_AnalysisPolicy()
     End If
 RescueStart:
