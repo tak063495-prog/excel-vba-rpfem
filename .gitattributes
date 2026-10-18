@@ -52,3 +52,4 @@ validation/G1R20_Fix4_bench26_20261017/** -text
 # G1R20 Fix5 (#28/#29): keep CRLF import modules and delivery bytes exactly.
 versions/G1R20_Fix5/** -text
 validation/G1R20_Fix5_optest_20261018/** -text
+validation/G1R20_Fix4_control_P10A_20261018/** -text
