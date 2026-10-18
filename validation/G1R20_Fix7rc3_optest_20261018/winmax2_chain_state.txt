@@ -1,0 +1,7 @@
+2026-10-18T19:48:12.5804868+09:00 rc3 chain started; waiting for rc2 ALL_FINISHED
+2026-10-18T20:27:12.8853099+09:00 rc2 finished; extracting rc3 kit
+2026-10-18T20:27:35.2641840+09:00 rc3 build: {"state": "PASS", "output": "C:\\Users\\link_\\rpfem_bench\\fix7rc3_build", "workbook_sha256": "e2e1914483b9d78aaf7536b8b81295ab44c47b8d0e6a6c8b4a21126f13e05880", "owned_excel_exited": true}
+2026-10-18T20:27:36.4589677+09:00 rc3 prepare: PASS G1R20 Fix7 source/DLL hashes, preset table, inputs
+2026-10-18T20:27:46.7907338+09:00 rc3 template: PREPARED TEMPLATE PASS
+2026-10-18T20:27:46.7973237+09:00 rc3 batch started
+2026-10-18T21:20:52.6828720+09:00 rc3 batch finished

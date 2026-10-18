@@ -1,0 +1,103 @@
+{
+  "source_commit": "66eaed8227731a8b526fb189386a080e09ec4683",
+  "source": "versions\\G1R20_Fix7\\delivery\\RPFEM_20261018_G1R20_Fix7.xlsm",
+  "source_sha256": "e2e1914483b9d78aaf7536b8b81295ab44c47b8d0e6a6c8b4a21126f13e05880",
+  "dll_sha256": "66da1a21be43cd2b3a3bfbaa9d13aad5fb1fd1960e1bf2507cc4e1cfa9ebe70b",
+  "preset_macro": "RPX_Speed2pctPreset",
+  "preset_expected": {
+    "MODE": "Fs",
+    "TARGET": 1000,
+    "QUADRATURE": 8,
+    "FS_TOL": 0.0001,
+    "GAP": 0.02,
+    "ADAPT": 1,
+    "CYCLES": 8,
+    "RAW_LOWER_AUDIT": 1,
+    "C0_AUTO": 0,
+    "ADAPT_ACCURACY_CAP": 24000,
+    "ADAPT_ACCURACY_ROUNDS": 8,
+    "ADAPT_LOWER_TARGET": 4000,
+    "ADAPT_LOWER_FAN_ROUNDS": 1,
+    "ADAPT_CERT_QUADRATURE": 8,
+    "ACCURACY_DLL_RECOVERY": 1,
+    "ACCURACY_DLL_SECONDS": 120,
+    "ACCURACY_DLL_DUAL_SECONDS": 20,
+    "ACCURACY_DLL_CONE_SCALING": 1,
+    "HSD_SOLVE_SECONDS": 300,
+    "DIRECT_DLL": 1,
+    "ADAPT_PRECISION_FROM_START": 1,
+    "ADAPT_C0_WEDGE_AUTO": 1,
+    "ADAPT_BALANCED_LOWER_TARGET": 0,
+    "ADAPT_UPPER_FLOW_PASSES": 0,
+    "FS_TERMINAL_SCHEDULE": 0,
+    "ACCURACY_DLL_UPPER_RECENTER": 0,
+    "ACCURACY_DLL_DUAL_LINEAR_REPAIR": 0,
+    "ACCURACY_DLL_DUAL_REGULARIZATION": 0,
+    "DIRECT_DLL_SECONDS": 5
+  },
+  "case_keys_from_input": [
+    "GRAVITY",
+    "TEST_INJECTION",
+    "HSD_CAPTURE",
+    "DIAGNOSTIC_MODE",
+    "ANALYSIS_POLICY",
+    "SEISMIC_KH",
+    "SEISMIC_DIR"
+  ],
+  "run_order": [
+    "P10A",
+    "D05A",
+    "P02A",
+    "P05A"
+  ],
+  "cases": [
+    {
+      "case": "P10A",
+      "input_sha256": "706553eb9d63a7f3adb67fa4c73d3c1a6a56dee86b66dd2f67b31edd9509e3dc",
+      "pore_pressure": false,
+      "area": 900.0,
+      "weight": 18000.0,
+      "best_prior_seconds": 990,
+      "timeout_seconds": 10800,
+      "timeout_basis": "Fix5 operation test on Winmax2, generous fixed limit",
+      "timeout_revision": "fix7rc3_optest_1"
+    },
+    {
+      "case": "D05A",
+      "input_sha256": "b9c7b2b34a74889f0274f220b1895405acd68409f8df3b13571d5f62f27fa7e2",
+      "pore_pressure": false,
+      "area": 158000000.0,
+      "weight": 3160000.0,
+      "best_prior_seconds": 364,
+      "timeout_seconds": 3600,
+      "timeout_basis": "Fix5 operation test on Winmax2, generous fixed limit",
+      "timeout_revision": "fix7rc3_optest_1"
+    },
+    {
+      "case": "P02A",
+      "input_sha256": "9587c4b45eae1c22d9e7190ee1470f5ad2e38145305f6c374894f91240ae7e1b",
+      "pore_pressure": false,
+      "area": 158.0,
+      "weight": 3160.0,
+      "best_prior_seconds": 334,
+      "timeout_seconds": 3600,
+      "timeout_basis": "Fix5 operation test on Winmax2, generous fixed limit",
+      "timeout_revision": "fix7rc3_optest_1"
+    },
+    {
+      "case": "P05A",
+      "input_sha256": "0a63a1df97061275ed31d44eae841cc248828c34caff610da24e14731e607a83",
+      "pore_pressure": false,
+      "area": 475.0,
+      "weight": 9450.0,
+      "best_prior_seconds": 284,
+      "timeout_seconds": 7200,
+      "timeout_basis": "Fix5 operation test on Winmax2, generous fixed limit",
+      "timeout_revision": "fix7rc3_optest_1"
+    }
+  ],
+  "overall_limit_seconds": 28800,
+  "stop_grace_seconds": 600,
+  "inputs": "docs/benchmarks/G1R17_native26_20261013/data/inputs (same geometry/material/water as previous 26-case runs); preset-owned settings replaced by product preset",
+  "scope": "G1R20 Fix7 candidate operation test (2% standard preset, DLL) on Winmax2: D05A, P02A, P05A, P10A"
+}

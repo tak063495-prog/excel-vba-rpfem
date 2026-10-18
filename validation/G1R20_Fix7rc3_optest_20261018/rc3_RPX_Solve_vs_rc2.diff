@@ -1,0 +1,30 @@
+diff --git a/versions/G1R20_Fix7/src/vba/RPX_Solve.bas b/versions/G1R20_Fix7/src/vba/RPX_Solve.bas
+index 04857bb..48caec4 100644
+--- a/versions/G1R20_Fix7/src/vba/RPX_Solve.bas
++++ b/versions/G1R20_Fix7/src/vba/RPX_Solve.bas
+@@ -1787,8 +1787,11 @@ Private Sub BudgetCheck(ByVal solveStarted As Double, ByVal solveBudget As Doubl
+     RPX_DiagEvent "hsd_budget", "classification=NUMERICAL_UNKNOWN;seconds=" & elapsed & ";limit=" & solveBudget & ";iteration=" & XIteration & ";endgame=" & endgame
+     err.Raise 5, "RPX_Solve", "HSD_SOLVE_BUDGET_EXCEEDED"
+ End Sub
+-' G1R20 Fix7 (candidate): the ordinary HSD time limit for a mesh of the given
+-' size including the endgame grace; used only to predict a hopeless round.
++' G1R20 Fix7 (candidate): predicted-time ceiling for an accuracy round, used only
++' to stop a hopeless round. The endgame grace covers only the last iterations, so
++' a solve must be near convergence by the ordinary limit: ceiling = limit x
++' ADAPT_ACCURACY_ESTIMATE_FACTOR (rc3 default 1.2; rc1/rc2 used 1+grace = 1.5,
++' which let P10A run a 1109-element round that cannot finish).
+ Public Function RPX_HsdOrdinaryLimit(ByVal elements As Long) As Double
+     Dim budget As Double, perThousand As Double, grace As Double
+     budget = CDbl(RPX_Setting("HSD_SOLVE_SECONDS", 120))
+@@ -1797,8 +1800,9 @@ Public Function RPX_HsdOrdinaryLimit(ByVal elements As Long) As Double
+         If perThousand * elements / 1000# > budget Then budget = perThousand * elements / 1000#
+         If budget > 3600# Then budget = 3600#
+     End If
+-    grace = CDbl(RPX_Setting("HSD_ENDGAME_GRACE", 0.5))
+-    RPX_HsdOrdinaryLimit = budget * (1# + grace)
++    grace = CDbl(RPX_Setting("ADAPT_ACCURACY_ESTIMATE_FACTOR", 1.2))
++    If Not RPX_SchurFinite(grace) Or grace < 1# Or grace > 3# Then grace = 1.2
++    RPX_HsdOrdinaryLimit = budget * grace
+ End Function
+ Private Sub OptimizeHSDCore(ByVal prepared As Boolean, ByVal auditMode As String, Optional ByVal recoverySeconds As Double = 0#)
+     Dim i As Long, p As Long, j As Long, mu As Double, gap As Double, objective As Double, alpha As Double, mua As Double, sigma As Double, target As Double, correction As Double

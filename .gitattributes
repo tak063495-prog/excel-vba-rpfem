@@ -57,3 +57,9 @@ validation/G1R20_Fix4_control_P10A_20261018/** -text
 # G1R20 Fix6 candidate (#29 accuracy work)
 versions/G1R20_Fix6/** -text
 validation/G1R20_Fix6_*/** -text
+
+# G1R20 Fix7 candidate (P10A speed)
+versions/G1R20_Fix7/** -text
+validation/G1R20_Fix7_*/** -text
+validation/G1R20_Fix7rc2_*/** -text
+validation/G1R20_Fix7rc3_*/** -text

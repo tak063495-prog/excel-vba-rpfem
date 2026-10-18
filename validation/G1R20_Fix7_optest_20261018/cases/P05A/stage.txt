@@ -1,0 +1,1768 @@
+# triangulation 0/229 67933.11
+# zero stress fan eligibility 0 67933.29
+# zero stress fan eligibility 256 67933.33
+# zero stress fan eligibility 0 67933.58
+# zero stress fan eligibility 256 67933.62
+# upper F=1 67933.77
+# upper elements 0/389 67933.81
+# upper elements 256/389 67935.05
+# upper edges 0/617 67935.75
+# upper edges 512/617 67937.16
+# compile arrays 67937.48
+# ordering 5071 67937.61
+# ordering complete 67937.78
+# symbolic factorization 67937.85
+# symbolic complete 165822 67937.93
+# upper F=2 67939.23
+# upper elements 0/389 67939.28
+# upper elements 256/389 67940.56
+# upper edges 0/617 67941.27
+# upper edges 512/617 67942.73
+# compile arrays 67943.06
+# ordering complete 67943.18
+# symbolic factorization 67943.27
+# symbolic complete 165822 67943.33
+# upper F=1.5 67944.21
+# upper F=1.75 67945.44
+# upper elements 0/389 67945.48
+# upper elements 256/389 67946.74
+# upper edges 0/617 67947.41
+# upper edges 512/617 67948.85
+# compile arrays 67949.18
+# ordering complete 67949.31
+# symbolic factorization 67949.38
+# symbolic complete 165822 67949.45
+ 0 , 0 , 30.4085881038898 , 36756.2108303672 , 165822 
+ 1 , 334.815806306559 , 20.0022603619116 , 26861.6178353915 , 165822 
+ 2 , 510.832865492346 , 16.2268591113476 , 24336.2706412995 , 165822 
+ 3 , 751.526718226371 , 11.5766880428444 , 20033.0051288214 , 165822 
+ 4 , 1016.64464427689 , 9.15672706255638 , 17664.0255155247 , 165822 
+ 5 , 1599.12756478342 , 6.19022110952679 , 14397.0033580951 , 165822 
+ 6 , 2258.40473138765 , 2.13721783866894 , 6921.75631812534 , 165822 
+ 7 , 1841.9239388964 , 0.769961621567265 , 3214.21301340488 , 165822 
+ 8 , 1056.07763603453 , 0.219667145346259 , 1299.49110017518 , 165822 
+ 9 , 329.972544009582 , 0.01907451271206 , 336.592955445627 , 165822 
+ 10 , 8.67888742797459 , 4.22602419821653E-04 , 8.15576427700344 , 165822 
+ 11 , 1.86093345128267 , 6.49351037836227E-05 , 1.28435138402386 , 165822 
+ 12 , 1.31524144816763 , 2.52714380192254E-05 , 0.711543085017461 , 165822 
+ 13 , 1.01606423575579 , 8.01617683820685E-06 , 0.397215400344852 , 165822 
+ 14 , 0.844577975403504 , 2.36642251998098E-06 , 0.216783611888323 , 165822 
+ 15 , 0.739028228806112 , 6.45479731373189E-07 , 0.105150340835992 , 165822 
+ 16 , 0.706396483873881 , 1.8222004069635E-07 , 6.99848258054248E-02 , 165822 
+ 17 , 0.678531578286108 , 1.23160798285599E-07 , 3.97118890777745E-02 , 165822 
+ 18 , 0.662296029650017 , 1.15931501479927E-07 , 2.18428710224508E-02 , 165822 
+ 19 , 0.653156920418946 , 1.14518754474169E-07 , 1.16515849894429E-02 , 165822 
+ 20 , 0.64919461539014 , 1.17919798694983E-07 , 7.17059314969597E-03 , 165822 
+ 21 , 0.646810623662202 , 1.80204404392286E-07 , 4.42392285152033E-03 , 165822 
+ 22 , 0.6448393053969 , 2.33377830821599E-07 , 2.09327069298937E-03 , 165822 
+ 23 , 0.644277129478974 , 1.72729333718498E-07 , 1.42378554821368E-03 , 165822 
+ 24 , 0.643570575642669 , 1.35951727443863E-07 , 5.66847627485025E-04 , 165822 
+ 25 , 0.643331658350255 , 1.43011848542657E-07 , 2.68873791143355E-04 , 165822 
+ 26 , 0.643237479811644 , 1.37454484724333E-07 , 1.49875187455847E-04 , 165822 
+ 27 , 0.643189307308054 , 1.26849004375641E-07 , 8.78887371423222E-05 , 165822 
+ 28 , 0.643153698466119 , 8.58478332260396E-08 , 4.17625318842188E-05 , 165822 
+ 29 , 0.643137611865291 , 5.8490744478806E-08 , 2.05631945075333E-05 , 165822 
+ 30 , 0.643130639579859 , 4.62117033321244E-08 , 1.1324014909682E-05 , 165822 
+ 31 , 0.643127203121506 , 4.19074350927191E-08 , 6.68532501841726E-06 , 165822 
+ 32 , 0.643124842327989 , 3.8627194911276E-08 , 3.51411378909065E-06 , 165822 
+ 33 , 0.643123572261286 , 3.5223710808641E-08 , 1.84411330116231E-06 , 165822 
+ 34 , 0.643122902204226 , 3.12529845851868E-08 , 1.00257407019018E-06 , 165822 
+ 35 , 0.643122534657969 , 2.87697726087774E-08 , 5.67961164527073E-07 , 165822 
+ 36 , 0.643122308904935 , 2.71203326931434E-08 , 2.90066086162153E-07 , 165822 
+ 37 , 0.643122191154397 , 2.71081147031918E-08 , 1.50176024343611E-07 , 165822 
+ 38 , 0.64312212781905 , 2.7087828049411E-08 , 7.69102181133395E-08 , 165822 
+ 39 , 0.643122093084504 , 2.67947900898637E-08 , 3.99457576705354E-08 , 165822 
+ 40 , 0.643122089636689 , 2.66334574133076E-08 , 3.4929138405863E-08 , 165822 
+ 41 , 0.643122102041952 , 2.61454812412401E-08 , 2.34072744188985E-08 , 165822 
+ 42 , 0.643122093546121 , 2.58503371122993E-08 , 1.81435072827486E-08 , 165822 
+ 43 , 0.643122093994633 , 2.57745469861575E-08 , 1.79596559836521E-08 , 165822 
+ 44 , 0.643122089052521 , 2.54468575164599E-08 , 1.50820433686978E-08 , 165822 
+ 45 , 0.643122085562654 , 2.51459895757748E-08 , 1.30060793437182E-08 , 165822 
+ 46 , 0.643122077173468 , 2.46358197624244E-08 , 7.18307814146777E-09 , 165822 
+ 47 , 0.643122073928519 , 2.43529842197641E-08 , 6.3900856449182E-09 , 165822 
+ 48 , 0.643122068639352 , 2.39024156040822E-08 , 5.19080147163812E-09 , 165822 
+ 49 , 0.643122066886856 , 2.37563076093022E-08 , 4.9818435762306E-09 , 165822 
+ 50 , 0.643122065605094 , 2.35626021424758E-08 , 4.75443398537215E-09 , 165822 
+ 51 , 0.643122067466209 , 2.26495957455895E-08 , 4.77134243831388E-09 , 165822 
+ 52 , 0.643122068347868 , 2.16776285875378E-08 , 4.77880062759928E-09 , 165822 
+ 53 , 0.643122067792627 , 2.19106494899679E-08 , 4.78074425310904E-09 , 165822 
+ 54 , 0.643122067509101 , 2.19194120128435E-08 , 4.78229427984435E-09 , 165822 
+ 55 , 0.643122063347237 , 2.20406422764824E-08 , 4.65317127968094E-09 , 165822 
+ 56 , 0.643122061075194 , 2.15773016632217E-08 , 4.41116774773369E-09 , 165822 
+ 57 , 0.643122059658831 , 2.13998703782389E-08 , 4.39992560822311E-09 , 165822 
+ 58 , 0.643122055135438 , 2.08601705057072E-08 , 4.47620841641888E-09 , 165822 
+ 59 , 0.643122050207582 , 2.03864800076354E-08 , 4.0535928926229E-09 , 165822 
+ 60 , 0.643122043472124 , 1.97705962724241E-08 , 3.36993970570571E-09 , 165822 
+ 61 , 0.643122043077197 , 1.97301552696E-08 , 3.36247906763378E-09 , 165822 
+ 62 , 0.643122040528048 , 1.94587475663211E-08 , 3.31276977524072E-09 , 165822 
+ 63 , 0.643122040196913 , 1.93519995247759E-08 , 3.2397816833159E-09 , 165822 
+ 64 , 0.643122040197584 , 1.93509480165013E-08 , 3.2394626410621E-09 , 165822 
+ 65 , 0.643122040331006 , 1.9225761561147E-08 , 3.25107079855659E-09 , 165822 
+ 66 , 0.643122040398387 , 1.91734947283513E-08 , 3.24052045771664E-09 , 165822 
+ 67 , 0.643122040457235 , 1.91346796259321E-08 , 3.24343865666524E-09 , 165822 
+ 68 , 0.643122040551873 , 1.90714213020223E-08 , 3.24954335809825E-09 , 165822 
+ 69 , 0.643122040796329 , 1.88927664768538E-08 , 3.26059566626999E-09 , 165822 
+ 70 , 0.643122040806926 , 1.8883214681678E-08 , 3.2615630207061E-09 , 165822 
+ 71 , 0.643122040807096 , 1.88830603058214E-08 , 3.26158049426075E-09 , 165822 
+# HSD 0 residual=3.0E+01 gap=1.1E+04 67953.5
+# HSD 1 residual=1.4E+00 gap=5.7E+01 67954.59
+# HSD 2 residual=3.7E-01 gap=1.1E+01 67955.22
+# HSD 3 residual=6.6E-02 gap=1.7E+00 67955.91
+# HSD 4 residual=1.5E-02 gap=4.1E-01 67956.5
+# HSD 5 residual=1.3E-02 gap=4.4E-01 67957.17
+# HSD 6 residual=1.1E-02 gap=4.5E-01 67957.85
+# HSD 7 residual=8.6E-03 gap=4.0E-01 67958.48
+# HSD 8 residual=6.0E-03 gap=3.0E-01 67959.16
+# HSD 9 residual=3.8E-03 gap=2.0E-01 67959.8
+# HSD 10 residual=2.5E-03 gap=1.4E-01 67960.48
+# HSD 11 residual=1.7E-03 gap=9.0E-02 67961.18
+# HSD 12 residual=8.4E-04 gap=4.6E-02 67961.81
+# HSD 13 residual=5.6E-04 gap=3.1E-02 67962.46
+# HSD 14 residual=4.4E-04 gap=2.4E-02 67963.15
+# HSD 15 residual=2.3E-04 gap=1.3E-02 67963.73
+# HSD 16 residual=1.1E-04 gap=6.1E-03 67964.43
+# HSD 17 residual=7.0E-05 gap=3.9E-03 67965.06
+# HSD 18 residual=5.5E-05 gap=3.1E-03 67965.7
+# HSD 19 residual=3.9E-05 gap=2.2E-03 67966.37
+# HSD 20 residual=2.5E-05 gap=1.4E-03 67967.02
+# HSD 21 residual=1.3E-05 gap=7.5E-04 67967.65
+# HSD 22 residual=1.0E-05 gap=5.7E-04 67968.27
+# HSD 23 residual=7.5E-06 gap=4.2E-04 67968.95
+# HSD 24 residual=4.4E-06 gap=2.5E-04 67969.63
+# HSD 25 residual=2.2E-06 gap=1.2E-04 67970.26
+# HSD 26 residual=1.6E-06 gap=9.3E-05 67970.91
+# HSD 27 residual=1.1E-06 gap=6.4E-05 67971.6
+# HSD 28 residual=7.2E-07 gap=4.1E-05 67972.26
+# HSD 29 residual=4.1E-07 gap=2.3E-05 67972.9
+# HSD 30 residual=2.2E-07 gap=1.3E-05 67973.53
+# HSD 31 residual=1.7E-07 gap=9.6E-06 67974.22
+# HSD 32 residual=1.1E-07 gap=6.5E-06 67974.88
+# HSD 33 residual=5.9E-08 gap=3.4E-06 67975.52
+# HSD 34 residual=3.2E-08 gap=1.8E-06 67976.21
+# HSD 35 residual=2.1E-08 gap=1.2E-06 67976.9
+# HSD 36 residual=1.2E-08 gap=6.8E-07 67977.57
+# HSD 37 residual=8.6E-09 gap=5.0E-07 67978.31
+# HSD 38 residual=3.9E-09 gap=2.4E-07 67979.01
+# HSD 39 residual=1.7E-09 gap=1.1E-07 67979.7
+# HSD 40 residual=7.5E-10 gap=5.2E-08 67980.45
+# HSD 41 residual=4.4E-10 gap=3.4E-08 67981.16
+# HSD 42 residual=1.7E-10 gap=1.6E-08 67981.9
+# upper F=1.625 67982.91
+# upper F=1.5625 67984.05
+# upper F=1.53125 67985.16
+# upper F=1.546875 67986.45
+# upper elements 0/389 67986.5
+# upper elements 256/389 67987.75
+# upper edges 0/617 67988.43
+# upper edges 512/617 67989.9
+# compile arrays 67990.23
+# ordering complete 67990.35
+# symbolic factorization 67990.41
+# symbolic complete 165822 67990.48
+# upper F=1.5390625 67991.55
+# upper F=1.53515625 67992.79
+# upper F=1.537109375 67994.98
+# upper elements 0/389 67995.02
+# upper elements 256/389 67996.29
+# upper edges 0/617 67996.96
+# upper edges 512/617 67998.41
+# compile arrays 67998.74
+# ordering complete 67998.86
+# symbolic factorization 67998.92
+# symbolic complete 165822 67999
+# upper F=1.5361328125 68000.3
+# upper F=1.53564453125 68001.46
+# upper F=1.535400390625 68002.74
+# upper F=1.5352783203125 68003.92
+# lower F=1 68005.25
+# compile arrays 68010.25
+# ordering 12847 68010.4
+# ordering complete 68010.69
+# symbolic factorization 68010.77
+# symbolic complete 248336 68010.86
+# lower F=2 68011.41
+# lower F=1.5 68012.13
+# compile arrays 68017.19
+# ordering complete 68017.33
+# symbolic factorization 68017.4
+# symbolic complete 248336 68017.48
+# lower F=1.25 68018.21
+# compile arrays 68023.28
+# ordering complete 68023.42
+# symbolic factorization 68023.49
+# symbolic complete 248336 68023.59
+# lower F=1.375 68024.2
+# lower F=1.4375 68024.79
+# lower F=1.46875 68025.34
+# lower F=1.453125 68026.09
+# compile arrays 68031.17
+# ordering complete 68031.33
+# symbolic factorization 68031.4
+# symbolic complete 248336 68031.49
+# lower F=1.4453125 68032.25
+# compile arrays 68037.27
+# ordering complete 68037.41
+# symbolic factorization 68037.48
+# symbolic complete 248336 68037.56
+# lower F=1.44921875 68038.15
+# lower F=1.451171875 68038.73
+# lower F=1.4501953125 68039.48
+# compile arrays 68044.52
+# ordering complete 68044.66
+# symbolic factorization 68044.73
+# symbolic complete 248336 68044.82
+# lower F=1.44970703125 68045.55
+# compile arrays 68050.58
+# ordering complete 68050.73
+# symbolic factorization 68050.81
+# symbolic complete 248336 68050.91
+# lower F=1.449951171875 68051.57
+# lower F=1.4498291015625 68052.3
+# compile arrays 68057.3
+# ordering complete 68057.45
+# symbolic factorization 68057.51
+# symbolic complete 248336 68057.59
+# zero stress fan eligibility 0 68059.5
+# zero stress fan eligibility 256 68059.55
+# triangulation 0/229 68060.55
+# zero stress fan eligibility 0 68060.76
+# zero stress fan eligibility 256 68060.8
+# zero stress fan eligibility 0 68060.95
+# zero stress fan eligibility 256 68061
+# zero stress fan eligibility 0 68061.16
+# zero stress fan eligibility 256 68061.2
+# zero stress fan eligibility 0 68061.36
+# zero stress fan eligibility 256 68061.4
+# zero stress fan eligibility 0 68061.55
+# zero stress fan eligibility 256 68061.6
+# zero stress fan eligibility 0 68061.74
+# zero stress fan eligibility 256 68061.79
+# zero stress fan eligibility 0 68061.95
+# zero stress fan eligibility 256 68061.99
+# zero stress fan eligibility 0 68062.15
+# zero stress fan eligibility 256 68062.19
+# zero stress fan eligibility 0 68062.34
+# zero stress fan eligibility 256 68062.38
+# zero stress fan eligibility 0 68062.66
+# zero stress fan eligibility 256 68062.7
+# upper F=1.38175048828125 68062.87
+# upper elements 0/389 68062.91
+# upper elements 256/389 68064.21
+# upper edges 0/617 68064.9
+# upper edges 512/617 68066.34
+# compile arrays 68066.7
+# ordering 5071 68066.81
+# ordering complete 68066.98
+# symbolic factorization 68067.05
+# symbolic complete 165045 68067.12
+# upper F=1.68880615234375 68068.75
+# upper elements 0/389 68068.8
+# upper elements 256/389 68070.08
+# upper edges 0/617 68070.77
+# upper edges 512/617 68072.26
+# compile arrays 68072.59
+# ordering complete 68072.72
+# symbolic factorization 68072.79
+# symbolic complete 165045 68072.88
+# HSD 0 residual=9.6E+01 gap=1.1E+04 68074.87
+# HSD 1 residual=1.6E+01 gap=4.2E+02 68076.01
+# HSD 2 residual=2.8E+00 gap=2.9E+01 68076.76
+# HSD 3 residual=5.3E-01 gap=4.0E+00 68077.44
+# HSD 4 residual=1.0E-01 gap=7.1E-01 68078.11
+# HSD 5 residual=5.5E-02 gap=4.2E-01 68078.71
+# HSD 6 residual=4.0E-02 gap=4.0E-01 68079.38
+# HSD 7 residual=3.1E-02 gap=3.7E-01 68079.97
+# HSD 8 residual=2.1E-02 gap=2.9E-01 68080.66
+# HSD 9 residual=1.3E-02 gap=2.0E-01 68081.34
+# HSD 10 residual=8.7E-03 gap=1.4E-01 68081.96
+# HSD 11 residual=4.9E-03 gap=7.7E-02 68082.63
+# HSD 12 residual=2.7E-03 gap=4.4E-02 68083.31
+# HSD 13 residual=1.5E-03 gap=2.4E-02 68083.91
+# HSD 14 residual=9.1E-04 gap=1.5E-02 68084.62
+# HSD 15 residual=4.3E-04 gap=6.9E-03 68085.2
+# HSD 16 residual=2.7E-04 gap=4.4E-03 68085.88
+# HSD 17 residual=1.9E-04 gap=3.1E-03 68086.54
+# HSD 18 residual=9.5E-05 gap=1.5E-03 68087.15
+# HSD 19 residual=6.8E-05 gap=1.1E-03 68087.81
+# HSD 20 residual=3.6E-05 gap=5.9E-04 68088.45
+# HSD 21 residual=1.8E-05 gap=3.0E-04 68089.07
+# HSD 22 residual=1.0E-05 gap=1.7E-04 68089.76
+# HSD 23 residual=4.8E-06 gap=7.8E-05 68090.35
+# HSD 24 residual=2.8E-06 gap=4.6E-05 68091.03
+# HSD 25 residual=1.4E-06 gap=2.2E-05 68091.68
+# HSD 26 residual=7.8E-07 gap=1.3E-05 68092.34
+# HSD 27 residual=3.8E-07 gap=6.3E-06 68093.05
+# HSD 28 residual=1.8E-07 gap=3.0E-06 68093.69
+# HSD 29 residual=1.2E-07 gap=2.0E-06 68094.35
+# HSD 30 residual=9.7E-08 gap=1.6E-06 68095.05
+# HSD 31 residual=6.2E-08 gap=1.1E-06 68095.72
+# HSD 32 residual=3.9E-08 gap=6.7E-07 68096.41
+# HSD 33 residual=2.8E-08 gap=4.8E-07 68097.13
+# HSD 34 residual=1.4E-08 gap=2.4E-07 68097.81
+# HSD 35 residual=6.5E-09 gap=1.2E-07 68098.52
+# HSD 36 residual=2.9E-09 gap=5.8E-08 68099.25
+# HSD 37 residual=1.7E-09 gap=3.8E-08 68099.94
+# HSD 38 residual=7.9E-10 gap=1.9E-08 68100.65
+# upper F=1.5352783203125 68101.65
+# HSD 0 residual=8.8E+01 gap=1.1E+04 68103.84
+# HSD 1 residual=1.6E+01 gap=4.7E+02 68104.98
+# HSD 2 residual=2.8E+00 gap=3.4E+01 68105.58
+# HSD 3 residual=5.6E-01 gap=4.7E+00 68106.28
+# HSD 4 residual=1.1E-01 gap=8.7E-01 68106.87
+# HSD 5 residual=5.7E-02 gap=4.8E-01 68107.54
+# HSD 6 residual=4.0E-02 gap=4.7E-01 68108.22
+# HSD 7 residual=3.3E-02 gap=4.8E-01 68108.83
+# HSD 8 residual=2.3E-02 gap=4.1E-01 68109.51
+# HSD 9 residual=1.5E-02 gap=3.0E-01 68110.13
+# HSD 10 residual=9.9E-03 gap=2.0E-01 68110.77
+# HSD 11 residual=5.7E-03 gap=1.2E-01 68111.46
+# HSD 12 residual=2.9E-03 gap=6.2E-02 68112.08
+# HSD 13 residual=1.6E-03 gap=3.5E-02 68112.76
+# HSD 14 residual=9.7E-04 gap=2.1E-02 68113.45
+# HSD 15 residual=5.1E-04 gap=1.1E-02 68114.04
+# HSD 16 residual=2.8E-04 gap=5.9E-03 68114.74
+# HSD 17 residual=1.7E-04 gap=3.6E-03 68115.38
+# HSD 18 residual=8.3E-05 gap=1.8E-03 68116.02
+# HSD 19 residual=5.4E-05 gap=1.1E-03 68116.69
+# HSD 20 residual=4.4E-05 gap=9.4E-04 68117.33
+# HSD 21 residual=2.4E-05 gap=5.1E-04 68117.97
+# HSD 22 residual=1.7E-05 gap=3.7E-04 68118.59
+# HSD 23 residual=1.4E-05 gap=3.0E-04 68119.23
+# HSD 24 residual=8.3E-06 gap=1.8E-04 68119.93
+# HSD 25 residual=4.4E-06 gap=9.3E-05 68120.56
+# HSD 26 residual=2.5E-06 gap=5.3E-05 68121.21
+# HSD 27 residual=1.3E-06 gap=2.8E-05 68121.86
+# HSD 28 residual=7.2E-07 gap=1.5E-05 68122.57
+# HSD 29 residual=4.2E-07 gap=9.1E-06 68123.23
+# HSD 30 residual=1.9E-07 gap=4.0E-06 68123.88
+# HSD 31 residual=9.1E-08 gap=2.0E-06 68124.59
+# HSD 32 residual=5.2E-08 gap=1.2E-06 68125.25
+# HSD 33 residual=2.9E-08 gap=6.6E-07 68125.92
+# HSD 34 residual=1.7E-08 gap=4.0E-07 68126.66
+# HSD 35 residual=7.4E-09 gap=1.9E-07 68127.35
+# HSD 36 residual=3.2E-09 gap=9.0E-08 68128.03
+# HSD 37 residual=1.3E-09 gap=4.5E-08 68128.78
+# HSD 38 residual=4.8E-10 gap=2.6E-08 68129.48
+# HSD 39 residual=2.0E-10 gap=1.4E-08 68130.2
+# upper F=1.45851440429687 68131.22
+# upper F=1.49689636230469 68133.02
+# upper elements 0/389 68133.08
+# upper elements 256/389 68134.38
+# upper edges 0/617 68135.08
+# upper edges 512/617 68136.52
+# compile arrays 68136.84
+# ordering complete 68136.98
+# symbolic factorization 68137.03
+# symbolic complete 165045 68137.1
+# upper F=1.47770538330078 68137.98
+# upper F=1.48730087280273 68139.74
+# upper elements 0/389 68139.79
+# upper elements 256/389 68141.07
+# upper edges 0/617 68141.77
+# upper edges 512/617 68143.24
+# compile arrays 68143.57
+# ordering complete 68143.7
+# symbolic factorization 68143.76
+# symbolic complete 165045 68143.84
+# upper F=1.49209861755371 68145.7
+# upper elements 0/389 68145.76
+# upper elements 256/389 68147.02
+# upper edges 0/617 68147.7
+# upper edges 512/617 68149.16
+# compile arrays 68149.48
+# ordering complete 68149.6
+# symbolic factorization 68149.66
+# symbolic complete 165045 68149.73
+# upper F=1.4944974899292 68151.52
+# upper elements 0/389 68151.58
+# upper elements 256/389 68152.89
+# upper edges 0/617 68153.59
+# upper edges 512/617 68155.06
+# compile arrays 68155.41
+# ordering complete 68155.53
+# symbolic factorization 68155.59
+# symbolic complete 165045 68155.67
+# upper F=1.49569692611694 68157.63
+# upper elements 0/389 68157.67
+# upper elements 256/389 68158.93
+# upper edges 0/617 68159.6
+# upper edges 512/617 68161.04
+# compile arrays 68161.36
+# ordering complete 68161.49
+# symbolic factorization 68161.56
+# symbolic complete 165045 68161.63
+# HSD 0 residual=8.6E+01 gap=1.1E+04 68165.52
+# HSD 1 residual=1.6E+01 gap=4.9E+02 68166.34
+# HSD 2 residual=2.8E+00 gap=3.6E+01 68167.38
+# HSD 3 residual=5.6E-01 gap=4.9E+00 68168.05
+# HSD 4 residual=1.2E-01 gap=9.1E-01 68168.73
+# HSD 5 residual=5.7E-02 gap=5.0E-01 68169.33
+# HSD 6 residual=4.0E-02 gap=5.0E-01 68169.99
+# HSD 7 residual=3.3E-02 gap=5.2E-01 68170.59
+# HSD 8 residual=2.4E-02 gap=4.5E-01 68171.27
+# HSD 9 residual=1.6E-02 gap=3.3E-01 68171.95
+# HSD 10 residual=1.0E-02 gap=2.3E-01 68172.56
+# HSD 11 residual=6.2E-03 gap=1.4E-01 68173.25
+# HSD 12 residual=3.1E-03 gap=7.1E-02 68173.92
+# HSD 13 residual=2.0E-03 gap=4.5E-02 68174.52
+# HSD 14 residual=9.9E-04 gap=2.3E-02 68175.22
+# HSD 15 residual=6.6E-04 gap=1.5E-02 68175.85
+# HSD 16 residual=3.2E-04 gap=7.3E-03 68176.51
+# HSD 17 residual=2.1E-04 gap=4.9E-03 68177.2
+# HSD 18 residual=1.2E-04 gap=2.7E-03 68177.84
+# HSD 19 residual=6.0E-05 gap=1.4E-03 68178.47
+# HSD 20 residual=3.9E-05 gap=9.0E-04 68179.14
+# HSD 21 residual=3.2E-05 gap=7.4E-04 68179.73
+# HSD 22 residual=1.4E-05 gap=3.2E-04 68180.42
+# HSD 23 residual=8.4E-06 gap=1.9E-04 68181.05
+# HSD 24 residual=6.2E-06 gap=1.4E-04 68181.69
+# HSD 25 residual=4.5E-06 gap=1.0E-04 68182.37
+# HSD 26 residual=2.1E-06 gap=5.0E-05 68183
+# HSD 27 residual=1.1E-06 gap=2.7E-05 68183.67
+# HSD 28 residual=8.5E-07 gap=2.0E-05 68184.37
+# HSD 29 residual=4.4E-07 gap=1.0E-05 68185.02
+# HSD 30 residual=2.1E-07 gap=5.1E-06 68185.67
+# HSD 31 residual=1.2E-07 gap=2.8E-06 68186.34
+# HSD 32 residual=5.6E-08 gap=1.4E-06 68187.05
+# HSD 33 residual=3.3E-08 gap=8.0E-07 68187.73
+# HSD 34 residual=1.4E-08 gap=3.7E-07 68188.42
+# HSD 35 residual=1.0E-08 gap=2.7E-07 68189.18
+# HSD 36 residual=4.2E-09 gap=1.3E-07 68189.88
+# HSD 37 residual=2.4E-09 gap=8.4E-08 68190.6
+# HSD 38 residual=1.0E-09 gap=4.2E-08 68191.29
+# HSD 39 residual=4.7E-10 gap=2.1E-08 68192.01
+# upper F=1.49509720802307 68193.03
+# upper F=1.49539706707001 68195.2
+# upper elements 0/389 68195.24
+# upper elements 256/389 68196.53
+# upper edges 0/617 68197.23
+# upper edges 512/617 68198.7
+# compile arrays 68199.05
+# ordering complete 68199.17
+# symbolic factorization 68199.23
+# symbolic complete 165045 68199.31
+# upper F=1.49554699659348 68201.54
+# upper elements 0/389 68201.59
+# upper elements 256/389 68202.98
+# upper edges 0/617 68203.68
+# upper edges 512/617 68205.17
+# compile arrays 68205.5
+# ordering complete 68205.63
+# symbolic factorization 68205.69
+# symbolic complete 165045 68205.77
+# upper F=1.49562196135521 68207.91
+# upper elements 0/389 68207.96
+# upper elements 256/389 68209.22
+# upper edges 0/617 68209.91
+# upper edges 512/617 68211.43
+# compile arrays 68211.77
+# ordering complete 68211.89
+# symbolic factorization 68211.95
+# symbolic complete 165045 68212.02
+# HSD 0 residual=8.6E+01 gap=1.1E+04 68216.05
+# HSD 1 residual=1.6E+01 gap=4.9E+02 68216.88
+# HSD 2 residual=2.8E+00 gap=3.6E+01 68217.91
+# HSD 3 residual=5.6E-01 gap=4.9E+00 68218.59
+# HSD 4 residual=1.2E-01 gap=9.1E-01 68219.27
+# HSD 5 residual=5.7E-02 gap=5.0E-01 68219.88
+# HSD 6 residual=4.0E-02 gap=5.0E-01 68220.56
+# HSD 7 residual=3.3E-02 gap=5.2E-01 68221.18
+# HSD 8 residual=2.4E-02 gap=4.5E-01 68221.81
+# HSD 9 residual=1.6E-02 gap=3.3E-01 68222.49
+# HSD 10 residual=1.0E-02 gap=2.3E-01 68223.12
+# HSD 11 residual=6.2E-03 gap=1.4E-01 68223.8
+# HSD 12 residual=3.1E-03 gap=7.1E-02 68224.43
+# HSD 13 residual=2.0E-03 gap=4.5E-02 68225.08
+# HSD 14 residual=9.9E-04 gap=2.3E-02 68225.79
+# HSD 15 residual=6.6E-04 gap=1.5E-02 68226.43
+# HSD 16 residual=3.2E-04 gap=7.3E-03 68227.09
+# HSD 17 residual=2.1E-04 gap=4.9E-03 68227.77
+# HSD 18 residual=1.2E-04 gap=2.7E-03 68228.41
+# HSD 19 residual=6.0E-05 gap=1.4E-03 68229.05
+# HSD 20 residual=3.9E-05 gap=9.0E-04 68229.69
+# HSD 21 residual=3.2E-05 gap=7.4E-04 68230.32
+# HSD 22 residual=1.4E-05 gap=3.2E-04 68231.02
+# HSD 23 residual=8.4E-06 gap=1.9E-04 68231.64
+# HSD 24 residual=6.2E-06 gap=1.4E-04 68232.28
+# HSD 25 residual=4.5E-06 gap=1.0E-04 68232.91
+# HSD 26 residual=2.1E-06 gap=5.0E-05 68233.59
+# HSD 27 residual=1.1E-06 gap=2.7E-05 68234.26
+# HSD 28 residual=8.5E-07 gap=2.0E-05 68234.9
+# HSD 29 residual=4.4E-07 gap=1.0E-05 68235.59
+# HSD 30 residual=2.2E-07 gap=5.1E-06 68236.27
+# HSD 31 residual=1.2E-07 gap=2.8E-06 68236.94
+# HSD 32 residual=5.6E-08 gap=1.3E-06 68237.64
+# HSD 33 residual=3.2E-08 gap=7.9E-07 68238.33
+# HSD 34 residual=1.4E-08 gap=3.7E-07 68239.01
+# HSD 35 residual=1.0E-08 gap=2.7E-07 68239.77
+# HSD 36 residual=4.2E-09 gap=1.3E-07 68240.45
+# HSD 37 residual=2.2E-09 gap=7.7E-08 68241.14
+# HSD 38 residual=9.7E-10 gap=3.9E-08 68241.88
+# HSD 39 residual=4.3E-10 gap=2.0E-08 68242.63
+# lower F=1.304736328125 68243.76
+# compile arrays 68248.8
+# ordering 12847 68248.95
+# ordering complete 68249.2
+# symbolic factorization 68249.26
+# symbolic complete 290995 68249.35
+# lower F=1.594677734375 68250.07
+# lower F=1.44970703125 68250.86
+# compile arrays 68255.91
+# ordering complete 68256.06
+# symbolic factorization 68256.14
+# symbolic complete 290995 68256.23
+# lower F=1.5221923828125 68257.01
+# lower F=1.48594970703125 68257.9
+# compile arrays 68262.84
+# ordering complete 68263
+# symbolic factorization 68263.06
+# symbolic complete 290995 68263.16
+# lower F=1.46782836914063 68264.11
+# compile arrays 68269.18
+# ordering complete 68269.32
+# symbolic factorization 68269.41
+# symbolic complete 290995 68269.51
+# lower F=1.45876770019531 68270.37
+# compile arrays 68275.47
+# ordering complete 68275.62
+# symbolic factorization 68275.7
+# symbolic complete 290995 68275.8
+# lower F=1.46329803466797 68276.54
+ 0 , 0 , 1 , 2334 , 290995 
+ 1 ,-6.26416897704684E-02 , 0.327152492210401 , 1011.95088734975 , 290995 
+ 2 ,-9.30810531529577E-02 , 3.68223856142416E-02 , 138.119477471371 , 290995 
+ 3 ,-0.101855840165596 , 1.25290157073235E-03 , 4.77328943084409 , 290995 
+ 4 ,-0.156324326894293 , 2.97564018028972E-04 , 1.09594079378855 , 290995 
+ 5 ,-0.514360908784846 , 1.69970153350199E-04 , 0.709168794454534 , 290995 
+ 6 ,-0.834527632516363 , 1.14387341271768E-04 , 0.645962519996279 , 290995 
+ 7 ,-0.894711078038263 , 6.22653249564692E-05 , 0.53415407395363 , 290995 
+ 8 ,-0.970701752548106 , 1.5066104287986E-05 , 0.215523300907999 , 290995 
+ 9 ,-0.989796323714621 , 4.0424825243965E-06 , 7.96300100506278E-02 , 290995 
+ 10 ,-0.992336099040185 , 1.73769754844896E-06 , 5.42651849333422E-02 , 290995 
+ 11 ,-0.997037182517212 , 9.6021878469188E-07 , 2.15212527575374E-02 , 290995 
+ 12 ,-0.998774301684122 , 7.20961283563895E-07 , 9.44870604881952E-03 , 290995 
+ 13 ,-0.999318455691984 , 5.09786587560063E-07 , 5.86430805341902E-03 , 290995 
+ 14 ,-0.999820170135453 , 5.17569718738817E-07 , 2.41731794860922E-03 , 290995 
+ 15 ,-0.999957955357315 , 4.51372684122583E-07 , 1.49141505760319E-03 , 290995 
+ 16 ,-1.00011423462838 , 2.6934319630349E-07 , 4.31451228929189E-04 , 290995 
+ 17 ,-1.00015141586517 , 2.69647851042676E-07 , 1.84227235826679E-04 , 290995 
+ 18 ,-1.0001697920812 , 2.52667376093194E-07 , 6.66921157401105E-05 , 290995 
+ 19 ,-1.00017583678668 , 2.20393252155264E-07 , 3.11015141955959E-05 , 290995 
+ 20 ,-1.00017944945048 , 2.12047477932128E-07 , 1.03399466420675E-05 , 290995 
+ 21 ,-1.00018042407057 , 2.03644742045202E-07 , 5.90549154877991E-06 , 290995 
+ 22 ,-1.00018153697977 , 1.91987708682107E-07 , 1.82508478379942E-06 , 290995 
+ 23 ,-1.00018172251466 , 1.85498111875343E-07 , 1.4022912822716E-06 , 290995 
+ 24 ,-1.00018163625257 , 7.91045073367753E-08 , 1.49715506905692E-06 , 290995 
+ 25 ,-1.00018176854158 , 6.53328597809546E-08 , 1.20689785213246E-06 , 290995 
+ 26 ,-1.00018187469898 , 6.62874301118906E-08 , 1.10641165975158E-06 , 290995 
+ 27 ,-1.00018194533413 , 6.55051687049358E-08 , 9.51882152288567E-07 , 290995 
+# lower F=1.4655632019043 68279.14
+# lower F=1.46443061828613 68280.68
+# compile arrays 68285.74
+# ordering complete 68285.91
+# symbolic factorization 68285.98
+# symbolic complete 290995 68286.07
+# lower F=1.46386432647705 68286.91
+# compile arrays 68291.9
+# ordering complete 68292.05
+# symbolic factorization 68292.1
+# symbolic complete 290995 68292.2
+# lower F=1.46358118057251 68293
+# compile arrays 68298.07
+# ordering complete 68298.23
+# symbolic factorization 68298.3
+# symbolic complete 290995 68298.41
+# lower F=1.46343960762024 68299.2
+# compile arrays 68304.2
+# ordering complete 68304.35
+# symbolic factorization 68304.41
+# symbolic complete 290995 68304.51
+# zero stress fan eligibility 0 68306.59
+# zero stress fan eligibility 256 68306.63
+# triangulation 0/229 68306.7
+# zero stress fan eligibility 0 68306.92
+# zero stress fan eligibility 256 68306.96
+# zero stress fan eligibility 0 68307.11
+# zero stress fan eligibility 256 68307.15
+# zero stress fan eligibility 0 68307.3
+# zero stress fan eligibility 256 68307.34
+# zero stress fan eligibility 0 68307.48
+# zero stress fan eligibility 256 68307.52
+# zero stress fan eligibility 0 68307.68
+# zero stress fan eligibility 256 68307.72
+# zero stress fan eligibility 0 68307.86
+# zero stress fan eligibility 256 68307.91
+# zero stress fan eligibility 0 68308.05
+# zero stress fan eligibility 256 68308.08
+# zero stress fan eligibility 0 68308.23
+# zero stress fan eligibility 256 68308.27
+# zero stress fan eligibility 0 68308.41
+# zero stress fan eligibility 256 68308.45
+# zero stress fan eligibility 0 68308.72
+# zero stress fan eligibility 256 68308.76
+# upper F=1.34605976521969 68308.91
+# upper elements 0/389 68308.96
+# upper elements 256/389 68310.22
+# upper edges 0/617 68310.91
+# upper edges 512/617 68312.34
+# compile arrays 68312.69
+# ordering 5071 68312.81
+# ordering complete 68312.97
+# symbolic factorization 68313.03
+# symbolic complete 149068 68313.1
+# upper F=1.64518415749073 68314.9
+# upper elements 0/389 68314.95
+# upper elements 256/389 68316.24
+# upper edges 0/617 68316.95
+# upper edges 512/617 68318.41
+# compile arrays 68318.73
+# ordering complete 68318.88
+# symbolic factorization 68318.93
+# symbolic complete 149068 68319
+# HSD 0 residual=1.3E+02 gap=1.1E+04 68321.1
+# HSD 1 residual=1.4E+01 gap=2.3E+02 68321.92
+# HSD 2 residual=2.4E+00 gap=1.6E+01 68322.73
+# HSD 3 residual=3.6E-01 gap=1.7E+00 68323.39
+# HSD 4 residual=1.3E-01 gap=6.2E-01 68323.98
+# HSD 5 residual=9.1E-02 gap=4.8E-01 68324.66
+# HSD 6 residual=8.0E-02 gap=4.7E-01 68325.32
+# HSD 7 residual=6.7E-02 gap=4.6E-01 68325.97
+# HSD 8 residual=5.2E-02 gap=4.3E-01 68326.65
+# HSD 9 residual=4.7E-02 gap=4.2E-01 68327.28
+# HSD 10 residual=3.6E-02 gap=3.7E-01 68327.95
+# HSD 11 residual=2.7E-02 gap=3.0E-01 68328.59
+# HSD 12 residual=1.6E-02 gap=2.0E-01 68329.23
+# HSD 13 residual=1.1E-02 gap=1.4E-01 68329.91
+# HSD 14 residual=7.9E-03 gap=1.0E-01 68330.55
+# HSD 15 residual=5.0E-03 gap=6.7E-02 68331.18
+# HSD 16 residual=4.5E-03 gap=6.1E-02 68331.8
+# HSD 17 residual=3.3E-03 gap=4.5E-02 68332.48
+# HSD 18 residual=2.0E-03 gap=2.8E-02 68333.11
+# HSD 19 residual=1.5E-03 gap=2.1E-02 68333.76
+# HSD 20 residual=8.7E-04 gap=1.2E-02 68334.39
+# HSD 21 residual=6.6E-04 gap=9.7E-03 68335.02
+# HSD 22 residual=4.9E-04 gap=7.2E-03 68335.71
+# HSD 23 residual=3.9E-04 gap=5.8E-03 68336.39
+# HSD 24 residual=3.0E-04 gap=4.5E-03 68337.03
+# HSD 25 residual=2.5E-04 gap=3.8E-03 68337.73
+# HSD 26 residual=2.1E-04 gap=3.4E-03 68338.37
+# HSD 27 residual=1.9E-04 gap=3.0E-03 68339.03
+# HSD 28 residual=1.7E-04 gap=2.7E-03 68339.71
+# HSD 29 residual=1.2E-04 gap=2.0E-03 68340.3
+# HSD 30 residual=1.0E-04 gap=1.7E-03 68340.98
+# HSD 31 residual=8.0E-05 gap=1.3E-03 68341.68
+# HSD 32 residual=6.6E-05 gap=1.1E-03 68342.27
+# HSD 33 residual=5.5E-05 gap=9.5E-04 68342.95
+# HSD 34 residual=5.0E-05 gap=8.6E-04 68343.53
+# HSD 35 residual=4.5E-05 gap=7.8E-04 68344.23
+# HSD 36 residual=3.6E-05 gap=6.3E-04 68344.91
+# HSD 37 residual=2.6E-05 gap=4.8E-04 68345.5
+# HSD 38 residual=2.0E-05 gap=3.7E-04 68346.18
+# HSD 39 residual=1.5E-05 gap=2.7E-04 68346.81
+# HSD 40 residual=1.1E-05 gap=2.1E-04 68347.48
+# HSD 41 residual=1.0E-05 gap=1.9E-04 68348.17
+# HSD 42 residual=7.3E-06 gap=1.4E-04 68348.77
+# HSD 43 residual=6.7E-06 gap=1.3E-04 68349.45
+# HSD 44 residual=5.3E-06 gap=1.0E-04 68350.16
+# HSD 45 residual=4.8E-06 gap=9.7E-05 68350.74
+# HSD 46 residual=3.8E-06 gap=7.8E-05 68351.42
+# HSD 47 residual=3.1E-06 gap=6.4E-05 68352.05
+# HSD 48 residual=2.5E-06 gap=5.3E-05 68352.71
+# HSD 49 residual=1.4E-06 gap=3.2E-05 68353.38
+# HSD 50 residual=9.8E-07 gap=2.2E-05 68354.02
+# HSD 51 residual=7.5E-07 gap=1.8E-05 68354.66
+# HSD 52 residual=5.3E-07 gap=1.3E-05 68355.38
+# HSD 53 residual=3.1E-07 gap=8.5E-06 68355.98
+# HSD 54 residual=2.3E-07 gap=6.8E-06 68356.7
+# HSD 55 residual=1.9E-07 gap=5.8E-06 68357.35
+# HSD 56 residual=1.6E-07 gap=5.2E-06 68358.02
+# HSD 57 residual=1.1E-07 gap=3.9E-06 68358.79
+# HSD 58 residual=6.2E-08 gap=2.8E-06 68359.45
+# HSD 59 residual=3.1E-08 gap=1.8E-06 68360.2
+# HSD 60 residual=1.4E-08 gap=9.7E-07 68360.9
+# HSD 61 residual=7.1E-09 gap=6.4E-07 68361.62
+# HSD 62 residual=2.4E-09 gap=3.5E-07 68362.36
+# HSD 63 residual=1.7E-09 gap=2.6E-07 68363.05
+# HSD 64 residual=1.1E-09 gap=1.8E-07 68363.75
+# HSD 65 residual=6.9E-10 gap=1.3E-07 68364.52
+# HSD 66 residual=4.4E-10 gap=6.8E-08 68365.22
+# HSD 67 residual=4.3E-10 gap=3.5E-08 68365.98
+# HSD 68 residual=4.2E-10 gap=3.2E-08 68366.69
+# HSD 69 residual=4.2E-10 gap=3.2E-08 68367.52
+# HSD 70 residual=4.1E-10 gap=2.5E-08 68368.27
+# HSD 71 residual=4.1E-10 gap=2.5E-08 68369.02
+# HSD 72 residual=4.1E-10 gap=2.5E-08 68369.8
+# HSD 73 residual=3.9E-10 gap=2.3E-08 68370.6
+# HSD 74 residual=3.9E-10 gap=1.9E-08 68371.38
+# HSD 75 residual=3.8E-10 gap=1.8E-08 68372.12
+# HSD 76 residual=3.7E-10 gap=1.6E-08 68372.91
+# HSD 77 residual=3.4E-10 gap=1.5E-08 68373.69
+# HSD 78 residual=3.3E-10 gap=1.5E-08 68374.45
+# HSD 79 residual=3.1E-10 gap=1.5E-08 68375.19
+# HSD 80 residual=2.7E-10 gap=1.5E-08 68375.99
+# HSD 81 residual=2.5E-10 gap=1.4E-08 68376.78
+# HSD 82 residual=2.3E-10 gap=1.3E-08 68377.56
+# HSD 83 residual=2.3E-10 gap=1.3E-08 68378.36
+# upper F=1.49562196135521 68379.35
+# upper F=1.57040305942297 68381.22
+# upper elements 0/389 68381.27
+# upper elements 256/389 68382.53
+# upper edges 0/617 68383.2
+# upper edges 512/617 68384.63
+# compile arrays 68384.95
+# ordering complete 68385.08
+# symbolic factorization 68385.15
+# symbolic complete 149068 68385.22
+# upper F=1.60779360845685 68387.48
+# upper elements 0/389 68387.53
+# upper elements 256/389 68388.85
+# upper edges 0/617 68389.55
+# upper edges 512/617 68391.02
+# compile arrays 68391.34
+# ordering complete 68391.46
+# symbolic factorization 68391.52
+# symbolic complete 149068 68391.59
+# HSD 0 residual=1.2E+02 gap=1.1E+04 68393.91
+# HSD 1 residual=1.4E+01 gap=2.3E+02 68394.73
+# HSD 2 residual=2.3E+00 gap=1.5E+01 68395.53
+# HSD 3 residual=3.4E-01 gap=1.6E+00 68396.22
+# HSD 4 residual=1.3E-01 gap=6.3E-01 68396.82
+# HSD 5 residual=9.1E-02 gap=4.9E-01 68397.52
+# HSD 6 residual=8.0E-02 gap=4.9E-01 68398.19
+# HSD 7 residual=6.8E-02 gap=4.9E-01 68398.84
+# HSD 8 residual=5.2E-02 gap=4.6E-01 68399.53
+# HSD 9 residual=4.7E-02 gap=4.5E-01 68400.18
+# HSD 10 residual=3.6E-02 gap=4.0E-01 68400.88
+# HSD 11 residual=2.5E-02 gap=3.1E-01 68401.56
+# HSD 12 residual=1.6E-02 gap=2.1E-01 68402.15
+# HSD 13 residual=1.1E-02 gap=1.5E-01 68402.82
+# HSD 14 residual=9.4E-03 gap=1.3E-01 68403.52
+# HSD 15 residual=5.6E-03 gap=8.0E-02 68404.1
+# HSD 16 residual=4.4E-03 gap=6.4E-02 68404.77
+# HSD 17 residual=3.4E-03 gap=5.0E-02 68405.39
+# HSD 18 residual=2.4E-03 gap=3.6E-02 68406.04
+# HSD 19 residual=1.8E-03 gap=2.7E-02 68406.74
+# HSD 20 residual=1.0E-03 gap=1.6E-02 68407.34
+# HSD 21 residual=6.8E-04 gap=1.1E-02 68408.02
+# HSD 22 residual=5.3E-04 gap=8.3E-03 68408.66
+# HSD 23 residual=3.9E-04 gap=6.2E-03 68409.34
+# HSD 24 residual=3.4E-04 gap=5.3E-03 68410.02
+# HSD 25 residual=3.0E-04 gap=4.8E-03 68410.66
+# HSD 26 residual=2.5E-04 gap=4.0E-03 68411.29
+# HSD 27 residual=2.1E-04 gap=3.4E-03 68411.99
+# HSD 28 residual=1.8E-04 gap=3.0E-03 68412.62
+# HSD 29 residual=1.6E-04 gap=2.7E-03 68413.26
+# HSD 30 residual=1.4E-04 gap=2.3E-03 68413.94
+# HSD 31 residual=1.2E-04 gap=2.0E-03 68414.54
+# HSD 32 residual=9.3E-05 gap=1.6E-03 68415.21
+# HSD 33 residual=7.7E-05 gap=1.3E-03 68415.84
+# HSD 34 residual=6.2E-05 gap=1.1E-03 68416.48
+# HSD 35 residual=4.4E-05 gap=7.9E-04 68417.19
+# HSD 36 residual=3.8E-05 gap=7.0E-04 68417.82
+# HSD 37 residual=3.1E-05 gap=5.8E-04 68418.47
+# HSD 38 residual=2.6E-05 gap=4.9E-04 68419.09
+# HSD 39 residual=2.1E-05 gap=4.0E-04 68419.74
+# HSD 40 residual=2.0E-05 gap=3.8E-04 68420.45
+# HSD 41 residual=1.6E-05 gap=3.1E-04 68421.09
+# HSD 42 residual=1.3E-05 gap=2.5E-04 68421.73
+# HSD 43 residual=1.1E-05 gap=2.1E-04 68422.41
+# HSD 44 residual=7.1E-06 gap=1.4E-04 68423.05
+# HSD 45 residual=5.7E-06 gap=1.2E-04 68423.69
+# HSD 46 residual=4.9E-06 gap=1.0E-04 68424.31
+# HSD 47 residual=4.3E-06 gap=9.0E-05 68424.98
+# HSD 48 residual=3.1E-06 gap=6.6E-05 68425.64
+# HSD 49 residual=2.4E-06 gap=5.1E-05 68426.27
+# HSD 50 residual=1.9E-06 gap=4.2E-05 68426.92
+# HSD 51 residual=1.7E-06 gap=3.9E-05 68427.56
+# HSD 52 residual=1.3E-06 gap=3.1E-05 68428.27
+# HSD 53 residual=9.8E-07 gap=2.4E-05 68428.92
+# HSD 54 residual=7.8E-07 gap=1.9E-05 68429.56
+# HSD 55 residual=5.9E-07 gap=1.5E-05 68430.27
+# HSD 56 residual=3.5E-07 gap=9.7E-06 68430.92
+# HSD 57 residual=2.6E-07 gap=7.7E-06 68431.6
+# HSD 58 residual=1.5E-07 gap=5.0E-06 68432.33
+# HSD 59 residual=1.1E-07 gap=4.1E-06 68432.98
+# HSD 60 residual=8.7E-08 gap=3.5E-06 68433.64
+# HSD 61 residual=5.9E-08 gap=2.7E-06 68434.39
+# HSD 62 residual=4.3E-08 gap=2.2E-06 68435.09
+# HSD 63 residual=3.9E-08 gap=2.1E-06 68435.77
+# HSD 64 residual=1.4E-08 gap=1.2E-06 68436.52
+# HSD 65 residual=1.2E-08 gap=1.1E-06 68437.24
+# HSD 66 residual=5.7E-09 gap=6.5E-07 68437.94
+# HSD 67 residual=2.0E-09 gap=3.3E-07 68438.69
+# HSD 68 residual=1.1E-09 gap=2.0E-07 68439.44
+# HSD 69 residual=6.5E-10 gap=1.5E-07 68440.12
+# HSD 70 residual=5.1E-10 gap=1.3E-07 68440.87
+# HSD 71 residual=3.1E-10 gap=9.0E-08 68441.63
+# HSD 72 residual=2.5E-10 gap=7.7E-08 68442.32
+# HSD 73 residual=2.2E-10 gap=4.0E-08 68443.07
+# HSD 74 residual=2.1E-10 gap=2.0E-08 68443.86
+# HSD 75 residual=2.0E-10 gap=1.4E-08 68444.64
+# upper F=1.58909833393991 68445.56
+# upper F=1.59844597119838 68447.51
+# upper elements 0/389 68447.56
+# upper elements 256/389 68448.87
+# upper edges 0/617 68449.56
+# upper edges 512/617 68451.02
+# compile arrays 68451.37
+# ordering complete 68451.49
+# symbolic factorization 68451.55
+# symbolic complete 149068 68451.63
+# HSD 0 residual=1.2E+02 gap=1.1E+04 68455.59
+# HSD 1 residual=1.4E+01 gap=2.3E+02 68456.41
+# HSD 2 residual=2.3E+00 gap=1.5E+01 68457.23
+# HSD 3 residual=3.4E-01 gap=1.6E+00 68457.94
+# HSD 4 residual=1.3E-01 gap=6.3E-01 68458.53
+# HSD 5 residual=9.1E-02 gap=4.9E-01 68459.21
+# HSD 6 residual=8.0E-02 gap=4.9E-01 68459.92
+# HSD 7 residual=6.8E-02 gap=4.9E-01 68460.52
+# HSD 8 residual=5.3E-02 gap=4.7E-01 68461.19
+# HSD 9 residual=4.7E-02 gap=4.6E-01 68461.82
+# HSD 10 residual=3.6E-02 gap=4.1E-01 68462.48
+# HSD 11 residual=2.5E-02 gap=3.1E-01 68463.16
+# HSD 12 residual=1.6E-02 gap=2.2E-01 68463.73
+# HSD 13 residual=1.1E-02 gap=1.5E-01 68464.41
+# HSD 14 residual=8.1E-03 gap=1.2E-01 68465.1
+# HSD 15 residual=4.6E-03 gap=6.8E-02 68465.7
+# HSD 16 residual=4.0E-03 gap=5.9E-02 68466.37
+# HSD 17 residual=2.8E-03 gap=4.2E-02 68466.99
+# HSD 18 residual=1.9E-03 gap=2.9E-02 68467.64
+# HSD 19 residual=1.3E-03 gap=1.9E-02 68468.35
+# HSD 20 residual=8.1E-04 gap=1.3E-02 68468.99
+# HSD 21 residual=5.2E-04 gap=8.3E-03 68469.64
+# HSD 22 residual=4.5E-04 gap=7.2E-03 68470.31
+# HSD 23 residual=3.4E-04 gap=5.5E-03 68470.94
+# HSD 24 residual=2.7E-04 gap=4.3E-03 68471.63
+# HSD 25 residual=2.2E-04 gap=3.6E-03 68472.26
+# HSD 26 residual=1.7E-04 gap=2.8E-03 68472.89
+# HSD 27 residual=1.5E-04 gap=2.6E-03 68473.59
+# HSD 28 residual=1.4E-04 gap=2.3E-03 68474.2
+# HSD 29 residual=1.0E-04 gap=1.8E-03 68474.84
+# HSD 30 residual=9.2E-05 gap=1.6E-03 68475.51
+# HSD 31 residual=7.2E-05 gap=1.3E-03 68476.16
+# HSD 32 residual=6.3E-05 gap=1.1E-03 68476.79
+# HSD 33 residual=4.9E-05 gap=8.8E-04 68477.42
+# HSD 34 residual=4.1E-05 gap=7.5E-04 68478.06
+# HSD 35 residual=2.8E-05 gap=5.3E-04 68478.77
+# HSD 36 residual=2.5E-05 gap=4.6E-04 68479.41
+# HSD 37 residual=2.0E-05 gap=3.8E-04 68480.05
+# HSD 38 residual=1.7E-05 gap=3.2E-04 68480.74
+# HSD 39 residual=1.5E-05 gap=2.9E-04 68481.38
+# HSD 40 residual=1.3E-05 gap=2.6E-04 68482.05
+# HSD 41 residual=1.1E-05 gap=2.1E-04 68482.67
+# HSD 42 residual=8.7E-06 gap=1.8E-04 68483.34
+# HSD 43 residual=6.0E-06 gap=1.2E-04 68483.98
+# HSD 44 residual=4.6E-06 gap=9.6E-05 68484.63
+# HSD 45 residual=3.9E-06 gap=8.3E-05 68485.28
+# HSD 46 residual=3.3E-06 gap=7.1E-05 68485.9
+# HSD 47 residual=2.5E-06 gap=5.4E-05 68486.57
+# HSD 48 residual=2.1E-06 gap=4.6E-05 68487.23
+# HSD 49 residual=1.5E-06 gap=3.5E-05 68487.87
+# HSD 50 residual=1.2E-06 gap=2.8E-05 68488.55
+# HSD 51 residual=9.8E-07 gap=2.3E-05 68489.15
+# HSD 52 residual=7.7E-07 gap=1.9E-05 68489.86
+# HSD 53 residual=6.0E-07 gap=1.6E-05 68490.55
+# HSD 54 residual=3.8E-07 gap=1.1E-05 68491.16
+# HSD 55 residual=1.8E-07 gap=5.7E-06 68491.88
+# HSD 56 residual=1.0E-07 gap=3.7E-06 68492.6
+# HSD 57 residual=6.9E-08 gap=2.9E-06 68493.28
+# HSD 58 residual=5.4E-08 gap=2.5E-06 68494.02
+# HSD 59 residual=5.0E-08 gap=2.4E-06 68494.75
+# HSD 60 residual=2.8E-08 gap=1.8E-06 68495.4
+# HSD 61 residual=1.8E-08 gap=1.4E-06 68496.16
+# HSD 62 residual=8.2E-09 gap=7.7E-07 68496.9
+# HSD 63 residual=4.5E-09 gap=6.1E-07 68497.55
+# HSD 64 residual=2.1E-09 gap=4.8E-07 68498.3
+# HSD 65 residual=9.1E-10 gap=3.0E-07 68499.09
+# HSD 66 residual=6.4E-10 gap=2.4E-07 68499.76
+# HSD 67 residual=3.2E-10 gap=1.2E-07 68500.5
+# HSD 68 residual=2.2E-10 gap=6.2E-08 68501.26
+# HSD 69 residual=1.9E-10 gap=5.3E-08 68502.09
+# HSD 70 residual=1.8E-10 gap=4.3E-08 68502.76
+# HSD 71 residual=1.8E-10 gap=3.3E-08 68503.53
+# HSD 72 residual=1.7E-10 gap=2.0E-08 68504.3
+# upper F=1.59377215256915 68505.27
+# upper F=1.59610906188376 68507.2
+# upper elements 0/389 68507.25
+# upper elements 256/389 68508.53
+# upper edges 0/617 68509.23
+# upper edges 512/617 68510.7
+# compile arrays 68511.04
+# ordering complete 68511.17
+# symbolic factorization 68511.25
+# symbolic complete 149068 68511.32
+# upper F=1.59727751654107 68513.57
+# upper elements 0/389 68513.62
+# upper elements 256/389 68514.88
+# upper edges 0/617 68515.55
+# upper edges 512/617 68516.97
+# compile arrays 68517.31
+# ordering complete 68517.45
+# symbolic factorization 68517.53
+# symbolic complete 149068 68517.6
+# HSD 0 residual=1.2E+02 gap=1.1E+04 68522.14
+# HSD 1 residual=1.4E+01 gap=2.3E+02 68522.98
+# HSD 2 residual=2.3E+00 gap=1.5E+01 68523.8
+# HSD 3 residual=3.4E-01 gap=1.6E+00 68524.51
+# HSD 4 residual=1.3E-01 gap=6.4E-01 68525.12
+# HSD 5 residual=9.1E-02 gap=4.9E-01 68525.8
+# HSD 6 residual=8.0E-02 gap=4.9E-01 68526.49
+# HSD 7 residual=6.8E-02 gap=4.9E-01 68527.08
+# HSD 8 residual=5.3E-02 gap=4.7E-01 68527.74
+# HSD 9 residual=4.7E-02 gap=4.6E-01 68528.38
+# HSD 10 residual=3.6E-02 gap=4.1E-01 68529.05
+# HSD 11 residual=2.5E-02 gap=3.1E-01 68529.73
+# HSD 12 residual=1.6E-02 gap=2.2E-01 68530.32
+# HSD 13 residual=1.1E-02 gap=1.5E-01 68531.01
+# HSD 14 residual=8.0E-03 gap=1.2E-01 68531.72
+# HSD 15 residual=4.6E-03 gap=6.8E-02 68532.32
+# HSD 16 residual=4.0E-03 gap=6.0E-02 68533.01
+# HSD 17 residual=2.7E-03 gap=4.1E-02 68533.63
+# HSD 18 residual=1.8E-03 gap=2.8E-02 68534.27
+# HSD 19 residual=1.2E-03 gap=1.9E-02 68534.96
+# HSD 20 residual=7.7E-04 gap=1.2E-02 68535.59
+# HSD 21 residual=5.1E-04 gap=8.1E-03 68536.22
+# HSD 22 residual=4.3E-04 gap=6.9E-03 68536.88
+# HSD 23 residual=3.2E-04 gap=5.2E-03 68537.54
+# HSD 24 residual=2.5E-04 gap=4.1E-03 68538.17
+# HSD 25 residual=2.0E-04 gap=3.3E-03 68538.8
+# HSD 26 residual=1.5E-04 gap=2.6E-03 68539.43
+# HSD 27 residual=1.4E-04 gap=2.3E-03 68540.14
+# HSD 28 residual=1.1E-04 gap=1.9E-03 68540.77
+# HSD 29 residual=9.5E-05 gap=1.7E-03 68541.41
+# HSD 30 residual=7.4E-05 gap=1.3E-03 68542.05
+# HSD 31 residual=6.6E-05 gap=1.2E-03 68542.77
+# HSD 32 residual=5.2E-05 gap=9.3E-04 68543.4
+# HSD 33 residual=4.4E-05 gap=7.9E-04 68544.02
+# HSD 34 residual=3.1E-05 gap=5.7E-04 68544.66
+# HSD 35 residual=2.7E-05 gap=5.0E-04 68545.35
+# HSD 36 residual=2.5E-05 gap=4.7E-04 68545.97
+# HSD 37 residual=2.1E-05 gap=3.9E-04 68546.6
+# HSD 38 residual=1.8E-05 gap=3.5E-04 68547.23
+# HSD 39 residual=1.6E-05 gap=3.1E-04 68547.89
+# HSD 40 residual=1.4E-05 gap=2.8E-04 68548.55
+# HSD 41 residual=1.1E-05 gap=2.3E-04 68549.19
+# HSD 42 residual=8.4E-06 gap=1.7E-04 68549.86
+# HSD 43 residual=6.5E-06 gap=1.3E-04 68550.46
+# HSD 44 residual=4.7E-06 gap=9.7E-05 68551.17
+# HSD 45 residual=3.9E-06 gap=8.3E-05 68551.81
+# HSD 46 residual=3.4E-06 gap=7.2E-05 68552.45
+# HSD 47 residual=3.1E-06 gap=6.7E-05 68553.13
+# HSD 48 residual=2.1E-06 gap=4.7E-05 68553.8
+# HSD 49 residual=1.7E-06 gap=3.8E-05 68554.42
+# HSD 50 residual=1.3E-06 gap=3.1E-05 68555.09
+# HSD 51 residual=1.2E-06 gap=2.9E-05 68555.69
+# HSD 52 residual=9.2E-07 gap=2.2E-05 68556.39
+# HSD 53 residual=6.7E-07 gap=1.7E-05 68557.03
+# HSD 54 residual=5.1E-07 gap=1.4E-05 68557.67
+# HSD 55 residual=3.4E-07 gap=9.5E-06 68558.35
+# HSD 56 residual=1.8E-07 gap=5.9E-06 68559.01
+# HSD 57 residual=1.1E-07 gap=3.9E-06 68559.7
+# HSD 58 residual=7.8E-08 gap=3.2E-06 68560.44
+# HSD 59 residual=5.4E-08 gap=2.6E-06 68561.18
+# HSD 60 residual=4.1E-08 gap=2.2E-06 68561.84
+# HSD 61 residual=3.7E-08 gap=2.1E-06 68562.6
+# HSD 62 residual=1.6E-08 gap=1.3E-06 68563.34
+# HSD 63 residual=7.8E-09 gap=9.2E-07 68563.99
+# HSD 64 residual=4.7E-09 gap=6.8E-07 68564.73
+# HSD 65 residual=3.1E-09 gap=6.0E-07 68565.49
+# HSD 66 residual=1.4E-09 gap=3.1E-07 68566.13
+# HSD 67 residual=7.4E-10 gap=1.9E-07 68566.88
+# HSD 68 residual=4.6E-10 gap=1.1E-07 68567.61
+# HSD 69 residual=3.1E-10 gap=8.8E-08 68568.28
+# HSD 70 residual=2.4E-10 gap=6.4E-08 68569.07
+# HSD 71 residual=2.1E-10 gap=5.6E-08 68569.86
+# HSD 72 residual=1.8E-10 gap=4.3E-08 68570.6
+# HSD 73 residual=1.7E-10 gap=3.0E-08 68571.34
+# HSD 74 residual=1.6E-10 gap=1.5E-08 68572.16
+# upper F=1.59669328921242 68573.18
+# upper F=1.59698540287674 68575.54
+# upper elements 0/389 68575.59
+# upper elements 256/389 68576.85
+# upper edges 0/617 68577.53
+# upper edges 512/617 68578.95
+# compile arrays 68579.27
+# ordering complete 68579.4
+# symbolic factorization 68579.45
+# symbolic complete 149068 68579.53
+# upper F=1.59713145970891 68582.43
+# upper elements 0/389 68582.48
+# upper elements 256/389 68583.78
+# upper edges 0/617 68584.48
+# upper edges 512/617 68585.9
+# compile arrays 68586.22
+# ordering complete 68586.34
+# symbolic factorization 68586.4
+# symbolic complete 149068 68586.47
+# HSD 0 residual=1.2E+02 gap=1.1E+04 68590.94
+# HSD 1 residual=1.4E+01 gap=2.3E+02 68591.77
+# HSD 2 residual=2.3E+00 gap=1.5E+01 68592.59
+# HSD 3 residual=3.4E-01 gap=1.6E+00 68593.27
+# HSD 4 residual=1.3E-01 gap=6.4E-01 68593.86
+# HSD 5 residual=9.1E-02 gap=5.0E-01 68594.54
+# HSD 6 residual=8.0E-02 gap=4.9E-01 68595.24
+# HSD 7 residual=6.8E-02 gap=4.9E-01 68595.84
+# HSD 8 residual=5.3E-02 gap=4.7E-01 68596.51
+# HSD 9 residual=4.7E-02 gap=4.6E-01 68597.13
+# HSD 10 residual=3.6E-02 gap=4.1E-01 68597.81
+# HSD 11 residual=2.5E-02 gap=3.1E-01 68598.49
+# HSD 12 residual=1.6E-02 gap=2.2E-01 68599.08
+# HSD 13 residual=1.1E-02 gap=1.5E-01 68599.75
+# HSD 14 residual=7.9E-03 gap=1.1E-01 68600.46
+# HSD 15 residual=4.6E-03 gap=6.8E-02 68601.06
+# HSD 16 residual=4.0E-03 gap=6.0E-02 68601.75
+# HSD 17 residual=2.7E-03 gap=4.1E-02 68602.38
+# HSD 18 residual=1.8E-03 gap=2.8E-02 68603.03
+# HSD 19 residual=1.2E-03 gap=1.8E-02 68603.74
+# HSD 20 residual=7.7E-04 gap=1.2E-02 68604.38
+# HSD 21 residual=5.1E-04 gap=8.1E-03 68605.02
+# HSD 22 residual=4.4E-04 gap=6.9E-03 68605.7
+# HSD 23 residual=3.2E-04 gap=5.2E-03 68606.31
+# HSD 24 residual=2.5E-04 gap=4.1E-03 68606.98
+# HSD 25 residual=2.0E-04 gap=3.3E-03 68607.6
+# HSD 26 residual=1.5E-04 gap=2.6E-03 68608.23
+# HSD 27 residual=1.4E-04 gap=2.3E-03 68608.94
+# HSD 28 residual=1.2E-04 gap=2.0E-03 68609.56
+# HSD 29 residual=9.3E-05 gap=1.6E-03 68610.2
+# HSD 30 residual=7.5E-05 gap=1.3E-03 68610.83
+# HSD 31 residual=6.7E-05 gap=1.2E-03 68611.5
+# HSD 32 residual=5.3E-05 gap=9.5E-04 68612.18
+# HSD 33 residual=4.6E-05 gap=8.2E-04 68612.82
+# HSD 34 residual=3.3E-05 gap=6.0E-04 68613.47
+# HSD 35 residual=2.7E-05 gap=5.1E-04 68614.18
+# HSD 36 residual=2.6E-05 gap=4.9E-04 68614.81
+# HSD 37 residual=2.2E-05 gap=4.1E-04 68615.45
+# HSD 38 residual=1.9E-05 gap=3.6E-04 68616.08
+# HSD 39 residual=1.6E-05 gap=3.1E-04 68616.71
+# HSD 40 residual=1.5E-05 gap=2.9E-04 68617.41
+# HSD 41 residual=1.2E-05 gap=2.3E-04 68618.03
+# HSD 42 residual=8.9E-06 gap=1.8E-04 68618.66
+# HSD 43 residual=7.3E-06 gap=1.5E-04 68619.28
+# HSD 44 residual=5.3E-06 gap=1.1E-04 68619.98
+# HSD 45 residual=4.4E-06 gap=9.2E-05 68620.63
+# HSD 46 residual=3.5E-06 gap=7.5E-05 68621.26
+# HSD 47 residual=3.0E-06 gap=6.4E-05 68621.95
+# HSD 48 residual=2.1E-06 gap=4.6E-05 68622.57
+# HSD 49 residual=1.6E-06 gap=3.6E-05 68623.26
+# HSD 50 residual=1.3E-06 gap=3.0E-05 68623.91
+# HSD 51 residual=1.2E-06 gap=2.8E-05 68624.55
+# HSD 52 residual=8.8E-07 gap=2.1E-05 68625.27
+# HSD 53 residual=6.0E-07 gap=1.6E-05 68625.91
+# HSD 54 residual=4.5E-07 gap=1.2E-05 68626.55
+# HSD 55 residual=2.3E-07 gap=7.2E-06 68627.23
+# HSD 56 residual=1.2E-07 gap=4.3E-06 68627.84
+# HSD 57 residual=7.3E-08 gap=3.1E-06 68628.55
+# HSD 58 residual=6.6E-08 gap=2.9E-06 68629.29
+# HSD 59 residual=4.6E-08 gap=2.3E-06 68629.94
+# HSD 60 residual=3.9E-08 gap=2.1E-06 68630.68
+# HSD 61 residual=1.5E-08 gap=1.2E-06 68631.46
+# HSD 62 residual=9.0E-09 gap=9.1E-07 68632.21
+# HSD 63 residual=4.9E-09 gap=6.7E-07 68632.87
+# HSD 64 residual=3.7E-09 gap=6.2E-07 68633.61
+# HSD 65 residual=1.6E-09 gap=3.2E-07 68634.39
+# HSD 66 residual=8.5E-10 gap=2.0E-07 68635.06
+# HSD 67 residual=4.9E-10 gap=1.1E-07 68635.81
+# HSD 68 residual=3.2E-10 gap=9.1E-08 68636.55
+# HSD 69 residual=2.5E-10 gap=6.4E-08 68637.27
+# HSD 70 residual=2.2E-10 gap=5.7E-08 68638.02
+# HSD 71 residual=1.8E-10 gap=4.5E-08 68638.77
+# HSD 72 residual=1.7E-10 gap=2.6E-08 68639.5
+# HSD 73 residual=1.6E-10 gap=1.3E-08 68640.24
+# lower F=1.31696823120117 68641.45
+# compile arrays 68646.51
+# ordering 12847 68646.66
+# ordering complete 68646.9
+# symbolic factorization 68646.96
+# symbolic complete 295589 68647.08
+# lower F=1.60962783813477 68647.8
+# lower F=1.46329803466797 68648.65
+# compile arrays 68653.75
+# ordering complete 68653.91
+# symbolic factorization 68653.98
+# symbolic complete 295589 68654.09
+# lower F=1.39013313293457 68654.95
+# compile arrays 68659.97
+# ordering complete 68660.12
+# symbolic factorization 68660.19
+# symbolic complete 295589 68660.29
+# lower F=1.42671558380127 68661.08
+# lower F=1.44500680923462 68661.9
+# lower F=1.45415242195129 68662.67
+# lower F=1.44957961559296 68663.58
+# compile arrays 68668.65
+# ordering complete 68668.8
+# symbolic factorization 68668.86
+# symbolic complete 295589 68668.96
+# lower F=1.45186601877213 68669.63
+# lower F=1.45300922036171 68670.34
+# lower F=1.45243761956692 68671.27
+# compile arrays 68676.39
+# ordering complete 68676.55
+# symbolic factorization 68676.61
+# symbolic complete 295589 68676.7
+# lower F=1.45215181916952 68677.59
+# compile arrays 68682.63
+# ordering complete 68682.8
+# symbolic factorization 68682.88
+# symbolic complete 295589 68682.99
+ 0 , 0 , 1 , 2334 , 295589 
+ 1 ,-5.56355829390318E-02 , 0.304944915417 , 946.032114815866 , 295589 
+ 2 ,-7.64525011926069E-02 , 3.49016742079897E-02 , 127.608843013036 , 295589 
+ 3 ,-8.20741202343392E-02 , 1.20402381666699E-03 , 4.41542107282146 , 295589 
+ 4 ,-0.128447920548564 , 3.17188890629551E-04 , 1.14275095089619 , 295589 
+ 5 ,-0.335991494520972 , 2.19174339870755E-04 , 0.898090567001582 , 295589 
+ 6 ,-0.614604288327012 , 1.57754242052982E-04 , 0.739270092525136 , 295589 
+ 7 ,-0.808118779603039 , 1.04940244161745E-04 , 0.634683763553773 , 295589 
+ 8 ,-0.934209714936332 , 3.2849412594611E-05 , 0.35892795023001 , 295589 
+ 9 ,-0.958009513794572 , 5.83667823711072E-06 , 0.198737660677403 , 295589 
+ 10 ,-0.99131739699533 , 1.90074471726458E-06 , 0.054446596638818 , 295589 
+ 11 ,-0.996119996507528 , 1.99019701870474E-06 , 2.61464553993758E-02 , 295589 
+ 12 ,-0.998597148081909 , 1.24402803590923E-06 , 1.03825803495397E-02 , 295589 
+ 13 ,-0.999422150083731 , 1.17938004638187E-06 , 5.27850558925183E-03 , 295589 
+ 14 ,-0.999992160485881 , 1.11742541803935E-06 , 1.97769211371478E-03 , 295589 
+ 15 ,-1.00018008582442 , 7.30322117334784E-07 , 9.70703739425672E-04 , 295589 
+ 16 ,-1.00029036769467 , 3.83466145185919E-07 , 3.85964474994851E-04 , 295589 
+ 17 ,-1.00031638639106 , 3.13369023323669E-07 , 2.46317436460391E-04 , 295589 
+ 18 ,-1.00034643802928 , 2.52208979559729E-07 , 8.46164681936754E-05 , 295589 
+ 19 ,-1.00035500687071 , 2.22615436396758E-07 , 4.00096475814985E-05 , 295589 
+ 20 ,-1.000359747128 , 2.11063398831105E-07 , 1.70004929174245E-05 , 295589 
+ 21 ,-1.00036173832704 , 2.01475467469012E-07 , 8.89765119975644E-06 , 295589 
+ 22 ,-1.00036293745587 , 1.9296312799045E-07 , 4.72708003229677E-06 , 295589 
+ 23 ,-1.00036367427661 , 1.86221047182288E-07 , 2.54285600871041E-06 , 295589 
+ 24 ,-1.00036397351404 , 1.80004367288162E-07 , 1.94284323823559E-06 , 295589 
+ 25 ,-1.00036414655461 , 1.64421161329064E-07 , 1.73915702727588E-06 , 295589 
+ 26 ,-1.00036416365228 , 1.67482546783872E-07 , 1.75181929940444E-06 , 295589 
+ 27 ,-1.00036447697096 , 1.52407541307577E-07 , 9.73560567890877E-07 , 295589 
+# lower F=1.45229471936822 68684.91
+# zero stress fan eligibility 0 68686.09
+# zero stress fan eligibility 256 68686.13
+# zero stress fan eligibility 0 68686.57
+# zero stress fan eligibility 256 68686.61
+# zero stress fan eligibility 0 68686.74
+# zero stress fan eligibility 256 68686.78
+# zero stress fan eligibility 512 68686.82
+# zero stress fan eligibility 768 68686.86
+# zero stress fan eligibility 1024 68686.9
+# zero stress fan eligibility 0 68687.2
+# zero stress fan eligibility 256 68687.23
+# zero stress fan eligibility 0 68687.36
+# zero stress fan eligibility 256 68687.4
+# zero stress fan eligibility 512 68687.44
+# zero stress fan eligibility 768 68687.48
+# zero stress fan eligibility 0 68687.78
+# zero stress fan eligibility 256 68687.83
+# zero stress fan eligibility 0 68687.95
+# zero stress fan eligibility 256 68687.98
+# zero stress fan eligibility 512 68688.02
+# zero stress fan eligibility 0 68688.34
+# zero stress fan eligibility 256 68688.37
+# zero stress fan eligibility 0 68688.49
+# zero stress fan eligibility 256 68688.53
+# zero stress fan eligibility 512 68688.57
+# zero stress fan eligibility 0 68688.88
+# zero stress fan eligibility 256 68688.92
+# zero stress fan eligibility 0 68689.04
+# zero stress fan eligibility 256 68689.08
+# zero stress fan eligibility 0 68689.34
+# zero stress fan eligibility 256 68689.38
+# upper F=1.43741831373802 68689.54
+# upper elements 0/476 68689.59
+# upper elements 256/476 68690.87
+# upper edges 0/748 68692
+# upper edges 512/748 68693.48
+# compile arrays 68694.21
+# ordering 6127 68694.35
+# ordering complete 68694.59
+# symbolic factorization 68694.67
+# symbolic complete 190709 68694.75
+# upper F=1.7568446056798 68697.02
+# upper elements 0/476 68697.07
+# upper elements 256/476 68698.34
+# upper edges 0/748 68699.45
+# upper edges 512/748 68700.9
+# compile arrays 68701.6
+# ordering complete 68701.74
+# symbolic factorization 68701.83
+# symbolic complete 190709 68701.91
+# upper F=1.59713145970891 68703.11
+# HSD 0 residual=2.4E+02 gap=1.4E+04 68705.68
+# HSD 1 residual=4.3E+01 gap=5.7E+02 68707.04
+# HSD 2 residual=8.2E+00 gap=4.3E+01 68708.26
+# HSD 3 residual=1.7E+00 gap=6.1E+00 68709.1
+# HSD 4 residual=4.2E-01 gap=1.3E+00 68709.91
+# HSD 5 residual=1.6E-01 gap=5.1E-01 68710.63
+# HSD 6 residual=1.1E-01 gap=4.3E-01 68711.44
+# HSD 7 residual=9.0E-02 gap=4.4E-01 68712.27
+# HSD 8 residual=6.4E-02 gap=4.0E-01 68713.09
+# HSD 9 residual=4.6E-02 gap=3.1E-01 68713.82
+# HSD 10 residual=3.1E-02 gap=2.2E-01 68714.64
+# HSD 11 residual=1.8E-02 gap=1.4E-01 68715.48
+# HSD 12 residual=1.1E-02 gap=8.4E-02 68716.3
+# HSD 13 residual=5.8E-03 gap=4.5E-02 68717.03
+# HSD 14 residual=3.3E-03 gap=2.6E-02 68717.84
+# HSD 15 residual=2.0E-03 gap=1.5E-02 68718.64
+# HSD 16 residual=1.1E-03 gap=8.7E-03 68719.48
+# HSD 17 residual=4.7E-04 gap=3.7E-03 68720.19
+# HSD 18 residual=3.2E-04 gap=2.5E-03 68720.99
+# HSD 19 residual=2.0E-04 gap=1.6E-03 68721.81
+# HSD 20 residual=1.5E-04 gap=1.2E-03 68722.66
+# HSD 21 residual=1.2E-04 gap=9.4E-04 68723.42
+# HSD 22 residual=6.3E-05 gap=4.9E-04 68724.2
+# HSD 23 residual=3.6E-05 gap=2.8E-04 68725.01
+# HSD 24 residual=1.8E-05 gap=1.5E-04 68725.86
+# HSD 25 residual=1.4E-05 gap=1.1E-04 68726.63
+# HSD 26 residual=6.4E-06 gap=5.0E-05 68727.41
+# HSD 27 residual=3.7E-06 gap=3.0E-05 68728.21
+# HSD 28 residual=1.9E-06 gap=1.5E-05 68729.05
+# HSD 29 residual=9.6E-07 gap=7.6E-06 68729.82
+# HSD 30 residual=6.1E-07 gap=4.9E-06 68730.61
+# HSD 31 residual=4.9E-07 gap=3.9E-06 68731.44
+# HSD 32 residual=2.4E-07 gap=2.0E-06 68732.3
+# HSD 33 residual=1.5E-07 gap=1.2E-06 68733.09
+# HSD 34 residual=7.5E-08 gap=6.2E-07 68733.92
+# HSD 35 residual=4.3E-08 gap=3.6E-07 68734.81
+# HSD 36 residual=2.0E-08 gap=1.8E-07 68735.66
+# HSD 37 residual=1.2E-08 gap=1.2E-07 68736.59
+# HSD 38 residual=5.7E-09 gap=5.8E-08 68737.41
+# HSD 39 residual=3.3E-09 gap=3.6E-08 68738.3
+# HSD 40 residual=1.4E-09 gap=1.8E-08 68739.17
+# upper F=1.51727488672346 68740.35
+# HSD 0 residual=2.3E+02 gap=1.4E+04 68742.92
+# HSD 1 residual=4.2E+01 gap=6.1E+02 68744.3
+# HSD 2 residual=8.3E+00 gap=4.7E+01 68745.55
+# HSD 3 residual=1.8E+00 gap=6.7E+00 68746.41
+# HSD 4 residual=4.5E-01 gap=1.5E+00 68747.22
+# HSD 5 residual=1.6E-01 gap=5.4E-01 68747.94
+# HSD 6 residual=1.1E-01 gap=4.6E-01 68748.74
+# HSD 7 residual=9.2E-02 gap=4.9E-01 68749.57
+# HSD 8 residual=6.8E-02 gap=4.7E-01 68750.38
+# HSD 9 residual=4.8E-02 gap=3.8E-01 68751.09
+# HSD 10 residual=3.2E-02 gap=2.7E-01 68751.91
+# HSD 11 residual=2.0E-02 gap=1.7E-01 68752.76
+# HSD 12 residual=1.1E-02 gap=1.0E-01 68753.58
+# HSD 13 residual=6.5E-03 gap=5.8E-02 68754.3
+# HSD 14 residual=3.2E-03 gap=2.9E-02 68755.13
+# HSD 15 residual=1.9E-03 gap=1.7E-02 68755.94
+# HSD 16 residual=1.1E-03 gap=1.0E-02 68756.8
+# HSD 17 residual=7.1E-04 gap=6.4E-03 68757.55
+# HSD 18 residual=4.3E-04 gap=3.9E-03 68758.31
+# HSD 19 residual=2.0E-04 gap=1.8E-03 68759.13
+# HSD 20 residual=1.3E-04 gap=1.2E-03 68759.96
+# HSD 21 residual=1.0E-04 gap=9.4E-04 68760.71
+# HSD 22 residual=4.9E-05 gap=4.5E-04 68761.49
+# HSD 23 residual=2.7E-05 gap=2.5E-04 68762.3
+# HSD 24 residual=2.0E-05 gap=1.8E-04 68763.15
+# HSD 25 residual=1.0E-05 gap=9.2E-05 68763.92
+# HSD 26 residual=6.2E-06 gap=5.7E-05 68764.74
+# HSD 27 residual=3.9E-06 gap=3.6E-05 68765.53
+# HSD 28 residual=2.1E-06 gap=1.9E-05 68766.4
+# HSD 29 residual=1.1E-06 gap=1.0E-05 68767.17
+# HSD 30 residual=5.7E-07 gap=5.3E-06 68767.98
+# HSD 31 residual=3.0E-07 gap=2.8E-06 68768.78
+# HSD 32 residual=1.4E-07 gap=1.3E-06 68769.63
+# HSD 33 residual=7.0E-08 gap=6.9E-07 68770.45
+# HSD 34 residual=3.5E-08 gap=3.5E-07 68771.34
+# HSD 35 residual=2.3E-08 gap=2.4E-07 68772.21
+# HSD 36 residual=1.7E-08 gap=1.9E-07 68773.11
+# HSD 37 residual=1.2E-08 gap=1.4E-07 68774
+# HSD 38 residual=5.8E-09 gap=8.2E-08 68774.84
+# HSD 39 residual=3.4E-09 gap=5.6E-08 68775.75
+# HSD 40 residual=1.5E-09 gap=3.3E-08 68776.65
+# HSD 41 residual=6.7E-10 gap=1.6E-08 68777.62
+# upper F=1.47734660023074 68778.8
+# upper F=1.4973107434771 68781.16
+# upper elements 0/476 68781.2
+# upper elements 256/476 68782.48
+# upper edges 0/748 68783.62
+# upper edges 512/748 68785.1
+# compile arrays 68785.81
+# ordering complete 68785.95
+# symbolic factorization 68786.01
+# symbolic complete 190709 68786.1
+# upper F=1.48732867185392 68787.29
+# upper F=1.49231970766551 68789.44
+# upper elements 0/476 68789.5
+# upper elements 256/476 68790.77
+# upper edges 0/748 68791.91
+# upper edges 512/748 68793.37
+# compile arrays 68794.08
+# ordering complete 68794.22
+# symbolic factorization 68794.29
+# symbolic complete 190709 68794.37
+# upper F=1.49481522557131 68796.61
+# upper elements 0/476 68796.67
+# upper elements 256/476 68797.96
+# upper edges 0/748 68799.06
+# upper edges 512/748 68800.5
+# compile arrays 68801.18
+# ordering complete 68801.33
+# symbolic factorization 68801.42
+# symbolic complete 190709 68801.5
+# HSD 0 residual=2.3E+02 gap=1.4E+04 68806.24
+# HSD 1 residual=4.2E+01 gap=6.2E+02 68807.66
+# HSD 2 residual=8.3E+00 gap=4.8E+01 68808.87
+# HSD 3 residual=1.8E+00 gap=6.8E+00 68809.67
+# HSD 4 residual=4.5E-01 gap=1.5E+00 68810.48
+# HSD 5 residual=1.6E-01 gap=5.5E-01 68811.23
+# HSD 6 residual=1.1E-01 gap=4.8E-01 68812.03
+# HSD 7 residual=9.3E-02 gap=5.1E-01 68812.84
+# HSD 8 residual=7.0E-02 gap=5.0E-01 68813.65
+# HSD 9 residual=5.0E-02 gap=4.0E-01 68814.41
+# HSD 10 residual=3.3E-02 gap=2.9E-01 68815.23
+# HSD 11 residual=2.0E-02 gap=1.9E-01 68816.04
+# HSD 12 residual=1.1E-02 gap=1.1E-01 68816.88
+# HSD 13 residual=6.8E-03 gap=6.4E-02 68817.61
+# HSD 14 residual=3.2E-03 gap=3.1E-02 68818.47
+# HSD 15 residual=2.0E-03 gap=1.9E-02 68819.27
+# HSD 16 residual=1.6E-03 gap=1.5E-02 68820.09
+# HSD 17 residual=8.8E-04 gap=8.4E-03 68820.84
+# HSD 18 residual=5.4E-04 gap=5.2E-03 68821.65
+# HSD 19 residual=2.5E-04 gap=2.4E-03 68822.45
+# HSD 20 residual=1.6E-04 gap=1.5E-03 68823.27
+# HSD 21 residual=1.3E-04 gap=1.3E-03 68824.05
+# HSD 22 residual=5.5E-05 gap=5.3E-04 68824.85
+# HSD 23 residual=3.7E-05 gap=3.5E-04 68825.67
+# HSD 24 residual=2.9E-05 gap=2.7E-04 68826.5
+# HSD 25 residual=1.7E-05 gap=1.7E-04 68827.26
+# HSD 26 residual=9.8E-06 gap=9.5E-05 68828.11
+# HSD 27 residual=5.0E-06 gap=4.8E-05 68828.88
+# HSD 28 residual=2.7E-06 gap=2.6E-05 68829.69
+# HSD 29 residual=1.7E-06 gap=1.7E-05 68830.45
+# HSD 30 residual=1.1E-06 gap=1.0E-05 68831.27
+# HSD 31 residual=4.4E-07 gap=4.3E-06 68832.09
+# HSD 32 residual=2.3E-07 gap=2.2E-06 68832.91
+# HSD 33 residual=1.1E-07 gap=1.1E-06 68833.75
+# HSD 34 residual=6.1E-08 gap=6.2E-07 68834.64
+# HSD 35 residual=3.8E-08 gap=4.0E-07 68835.56
+# HSD 36 residual=3.1E-08 gap=3.3E-07 68836.49
+# HSD 37 residual=1.4E-08 gap=1.7E-07 68837.35
+# HSD 38 residual=6.4E-09 gap=8.3E-08 68838.23
+# HSD 39 residual=2.9E-09 gap=4.1E-08 68839.09
+# HSD 40 residual=1.3E-09 gap=2.1E-08 68839.98
+# upper F=1.49356746661841 68841.19
+# upper F=1.49419134609486 68843.65
+# upper elements 0/476 68843.7
+# upper elements 256/476 68845.09
+# upper edges 0/748 68846.27
+# upper edges 512/748 68847.78
+# compile arrays 68848.47
+# ordering complete 68848.6
+# symbolic factorization 68848.67
+# symbolic complete 190709 68848.74
+# upper F=1.49450328583308 68851.17
+# upper elements 0/476 68851.23
+# upper elements 256/476 68852.53
+# upper edges 0/748 68853.66
+# upper edges 512/748 68855.14
+# compile arrays 68855.84
+# ordering complete 68855.98
+# symbolic factorization 68856.05
+# symbolic complete 190709 68856.13
+# upper F=1.49465925570219 68858.7
+# upper elements 0/476 68858.76
+# upper elements 256/476 68860.04
+# upper edges 0/748 68861.16
+# upper edges 512/748 68862.6
+# compile arrays 68863.29
+# ordering complete 68863.44
+# symbolic factorization 68863.51
+# symbolic complete 190709 68863.59
+# upper F=1.49473724063675 68866.38
+# upper elements 0/476 68866.45
+# upper elements 256/476 68867.76
+# upper edges 0/748 68868.9
+# upper edges 512/748 68870.35
+# compile arrays 68871.05
+# ordering complete 68871.18
+# symbolic factorization 68871.25
+# symbolic complete 190709 68871.32
+# HSD 0 residual=2.3E+02 gap=1.4E+04 68875.86
+# HSD 1 residual=4.2E+01 gap=6.2E+02 68877.27
+# HSD 2 residual=8.3E+00 gap=4.8E+01 68878.34
+# HSD 3 residual=1.8E+00 gap=6.8E+00 68879.4
+# HSD 4 residual=4.5E-01 gap=1.5E+00 68880.2
+# HSD 5 residual=1.6E-01 gap=5.5E-01 68880.95
+# HSD 6 residual=1.1E-01 gap=4.8E-01 68881.77
+# HSD 7 residual=9.3E-02 gap=5.1E-01 68882.56
+# HSD 8 residual=7.0E-02 gap=5.0E-01 68883.37
+# HSD 9 residual=5.0E-02 gap=4.0E-01 68884.16
+# HSD 10 residual=3.3E-02 gap=2.9E-01 68884.95
+# HSD 11 residual=2.0E-02 gap=1.9E-01 68885.78
+# HSD 12 residual=1.1E-02 gap=1.1E-01 68886.61
+# HSD 13 residual=6.8E-03 gap=6.4E-02 68887.38
+# HSD 14 residual=3.2E-03 gap=3.1E-02 68888.2
+# HSD 15 residual=2.0E-03 gap=1.9E-02 68889.01
+# HSD 16 residual=1.6E-03 gap=1.5E-02 68889.81
+# HSD 17 residual=8.8E-04 gap=8.4E-03 68890.57
+# HSD 18 residual=5.4E-04 gap=5.2E-03 68891.42
+# HSD 19 residual=2.5E-04 gap=2.4E-03 68892.2
+# HSD 20 residual=1.6E-04 gap=1.6E-03 68893
+# HSD 21 residual=1.3E-04 gap=1.3E-03 68893.75
+# HSD 22 residual=5.6E-05 gap=5.3E-04 68894.61
+# HSD 23 residual=3.7E-05 gap=3.6E-04 68895.39
+# HSD 24 residual=2.9E-05 gap=2.8E-04 68896.21
+# HSD 25 residual=1.7E-05 gap=1.7E-04 68896.98
+# HSD 26 residual=9.8E-06 gap=9.5E-05 68897.82
+# HSD 27 residual=5.0E-06 gap=4.8E-05 68898.6
+# HSD 28 residual=2.7E-06 gap=2.6E-05 68899.42
+# HSD 29 residual=1.7E-06 gap=1.7E-05 68900.19
+# HSD 30 residual=1.1E-06 gap=1.0E-05 68901
+# HSD 31 residual=4.5E-07 gap=4.4E-06 68901.86
+# HSD 32 residual=2.3E-07 gap=2.3E-06 68902.65
+# HSD 33 residual=1.1E-07 gap=1.1E-06 68903.42
+# HSD 34 residual=6.1E-08 gap=6.3E-07 68904.3
+# HSD 35 residual=3.8E-08 gap=4.1E-07 68905.23
+# HSD 36 residual=3.1E-08 gap=3.4E-07 68906.12
+# HSD 37 residual=1.4E-08 gap=1.7E-07 68907.01
+# HSD 38 residual=6.4E-09 gap=8.3E-08 68907.81
+# HSD 39 residual=3.0E-09 gap=4.2E-08 68908.74
+# HSD 40 residual=1.3E-09 gap=2.1E-08 68909.67
+# lower F=1.3070652474314 68911.05
+# compile arrays 68917.3
+# ordering 15721 68917.48
+# ordering complete 68917.91
+# symbolic factorization 68918
+# symbolic complete 386721 68918.12
+# lower F=1.59752419130504 68918.9
+# lower F=1.45229471936822 68920.34
+# compile arrays 68926.52
+# ordering complete 68926.7
+# symbolic factorization 68926.79
+# symbolic complete 386721 68926.93
+# lower F=1.52490945533663 68927.75
+# lower F=1.48860208735242 68928.7
+# compile arrays 68934.89
+# ordering complete 68935.06
+# symbolic factorization 68935.14
+# symbolic complete 386721 68935.25
+# lower F=1.47044840336032 68936.28
+# compile arrays 68942.44
+# ordering complete 68942.6
+# symbolic factorization 68942.67
+# symbolic complete 386721 68942.8
+# lower F=1.46137156136427 68943.73
+# compile arrays 68949.95
+# ordering complete 68950.12
+# symbolic factorization 68950.2
+# symbolic complete 386721 68950.31
+# lower F=1.4659099823623 68951.06
+# lower F=1.46364077186328 68952.04
+# compile arrays 68958.2
+# ordering complete 68958.38
+# symbolic factorization 68958.45
+# symbolic complete 386721 68958.58
+# lower F=1.46477537711279 68959.36
+# lower F=1.46420807448804 68960.38
+# compile arrays 68966.54
+# ordering complete 68966.73
+# symbolic factorization 68966.8
+# symbolic complete 386721 68966.93
+# lower F=1.46392442317566 68967.87
+# compile arrays 68974.04
+# ordering complete 68974.22
+# symbolic factorization 68974.29
+# symbolic complete 386721 68974.41
+# lower F=1.46406624883185 68975.21
+# zero stress fan eligibility 0 68978.56
+# zero stress fan eligibility 256 68978.6
+# zero stress fan eligibility 0 68978.99
+# zero stress fan eligibility 256 68979.03
+# zero stress fan eligibility 0 68979.16
+# zero stress fan eligibility 256 68979.2
+# zero stress fan eligibility 512 68979.24
+# zero stress fan eligibility 768 68979.28
+# zero stress fan eligibility 1024 68979.33
+# zero stress fan eligibility 1280 68979.37
+# zero stress fan eligibility 0 68979.67
+# zero stress fan eligibility 256 68979.71
+# zero stress fan eligibility 0 68979.84
+# zero stress fan eligibility 256 68979.88
+# zero stress fan eligibility 512 68979.91
+# zero stress fan eligibility 768 68979.95
+# zero stress fan eligibility 1024 68979.99
+# zero stress fan eligibility 0 68980.29
+# zero stress fan eligibility 256 68980.33
+# zero stress fan eligibility 0 68980.45
+# zero stress fan eligibility 256 68980.48
+# zero stress fan eligibility 512 68980.52
+# zero stress fan eligibility 768 68980.56
+# zero stress fan eligibility 0 68980.87
+# zero stress fan eligibility 256 68980.9
+# zero stress fan eligibility 0 68981.02
+# zero stress fan eligibility 256 68981.06
+# zero stress fan eligibility 512 68981.1
+# zero stress fan eligibility 0 68981.38
+# zero stress fan eligibility 256 68981.41
+# zero stress fan eligibility 512 68981.45
+# upper F=1.34526351657307 68981.66
+# upper elements 0/656 68981.7
+# upper elements 256/656 68982.99
+# upper elements 512/656 68984.26
+# upper edges 0/1018 68985.01
+# upper edges 512/1018 68986.53
+# compile arrays 68987.98
+# ordering 8293 68988.15
+# ordering complete 68988.48
+# symbolic factorization 68988.57
+# symbolic complete 271202 68988.67
+# upper F=1.64421096470042 68992.27
+# upper elements 0/656 68992.33
+# upper elements 256/656 68993.6
+# upper elements 512/656 68994.86
+# upper edges 0/1018 68995.61
+# upper edges 512/1018 68997.13
+# compile arrays 68998.59
+# ordering complete 68998.76
+# symbolic factorization 68998.85
+# symbolic complete 271202 68998.95
+# HSD 0 residual=2.7E+02 gap=2.0E+04 69002.55
+# HSD 1 residual=4.6E+01 gap=7.4E+02 69004.42
+# HSD 2 residual=9.6E+00 gap=5.8E+01 69006.19
+# HSD 3 residual=2.5E+00 gap=9.5E+00 69007.28
+# HSD 4 residual=5.6E-01 gap=1.7E+00 69008.38
+# HSD 5 residual=2.0E-01 gap=6.0E-01 69009.49
+# HSD 6 residual=1.2E-01 gap=4.3E-01 69010.58
+# HSD 7 residual=1.1E-01 gap=4.2E-01 69011.65
+# HSD 8 residual=9.0E-02 gap=4.2E-01 69012.78
+# HSD 9 residual=6.6E-02 gap=3.7E-01 69013.91
+# HSD 10 residual=4.8E-02 gap=3.0E-01 69015
+# HSD 11 residual=3.1E-02 gap=2.1E-01 69016.08
+# HSD 12 residual=1.9E-02 gap=1.4E-01 69017.17
+# HSD 13 residual=1.2E-02 gap=8.5E-02 69018.27
+# HSD 14 residual=6.9E-03 gap=5.0E-02 69019.38
+# HSD 15 residual=4.2E-03 gap=3.1E-02 69020.45
+# HSD 16 residual=2.3E-03 gap=1.7E-02 69021.52
+# HSD 17 residual=1.1E-03 gap=7.8E-03 69022.61
+# HSD 18 residual=5.4E-04 gap=4.0E-03 69023.74
+# HSD 19 residual=3.5E-04 gap=2.6E-03 69024.85
+# HSD 20 residual=2.0E-04 gap=1.5E-03 69025.98
+# HSD 21 residual=1.2E-04 gap=9.1E-04 69027.09
+# HSD 22 residual=8.3E-05 gap=6.1E-04 69028.28
+# HSD 23 residual=5.3E-05 gap=3.9E-04 69029.39
+# HSD 24 residual=2.4E-05 gap=1.8E-04 69030.49
+# HSD 25 residual=1.6E-05 gap=1.2E-04 69031.61
+# HSD 26 residual=8.1E-06 gap=6.0E-05 69032.74
+# HSD 27 residual=4.5E-06 gap=3.3E-05 69033.84
+# HSD 28 residual=2.3E-06 gap=1.7E-05 69034.95
+# HSD 29 residual=1.0E-06 gap=7.4E-06 69036.06
+# HSD 30 residual=5.1E-07 gap=3.8E-06 69037.24
+# HSD 31 residual=2.4E-07 gap=1.8E-06 69038.38
+# HSD 32 residual=1.2E-07 gap=9.1E-07 69039.62
+# HSD 33 residual=6.9E-08 gap=5.3E-07 69040.82
+# HSD 34 residual=5.0E-08 gap=3.9E-07 69042.04
+# HSD 35 residual=3.3E-08 gap=2.7E-07 69043.29
+# HSD 36 residual=1.4E-08 gap=1.2E-07 69044.49
+# HSD 37 residual=6.6E-09 gap=6.2E-08 69045.73
+# HSD 38 residual=2.7E-09 gap=3.0E-08 69047.01
+# HSD 39 residual=1.7E-09 gap=2.2E-08 69048.31
+# upper F=1.49473724063675 69049.92
+# upper F=1.42000037860491 69051.91
+# upper F=1.45736880962083 69055.77
+# upper elements 0/656 69055.86
+# upper elements 256/656 69057.23
+# upper elements 512/656 69058.59
+# upper edges 0/1018 69059.37
+# upper edges 512/1018 69060.92
+# compile arrays 69062.45
+# ordering complete 69062.62
+# symbolic factorization 69062.71
+# symbolic complete 271202 69062.81
+# upper F=1.47605302512879 69066.65
+# upper elements 0/656 69066.71
+# upper elements 256/656 69068.03
+# upper elements 512/656 69069.39
+# upper edges 0/1018 69070.19
+# upper edges 512/1018 69071.76
+# compile arrays 69073.27
+# ordering complete 69073.45
+# symbolic factorization 69073.54
+# symbolic complete 271202 69073.64
+# upper F=1.48539513288277 69078.87
+# upper elements 0/656 69078.93
+# upper elements 256/656 69080.27
+# upper elements 512/656 69081.63
+# upper edges 0/1018 69082.42
+# upper edges 512/1018 69084.02
+# compile arrays 69085.53
+# ordering complete 69085.7
+# symbolic factorization 69085.8
+# symbolic complete 271202 69085.91
+# upper F=1.49006618675976 69089.41
+# upper elements 0/656 69089.49
+# upper elements 256/656 69090.84
+# upper elements 512/656 69092.21
+# upper edges 0/1018 69093.01
+# upper edges 512/1018 69094.57
+# compile arrays 69096.08
+# ordering complete 69096.26
+# symbolic factorization 69096.35
+# symbolic complete 271202 69096.45
+# upper F=1.49240171369825 69100.38
+# upper elements 0/656 69100.43
+# upper elements 256/656 69101.8
+# upper elements 512/656 69103.14
+# upper edges 0/1018 69103.92
+# upper edges 512/1018 69105.47
+# compile arrays 69106.96
+# ordering complete 69107.13
+# symbolic factorization 69107.24
+# symbolic complete 271202 69107.35
+# upper F=1.4935694771675 69111.34
+# upper elements 0/656 69111.44
+# upper elements 256/656 69112.79
+# upper elements 512/656 69114.12
+# upper edges 0/1018 69114.9
+# upper edges 512/1018 69116.48
+# compile arrays 69117.96
+# ordering complete 69118.11
+# symbolic factorization 69118.21
+# symbolic complete 271202 69118.3
+# HSD 0 residual=2.5E+02 gap=2.0E+04 69124.3
+# HSD 1 residual=4.5E+01 gap=8.4E+02 69126.22
+# HSD 2 residual=9.7E+00 gap=6.9E+01 69127.94
+# HSD 3 residual=2.8E+00 gap=1.2E+01 69129.04
+# HSD 4 residual=6.7E-01 gap=2.3E+00 69130.15
+# HSD 5 residual=2.2E-01 gap=7.3E-01 69131.29
+# HSD 6 residual=1.3E-01 gap=5.1E-01 69132.39
+# HSD 7 residual=1.2E-01 gap=5.1E-01 69133.49
+# HSD 8 residual=9.6E-02 gap=5.3E-01 69134.63
+# HSD 9 residual=7.5E-02 gap=5.1E-01 69135.78
+# HSD 10 residual=5.6E-02 gap=4.4E-01 69136.88
+# HSD 11 residual=3.8E-02 gap=3.3E-01 69137.98
+# HSD 12 residual=2.5E-02 gap=2.3E-01 69139.07
+# HSD 13 residual=1.5E-02 gap=1.4E-01 69140.17
+# HSD 14 residual=8.7E-03 gap=8.4E-02 69141.31
+# HSD 15 residual=4.6E-03 gap=4.4E-02 69142.41
+# HSD 16 residual=2.6E-03 gap=2.6E-02 69143.5
+# HSD 17 residual=1.5E-03 gap=1.5E-02 69144.6
+# HSD 18 residual=9.0E-04 gap=8.8E-03 69145.73
+# HSD 19 residual=4.2E-04 gap=4.1E-03 69146.85
+# HSD 20 residual=2.2E-04 gap=2.1E-03 69147.95
+# HSD 21 residual=1.6E-04 gap=1.6E-03 69149.09
+# HSD 22 residual=9.9E-05 gap=9.7E-04 69150.23
+# HSD 23 residual=5.2E-05 gap=5.1E-04 69151.32
+# HSD 24 residual=2.9E-05 gap=2.9E-04 69152.43
+# HSD 25 residual=1.9E-05 gap=1.9E-04 69153.55
+# HSD 26 residual=8.5E-06 gap=8.4E-05 69154.7
+# HSD 27 residual=5.5E-06 gap=5.4E-05 69155.8
+# HSD 28 residual=3.9E-06 gap=3.9E-05 69156.91
+# HSD 29 residual=2.2E-06 gap=2.2E-05 69158.03
+# HSD 30 residual=9.4E-07 gap=9.3E-06 69159.19
+# HSD 31 residual=5.2E-07 gap=5.2E-06 69160.32
+# HSD 32 residual=2.5E-07 gap=2.5E-06 69161.51
+# HSD 33 residual=1.3E-07 gap=1.3E-06 69162.7
+# HSD 34 residual=7.6E-08 gap=8.0E-07 69163.93
+# HSD 35 residual=3.9E-08 gap=4.3E-07 69165.2
+# HSD 36 residual=1.9E-08 gap=2.1E-07 69166.45
+# HSD 37 residual=8.8E-09 gap=1.1E-07 69167.7
+# HSD 38 residual=4.1E-09 gap=5.2E-08 69168.91
+# HSD 39 residual=1.9E-09 gap=2.6E-08 69170.16
+# HSD 40 residual=7.7E-10 gap=1.3E-08 69171.43
+# upper F=1.49298559543288 69173.03
+# upper F=1.49327753630019 69177.3
+# upper elements 0/656 69177.39
+# upper elements 256/656 69178.73
+# upper elements 512/656 69180.11
+# upper edges 0/1018 69180.88
+# upper edges 512/1018 69182.42
+# compile arrays 69183.93
+# ordering complete 69184.09
+# symbolic factorization 69184.2
+# symbolic complete 271202 69184.29
+# upper F=1.49342350673385 69188.93
+# upper elements 0/656 69188.98
+# upper elements 256/656 69190.31
+# upper elements 512/656 69191.65
+# upper edges 0/1018 69192.43
+# upper edges 512/1018 69193.98
+# compile arrays 69195.45
+# ordering complete 69195.59
+# symbolic factorization 69195.68
+# symbolic complete 271202 69195.77
+# lower F=1.31753198085809 69197.79
+# compile arrays 69206.45
+# ordering 21661 69206.66
+# ordering complete 69207.61
+# symbolic factorization 69207.76
+# symbolic complete 499822 69207.91
+# lower F=1.61031686549323 69209.31
+# lower F=1.46392442317566 69211.01
+# compile arrays 69219.77
+# ordering complete 69219.98
+# symbolic factorization 69220.09
+# symbolic complete 499822 69220.24
+# lower F=1.53712064433444 69221.63
+# lower F=1.50052253375505 69224.28
+# compile arrays 69232.91
+# ordering complete 69233.16
+# symbolic factorization 69233.26
+# symbolic complete 499822 69233.42
+# lower F=1.48222347846536 69235.01
+# compile arrays 69243.68
+# ordering complete 69243.92
+# symbolic factorization 69244.03
+# symbolic complete 499822 69244.19
+# lower F=1.47307395082051 69245.8
+# compile arrays 69254.44
+# ordering complete 69254.65
+# symbolic factorization 69254.77
+# symbolic complete 499822 69254.93
+# lower F=1.46849918699808 69256.51
+# compile arrays 69265.2
+# ordering complete 69265.42
+# symbolic factorization 69265.55
+# symbolic complete 499822 69265.69
+# lower F=1.46621180508687 69267.28
+# compile arrays 69275.98
+# ordering complete 69276.21
+# symbolic factorization 69276.34
+# symbolic complete 499822 69276.49
+# lower F=1.46506811413127 69278.1
+# compile arrays 69286.8
+# ordering complete 69287.02
+# symbolic factorization 69287.13
+# symbolic complete 499822 69287.29
+# lower F=1.46449626865346 69288.84
+# compile arrays 69297.57
+# ordering complete 69297.79
+# symbolic factorization 69297.87
+# symbolic complete 499822 69298.02
+# lower F=1.46421034591456 69299.62
+# compile arrays 69308.32
+# ordering complete 69308.55
+# symbolic factorization 69308.66
+# symbolic complete 499822 69308.83
+ 0 , 0 , 1 , 3936 , 499822 
+ 1 ,-5.79566919280059E-02 , 0.327470625087097 , 1647.84778338891 , 499822 
+ 2 ,-8.56321727444052E-02 , 3.84327389414915E-02 , 233.454438349236 , 499822 
+ 3 ,-9.27170621404037E-02 , 1.66649556069878E-03 , 10.3801790018228 , 499822 
+ 4 ,-0.113418241516819 , 2.17893091936465E-04 , 1.27774640891333 , 499822 
+ 5 ,-0.363933537651872 , 1.08917249636683E-04 , 0.732575627072603 , 499822 
+ 6 ,-0.692638222107757 , 7.58835298613392E-05 , 0.615718693689985 , 499822 
+ 7 ,-0.836311865377042 , 4.63218156100169E-05 , 0.542472609715717 , 499822 
+ 8 ,-0.908184899294757 , 1.8745431846133E-05 , 0.390381138014238 , 499822 
+ 9 ,-0.962702544885287 , 7.68427241890538E-06 , 0.183549647816464 , 499822 
+ 10 ,-0.967179217828481 , 2.07016722239316E-06 , 0.137108254318152 , 499822 
+ 11 ,-0.990773583428714 , 8.49794466630735E-07 , 4.56716766405302E-02 , 499822 
+ 12 ,-0.995340160229127 , 6.06699695291462E-07 , 2.30662112244102E-02 , 499822 
+ 13 ,-0.997464769070604 , 6.4819893609193E-07 , 1.25278624159639E-02 , 499822 
+ 14 ,-0.998459299111214 , 8.21521611304402E-07 , 7.72966109891583E-03 , 499822 
+ 15 ,-0.999367758948292 , 8.93573156831189E-07 , 3.25831542573327E-03 , 499822 
+ 16 ,-0.999646373664382 , 7.04392463109331E-07 , 1.86753804206492E-03 , 499822 
+ 17 ,-0.999836194663044 , 5.82521456529371E-07 , 9.59986288641781E-04 , 499822 
+ 18 ,-0.999967122181388 , 5.83510474102074E-07 , 3.06225472092716E-04 , 499822 
+ 19 ,-0.999998604279289 , 4.03438311808146E-07 , 1.48916119219544E-04 , 499822 
+ 20 ,-1.00000915274306 , 3.07080749721949E-07 , 9.94596618450508E-05 , 499822 
+ 21 ,-1.00001977085582 , 2.76691251949435E-07 , 4.9100979318729E-05 , 499822 
+ 22 ,-1.00002419791412 , 2.71920696126492E-07 , 3.02460381272806E-05 , 499822 
+ 23 ,-1.00002777613573 , 2.79321724965475E-07 , 1.64185124367972E-05 , 499822 
+ 24 ,-1.00002987243783 , 2.84889649827762E-07 , 1.05510651452077E-05 , 499822 
+ 25 ,-1.00003119636236 , 2.85747821827255E-07 , 7.16934223914375E-06 , 499822 
+ 26 ,-1.00003167101669 , 1.80714149522082E-07 , 6.46471837865674E-06 , 499822 
+ 27 ,-1.00003260188137 , 1.79860162140165E-07 , 4.20475323736295E-06 , 499822 
+ 28 ,-1.00003321316825 , 1.79003061998756E-07 , 2.66266037089594E-06 , 499822 
+ 29 ,-1.00003322306464 , 1.60399886684473E-07 , 2.63689104123032E-06 , 499822 
+ 30 ,-1.00003335410163 , 1.32559524311159E-07 , 2.28162417588492E-06 , 499822 
+ 31 ,-1.00003364698481 , 1.42267930779887E-07 , 1.46316569111668E-06 , 499822 
+ 32 ,-1.0000339372882 , 1.42064347597901E-07 , 9.08417090437873E-07 , 499822 
+# lower F=1.46435330728401 69314.33
