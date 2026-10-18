@@ -1,0 +1,2 @@
+﻿case,status,analysis_seconds,timeout_seconds,lower_fs,upper_fs,relative_gap,fs_obtained,target_met,error
+P10A,FS_AVAILABLE_PARTIAL,2080.416436,10800,2.006059635229918,2.0479382912549267,0.020660423011770467,True,False,

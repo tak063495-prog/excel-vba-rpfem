@@ -1,0 +1,31 @@
+{
+  "captured_utc": "2026-10-18T04:36:18.727458+00:00",
+  "platform": "Windows-11-10.0.26300-SP0",
+  "python": "3.13.14 (tags/v3.13.14:fd17997, Jun 10 2026, 13:03:48) [MSC v.1944 64 bit (AMD64)]",
+  "packages": {
+    "pywin32": "312",
+    "numpy": "2.5.4",
+    "scipy": "1.18.1",
+    "oletools": "0.60.2"
+  },
+  "hardware": {
+    "excel_processes": {},
+    "cpu": {
+      "Name": "AMD Ryzen 7 7840U w/ Radeon 780M Graphics      ",
+      "NumberOfCores": 8,
+      "NumberOfLogicalProcessors": 16
+    },
+    "os": {
+      "Caption": "Microsoft Windows 11 Home",
+      "Version": "10.0.26300",
+      "TotalVisibleMemorySize": 50133984
+    }
+  },
+  "source_commit": "362e2b0875bae864b007d31e011b1f4ede38a627",
+  "source_sha256": "601985a2fcac3d7ad0040b6ca972f9b5ad20454b1da7ee753e16b14c812dd66f",
+  "dll_sha256": "66da1a21be43cd2b3a3bfbaa9d13aad5fb1fd1960e1bf2507cc4e1cfa9ebe70b",
+  "execution": "Sequential native Excel, one analysis at a time",
+  "macro_security": "Recorded without modification in each case status",
+  "VBA_measurement": "No new VBA full timing per prior user instruction",
+  "timing_boundary": "Main: run_end.elapsed_s; additionally COM RPX_Run, water preparation and initial RPX_CreateMesh measured separately; saving/audits/Excel startup excluded"
+}
