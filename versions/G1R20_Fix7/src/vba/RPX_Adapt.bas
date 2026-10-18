@@ -1498,7 +1498,10 @@ Private Function TerminalOwnFieldReady(ByVal side As String, ByRef state As RPX_
             If Not RPX_SchurFinite(raw(i)) Or raw(i) > 0.0000001 Then ownReuseReason = "F7": Exit Function
         Next i
     Else
-        If measured > 0.999999 Then ownReuseReason = "F8": Exit Function
+        ' G1R20 Fix7: same upper acceptance as RPX_UpperObjectiveAcceptable
+        ' (UPPER_TARGET + 1e-8). For an all-phi=0 model the endpoint is RValue/target,
+        ' so its re-audit lands on 0.999999 up to rounding (P10A: rejected by ~1e-11).
+        If measured > 0.999999 + 0.00000001 Then ownReuseReason = "F8": Exit Function
     End If
     TerminalOwnFieldReady = True
 End Function

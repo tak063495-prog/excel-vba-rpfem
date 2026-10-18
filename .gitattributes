@@ -61,3 +61,4 @@ validation/G1R20_Fix6_*/** -text
 # G1R20 Fix7 candidate (P10A speed)
 versions/G1R20_Fix7/** -text
 validation/G1R20_Fix7_*/** -text
+validation/G1R20_Fix7rc2_*/** -text

@@ -84,8 +84,8 @@
       "cp932_sha256": "f5b206b220371076248734f0221bee5c9f5162e8c25f57134a20257c5f7049be"
     },
     "RPX_Adapt.bas": {
-      "utf8_sha256": "7a1a8e6eb7a7f8ffb974630e1d6d4d2eea06bcf9933546adbc6f1444f23d477b",
-      "cp932_sha256": "7a1a8e6eb7a7f8ffb974630e1d6d4d2eea06bcf9933546adbc6f1444f23d477b"
+      "utf8_sha256": "99ea992293a753db7a520089668f7f4698a7aa1d897b370575cfd79898039b59",
+      "cp932_sha256": "99ea992293a753db7a520089668f7f4698a7aa1d897b370575cfd79898039b59"
     },
     "RPX_Affine.bas": {
       "utf8_sha256": "1db43674855d97522da6c1ee68cbaad7f60bc197ae7980e7d4d16b57547e5d8c",
@@ -342,8 +342,8 @@
   "runtime_dll_sha256": "66da1a21be43cd2b3a3bfbaa9d13aad5fb1fd1960e1bf2507cc4e1cfa9ebe70b",
   "assets": {},
   "p06_native_complete_claimed": false,
-  "scope": "G1R20 Fix7 candidate (P10A speed): own-q8 reuse diagnostics, upper conic skip after failure, hopeless accuracy-round skip, final-stage reuse",
+  "scope": "G1R20 Fix7 candidate (P10A speed): own-q8 reuse diagnostics, upper conic skip after failure, hopeless accuracy-round skip, final-stage reuse; rc2: own-q8 upper reuse uses the production upper acceptance tolerance (0.999999+1e-8)",
   "validation_warning": "Candidate; Winmax2 P10A/D05A/P02A/P05A only; not published",
   "source_is_authoritative": "src/vba and src/workbook; UTF8 and CP932 decoded text exactly equal; all release bytes preserved by .gitattributes",
-  "source_bundle_sha256": "a04b702bf9afa3a6a8226a88bba737653c04c3e84fff8aa80477beea076c4b4f"
+  "source_bundle_sha256": "1599ed11475e6f2ed50012122756f90fd6dca71f3f38244c776ae9170939391e"
 }
