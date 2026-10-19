@@ -1,0 +1,12 @@
+{
+  "compile": "PASS",
+  "source_sha256": "177d282cd3bdce252ac2a70a6f59059d4923ed48f41423cf467f0ede4b0aace8",
+  "template_sha256": "041dfa12a2428bcc07ac70f11b8048f986854a8dc350894927e1b58ec414c504",
+  "macro_security_unmodified": 1,
+  "integrity": {
+    "pass": true,
+    "unchanged_original_modules": 75,
+    "only_added_module": "BatchEvidence",
+    "document_modules_unchanged": true
+  }
+}

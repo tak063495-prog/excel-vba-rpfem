@@ -1,0 +1,58 @@
+Fix9 source diff against fix8_orig_vba/ (1-based lines, no context).
+An empty side is shown as an insertion/deletion position.
+
+RPX_AccuracyNative.bas
+  Fix8 none (before line 50) -> Fix9 50-52
+  Fix8 none (before line 773) -> Fix9 776-786
+  Fix8 none (before line 791) -> Fix9 805
+
+RPX_Adapt.bas
+  Fix8 none (before line 5) -> Fix9 5-22
+  Fix8 none (before line 2612) -> Fix9 2630-2761
+  Fix8 2614 -> Fix9 2764
+  Fix8 none (before line 2618) -> Fix9 2768
+  Fix8 2632 -> Fix9 2783-2786
+  Fix8 2659 -> Fix9 2813
+  Fix8 none (before line 2663) -> Fix9 2817-2823
+  Fix8 none (before line 2669) -> Fix9 2830
+  Fix8 2671-2672 -> Fix9 2833-2837
+  Fix8 none (before line 2674) -> Fix9 2839
+  Fix8 none (before line 2678) -> Fix9 2844
+  Fix8 2699 -> Fix9 2866
+  Fix8 none (before line 2708) -> Fix9 2875
+  Fix8 none (before line 2723) -> Fix9 2891-2894
+  Fix8 2724-2725 -> Fix9 2896-2899
+  Fix8 2727 -> Fix9 2901
+  Fix8 2730 -> Fix9 2904-2905
+  Fix8 none (before line 2738) -> Fix9 2913
+  Fix8 none (before line 2750) -> Fix9 2926
+  Fix8 none (before line 2758) -> Fix9 2935-2936
+  Fix8 none (before line 2767) -> Fix9 2946-2947
+  Fix8 none (before line 2770) -> Fix9 2951
+  Fix8 2771 -> Fix9 2953
+  Fix8 none (before line 2773) -> Fix9 2955
+  Fix8 none (before line 2792) -> Fix9 2975
+  Fix8 none (before line 2795) -> Fix9 2979-2980
+  Fix8 none (before line 2796) -> Fix9 2982
+  Fix8 none (before line 2797) -> Fix9 2984-2986
+  Fix8 none (before line 2798) -> Fix9 2988
+  Fix8 none (before line 2800) -> Fix9 2991
+  Fix8 2803 -> Fix9 2995
+  Fix8 none (before line 2807) -> Fix9 2999
+  Fix8 none (before line 2811) -> Fix9 3004-3018
+  Fix8 none (before line 2817) -> Fix9 3025
+  Fix8 none (before line 2827) -> Fix9 3036
+  Fix8 2829 -> Fix9 3039
+  Fix8 none (before line 2836) -> Fix9 3046-3052
+  Fix8 2837 -> Fix9 3054
+  Fix8 none (before line 2845) -> Fix9 3062
+  Fix8 none (before line 2850) -> Fix9 3068-3074
+  Fix8 2851 -> Fix9 3076
+  Fix8 none (before line 2859) -> Fix9 3084
+
+RPX_Solve.bas
+  Fix8 none (before line 5) -> Fix9 5-9
+  Fix8 1807 -> Fix9 1812
+  Fix8 none (before line 1840) -> Fix9 1845-1853
+
+Changed modules: 3; byte-identical modules: 60; total: 63.
