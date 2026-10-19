@@ -1,0 +1,5 @@
+{
+  "utc": "2026-10-19T07:06:14.896458+00:00",
+  "excel_pids_not_launched_by_runner": [],
+  "note": "Never terminated by the runner; may share CPU with the benchmark"
+}

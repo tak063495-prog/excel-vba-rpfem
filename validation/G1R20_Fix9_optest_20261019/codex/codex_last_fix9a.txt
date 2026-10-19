@@ -1,0 +1,1 @@
+Completed both parts: implemented all six Fix9 changes across three VBA modules and created [ANALYSIS.md](ANALYSIS.md), [CHANGES.md](CHANGES.md), and [diff_summary.txt](diff_summary.txt). Static checks passed; the other 60 modules remain byte-identical to Fix8. No Excel, VBA, simulations, or long computations were run.
