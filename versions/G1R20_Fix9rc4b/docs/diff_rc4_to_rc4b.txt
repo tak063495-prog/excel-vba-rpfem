@@ -1,0 +1,20 @@
+--- rc4/RPX_Adapt.bas
++++ rc4b/RPX_Adapt.bas
+@@ -2679,7 +2679,7 @@
+     uRounds = CLng(Fix8Number("ADAPT_THIN_UPPER_ROUNDS", 10, 0, 20))
+     lRounds = CLng(Fix8Number("ADAPT_THIN_LOWER_ROUNDS", 3, 0, 10))
+     lStart = CLng(Fix8Number("ADAPT_THIN_LOWER_START", 2, 1, 20))
+-    uTheta = Fix8Number("ADAPT_THIN_EARLY_UPPER_THETA", 0.9, 0.05, 1)
++    uTheta = Fix8Number("ADAPT_THIN_EARLY_UPPER_THETA", 0.95, 0.05, 1)
+     lTheta = Fix8Number("ADAPT_THIN_LOWER_THETA", 0.9, 0.05, 1)
+     uCap = CLng(Fix8Number("ADAPT_THIN_EARLY_UPPER_CAP", 7000, 16, 50000))
+     lCap = CLng(Fix8Number("ADAPT_THIN_LOWER_CAP", 6000, 16, 50000))
+@@ -3155,7 +3155,7 @@
+     uCap = CLng(Fix8Number("ADAPT_THIN_UPPER_CAP", 3500, 16, 50000))
+     lCap = CLng(Fix8Number("ADAPT_THIN_LOWER_CAP", 6000, 16, 50000))
+     If fix9ThinEarlyStartTaken Then
+-        uTheta = Fix8Number("ADAPT_THIN_EARLY_UPPER_THETA", 0.9, 0.05, 1)
++        uTheta = Fix8Number("ADAPT_THIN_EARLY_UPPER_THETA", 0.95, 0.05, 1)
+         uCap = CLng(Fix8Number("ADAPT_THIN_EARLY_UPPER_CAP", 7000, 16, 50000))
+     End If
+     passes = CLng(Fix8Number("ADAPT_THIN_FLIP_PASSES", 5, 0, 5))

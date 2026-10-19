@@ -1,0 +1,81 @@
+--- vba/RPX_Adapt.bas
++++ vba_rc4/RPX_Adapt.bas
+@@ -76,6 +76,7 @@
+ Public RAdaptHistory As Collection
+ Public RAdaptRoute As String
+ Private adaptCoarseSearch As Boolean
++Private fix9ThinEarlyStartTaken As Boolean
+ Private g20BalancedAttempted As Boolean, g20FlowSource As String
+ Private Const AdaptCoarseTol As Double = 0.001
+ Private Const AdaptStartRatio As Double = 0.35
+@@ -1843,6 +1844,7 @@
+     Dim profile As RPX_ProblemProfile
+     Dim robustRefine As Boolean, robustExhausted As Boolean, stagedRefine As Boolean, stagedCap As Long
+     Dim fix8Ran As Boolean
++    fix9ThinEarlyStartTaken = False
+     stagedRefine = (UCase$(Trim$(CStr(RPX_Setting("ADAPT_MESH_POLICY", "LEGACY")))) = "LEGACY_THEN_REFINE" And RR = 0)
+     robustRefine = RPX_RobustMeshPolicy() And Not stagedRefine
+     If stagedRefine Then
+@@ -2618,7 +2620,7 @@
+     End If
+     If logDetection Then RPX_DiagEvent "thin_layer_detect", "active=" & IIf(Fix8ThinMode, "1", "0") & ";setting=" & setting & ";trigger=" & trigger & ";mid_ratio=" & midRatio & ";min_thickness=" & minimum & ";thickness=" & text
+ End Function
+-' The early probe changes no shared state and emits nothing for inactive cases.
++' The early probe records only a taken start; inactive cases emit nothing.
+ ' Defer existing detection errors to the original final-stage call.
+ Private Function Fix9ThinEarlyStart(ByVal mode As String) As Boolean
+     Dim mask() As Boolean, reason As String, earlyMode As Long
+@@ -2658,6 +2660,7 @@
+         reason = "coarse_q8_pair"
+         If earlyMode = 1 Then reason = budgetReason
+         Fix9ThinEarlyStart = True
++        fix9ThinEarlyStartTaken = True
+     End If
+     RPX_DiagEvent "thin_layer_early_start", "active=" & IIf(Fix9ThinEarlyStart, "1", "0") & ";reason=" & reason & ";elements=" & re & ";lower=" & RBestLower.value & ";upper=" & RBestUpper.value & ";early_mode=" & earlyMode & budgetText
+     Exit Function
+@@ -2665,7 +2668,7 @@
+     err.Clear
+ End Function
+ ' rc3b admission policy only: theta is indicator mass, not predicted mesh growth.
+-' Read the same effective chain values as Fix8ThinLayerChains; no state writes.
++' Evaluate the upper budget used after early admission; no state writes.
+ Private Function Fix9ThinEarlyBudget(ByRef reason As String, ByRef text As String) As Boolean
+     Dim uRounds As Long, lRounds As Long, lStart As Long, uCap As Long, lCap As Long
+     Dim uTheta As Double, lTheta As Double, coarse As Long, lowerEnd As Long
+@@ -2676,9 +2679,9 @@
+     uRounds = CLng(Fix8Number("ADAPT_THIN_UPPER_ROUNDS", 10, 0, 20))
+     lRounds = CLng(Fix8Number("ADAPT_THIN_LOWER_ROUNDS", 3, 0, 10))
+     lStart = CLng(Fix8Number("ADAPT_THIN_LOWER_START", 2, 1, 20))
+-    uTheta = Fix8Number("ADAPT_THIN_UPPER_THETA", 0.8, 0.05, 1)
++    uTheta = Fix8Number("ADAPT_THIN_EARLY_UPPER_THETA", 0.9, 0.05, 1)
+     lTheta = Fix8Number("ADAPT_THIN_LOWER_THETA", 0.9, 0.05, 1)
+-    uCap = CLng(Fix8Number("ADAPT_THIN_UPPER_CAP", 3500, 16, 50000))
++    uCap = CLng(Fix8Number("ADAPT_THIN_EARLY_UPPER_CAP", 7000, 16, 50000))
+     lCap = CLng(Fix8Number("ADAPT_THIN_LOWER_CAP", 6000, 16, 50000))
+     minUpper = Fix9Integer("ADAPT_THIN_EARLY_MIN_UPPER_ROUNDS", 10, 0, 20)
+     minLower = Fix9Integer("ADAPT_THIN_EARLY_MIN_LOWER_ROUNDS", 3, 0, 10)
+@@ -2702,6 +2705,7 @@
+     End If
+     text = ";upper_rounds=" & uRounds & ";lower_rounds=" & lRounds & ";lower_start=" & lStart & ";lower_end=" & lowerEnd
+     text = text & ";upper_cap=" & uCap & ";lower_cap=" & lCap & ";upper_theta=" & uTheta & ";lower_theta=" & lTheta
++    text = text & ";early_upper_theta=" & uTheta & ";early_upper_cap=" & uCap
+     text = text & ";coarse_elements=" & coarse & ";upper_cap_ratio=" & upperRatio & ";lower_cap_ratio=" & lowerRatio
+     text = text & ";min_upper_rounds=" & minUpper & ";min_lower_rounds=" & minLower & ";min_cap_ratio=" & minRatio
+     text = text & ";min_upper_theta=" & minUpperTheta & ";min_lower_theta=" & minLowerTheta & ";min_remaining_seconds=" & minSeconds
+@@ -3150,11 +3154,15 @@
+     lTheta = Fix8Number("ADAPT_THIN_LOWER_THETA", 0.9, 0.05, 1)
+     uCap = CLng(Fix8Number("ADAPT_THIN_UPPER_CAP", 3500, 16, 50000))
+     lCap = CLng(Fix8Number("ADAPT_THIN_LOWER_CAP", 6000, 16, 50000))
++    If fix9ThinEarlyStartTaken Then
++        uTheta = Fix8Number("ADAPT_THIN_EARLY_UPPER_THETA", 0.9, 0.05, 1)
++        uCap = CLng(Fix8Number("ADAPT_THIN_EARLY_UPPER_CAP", 7000, 16, 50000))
++    End If
+     passes = CLng(Fix8Number("ADAPT_THIN_FLIP_PASSES", 5, 0, 5))
+     Call Fix9ReadOptions(opt, settings)
+     CloneState upLine, RBestUpper: CloneState loLine, RBestLower
+     upAlive = (uRounds > 0): loAlive = (lRounds > 0): upMid = True: loMid = True
+-    RPX_DiagEvent "thin_layer_begin", "upper_rounds=" & uRounds & ";upper_theta=" & uTheta & ";upper_cap=" & uCap & ";lower_rounds=" & lRounds & ";lower_start=" & lStart & ";lower_theta=" & lTheta & ";lower_cap=" & lCap & ";flip_passes=" & passes & ";lower=" & RBestLower.value & ";upper=" & RBestUpper.value & settings & ";mid_counts_as_round=0;retries_count_as_steps=1"
++    RPX_DiagEvent "thin_layer_begin", "upper_rounds=" & uRounds & ";upper_theta=" & uTheta & ";upper_cap=" & uCap & ";lower_rounds=" & lRounds & ";lower_start=" & lStart & ";lower_theta=" & lTheta & ";lower_cap=" & lCap & ";flip_passes=" & passes & ";lower=" & RBestLower.value & ";upper=" & RBestUpper.value & settings & ";early_overrides=" & Abs(CLng(fix9ThinEarlyStartTaken)) & ";mid_counts_as_round=0;retries_count_as_steps=1"
+     For round = 1 To uRounds + lStart + lRounds
+         If XCancel Then err.Raise 18, , "ANALYSIS_CANCELLED"
+         If RPX_TargetMet(mode, RBestLower.value, RBestUpper.value, currentPairValid) Then Exit For
