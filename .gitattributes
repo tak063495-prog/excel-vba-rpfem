@@ -63,3 +63,7 @@ versions/G1R20_Fix7/** -text
 validation/G1R20_Fix7_*/** -text
 validation/G1R20_Fix7rc2_*/** -text
 validation/G1R20_Fix7rc3_*/** -text
+# G1R20 Fix8 candidate (P06 thin-layer mesh port)
+versions/G1R20_Fix8/** -text
+validation/G1R20_Fix8_*/** -text
+validation/G1R20_Fix8ctl_*/** -text
