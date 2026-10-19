@@ -1258,9 +1258,35 @@ End Sub
 ' candidate size exceeds the ordinary limit (with endgame grace), the round would
 ' end in HSD_SOLVE_BUDGET_EXCEEDED; stop it before spending that time. The kept
 ' result is the same as after that failure (old witnesses, search incomplete).
+' G1R20 Fix8 rc2 (ADAPT_ACCURACY_SKIP_ESTIMATE=2, default): machine-independent
+' element-count gate. A round whose candidate exceeds ADAPT_ACCURACY_SKIP_ELEMENTS
+' (default 1000) is skipped; an admitted round gets the HSD safety floor
+' ADAPT_ACCURACY_HSD_SECONDS (default 900 s) so a slow machine does not change
+' the path. Calibrated on logged runs: P10A 582/790 admitted, 1109 skipped (it
+' only ever ended in HSD_SOLVE_BUDGET_EXCEEDED); P05A never has the conic skip.
+' Mode 1 restores the Fix7 wall-clock estimate.
+Private Function AccuracySkipMode() As Long
+    AccuracySkipMode = CLng(RPX_Setting("ADAPT_ACCURACY_SKIP_ESTIMATE", 2))
+End Function
+Private Function AccuracyHsdFloor() As Double
+    Dim floorSeconds As Double
+    If AccuracySkipMode() <> 2 Then Exit Function
+    If Not RPX_UpperConicSkipActive() Then Exit Function
+    floorSeconds = CDbl(RPX_Setting("ADAPT_ACCURACY_HSD_SECONDS", 900))
+    If Not RPX_SchurFinite(floorSeconds) Or floorSeconds < 0# Or floorSeconds > 3600# Then err.Raise 5, "RPX_Adapt", "ADAPT_ACCURACY_HSD_SECONDS_INVALID"
+    AccuracyHsdFloor = floorSeconds
+End Function
 Private Function AccuracyUpperHopeless() As Boolean
-    Dim estimate As Double, limit As Double
-    If CLng(RPX_Setting("ADAPT_ACCURACY_SKIP_ESTIMATE", 1)) <> 1 Then Exit Function
+    Dim estimate As Double, limit As Double, maxElements As Long
+    If AccuracySkipMode() = 2 Then
+        If Not RPX_UpperConicSkipActive() Or re <= 0 Then Exit Function
+        maxElements = CLng(RPX_Setting("ADAPT_ACCURACY_SKIP_ELEMENTS", 1000))
+        If maxElements <= 0 Then Exit Function
+        RPX_DiagEvent "accuracy_upper_estimate", "mode=elements;elements=" & re & ";max_elements=" & maxElements & ";last_seconds=" & RPX_LastUpperHsdSeconds & ";last_elements=" & RPX_LastUpperHsdElements
+        AccuracyUpperHopeless = (re > maxElements)
+        Exit Function
+    End If
+    If AccuracySkipMode() <> 1 Then Exit Function
     If Not RPX_UpperConicSkipActive() Then Exit Function
     If RPX_LastUpperHsdElements <= 0 Or RPX_LastUpperHsdSeconds <= 0# Or re <= 0 Then Exit Function
     estimate = RPX_LastUpperHsdSeconds * re / RPX_LastUpperHsdElements
@@ -1322,7 +1348,10 @@ Private Sub ContinueAccuracy(ByVal mode As String, ByVal targetGap As Double)
             Exit For
         End If
         meshStage = "evaluate"
+        RPX_HsdBudgetFloor = AccuracyHsdFloor()
+        If RPX_HsdBudgetFloor > 0# Then RPX_DiagEvent "accuracy_hsd_floor", "round=" & round & ";elements=" & re & ";floor_seconds=" & RPX_HsdBudgetFloor
         Call Evaluate(mode, "accuracy_" & round)
+        RPX_HsdBudgetFloor = 0#
         If Not AcceptCandidate(baseline, RCurrent) Then
             RPX_RestoreState baseline: CloneState RCurrent, baseline
             RPX_DiagEvent "accuracy_rollback", "round=" & round & ";reason=pair_worsened;best_side_witnesses_kept=1"
@@ -1342,6 +1371,7 @@ Private Sub ContinueAccuracy(ByVal mode As String, ByVal targetGap As Double)
     Exit Sub
 CandidateFailed:
     number = err.number: source = err.source: message = err.description: errorLine = Erl
+    RPX_HsdBudgetFloor = 0#
     On Error GoTo 0
     RPX_ErrorEvidence number, source, message, errorLine, meshStage
     If number = 18 Or XCancel Then err.Raise 18, source, "ANALYSIS_CANCELLED"

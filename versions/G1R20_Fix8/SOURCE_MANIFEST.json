@@ -6,7 +6,8 @@
   "changed_modules": [
     "RPX_AccuracyNative.bas",
     "RPX_Adapt.bas",
-    "RPX_Refine.bas"
+    "RPX_Refine.bas",
+    "RPX_Solve.bas"
   ],
   "base_module_sha256": {
     "RPX_AccuracyMesh.bas": "ec54485fb54a8ad6568a5b138c3db8f46ec7f397c3197d76117ba8c1d8c7d08f",
@@ -83,8 +84,8 @@
       "cp932_sha256": "3a0042ae7d6868045f41be7641d992b2b1442083ff1ffff66e59341cfcca860d"
     },
     "RPX_Adapt.bas": {
-      "utf8_sha256": "aa7f354095e7945967a9678a32ddb65617f1a2c7f53d2c8e54170d33f1e6a9cb",
-      "cp932_sha256": "aa7f354095e7945967a9678a32ddb65617f1a2c7f53d2c8e54170d33f1e6a9cb"
+      "utf8_sha256": "3d8cdb66c7f8d60ddcd3c4ab66652942eff00989b329bb378018eb48c8180adc",
+      "cp932_sha256": "3d8cdb66c7f8d60ddcd3c4ab66652942eff00989b329bb378018eb48c8180adc"
     },
     "RPX_Affine.bas": {
       "utf8_sha256": "1db43674855d97522da6c1ee68cbaad7f60bc197ae7980e7d4d16b57547e5d8c",
@@ -307,8 +308,8 @@
       "cp932_sha256": "71e1ad803a0a8ff9c6d099d3560bfd6305de310926eebd170938842cd89adb41"
     },
     "RPX_Solve.bas": {
-      "utf8_sha256": "9358d35726b5bda1a72b1d19f1d99730c722becead6155cf4bec245f2a095801",
-      "cp932_sha256": "9358d35726b5bda1a72b1d19f1d99730c722becead6155cf4bec245f2a095801"
+      "utf8_sha256": "507359342ad258ece9aaa51dce928926bf464f71c1818fec1b94373d5d66a0b3",
+      "cp932_sha256": "507359342ad258ece9aaa51dce928926bf464f71c1818fec1b94373d5d66a0b3"
     },
     "RPX_UI.bas": {
       "utf8_sha256": "ef9a2b9667050e46887294b8d95d0b73365a26915b806203faf67d48bee88ea9",
@@ -341,8 +342,8 @@
   "runtime_dll_sha256": "66da1a21be43cd2b3a3bfbaa9d13aad5fb1fd1960e1bf2507cc4e1cfa9ebe70b",
   "assets": {},
   "p06_native_complete_claimed": false,
-  "scope": "G1R20 Fix8 candidate (P06 thin-layer mesh port): auto-detected thin material layer (thickness ratio<0.1) -> separate upper/lower own-mesh chains (band mid-line, directional split + flow flips for upper; mixed indicator + red refinement + angular fan for lower) with production root rules and unchanged full audit; lower direct stress-only equality repair (load fixed) after LSMR in RecoverEquilibrium",
+  "scope": "G1R20 Fix8 candidate (P06 thin-layer mesh port): auto-detected thin material layer (thickness ratio<0.1) -> separate upper/lower own-mesh chains (band mid-line, directional split + flow flips for upper; mixed indicator + red refinement + angular fan for lower) with production root rules and unchanged full audit; lower direct stress-only equality repair (load fixed) after LSMR in RecoverEquilibrium; rc2: machine-independent accuracy-round gate (ADAPT_ACCURACY_SKIP_ESTIMATE=2: skip above ADAPT_ACCURACY_SKIP_ELEMENTS=1000, admitted rounds get HSD safety floor ADAPT_ACCURACY_HSD_SECONDS=900)",
   "validation_warning": "Candidate; Winmax2 regression P10A/D05A/P02A/P05A (+cheap cases) and forced thin-layer smoke only; P06A/P06N not run in VBA; not published",
   "source_is_authoritative": "src/vba and src/workbook; UTF8 and CP932 decoded text exactly equal; all release bytes preserved by .gitattributes",
-  "source_bundle_sha256": "1df9260dbe94403a153a91f9c2154099c9ebecb9a40e0d05a29f00e4da0dc1f9"
+  "source_bundle_sha256": "be53272901a78fc4d0634325cd75b477ede42186bd8a9a8040365af0311c47fe"
 }

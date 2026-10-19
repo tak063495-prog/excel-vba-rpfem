@@ -1,5 +1,7 @@
 Attribute VB_Name = "RPX_Solve"
 Option Explicit
+' G1R20 Fix8 rc2: ordinary HSD budget floor set by an element-gated accuracy round (0 = none).
+Public RPX_HsdBudgetFloor As Double
 #If Win64 Then
 Private Declare PtrSafe Function NHDDStep Lib "rpfem_native_x64.dll" Alias "rpx_hdd_step" (ByVal n As Long, ByVal nx As Long, ByVal nb As Long, ByVal nz As Long, ByVal phase As Long, ByRef cursor As Long, ByVal args As LongPtr, ByVal milliseconds As Long) As Long
 #End If
@@ -1817,6 +1819,12 @@ Private Sub OptimizeHSDCore(ByVal prepared As Boolean, ByVal auditMode As String
         If Not RPX_SchurFinite(perThousand) Or perThousand < 0# Or perThousand > 3600# Then err.Raise 5, "RPX_Solve", "HSD_SOLVE_BUDGET_INVALID"
         If perThousand > 0# And re > 0 Then
             If perThousand * re / 1000# > solveBudget Then solveBudget = perThousand * re / 1000#
+            If solveBudget > 3600# Then solveBudget = 3600#
+        End If
+        ' G1R20 Fix8 rc2: an accuracy round admitted by element count gets a
+        ' wall-clock safety floor instead of the ordinary limit (never lowers it).
+        If RPX_HsdBudgetFloor > solveBudget And RPX_SchurFinite(RPX_HsdBudgetFloor) Then
+            solveBudget = RPX_HsdBudgetFloor
             If solveBudget > 3600# Then solveBudget = 3600#
         End If
     End If

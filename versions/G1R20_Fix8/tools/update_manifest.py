@@ -16,7 +16,7 @@ for name in sorted(base['modules']):
 m.update(schema='rpfem.g1r20.fix8.sources.v1',version='G1R20_Fix8_candidate',base_version='G1R20_Fix7',
     base_manifest_sha256=sha(BASE/'SOURCE_MANIFEST.json'),changed_modules=changed,
     base_module_sha256={k:v['utf8_sha256'] for k,v in base['modules'].items()},
-    scope='G1R20 Fix8 candidate (P06 thin-layer mesh port): auto-detected thin material layer (thickness ratio<0.1) -> separate upper/lower own-mesh chains (band mid-line, directional split + flow flips for upper; mixed indicator + red refinement + angular fan for lower) with production root rules and unchanged full audit; lower direct stress-only equality repair (load fixed) after LSMR in RecoverEquilibrium',
+    scope='G1R20 Fix8 candidate (P06 thin-layer mesh port): auto-detected thin material layer (thickness ratio<0.1) -> separate upper/lower own-mesh chains (band mid-line, directional split + flow flips for upper; mixed indicator + red refinement + angular fan for lower) with production root rules and unchanged full audit; lower direct stress-only equality repair (load fixed) after LSMR in RecoverEquilibrium; rc2: machine-independent accuracy-round gate (ADAPT_ACCURACY_SKIP_ESTIMATE=2: skip above ADAPT_ACCURACY_SKIP_ELEMENTS=1000, admitted rounds get HSD safety floor ADAPT_ACCURACY_HSD_SECONDS=900)',
     validation_warning='Candidate; Winmax2 regression P10A/D05A/P02A/P05A (+cheap cases) and forced thin-layer smoke only; P06A/P06N not run in VBA; not published')
 payload={k:m[k] for k in ('modules','workbook_modules')}
 m['source_bundle_sha256']=hashlib.sha256(json.dumps(payload,sort_keys=True,separators=(',',':')).encode('utf8')).hexdigest()
