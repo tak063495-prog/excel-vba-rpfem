@@ -1,0 +1,55 @@
+cap3/a.tsv upper fallbacks 37 st5 36
+  s40 el=402 Fs=0.927442 dllst=5 ds=1.269 hsd=OPTIMAL obj=0.997326904873915 sec=27 
+  s45 el=402 Fs=0.925788 dllst=5 ds=1.269 hsd=OPTIMAL obj=0.999993532119069 sec=27 
+  s85 el=590 Fs=0.848061 dllst=5 ds=1.269 hsd=OPTIMAL obj=0.917944101723829 sec=45 
+  s91 el=590 Fs=0.806061 dllst=5 ds=1.269 hsd=OPTIMAL obj=0.994493680402935 sec=45 
+  s94 el=590 Fs=0.803811 dllst=5 ds=1.269 hsd=OPTIMAL obj=0.998980709583107 sec=46 
+  s97 el=590 Fs=0.803342 dllst=5 ds=1.269 hsd=OPTIMAL obj=0.999920663961108 sec=49 
+  s98 el=610 Fs=0.791342 dllst=5 ds=1.269 hsd=OPTIMAL obj=0.901356452511374 sec=55 
+  s99 el=610 Fs=0.803342 dllst=5 ds=1.269 hsd=OPTIMAL obj=0.8806320105982 sec=57 
+  s100 el=610 Fs=0.767342 dllst=5 ds=1.269 hsd=OPTIMAL obj=0.946245747370131 sec=57 
+  s102 el=610 Fs=0.743342 dllst=5 ds=1.269 hsd=OPTIMAL obj=0.996333343274072 sec=57 
+  s106 el=610 Fs=0.741842 dllst=5 ds=1.269 hsd=OPTIMAL obj=0.999658816345577 sec=58 
+  s110 el=610 Fs=0.741748 dllst=5 ds=1.269 hsd=OPTIMAL obj=0.999867475146054 sec=58 
+  s118 el=640 Fs=0.735561 dllst=5 ds=1.269 hsd=OPTIMAL obj=0.999837569988102 sec=75 
+  s127 el=694 Fs=0.743811 dllst=5 ds=1.269 hsd=OPTIMAL obj=0.998800002869122 sec=90 
+  s128 el=694 Fs=0.743436 dllst=5 ds=1.269 hsd=OPTIMAL obj=0.999662588177217 sec=90 
+  s130 el=694 Fs=0.743342 dllst=5 ds=1.269 hsd=OPTIMAL obj=0.999878486969208 sec=91 
+  s139 el=786 Fs=0.714467 dllst=5 ds=1.269 hsd=OPTIMAL obj=0.999731605972699 sec=122 
+  s141 el=786 Fs=0.714373 dllst=5 ds=1.269 hsd=OPTIMAL obj=0.999954213810821 sec=121 
+  s146 el=924 Fs=0.712873 dllst=5 ds=1.269 hsd=OPTIMAL obj=0.999419584361624 sec=159 
+  s149 el=924 Fs=0.712686 dllst=5 ds=1.269 hsd=OPTIMAL obj=0.999866420923058 sec=157 
+  s156 el=1179 Fs=0.711936 dllst=9 ds=0.1101 hsd=OPTIMAL obj=0.998989473970797 sec=224 
+  s157 el=1179 Fs=0.711561 dllst=5 ds=1.269 hsd=OPTIMAL obj=0.999887029176611 sec=223 
+  s161 el=1620 Fs=0.711561 dllst=5 ds=1.269 hsd=OPTIMAL obj=0.980540602256887 sec=360 
+  s162 el=1620 Fs=0.705561 dllst=5 ds=1.269 hsd=OPTIMAL obj=0.994596324271027 sec=372 
+  s164 el=1620 Fs=0.704061 dllst=5 ds=1.269 hsd=OPTIMAL obj=0.998180933076509 sec=371 
+  s166 el=1620 Fs=0.703686 dllst=5 ds=1.269 hsd=OPTIMAL obj=0.999081599898569 sec=363 
+  s167 el=1620 Fs=0.703498 dllst=5 ds=1.269 hsd=OPTIMAL obj=0.999532615434981 sec=371 
+  s168 el=1620 Fs=0.703405 dllst=5 ds=1.269 hsd=OPTIMAL obj=0.999758297829582 sec=379 
+  s170 el=2326 Fs=0.703405 dllst=5 ds=1.269 hsd=OPTIMAL obj=0.995413187964506 sec=649 
+  s173 el=2326 Fs=0.701905 dllst=5 ds=1.269 hsd=OPTIMAL obj=0.999007474956212 sec=636 
+  s176 el=2326 Fs=0.701717 dllst=5 ds=1.269 hsd=OPTIMAL obj=0.999458787114628 sec=655 
+  s177 el=2326 Fs=0.701623 dllst=5 ds=1.269 hsd=OPTIMAL obj=0.999684605106824 sec=640 
+  s179 el=3513 Fs=0.701623 dllst=5 ds=1.269 hsd=OPTIMAL obj=0.977078662750896 sec=1237 
+  s181 el=3513 Fs=0.692623 dllst=5 ds=1.269 hsd=OPTIMAL obj=0.998663584417918 sec=1198 
+  s185 el=3513 Fs=0.692436 dllst=5 ds=1.269 hsd=OPTIMAL obj=0.999124620870962 sec=1222 
+  s186 el=3513 Fs=0.692342 dllst=5 ds=1.269 hsd=OPTIMAL obj=0.99935531472274 sec=1205 
+  s188 el=5361 Fs=0.692342 dllst=5 ds=1.269 hsd=NUMERICAL_FAILURE obj=0 sec=1748 
+  st5 HSD seconds total 13118
+rc9meas/a.tsv upper fallbacks 6 st5 4
+  s164 el=4700 Fs=0.690704 dllst=5 ds=1.269 hsd=OPTIMAL obj=0.999631724993104 sec=1737 
+  s167 el=4700 Fs=0.690610 dllst=5 ds=1.269 hsd=OPTIMAL obj=0.999861524485559 sec=1695 
+  s172 el=6000 Fs=0.689110 dllst=5 ds=1.269 hsd=NUMERICAL_FAILURE obj=0 sec=1812 
+  s174 el=6000 Fs=0.689485 dllst=9 ds=0.1617 hsd=NUMERICAL_FAILURE obj=0 sec=1810 
+  s175 el=6000 Fs=0.688923 dllst=5 ds=1.269 hsd=NUMERICAL_FAILURE obj=0 sec=773 
+  s176 el=6000 Fs=0.689767 dllst=0 ds=1.269 hsd=NUMERICAL_FAILURE obj=0 sec=0 
+  st5 HSD seconds total 6016
+rc8/n/RPFEM_logs/20261020_232543_5804_analysis.tsv upper fallbacks 0 st5 0
+  st5 HSD seconds total 0
+rc8/a/RPFEM_logs/20261021_031208_18372_analysis.tsv upper fallbacks 4 st5 3
+  s13 el=400 Fs=1.038574 dllst=5 ds=1.269 hsd=OPTIMAL obj=0.999798885800517 sec=18 
+  s15 el=400 Fs=1.038452 dllst=4 ds=4.216e-07 hsd=OPTIMAL obj=1.00000672003972 sec=25 
+  s131 el=1237 Fs=0.876785 dllst=5 ds=1.269 hsd=OPTIMAL obj=0.971822983132865 sec=230 
+  s138 el=1237 Fs=0.866004 dllst=5 ds=1.269 hsd=OPTIMAL obj=0.999973592163608 sec=241 
+  st5 HSD seconds total 490

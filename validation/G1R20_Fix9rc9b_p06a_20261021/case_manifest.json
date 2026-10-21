@@ -1,0 +1,68 @@
+{
+  "source_commit": "51bde3d (local, candidate/g1r20-fix9rc5)",
+  "source": "versions\\G1R20_Fix9rc9b\\delivery\\RPFEM_20261021_G1R20_Fix9rc9b.xlsm",
+  "source_sha256": "f025cb2acac0e261f2333728677f96cd612d2de4adac30f2eac9f440a65fd788",
+  "dll_sha256": "66da1a21be43cd2b3a3bfbaa9d13aad5fb1fd1960e1bf2507cc4e1cfa9ebe70b",
+  "preset_macro": "RPX_Speed2pctPreset",
+  "preset_expected": {
+    "MODE": "Fs",
+    "TARGET": 1000,
+    "QUADRATURE": 8,
+    "FS_TOL": 0.0001,
+    "GAP": 0.02,
+    "ADAPT": 1,
+    "CYCLES": 8,
+    "RAW_LOWER_AUDIT": 1,
+    "C0_AUTO": 0,
+    "ADAPT_ACCURACY_CAP": 24000,
+    "ADAPT_ACCURACY_ROUNDS": 8,
+    "ADAPT_LOWER_TARGET": 4000,
+    "ADAPT_LOWER_FAN_ROUNDS": 1,
+    "ADAPT_CERT_QUADRATURE": 8,
+    "ACCURACY_DLL_RECOVERY": 1,
+    "ACCURACY_DLL_SECONDS": 120,
+    "ACCURACY_DLL_DUAL_SECONDS": 20,
+    "ACCURACY_DLL_CONE_SCALING": 1,
+    "HSD_SOLVE_SECONDS": 300,
+    "ACCURACY_DLL_UPPER_EQUILIBRATE": 1,
+    "DIRECT_DLL": 1,
+    "ADAPT_PRECISION_FROM_START": 1,
+    "ADAPT_C0_WEDGE_AUTO": 1,
+    "ADAPT_BALANCED_LOWER_TARGET": 0,
+    "ADAPT_UPPER_FLOW_PASSES": 0,
+    "FS_TERMINAL_SCHEDULE": 0,
+    "ACCURACY_DLL_UPPER_RECENTER": 0,
+    "ACCURACY_DLL_DUAL_LINEAR_REPAIR": 0,
+    "ACCURACY_DLL_DUAL_REGULARIZATION": 0,
+    "DIRECT_DLL_SECONDS": 5
+  },
+  "case_keys_from_input": [
+    "GRAVITY",
+    "TEST_INJECTION",
+    "HSD_CAPTURE",
+    "DIAGNOSTIC_MODE",
+    "ANALYSIS_POLICY",
+    "SEISMIC_KH",
+    "SEISMIC_DIR"
+  ],
+  "run_order": [
+    "P06A"
+  ],
+  "cases": [
+    {
+      "case": "P06A",
+      "input_sha256": "7e7f9de662e919ac934200eb44e6e105d024cff155f8c4f0dc6e3505400232d0",
+      "pore_pressure": false,
+      "area": 302.5,
+      "weight": 5747.5,
+      "best_prior_seconds": 6050,
+      "timeout_seconds": 18171,
+      "timeout_basis": "3x G1R17 DLL5 time (bench26 P06 rule, <=8 h)",
+      "timeout_revision": "fix8_rc2_optest_1"
+    }
+  ],
+  "overall_limit_seconds": 21600,
+  "stop_grace_seconds": 600,
+  "inputs": "docs/benchmarks/G1R17_native26_20261013/data/inputs (same geometry/material/water as previous 26-case runs); preset-owned settings replaced by product preset",
+  "scope": "G1R20 Fix9 rc9b candidate P06N/P06A VBA test (2% standard preset, DLL) on Winmax2, sequential"
+}

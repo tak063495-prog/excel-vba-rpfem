@@ -1,0 +1,86 @@
+rc9a static checks - 2026-10-21
+STATIC ONLY: no Excel/VBA compile or execution; no solver/DLL execution; no network or git.
+All shell invocations used powershell -NoProfile. All file writes stayed in the requested workspace.
+63 reference vba/*.bas SHA256 hashes match the initial read-only inventory: PASS.
+
+RPX_AccuracyNative.bas: PASS; +25/-9 lines; max line=569; Option Explicit; CRLF; ASCII-only edits; existing non-ASCII lines identical; no added E literals/noncanonical decimals; no listed reserved declarations; procedure boundaries balanced.
+RPX_Adapt.bas: PASS; +62/-0 lines; max line=533; Option Explicit; CRLF; ASCII-only edits; existing non-ASCII lines identical; no added E literals/noncanonical decimals; no listed reserved declarations; procedure boundaries balanced.
+RPX_Audit.bas: PASS; +18/-4 lines; max line=256; Option Explicit; CRLF; ASCII-only edits; existing non-ASCII lines identical; no added E literals/noncanonical decimals; no listed reserved declarations; procedure boundaries balanced.
+RPX_Control.bas: PASS; +13/-1 lines; max line=838; Option Explicit; CRLF; ASCII-only edits; existing non-ASCII lines identical; no added E literals/noncanonical decimals; no listed reserved declarations; procedure boundaries balanced.
+RPX_Fs.bas: PASS; +39/-0 lines; max line=330; Option Explicit; CRLF; ASCII-only edits; existing non-ASCII lines identical; no added E literals/noncanonical decimals; no listed reserved declarations; procedure boundaries balanced.
+
+Original RunAdapt body and all following procedures byte-identical after signature rename: PASS.
+Control: only ASCII additions; every original source line remains in order: PASS.
+RPX_Diagnostics.bas byte-identical: PASS.
+All 63 delivered BAS modules: CRLF-only and every line below 1023 characters: PASS.
+58 untouched modules byte-identical (SHA256):
+  RPX_AccuracyMesh.bas
+  RPX_Affine.bas
+  RPX_AHO3.bas
+  RPX_Bearing.bas
+  RPX_C0Guides.bas
+  RPX_C0Select.bas
+  RPX_Certificate.bas
+  RPX_ColumnOrder.bas
+  RPX_Conic.bas
+  RPX_Definition.bas
+  RPX_Diagnostics.bas
+  RPX_Exchange.bas
+  RPX_FactorFree.bas
+  RPX_FixedLowerRecovery.bas
+  RPX_FixedWitness.bas
+  RPX_FlowMesh.bas
+  RPX_FreeFaceSplit.bas
+  RPX_Guard.bas
+  RPX_HSDCandidate.bas
+  RPX_HSDLu.bas
+  RPX_HSDPrecision.bas
+  RPX_HSDQuality.bas
+  RPX_Indicator.bas
+  RPX_KktCapture.bas
+  RPX_LDL.bas
+  RPX_LoadStepMesh.bas
+  RPX_Lower.bas
+  RPX_LowerCache.bas
+  RPX_Mesh.bas
+  RPX_MeshGuard.bas
+  RPX_MeshTests.bas
+  RPX_Model.bas
+  RPX_Native.bas
+  RPX_NativeBulk.bas
+  RPX_NativeGuard.bas
+  RPX_NativeLU.bas
+  RPX_NativeMesh.bas
+  RPX_NativeSolver.bas
+  RPX_NT.bas
+  RPX_NTPrecision.bas
+  RPX_Order.bas
+  RPX_Output.bas
+  RPX_P4.bas
+  RPX_Profile.bas
+  RPX_Refine.bas
+  RPX_Robust.bas
+  RPX_Schur.bas
+  RPX_SchurCache.bas
+  RPX_SchurLDL.bas
+  RPX_Seep.bas
+  RPX_SeepUI.bas
+  RPX_SeepWT.bas
+  RPX_Seismic.bas
+  RPX_Solve.bas
+  RPX_UI.bas
+  RPX_Upper.bas
+  RPX_Water.bas
+  RPX_WorkPrecision.bas
+
+NON-ERROR PATH ARGUMENT:
+1. Fs guard is reached only after existing original numerical exception recognition; no successful trial is changed.
+2. New thin hook has no state mutation unless existing TEST_INJECTION=1 and exact hook/message are explicitly armed; new event identifies a simulation.
+3. Native center and snapshots use unchanged shape predicates; existing allocated-vector copies and all numerical audit calculations/gates are retained.
+4. FieldGate snapshot/restore adds allocation bookkeeping only; accepted, measured outputs, candidate audits and tolerances are unchanged.
+5. RunAdaptCore body is byte-identical; wrapper records context and calls it once. Recovery helper is called only after an exception.
+6. Control added label falls through; all retry branches are in the existing error handler. Normal input/output/commit assertions and result formatting are unchanged.
+7. No accuracy setting default, tolerance, audit predicate, numerical solver implementation, endpoint acceptance, or bracket arithmetic was changed.
+
+Manual static review: introduced identifiers declared, helper ByRef array types agree, error handlers use Resume before outer recovery, and recovery is one-attempt; cancellation and current-input assertions retained.
+LIMITS: this is not a VBA compiler or runtime test. Original leaf error-9 instruction cannot be uniquely determined from line=0 logs; ranked candidates and runtime reproduction plan are in ROOT_CAUSE.md and TEST_PLAN.md.

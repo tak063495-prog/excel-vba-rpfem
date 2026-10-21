@@ -1,0 +1,218 @@
+rc9a changes relative to read-only vba/ rc8 sources
+Changed modules: RPX_Fs, RPX_AccuracyNative, RPX_Audit, RPX_Adapt, RPX_Control.
+Fs: preserve original recoverable zero-iterate thin budget error; guarded shape probe; one-shot existing-mechanism test hook.
+AccuracyNative: guarded array-shape probes before center/snapshot copy; original dimensions retained.
+Audit: preserve allocated/erased prior iterate during FieldGate snapshot and restoration; audit arithmetic/gates unchanged.
+Adapt: unchanged original body renamed RunAdaptCore; outer wrapper and one-attempt same-run audited-pair recovery.
+Control: one-attempt outer recovery back to normal adaptive output; clear recovered failure flags after diagnostic retention.
+Control is the only changed non-ASCII module. This outer output scope requires a handler there; all existing source lines, including every Japanese/CP932 line, are byte-identical.
+The exact ASCII additions for Control are listed in its hunks below for hand application. No Japanese line requires manual replacement.
+
+MODULE RPX_AccuracyNative.bas
+  rc8 SHA256: 5318A1B1A6462F59392376F25475AFAD181AC1970BA2127AC03C1B19C697CE93
+  rc9a SHA256: 767F7670DAF796AF2D332357C05E294157AD72E30A6E6E74F5ECC4EC77542702
+  rc8 line 463 (0 removed) -> rc9a line 463 (10 added)
+  + Private Function AccuracyArrayShape(ByRef values() As Double, ByRef firstIndex As Long, ByRef lastIndex As Long) As Boolean
+  +     On Error GoTo Missing
+  +     firstIndex = LBound(values)
+  +     lastIndex = UBound(values)
+  +     AccuracyArrayShape = True
+  +     Exit Function
+  + Missing:
+  +     If err.number <> 9 Then err.Raise err.number, err.source, err.description
+  +     err.Clear
+  + End Function
+  rc8 line 467 (0 removed) -> rc9a line 477 (1 added)
+  +     Dim centerFirst As Long, centerLast As Long
+  rc8 line 476 (3 removed) -> rc9a line 487 (5 added)
+  -     On Error Resume Next
+  -     If LBound(xx) = 0 And UBound(xx) = original.n - 1 Then center = xx
+  -     err.Clear: On Error GoTo 0
+  +     If AccuracyArrayShape(xx, centerFirst, centerLast) Then
+  +         If centerFirst = 0 Then
+  +             If centerLast = original.n - 1 Then center = xx
+  +         End If
+  +     End If
+  rc8 line 914 (0 removed) -> rc9a line 927 (1 added)
+  +     Dim iterateFirst As Long, iterateLast As Long
+  rc8 line 929 (6 removed) -> rc9a line 943 (8 added)
+  -     On Error Resume Next
+  -     hadX = (LBound(xx) = 0 And UBound(xx) = original.n - 1)
+  -     If hadX Then oldX = xx
+  -     hadSlack = (UBound(XSlack) >= 0)
+  -     If hadSlack Then oldSlack = XSlack
+  -     err.Clear: On Error GoTo Rejected
+  +     hadX = AccuracyArrayShape(xx, iterateFirst, iterateLast)
+  +     If hadX Then hadX = (iterateFirst = 0)
+  +     If hadX Then hadX = (iterateLast = original.n - 1)
+  +     If hadX Then oldX = xx
+  +     hadSlack = AccuracyArrayShape(XSlack, iterateFirst, iterateLast)
+  +     If hadSlack Then hadSlack = (iterateLast >= 0)
+  +     If hadSlack Then oldSlack = XSlack
+  +     On Error GoTo Rejected
+
+MODULE RPX_Adapt.bas
+  rc8 SHA256: 648643205A642A0D73A0714B832DA1AAED30896F50A8AB45B508779ACC2A840E
+  rc9a SHA256: C88201290D09198EF37FA5074610609ACFEA8C08237F1B37116E357CFCA1CED1
+  rc8 line 153 (0 removed) -> rc9a line 153 (3 added)
+  + ' The recovery context belongs to this adaptive run, including its output stage.
+  + Private adaptRecoveryActive As Boolean, adaptRecoveryRunId As Long
+  + Private adaptRecoveryTarget As Long, adaptRecoveryTolerance As Double
+  rc8 line 1873 (0 removed) -> rc9a line 1876 (59 added)
+  +     Dim failureNumber As Long, failureLine As Long
+  +     Dim failureSource As String, failureText As String
+  +     adaptRecoveryActive = False
+  +     adaptRecoveryRunId = RPX_CertRunId
+  +     adaptRecoveryTarget = DTarget: adaptRecoveryTolerance = RFsTolerance
+  +     adaptRecoveryActive = True
+  +     On Error GoTo AdaptFailed
+  +     Call RunAdaptCore(mode)
+  +     Exit Sub
+  + AdaptFailed:
+  +     failureNumber = err.number: failureSource = err.source: failureText = err.description: failureLine = Erl
+  +     Resume AdaptRecovery
+  + AdaptRecovery:
+  +     On Error GoTo 0
+  +     If RPX_AdaptPreserveConfirmed(mode, failureNumber, failureSource, failureText, failureLine) Then Exit Sub
+  +     err.Raise failureNumber, failureSource, failureText
+  + End Sub
+  + 
+  + ' This path is entered only after an error. It neither solves nor accepts a bound.
+  + Public Function RPX_AdaptPreserveConfirmed(ByVal mode As String, ByVal failureNumber As Long, ByVal failureSource As String, ByVal failureText As String, ByVal failureLine As Long) As Boolean
+  +     Dim detail As String
+  +     If failureNumber = 0 Or failureNumber = 18 Or XCancel Then Exit Function
+  +     If mode <> "Fs" Or Not adaptRecoveryActive Then Exit Function
+  +     If RPX_CertRunId <= 0 Or adaptRecoveryRunId <> RPX_CertRunId Then Exit Function
+  +     If Not AdaptConfirmedOwnerReady("lower", RBestLower, RPX_CertLower) Then Exit Function
+  +     If Not AdaptConfirmedOwnerReady("upper", RBestUpper, RPX_CertUpper) Then Exit Function
+  +     If Not RPX_SchurFinite(RBestLower.value) Or Not RPX_SchurFinite(RBestUpper.value) Then Exit Function
+  +     If RBestLower.value <= 0# Or RBestUpper.value < RBestLower.value Then Exit Function
+  +     RPX_AssertInputs "late_fatal_preserve"
+  +     ' Consume one recovery attempt before restoration can raise another error.
+  +     adaptRecoveryActive = False
+  +     Call Fix9ClearBudgets
+  +     RPX_HsdBudgetFloor = 0#: RFsActive = False
+  +     DTarget = adaptRecoveryTarget: RFsTolerance = adaptRecoveryTolerance
+  +     Call RPX_RestoreWitnessState(RBestUpper)
+  +     Call RestoreFinalBounds(mode)
+  +     currentPairValid = True
+  +     RFsSearchIncomplete = True
+  +     RFsSearchNote = "ADAPT_FATAL_PRESERVED;OLD_WITNESSES_KEPT " & failureText
+  +     adaptStatus = "fatal_preserved"
+  +     detail = "number=" & failureNumber & ";source=" & failureSource & ";line=" & failureLine & ";message=" & Replace(failureText, ";", ",")
+  +     detail = detail & ";lower=" & RBestLower.value & ";upper=" & RBestUpper.value & ";lower_elements=" & RBestLower.elements & ";upper_elements=" & RBestUpper.elements
+  +     RPX_DiagEvent "adapt_fatal_preserved", detail
+  +     RPX_AdaptPreserveConfirmed = True
+  + End Function
+  + 
+  + Private Function AdaptConfirmedOwnerReady(ByVal side As String, ByRef state As RPX_MeshState, ByRef certificate As RPX_BoundCertificate) As Boolean
+  +     If Not state.complete Or state.nodes < 1 Or state.elements < 1 Then Exit Function
+  +     If state.certificateRunId <> RPX_CertRunId Or state.inputEpoch <> RPX_InputEpoch Then Exit Function
+  +     If state.policy <> RPX_AnalysisPolicy() Or Len(state.originalModel) = 0 Then Exit Function
+  +     If Not RPX_CertCurrent(side) Then Exit Function
+  +     If certificate.side <> side Or certificate.mode <> "Fs" Or certificate.ownerKind <> "ADAPT_BEST_STATE" Then Exit Function
+  +     If certificate.runId <> state.certificateRunId Or certificate.inputEpoch <> state.inputEpoch Or certificate.policy <> state.policy Then Exit Function
+  +     If certificate.nodes <> state.nodes Or certificate.elements <> state.elements Or certificate.q <> state.q Then Exit Function
+  +     If certificate.acceptedFs <> state.value Or certificate.objective <> state.objective Or certificate.stressScale <> state.stressScale Then Exit Function
+  +     AdaptConfirmedOwnerReady = True
+  + End Function
+  + 
+  + Private Sub RunAdaptCore(ByVal mode As String)
+
+MODULE RPX_Audit.bas
+  rc8 SHA256: 6BD8C4ADCD3ED0DC4FEACE1B0FECC26817C99CC415A0E6900B4708B2170C57D5
+  rc9a SHA256: E3383FC5E8370227C6971185B1245B45FA43F629164072B74D05202EDB96BD73
+  rc8 line 6 (2 removed) -> rc9a line 6 (13 added)
+  - Public Function RPX_FieldGate(ByVal side As String, ByRef field() As Double, ByVal factor As Double, ByVal q As Long, ByVal expectedObjective As Double, ByRef measuredValue As Double, ByRef measuredAudit As Double, ByRef measuredRaw() As Double) As Boolean
+  -     Dim oldX() As Double, oldFactor As Double, oldQ As Long, oldObjective As Double
+  + Private Function FieldGateArrayReady(ByRef values() As Double) As Boolean
+  +     Dim firstIndex As Long, lastIndex As Long
+  +     On Error GoTo Missing
+  +     firstIndex = LBound(values)
+  +     lastIndex = UBound(values)
+  +     FieldGateArrayReady = (lastIndex >= firstIndex)
+  +     Exit Function
+  + Missing:
+  +     If err.number <> 9 Then err.Raise err.number, err.source, err.description
+  +     err.Clear
+  + End Function
+  + Public Function RPX_FieldGate(ByVal side As String, ByRef field() As Double, ByVal factor As Double, ByVal q As Long, ByVal expectedObjective As Double, ByRef measuredValue As Double, ByRef measuredAudit As Double, ByRef measuredRaw() As Double) As Boolean
+  +     Dim oldX() As Double, oldFactor As Double, oldQ As Long, oldObjective As Double, hadX As Boolean
+  rc8 line 12 (1 removed) -> rc9a line 23 (3 added)
+  -     oldX = xx: oldFactor = RStrengthFactor: oldQ = RSubdivisions: oldObjective = XObjective
+  +     hadX = FieldGateArrayReady(xx)
+  +     If hadX Then oldX = xx
+  +     oldFactor = RStrengthFactor: oldQ = RSubdivisions: oldObjective = XObjective
+  rc8 line 31 (1 removed) -> rc9a line 44 (2 added)
+  -     xx = oldX: RStrengthFactor = oldFactor: RSubdivisions = oldQ: XObjective = oldObjective
+  +     If hadX Then xx = oldX Else Erase xx
+  +     RStrengthFactor = oldFactor: RSubdivisions = oldQ: XObjective = oldObjective
+
+MODULE RPX_Control.bas
+  rc8 SHA256: 5CDBF58CA76C6DC0B8D468D94B18857F93190A0FBECEB2BCE82E57745D00158E
+  rc9a SHA256: 76384898A7C850E65B32958C308EE5CF8C5F148EB1BCB06907282D22D30FE5AB
+  rc8 line 177 (0 removed) -> rc9a line 177 (1 added)
+  +     Dim lateRecoveryTried As Boolean
+  rc8 line 196 (0 removed) -> rc9a line 197 (1 added)
+  + AdaptiveResults:
+  rc8 line 299 (1 removed) -> rc9a line 301 (11 added)
+  -     Resume FailedCleanup
+  +     If mode = "Fs" And Not lateRecoveryTried Then
+  +         lateRecoveryTried = True
+  +         Resume PreserveAdaptivePair
+  +     End If
+  +     Resume FailedCleanup
+  + PreserveAdaptivePair:
+  +     If RPX_AdaptPreserveConfirmed(mode, RPX_LastFailureNumber, RPX_LastFailureSource, RPX_LastError, failureLine) Then
+  +         RPX_LastFailureNumber = 0: RPX_LastFailureSource = "": RPX_LastError = ""
+  +         GoTo AdaptiveResults
+  +     End If
+  +     GoTo FailedCleanup
+
+MODULE RPX_Fs.bas
+  rc8 SHA256: B52F8E1BF46935A21B505C6831D745C169ACFC3276ADADC1A7DC95094B1FFD99
+  rc9a SHA256: 4CCF1A5E8C56C6B9F156D896D05B555C6B4B6BDF9AE772A1B113645191281B68
+  rc8 line 202 (0 removed) -> rc9a line 202 (1 added)
+  +     If RPX_ThinChainBudgetActive And RPX_ThinChainUpperActive And mode = "upper" Then Call TestThinNoIterate
+  rc8 line 251 (0 removed) -> rc9a line 252 (16 added)
+  + ' Explicit arming is required; default-off injection bypasses the solver only in tests.
+  + Private Sub TestThinNoIterate()
+  +     Dim injectedNumber As Long, injectedSource As String, injectedText As String
+  +     On Error GoTo Injected
+  +     RPX_TestHook "thin_upper_no_iterate"
+  +     Exit Sub
+  + Injected:
+  +     injectedNumber = err.number: injectedSource = err.source: injectedText = err.description
+  +     On Error GoTo 0
+  +     If injectedNumber = 5 And injectedSource = "RPX_TestInjection" And injectedText = "HSD_SOLVE_BUDGET_EXCEEDED" Then
+  +         Erase xx: Erase xy: Erase XSlack: Erase XDual
+  +         XIteration = 0
+  +         RPX_DiagEvent "test_no_iterate", "simulation=solver_bypassed;simulated_dll_status=0;dll_result_absent=1;hsd_allocated=0"
+  +     End If
+  +     err.Raise injectedNumber, injectedSource, injectedText
+  + End Sub
+  rc8 line 342 (0 removed) -> rc9a line 359 (7 added)
+  +     ' rc9a: a pre-state thin budget failure is UNKNOWN, with no recovery center.
+  +     If RPX_ThinChainBudgetActive And number = 5 And message = "HSD_SOLVE_BUDGET_EXCEEDED" And XIteration = 0 Then
+  +         If Not FsCurrentIterateReady() Then
+  +             RPX_DiagEvent "fs_numerical_unknown", "reason=thin_budget_no_iterate;endpoints_unchanged=True;phase=fs_trial;original=" & message
+  +             err.Raise number, source, message
+  +         End If
+  +     End If
+  rc8 line 392 (0 removed) -> rc9a line 416 (15 added)
+  + ' Check shape without eager evaluation of bounds on an unallocated iterate.
+  + Private Function FsCurrentIterateReady() As Boolean
+  +     Dim firstIndex As Long, lastIndex As Long
+  +     If XN <= 0 Then Exit Function
+  +     On Error GoTo Missing
+  +     firstIndex = LBound(xx)
+  +     lastIndex = UBound(xx)
+  +     If firstIndex <> 0 Then Exit Function
+  +     If lastIndex <> XN - 1 Then Exit Function
+  +     FsCurrentIterateReady = True
+  +     Exit Function
+  + Missing:
+  +     If err.number <> 9 Then err.Raise err.number, err.source, err.description
+  +     err.Clear
+  + End Function
+

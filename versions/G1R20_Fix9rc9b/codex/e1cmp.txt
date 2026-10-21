@@ -1,0 +1,70 @@
+COMPLETED_DIAGNOSTIC_ONLY 76
+['path', 'trials', 'sha256', 'n', 'm', 'nnz', 'cone_count', 'equality_count', 'fs', 'q', 'context', 'saved_baseline_algebraic_primal_audit']
+Counter({'cap3': 48, 'cap1020': 26, 'x': 2})
+decision base->e1 Counter({('Pd', 'Pd'): 43, ('pd', 'Pd'): 26, ('Pd', 'pd'): 3, ('pd', 'PD'): 2, ('Pd', 'PD'): 2})
+status base,e1 Counter({(4, 4): 76})
+wall base 408 e1 264
+lam base-e1: max 0.057911730917558635 min 2.4020933220292306e-07 median 0.00020880793349331572
+dual stat base med 2.240205155079676e-05 e1 med 7.156315867955854e-07
+e1 dual stat max 1.3116506967857439e-05
+020.x.tsv.dllrep_15_upper_s4.bin b 4 1.224037 2.0e-05 pd 1.1 | e1 4 1.223974 2.0e-07 Pd 0.7
+020.x.tsv.dllrep_16_upper_s4.bin b 4 1.016212 2.2e-05 pd 0.7 | e1 4 1.016151 1.1e-06 Pd 0.7
+020.x.tsv.dllrep_17_upper_s4.bin b 4 1.001185 1.4e-05 pd 0.7 | e1 4 1.001144 2.1e-07 Pd 0.7
+1020.x.tsv.dllrep_1_upper_s4.bin b 4 3.161723 1.9e-05 pd 0.5 | e1 4 3.161607 7.2e-09 PD 0.5
+020.x.tsv.dllrep_20_upper_s4.bin b 4 0.997495 2.7e-05 pd 0.7 | e1 4 0.997349 2.0e-07 Pd 0.7
+020.x.tsv.dllrep_21_upper_s4.bin b 4 1.004231 1.8e-05 pd 0.8 | e1 4 1.004138 1.2e-06 Pd 0.7
+020.x.tsv.dllrep_22_upper_s4.bin b 4 1.000035 2.8e-05 pd 0.7 | e1 4 0.999883 6.4e-07 Pd 0.7
+020.x.tsv.dllrep_25_upper_s4.bin b 4 1.003636 5.1e-05 pd 1.1 | e1 4 1.00305 1.2e-06 Pd 0.9
+020.x.tsv.dllrep_75_upper_s4.bin b 4 0.985859 1.4e-04 pd 5.8 | e1 4 0.9795 3.6e-07 Pd 4.5
+020.x.tsv.dllrep_76_upper_s4.bin b 4 1.050027 1.5e-03 pd 5.2 | e1 4 0.997185 8.3e-07 Pd 4.8
+ap3.x.tsv.dllrep_15_upper_s4.bin b 4 1.020215 5.1e-06 Pd 0.5 | e1 4 1.020205 9.0e-08 PD 0.6
+ap3.x.tsv.dllrep_16_upper_s4.bin b 4 0.997365 1.9e-05 pd 0.5 | e1 4 0.997327 1.5e-07 Pd 0.5
+ap3.x.tsv.dllrep_17_upper_s4.bin b 4 1.00014 2.8e-06 Pd 0.5 | e1 4 1.000134 3.1e-08 PD 0.6
+cap3.x.tsv.dllrep_1_upper_s4.bin b 4 3.161723 1.9e-05 pd 0.4 | e1 4 3.161607 7.2e-09 PD 0.5
+ap3.x.tsv.dllrep_47_upper_s4.bin b 4 0.918002 2.1e-05 pd 0.9 | e1 4 0.917947 3.6e-06 Pd 0.8
+ap3.x.tsv.dllrep_48_upper_s4.bin b 4 1.057915 2.2e-05 pd 0.9 | e1 4 1.057847 2.1e-06 Pd 0.8
+ap3.x.tsv.dllrep_49_upper_s4.bin b 4 0.994623 4.3e-05 pd 0.9 | e1 4 0.994494 5.8e-07 Pd 0.9
+ap3.x.tsv.dllrep_50_upper_s4.bin b 4 0.999055 2.5e-05 pd 0.9 | e1 4 0.998981 4.6e-07 Pd 0.9
+ap3.x.tsv.dllrep_51_upper_s4.bin b 4 0.999994 2.5e-05 pd 0.8 | e1 4 0.999922 1.8e-06 Pd 0.8
+ap3.x.tsv.dllrep_52_upper_s4.bin b 4 0.946604 9.7e-05 pd 1.0 | e1 4 0.946247 8.5e-07 Pd 1.0
+ap3.x.tsv.dllrep_54_upper_s4.bin b 4 0.999871 5.4e-05 pd 1.2 | e1 4 0.999662 1.6e-06 Pd 0.9
+ap3.x.tsv.dllrep_55_upper_s4.bin b 4 1.000426 8.8e-05 pd 1.2 | e1 4 1.000079 1.6e-06 Pd 1.0
+ap3.x.tsv.dllrep_59_upper_s4.bin b 4 1.018778 3.1e-05 pd 1.8 | e1 4 1.018173 1.3e-06 Pd 1.2
+ap3.x.tsv.dllrep_60_upper_s4.bin b 4 1.004283 1.5e-05 Pd 1.9 | e1 4 1.004075 1.2e-05 pd 1.0
+ap3.x.tsv.dllrep_61_upper_s4.bin b 4 1.00005 6.5e-05 pd 1.9 | e1 4 0.998803 4.2e-07 Pd 1.2
+ap3.x.tsv.dllrep_63_upper_s4.bin b 4 1.017947 3.9e-05 Pd 2.6 | e1 4 1.017092 1.3e-05 pd 1.6
+ap3.x.tsv.dllrep_66_upper_s4.bin b 4 1.028621 1.1e-04 pd 3.8 | e1 4 1.025155 3.8e-07 Pd 2.7
+ap3.x.tsv.dllrep_67_upper_s4.bin b 4 1.007084 1.4e-04 pd 3.6 | e1 4 1.003014 6.0e-07 Pd 2.9
+ap3.x.tsv.dllrep_69_upper_s4.bin b 4 1.029413 3.2e-04 Pd 5.5 | e1 4 1.026889 9.6e-06 pd 3.9
+ap3.x.tsv.dllrep_70_upper_s4.bin b 4 1.008651 7.9e-04 Pd 5.3 | e1 4 1.004422 1.2e-06 Pd 3.8
+ap3.x.tsv.dllrep_72_upper_s4.bin b 4 1.061939 1.3e-03 pd 7.7 | e1 4 1.009127 6.5e-07 Pd 6.2
+ap3.x.tsv.dllrep_73_upper_s4.bin b 4 1.026293 4.7e-04 pd 9.0 | e1 4 1.001799 1.8e-07 Pd 6.3
+ap3.x.tsv.dllrep_74_upper_s4.bin b 4 1.057005 1.6e-03 pd 8.1 | e1 4 0.999094 4.8e-07 Pd 6.0
+ap3.x.tsv.dllrep_75_upper_s4.bin b 4 1.031006 6.5e-04 Pd 17.8 | e1 4 1.025013 4.5e-07 Pd 9.9
+ap3.x.tsv.dllrep_76_upper_s4.bin b 4 1.041851 8.5e-04 pd 16.9 | e1 4 1.002637 2.1e-07 Pd 10.3
+ap3.x.tsv.dllrep_77_upper_s4.bin b 4 1.002649 4.0e-05 Pd 18.7 | e1 4 0.999918 2.1e-07 Pd 9.6
+ap3.x.tsv.dllrep_78_upper_s4.bin b 4 1.016273 6.5e-04 Pd 32.3 | e1 4 1.007016 9.2e-06 Pd 18.3
+ap3.x.tsv.dllrep_79_upper_s4.bin b 4 1.008317 4.0e-02 Pd 32.6 | e1 4 0.999305 5.2e-06 Pd 20.0
+ap3.x.tsv.dllrep_80_upper_s4.bin b 4 1.005101 1.5e-02 Pd 32.8 | e1 4 0.999789 2.0e-06 Pd 20.3
+ap3.x.tsv.dllrep_81_upper_s4.bin b 4 1.030555 1.3e-04 Pd 62.7 | e1 4 1.023393 2.2e-06 Pd 37.1
+x.tsv.dllrep_901_upper_s5.bin b 4 1.011693 1.3e-04 Pd 33.2 | e1 4 0.999347 1.8e-06 Pd 19.6
+x.tsv.dllrep_902_upper_s5.bin b 4 1.003999 4.2e-05 Pd 33.7 | e1 4 0.999579 1.7e-06 Pd 21.4
+cap3 dumps 48 cases where base vs e1 lambda side of 1.000003 differ, or workbook decision != e1 side: 18
+  (14, '34', 0.980359, ('True', '4', 'original_primal'), 0.918486, 0.918486)
+  (2, '6', 0.9375, ('True', '4', 'original_primal'), 0.932533, 0.93253)
+  (30, '60', 1.018367, ('True', '4', 'original_primal'), 0.776243, 0.776222)
+  (33, '69', 0.860332, ('True', '4', 'original_primal'), 0.999434, 0.999409)
+  (3, '9', 0.898438, ('True', '4', 'original_primal'), 0.988697, 0.988696)
+  (4, '12', 0.891602, ('True', '4', 'original_primal'), 0.99935, 0.99935)
+  (56, '112', 0.741748, ('True', '4', 'original_primal'), 0.985644, 0.985522)
+  (58, '118', 0.735561, ('False', '5', ''), 1.000075, 0.999843)
+  (5, '15', 0.891235, ('True', '4', 'original_primal'), 0.999928, 0.999927)
+  (61, '127', 0.743811, ('False', '5', ''), 1.00005, 0.998803)
+  (62, '130', 0.743342, ('False', '5', ''), 1.000312, 0.999885)
+  (64, '136', 0.716342, ('True', '4', 'original_primal'), 0.995835, 0.995307)
+  (65, '139', 0.714467, ('False', '5', ''), 1.00047, 0.999738)
+  (71, '157', 0.711561, ('False', '5', ''), 1.001064, 0.9999)
+  (74, '166', 0.703686, ('False', '5', ''), 1.057005, 0.999094)
+  (77, '175', 0.70153, ('True', '4', 'original_dual_helper'), 1.002649, 0.999918)
+  (79, '181', 0.692623, ('False', '5', ''), 1.008317, 0.999305)
+  (80, '184', 0.692248, ('True', '4', 'original_dual_helper'), 1.005101, 0.999789)

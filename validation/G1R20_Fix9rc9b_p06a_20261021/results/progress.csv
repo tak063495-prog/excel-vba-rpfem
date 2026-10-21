@@ -1,0 +1,2 @@
+﻿case,status,analysis_seconds,timeout_seconds,lower_fs,upper_fs,relative_gap,fs_obtained,target_met,error
+P06A,PASS_TARGET,7470.089651,18171,0.84307763671875,0.8581594295501709,0.017730383531435263,True,True,

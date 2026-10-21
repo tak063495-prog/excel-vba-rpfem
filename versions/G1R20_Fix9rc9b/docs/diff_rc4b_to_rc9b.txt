@@ -1,0 +1,2790 @@
+diff --git a/versions/G1R20_Fix9rc4b/src/vba/RPX_AccuracyNative.bas b/versions/G1R20_Fix9rc9b/src/vba/RPX_AccuracyNative.bas
+index 0ace1f2..347f130 100644
+--- a/versions/G1R20_Fix9rc4b/src/vba/RPX_AccuracyNative.bas
++++ b/versions/G1R20_Fix9rc9b/src/vba/RPX_AccuracyNative.bas
+@@ -40,6 +40,11 @@ End Type
+ Public AccuracyNativeReason As String, AccuracyNativeSolverStatus As Long, AccuracyNativeIterations As Long
+ Public AccuracyNativeEquality As Double, AccuracyNativeCone As Double, AccuracyNativeValue As Double, AccuracyNativeAudit As Double
+ Public AccuracyNativeDualStat As Double, AccuracyNativeDualCone As Double, AccuracyNativeDualObjective As Double
++Public AccuracyNativeDualAudited As Boolean, AccuracyNativeDualAuditCallId As Long
++Public AccuracyNativeCallId As Long
++Private accuracyCallSequence As Long
++Public AccuracyNativeEquilibrate As Long
++Public AccuracyNativeDualAuditRole As String, AccuracyNativeDualAuditStatus As Long
+ Private guideReady As Boolean, guideModel As String, guidePolicy As String, guideMode As String, guidePhase As String
+ Private guideEpoch As Long, guideQ As Long, guideFactor As Double
+ Private guideN As Long, guideM As Long, guideS As Long, guideB As Long, guideSolve As Long, guideCandidate As Long
+@@ -50,10 +55,20 @@ Public AccuracyDirectLastAccepted As Boolean, AccuracyDirectLastKind As String
+ ' Fix9: settings are populated and cleared only inside a thin-layer step.
+ Public RPX_ThinDllFactor As Double, RPX_ThinDllRefSeconds As Double
+ Public RPX_ThinDllRefCones As Double, RPX_ThinDllExponent As Double, RPX_ThinDllCap As Double
++' rc6: populated/cleared with the existing thin-chain budget lifetime only.
++Public RPX_ThinUpperDllRetry As Boolean, RPX_ThinUpperDllMinElements As Long
++Public RPX_ThinUpperDllRetrySeconds As Double, RPX_ThinUpperDllRetryIterations As Long
++Public RPX_ThinUpperDllRetryEquilibrate As Long
+ 
+ Private upperFirstReady As Boolean, upperFirstModel As String, upperFirstPolicy As String, upperFirstPhase As String
+ Private upperFirstFactor As Double, upperFirstEpoch As Long, upperFirstQ As Long
+ Private upperFirstSolve As Long, upperFirstCandidate As Long
++' Diagnostics are per direct trial; zero values require dual_audited=True.
++Private Sub ResetDualDiagnostics()
++    AccuracyNativeDualAudited = False: AccuracyNativeDualAuditCallId = 0
++    AccuracyNativeDualAuditRole = "": AccuracyNativeDualAuditStatus = 0
++    AccuracyNativeDualStat = 0#: AccuracyNativeDualCone = 0#: AccuracyNativeDualObjective = 0#
++End Sub
+ Public Function RPX_AccuracyEnabled() As Boolean
+     Dim value As Double
+     value = CDbl(RPX_Setting("ACCURACY_DLL_RECOVERY", 0))
+@@ -111,6 +126,15 @@ Private Sub AddTerm(ByRef total As Double, ByRef correction As Double, ByVal val
+     If Not RPX_SchurFinite(nextValue) Then err.Raise 5, "RPX_AccuracyNative", "ACCURACY_NONFINITE_SUM"
+     correction = (nextValue - total) - adjusted: total = nextValue
+ End Sub
++' Diagnostic subtraction must never change an audit decision on overflow.
++Private Function DiagnosticAbsDifference(ByVal a As Double, ByVal b As Double, ByRef complete As Boolean) As Double
++    On Error GoTo Missing
++    DiagnosticAbsDifference = Abs(a - b)
++    Exit Function
++Missing:
++    If err.number <> 6 Then err.Raise err.number, err.source, err.description
++    err.Clear: complete = False
++End Function
+ Private Function Norm2(ByVal a As Double, ByVal b As Double) As Double
+     Dim positiveScale As Double
+     positiveScale = WorksheetFunction.Max(Abs(a), Abs(b))
+@@ -216,12 +240,47 @@ Private Function ReadLong(ByRef bytes() As Byte, ByVal offset As Long) As Long
+     Dim value As Long
+     CopyBytes VarPtr(value), VarPtr(bytes(offset)), 4: ReadLong = value
+ End Function
++' Literal original LP identity; inherited mode alone does not identify a primal.
++Private Function OriginalDllScope(ByRef pr As RPX_AccuracyProgram) As Boolean
++    Dim i As Long
++    If pr.mode <> "lower" And pr.mode <> "upper" Then Exit Function
++    If Not CurrentProgram(pr) Then Exit Function
++    For i = 0 To pr.n - 1
++        If pr.pdiag(i) <> 0# Or pr.cost(i) <> pr.originalCost(i) Then Exit Function
++    Next i
++    OriginalDllScope = True
++End Function
++' Only the literal original LP receives the thin-chain equilibration override.
++' Cap/QP, equality-repair and dual helpers keep their existing settings.
++Private Function ThinDllOriginalScope(ByRef pr As RPX_AccuracyProgram) As Boolean
++    If Not RPX_ThinChainBudgetActive Or Not RFsActive Or RSubdivisions <> 8 Then Exit Function
++    ThinDllOriginalScope = OriginalDllScope(pr)
++End Function
++Private Function ThinDllEquilibrate() As Long
++    Dim equ As Double
++    equ = CDbl(RPX_Setting("ADAPT_THIN_DLL_EQUILIBRATE", 1))
++    If Not RPX_SchurFinite(equ) Or (equ <> 0# And equ <> 1#) Then err.Raise 5, "RPX_AccuracyNative", "INVALID_ADAPT_THIN_DLL_EQUILIBRATE"
++    ThinDllEquilibrate = CLng(equ)
++End Function
+ Public Function RPX_AccuracySolve(ByRef pr As RPX_AccuracyProgram, ByVal seconds As Double, ByRef answer() As Double, ByRef modifiedDual() As Double) As Boolean
++    Dim packedEquilibrate As Long
++    RPX_AccuracySolve = AccuracySolveCore(pr, seconds, answer, modifiedDual, False, packedEquilibrate)
++End Function
++Private Function AccuracySolveCore(ByRef pr As RPX_AccuracyProgram, ByVal seconds As Double, ByRef answer() As Double, ByRef modifiedDual() As Double, ByVal thinUpperRetry As Boolean, ByRef packedEquilibrate As Long) As Boolean
+     Dim descriptor(0 To 87) As Byte, settings(0 To 127) As Byte, progress(0 To 79) As Byte
+     Dim handle As LongLong, rc As Long, state As Long, number As Long, message As String, source As String
+     Dim cancelled As Boolean, valid As Boolean, i As Long, begin As Double, elapsed As Double, equ As Double
++    Dim thinOriginal As Boolean, callDetail As String, requestedSeconds As Double, packedSeconds As Double
++    Dim literalOriginal As Boolean, programRole As String, upperEquilibrateSetting As Long, upperEqu As Double
++    Dim callId As Long, resultStatus As Long
++    accuracyCallSequence = accuracyCallSequence + 1: callId = accuracyCallSequence
++    AccuracyNativeCallId = callId: AccuracyNativeSolverStatus = 0: AccuracyNativeIterations = 0
++    AccuracyNativeEquilibrate = -1: upperEquilibrateSetting = -1: programRole = "unclassified"
++    requestedSeconds = seconds: packedSeconds = -1#: resultStatus = -1
++    packedEquilibrate = -1
+     Erase answer: Erase modifiedDual: AccuracyNativeReason = "DLL_NOT_AVAILABLE"
+     If Not RPX_SchurFinite(seconds) Or seconds <= 0# Or seconds > 600# Then Exit Function
++    If RPX_ThinUpperProtectOn() Then seconds = RPX_ThinUpperProtectLimit(seconds, "dll_solve")
+     On Error GoTo Failed
+     If libraryHandle = 0 Then
+         libraryPath = ThisWorkbook.path & "\rpfem_native_x64.dll"
+@@ -239,24 +298,73 @@ Public Function RPX_AccuracySolve(ByRef pr As RPX_AccuracyProgram, ByVal seconds
+     PackPointer descriptor, 48, VarPtr(pr.rhs(0)): PackPointer descriptor, 56, VarPtr(pr.pdiag(0)): PackPointer descriptor, 64, VarPtr(pr.cost(0))
+     PackPointer descriptor, 72, VarPtr(pr.coneKind(0)): PackPointer descriptor, 80, VarPtr(pr.coneDim(0))
+     PackLong settings, 8, 350: PackLong settings, 12, 1
+-    PackDouble settings, 16, seconds
++    thinOriginal = ThinDllOriginalScope(pr): literalOriginal = OriginalDllScope(pr)
++    If literalOriginal Then
++        programRole = "original_primal"
++    ElseIf pr.mode = "original_dual_helper" Then
++        programRole = "original_dual_helper"
++    Else
++        programRole = "auxiliary"
++    End If
++    If RPX_ThinChainBudgetActive Then
++        If thinOriginal Then
++            seconds = RPX_ThinSolveSeconds(seconds)
++        ElseIf RPX_ThinSolveSeconds(seconds) < seconds Then
++            GoTo Cleanup
++        End If
++        If seconds <= 0# Then GoTo Cleanup
++    End If
++    PackDouble settings, 16, seconds: packedSeconds = seconds
+     PackDouble settings, 24, 0.0000000000001: PackDouble settings, 32, 0.0000000000001: PackDouble settings, 40, 0.0000000000001
+     PackDouble settings, 64, 0.000000000000001: PackDouble settings, 72, 0.000000000000001: PackLong settings, 80, 30
+-    If pr.mode = "lower" Or pr.mode = "upper" Then
+-        equ = CDbl(RPX_Setting("ACCURACY_DLL_EQUILIBRATE", 0))
++    If thinOriginal Then
++        equ = ThinDllEquilibrate()
+     Else
+-        equ = CDbl(RPX_Setting("ACCURACY_DLL_DUAL_EQUILIBRATE", 1))
++        If pr.mode = "lower" Or pr.mode = "upper" Then
++            equ = CDbl(RPX_Setting("ACCURACY_DLL_EQUILIBRATE", 0))
++        Else
++            equ = CDbl(RPX_Setting("ACCURACY_DLL_DUAL_EQUILIBRATE", 1))
++        End If
++        If Not RPX_SchurFinite(equ) Or (equ <> 0# And equ <> 1#) Then err.Raise 5, "RPX_AccuracyNative", "INVALID_ACCURACY_DLL_EQUILIBRATE"
++    End If
++    ' Reuse documented fields already sent through ABI 1. No initial-point
++    ' pointer exists in this descriptor, so a native warm start is unavailable.
++    If thinUpperRetry Then
++        If Not ThinUpperRetryScope(pr) Then err.Raise 5, "RPX_AccuracyNative", "THIN_UPPER_RETRY_CONTEXT_REJECTED"
++        PackLong settings, 8, RPX_ThinUpperDllRetryIterations
++        If Not thinOriginal Then equ = RPX_ThinUpperDllRetryEquilibrate
++    End If
++    ' One enables the scoped override; zero preserves the complete rc9a selector.
++    If literalOriginal And pr.mode = "upper" Then
++        upperEqu = CDbl(RPX_Setting("ACCURACY_DLL_UPPER_EQUILIBRATE", 1))
++        If Not RPX_SchurFinite(upperEqu) Or (upperEqu <> 0# And upperEqu <> 1#) Then err.Raise 5, "RPX_AccuracyNative", "INVALID_ACCURACY_DLL_UPPER_EQUILIBRATE"
++        upperEquilibrateSetting = CLng(upperEqu)
++        If upperEquilibrateSetting = 1 Then equ = 1#
+     End If
+-    If Not RPX_SchurFinite(equ) Or (equ <> 0# And equ <> 1#) Then err.Raise 5, "RPX_AccuracyNative", "INVALID_ACCURACY_DLL_EQUILIBRATE"
+-    PackLong settings, 84, CLng(equ)
++    PackLong settings, 84, CLng(equ): packedEquilibrate = CLng(equ): AccuracyNativeEquilibrate = packedEquilibrate
++    If thinOriginal Then RPX_DiagEvent "thin_dll_equilibrate", "mode=" & pr.mode & ";Fs=" & pr.factor & ";equilibrate=" & packedEquilibrate & ";status5_retry=" & thinUpperRetry
+     PackLong progress, 0, 80: PackLong progress, 4, 1
+     rc = NCreate(VarPtr(descriptor(0)), VarPtr(settings(0)), handle)
+     If rc <> 0 Then GoTo Cleanup
++    If RPX_ThinChainBudgetActive Then
++        If XCancel Or RPX_ThinSolveSeconds(1#) <= 0# Then GoTo Cleanup
++        If Not thinOriginal Then
++            If RPX_ThinSolveSeconds(seconds) < seconds Then GoTo Cleanup
++        End If
++    End If
+     rc = NStart(handle): If rc <> 0 Then GoTo Cleanup
+     begin = Timer
+     Do
+         rc = NPoll(handle, VarPtr(progress(0))): If rc <> 0 Then GoTo Cleanup
+-        state = ReadLong(progress, 8): If state <> 1 And state <> 0 Then Exit Do
++        state = ReadLong(progress, 8)
++        If RPX_ThinChainBudgetActive Then
++            If XCancel Or RPX_ThinSolveSeconds(1#) <= 0# Then
++                cancelled = True
++                If state = 0 Or state = 1 Then rc = NCancel(handle)
++            End If
++        End If
++        If state <> 1 And state <> 0 Then Exit Do
++        If RPX_ThinUpperProtectOn() Then Call RPX_ThinUpperProtectCheck("dll_poll")
+         elapsed = Timer - begin: If elapsed < 0# Then elapsed = elapsed + 86400#
+         If XCancel Or elapsed > seconds + 5# Then
+             cancelled = True: rc = NCancel(handle)
+@@ -268,6 +376,7 @@ Public Function RPX_AccuracySolve(ByRef pr As RPX_AccuracyProgram, ByVal seconds
+     ReDim answer(0 To pr.n - 1): ReDim modifiedDual(0 To pr.m - 1)
+     rc = NResult(handle, VarPtr(answer(0)), pr.n, VarPtr(modifiedDual(0)), pr.m, VarPtr(progress(0)))
+     If rc <> 0 Then GoTo Cleanup
++    resultStatus = ReadLong(progress, 12)
+     For i = 0 To pr.n - 1: If Not RPX_SchurFinite(answer(i)) Then GoTo Cleanup
+     Next i
+     For i = 0 To pr.m - 1: If Not RPX_SchurFinite(modifiedDual(i)) Then GoTo Cleanup
+@@ -284,14 +393,73 @@ Cleanup:
+         handle = 0
+     End If
+     If Not valid Then Erase answer: Erase modifiedDual
++    callDetail = "call_id=" & callId & ";program_mode=" & pr.mode & ";program_role=" & programRole & ";n=" & pr.n & ";m=" & pr.m
++    callDetail = callDetail & ";original_primal=" & literalOriginal & ";upper_equilibrate_setting=" & upperEquilibrateSetting
++    callDetail = callDetail & ";thin_original=" & thinOriginal & ";thin_upper_retry=" & thinUpperRetry
++    callDetail = callDetail & ";requested_seconds=" & requestedSeconds & ";packed_seconds=" & packedSeconds
++    callDetail = callDetail & ";iteration_limit=" & ReadLong(settings, 8) & ";equilibrate=" & packedEquilibrate
++    callDetail = callDetail & ";state=" & state & ";poll_status=" & AccuracyNativeSolverStatus & ";result_status=" & resultStatus
++    callDetail = callDetail & ";iterations=" & AccuracyNativeIterations & ";cancelled=" & cancelled & ";finite_candidate=" & valid
++    RPX_DiagEvent "accuracy_dll_call", callDetail & ";status_is_not_certificate=1"
+     If valid Then AccuracyNativeReason = "CANDIDATE_REQUIRES_ORIGINAL_AUDIT" Else AccuracyNativeReason = "ACCURACY_DLL_NO_FINITE_CANDIDATE"
++    If number = 5 And message = "THIN_UPPER_LOWER_PROTECT" Then
++        ' Resume Cleanup re-enables the handler: disable it before propagating.
++        On Error GoTo 0
++        If XCancel Then err.Raise 18, "RPX_AccuracyNative", "ANALYSIS_CANCELLED"
++        err.Raise number, source, message
++    End If
+     If XCancel Then err.Raise 18, "RPX_AccuracyNative", "ANALYSIS_CANCELLED"
+     If number <> 0 And number <> 48 And number <> 53 And number <> 453 Then err.Raise number, source, message
+-    RPX_AccuracySolve = valid: Exit Function
++    AccuracySolveCore = valid: Exit Function
+ Failed:
+     number = err.number: message = err.description: source = err.source
+     Resume Cleanup
+ End Function
++' A retry changes solver scheduling only; its result still enters all existing
++' original primal/dual audits and the q=8 physical field gate in DirectBound.
++Private Function ThinUpperRetryScope(ByRef pr As RPX_AccuracyProgram) As Boolean
++    If Not RPX_ThinChainBudgetActive Or Not RPX_ThinChainUpperActive Or Not RFsActive Then Exit Function
++    If Not RPX_ThinUpperDllRetry Or RSubdivisions <> 8 Or pr.mode <> "upper" Then Exit Function
++    If re < RPX_ThinUpperDllMinElements Or Not CurrentProgram(pr) Then Exit Function
++    ThinUpperRetryScope = True
++End Function
++Private Function ThinUpperStatus5Retry(ByRef pr As RPX_AccuracyProgram, ByVal ordinarySeconds As Double, ByRef candidate() As Double, ByRef originalDual() As Double, ByVal hadCandidate As Boolean) As Boolean
++    Dim retrySeconds As Double, remainingSeconds As Double, remainingSource As String, initialIterations As Long
++    Dim firstCandidate() As Double, firstDual() As Double, initialReason As String, retryFinite As Boolean
++    Dim retryStatus As Long, retryIterations As Long, retryStarted As Double, retryEquilibratePacked As Long
++    Dim initialCallId As Long, initialEquilibrate As Long
++    ThinUpperStatus5Retry = hadCandidate
++    If AccuracyNativeSolverStatus <> 5 Or Not ThinUpperRetryScope(pr) Then Exit Function
++    retrySeconds = WorksheetFunction.Max(ordinarySeconds, RPX_ThinUpperDllRetrySeconds)
++    If retrySeconds > 600# Then retrySeconds = 600#
++    remainingSeconds = RPX_ThinRemainingSeconds(remainingSource)
++    If remainingSeconds >= 0# Then
++        If retrySeconds > remainingSeconds - RPX_ThinUpperHsdReserveSeconds Then retrySeconds = remainingSeconds - RPX_ThinUpperHsdReserveSeconds
++    End If
++    If RPX_ThinUpperProtectOn() Then retrySeconds = RPX_ThinUpperProtectLimit(retrySeconds, "dll_status5_retry")
++    If retrySeconds <= 0# Then
++        RPX_DiagEvent "thin_layer_dll_retry", "mode=upper;Fs=" & pr.factor & ";initial_status=5;attempts=0;reason=remaining_time;remaining_seconds=" & remainingSeconds & ";remaining_source=" & remainingSource & ";bound=0"
++        Exit Function
++    End If
++    If hadCandidate Then firstCandidate = candidate: firstDual = originalDual
++    initialIterations = AccuracyNativeIterations: initialReason = AccuracyNativeReason
++    initialCallId = AccuracyNativeCallId: initialEquilibrate = AccuracyNativeEquilibrate
++    RPX_AssertInputs "thin_upper_dll_retry"
++    retryStarted = RPX_DiagClock()
++    retryFinite = AccuracySolveCore(pr, retrySeconds, candidate, originalDual, True, retryEquilibratePacked)
++    retryStatus = AccuracyNativeSolverStatus: retryIterations = AccuracyNativeIterations
++    RPX_AssertInputs "thin_upper_dll_retry_complete"
++    If Not CurrentProgram(pr) Then err.Raise 5, "RPX_AccuracyNative", "THIN_UPPER_RETRY_CONTEXT_CHANGED"
++    ' A failed second execution must not discard the first finite candidate.
++    If Not retryFinite Then
++        If hadCandidate Then candidate = firstCandidate: originalDual = firstDual
++        AccuracyNativeSolverStatus = 5: AccuracyNativeIterations = initialIterations: AccuracyNativeReason = initialReason
++        AccuracyNativeCallId = initialCallId: AccuracyNativeEquilibrate = initialEquilibrate ' Restored candidate belongs to the first call.
++    Else
++        ThinUpperStatus5Retry = True
++    End If
++    RPX_DiagEvent "thin_layer_dll_retry", "mode=upper;Fs=" & pr.factor & ";initial_status=5;initial_iterations=" & initialIterations & ";attempts=1;iteration_limit=" & RPX_ThinUpperDllRetryIterations & ";equilibrate=" & retryEquilibratePacked & ";seconds_limit=" & retrySeconds & ";seconds=" & RPX_DiagClock() - retryStarted & ";solver_status=" & retryStatus & ";iterations=" & retryIterations & ";finite_candidate=" & retryFinite & ";original_audit_required=1;bound=0"
++End Function
+ Public Function RPX_AccuracyPrimalAudit(ByRef original As RPX_AccuracyProgram, ByRef candidate() As Double, ByRef objective As Double) As Boolean
+     Dim i As Long, j As Long, k As Long, row As Long, total As Double, correction As Double, cv(0 To 2) As Double, violation As Double
+     AccuracyNativeEquality = 0#: AccuracyNativeCone = 0#: objective = 0#
+@@ -348,10 +516,21 @@ Private Sub AddBound(ByRef pr As RPX_AccuracyProgram, ByVal loadId As Long, ByVa
+     pr.coneKind(pr.coneCount) = 1: pr.coneDim(pr.coneCount) = 1
+     pr.nnz = p: pr.m = pr.m + 1: pr.coneCount = pr.coneCount + 1
+ End Sub
++Private Function AccuracyArrayShape(ByRef values() As Double, ByRef firstIndex As Long, ByRef lastIndex As Long) As Boolean
++    On Error GoTo Missing
++    firstIndex = LBound(values)
++    lastIndex = UBound(values)
++    AccuracyArrayShape = True
++    Exit Function
++Missing:
++    If err.number <> 9 Then err.Raise err.number, err.source, err.description
++    err.Clear
++End Function
+ Public Function RPX_AccuracyRecoverPrimal(ByVal factor As Double, ByVal mode As String, ByRef recovered() As Double) As Boolean
+     Dim original As RPX_AccuracyProgram, qp As RPX_AccuracyProgram, center() As Double, candidate() As Double, modifiedDual() As Double
+     Dim alpha As Double, seconds As Double, objective As Double, raw() As Double, i As Long, ok As Boolean, positiveScale As Double, homogeneous As Boolean
+     Dim auditState As RPX_AuditSnapshot, number As Long, message As String, source As String, oldRejected As Boolean
++    Dim centerFirst As Long, centerLast As Long
+     If mode = "upper" Then
+         If UpperRecenterEnabled() Then
+             RPX_AccuracyRecoverPrimal = RecoverUpperRecenter(factor, recovered)
+@@ -361,9 +540,11 @@ Public Function RPX_AccuracyRecoverPrimal(ByVal factor As Double, ByVal mode As
+     Erase recovered
+     If Not RPX_AccuracyExport(factor, mode, original) Then Exit Function
+     qp = original: ReDim center(0 To original.n - 1)
+-    On Error Resume Next
+-    If LBound(xx) = 0 And UBound(xx) = original.n - 1 Then center = xx
+-    err.Clear: On Error GoTo 0
++    If AccuracyArrayShape(xx, centerFirst, centerLast) Then
++        If centerFirst = 0 Then
++            If centerLast = original.n - 1 Then center = xx
++        End If
++    End If
+     For i = 0 To UBound(center): If Not RPX_SchurFinite(center(i)) Then center(i) = 0#
+     Next i
+     alpha = CDbl(RPX_Setting("ACCURACY_DLL_ALPHA", 0.01)): seconds = CDbl(RPX_Setting("ACCURACY_DLL_SECONDS", 120))
+@@ -378,6 +559,9 @@ Public Function RPX_AccuracyRecoverPrimal(ByVal factor As Double, ByVal mode As
+     oldRejected = RPX_AuditRejected
+     On Error GoTo AuditFailed
+     ok = RPX_AccuracyPrimalAudit(original, candidate, objective)
++    If RPX_ThinChainBudgetActive And RPX_ThinChainUpperActive And mode = "upper" Then
++        If AccuracyNativeSolverStatus <> 1 And AccuracyNativeSolverStatus <> 4 Then ok = False
++    End If
+     If ok Then ok = RPX_FieldGate(mode, candidate, factor, 8, objective, AccuracyNativeValue, AccuracyNativeAudit, raw)
+     If mode = "lower" And Not ok Then
+         ' Homogeneous equilibrium permits a conservative same-Fs positive scaling.
+@@ -588,6 +772,7 @@ End Function
+ Public Sub RPX_AccuracyDualProblem(ByRef original As RPX_AccuracyProgram, ByRef dualProgram As RPX_AccuracyProgram)
+     Dim pr As RPX_AccuracyProgram, counts() As Long, cursor() As Long, i As Long, j As Long, row As Long, col As Long, p As Long, threshold As Double
+     pr.n = original.m: pr.m = original.n + original.m - original.equalityCount + 1
++    pr.mode = "original_dual_helper" ' Keeps the existing dual equilibration branch.
+     pr.coneCount = original.coneCount + 1
+     ReDim counts(0 To pr.m - 1): ReDim cursor(0 To pr.m - 1)
+     For i = 0 To original.m - 1
+@@ -623,9 +808,10 @@ Public Sub RPX_AccuracyDualProblem(ByRef original As RPX_AccuracyProgram, ByRef
+     pr.coneKind(pr.coneCount - 1) = 1: pr.coneDim(pr.coneCount - 1) = 1
+     dualProgram = pr
+ End Sub
+-Public Function RPX_AccuracyDualAudit(ByRef original As RPX_AccuracyProgram, ByRef candidate() As Double) As Boolean
++Public Function RPX_AccuracyDualAudit(ByRef original As RPX_AccuracyProgram, ByRef candidate() As Double, Optional ByVal candidateRole As String = "original_dual") As Boolean
+     Dim stat() As Double, corr() As Double, i As Long, j As Long, k As Long, row As Long, total As Double, correction As Double, violation As Double, threshold As Double
+-    AccuracyNativeDualStat = 0#: AccuracyNativeDualCone = 0#: AccuracyNativeDualObjective = 0#
++    Dim costInf As Double, dualInf As Double, atyInf As Double, costIndex As Long, statIndex As Long, detail As String, atyComplete As Boolean
++    ResetDualDiagnostics
+     On Error GoTo Rejected
+     If Not CurrentProgram(original) Or LBound(candidate) <> 0 Or UBound(candidate) <> original.m - 1 Then Exit Function
+     ReDim stat(0 To original.n - 1): ReDim corr(0 To original.n - 1): stat = original.originalCost
+@@ -634,7 +820,14 @@ Public Function RPX_AccuracyDualAudit(ByRef original As RPX_AccuracyProgram, ByR
+         AddTerm AccuracyNativeDualObjective, correction, -original.rhs(i) * candidate(i)
+         For j = original.rowPtr(i) To original.rowPtr(i + 1) - 1: AddTerm stat(original.colId(j)), corr(original.colId(j)), original.values(j) * candidate(i): Next j
+     Next i
+-    For i = 0 To original.n - 1: AccuracyNativeDualStat = WorksheetFunction.Max(AccuracyNativeDualStat, Abs(stat(i))): Next i
++    atyComplete = True
++    For i = 0 To original.n - 1
++        If Abs(original.originalCost(i)) > costInf Then costInf = Abs(original.originalCost(i)): costIndex = i
++        If Abs(stat(i)) > AccuracyNativeDualStat Then AccuracyNativeDualStat = Abs(stat(i)): statIndex = i
++        total = DiagnosticAbsDifference(stat(i), original.originalCost(i), atyComplete)
++        atyInf = WorksheetFunction.Max(atyInf, total)
++    Next i
++    For i = 0 To original.m - 1: dualInf = WorksheetFunction.Max(dualInf, Abs(candidate(i))): Next i
+     row = original.equalityCount
+     For k = 1 To original.coneCount - 1
+         violation = -candidate(row)
+@@ -643,6 +836,14 @@ Public Function RPX_AccuracyDualAudit(ByRef original As RPX_AccuracyProgram, ByR
+     Next k
+     If original.mode = "upper" Then threshold = 1.000003 Else threshold = -0.999998
+     RPX_AccuracyDualAudit = AccuracyNativeDualStat <= 0.0000001 And AccuracyNativeDualCone <= 0.00000001 And AccuracyNativeDualObjective >= threshold
++    AccuracyNativeDualAudited = True: AccuracyNativeDualAuditCallId = AccuracyNativeCallId
++    AccuracyNativeDualAuditRole = candidateRole: AccuracyNativeDualAuditStatus = AccuracyNativeSolverStatus
++    detail = "call_id=" & AccuracyNativeDualAuditCallId & ";candidate_role=" & candidateRole & ";mode=" & original.mode & ";solver_status=" & AccuracyNativeDualAuditStatus
++    detail = detail & ";cost_inf=" & costInf & ";cost_index=" & costIndex & ";dual_inf=" & dualInf & ";aty_inf_derived=" & atyInf
++    detail = detail & ";aty_inf_derived_valid=" & atyComplete
++    detail = detail & ";stat_index=" & statIndex & ";stat_at_cost_index=" & stat(costIndex) & ";cost_at_cost_index=" & original.originalCost(costIndex)
++    detail = detail & ";raw_stat=" & AccuracyNativeDualStat & ";raw_cone=" & AccuracyNativeDualCone & ";original_objective=" & AccuracyNativeDualObjective
++    RPX_DiagEvent "accuracy_dual_vector", detail & ";accepted=" & RPX_AccuracyDualAudit & ";physical_bound=0"
+     Exit Function
+ Rejected:
+     If err.number <> 6 And err.number <> 9 And Left$(err.description, 18) <> "ACCURACY_NONFINITE" Then err.Raise err.number, err.source, err.description
+@@ -651,7 +852,9 @@ End Function
+ Public Function RPX_AccuracyRecoverDual(ByVal factor As Double, ByVal mode As String, Optional ByVal budgetOverride As Double = 0#) As Boolean
+     Dim original As RPX_AccuracyProgram, dp As RPX_AccuracyProgram, candidate() As Double, helperDual() As Double, seconds As Double, accepted As Boolean
+     Dim useDualRepair As Boolean, finiteHelperCandidate As Boolean, repairSolveId As Long, repairCandidateId As Long
++    Dim dualStatLog As Double, dualConeLog As Double, dualObjectiveLog As Double
+     RPX_AccuracyGuideReset
++    ResetDualDiagnostics
+     If Not RPX_AccuracyExport(factor, mode, original) Then Exit Function
+     If mode = "upper" Then useDualRepair = DualLinearRepairEnabled()
+     repairSolveId = P4Solve: repairCandidateId = RPX_HSDCandidateId
+@@ -665,7 +868,8 @@ Public Function RPX_AccuracyRecoverDual(ByVal factor As Double, ByVal mode As St
+     If useDualRepair Then DualRepairAssert original, repairSolveId, repairCandidateId, "original_dual_helper_after"
+     If Not finiteHelperCandidate Then Exit Function
+     Erase helperDual ' The auxiliary problem's dual is not an original program dual.
+-    accepted = RPX_AccuracyDualAudit(original, candidate)
++    accepted = RPX_AccuracyDualAudit(original, candidate, "helper_primal")
++    If AccuracyNativeDualAudited Then CaptureDualRepairStage original, candidate, "raw_helper", accepted
+     If Not accepted And mode = "upper" Then accepted = TryOriginalDualLinearRepair(original, candidate)
+     If accepted Then
+         guideReady = True: guideFactor = factor: guideMode = mode: guideModel = original.model: guidePolicy = original.policy
+@@ -674,7 +878,10 @@ Public Function RPX_AccuracyRecoverDual(ByVal factor As Double, ByVal mode As St
+         guideCost = original.originalCost: guideNormalizedCost = XQ
+         CaptureAccuracyProof original, candidate, True
+     End If
+-    RPX_DiagEvent "accuracy_dll_original_dual", "accepted=" & accepted & ";mode=" & mode & ";Fs=" & factor & ";q=8;raw_stat=" & AccuracyNativeDualStat & ";raw_cone=" & AccuracyNativeDualCone & ";original_objective=" & AccuracyNativeDualObjective & ";physical_bound=0"
++    If AccuracyNativeDualAudited Then
++        dualStatLog = AccuracyNativeDualStat: dualConeLog = AccuracyNativeDualCone: dualObjectiveLog = AccuracyNativeDualObjective
++    End If
++    RPX_DiagEvent "accuracy_dll_original_dual", "accepted=" & accepted & ";mode=" & mode & ";Fs=" & factor & ";q=8;raw_stat=" & dualStatLog & ";raw_cone=" & dualConeLog & ";original_objective=" & dualObjectiveLog & ";physical_bound=0" & ";call_id=" & AccuracyNativeCallId & ";helper_status=" & AccuracyNativeSolverStatus & ";dual_audited=" & AccuracyNativeDualAudited
+     RPX_AccuracyRecoverDual = accepted
+ End Function
+ Public Sub RPX_AccuracyWriteProof(ByVal path As String, ByRef pr As RPX_AccuracyProgram, ByRef field() As Double)
+@@ -796,8 +1003,17 @@ Public Function RPX_AccuracyDirectBound(ByVal factor As Double, ByVal mode As St
+     Dim recentered() As Double, useUpperRecenter As Boolean, hasOriginalCenter As Boolean, recenterInvoked As Boolean
+     Dim recenterSolveId As Long, recenterCandidateId As Long, useDualRepairDirect As Boolean
+     Dim oldRaw(1 To 4) As Double, oldDissipation As Double, oldReference As Double, oldFixed As Double, i As Long
+-    useDualFirst = ConsumeUpperDualFirst(factor, mode)
++    Dim iterateFirst As Long, iterateLast As Long
++    Dim primalCallId As Long, primalStatus As Long, primalEquilibrate As Long, primalRole As String
++    Dim primalAudited As Boolean, primalAuditPass As Boolean, primalEquality As Double, primalCone As Double, primalObjective As Double
++    Dim recenterFirstCall As Long, candidateCallId As Long, endDetail As String
++    Dim dualStatLog As Double, dualConeLog As Double, dualObjectiveLog As Double
+     AccuracyDirectLastKind = "": AccuracyDirectLastAccepted = False
++    ResetDualDiagnostics
++    AccuracyNativeCallId = 0: AccuracyNativeSolverStatus = 0: AccuracyNativeIterations = 0: AccuracyNativeEquilibrate = -1
++    AccuracyNativeEquality = 0#: AccuracyNativeCone = 0#: primalEquilibrate = -1: primalRole = "none"
++    If RPX_ThinUpperProtectOn() Then Call RPX_ThinUpperProtectCheck("root_trial")
++    useDualFirst = ConsumeUpperDualFirst(factor, mode)
+     If Not RPX_DirectEnabled() Then Exit Function
+     seconds = CDbl(RPX_Setting("DIRECT_DLL_SECONDS", 5))
+     If Not RPX_SchurFinite(seconds) Or seconds <= 0# Or seconds > 600# Then err.Raise 5, "RPX_AccuracyNative", "INVALID_DIRECT_DLL_SECONDS"
+@@ -810,12 +1026,14 @@ Public Function RPX_AccuracyDirectBound(ByVal factor As Double, ByVal mode As St
+     oldDissipation = RDissipation: oldReference = RReferenceWork: oldFixed = RFixedWork
+     For i = 1 To 4: oldRaw(i) = RRawLowerAudit(i): Next i
+     RPX_DiagAuditSave state
+-    On Error Resume Next
+-    hadX = (LBound(xx) = 0 And UBound(xx) = original.n - 1)
++    hadX = AccuracyArrayShape(xx, iterateFirst, iterateLast)
++    If hadX Then hadX = (iterateFirst = 0)
++    If hadX Then hadX = (iterateLast = original.n - 1)
+     If hadX Then oldX = xx
+-    hadSlack = (UBound(XSlack) >= 0)
++    hadSlack = AccuracyArrayShape(XSlack, iterateFirst, iterateLast)
++    If hadSlack Then hadSlack = (iterateLast >= 0)
+     If hadSlack Then oldSlack = XSlack
+-    err.Clear: On Error GoTo Rejected
++    On Error GoTo Rejected
+     ' Freshly compiled problems have no previous iterate; FieldGate restores this local zero vector.
+     If Not hadX Then ReDim xx(0 To original.n - 1)
+     RPX_DiagEvent "direct_dll_begin", "mode=" & mode & ";Fs=" & factor & ";q=8;P=0;original_cost=1"
+@@ -839,12 +1057,34 @@ Public Function RPX_AccuracyDirectBound(ByVal factor As Double, ByVal mode As St
+         If Not CurrentProgram(original) Then err.Raise 5, "RPX_AccuracyNative", "UPPER_DUAL_FIRST_CONTEXT_CHANGED"
+         RPX_DiagEvent "direct_upper_dual_first", "accepted=False;fallback=original_lp;helper_seconds=" & dualFirstSeconds & ";lp_seconds=" & seconds & ";guide_is_not_field=1"
+     End If
++    ' A rejected dual-first helper cannot supply diagnostics for this LP candidate.
++    ResetDualDiagnostics
+     started = RPX_DiagClock()
+     RPX_TestHook "direct_dll_begin"
++    If RPX_ThinFsStatus5Allowed(factor) Then AccuracyNativeSolverStatus = 0
++    If ThinUpperRetryScope(original) Then AccuracyNativeSolverStatus = 0
+     hasOriginalCenter = RPX_AccuracySolve(original, seconds, candidate, originalDual)
+-    If Not hasOriginalCenter Then GoTo UpperRecoveryFallback
++    If mode = "upper" Then
++        If AccuracyNativeSolverStatus = 5 Then hasOriginalCenter = ThinUpperStatus5Retry(original, seconds, candidate, originalDual, hasOriginalCenter)
++    End If
++    primalCallId = AccuracyNativeCallId: primalStatus = AccuracyNativeSolverStatus: primalEquilibrate = AccuracyNativeEquilibrate
++    primalRole = "original_primal"
++    If Not hasOriginalCenter Then
++        If mode = "upper" And AccuracyNativeSolverStatus = 5 Then
++            If RPX_ThinFsStatus5Allowed(factor) Then
++                kind = "thin_upper_below_root": accepted = True
++                GoTo Restore
++            End If
++        End If
++        GoTo UpperRecoveryFallback
++    End If
+     RPX_TestHook "direct_dll_candidate"
+     ok = RPX_AccuracyPrimalAudit(original, candidate, objective)
++    primalAudited = True: primalAuditPass = ok
++    primalEquality = AccuracyNativeEquality: primalCone = AccuracyNativeCone: primalObjective = objective
++    If RPX_ThinChainBudgetActive And RPX_ThinChainUpperActive And mode = "upper" Then
++        If AccuracyNativeSolverStatus <> 1 And AccuracyNativeSolverStatus <> 4 Then ok = False
++    End If
+     If ok Then ok = RPX_FieldGate(mode, candidate, factor, 8, objective, measured, audit, raw)
+     If ok Then
+         If mode = "upper" Then ok = (measured <= 0.999999) Else ok = (measured >= 1.000001)
+@@ -852,6 +1092,8 @@ Public Function RPX_AccuracyDirectBound(ByVal factor As Double, ByVal mode As St
+     If Not ok And mode = "lower" Then
+         If HomogeneousLowerWitness(original, candidate, normalized, normalizedObjective, normalizedValue) Then
+             candidate = normalized: objective = normalizedObjective: measured = normalizedValue: ok = True
++            primalAudited = True: primalAuditPass = True
++            primalEquality = AccuracyNativeEquality: primalCone = AccuracyNativeCone: primalObjective = objective
+             RPX_DiagEvent "direct_dll_homogeneous_primal", "mode=lower;Fs=" & factor & ";q=8;lambda=" & measured & ";same_fs_original_gate=1;solver_status_used_as_evidence=0;auxiliary_dual_used=0"
+         End If
+     End If
+@@ -860,6 +1102,15 @@ Public Function RPX_AccuracyDirectBound(ByVal factor As Double, ByVal mode As St
+         GoTo Restore
+     End If
+     If RPX_AccuracyDualAudit(original, originalDual) Then kind = "original_dual": accepted = True
++    If AccuracyNativeDualAudited Then CaptureDualRepairStage original, originalDual, "raw_original", accepted
++    If Not accepted And mode = "upper" And AccuracyNativeSolverStatus = 5 Then
++        If RPX_ThinFsStatus5Allowed(factor) Then
++            ' AlmostPrimalInfeasible is only a below-root search sign. It has
++            ' no accepted primal field and cannot itself create an upper bound.
++            kind = "thin_upper_below_root": accepted = True
++            GoTo Restore
++        End If
++    End If
+     If Not accepted And useDualRepairDirect Then
+         If TryOriginalDualLinearRepair(original, originalDual) Then kind = "original_dual": accepted = True
+     End If
+@@ -876,9 +1127,20 @@ UpperRecoveryFallback:
+     If Not accepted And useUpperRecenter Then
+         recenterInvoked = True: recenterSolveId = P4Solve: recenterCandidateId = RPX_HSDCandidateId
+         Call RPX_AccuracyGuideReset
++        recenterFirstCall = accuracyCallSequence
+         If RecoverUpperRecenterProgram(original, candidate, hasOriginalCenter, recentered) Then
+             candidate = recentered
++            ' Reusing the original center keeps its native origin, even after a helper.
++            If accuracyCallSequence <> recenterFirstCall Then
++                primalCallId = AccuracyNativeCallId: primalStatus = AccuracyNativeSolverStatus: primalEquilibrate = AccuracyNativeEquilibrate
++            End If
++            primalRole = "recovered_primal"
+             ok = RPX_AccuracyPrimalAudit(original, candidate, objective)
++            primalAudited = True: primalAuditPass = ok
++            primalEquality = AccuracyNativeEquality: primalCone = AccuracyNativeCone: primalObjective = objective
++            If RPX_ThinChainBudgetActive And RPX_ThinChainUpperActive Then
++                If AccuracyNativeSolverStatus <> 1 And AccuracyNativeSolverStatus <> 4 Then ok = False
++            End If
+             If ok Then ok = RPX_FieldGate("upper", candidate, factor, 8, objective, measured, audit, raw)
+             If ok Then
+                 If Not RPX_SchurFinite(measured) Or Not RPX_SchurFinite(audit) Then ok = False
+@@ -903,6 +1165,11 @@ Restore:
+                 Call RPX_AuditLower: XStatus = "ORIGINAL_FIXED_LOWER_WITNESS"
+             End If
+             CaptureAccuracyProof original, candidate, False
++        ElseIf kind = "thin_upper_below_root" Then
++            XStatus = "THIN_UPPER_BELOW_ROOT": XObjective = 0#: RValue = 1E+30
++            Erase xx: Erase XSlack
++            RPX_AccuracyGuideReset
++            RPX_DiagEvent "thin_layer_status5_sign", "mode=upper;Fs=" & factor & ";solver_status=5;dual_check=prior_original_status1_guide;witness=0;bound=0;fallback_hsd=0"
+         Else
+             guideReady = True: guideFactor = factor: guideMode = mode: guideModel = original.model: guidePolicy = original.policy
+             guideEpoch = original.epoch: guideQ = original.q: guidePhase = original.phase
+@@ -931,9 +1198,25 @@ Restore:
+     End If
+     AccuracyDirectLastKind = kind: AccuracyDirectLastAccepted = accepted
+     On Error GoTo 0
++    If number = 5 And message = "THIN_UPPER_LOWER_PROTECT" Then err.Raise number, "RPX_AccuracyNative", message
+     If recenterInvoked And number <> 0 Then err.Raise number, "RPX_AccuracyNative", message
+     If useDualRepairDirect And number <> 0 Then err.Raise number, "RPX_AccuracyNative", message
+-    RPX_DiagEvent "direct_dll_end", "accepted=" & accepted & ";kind=" & kind & ";mode=" & mode & ";Fs=" & factor & ";solver_status=" & AccuracyNativeSolverStatus & ";raw_eq=" & AccuracyNativeEquality & ";raw_cone=" & AccuracyNativeCone & ";dual_stat=" & AccuracyNativeDualStat & ";dual_cone=" & AccuracyNativeDualCone & ";fallback=" & CStr(Not accepted) & ";message=" & message
++    candidateCallId = AccuracyNativeCallId
++    If kind = "original_primal" Then candidateCallId = primalCallId
++    ' Invalid partial audit values remain operationally unchanged and are not logged as residuals.
++    If AccuracyNativeDualAudited Then
++        dualStatLog = AccuracyNativeDualStat: dualConeLog = AccuracyNativeDualCone: dualObjectiveLog = AccuracyNativeDualObjective
++    End If
++    endDetail = "accepted=" & accepted & ";kind=" & kind & ";mode=" & mode & ";Fs=" & factor
++    endDetail = endDetail & ";solver_status=" & primalStatus & ";raw_eq=" & primalEquality & ";raw_cone=" & primalCone
++    endDetail = endDetail & ";primal_call_id=" & primalCallId & ";primal_status=" & primalStatus & ";primal_equilibrate=" & primalEquilibrate & ";primal_role=" & primalRole
++    endDetail = endDetail & ";primal_audited=" & primalAudited & ";primal_audit_pass=" & primalAuditPass
++    endDetail = endDetail & ";primal_raw_eq=" & primalEquality & ";primal_raw_cone=" & primalCone & ";primal_objective=" & primalObjective
++    endDetail = endDetail & ";dual_audited=" & AccuracyNativeDualAudited & ";dual_call_id=" & AccuracyNativeDualAuditCallId
++    endDetail = endDetail & ";dual_status=" & AccuracyNativeDualAuditStatus & ";dual_role=" & AccuracyNativeDualAuditRole
++    endDetail = endDetail & ";dual_stat=" & dualStatLog & ";dual_cone=" & dualConeLog & ";dual_objective=" & dualObjectiveLog
++    endDetail = endDetail & ";last_call_id=" & accuracyCallSequence & ";candidate_call_id=" & candidateCallId
++    RPX_DiagEvent "direct_dll_end", endDetail & ";fallback=" & CStr(Not accepted) & ";message=" & message
+     RPX_AccuracyDirectBound = accepted
+     Exit Function
+ Rejected:
+@@ -1027,6 +1310,9 @@ Private Function AuditUpperRecenter(ByRef original As RPX_AccuracyProgram, ByRef
+     UpperRecenterAssert original, solveId, candidateId, stage & "_before_audit"
+     If NormalizeUpperWork(original, candidate, workRatio) Then
+         accepted = RPX_AccuracyPrimalAudit(original, candidate, objective)
++        If RPX_ThinChainBudgetActive And RPX_ThinChainUpperActive Then
++            If AccuracyNativeSolverStatus <> 1 And AccuracyNativeSolverStatus <> 4 Then accepted = False
++        End If
+         If accepted Then accepted = RPX_FieldGate("upper", candidate, original.factor, 8, objective, AccuracyNativeValue, AccuracyNativeAudit, raw)
+         If accepted Then
+             If Not RPX_SchurFinite(AccuracyNativeValue) Or Not RPX_SchurFinite(AccuracyNativeAudit) Then accepted = False
+@@ -1195,7 +1481,7 @@ Private Sub CaptureDualRepairStage(ByRef original As RPX_AccuracyProgram, ByRef
+     ' Distinct filename: rejected source/corrected candidates are NOT accepted accuracy proofs.
+     path = RPX_DiagPath & ".dual_repair_" & stage & "_solve_" & P4Solve & "_" & proofSequence & ".bin"
+     RPX_AccuracyWriteProof path, original, candidate
+-    RPX_DiagEvent "dual_repair_capture", "stage=" & stage & ";path=" & path & ";layout=AC18P001_original_dual;accepted=" & accepted & ";physical_bound=0;candidate_only=1"
++    RPX_DiagEvent "dual_repair_capture", "stage=" & stage & ";path=" & path & ";layout=AC18P001_original_dual;accepted=" & accepted & ";physical_bound=0;candidate_only=1" & ";call_id=" & AccuracyNativeCallId
+ End Sub
+ Private Function OriginalDualArrayValid(ByRef original As RPX_AccuracyProgram, ByRef candidate() As Double) As Boolean
+     Dim i As Long
+@@ -1224,7 +1510,7 @@ Private Function TryOriginalDualLinearRepair(ByRef original As RPX_AccuracyProgr
+     If Not OriginalDualArrayValid(original, candidate) Then Exit Function
+     On Error GoTo Failed
+     sourceDual = candidate
+-    alreadyAccepted = RPX_AccuracyDualAudit(original, sourceDual)
++    alreadyAccepted = RPX_AccuracyDualAudit(original, sourceDual, "repair_source")
+     beforeStat = AccuracyNativeDualStat: beforeCone = AccuracyNativeDualCone: beforeObjective = AccuracyNativeDualObjective
+     If alreadyAccepted Then Exit Function
+     If Not RPX_SchurFinite(beforeStat) Or Not RPX_SchurFinite(beforeCone) Or Not RPX_SchurFinite(beforeObjective) Then Exit Function
+@@ -1260,7 +1546,7 @@ Private Function TryOriginalDualLinearRepair(ByRef original As RPX_AccuracyProgr
+     Next i
+     unchangedCone = DualConeBitsUnchanged(sourceDual, updated, original.equalityCount, original.m)
+     If Not unchangedCone Then err.Raise 5, "RPX_AccuracyNative", "DUAL_REPAIR_CHANGED_CONE_BITS"
+-    accepted = RPX_AccuracyDualAudit(original, updated)
++    accepted = RPX_AccuracyDualAudit(original, updated, "repair_corrected")
+     If Not RPX_SchurFinite(seconds) Or seconds < 0# Or seconds > 10# Then accepted = False
+     DualRepairAssert original, solveId, candidateId, "dual_repair_after_original_audit"
+     CaptureDualRepairStage original, updated, "after", accepted
+diff --git a/versions/G1R20_Fix9rc4b/src/vba/RPX_Adapt.bas b/versions/G1R20_Fix9rc9b/src/vba/RPX_Adapt.bas
+index f99390c..b7547d2 100644
+--- a/versions/G1R20_Fix9rc4b/src/vba/RPX_Adapt.bas
++++ b/versions/G1R20_Fix9rc9b/src/vba/RPX_Adapt.bas
+@@ -14,11 +14,45 @@ Private Type Fix9ThinOptions
+     hsdPerCone As Double
+     hsdFactor As Double
+     hsdCap As Double
++    hsdTimeFraction As Double
++    hsdTimeCap As Double
++    nominalSeconds As Double
++    lowerLargeElements As Long
++    lowerLargeThetaFactor As Double
++    extraRetryMinSeconds As Double
+     dllFactor As Double
+     dllRefSeconds As Double
++    dllEquTimeFactor As Double
+     dllRefCones As Long
+     dllExponent As Double
+     dllCap As Double
++    upperRoundMaxElements As Long
++    upperMaxGrowth As Double
++    upperDllRetry As Boolean
++    upperDllMinElements As Long
++    upperDllRetrySeconds As Double
++    upperDllRetryIterations As Long
++    upperDllRetryEquilibrate As Long
++    upperHsdMinElements As Long
++    upperHsdFloorSeconds As Double
++    lowerHsdMinElements As Long
++    lowerHsdFloorSeconds As Double
++    upperHsdReserveSeconds As Double
++    upperHsdIterations As Long
++    lowerExtraRounds As Long
++    lowerExtraReserve As Double
++    lowerExtraTargetElements As Long
++    lowerExtraMaxGrowth As Double
++    lowerExtraUpperRound As Long
++    lowerExtraActive As Boolean
++    lowerExtraProtect As Boolean
++    lowerExtraPending As Boolean
++    lowerProtectFunded As Boolean
++    lowerProtectElements As Long
++    lowerProtectCap As Long
++    lowerCostSeconds As Double
++    lowerCostElements As Long
++    lowerCostFsCalls As Long
+ End Type
+ Public Type RPX_MeshState
+     nodes As Long
+@@ -77,6 +111,11 @@ Public RAdaptHistory As Collection
+ Public RAdaptRoute As String
+ Private adaptCoarseSearch As Boolean
+ Private fix9ThinEarlyStartTaken As Boolean
++Private fix9ThinNominalSeconds As Double
++Private fix9UpperProtectActive As Boolean
++Private fix9UpperProtectStarted As Double, fix9UpperProtectAllowance As Double
++Private fix9UpperProtectCost As Double, fix9UpperProtectReserve As Double
++Private Const Fix9UpperProtectMargin As Double = 120#
+ Private g20BalancedAttempted As Boolean, g20FlowSource As String
+ Private Const AdaptCoarseTol As Double = 0.001
+ Private Const AdaptStartRatio As Double = 0.35
+@@ -111,6 +150,9 @@ Private meshStage As String
+ Private RBestPair As RPX_MeshState
+ Private RCurrent As RPX_MeshState
+ Private currentPairValid As Boolean
++' The recovery context belongs to this adaptive run, including its output stage.
++Private adaptRecoveryActive As Boolean, adaptRecoveryRunId As Long
++Private adaptRecoveryTarget As Long, adaptRecoveryTolerance As Double
+ Private pilotFallbackUsed As Boolean
+ Private mesh0Ready As Boolean
+ Private mesh0 As RPX_MeshState
+@@ -1831,6 +1873,65 @@ RestoreFailed:
+ End Function
+ 
+ Public Sub RPX_RunAdapt(ByVal mode As String)
++    Dim failureNumber As Long, failureLine As Long
++    Dim failureSource As String, failureText As String
++    adaptRecoveryActive = False
++    adaptRecoveryRunId = RPX_CertRunId
++    adaptRecoveryTarget = DTarget: adaptRecoveryTolerance = RFsTolerance
++    adaptRecoveryActive = True
++    On Error GoTo AdaptFailed
++    Call RunAdaptCore(mode)
++    Exit Sub
++AdaptFailed:
++    failureNumber = err.number: failureSource = err.source: failureText = err.description: failureLine = Erl
++    Resume AdaptRecovery
++AdaptRecovery:
++    On Error GoTo 0
++    If RPX_AdaptPreserveConfirmed(mode, failureNumber, failureSource, failureText, failureLine) Then Exit Sub
++    err.Raise failureNumber, failureSource, failureText
++End Sub
++
++' This path is entered only after an error. It neither solves nor accepts a bound.
++Public Function RPX_AdaptPreserveConfirmed(ByVal mode As String, ByVal failureNumber As Long, ByVal failureSource As String, ByVal failureText As String, ByVal failureLine As Long) As Boolean
++    Dim detail As String
++    If failureNumber = 0 Or failureNumber = 18 Or XCancel Then Exit Function
++    If mode <> "Fs" Or Not adaptRecoveryActive Then Exit Function
++    If RPX_CertRunId <= 0 Or adaptRecoveryRunId <> RPX_CertRunId Then Exit Function
++    If Not AdaptConfirmedOwnerReady("lower", RBestLower, RPX_CertLower) Then Exit Function
++    If Not AdaptConfirmedOwnerReady("upper", RBestUpper, RPX_CertUpper) Then Exit Function
++    If Not RPX_SchurFinite(RBestLower.value) Or Not RPX_SchurFinite(RBestUpper.value) Then Exit Function
++    If RBestLower.value <= 0# Or RBestUpper.value < RBestLower.value Then Exit Function
++    RPX_AssertInputs "late_fatal_preserve"
++    ' Consume one recovery attempt before restoration can raise another error.
++    adaptRecoveryActive = False
++    Call Fix9ClearBudgets
++    RPX_HsdBudgetFloor = 0#: RFsActive = False
++    DTarget = adaptRecoveryTarget: RFsTolerance = adaptRecoveryTolerance
++    Call RPX_RestoreWitnessState(RBestUpper)
++    Call RestoreFinalBounds(mode)
++    currentPairValid = True
++    RFsSearchIncomplete = True
++    RFsSearchNote = "ADAPT_FATAL_PRESERVED;OLD_WITNESSES_KEPT " & failureText
++    adaptStatus = "fatal_preserved"
++    detail = "number=" & failureNumber & ";source=" & failureSource & ";line=" & failureLine & ";message=" & Replace(failureText, ";", ",")
++    detail = detail & ";lower=" & RBestLower.value & ";upper=" & RBestUpper.value & ";lower_elements=" & RBestLower.elements & ";upper_elements=" & RBestUpper.elements
++    RPX_DiagEvent "adapt_fatal_preserved", detail
++    RPX_AdaptPreserveConfirmed = True
++End Function
++
++Private Function AdaptConfirmedOwnerReady(ByVal side As String, ByRef state As RPX_MeshState, ByRef certificate As RPX_BoundCertificate) As Boolean
++    If Not state.complete Or state.nodes < 1 Or state.elements < 1 Then Exit Function
++    If state.certificateRunId <> RPX_CertRunId Or state.inputEpoch <> RPX_InputEpoch Then Exit Function
++    If state.policy <> RPX_AnalysisPolicy() Or Len(state.originalModel) = 0 Then Exit Function
++    If Not RPX_CertCurrent(side) Then Exit Function
++    If certificate.side <> side Or certificate.mode <> "Fs" Or certificate.ownerKind <> "ADAPT_BEST_STATE" Then Exit Function
++    If certificate.runId <> state.certificateRunId Or certificate.inputEpoch <> state.inputEpoch Or certificate.policy <> state.policy Then Exit Function
++    If certificate.nodes <> state.nodes Or certificate.elements <> state.elements Or certificate.q <> state.q Then Exit Function
++    If certificate.acceptedFs <> state.value Or certificate.objective <> state.objective Or certificate.stressScale <> state.stressScale Then Exit Function
++    AdaptConfirmedOwnerReady = True
++End Function
++
++Private Sub RunAdaptCore(ByVal mode As String)
+     Dim cycle As Long, cycles As Long, targetGap As Double, previousGap As Double, gain As Double
+     Dim startTarget As Long, maxElements As Long
+     Dim baseline As RPX_MeshState
+@@ -2099,7 +2200,7 @@ FinalCandidateDone:
+     If XCancel Then err.Raise 18, , "ANALYSIS_CANCELLED"
+     Call RestoreFinalBounds(mode)
+     ' G1R20 Fix8: thin-layer side chains replace the pair-mesh accuracy rounds
+-    ' and the lower fan only when the auto detection fired and a step ran.
++    ' and the lower fan only when a thin-layer candidate reached endpoint evaluation.
+     fix8Ran = Fix8ThinLayerChains(mode, targetGap)
+     If Not fix8Ran Then Call ContinueAccuracy(mode, targetGap)
+     Call RestoreFinalBounds(mode)
+@@ -2763,20 +2864,196 @@ Private Sub Fix9ReadOptions(ByRef opt As Fix9ThinOptions, ByRef text As String)
+     opt.hsdPerCone = Fix8Number("ADAPT_THIN_HSD_PER_CONE", 0.0037, 0, 1)
+     opt.hsdFactor = Fix8Number("ADAPT_THIN_HSD_FACTOR", 1.5, 0, 100)
+     opt.hsdCap = Fix8Number("ADAPT_THIN_HSD_CAP", 3600, 1, 3600)
++    opt.hsdTimeFraction = Fix8Number("ADAPT_THIN_HSD_TIME_FRACTION", 0.15, 0, 1)
++    opt.hsdTimeCap = Fix8Number("ADAPT_THIN_HSD_TIME_CAP", 1200, 0, 3600)
++    opt.nominalSeconds = Fix8Number("ADAPT_THIN_NOMINAL_SECONDS", 18171, 0, 1E+30)
++    opt.lowerLargeElements = Fix9Integer("ADAPT_THIN_LOWER_LARGE_ELEMENTS", 1500, 1, 50000)
++    opt.lowerLargeThetaFactor = Fix8Number("ADAPT_THIN_LOWER_LARGE_THETA_FACTOR", 0.5, 0.000001, 1)
++    opt.extraRetryMinSeconds = Fix8Number("ADAPT_THIN_EXTRA_RETRY_MIN_SECONDS", 3600, 0, 1E+30)
+     opt.dllFactor = Fix8Number("ADAPT_THIN_DLL_FACTOR", 3, 0, 100)
+     opt.dllRefSeconds = Fix8Number("ADAPT_THIN_DLL_REF_SECONDS", 3.45, 0.000001, 600)
++    opt.dllEquTimeFactor = Fix8Number("ADAPT_THIN_DLL_EQU_TIME_FACTOR", 1.15, 1, 100)
+     opt.dllRefCones = Fix9Integer("ADAPT_THIN_DLL_REF_CONES", 22741, 1, 2147483000#)
+     opt.dllExponent = Fix8Number("ADAPT_THIN_DLL_EXPONENT", 1.2, 0, 4)
+     opt.dllCap = Fix8Number("ADAPT_THIN_DLL_CAP", 600, 0.000001, 600)
++    opt.upperRoundMaxElements = Fix9Integer("ADAPT_THIN_UPPER_ROUND_MAX_ELEMENTS", 3000, 16, 50000)
++    opt.upperMaxGrowth = Fix8Number("ADAPT_THIN_UPPER_MAX_GROWTH", 1.6, 1.000001, 4)
++    opt.upperDllRetry = (Fix9Integer("ADAPT_THIN_UPPER_DLL_RETRY", 1, 0, 1) = 1)
++    opt.upperDllMinElements = Fix9Integer("ADAPT_THIN_UPPER_DLL_MIN_ELEMENTS", 1800, 1, 50000)
++    opt.upperDllRetrySeconds = Fix8Number("ADAPT_THIN_UPPER_DLL_RETRY_SECONDS", 60, 0.000001, 600)
++    opt.upperDllRetryIterations = Fix9Integer("ADAPT_THIN_UPPER_DLL_RETRY_ITERATIONS", 700, 350, 2000)
++    opt.upperDllRetryEquilibrate = Fix9Integer("ADAPT_THIN_UPPER_DLL_RETRY_EQUILIBRATE", 1, 0, 1)
++    opt.upperHsdMinElements = Fix9Integer("ADAPT_THIN_UPPER_HSD_MIN_ELEMENTS", 1800, 1, 50000)
++    opt.upperHsdFloorSeconds = Fix8Number("ADAPT_THIN_UPPER_HSD_FLOOR_SECONDS", 1800, 0, 3600)
++    opt.lowerHsdMinElements = Fix9Integer("ADAPT_THIN_LOWER_HSD_MIN_ELEMENTS", 1400, 1, 50000)
++    opt.lowerHsdFloorSeconds = Fix8Number("ADAPT_THIN_LOWER_HSD_FLOOR_SECONDS", 1200, 0, 3600)
++    opt.upperHsdReserveSeconds = Fix8Number("ADAPT_THIN_UPPER_HSD_RESERVE_SECONDS", 600, 0, 1E+30)
++    opt.upperHsdIterations = Fix9Integer("ADAPT_THIN_UPPER_HSD_ITERATIONS", 600, 150, 1000)
++    opt.lowerExtraProtect = (Fix9Integer("ADAPT_THIN_LOWER_EXTRA_PROTECT", 1, 0, 1) = 1)
++    opt.lowerExtraRounds = Fix9Integer("ADAPT_THIN_LOWER_EXTRA_ROUNDS", 3, 0, 10)
++    opt.lowerExtraReserve = Fix8Number("ADAPT_THIN_LOWER_EXTRA_RESERVE_SECONDS", 600, 0, 1E+30)
++    opt.lowerExtraTargetElements = Fix9Integer("ADAPT_THIN_LOWER_EXTRA_TARGET_ELEMENTS", 2000, 16, 50000)
++    opt.lowerExtraMaxGrowth = Fix8Number("ADAPT_THIN_LOWER_EXTRA_MAX_GROWTH", 1.4, 1.000001, 4)
++    opt.lowerExtraUpperRound = Fix9Integer("ADAPT_THIN_LOWER_EXTRA_UPPER_ROUND", 7, 0, 20)
+     text = ";mid_separate=" & Abs(CLng(opt.midSeparate)) & ";lower_own_upper=" & Abs(CLng(opt.lowerOwnUpper)) & ";lower_own_upper_factor=" & opt.lowerOwnFactor
+     text = text & ";flip_fresh=" & Abs(CLng(opt.flipFresh)) & ";lower_retries=" & opt.lowerRetries & ";retry_theta_factor=" & opt.retryThetaFactor
+     text = text & ";hsd_base=" & opt.hsdBase & ";hsd_per_cone=" & opt.hsdPerCone & ";hsd_factor=" & opt.hsdFactor & ";hsd_cap=" & opt.hsdCap
++    text = text & ";hsd_time_fraction=" & opt.hsdTimeFraction & ";hsd_time_cap=" & opt.hsdTimeCap
++    text = text & ";nominal_seconds=" & opt.nominalSeconds
++    text = text & ";lower_large_elements=" & opt.lowerLargeElements & ";lower_large_theta_factor=" & opt.lowerLargeThetaFactor & ";extra_retry_min_seconds=" & opt.extraRetryMinSeconds
+     text = text & ";dll_factor=" & opt.dllFactor & ";dll_ref_seconds=" & opt.dllRefSeconds & ";dll_ref_cones=" & opt.dllRefCones & ";dll_exponent=" & opt.dllExponent & ";dll_cap=" & opt.dllCap
++    text = text & ";dll_equ_time_factor=" & opt.dllEquTimeFactor
++    text = text & ";upper_round_max_elements=" & opt.upperRoundMaxElements & ";upper_max_growth=" & opt.upperMaxGrowth
++    text = text & ";upper_dll_retry=" & Abs(CLng(opt.upperDllRetry)) & ";upper_dll_min_elements=" & opt.upperDllMinElements & ";upper_dll_retry_seconds=" & opt.upperDllRetrySeconds
++    text = text & ";upper_dll_retry_iterations=" & opt.upperDllRetryIterations & ";upper_dll_retry_equilibrate=" & opt.upperDllRetryEquilibrate
++    text = text & ";upper_hsd_min_elements=" & opt.upperHsdMinElements & ";upper_hsd_floor_seconds=" & opt.upperHsdFloorSeconds
++    text = text & ";lower_hsd_min_elements=" & opt.lowerHsdMinElements & ";lower_hsd_floor_seconds=" & opt.lowerHsdFloorSeconds
++    text = text & ";upper_hsd_reserve_seconds=" & opt.upperHsdReserveSeconds & ";upper_hsd_iterations=" & opt.upperHsdIterations
++    text = text & ";lower_extra_rounds=" & opt.lowerExtraRounds & ";lower_extra_reserve_seconds=" & opt.lowerExtraReserve & ";lower_extra_target_elements=" & opt.lowerExtraTargetElements
++    text = text & ";lower_extra_max_growth=" & opt.lowerExtraMaxGrowth & ";lower_extra_upper_round=" & opt.lowerExtraUpperRound
++    text = text & ";lower_extra_protect=" & Abs(CLng(opt.lowerExtraProtect))
++End Sub
++' Thin funding uses the case clock when the runner supplies its limit. An
++' optional-stage deadline remains an independent stage veto, not a case limit.
++Public Function RPX_ThinRemainingSeconds(Optional ByRef remainingSource As String = "none") As Double
++    RPX_ThinRemainingSeconds = -1#
++    remainingSource = "none"
++    If Not RPX_ThinChainBudgetActive Then Exit Function
++    RPX_ThinRemainingSeconds = Fix9DeadlineRemainingSeconds(fix9ThinNominalSeconds, remainingSource)
++End Function
++' Every thin solver shares the case wall and its side's completion reserve.
++' A measured round already includes equilibration; this clamp never rescales it.
++Public Function RPX_ThinSolveSeconds(ByVal seconds As Double) As Double
++    Dim remainingSeconds As Double, remainingSource As String, reserveSeconds As Double
++    RPX_ThinSolveSeconds = seconds
++    If Not RPX_ThinChainBudgetActive Then Exit Function
++    remainingSeconds = RPX_ThinRemainingSeconds(remainingSource)
++    If remainingSeconds < 0# Then
++        If RPX_ThinLowerExtraActive Then RPX_ThinSolveSeconds = 0#
++        Exit Function
++    End If
++    If RPX_ThinChainUpperActive Then
++        reserveSeconds = RPX_ThinUpperHsdReserveSeconds
++    Else
++        reserveSeconds = RPX_ThinLowerHsdReserveSeconds
++    End If
++    ' An auxiliary upper LP inside an extra lower round keeps its lower reserve.
++    If RPX_ThinLowerExtraActive And reserveSeconds < RPX_ThinLowerHsdReserveSeconds Then reserveSeconds = RPX_ThinLowerHsdReserveSeconds
++    remainingSeconds = remainingSeconds - reserveSeconds
++    If remainingSeconds < 0# Then remainingSeconds = 0#
++    If seconds > remainingSeconds Then RPX_ThinSolveSeconds = remainingSeconds
++End Function
++' Also used between steps by the thin-only retry driver, after budget cleanup.
++Private Function Fix9DeadlineRemainingSeconds(ByVal nominalSeconds As Double, ByRef remainingSource As String) As Double
++    Dim limit As Double, remaining As Double, caseLimitSeconds As Double, caseElapsedSeconds As Double
++    Fix9DeadlineRemainingSeconds = -1#
++    remainingSource = "none"
++    caseLimitSeconds = Fix8Number("ADAPT_THIN_CASE_LIMIT_SECONDS", 0, 0, 1E+30)
++    If caseLimitSeconds > 0# Then
++        caseElapsedSeconds = RPX_ThinRunElapsedSeconds()
++        If caseElapsedSeconds < 0# And adaptStartedAt > 0# Then caseElapsedSeconds = CDbl(Now) * 86400# - adaptStartedAt
++        If caseElapsedSeconds >= 0# Then
++            remaining = caseLimitSeconds - caseElapsedSeconds
++            If remaining < 0# Then remaining = 0#
++            remainingSource = "case_limit"
++            Fix9DeadlineRemainingSeconds = remaining
++            Exit Function
++        End If
++    End If
++    limit = CDbl(RPX_Setting("ADAPT_OPTIONAL_DEADLINE_SECONDS", 0))
++    If Not RPX_SchurFinite(limit) Or limit < 0# Then err.Raise 5, "RPX_Adapt", "INVALID_ADAPT_OPTIONAL_DEADLINE_SECONDS"
++    If adaptStartedAt <= 0# Then Exit Function
++    If limit > 0# Then
++        remainingSource = "deadline"
++    ElseIf nominalSeconds > 0# Then
++        limit = nominalSeconds: remainingSource = "nominal"
++    Else
++        Exit Function
++    End If
++    remaining = limit - (CDbl(Now) * 86400# - adaptStartedAt)
++    If remaining < 0# Then remaining = 0#
++    Fix9DeadlineRemainingSeconds = remaining
++End Function
++' The allowance is latched for one upper step, including geometry and every
++' root/native/recovery/HSD trial. A retry can never replenish the case reserve.
++Private Sub Fix9UpperProtectBegin(ByRef opt As Fix9ThinOptions)
++    Dim plannedElements As Long, remainingSeconds As Double, remainingSource As String, reason As String
++    fix9UpperProtectActive = False
++    fix9UpperProtectStarted = RPX_DiagClock()
++    fix9UpperProtectAllowance = 0#: fix9UpperProtectCost = 0#: fix9UpperProtectReserve = opt.lowerExtraReserve
++    reason = "disabled"
++    If Not opt.lowerExtraProtect Then GoTo ProtectionLogged
++    reason = "no_extra_lower_pending"
++    If Not opt.lowerExtraPending Then GoTo ProtectionLogged
++    reason = "no_lower_cost"
++    If opt.lowerCostSeconds <= 0# Or opt.lowerCostElements <= 0 Or opt.lowerProtectElements <= 0 Then GoTo ProtectionLogged
++    ' Reserve the next extra only; its successor uses a newly measured cost.
++    plannedElements = Fix9LowerPlannedElements(opt.lowerProtectElements, opt.lowerProtectCap, opt)
++    reason = "no_useful_lower_size"
++    If plannedElements <= opt.lowerProtectElements + 1 Then GoTo ProtectionLogged
++    fix9UpperProtectCost = Fix9LowerPredictedSeconds(plannedElements, opt)
++    remainingSeconds = RPX_ThinRemainingSeconds(remainingSource)
++    reason = "no_remaining_clock"
++    If remainingSeconds < 0# Then GoTo ProtectionLogged
++    reason = "lower_not_affordable"
++    If remainingSeconds < fix9UpperProtectCost + fix9UpperProtectReserve Then GoTo ProtectionLogged
++    fix9UpperProtectActive = True: reason = "next_extra_lower"
++    opt.lowerProtectFunded = True
++    fix9UpperProtectAllowance = remainingSeconds - fix9UpperProtectCost - fix9UpperProtectReserve - Fix9UpperProtectMargin
++    If fix9UpperProtectAllowance < 0# Then fix9UpperProtectAllowance = 0#
++ProtectionLogged:
++    RPX_DiagEvent "thin_layer_upper_protect", "phase=begin;active=" & Abs(CLng(fix9UpperProtectActive)) & ";reason=" & reason & ";lower_lineage_elements=" & opt.lowerProtectElements & ";planned_elements=" & plannedElements & ";last_lower_elements=" & opt.lowerCostElements & ";last_lower_seconds=" & opt.lowerCostSeconds & ";predicted_lower_seconds=" & fix9UpperProtectCost
++    If fix9UpperProtectActive Then
++        RPX_DiagEvent "thin_layer_upper_protect", "phase=allowance;remaining_seconds=" & remainingSeconds & ";remaining_source=" & remainingSource & ";reserve_seconds=" & fix9UpperProtectReserve & ";margin_seconds=" & Fix9UpperProtectMargin & ";step_allowance_seconds=" & fix9UpperProtectAllowance
++    End If
++End Sub
++Public Function RPX_ThinUpperProtectOn() As Boolean
++    RPX_ThinUpperProtectOn = (RPX_ThinChainBudgetActive And RPX_ThinChainUpperActive And fix9UpperProtectActive)
++End Function
++' Called only through thin upper solver gates; seconds includes any HSD grace.
++Public Function RPX_ThinUpperProtectLimit(ByVal seconds As Double, ByVal purpose As String) As Double
++    Dim elapsedSeconds As Double, availableSeconds As Double, remainingSeconds As Double, remainingSource As String, caseAllowance As Double
++    RPX_ThinUpperProtectLimit = seconds
++    If Not RPX_ThinUpperProtectOn() Then Exit Function
++    elapsedSeconds = RPX_DiagClock() - fix9UpperProtectStarted
++    availableSeconds = fix9UpperProtectAllowance - elapsedSeconds
++    remainingSeconds = RPX_ThinRemainingSeconds(remainingSource)
++    If remainingSeconds >= 0# Then
++        caseAllowance = remainingSeconds - fix9UpperProtectCost - fix9UpperProtectReserve - Fix9UpperProtectMargin
++        If caseAllowance < availableSeconds Then availableSeconds = caseAllowance
++    End If
++    If availableSeconds < 0# Then availableSeconds = 0#
++    If seconds > availableSeconds Then RPX_ThinUpperProtectLimit = availableSeconds
++    If seconds > 0# Or availableSeconds <= 0# Then
++        RPX_DiagEvent "thin_layer_upper_protect", "phase=solve;purpose=" & purpose & ";step_seconds=" & elapsedSeconds & ";step_allowance_seconds=" & fix9UpperProtectAllowance & ";remaining_seconds=" & remainingSeconds & ";remaining_source=" & remainingSource & ";predicted_lower_seconds=" & fix9UpperProtectCost & ";reserve_seconds=" & fix9UpperProtectReserve & ";margin_seconds=" & Fix9UpperProtectMargin & ";available_seconds=" & availableSeconds & ";requested_seconds=" & seconds & ";applied_seconds=" & RPX_ThinUpperProtectLimit
++    End If
++    If availableSeconds <= 0# Then
++        ' Not a numerical unknown: propagate past Fs numeric recovery immediately.
++        ' ChainStep alone consumes this token and retains independently valid best.
++        err.Raise 5, "RPX_Adapt", "THIN_UPPER_LOWER_PROTECT"
++    End If
++End Function
++Public Sub RPX_ThinUpperProtectCheck(ByVal purpose As String)
++    Dim checkedSeconds As Double
++    If Not RPX_ThinUpperProtectOn() Then Exit Sub
++    checkedSeconds = RPX_ThinUpperProtectLimit(0#, purpose)
+ End Sub
+ Private Sub Fix9ClearBudgets()
++    Call RPX_ThinHsdWarmClear
++    Call RPX_ThinFsEnd
+     RPX_ThinChainBudgetActive = False: RPX_ThinChainUpperActive = False
++    fix9ThinNominalSeconds = 0#
++    fix9UpperProtectActive = False: fix9UpperProtectStarted = 0#: fix9UpperProtectAllowance = 0#
++    fix9UpperProtectCost = 0#: fix9UpperProtectReserve = 0#
++    RPX_ThinHsdTimeFraction = 0#: RPX_ThinHsdTimeCap = 0#
+     RPX_ThinHsdBase = 0#: RPX_ThinHsdPerCone = 0#: RPX_ThinHsdFactor = 0#: RPX_ThinHsdCap = 0#
+     RPX_ThinDllFactor = 0#: RPX_ThinDllRefSeconds = 0#: RPX_ThinDllRefCones = 0#: RPX_ThinDllExponent = 0#: RPX_ThinDllCap = 0#
++    RPX_ThinUpperDllRetry = False: RPX_ThinUpperDllMinElements = 0: RPX_ThinUpperDllRetrySeconds = 0#
++    RPX_ThinUpperDllRetryIterations = 0: RPX_ThinUpperDllRetryEquilibrate = 0
++    RPX_ThinUpperHsdMinElements = 0: RPX_ThinUpperHsdFloorSeconds = 0#
++    RPX_ThinLowerHsdMinElements = 0: RPX_ThinLowerHsdFloorSeconds = 0#
++    RPX_ThinLowerHsdReserveSeconds = 0#: RPX_ThinLowerExtraActive = False
++    RPX_ThinUpperHsdReserveSeconds = 0#: RPX_ThinUpperHsdIterations = 0
+ End Sub
+ ' Exactly one DLL solve: no RPX_Bound/FsEndpoint/recovery and no witness gate.
+ ' Failure returns to the old geometry method. Cancellation is restored/re-raised.
+@@ -2857,6 +3134,7 @@ AuxDone:
+     RPX_DiagEvent "thin_layer_aux", "purpose=" & purpose & ";Fs=" & factor & ";elements=" & re & ";ok=" & Abs(CLng(ok)) & ";reason=" & reason & ";seconds_limit=" & seconds & ";witness=0"
+     On Error GoTo 0
+     If number = 18 Or XCancel Then err.Raise 18, source, "ANALYSIS_CANCELLED"
++    If number = 5 And message = "THIN_UPPER_LOWER_PROTECT" Then err.Raise number, source, message
+     Fix9AuxUpper = ok
+     Exit Function
+ AuxFailed:
+@@ -2870,24 +3148,138 @@ AuxRestoreFailed:
+     If number = 18 Or XCancel Then err.Raise 18, source, "ANALYSIS_CANCELLED FIX9_AUX_RESTORE_FAILED " & message
+     err.Raise number, source, "FIX9_AUX_RESTORE_FAILED " & message
+ End Function
+-Private Function Fix9BuildMid(ByRef lineage As RPX_MeshState, ByRef mask() As Boolean, ByVal cap As Long, ByRef detail As String) As Boolean
++Private Function Fix9BuildMid(ByRef lineage As RPX_MeshState, ByRef mask() As Boolean, ByVal cap As Long, ByRef detail As String, ByVal upperMid As Boolean, ByRef opt As Fix9ThinOptions) As Boolean
+     Dim marks As Object, count As Long
++    Dim midScore() As Double, roundLimit As Long, predictedElements As Long, originalMarks As Long
+     Call RPX_RestoreWitnessState(lineage)
+     Set marks = RPX_Row(): count = RPX_TransverseEdges(mask, marks)
++    If upperMid Then
++        Call RPX_ThinUpperScore(lineage.field, midScore)
++        roundLimit = Fix9UpperElementLimit(lineage.elements, cap, opt)
++        originalMarks = marks.count
++        Call Fix9LimitMarks(marks, midScore, roundLimit, predictedElements)
++        If marks.count < originalMarks Then
++            RPX_DiagEvent "thin_layer_upper_cap", "mid_only=1;lineage_elements=" & lineage.elements & ";round_limit=" & roundLimit & ";requested_edges=" & originalMarks & ";kept_edges=" & marks.count & ";predicted_elements=" & predictedElements
++        End If
++    End If
+     If marks.count = 0 Then detail = "no_edges;mid_only=1": Exit Function
+     Call Fix8Capacity: Call RPX_SplitEdgeSet(marks)
++    If upperMid Then
++        If re <> predictedElements Or re > roundLimit Then err.Raise 5, "RPX_Adapt", "FIX9_UPPER_MID_CAP_PREDICTION"
++    End If
+     If re > cap Then detail = "cap;mid_only=1;elements=" & re: Exit Function
+     Call Fix8Commit
+     detail = "mid_only=1;mid_edges=" & count & ";directional_edges=0;red_edges=0;fan=0;flips=0;elements=" & re
+     Fix9BuildMid = True
+ End Function
++Private Function Fix9UpperElementLimit(ByVal lineageElements As Long, ByVal cap As Long, ByRef opt As Fix9ThinOptions) As Long
++    Dim roundLimit As Long
++    roundLimit = opt.upperRoundMaxElements
++    If roundLimit < lineageElements Then roundLimit = lineageElements
++    If cap < roundLimit Then roundLimit = cap
++    If CDbl(lineageElements) * opt.upperMaxGrowth < roundLimit Then roundLimit = CLng(Fix(CDbl(lineageElements) * opt.upperMaxGrowth))
++    Fix9UpperElementLimit = roundLimit
++End Function
++' Exact red/green split cost: one extra element per marked edge incidence.
++' When the cap binds, rank estimated GAP reduction per added element: incident
++' indicator mass divided by the exact red/green edge-incidence cost (one for
++' boundary edges, two for interior edges). These scores are geometry hints only.
++Private Sub Fix9LimitMarks(ByRef marks As Object, ByRef score() As Double, ByVal elementLimit As Long, ByRef predictedElements As Long)
++    Dim edgeCost As Object, edgeMass As Object, kept As Object, edgeKeys As Variant
++    Dim edgeOrder() As Long, edgeScore() As Double, e As Long, k As Long, j As Long, edgeKey As String
++    Set edgeCost = RPX_Row(): Set edgeMass = RPX_Row(): Set kept = RPX_Row()
++    predictedElements = re
++    For e = 0 To re - 1
++        For k = 0 To 2
++            edgeKey = RPX_EdgeKey(RTri(e, k), RTri(e, (k + 1) Mod 3))
++            If marks.Exists(edgeKey) Then
++                If Not edgeCost.Exists(edgeKey) Then edgeCost(edgeKey) = 0: edgeMass(edgeKey) = 0#
++                edgeCost(edgeKey) = CLng(edgeCost(edgeKey)) + 1
++                edgeMass(edgeKey) = CDbl(edgeMass(edgeKey)) + score(e)
++                predictedElements = predictedElements + 1
++            End If
++        Next k
++    Next e
++    If predictedElements <= elementLimit Then Exit Sub
++    predictedElements = re
++    If edgeCost.count = 0 Then Set marks = kept: Exit Sub
++    edgeKeys = edgeCost.keys
++    ReDim edgeOrder(0 To edgeCost.count - 1): ReDim edgeScore(0 To edgeCost.count - 1)
++    For j = 0 To edgeCost.count - 1
++        edgeOrder(j) = j: edgeScore(j) = CDbl(edgeMass(CStr(edgeKeys(j)))) / CDbl(edgeCost(CStr(edgeKeys(j))))
++    Next j
++    If edgeCost.count > 1 Then Fix9EdgeSort edgeOrder, edgeScore, 0, edgeCost.count - 1
++    For j = 0 To edgeCost.count - 1
++        edgeKey = CStr(edgeKeys(edgeOrder(j)))
++        If predictedElements + CLng(edgeCost(edgeKey)) <= elementLimit Then
++            kept(edgeKey) = 1: predictedElements = predictedElements + CLng(edgeCost(edgeKey))
++        End If
++    Next j
++    Set marks = kept
++End Sub
++Private Sub Fix9EdgeSort(ByRef edgeOrder() As Long, ByRef edgeScore() As Double, ByVal firstIndex As Long, ByVal lastIndex As Long)
++    Dim lowerIndex As Long, upperIndex As Long, pivotScore As Double, swapIndex As Long
++    lowerIndex = firstIndex: upperIndex = lastIndex: pivotScore = edgeScore(edgeOrder((firstIndex + lastIndex) \ 2))
++    Do While lowerIndex <= upperIndex
++        Do While edgeScore(edgeOrder(lowerIndex)) > pivotScore: lowerIndex = lowerIndex + 1: Loop
++        Do While edgeScore(edgeOrder(upperIndex)) < pivotScore: upperIndex = upperIndex - 1: Loop
++        If lowerIndex <= upperIndex Then
++            swapIndex = edgeOrder(lowerIndex): edgeOrder(lowerIndex) = edgeOrder(upperIndex): edgeOrder(upperIndex) = swapIndex
++            lowerIndex = lowerIndex + 1: upperIndex = upperIndex - 1
++        End If
++    Loop
++    If firstIndex < upperIndex Then Fix9EdgeSort edgeOrder, edgeScore, firstIndex, upperIndex
++    If lowerIndex < lastIndex Then Fix9EdgeSort edgeOrder, edgeScore, lowerIndex, lastIndex
++End Sub
++' Funded extra lower geometry uses the highest positive indicator regions.
++' Select complete red parent regions, charging only not-yet-marked edge
++' incidences, so adjacent selections share cost and conforming neighbors fit.
++' Zero indicator mass does not justify spending the optional extra budget.
++Private Function Fix9TargetLowerRegion(ByRef score() As Double, ByVal theta As Double, ByVal cap As Long, ByRef marks As Object, ByRef predictedElements As Long, ByRef selectedRegions As Long) As Long
++    Dim regionOrder() As Long, edgeCost As Object, edgeKey As String
++    Dim e As Long, k As Long, j As Long, id As Long, needed As Long
++    Dim totalMass As Double, selectedMass As Double
++    Set marks = RPX_Row(): Set edgeCost = RPX_Row()
++    predictedElements = re: selectedRegions = 0
++    If cap <= re Then Exit Function
++    ReDim regionOrder(0 To re - 1)
++    For e = 0 To re - 1
++        If Not RPX_SchurFinite(score(e)) Or score(e) < 0# Then err.Raise 5, "RPX_Adapt", "FIX9_TARGET_LOWER_SCORE"
++        regionOrder(e) = e: totalMass = totalMass + score(e)
++    Next e
++    If totalMass <= 0# Then Exit Function
++    If re > 1 Then Fix9EdgeSort regionOrder, score, 0, re - 1
++    For id = 0 To RNEdge - 1
++        edgeKey = RPX_EdgeKey(REdges(id).a, REdges(id).b)
++        If REdges(id).element(1) < 0 Then edgeCost(edgeKey) = 1 Else edgeCost(edgeKey) = 2
++    Next id
++    For j = 0 To re - 1
++        If XCancel Then err.Raise 18, , "ANALYSIS_CANCELLED"
++        e = regionOrder(j)
++        If score(e) <= 0# Or selectedMass >= theta * totalMass Then Exit For
++        needed = 0
++        For k = 0 To 2
++            edgeKey = RPX_EdgeKey(RTri(e, k), RTri(e, (k + 1) Mod 3))
++            If Not marks.Exists(edgeKey) Then needed = needed + CLng(edgeCost(edgeKey))
++        Next k
++        If predictedElements + needed <= cap Then
++            For k = 0 To 2
++                edgeKey = RPX_EdgeKey(RTri(e, k), RTri(e, (k + 1) Mod 3)): marks(edgeKey) = 1
++            Next k
++            predictedElements = predictedElements + needed
++            selectedRegions = selectedRegions + 1: selectedMass = selectedMass + score(e)
++        End If
++    Next j
++    Fix9TargetLowerRegion = marks.count
++    RPX_DiagEvent "thin_layer_lower_target", "cap=" & cap & ";regions=" & selectedRegions & ";kept_edges=" & marks.count & ";predicted_elements=" & predictedElements & ";indicator_fraction=" & selectedMass / totalMass & ";global_mid_and_fan=0"
++End Function
+ ' Upper geometry: directional one-edge split from the lineage velocity, the
+ ' thin-layer mid-line on the first step, then flow-metric edge flips.
+ Private Function Fix8BuildThinUpper(ByRef lineage As RPX_MeshState, ByVal withMid As Boolean, ByRef mask() As Boolean, ByVal theta As Double, ByVal cap As Long, ByVal passes As Long, ByRef detail As String, ByRef opt As Fix9ThinOptions) As Boolean
+     Dim vel() As Double, score() As Double, marks As Object, nDir As Long, nMid As Long, i As Long
+     Dim pxy() As Double, ptri() As Long, pne As Long, cvel() As Double, pts() As Double, cells() As Long, mats() As Long
+     Dim child() As Long, info As Object, original() As Double, boundaryCount As Long, flips As Long, nodes As Long, elements As Long
+-    Dim fresh As Boolean
++    Dim fresh As Boolean, roundLimit As Long, predictedElements As Long, originalMarks As Long
+     Call RPX_RestoreWitnessState(lineage)
+     ReDim vel(0 To 12 * re - 1)
+     For i = 0 To 12 * re - 1: vel(i) = lineage.field(i): Next i
+@@ -2895,11 +3287,17 @@ Private Function Fix8BuildThinUpper(ByRef lineage As RPX_MeshState, ByVal withMi
+     Set marks = RPX_Row()
+     nDir = RPX_DirectionalEdges(vel, score, theta, marks)
+     If withMid Then nMid = RPX_TransverseEdges(mask, marks)
++    roundLimit = Fix9UpperElementLimit(lineage.elements, cap, opt)
++    originalMarks = marks.count
++    Call Fix9LimitMarks(marks, score, roundLimit, predictedElements)
++    If marks.count < originalMarks Then
++        RPX_DiagEvent "thin_layer_upper_cap", "lineage_elements=" & lineage.elements & ";round_limit=" & roundLimit & ";max_growth=" & opt.upperMaxGrowth & ";requested_edges=" & originalMarks & ";kept_edges=" & marks.count & ";predicted_elements=" & predictedElements
++    End If
+     If marks.count = 0 Then detail = "no_edges": Exit Function
+     pxy = lineage.xy: ptri = lineage.triangles: pne = re
+     Call Fix8Capacity
+     Call RPX_SplitEdgeSet(marks)
+-    If re > cap Then detail = "cap;elements=" & re: Exit Function
++    If re <> predictedElements Or re > roundLimit Then err.Raise 5, "RPX_Adapt", "FIX9_UPPER_CAP_PREDICTION"
+     Call Fix8Commit
+     If passes > 0 Then
+         If opt.flipFresh Then fresh = Fix9AuxUpper(lineage.value, "flip_fresh", cvel)
+@@ -2926,7 +3324,8 @@ Private Function Fix8BuildThinUpper(ByRef lineage As RPX_MeshState, ByVal withMi
+             End If
+         End If
+     End If
+-    detail = "directional_edges=" & nDir & ";mid_edges=" & nMid & ";flips=" & flips & ";elements=" & re
++    If re > roundLimit Then err.Raise 5, "RPX_Adapt", "FIX9_UPPER_CAP_AFTER_FLIP"
++    detail = "directional_edges=" & nDir & ";mid_edges=" & nMid & ";flips=" & flips & ";elements=" & re & ";kept_edges=" & marks.count & ";round_limit=" & roundLimit
+     Fix8BuildThinUpper = True
+ End Function
+ ' Lower geometry: mixed indicator (best-upper kinematic density mapped by
+@@ -2936,7 +3335,7 @@ Private Function Fix8BuildThinLower(ByRef lineage As RPX_MeshState, ByVal withMi
+     Dim su() As Double, density() As Double, sl() As Double, mixed() As Double, marked() As Boolean, marks As Object
+     Dim uxy() As Double, utri() As Long, une As Long, e As Long, p As Long, lam(0 To 2) As Double, cx As Double, cy As Double
+     Dim su2() As Double, sumU As Double, sumL As Double, nRed As Long, nMid As Long, missed As Long, parent() As Long, fan As Boolean
+-    Dim ownUpper As Boolean, vel() As Double
++    Dim ownUpper As Boolean, vel() As Double, predictedElements As Long, targetedRegions As Long
+     If opt.lowerOwnUpper Then
+         Call RPX_RestoreWitnessState(lineage)
+         ownUpper = Fix9AuxUpper(opt.lowerOwnFactor * lineage.value, "lower_own_upper", vel)
+@@ -2970,22 +3369,32 @@ Private Function Fix8BuildThinLower(ByRef lineage As RPX_MeshState, ByVal withMi
+         If sumU > 0# Then mixed(e) = su2(e) / sumU
+         If sumL > 0# Then mixed(e) = mixed(e) + sl(e) / sumL
+     Next e
+-    Call RPX_DoerflerMark(mixed, theta, marked)
+     Set marks = RPX_Row()
+-    nRed = RPX_RedEdges(marked, marks)
+-    If withMid Then nMid = RPX_TransverseEdges(mask, marks)
++    If opt.lowerExtraActive Then
++        nRed = Fix9TargetLowerRegion(mixed, theta, cap, marks, predictedElements, targetedRegions)
++    Else
++        Call RPX_DoerflerMark(mixed, theta, marked)
++        nRed = RPX_RedEdges(marked, marks)
++        If withMid Then nMid = RPX_TransverseEdges(mask, marks)
++    End If
+     If marks.count = 0 Then detail = "no_edges": Exit Function
+     Call Fix8Capacity
+     Call RPX_SplitEdgeSet(marks)
++    If opt.lowerExtraActive Then
++        If re <> predictedElements Or re > cap Then err.Raise 5, "RPX_Adapt", "FIX9_LOWER_TARGET_CAP_PREDICTION"
++    End If
+     If re > cap Then detail = "cap;elements=" & re: Exit Function
+     Call Fix8Commit
+-    fan = RPX_AngularFanMesh(cap, parent)
++    ' Earlier lower rounds keep the global free-vertex fan. The optional extra
++    ' spends its planned cap on the selected region and conforming neighbors.
++    If Not opt.lowerExtraActive Then fan = RPX_AngularFanMesh(cap, parent)
+     detail = "red_edges=" & nRed & ";mid_edges=" & nMid & ";unlocated=" & missed & ";fan=" & IIf(fan, "1", "0") & ";elements=" & re
+     Fix8BuildThinLower = True
+ End Function
+ ' One chain step. Returns 0 = stop chain, 1 = accepted as new best witness,
+ ' 2 = valid own root but not better (lineage advances, witness unchanged).
+-Private Function Fix8ChainStep(ByVal side As String, ByVal round As Long, ByRef lineage As RPX_MeshState, ByVal withMid As Boolean, ByRef mask() As Boolean, ByVal theta As Double, ByVal cap As Long, ByVal passes As Long, ByRef opt As Fix9ThinOptions, ByVal midOnly As Boolean, ByRef stopReason As String) As Long
++' evaluated reports reaching endpoint evaluation, independently of the result.
++Private Function Fix8ChainStep(ByVal side As String, ByVal roundIndex As Long, ByRef lineage As RPX_MeshState, ByVal withMid As Boolean, ByRef mask() As Boolean, ByVal theta As Double, ByVal cap As Long, ByVal passes As Long, ByRef opt As Fix9ThinOptions, ByVal midOnly As Boolean, ByRef stopReason As String, ByRef evaluated As Boolean) As Long
+     Dim baseline As RPX_MeshState, pending As RPX_MeshState
+     Dim field() As Double, eta() As Double, factor As Double, objective As Double, a As Double, b As Double
+     Dim savedQ As Long, savedTarget As Long, savedTol As Double, oldIncomplete As Boolean, built As Boolean, detail As String
+@@ -2994,6 +3403,8 @@ Private Function Fix8ChainStep(ByVal side As String, ByVal round As Long, ByRef
+     Dim oldStatus As String, oldValue As Double, oldObjective As Double, oldRAudit As Double, oldRejected As Boolean, oldGate As Boolean, oldReason As String
+     Dim oldRaw(1 To 4) As Double, oldDissipation As Double, oldReference As Double, oldFixed As Double, i As Long
+     Dim oldX() As Double, hadX As Boolean, oldFactor As Double, started As Double
++    Dim predictedSeconds As Double, remainingSeconds As Double, remainingSource As String
++    evaluated = False
+     stopReason = "not_applicable"
+     If Not currentPairValid Or Not RBestLower.complete Or Not RBestUpper.complete Or RR <> 0 Or RPX_WaterCouplingOn() Then Exit Function
+     If Not lineage.complete Or lineage.q <> 8 Or lineage.searchIncomplete Then Exit Function
+@@ -3008,15 +3419,30 @@ Private Function Fix8ChainStep(ByVal side As String, ByVal round As Long, ByRef
+     For i = 1 To 4: oldRaw(i) = RRawLowerAudit(i): Next i
+     hadX = VectorReady(xx, 0): If hadX Then oldX = xx
+     RPX_DiagAuditSave savedAudit
+-    label = "fix8_thin_" & side & "_" & round
++    label = "fix8_thin_" & side & "_" & roundIndex
+     On Error GoTo CandidateFailed
+     RPX_ThinHsdBase = opt.hsdBase: RPX_ThinHsdPerCone = opt.hsdPerCone: RPX_ThinHsdFactor = opt.hsdFactor: RPX_ThinHsdCap = opt.hsdCap
+-    RPX_ThinDllFactor = opt.dllFactor: RPX_ThinDllRefSeconds = opt.dllRefSeconds: RPX_ThinDllRefCones = opt.dllRefCones
++    RPX_ThinHsdTimeFraction = opt.hsdTimeFraction: RPX_ThinHsdTimeCap = opt.hsdTimeCap
++    fix9ThinNominalSeconds = opt.nominalSeconds
++    ' Apply the equilibration premium only to the unmeasured DLL forecast.
++    RPX_ThinDllFactor = opt.dllFactor: RPX_ThinDllRefSeconds = opt.dllRefSeconds * opt.dllEquTimeFactor: RPX_ThinDllRefCones = opt.dllRefCones
+     RPX_ThinDllExponent = opt.dllExponent: RPX_ThinDllCap = opt.dllCap
++    RPX_ThinUpperDllRetry = opt.upperDllRetry: RPX_ThinUpperDllMinElements = opt.upperDllMinElements
++    RPX_ThinUpperDllRetrySeconds = opt.upperDllRetrySeconds: RPX_ThinUpperDllRetryIterations = opt.upperDllRetryIterations
++    RPX_ThinUpperDllRetryEquilibrate = opt.upperDllRetryEquilibrate
++    RPX_ThinUpperHsdMinElements = opt.upperHsdMinElements: RPX_ThinUpperHsdFloorSeconds = opt.upperHsdFloorSeconds
++    RPX_ThinLowerHsdMinElements = opt.lowerHsdMinElements: RPX_ThinLowerHsdFloorSeconds = opt.lowerHsdFloorSeconds
++    RPX_ThinLowerHsdReserveSeconds = opt.lowerExtraReserve: RPX_ThinLowerExtraActive = (side = "lower" And opt.lowerExtraActive)
++    RPX_ThinUpperHsdReserveSeconds = opt.upperHsdReserveSeconds
++    RPX_ThinUpperHsdIterations = opt.upperHsdIterations
+     RPX_ThinChainBudgetActive = True: RPX_ThinChainUpperActive = (side = "upper")
+     RFsActive = False: stage = "geometry"
++    If side = "upper" Then
++        Call Fix9UpperProtectBegin(opt)
++        Call RPX_ThinUpperProtectCheck("geometry")
++    End If
+     If midOnly Then
+-        built = Fix9BuildMid(lineage, mask, cap, detail)
++        built = Fix9BuildMid(lineage, mask, cap, detail, (side = "upper"), opt)
+     ElseIf side = "upper" Then
+         built = Fix8BuildThinUpper(lineage, withMid, mask, theta, cap, passes, detail, opt)
+     Else
+@@ -3024,16 +3450,29 @@ Private Function Fix8ChainStep(ByVal side As String, ByVal round As Long, ByRef
+     End If
+     If Not built Then
+         stopReason = Split(detail, ";")(0)
+-        RPX_DiagEvent "thin_layer_step", "side=" & side & ";round=" & round & ";evaluated=0;result=0;reason=" & stopReason & ";" & detail
++        RPX_DiagEvent "thin_layer_step", "side=" & side & ";round=" & roundIndex & ";evaluated=0;result=0;reason=" & stopReason & ";" & detail
+         GoTo CandidateDone
+     End If
++    If side = "lower" And opt.lowerExtraActive Then
++        predictedSeconds = Fix9LowerPredictedSeconds(re, opt)
++        remainingSeconds = Fix9DeadlineRemainingSeconds(opt.nominalSeconds, remainingSource)
++        RPX_DiagEvent "thin_layer_lower_extra_budget", "elements=" & re & ";old_elements=" & opt.lowerCostElements & ";last_seconds=" & opt.lowerCostSeconds & ";predicted_seconds=" & predictedSeconds & ";reserve_seconds=" & opt.lowerExtraReserve & ";remaining_seconds=" & remainingSeconds & ";remaining_source=" & remainingSource
++        If remainingSeconds < predictedSeconds + opt.lowerExtraReserve Then
++            stopReason = "time_budget"
++            GoTo CandidateDone
++        End If
++    End If
++    If side = "upper" Then Call RPX_ThinUpperProtectCheck("endpoint")
+     stage = "evaluate"
++    evaluated = True
+     RSubdivisions = 8: RFsTolerance = CDbl(RPX_Setting("FS_TOL", 0.0001))
+     If RFsTolerance <= 0# Or RFsTolerance > 0.0001 Then err.Raise 5, "RPX_Adapt", "FIX8_ROOT_TOLERANCE"
+     RPX_DiagCandidate label: RPX_TestHook label
+     RFsActive = True: RFsCalls = 0: RFsSearchIncomplete = False: RFsLargestRootBracket = 0#: RFsSearchNote = ""
+     stopReason = "root_failed"
++    Call RPX_ThinFsBegin(side)
+     factor = RPX_FsEndpoint(side, lineage.value, AdaptFsHintRatio)
++    If side = "upper" Then Call RPX_ThinUpperProtectCheck("endpoint_complete")
+     objective = XObjective
+     If side = "upper" Then
+         ReDim field(0 To 12 * re - 1)
+@@ -3072,8 +3511,11 @@ Private Function Fix8ChainStep(ByVal side As String, ByVal round As Long, ByRef
+     End If
+     If result > 0 Then stopReason = "valid"
+     adaptFsCallsTotal = adaptFsCallsTotal + RFsCalls
+-    RPX_DiagEvent "thin_layer_step", "side=" & side & ";round=" & round & ";evaluated=1;result=" & result & ";reason=" & stopReason & ";mid_only=" & Abs(CLng(midOnly)) & ";theta=" & theta & ";Fs=" & factor & ";q=8;root_a=" & a & ";root_b=" & b & ";fs_calls=" & RFsCalls & ";seconds=" & Format$(Timer - started, "0.0") & ";" & detail & ";other_own_mesh_retained=1"
++    RPX_DiagEvent "thin_layer_step", "side=" & side & ";round=" & roundIndex & ";evaluated=1;result=" & result & ";reason=" & stopReason & ";mid_only=" & Abs(CLng(midOnly)) & ";theta=" & theta & ";Fs=" & factor & ";q=8;root_a=" & a & ";root_b=" & b & ";fs_calls=" & RFsCalls & ";seconds=" & Format$(Timer - started, "0.0") & ";" & detail & ";other_own_mesh_retained=1"
+ CandidateDone:
++    If result = 0 And (stopReason = "root_failed" Or stopReason = "evaluate_failed" Or stopReason = "upper_protect") Then
++        Call Fix9KeepFailedBest(side, label, originalNumber, originalSource, originalMessage)
++    End If
+     Call Fix9ClearBudgets
+     On Error GoTo RestoreFailed
+     RFsActive = False: RFsTolerance = savedTol: DTarget = savedTarget
+@@ -3094,7 +3536,6 @@ CandidateDone:
+     Exit Function
+ CandidateFailed:
+     number = err.number: source = err.source: message = err.description
+-    Call Fix9ClearBudgets
+     On Error GoTo 0
+     RPX_ErrorEvidence number, source, message, 0, "fix8_thin_" & stage
+     result = 0
+@@ -3103,6 +3544,8 @@ CandidateFailed:
+     If number = 18 Or XCancel Then
+         stopReason = "cancelled"
+         originalNumber = 18: originalSource = source: originalMessage = message
++    ElseIf number = 5 And message = "THIN_UPPER_LOWER_PROTECT" Then
++        stopReason = "upper_protect"
+     ElseIf InStr(1, message, "FIX9_AUX_RESTORE_FAILED", vbBinaryCompare) = 1 Then
+         stopReason = "fatal"
+         originalNumber = number: originalSource = source: originalMessage = message
+@@ -3114,7 +3557,7 @@ CandidateFailed:
+         originalNumber = number: originalSource = source: originalMessage = message
+     End If
+     ' Geometry-stage failures only end this optional chain; witnesses are kept.
+-    RPX_DiagEvent "thin_layer_rejected", "side=" & side & ";round=" & round & ";stage=" & stage & ";reason=" & stopReason & ";old_own_witnesses_retained=1;message=" & message
++    RPX_DiagEvent "thin_layer_rejected", "side=" & side & ";round=" & roundIndex & ";stage=" & stage & ";reason=" & stopReason & ";old_own_witnesses_retained=1;message=" & message
+     GoTo CandidateDone
+ RestoreFailed:
+     number = err.number: source = err.source: message = err.description
+@@ -3123,28 +3566,173 @@ RestoreFailed:
+     If originalNumber = 18 Or number = 18 Or XCancel Then err.Raise 18, source, "ANALYSIS_CANCELLED FIX8_RESTORE_FAILED " & message
+     err.Raise number, source, "FIX8_CANDIDATE_RESTORE_FAILED original=" & originalNumber & ":" & originalMessage & ";restore=" & message
+ End Function
+-' A retry uses the unadvanced lineage, and each call is counted as a step.
+-Private Function Fix9LowerStep(ByVal round As Long, ByRef lineage As RPX_MeshState, ByVal withMid As Boolean, ByRef mask() As Boolean, ByVal theta As Double, ByVal cap As Long, ByRef opt As Fix9ThinOptions, ByVal midOnly As Boolean, ByRef stopReason As String, ByRef steps As Long) As Long
+-    Dim attempt As Long, r As Long, retryTheta As Double
++' A failed search can retain only a real, narrow, same-mesh root endpoint.
++' The collector never invents a root from an accepted field or a status-5 sign.
++' Saving the independent best does not advance the failed step's lineage.
++Private Sub Fix9KeepFailedBest(ByVal side As String, ByVal label As String, ByRef fatalNumber As Long, ByRef fatalSource As String, ByRef fatalMessage As String)
++    Dim pending As RPX_MeshState, oldBest As RPX_MeshState, oldCert As RPX_BoundCertificate
++    Dim field() As Double, eta() As Double, factor As Double, objective As Double
++    Dim number As Long, source As String, message As String, changed As Boolean
++    On Error GoTo Failed
++    If Not RPX_ThinChainBudgetActive Or RSubdivisions <> 8 Or XCancel Then Exit Sub
++    If Not RPX_ThinFsWitness(side, factor, field, objective) Then Exit Sub
++    If side = "upper" Then
++        If factor >= RBestUpper.value Or factor < RBestLower.value Then Exit Sub
++    Else
++        If factor <= RBestLower.value Or factor > RBestUpper.value Then Exit Sub
++    End If
++    If Not RPX_ThinFsRestoreWitnessRoot(side, factor, field, objective) Then Exit Sub
++    ReDim eta(0 To re - 1)
++    If side = "upper" Then
++        RUpperFs = factor: RUpperField = field: Erase RLowerField
++        If Not SaveState(pending, field, eta, factor, RBestLower.value, factor, label & "_keep", side, objective) Then Exit Sub
++        If Not pending.upperRootValid Then Exit Sub
++    Else
++        RLowerFs = factor: RLowerField = field: Erase RUpperField
++        If Not SaveState(pending, field, eta, factor, factor, RBestUpper.value, label & "_keep", side, objective) Then Exit Sub
++        If Not pending.lowerRootValid Then Exit Sub
++    End If
++    If Not pending.complete Or pending.q <> 8 Or pending.searchIncomplete Then Exit Sub
++    If Not TerminalOwnFieldReady(side, pending) Then Exit Sub
++    If side = "upper" Then
++        oldBest = RBestUpper: oldCert = RPX_CertUpper
++        changed = True: CloneState RBestUpper, pending
++    Else
++        oldBest = RBestLower: oldCert = RPX_CertLower
++        changed = True: CloneState RBestLower, pending
++    End If
++    RPX_CertFromAdapt side
++    If Not TerminalOwnMetadataReady(side, 8, pending) Then GoTo Rejected
++    RPX_DiagEvent "thin_layer_keep_best", "side=" & side & ";Fs=" & factor & ";elements=" & pending.elements
++    Exit Sub
++Rejected:
++    If changed Then
++        If side = "upper" Then
++            RBestUpper = oldBest: RPX_CertUpper = oldCert
++        Else
++            RBestLower = oldBest: RPX_CertLower = oldCert
++        End If
++    End If
++    Exit Sub
++Failed:
++    number = err.number: source = err.source: message = err.description
++    If changed Then
++        If side = "upper" Then
++            RBestUpper = oldBest: RPX_CertUpper = oldCert
++        Else
++            RBestLower = oldBest: RPX_CertLower = oldCert
++        End If
++    End If
++    On Error GoTo 0
++    RPX_DiagEvent "thin_layer_keep_best_rejected", "side=" & side & ";message=" & Replace(message, ";", ",")
++    If number = 18 Or XCancel Or number = 7 Or number = 28 Then
++        fatalNumber = number: fatalSource = source: fatalMessage = message
++        If XCancel Then fatalNumber = 18
++    ElseIf Not RPX_Recoverable(number, message, "evaluate", True) Then
++        fatalNumber = number: fatalSource = source: fatalMessage = message
++    End If
++End Sub
++' Existing lower retries remain per round. Each side also has one extra retry
++' per chain, funded by the deadline or nominal thin clock. Failed lineage stays put.
++Private Function Fix9RetryStep(ByVal side As String, ByVal roundIndex As Long, ByRef lineage As RPX_MeshState, ByVal withMid As Boolean, ByRef mask() As Boolean, ByVal theta As Double, ByVal cap As Long, ByVal passes As Long, ByRef opt As Fix9ThinOptions, ByRef extraUsed As Boolean, ByRef stopReason As String, ByRef steps As Long, ByRef evaluated As Boolean, ByRef evaluatedSteps As Long) As Long
++    Dim attempt As Long, ordinaryUsed As Long, r As Long, retryTheta As Double, ordinaryRetries As Long, remaining As Double, extra As Boolean
++    Dim remainingSource As String, stepEvaluated As Boolean
++    evaluated = False
+     retryTheta = theta
+-    For attempt = 0 To opt.lowerRetries
+-        r = Fix8ChainStep("lower", round, lineage, withMid, mask, retryTheta, cap, 0, opt, midOnly, stopReason)
++    If side = "lower" Then
++        ordinaryRetries = opt.lowerRetries
++        If Not opt.lowerExtraActive And roundIndex >= 2 And lineage.elements > CDbl(opt.lowerLargeElements) / 2# Then
++            retryTheta = retryTheta * opt.lowerLargeThetaFactor
++            RPX_DiagEvent "thin_layer_lower_large", "round=" & roundIndex & ";lineage_elements=" & lineage.elements & ";threshold=" & opt.lowerLargeElements & ";theta=" & retryTheta
++        End If
++    End If
++    Do
++        r = Fix8ChainStep(side, roundIndex, lineage, withMid, mask, retryTheta, cap, passes, opt, False, stopReason, stepEvaluated)
+         steps = steps + 1
+-        If r <> 0 Or attempt = opt.lowerRetries Then Exit For
+-        If stopReason <> "root_failed" And stopReason <> "evaluate_failed" Then Exit For
++        If stepEvaluated Then evaluated = True: evaluatedSteps = evaluatedSteps + 1
++        If r <> 0 Then Exit Do
++        If stopReason <> "root_failed" And stopReason <> "evaluate_failed" And stopReason <> "cap" Then Exit Do
+         If XCancel Then err.Raise 18, , "ANALYSIS_CANCELLED"
++        If OptionalStageExpired("thin_layer_retry_" & side & "_" & roundIndex) Then Exit Do
++        remaining = Fix9DeadlineRemainingSeconds(opt.nominalSeconds, remainingSource)
++        extra = False
++        If ordinaryUsed < ordinaryRetries And stopReason <> "cap" Then
++            ordinaryUsed = ordinaryUsed + 1: attempt = attempt + 1
++        Else
++            If extraUsed Then Exit Do
++            If remaining <= opt.extraRetryMinSeconds Then Exit Do
++            extraUsed = True: extra = True: attempt = attempt + 1
++        End If
+         retryTheta = retryTheta * opt.retryThetaFactor
+-        RPX_DiagEvent "thin_layer_retry", "side=lower;round=" & round & ";retry=" & attempt + 1 & ";reason=" & stopReason & ";theta=" & retryTheta & ";lineage_elements=" & lineage.elements & ";lineage_Fs=" & lineage.value & ";mid_only=" & Abs(CLng(midOnly))
+-    Next attempt
+-    Fix9LowerStep = r
++        RPX_DiagEvent "thin_layer_retry", "side=" & side & ";round=" & roundIndex & ";retry=" & attempt & ";reason=" & stopReason & ";theta=" & retryTheta & ";lineage_elements=" & lineage.elements & ";lineage_Fs=" & lineage.value & ";mid_only=0;extra_time_retry=" & Abs(CLng(extra)) & ";remaining_seconds=" & remaining & ";remaining_source=" & remainingSource
++    Loop
++    Fix9RetryStep = r
++End Function
++' One geometry size and one cost model are shared by protection and admission.
++Private Function Fix9LowerPlannedElements(ByVal lineageElements As Long, ByVal cap As Long, ByRef opt As Fix9ThinOptions) As Long
++    Dim plannedElements As Long
++    plannedElements = CLng(Fix(CDbl(lineageElements) * opt.lowerExtraMaxGrowth))
++    If plannedElements > opt.lowerExtraTargetElements Then plannedElements = opt.lowerExtraTargetElements
++    If plannedElements > cap Then plannedElements = cap
++    Fix9LowerPlannedElements = plannedElements
++End Function
++' Measured growth remains the admission model, normalized to the new nine-trial
++' root search. The calibrated floor includes successful HSD work at the NEW
++' lower allowance (1200 by default), so old budget-censored timings cannot
++' underfund a newly completable solve. This is a cost estimate, never a bound.
++Private Function Fix9LowerPredictedSeconds(ByVal plannedElements As Long, ByRef opt As Fix9ThinOptions) As Double
++    Dim measuredSeconds As Double, trialCount As Double, predictedHsd As Double, predictedDll As Double
++    Dim hsdAllowance As Double, calibratedSeconds As Double, coneAllowance As Double
++    trialCount = 9#
++    If opt.lowerCostSeconds <= 0# Or opt.lowerCostElements <= 0 Or plannedElements <= 0 Then Exit Function
++    measuredSeconds = opt.lowerCostSeconds * (CDbl(plannedElements) / CDbl(opt.lowerCostElements)) ^ 1.3
++    If opt.lowerCostFsCalls > 0 Then measuredSeconds = measuredSeconds * trialCount / CDbl(opt.lowerCostFsCalls)
++    predictedHsd = 6.4 * CDbl(plannedElements) ^ 0.35 * (0.0045 * CDbl(plannedElements))
++    coneAllowance = opt.hsdFactor * (opt.hsdBase + opt.hsdPerCone * (6# * plannedElements + 1#))
++    If coneAllowance > opt.hsdCap Then coneAllowance = opt.hsdCap
++    hsdAllowance = opt.lowerHsdFloorSeconds
++    If coneAllowance > hsdAllowance Then hsdAllowance = coneAllowance
++    If predictedHsd > hsdAllowance Then predictedHsd = hsdAllowance
++    ' The measured branch already includes this premium; scale only the fit.
++    predictedDll = opt.dllEquTimeFactor * 5.38380709681694E-04 * CDbl(plannedElements) ^ 1.39522461115949
++    calibratedSeconds = trialCount * (predictedDll + 0.38 * predictedHsd)
++    If calibratedSeconds > measuredSeconds Then measuredSeconds = calibratedSeconds
++    Fix9LowerPredictedSeconds = measuredSeconds
++End Function
++' Fit the measured lower-round cost model and new HSD floor to the real clock.
++' The first funded extra aims at 2000 elements instead of an unchecked theta-.9
++' jump. Up to three default extras retain the target ceiling and lower cap.
++Private Function Fix9LowerExtraLimit(ByRef lineage As RPX_MeshState, ByVal cap As Long, ByRef opt As Fix9ThinOptions, ByRef nextCap As Long) As Boolean
++    Dim remainingSeconds As Double, remainingSource As String, affordableElements As Double, predictedSeconds As Double, planningReserveSeconds As Double
++    If opt.lowerCostSeconds <= 0# Or opt.lowerCostElements <= 0 Then Exit Function
++    remainingSeconds = Fix9DeadlineRemainingSeconds(opt.nominalSeconds, remainingSource)
++    planningReserveSeconds = opt.lowerExtraReserve
++    ' Preserve geometry headroom instead of spending it on extra marked edges.
++    If opt.lowerProtectFunded And opt.lowerExtraPending Then planningReserveSeconds = planningReserveSeconds + Fix9UpperProtectMargin
++    If remainingSeconds <= planningReserveSeconds Then Exit Function
++    nextCap = Fix9LowerPlannedElements(lineage.elements, cap, opt)
++    predictedSeconds = Fix9LowerPredictedSeconds(nextCap, opt)
++    ' Keep the measured cost/growth admission model. Re-evaluate its new
++    ' budget-aware floor at each reduced size instead of inverting the old floor.
++    Do While nextCap > lineage.elements + 1 And predictedSeconds + planningReserveSeconds > remainingSeconds
++        affordableElements = CDbl(nextCap) * ((remainingSeconds - planningReserveSeconds) / predictedSeconds) ^ (1# / 1.3)
++        If affordableElements >= nextCap Then affordableElements = nextCap - 1
++        nextCap = CLng(Fix(affordableElements))
++        If nextCap > lineage.elements + 1 Then predictedSeconds = Fix9LowerPredictedSeconds(nextCap, opt)
++    Loop
++    Fix9LowerExtraLimit = (nextCap > lineage.elements + 1)
++    RPX_DiagEvent "thin_layer_lower_extra_plan", "lineage_elements=" & lineage.elements & ";candidate_cap=" & nextCap & ";last_seconds=" & opt.lowerCostSeconds & ";remaining_seconds=" & remainingSeconds & ";remaining_source=" & remainingSource & ";allowed=" & Abs(CLng(Fix9LowerExtraLimit))
++    If opt.lowerProtectFunded And opt.lowerExtraPending Then RPX_DiagEvent "thin_layer_upper_protect", "phase=lower_plan;planning_reserve_seconds=" & planningReserveSeconds & ";margin_seconds=" & Fix9UpperProtectMargin & ";candidate_cap=" & nextCap
+ End Function
+-' Returns True when at least one thin-layer candidate was evaluated.
++' Returns True only when at least one thin-layer candidate reached endpoint evaluation.
+ Private Function Fix8ThinLayerChains(ByVal mode As String, ByVal targetGap As Double) As Boolean
+     Dim mask() As Boolean, upLine As RPX_MeshState, loLine As RPX_MeshState
+-    Dim uRounds As Long, lRounds As Long, lStart As Long, uCap As Long, lCap As Long, passes As Long, round As Long, r As Long
++    Dim uRounds As Long, lRounds As Long, lStart As Long, uCap As Long, lCap As Long, passes As Long, roundIndex As Long, r As Long
+     Dim uTheta As Double, lTheta As Double, upAlive As Boolean, loAlive As Boolean, upMid As Boolean, loMid As Boolean
+-    Dim upStalls As Long, loStalls As Long, beforeValue As Double, steps As Long
++    Dim upStalls As Long, loStalls As Long, beforeValue As Double, steps As Long, evaluatedSteps As Long
+     Dim opt As Fix9ThinOptions, settings As String, stopReason As String
++    Dim upExtraUsed As Boolean, loExtraUsed As Boolean, evaluated As Boolean, anyEvaluated As Boolean
++    Dim lowerExtraDone As Long, lowerRoundIndex As Long, lowerStepCap As Long, lowerStarted As Double, lowerReady As Boolean
+     If mode <> "Fs" Or Not currentPairValid Or Not RBestLower.complete Or Not RBestUpper.complete Then Exit Function
+     If Not Fix8ThinMode(mode, mask) Then Exit Function
+     uRounds = CLng(Fix8Number("ADAPT_THIN_UPPER_ROUNDS", 10, 0, 20))
+@@ -3163,21 +3751,26 @@ Private Function Fix8ThinLayerChains(ByVal mode As String, ByVal targetGap As Do
+     CloneState upLine, RBestUpper: CloneState loLine, RBestLower
+     upAlive = (uRounds > 0): loAlive = (lRounds > 0): upMid = True: loMid = True
+     RPX_DiagEvent "thin_layer_begin", "upper_rounds=" & uRounds & ";upper_theta=" & uTheta & ";upper_cap=" & uCap & ";lower_rounds=" & lRounds & ";lower_start=" & lStart & ";lower_theta=" & lTheta & ";lower_cap=" & lCap & ";flip_passes=" & passes & ";lower=" & RBestLower.value & ";upper=" & RBestUpper.value & settings & ";early_overrides=" & Abs(CLng(fix9ThinEarlyStartTaken)) & ";mid_counts_as_round=0;retries_count_as_steps=1"
+-    For round = 1 To uRounds + lStart + lRounds
++    For roundIndex = 1 To uRounds + lStart + lRounds + opt.lowerExtraRounds
+         If XCancel Then err.Raise 18, , "ANALYSIS_CANCELLED"
+         If RPX_TargetMet(mode, RBestLower.value, RBestUpper.value, currentPairValid) Then Exit For
+         If Not upAlive And Not loAlive Then Exit For
+-        If OptionalStageExpired("thin_layer_" & round) Then Exit For
+-        If upAlive And round <= uRounds Then
++        If OptionalStageExpired("thin_layer_" & roundIndex) Then Exit For
++        opt.lowerExtraPending = (loAlive And lowerExtraDone < opt.lowerExtraRounds)
++        opt.lowerProtectElements = loLine.elements: opt.lowerProtectCap = lCap
++        If upAlive And roundIndex <= uRounds Then
+             If upMid And opt.midSeparate Then
+-                r = Fix8ChainStep("upper", 0, upLine, False, mask, uTheta, uCap, 0, opt, True, stopReason): steps = steps + 1
++                r = Fix8ChainStep("upper", 0, upLine, False, mask, uTheta, uCap, 0, opt, True, stopReason, evaluated): steps = steps + 1
++                If evaluated Then anyEvaluated = True: evaluatedSteps = evaluatedSteps + 1
+                 ' A failed separate mid step falls back to the Fix8 merged mid-line.
++                If stopReason = "upper_protect" Then upAlive = False
+                 If r = 0 Then RPX_DiagEvent "thin_layer_mid_fallback", "side=upper;reason=" & stopReason Else upMid = False
+                 If RPX_TargetMet(mode, RBestLower.value, RBestUpper.value, currentPairValid) Then Exit For
+             End If
+             If upAlive Then
+             beforeValue = RBestUpper.value
+-            r = Fix8ChainStep("upper", round, upLine, upMid, mask, uTheta, uCap, passes, opt, False, stopReason): steps = steps + 1
++            r = Fix9RetryStep("upper", roundIndex, upLine, upMid, mask, uTheta, uCap, passes, opt, upExtraUsed, stopReason, steps, evaluated, evaluatedSteps)
++            If evaluated Then anyEvaluated = True
+             If r = 0 Then
+                 upAlive = False
+             Else
+@@ -3187,32 +3780,52 @@ Private Function Fix8ThinLayerChains(ByVal mode As String, ByVal targetGap As Do
+             End If
+             End If
+             If RPX_TargetMet(mode, RBestLower.value, RBestUpper.value, currentPairValid) Then Exit For
+-        ElseIf round > uRounds Then
++        ElseIf roundIndex > uRounds Then
+             upAlive = False
+         End If
+-        If loAlive And round >= lStart And round < lStart + lRounds Then
++        lowerReady = False: opt.lowerExtraActive = False: lowerStepCap = lCap
++        If loAlive And roundIndex >= lStart Then
++            If roundIndex < lStart + lRounds Then
++                lowerReady = True: lowerRoundIndex = roundIndex - lStart + 1
++            ElseIf lowerExtraDone >= opt.lowerExtraRounds Then
++                loAlive = False
++            ElseIf Not upAlive Or roundIndex >= opt.lowerExtraUpperRound Then
++                opt.lowerExtraActive = True
++                lowerReady = Fix9LowerExtraLimit(loLine, lCap, opt, lowerStepCap)
++                If lowerReady Then
++                    lowerExtraDone = lowerExtraDone + 1: lowerRoundIndex = lRounds + lowerExtraDone
++                Else
++                    loAlive = False
++                End If
++            End If
++        End If
++        If lowerReady Then
+             If loMid And opt.midSeparate Then
+                 ' The mid step has no theta, so it is not retried; on failure fall back to Fix8 merged mid-line.
+-                r = Fix8ChainStep("lower", 0, loLine, False, mask, lTheta, lCap, 0, opt, True, stopReason): steps = steps + 1
++                r = Fix8ChainStep("lower", 0, loLine, False, mask, lTheta, lCap, 0, opt, True, stopReason, evaluated): steps = steps + 1
++                If evaluated Then anyEvaluated = True: evaluatedSteps = evaluatedSteps + 1
+                 If r = 0 Then RPX_DiagEvent "thin_layer_mid_fallback", "side=lower;reason=" & stopReason Else loMid = False
+                 If RPX_TargetMet(mode, RBestLower.value, RBestUpper.value, currentPairValid) Then Exit For
+             End If
+             If loAlive Then
+             beforeValue = RBestLower.value
+-            r = Fix9LowerStep(round - lStart + 1, loLine, loMid, mask, lTheta, lCap, opt, False, stopReason, steps)
++            lowerStarted = RPX_DiagClock()
++            r = Fix9RetryStep("lower", lowerRoundIndex, loLine, loMid, mask, lTheta, lowerStepCap, 0, opt, loExtraUsed, stopReason, steps, evaluated, evaluatedSteps)
++            If evaluated Then anyEvaluated = True
+             If r = 0 Then
+                 loAlive = False
+             Else
+                 loMid = False
++                ' Refit after every successful round, including each extra and retries.
++                opt.lowerCostSeconds = RPX_DiagClock() - lowerStarted: opt.lowerCostElements = loLine.elements
++                opt.lowerCostFsCalls = RFsCalls
+                 If RBestLower.value > beforeValue * (1# + 0.000001) Then loStalls = 0 Else loStalls = loStalls + 1
+                 If loStalls >= 2 Then loAlive = False
+             End If
+             End If
+-        ElseIf round >= lStart + lRounds Then
+-            loAlive = False
+         End If
+-    Next round
++    Next roundIndex
+     Call RestoreFinalBounds(mode)
+-    RPX_DiagEvent "thin_layer_end", "steps=" & steps & ";lower=" & RBestLower.value & ";upper=" & RBestUpper.value & ";gap=" & GapRatio(RBestLower.value, RBestUpper.value) & ";lower_elements=" & RBestLower.elements & ";upper_elements=" & RBestUpper.elements
+-    Fix8ThinLayerChains = (steps > 0)
++    RPX_DiagEvent "thin_layer_end", "steps=" & steps & ";anyEvaluated=" & Abs(CLng(anyEvaluated)) & ";evaluatedSteps=" & evaluatedSteps & ";lower=" & RBestLower.value & ";upper=" & RBestUpper.value & ";gap=" & GapRatio(RBestLower.value, RBestUpper.value) & ";lower_elements=" & RBestLower.elements & ";upper_elements=" & RBestUpper.elements
++    Fix8ThinLayerChains = anyEvaluated
+ End Function
+diff --git a/versions/G1R20_Fix9rc4b/src/vba/RPX_Audit.bas b/versions/G1R20_Fix9rc9b/src/vba/RPX_Audit.bas
+index 0ae3df1..9e49401 100644
+--- a/versions/G1R20_Fix9rc4b/src/vba/RPX_Audit.bas
++++ b/versions/G1R20_Fix9rc9b/src/vba/RPX_Audit.bas
+@@ -3,13 +3,26 @@ Option Explicit
+ Public RValue As Double, RAudit As Double, RDissipation As Double, RReferenceWork As Double, RFixedWork As Double
+ Public RRawLowerAudit(1 To 4) As Double
+ Public RPhysicalGateAccepted As Boolean, RPhysicalGateReason As String
++Private Function FieldGateArrayReady(ByRef values() As Double) As Boolean
++    Dim firstIndex As Long, lastIndex As Long
++    On Error GoTo Missing
++    firstIndex = LBound(values)
++    lastIndex = UBound(values)
++    FieldGateArrayReady = (lastIndex >= firstIndex)
++    Exit Function
++Missing:
++    If err.number <> 9 Then err.Raise err.number, err.source, err.description
++    err.Clear
++End Function
+ Public Function RPX_FieldGate(ByVal side As String, ByRef field() As Double, ByVal factor As Double, ByVal q As Long, ByVal expectedObjective As Double, ByRef measuredValue As Double, ByRef measuredAudit As Double, ByRef measuredRaw() As Double) As Boolean
+-    Dim oldX() As Double, oldFactor As Double, oldQ As Long, oldObjective As Double
++    Dim oldX() As Double, oldFactor As Double, oldQ As Long, oldObjective As Double, hadX As Boolean
+     Dim oldValue As Double, oldAudit As Double, oldDissipation As Double, oldReference As Double, oldFixed As Double
+     Dim oldRaw(1 To 4) As Double, oldGate As Boolean, oldReason As String
+     Dim i As Long, number As Long, source As String, message As String, accepted As Boolean
+     RPX_AssertInputs "field_gate"
+-    oldX = xx: oldFactor = RStrengthFactor: oldQ = RSubdivisions: oldObjective = XObjective
++    hadX = FieldGateArrayReady(xx)
++    If hadX Then oldX = xx
++    oldFactor = RStrengthFactor: oldQ = RSubdivisions: oldObjective = XObjective
+     oldValue = RValue: oldAudit = RAudit: oldDissipation = RDissipation: oldReference = RReferenceWork: oldFixed = RFixedWork
+     oldGate = RPhysicalGateAccepted: oldReason = RPhysicalGateReason
+     For i = 1 To 4: oldRaw(i) = RRawLowerAudit(i): Next i
+@@ -28,7 +41,8 @@ Public Function RPX_FieldGate(ByVal side As String, ByRef field() As Double, ByV
+     ReDim measuredRaw(1 To 4)
+     For i = 1 To 4: measuredRaw(i) = RRawLowerAudit(i): Next i
+ Restore:
+-    xx = oldX: RStrengthFactor = oldFactor: RSubdivisions = oldQ: XObjective = oldObjective
++    If hadX Then xx = oldX Else Erase xx
++    RStrengthFactor = oldFactor: RSubdivisions = oldQ: XObjective = oldObjective
+     RValue = oldValue: RAudit = oldAudit: RDissipation = oldDissipation: RReferenceWork = oldReference: RFixedWork = oldFixed
+     RPhysicalGateAccepted = oldGate: RPhysicalGateReason = oldReason
+     For i = 1 To 4: RRawLowerAudit(i) = oldRaw(i): Next i
+diff --git a/versions/G1R20_Fix9rc4b/src/vba/RPX_Control.bas b/versions/G1R20_Fix9rc9b/src/vba/RPX_Control.bas
+index 8e389a2..dd42058 100644
+--- a/versions/G1R20_Fix9rc4b/src/vba/RPX_Control.bas
++++ b/versions/G1R20_Fix9rc9b/src/vba/RPX_Control.bas
+@@ -174,6 +174,7 @@ Public Sub RPX_Run()
+     Dim mode As String, lower As Double, upper As Double, started As Double, ws As Worksheet, item As Variant, row As Long
+     Dim profile As RPX_ProblemProfile
+     Dim failureLine As Long, targetMet As Boolean
++    Dim lateRecoveryTried As Boolean
+     If RPX_Busy Then Exit Sub
+     On Error GoTo Failed
+     Call StartWork: RPX_DiagStart "analysis": RPX_BenchInputCompare: Call RPX_StageConfigure: started = Timer
+@@ -193,6 +194,7 @@ Public Sub RPX_Run()
+         Call RPX_C0RunSelected(lower, upper)
+     ElseIf CDbl(RPX_Setting("ADAPT", 1)) <> 0# Then
+         RPX_RunAdapt mode
++AdaptiveResults:
+         If XCancel Then err.Raise 18, , "ANALYSIS_CANCELLED"
+         If Not RPX_AdaptPairComplete() Then err.Raise 5, , "ADAPT_PAIR_INCOMPLETE"
+         If mode = "Fs" Then
+@@ -296,7 +298,17 @@ Public Sub RPX_Run()
+     ws.Activate: Call EndWork: Exit Sub
+ Failed:
+     RPX_LastFailureNumber = err.number: RPX_LastError = err.description: RPX_LastFailureSource = err.source: failureLine = Erl
++    If mode = "Fs" And Not lateRecoveryTried Then
++        lateRecoveryTried = True
++        Resume PreserveAdaptivePair
++    End If
+     Resume FailedCleanup
++PreserveAdaptivePair:
++    If RPX_AdaptPreserveConfirmed(mode, RPX_LastFailureNumber, RPX_LastFailureSource, RPX_LastError, failureLine) Then
++        RPX_LastFailureNumber = 0: RPX_LastFailureSource = "": RPX_LastError = ""
++        GoTo AdaptiveResults
++    End If
++    GoTo FailedCleanup
+ FailedCleanup:
+     RProgramKind = "": RPX_ResultCurrent = False: Call RPX_BearingInvalidate
+     On Error Resume Next
+diff --git a/versions/G1R20_Fix9rc4b/src/vba/RPX_Diagnostics.bas b/versions/G1R20_Fix9rc9b/src/vba/RPX_Diagnostics.bas
+index 0921063..79ea490 100644
+--- a/versions/G1R20_Fix9rc4b/src/vba/RPX_Diagnostics.bas
++++ b/versions/G1R20_Fix9rc9b/src/vba/RPX_Diagnostics.bas
+@@ -614,3 +614,11 @@ Public Function RPX_DiagAuditSummary() As String
+         If auditSeen(i) Then RPX_DiagAuditSummary = RPX_DiagAuditSummary & AuditName(i) & "=" & auditMaximum(i) & ";" & auditLocation(i) & ";"
+     Next i
+ End Function
++
++' Thin-only accessor: started is captured by DiagStart even with logging off.
++' No diagnostic state or log is changed by reading the case elapsed clock.
++Public Function RPX_ThinRunElapsedSeconds() As Double
++    RPX_ThinRunElapsedSeconds = -1#
++    If started <= 0# Then Exit Function
++    RPX_ThinRunElapsedSeconds = RPX_DiagClock() - started
++End Function
+diff --git a/versions/G1R20_Fix9rc4b/src/vba/RPX_Fs.bas b/versions/G1R20_Fix9rc9b/src/vba/RPX_Fs.bas
+index ae71e42..084f28a 100644
+--- a/versions/G1R20_Fix9rc4b/src/vba/RPX_Fs.bas
++++ b/versions/G1R20_Fix9rc9b/src/vba/RPX_Fs.bas
+@@ -25,6 +25,7 @@ Private Type FsBracketState
+     originalGuideA As Boolean
+     originalGuideB As Boolean
+     recoveredWitnessA As Boolean
++    thinSignA As Boolean
+     physicalKey As String
+     inputEpoch As Long
+     loadPhase As String
+@@ -44,6 +45,13 @@ End Type
+ Private upperBracket As FsBracketState, lowerBracket As FsBracketState
+ Private upperFieldA() As Double, upperFieldB() As Double
+ Private lowerFieldA() As Double, lowerFieldB() As Double
++' Fix9 rc5: owned by one evaluated thin-chain mesh; no guide supplies a field.
++Private thinFsActive As Boolean, thinFsSide As String, thinFsMesh As String, thinFsModel As String
++Private thinFsPolicy As String, thinFsPhase As String, thinFsEpoch As Long
++Private thinWitnessReady As Boolean, thinWitnessFactor As Double, thinWitnessObjective As Double, thinWitnessStatus As String
++Private thinWitnessField() As Double
++Private thinOppReady As Boolean, thinOppFactor As Double, thinOppResidual As Double, thinOppObjective As Double, thinOppStatus As String
++Private thinOppField() As Double, thinDualReady As Boolean, thinDualFactor As Double
+ Private Function TryFsValue(ByVal factor As Double, ByVal mode As String, ByVal target As Double, ByRef value As Double, Optional ByVal preferUpperDual As Boolean = False) As Boolean
+     Dim message As String, source As String, number As Long, errorLine As Long
+     On Error GoTo Failed
+@@ -98,6 +106,8 @@ Private Function TryFsTrialPoint(ByVal factor As Double, ByVal mode As String, B
+             Else
+                 RProgramKind = "": Exit Function
+             End If
++        ElseIf mode = "upper" And XStatus = "THIN_UPPER_BELOW_ROOT" Then
++            If point.residual < 0# Or Not RPX_ThinFsStatus5Allowed(factor) Then RProgramKind = "": Exit Function
+         ElseIf XStatus = "ORIGINAL_ACCURACY_UPPER_WITNESS" And mode = "upper" Then
+             If point.residual > 0# Or RPX_AuditRejected Or Not RPhysicalGateAccepted Then RProgramKind = "": Exit Function
+         ElseIf mode <> "upper" Or point.residual < 0# Or Not (RPX_OriginalGuideCurrent(factor) Or RPX_AccuracyGuideCurrent(factor, mode)) Then
+@@ -189,6 +199,7 @@ Public Function RPX_Bound(ByVal mode As String, Optional ByVal strengthFactor As
+         End If
+     Next e
+     RPX_OrderMode = mode
++    If RPX_ThinChainBudgetActive And RPX_ThinChainUpperActive And mode = "upper" Then Call TestThinNoIterate
+     If allowDirect And RPX_DirectEnabled() Then
+         If Not prepared Then
+             Call RPX_ResetPreparedState: RPX_Compile: prepared = True
+@@ -238,6 +249,22 @@ Failed:
+     err.Raise errorNumber, errorSource, errorText
+ End Function
+ 
++' Explicit arming is required; default-off injection bypasses the solver only in tests.
++Private Sub TestThinNoIterate()
++    Dim injectedNumber As Long, injectedSource As String, injectedText As String
++    On Error GoTo Injected
++    RPX_TestHook "thin_upper_no_iterate"
++    Exit Sub
++Injected:
++    injectedNumber = err.number: injectedSource = err.source: injectedText = err.description
++    On Error GoTo 0
++    If injectedNumber = 5 And injectedSource = "RPX_TestInjection" And injectedText = "HSD_SOLVE_BUDGET_EXCEEDED" Then
++        Erase xx: Erase xy: Erase XSlack: Erase XDual
++        XIteration = 0
++        RPX_DiagEvent "test_no_iterate", "simulation=solver_bypassed;simulated_dll_status=0;dll_result_absent=1;hsd_allocated=0"
++    End If
++    err.Raise injectedNumber, injectedSource, injectedText
++End Sub
+ Private Function FixedLowerFsEnabled() As Boolean
+     Dim enabled As Double
+     enabled = CDbl(RPX_Setting("LOWER_FIXED_RECOVERY", 0))
+@@ -246,20 +273,30 @@ Private Function FixedLowerFsEnabled() As Boolean
+     FixedLowerFsEnabled = (enabled = 1 Or RPX_AccuracyEnabled())
+ End Function
+ Private Function FsValue(ByVal factor As Double, ByVal mode As String, ByVal target As Double, Optional ByVal allowRecovery As Boolean = True) As Double
++    FsValue = FsValueCore(factor, mode, target, allowRecovery)
++    If RPX_ThinChainBudgetActive Then ThinFsObserve factor, mode, FsValue
++End Function
++Private Function FsValueCore(ByVal factor As Double, ByVal mode As String, ByVal target As Double, Optional ByVal allowRecovery As Boolean = True) As Double
+     Dim enabled As Boolean, nativeEnabled As Boolean, recovered() As Double, seconds As Double, number As Long, source As String, message As String
+     Dim hsdFallback As Boolean, hsdResidual As Double, hsdObjective As Double, hsdValue As Double, hsdField() As Double, hsdSlack() As Double
+     enabled = (allowRecovery And mode = "lower" And RSubdivisions = 8 And FixedLowerFsEnabled())
+     nativeEnabled = (allowRecovery And RSubdivisions = 8 And RPX_AccuracyEnabled())
+     Call RPX_AccuracyGuideReset
+     On Error GoTo Failed
+-    RFsCalls = RFsCalls + 1: FsValue = RPX_Bound(mode, factor, allowRecovery) - target
++    RFsCalls = RFsCalls + 1: FsValueCore = RPX_Bound(mode, factor, allowRecovery) - target
+     If nativeEnabled And mode = "lower" And XStatus = "UNBOUNDED" Then
+         If RPX_AccuracyLowerRayWitness(factor, recovered) Then
+             xx = recovered: XObjective = -AccuracyNativeValue
+             RStrengthFactor = factor: Call RPX_AuditLower
+             If RPX_AuditRejected Or Not RPhysicalGateAccepted Or RValue < target Then err.Raise 5, "RPX_Fs", "HSD_RAY_PRIMAL_GATE_REJECTED"
+             XStatus = "ORIGINAL_FIXED_LOWER_WITNESS"
+-            FsValue = RValue - target
++            FsValueCore = RValue - target
++            Exit Function
++        End If
++    End If
++    If nativeEnabled And mode = "upper" And XStatus = "THIN_UPPER_BELOW_ROOT" Then
++        If RPX_ThinFsStatus5Allowed(factor) Then
++            Erase xx: Erase XSlack: RProgramKind = "": RProgramFs = factor
+             Exit Function
+         End If
+     End If
+@@ -269,47 +306,47 @@ Private Function FsValue(ByVal factor As Double, ByVal mode As String, ByVal tar
+     End If
+     If XStatus = "ORIGINAL_ACCURACY_UPPER_WITNESS" Or XStatus = "ORIGINAL_FIXED_LOWER_WITNESS" Then Exit Function
+     If nativeEnabled Then RPX_TestHook "fs_accuracy_original"
+-    If nativeEnabled And mode = "upper" And (XStatus = "OPTIMAL" Or XStatus = "INFEASIBLE") And FsValue >= 0# Then
++    If nativeEnabled And mode = "upper" And (XStatus = "OPTIMAL" Or XStatus = "INFEASIBLE") And FsValueCore >= 0# Then
+         ' G1R20 Fix5 (#28): the original-dual recovery is an ADDITIONAL check after
+         ' an HSD solve. Its rejection is not an HSD convergence failure. Keep the
+         ' HSD point that already passed the original physical audit in RPX_Bound
+         ' as a last fallback (same evidence as ACCURACY_DLL_RECOVERY=0); the other
+         ' recovery paths are still tried first in Failed.
+         If XStatus = "OPTIMAL" And Not RPX_AuditRejected And RPhysicalGateAccepted Then
+-            hsdFallback = True: hsdResidual = FsValue: hsdObjective = XObjective: hsdValue = RValue
++            hsdFallback = True: hsdResidual = FsValueCore: hsdObjective = XObjective: hsdValue = RValue
+             hsdField = xx: hsdSlack = XSlack
+         End If
+         If Not RPX_AccuracyRecoverDual(factor, mode) Then err.Raise 5, "RPX_Fs", "ACCURACY_DUAL_RECOVERY_REJECTED"
+         hsdFallback = False
+         XStatus = "ORIGINAL_ACCURACY_DUAL_GUIDE": XObjective = AccuracyNativeDualObjective
+         If Not RPX_AccuracyGuideCurrent(factor, mode) Then err.Raise 5, "RPX_Fs", "ACCURACY_DUAL_CONTEXT_REJECTED"
+-        FsValue = AccuracyNativeDualObjective - target
++        FsValueCore = AccuracyNativeDualObjective - target
+         Erase xx: Erase XSlack: RProgramKind = "": RProgramFs = factor
+         Exit Function
+     End If
+     If enabled Then
+         RPX_TestHook "fs_lower_original"
+-        If FsValue < 0# Then
++        If FsValueCore < 0# Then
+             ' G1R20 Fix5 (#28): same rule for the lower original-dual gate. The
+             ' fallback is used only when the gate exists because of the accuracy
+             ' DLL (LOWER_FIXED_RECOVERY<>1 keeps its explicit fixed-recovery path).
+             If nativeEnabled And XStatus = "OPTIMAL" And Not RPX_AuditRejected And RPhysicalGateAccepted And CDbl(RPX_Setting("LOWER_FIXED_RECOVERY", 0)) <> 1# Then
+-                hsdFallback = True: hsdResidual = FsValue: hsdObjective = XObjective: hsdValue = RValue
++                hsdFallback = True: hsdResidual = FsValueCore: hsdObjective = XObjective: hsdValue = RValue
+                 hsdField = xx: hsdSlack = XSlack
+             End If
+             If Not RPX_OriginalLowerDualGate(factor, target, True) Then err.Raise 5, "RPX_Fs", "ACCURACY_LOWER_DUAL_GATE_REJECTED"
+             hsdFallback = False
+-            FsValue = OriginalLowerDualCap - target: XStatus = "ORIGINAL_LOWER_DUAL_GUIDE"
++            FsValueCore = OriginalLowerDualCap - target: XStatus = "ORIGINAL_LOWER_DUAL_GUIDE"
+         End If
+     End If
+     If XStatus = "ORIGINAL_FARKAS_GUIDE" Then
+         If mode = "upper" And RPX_OriginalGuideCurrent(factor) Then
+-            FsValue = 1#
++            FsValueCore = 1#
+         Else
+             XStatus = "NUMERICAL_UNKNOWN"
+         End If
+     ElseIf XStatus = "INFEASIBLE" Or XStatus = "UNBOUNDED" Then
+-        FsValue = 1#
++        FsValueCore = 1#
+     End If
+     Exit Function
+ Failed:
+@@ -319,24 +356,31 @@ Failed:
+     If Not enabled And Not nativeEnabled Then err.Raise number, source, message
+     If Not FsNumericRecoverable(number, message) Then err.Raise number, source, message
+     XStatus = "NUMERICAL_UNKNOWN": RProgramKind = ""
++    ' rc9a: a pre-state thin budget failure is UNKNOWN, with no recovery center.
++    If RPX_ThinChainBudgetActive And number = 5 And message = "HSD_SOLVE_BUDGET_EXCEEDED" And XIteration = 0 Then
++        If Not FsCurrentIterateReady() Then
++            RPX_DiagEvent "fs_numerical_unknown", "reason=thin_budget_no_iterate;endpoints_unchanged=True;phase=fs_trial;original=" & message
++            err.Raise number, source, message
++        End If
++    End If
+     If hsdFallback Then
+         ' Fix5 (#28): an audited HSD OPTIMAL point whose extra recovery was rejected.
+         ' Try the existing recovery paths; if all reject, continue with the HSD point.
+-        If TryAccuracyFsRecover(factor, mode, target, FsValue) Then Exit Function
++        If TryAccuracyFsRecover(factor, mode, target, FsValueCore) Then Exit Function
+         xx = hsdField: XSlack = hsdSlack: XObjective = hsdObjective: RValue = hsdValue
+         XStatus = "OPTIMAL": RStrengthFactor = factor: RProgramKind = "": RProgramFs = factor
+         RPX_AuditRejected = False: RPhysicalGateAccepted = True: RPhysicalGateReason = ""
+-        FsValue = hsdResidual
++        FsValueCore = hsdResidual
+         RPX_DiagEvent "accuracy_recovery_fallback", "code=" & message & ";mode=" & mode & ";Fs=" & factor & ";residual=" & hsdResidual & ";used=audited_hsd_optimal;original_physical_audit=PASS;equivalent_setting=ACCURACY_DLL_RECOVERY_0"
+         Exit Function
+     End If
+     If nativeEnabled Then
+-        If AccuracyFsRecover(factor, mode, target, FsValue) Then Exit Function
++        If AccuracyFsRecover(factor, mode, target, FsValueCore) Then Exit Function
+     End If
+     If Not enabled Then err.Raise number, source, message
+     RPX_DiagEvent "fs_fixed_lower_origin", "Fs=" & factor & ";reason=" & message & ";positive_primal_or_independent_original_dual_only=1"
+     If RPX_OriginalLowerDualGate(factor, target, True) Then
+-        FsValue = OriginalLowerDualCap - target: XStatus = "ORIGINAL_LOWER_DUAL_GUIDE"
++        FsValueCore = OriginalLowerDualCap - target: XStatus = "ORIGINAL_LOWER_DUAL_GUIDE"
+         RProgramKind = "lower": RProgramFs = factor
+         Exit Function
+     End If
+@@ -349,7 +393,7 @@ Failed:
+         RStrengthFactor = factor: Call RPX_AuditLower
+         If RPX_AuditRejected Or Not RPhysicalGateAccepted Or RValue < target Then err.Raise 5, "RPX_Fs", "FIXED_RECOVERY_ENDPOINT_GATE_REJECTED"
+         XStatus = "ORIGINAL_FIXED_LOWER_WITNESS": RProgramKind = "lower": RProgramFs = factor
+-        FsValue = RValue - target
++        FsValueCore = RValue - target
+         RPX_DiagEvent "fs_fixed_lower_witness", "Fs=" & factor & ";lambda=" & RValue & ";q=8;fixed_dual_used=0;optimum_claimed=0;root_requires_separate_original_negative_dual=1"
+         Exit Function
+     End If
+@@ -369,6 +413,21 @@ Private Function FsArrayReady(ByRef values() As Double) As Boolean
+ Missing:
+     If err.number <> 9 Then err.Raise err.number, err.source, err.description
+ End Function
++' Check shape without eager evaluation of bounds on an unallocated iterate.
++Private Function FsCurrentIterateReady() As Boolean
++    Dim firstIndex As Long, lastIndex As Long
++    If XN <= 0 Then Exit Function
++    On Error GoTo Missing
++    firstIndex = LBound(xx)
++    lastIndex = UBound(xx)
++    If firstIndex <> 0 Then Exit Function
++    If lastIndex <> XN - 1 Then Exit Function
++    FsCurrentIterateReady = True
++    Exit Function
++Missing:
++    If err.number <> 9 Then err.Raise err.number, err.source, err.description
++    err.Clear
++End Function
+ Private Function FsMeshKey() As String
+     FsMeshKey = CStr(RPX_ModelVersion())
+ End Function
+@@ -389,7 +448,15 @@ Public Function RPX_ActualRootBracket(ByVal side As String, ByRef a As Double, B
+     Else
+         If stored.target <> 0.999999 Then Exit Function
+     End If
+-    If stored.recoveredWitnessA Or stored.originalGuideB Then
++    If stored.thinSignA Then
++        If side <> "upper" Or stored.statusA <> "THIN_UPPER_BELOW_ROOT" Then Exit Function
++        If Not ThinFsContext(side) Then Exit Function
++        If stored.inputEpoch <> RPX_InputEpoch Or stored.physicalKey <> RPX_ExactModel() Then Exit Function
++        If stored.loadPhase <> RPX_LoadPhase Or stored.policy <> RPX_AnalysisPolicy() Then Exit Function
++        If stored.statusB <> "OPTIMAL" And stored.statusB <> "ORIGINAL_ACCURACY_UPPER_WITNESS" Then Exit Function
++        If Not RPX_SchurFinite(stored.a) Or Not RPX_SchurFinite(stored.b) Or Not RPX_SchurFinite(stored.fa) Or Not RPX_SchurFinite(stored.fb) Then Exit Function
++        If stored.analytical Or stored.b - stored.a > 0.0001 * WorksheetFunction.Max(1#, (stored.a + stored.b) / 2#) Then Exit Function
++    ElseIf stored.recoveredWitnessA Or stored.originalGuideB Then
+         If side <> "lower" Or stored.subdivisions <> 8 Then Exit Function
+         If Not stored.originalGuideB Or stored.statusB <> "ORIGINAL_LOWER_DUAL_GUIDE" Then Exit Function
+         If stored.statusA <> "OPTIMAL" And Not (stored.recoveredWitnessA And stored.statusA = "ORIGINAL_FIXED_LOWER_WITNESS") Then Exit Function
+@@ -432,6 +499,9 @@ Private Function BracketUsable(ByRef stored As FsBracketState, ByVal mode As Str
+     reason = "empty"
+     If Not stored.valid Then Exit Function
+     If stored.mode <> mode Then reason = "mode": Exit Function
++    If stored.thinSignA Then
++        If Not ThinFsContext(mode) Then reason = "thin_scope": Exit Function
++    End If
+     If stored.meshKey <> meshKey Then reason = "mesh": Exit Function
+     If Abs(stored.target - target) > 0.000000000001 Then reason = "target": Exit Function
+     If requireSubdivisions Then
+@@ -448,7 +518,12 @@ Private Sub SaveBracket(ByVal mode As String, ByVal meshKey As String, ByVal tar
+         If mode <> "lower" Or statusB <> "ORIGINAL_LOWER_DUAL_GUIDE" Or RSubdivisions <> 8 Then Exit Sub
+     End If
+     If Not FsArrayReady(fieldA) Then
+-        If mode <> "upper" Or (statusA <> "ORIGINAL_FARKAS_GUIDE" And statusA <> "ORIGINAL_ACCURACY_DUAL_GUIDE") Or RSubdivisions <> 8 Then Exit Sub
++        If mode <> "upper" Or RSubdivisions <> 8 Then Exit Sub
++        If statusA = "THIN_UPPER_BELOW_ROOT" Then
++            If Not ThinFsContext(mode) Or Not RPX_ThinFsStatus5Allowed(a) Then Exit Sub
++        ElseIf statusA <> "ORIGINAL_FARKAS_GUIDE" And statusA <> "ORIGINAL_ACCURACY_DUAL_GUIDE" Then
++            Exit Sub
++        End If
+     End If
+     If mode = "lower" Then
+         lowerBracket.valid = True: lowerBracket.analytical = False
+@@ -474,6 +549,7 @@ Private Sub SaveBracket(ByVal mode As String, ByVal meshKey As String, ByVal tar
+         upperBracket.objectiveA = objectiveA: upperBracket.objectiveB = objectiveB
+         upperBracket.statusA = statusA: upperBracket.statusB = statusB
+         upperBracket.originalGuideA = ((statusA = "ORIGINAL_FARKAS_GUIDE" Or statusA = "ORIGINAL_ACCURACY_DUAL_GUIDE") And RSubdivisions = 8)
++        upperBracket.thinSignA = (statusA = "THIN_UPPER_BELOW_ROOT" And ThinFsContext(mode))
+         upperBracket.physicalKey = RPX_ExactModel(): upperBracket.inputEpoch = RPX_InputEpoch
+         upperBracket.loadPhase = RPX_LoadPhase: upperBracket.policy = RPX_AnalysisPolicy()
+         upperFieldA = fieldA: upperFieldB = fieldB
+@@ -527,6 +603,7 @@ Public Function RPX_FsEndpoint(ByVal mode As String, Optional ByVal hint As Doub
+     Dim limitTrial As FsTrialPoint
+     Dim terminalEnabled As Boolean, terminalActive As Boolean, terminalProgress As Boolean
+     Dim terminalA As Double, terminalB As Double
++    Dim thinNarrow As Boolean, thinSpan As Double, thinSeedScale As Double
+     RPX_AssertInputs "fs_endpoint"
+     If XCancel Then err.Raise 18, , "ANALYSIS_CANCELLED"
+     If RFsTolerance <= 0# Then RFsTolerance = 0.0001
+@@ -550,9 +627,15 @@ Public Function RPX_FsEndpoint(ByVal mode As String, Optional ByVal hint As Doub
+             XObjective = XObjective / factor: Call RPX_AuditLower
+         End If
+         Call SaveAnalyticalRoot(mode, factor, target)
++        If RPX_ThinChainBudgetActive Then
++            If RPX_ActualRootBracket(mode, terminalA, terminalB, factor) Then
++                If terminalA = factor And terminalB = factor Then ThinFsObserve factor, mode, 0#
++            End If
++        End If
+         RPX_FsEndpoint = factor: Exit Function
+     End If
+     meshKey = FsMeshKey()
++    thinNarrow = (hint > 0# And ThinFsContext(mode))
+     If mode = "lower" Then
+         limitActive = UpperLimitUsable(upperSeed, meshKey)
+         If limitActive Then upperLimit = upperSeed
+@@ -704,8 +787,22 @@ Public Function RPX_FsEndpoint(ByVal mode As String, Optional ByVal hint As Doub
+             If hint > 0# Then
+                 seedSource = "lower_history"
+                 If hintRatio <= 0# Then hintRatio = 0.1
+-                a = hint * (1# - hintRatio)
+-                b = hint * (1# + hintRatio)
++                If thinNarrow Then
++                    ' The lineage Fs is a location hint only; both signs/fields are
++                    ' freshly evaluated on this mesh. A default span of 120 FS_TOL
++                    ' units needs seven bisections, hence nine solves if contained.
++                    thinSeedScale = WorksheetFunction.Max(1#, hint)
++                    thinSpan = 0.012 * thinSeedScale
++                    If thinSpan > 2# * hint * hintRatio Then thinSpan = 2# * hint * hintRatio
++                    If mode = "upper" Then
++                        a = hint - thinSpan: b = hint
++                    Else
++                        a = hint: b = hint + thinSpan
++                    End If
++                Else
++                    a = hint * (1# - hintRatio)
++                    b = hint * (1# + hintRatio)
++                End If
+                 If a < 0.000001 Then a = 0.000001
+                 If b <= a Then b = a * 2#
+             Else
+@@ -716,6 +813,7 @@ Public Function RPX_FsEndpoint(ByVal mode As String, Optional ByVal hint As Doub
+                 If b > upperLimit Then b = upperLimit
+                 If a >= b Then a = b / 2#
+             End If
++            If thinNarrow Then RPX_DiagEvent "thin_fs_seed", "mode=" & mode & ";hint=" & hint & ";a=" & a & ";b=" & b & ";span=" & b - a & ";fresh_own_mesh_signs=1;local_expansion=2"
+             fa = FsValue(a, mode, target): fieldA = xx: objectiveA = XObjective: statusA = XStatus
+             If limitActive And b = upperLimit Then
+                 If TryFsTrialPoint(b, mode, target, limitTrial) Then
+@@ -734,7 +832,16 @@ Public Function RPX_FsEndpoint(ByVal mode As String, Optional ByVal hint As Doub
+     End If
+     Do While fa < 0#
+         expansionCount = expansionCount + 1
+-        b = a: fb = fa: fieldB = fieldA: objectiveB = objectiveA: statusB = statusA: a = a / 2#
++        If thinNarrow Then thinSpan = 2# * (b - a)
++        b = a: fb = fa: fieldB = fieldA: objectiveB = objectiveA: statusB = statusA
++        If thinNarrow Then
++            ' Grow around an observed own-mesh sign, never around a historical field.
++            a = a - thinSpan
++            If a < 0.000001 Then a = 0.000001
++            If a >= b Then err.Raise 5, , "FS_LOWER_BRACKET_NOT_FOUND"
++        Else
++            a = a / 2#
++        End If
+         If a < 0.000001 Then err.Raise 5, , "FS_LOWER_BRACKET_NOT_FOUND"
+         ' G1R15: stop runaway halving below 15% of the previous lower (or upper); lowest successful ratio in 457 logged searches was 22.5%. Caller keeps the previous verified pair.
+         If hint > 0# And a < 0.15 * hint Then err.Raise 5, , "FS_LOWER_BRACKET_NOT_FOUND floor=hint*0.15;a=" & a
+@@ -743,8 +850,9 @@ Public Function RPX_FsEndpoint(ByVal mode As String, Optional ByVal hint As Doub
+     Loop
+     Do While fb > 0#
+         expansionCount = expansionCount + 1
++        If thinNarrow Then thinSpan = 2# * (b - a)
+         a = b: fa = fb: fieldA = fieldB: objectiveA = objectiveB: statusA = statusB
+-        nextB = b * 2#
++        If thinNarrow Then nextB = b + thinSpan Else nextB = b * 2#
+         If limitActive Then
+             If b >= upperLimit Then
+                 limitActive = False
+@@ -824,7 +932,7 @@ Public Function RPX_FsEndpoint(ByVal mode As String, Optional ByVal hint As Doub
+         ' Feasibility witnesses and dual rays establish signs, not objective
+         ' samples of one scalar function. Their arbitrary margins cannot steer
+         ' a secant step; retain the same signed bracket and bisect it instead.
+-        If statusA = "ORIGINAL_FIXED_LOWER_WITNESS" Or statusB = "ORIGINAL_LOWER_DUAL_GUIDE" Or statusA = "ORIGINAL_FARKAS_GUIDE" Or statusA = "ORIGINAL_ACCURACY_DUAL_GUIDE" Or statusB = "ORIGINAL_ACCURACY_UPPER_WITNESS" Then
++        If statusA = "ORIGINAL_FIXED_LOWER_WITNESS" Or statusB = "ORIGINAL_LOWER_DUAL_GUIDE" Or statusA = "ORIGINAL_FARKAS_GUIDE" Or statusA = "ORIGINAL_ACCURACY_DUAL_GUIDE" Or statusB = "ORIGINAL_ACCURACY_UPPER_WITNESS" Or statusA = "THIN_UPPER_BELOW_ROOT" Then
+             x = (a + b) / 2#
+         Else
+             x = (a * fb - b * fa) / (fb - fa)
+@@ -970,3 +1078,166 @@ Private Function TerminalScheduleEnabled() As Boolean
+     If Not RPX_SchurFinite(enabled) Or (enabled <> 0# And enabled <> 1#) Then err.Raise 5, "RPX_Fs", "INVALID_FS_TERMINAL_SCHEDULE"
+     TerminalScheduleEnabled = (enabled = 1# And RSubdivisions = 8 And RPX_AccuracyEnabled())
+ End Function
++
++' The capture lifetime starts after geometry construction, so auxiliary indicator
++' solves cannot enter the round's accepted-witness or status-5 guide history.
++Public Sub RPX_ThinFsBegin(ByVal side As String)
++    Call RPX_ThinFsEnd
++    If Not RPX_ThinChainBudgetActive Or RSubdivisions <> 8 Then Exit Sub
++    If side <> "upper" And side <> "lower" Then Exit Sub
++    thinFsActive = True: thinFsSide = side: thinFsMesh = FsMeshKey()
++    thinFsModel = RPX_ExactModel(): thinFsPolicy = RPX_AnalysisPolicy()
++    thinFsPhase = RPX_LoadPhase: thinFsEpoch = RPX_InputEpoch
++End Sub
++Public Sub RPX_ThinFsEnd()
++    thinFsActive = False: thinWitnessReady = False: thinOppReady = False: thinDualReady = False
++    thinFsSide = "": thinFsMesh = "": thinFsModel = "": thinFsPolicy = "": thinFsPhase = "": thinFsEpoch = 0
++    thinWitnessFactor = 0#: thinWitnessObjective = 0#: thinWitnessStatus = ""
++    thinOppFactor = 0#: thinOppResidual = 0#: thinOppObjective = 0#: thinOppStatus = "": thinDualFactor = 0#
++    Erase thinWitnessField: Erase thinOppField
++End Sub
++Private Function ThinFsContext(ByVal side As String) As Boolean
++    If Not RPX_ThinChainBudgetActive Or Not thinFsActive Or RSubdivisions <> 8 Then Exit Function
++    If side <> thinFsSide Or thinFsMesh <> FsMeshKey() Or thinFsEpoch <> RPX_InputEpoch Then Exit Function
++    If thinFsModel <> RPX_ExactModel() Or thinFsPolicy <> RPX_AnalysisPolicy() Or thinFsPhase <> RPX_LoadPhase Then Exit Function
++    ThinFsContext = True
++End Function
++Public Function RPX_ThinFsStatus5Allowed(ByVal factor As Double) As Boolean
++    If Not RPX_ThinChainUpperActive Or Not RFsActive Then Exit Function
++    If Not ThinFsContext("upper") Or Not thinDualReady Then Exit Function
++    If Not RPX_SchurFinite(factor) Or factor <= 0# Or factor < thinDualFactor Then Exit Function
++    ' A separately audited original dual, returned with native status 1 at a
++    ' lower/equal Fs in this exact step, permits a search sign only.
++    RPX_ThinFsStatus5Allowed = True
++End Function
++Private Function ThinFsCompleteField(ByVal side As String, ByRef field() As Double) As Boolean
++    Dim i As Long, last As Long
++    On Error GoTo Missing
++    If side = "upper" Then last = 12 * re + 3 * RR - 1 Else last = XN - 1
++    If last < 0 Or LBound(field) <> 0 Or UBound(field) < last Then Exit Function
++    For i = 0 To last
++        If Not RPX_SchurFinite(field(i)) Then Exit Function
++    Next i
++    ThinFsCompleteField = True
++    Exit Function
++Missing:
++    If err.number <> 9 Then err.Raise err.number, err.source, err.description
++End Function
++Private Sub ThinFsObserve(ByVal factor As Double, ByVal side As String, ByVal residual As Double)
++    Dim witness As Boolean, opposite As Boolean, keep As Boolean, i As Long
++    If Not ThinFsContext(side) Then Exit Sub
++    If Not RPX_SchurFinite(factor) Or factor <= 0# Or Not RPX_SchurFinite(residual) Then Exit Sub
++    If side = "upper" And XStatus = "ORIGINAL_ACCURACY_DUAL_GUIDE" Then
++        If AccuracyNativeSolverStatus = 1 And RPX_AccuracyGuideCurrent(factor, side) Then
++            If Not thinDualReady Or factor < thinDualFactor Then thinDualFactor = factor
++            thinDualReady = True
++        End If
++    End If
++    If XStatus = "OPTIMAL" Or (side = "upper" And XStatus = "ORIGINAL_ACCURACY_UPPER_WITNESS") Or (side = "lower" And XStatus = "ORIGINAL_FIXED_LOWER_WITNESS") Then
++        If Not RPX_AuditRejected And RPhysicalGateAccepted And RPX_SchurFinite(XObjective) Then
++            witness = ((side = "upper" And residual <= 0#) Or (side = "lower" And residual >= 0#))
++            If witness Then witness = ThinFsCompleteField(side, xx)
++        End If
++    End If
++    If witness Then
++        keep = Not thinWitnessReady
++        If thinWitnessReady Then keep = ((side = "upper" And factor < thinWitnessFactor) Or (side = "lower" And factor > thinWitnessFactor))
++        If keep Then
++            thinWitnessReady = True: thinWitnessFactor = factor: thinWitnessObjective = XObjective: thinWitnessStatus = XStatus
++            If side = "upper" Then
++                ReDim thinWitnessField(0 To 12 * re + 3 * RR - 1)
++                For i = 0 To UBound(thinWitnessField): thinWitnessField(i) = xx(i): Next i
++            Else
++                thinWitnessField = xx
++            End If
++            If thinOppReady Then
++                If (side = "upper" And thinOppFactor >= factor) Or (side = "lower" And thinOppFactor <= factor) Then thinOppReady = False: Erase thinOppField
++            End If
++        End If
++    End If
++    If side = "upper" And residual >= 0# Then
++        If XStatus = "THIN_UPPER_BELOW_ROOT" Then
++            opposite = RPX_ThinFsStatus5Allowed(factor)
++        ElseIf XStatus = "ORIGINAL_ACCURACY_DUAL_GUIDE" Then
++            opposite = RPX_AccuracyGuideCurrent(factor, side)
++        ElseIf XStatus = "ORIGINAL_FARKAS_GUIDE" Then
++            opposite = RPX_OriginalGuideCurrent(factor)
++        ElseIf XStatus = "OPTIMAL" Then
++            opposite = (Not RPX_AuditRejected And RPhysicalGateAccepted And ThinFsCompleteField(side, xx))
++        End If
++    ElseIf side = "lower" And residual < 0# Then
++        If XStatus = "ORIGINAL_LOWER_DUAL_GUIDE" Then
++            opposite = RPX_AccuracyGuideCurrent(factor, side)
++            If Not opposite Then opposite = RPX_OriginalLowerDualGate(factor, 1.000001, False)
++        ElseIf XStatus = "OPTIMAL" Then
++            opposite = (Not RPX_AuditRejected And RPhysicalGateAccepted And ThinFsCompleteField(side, xx))
++        End If
++    End If
++    If Not opposite Then Exit Sub
++    If thinWitnessReady Then
++        If (side = "upper" And factor >= thinWitnessFactor) Or (side = "lower" And factor <= thinWitnessFactor) Then Exit Sub
++    End If
++    keep = Not thinOppReady
++    If thinOppReady Then keep = ((side = "upper" And factor > thinOppFactor) Or (side = "lower" And factor < thinOppFactor))
++    If Not keep Then Exit Sub
++    thinOppReady = True: thinOppFactor = factor: thinOppResidual = residual: thinOppObjective = XObjective: thinOppStatus = XStatus
++    If XStatus = "OPTIMAL" Then thinOppField = xx Else Erase thinOppField
++End Sub
++Public Function RPX_ThinFsWitness(ByVal side As String, ByRef factor As Double, ByRef field() As Double, ByRef objective As Double) As Boolean
++    If Not ThinFsContext(side) Or Not thinWitnessReady Then Exit Function
++    If Not ThinFsCompleteField(side, thinWitnessField) Then Exit Function
++    factor = thinWitnessFactor: field = thinWitnessField: objective = thinWitnessObjective
++    RPX_ThinFsWitness = True
++End Function
++Public Function RPX_ThinFsRestoreWitnessRoot(ByVal side As String, ByRef factor As Double, ByRef field() As Double, ByRef objective As Double) As Boolean
++    Dim a As Double, b As Double, fa As Double, fb As Double, rootScale As Double, tolerance As Double
++    Dim fieldA() As Double, fieldB() As Double, objectiveA As Double, objectiveB As Double, statusA As String, statusB As String
++    Dim target As Double, rootA As Double, rootB As Double, analytical As Boolean
++    If Not RPX_ThinFsWitness(side, factor, field, objective) Then Exit Function
++    analytical = RPX_ActualRootBracket(side, rootA, rootB, factor)
++    If analytical Then analytical = (rootA = factor And rootB = factor)
++    If Not analytical And Not thinOppReady Then Exit Function
++    tolerance = RFsTolerance: If tolerance > 0.0001 Then tolerance = 0.0001
++    If tolerance <= 0# Then Exit Function
++    If side = "upper" Then
++        a = thinOppFactor: b = factor: target = 0.999999
++    Else
++        a = factor: b = thinOppFactor: target = 1.000001
++    End If
++    If analytical Then a = factor: b = factor
++    rootScale = WorksheetFunction.Max(1#, (a + b) / 2#)
++    If Not analytical Then
++        If b <= a Or b - a > tolerance * rootScale Then Exit Function
++    End If
++    ' Reuse only observed signs and a fully re-audited original primal field.
++    ' A wide failed search is never relabeled as a completed root.
++    xx = field: XObjective = objective: XStatus = thinWitnessStatus: RStrengthFactor = factor
++    If side = "upper" Then Call RPX_AuditUpper Else Call RPX_AuditLower
++    If RPX_AuditRejected Or Not RPhysicalGateAccepted Or Not RPX_SchurFinite(RValue) Then Exit Function
++    If analytical Then
++        If side = "upper" Then
++            If RValue > target + 0.00000001 Then Exit Function
++        Else
++            If RValue < target Then Exit Function
++        End If
++        ' This exact same-context analytical root already exists; preserve it.
++        ' The zero residual observed above follows that proof, not a new sign.
++        If Not RPX_ActualRootBracket(side, rootA, rootB, factor) Then Exit Function
++        RFsSearchIncomplete = False: RFsLargestRootBracket = 0#: RFsSearchNote = "thin_accepted_analytical_witness_recovered"
++        RPX_ThinFsRestoreWitnessRoot = True
++        Exit Function
++    End If
++    If side = "upper" Then
++        If RValue > target Then Exit Function
++        fa = thinOppResidual: fb = RValue - target: fieldA = thinOppField: fieldB = field
++        objectiveA = thinOppObjective: objectiveB = objective: statusA = thinOppStatus: statusB = thinWitnessStatus
++    Else
++        If RValue < target Then Exit Function
++        fa = RValue - target: fb = thinOppResidual: fieldA = field: fieldB = thinOppField
++        objectiveA = objective: objectiveB = thinOppObjective: statusA = thinWitnessStatus: statusB = thinOppStatus
++    End If
++    SaveBracket side, FsMeshKey(), target, a, b, fa, fb, fieldA, fieldB, objectiveA, objectiveB, statusA, statusB
++    If Not RPX_ActualRootBracket(side, rootA, rootB, factor) Then Exit Function
++    RFsSearchIncomplete = False: RFsLargestRootBracket = b - a: RFsSearchNote = "thin_accepted_witness_recovered"
++    RPX_ThinFsRestoreWitnessRoot = True
++End Function
+diff --git a/versions/G1R20_Fix9rc4b/src/vba/RPX_P4.bas b/versions/G1R20_Fix9rc9b/src/vba/RPX_P4.bas
+index b1c1524..6470c4f 100644
+--- a/versions/G1R20_Fix9rc4b/src/vba/RPX_P4.bas
++++ b/versions/G1R20_Fix9rc9b/src/vba/RPX_P4.bas
+@@ -82,10 +82,12 @@ Public Function RPX_ValidateSettingValue(ByVal key As String, ByVal value As Var
+     Select Case key
+         Case "ADAPT", "UPPER_PILOT", "UPPER_PILOT_RIGID", "RAW_LOWER_AUDIT", "LOWER_MODEL_CACHE", "SCHUR_ALLOW_RIGID", "KKT_CAPTURE", "TEST_INJECTION", "DIAGNOSTIC_MODE", "HSD_CAPTURE", "C0_AUTO", "C0_DIRECT_UPPER", "C0_UPPER_ADAPT"
+             RPX_ValidateSettingValue = SettingSwitch(key, value)
+-        Case "DIRECT_DLL", "ACCURACY_DLL_RECOVERY", "ADAPT_PRECISION_FROM_START", "ACCURACY_DLL_EQUILIBRATE", "ACCURACY_DLL_DUAL_EQUILIBRATE", "ACCURACY_DLL_CONE_SCALING", "ACCURACY_DLL_EQUALITY_RECOVERY", "LOWER_FIXED_RECOVERY", "ADAPT_C0_WEDGE_AUTO"
++        Case "DIRECT_DLL", "ACCURACY_DLL_RECOVERY", "ADAPT_PRECISION_FROM_START", "ADAPT_THIN_DLL_EQUILIBRATE", "ACCURACY_DLL_EQUILIBRATE", "ACCURACY_DLL_DUAL_EQUILIBRATE", "ACCURACY_DLL_CONE_SCALING", "ACCURACY_DLL_EQUALITY_RECOVERY", "LOWER_FIXED_RECOVERY", "ADAPT_C0_WEDGE_AUTO"
+             RPX_ValidateSettingValue = SettingSwitch(key, value)
+         Case "HSD_PROJECTIVE_NORMALIZATION", "HSD_ORIGINAL_OPERATOR", "HSD_LINEAR_CAPTURE", "ACCURACY_DLL_CAPTURE", "ORIGINAL_FARKAS_CAPTURE", "ACCURACY_DLL_DUAL_LINEAR_REPAIR", "ACCURACY_DLL_UPPER_RECENTER", "FS_TERMINAL_SCHEDULE", "SCHUR_STRUCTURE_CACHE"
+             RPX_ValidateSettingValue = SettingSwitch(key, value)
++        Case "ACCURACY_DLL_UPPER_EQUILIBRATE"
++            RPX_ValidateSettingValue = SettingSwitch(key, value)
+         Case "TARGET"
+             RPX_ValidateSettingValue = SettingInteger(key, value, 16, 50000)
+         Case "QUADRATURE"
+diff --git a/versions/G1R20_Fix9rc4b/src/vba/RPX_Solve.bas b/versions/G1R20_Fix9rc9b/src/vba/RPX_Solve.bas
+index 912da7a..461e49c 100644
+--- a/versions/G1R20_Fix9rc4b/src/vba/RPX_Solve.bas
++++ b/versions/G1R20_Fix9rc9b/src/vba/RPX_Solve.bas
+@@ -7,6 +7,13 @@ Public RPX_ThinChainBudgetActive As Boolean
+ Public RPX_ThinChainUpperActive As Boolean
+ Public RPX_ThinHsdBase As Double, RPX_ThinHsdPerCone As Double
+ Public RPX_ThinHsdFactor As Double, RPX_ThinHsdCap As Double
++Public RPX_ThinHsdTimeFraction As Double, RPX_ThinHsdTimeCap As Double
++' rc6: large thin upper fallback scheduling; ordinary/non-thin limits unchanged.
++Public RPX_ThinUpperHsdMinElements As Long, RPX_ThinUpperHsdIterations As Long
++Public RPX_ThinUpperHsdFloorSeconds As Double
++Public RPX_ThinLowerHsdMinElements As Long, RPX_ThinLowerHsdFloorSeconds As Double
++Public RPX_ThinLowerHsdReserveSeconds As Double, RPX_ThinLowerExtraActive As Boolean
++Public RPX_ThinUpperHsdReserveSeconds As Double
+ #If Win64 Then
+ Private Declare PtrSafe Function NHDDStep Lib "rpfem_native_x64.dll" Alias "rpx_hdd_step" (ByVal n As Long, ByVal nx As Long, ByVal nb As Long, ByVal nz As Long, ByVal phase As Long, ByRef cursor As Long, ByVal args As LongPtr, ByVal milliseconds As Long) As Long
+ #End If
+@@ -19,6 +26,12 @@ Private originalK() As Double
+ Private originalKReady As Boolean
+ Private originalKBound As Long
+ Private warmXX() As Double, warmXY() As Double, warmSlack() As Double, warmDual() As Double
++' rc8: private raw homogeneous cache, used only by eligible thin Fs solves.
++Private thinWarmX() As Double, thinWarmY() As Double
++Private thinWarmSlack() As Double, thinWarmDual() As Double
++Private thinWarmIdentity As String, thinWarmFs As String
++Private thinWarmTau As Double, thinWarmKappa As Double
++Private thinWarmReady As Boolean, thinWarmBudgetProgress As Boolean
+ Private warmValid As Boolean, warmKind As String
+ Private solveEngineAnnounced As Boolean
+ Private warmN As Long, warmM As Long, warmS As Long, warmB As Long
+@@ -627,6 +640,179 @@ Private Function TryWarmStart(ByVal kind As String) As Boolean
+     Next i
+     TryWarmStart = True
+ End Function
++Private Function ThinWarmEligible(ByVal auditMode As String, ByVal recoverySeconds As Double) As Boolean
++    If Not RPX_ThinChainBudgetActive Or Not RFsActive Then Exit Function
++    If AFActive Or RSubdivisions <> 8 Or recoverySeconds <> 0# Then Exit Function
++    If auditMode <> RPX_OrderMode Then Exit Function
++    If RPX_ThinChainUpperActive Then
++        ThinWarmEligible = (auditMode = "upper")
++    Else
++        ThinWarmEligible = (auditMode = "lower")
++    End If
++End Function
++Public Sub RPX_ThinHsdWarmClear()
++    thinWarmReady = False: thinWarmBudgetProgress = False
++    thinWarmIdentity = "": thinWarmFs = "": thinWarmTau = 0#: thinWarmKappa = 0#
++    Erase thinWarmX: Erase thinWarmY: Erase thinWarmSlack: Erase thinWarmDual
++End Sub
++Private Function ThinWarmKey(ByVal auditMode As String) As String
++    Dim segments() As String, i As Long, j As Long, at As Long, layout As String
++    Dim meshIdentity As String, dimsHash As Double
++    On Error GoTo Invalid
++    If XN <= 0 Or XM < 0 Or XS <= 0 Or XB <= 0 Then GoTo Invalid
++    ReDim segments(0 To XB + XM + 2)
++    meshIdentity = RPX_ExactModel()
++    segments(1) = CStr(Len(meshIdentity)) & ":" & meshIdentity
++    at = 2
++    For i = 0 To XB - 1
++        If XC(i).dimn <> 1 And XC(i).dimn <> 3 Then GoTo Invalid
++        If XC(i).first < 0 Or XC(i).first > XS - XC(i).dimn Or XC(i).count < 0 Then GoTo Invalid
++        dimsHash = dimsHash * 131# + XC(i).dimn
++        dimsHash = dimsHash - 2147483629# * Int(dimsHash / 2147483629#)
++        With XC(i)
++            layout = .modelKind & "," & .dimn & "," & .first & "," & .count & "," & .Pattern
++            layout = layout & "," & .owner & "," & .parameter1 & "," & .parameter2 & "," & .directionSign
++            For j = 0 To .count - 1
++                If .ids(j) < 0 Or .ids(j) >= XN Then GoTo Invalid
++                layout = layout & "," & .ids(j)
++            Next j
++        End With
++        segments(at) = layout: at = at + 1
++    Next i
++    For i = 0 To XM
++        layout = CStr(XEPtr(i))
++        If i < XM Then
++            If XEPtr(i) < 0 Or XEPtr(i + 1) < XEPtr(i) Then GoTo Invalid
++            For j = XEPtr(i) To XEPtr(i + 1) - 1
++                If XEId(j) < 0 Or XEId(j) >= XN Then GoTo Invalid
++                layout = layout & "," & XEId(j)
++            Next j
++        End If
++        segments(at) = layout: at = at + 1
++    Next i
++    ' Numeric coefficients change with Fs. Exact Fs is stored separately;
++    ' its sole transport exception is between solves with this exact layout.
++    ' The hash is identity redundancy; exact records prevent collisions.
++    segments(0) = "thin_hsd_raw_v1|" & auditMode & "|" & RPX_OrderMode & "|" & XN & "," & XM & "," & XS & "," & XB
++    segments(0) = segments(0) & "|" & rn & "," & re & "|" & RSubdivisions & "|" & RPX_InputEpoch & "|" & RPX_LoadPhase
++    segments(0) = segments(0) & "|" & RPX_AnalysisPolicy() & "|dims_hash=" & CStr(CLng(dimsHash))
++    ThinWarmKey = Join(segments, "|")
++    Exit Function
++Invalid:
++    RPX_ThinHsdWarmClear
++End Function
++Private Function ThinWarmFinite(ByVal componentValue As Double) As Boolean
++    On Error GoTo Invalid
++    If componentValue <> componentValue Then Exit Function
++    ThinWarmFinite = (componentValue >= -1E+100 And componentValue <= 1E+100)
++Invalid:
++End Function
++Private Sub ThinWarmCapture(ByVal identityKey As String, ByVal budgetProgress As Boolean)
++    Dim i As Long
++    On Error GoTo Invalid
++    If Len(identityKey) = 0 Or XN <= 0 Or XM < 0 Or XS <= 0 Or XB <= 0 Then GoTo Invalid
++    If Not ThinWarmFinite(hTau) Or Not ThinWarmFinite(hKappa) Then GoTo Invalid
++    If hTau <= 0# Or hKappa <= 0# Then GoTo Invalid
++    If LBound(xx) <> 0 Or UBound(xx) <> XN - 1 Then GoTo Invalid
++    If LBound(xy) <> 0 Or UBound(xy) <> XM Then GoTo Invalid
++    If LBound(XSlack) <> 0 Or UBound(XSlack) <> XS - 1 Then GoTo Invalid
++    If LBound(XDual) <> 0 Or UBound(XDual) <> XS - 1 Then GoTo Invalid
++    For i = 0 To XN - 1
++        If Not ThinWarmFinite(xx(i)) Then GoTo Invalid
++    Next i
++    For i = 0 To XM
++        If Not ThinWarmFinite(xy(i)) Then GoTo Invalid
++    Next i
++    For i = 0 To XS - 1
++        If Not ThinWarmFinite(XSlack(i)) Or Not ThinWarmFinite(XDual(i)) Then GoTo Invalid
++    Next i
++    thinWarmReady = False
++    thinWarmX = xx: thinWarmY = xy: thinWarmSlack = XSlack: thinWarmDual = XDual
++    thinWarmTau = hTau: thinWarmKappa = hKappa
++    thinWarmIdentity = identityKey: thinWarmFs = RPX_ExactDouble(RStrengthFactor)
++    thinWarmBudgetProgress = budgetProgress: thinWarmReady = True
++    Exit Sub
++Invalid:
++    RPX_ThinHsdWarmClear
++End Sub
++Private Sub ThinWarmAccepted()
++    ' The candidate commit installed normalized vectors; keep the saved raw copy.
++    If thinWarmReady Then thinWarmBudgetProgress = False
++End Sub
++Private Function ThinWarmTail(ByVal tailA As Double, ByVal tailB As Double) As Double
++    Dim largest As Double, aa As Double, bb As Double
++    aa = Abs(tailA): bb = Abs(tailB): largest = aa
++    If bb > largest Then largest = bb
++    If largest = 0# Then Exit Function
++    ThinWarmTail = largest * Sqr((aa / largest) ^ 2 + (bb / largest) ^ 2)
++End Function
++Private Function ThinWarmCenterCone(ByRef coneValues() As Double, ByVal headAt As Long, ByVal coneDim As Long, ByVal blendWeight As Double, ByVal centerStrength As Double) As Boolean
++    Dim coneRadius As Double, coneMagnitude As Double, headMargin As Double, j As Long
++    If coneDim <> 1 And coneDim <> 3 Then Exit Function
++    For j = 0 To coneDim - 1: coneValues(headAt + j) = (1# - blendWeight) * coneValues(headAt + j): Next j
++    coneValues(headAt) = coneValues(headAt) + blendWeight * centerStrength
++    If coneDim = 3 Then coneRadius = ThinWarmTail(coneValues(headAt + 1), coneValues(headAt + 2))
++    coneMagnitude = Abs(coneValues(headAt))
++    If coneRadius > coneMagnitude Then coneMagnitude = coneRadius
++    If coneMagnitude < 1# Then coneMagnitude = 1#
++    headMargin = 0.00000001 * coneMagnitude
++    If coneValues(headAt) <= coneRadius + headMargin Then coneValues(headAt) = coneRadius + 2# * headMargin
++    For j = 0 To coneDim - 1
++        If Not ThinWarmFinite(coneValues(headAt + j)) Then Exit Function
++    Next j
++    ThinWarmCenterCone = (coneValues(headAt) > coneRadius + headMargin)
++End Function
++Private Function ThinWarmApply(ByVal identityKey As String, ByVal blendWeight As Double, ByRef cachedBudget As Boolean, ByRef cachedFs As String) As Boolean
++    Dim trialX() As Double, trialY() As Double, trialSlack() As Double, trialDual() As Double
++    Dim i As Long, p As Long, coneDot As Double, centerStrength As Double, maxMagnitude As Double, magnitude As Double
++    On Error GoTo Invalid
++    cachedBudget = False: cachedFs = ""
++    If Not thinWarmReady Then Exit Function
++    If Len(identityKey) = 0 Or identityKey <> thinWarmIdentity Then GoTo Invalid
++    If Not ThinWarmFinite(blendWeight) Then GoTo Invalid
++    If blendWeight <= 0# Or blendWeight > 1# Then GoTo Invalid
++    If Not ThinWarmFinite(thinWarmTau) Or Not ThinWarmFinite(thinWarmKappa) Then GoTo Invalid
++    ' This lower tau bound keeps division below Double overflow even before
++    ' the tighter normalized-vector bound is checked.
++    If thinWarmTau < 1E-100 Or thinWarmKappa <= 0# Then GoTo Invalid
++    If UBound(thinWarmX) <> XN - 1 Or UBound(thinWarmY) <> XM Then GoTo Invalid
++    If UBound(thinWarmSlack) <> XS - 1 Or UBound(thinWarmDual) <> XS - 1 Then GoTo Invalid
++    trialX = thinWarmX: trialY = thinWarmY: trialSlack = thinWarmSlack: trialDual = thinWarmDual
++    maxMagnitude = 1#
++    For i = 0 To XN - 1
++        trialX(i) = trialX(i) / thinWarmTau
++        If Not ThinWarmFinite(trialX(i)) Then GoTo Invalid
++        magnitude = Abs(trialX(i)): If magnitude > maxMagnitude Then maxMagnitude = magnitude
++    Next i
++    For i = 0 To XM
++        trialY(i) = trialY(i) / thinWarmTau
++        If Not ThinWarmFinite(trialY(i)) Then GoTo Invalid
++        magnitude = Abs(trialY(i)): If magnitude > maxMagnitude Then maxMagnitude = magnitude
++    Next i
++    For i = 0 To XS - 1
++        trialSlack(i) = trialSlack(i) / thinWarmTau: trialDual(i) = trialDual(i) / thinWarmTau
++        If Not ThinWarmFinite(trialSlack(i)) Or Not ThinWarmFinite(trialDual(i)) Then GoTo Invalid
++        magnitude = Abs(trialSlack(i)): If magnitude > maxMagnitude Then maxMagnitude = magnitude
++        magnitude = Abs(trialDual(i)): If magnitude > maxMagnitude Then maxMagnitude = magnitude
++        coneDot = coneDot + trialSlack(i) * trialDual(i)
++    Next i
++    centerStrength = 100# * (coneDot / XB)
++    If centerStrength < 0.000001 * maxMagnitude Then centerStrength = 0.000001 * maxMagnitude
++    If Not ThinWarmFinite(centerStrength) Or centerStrength <= 0# Then GoTo Invalid
++    For i = 0 To XB - 1
++        p = XC(i).first
++        If Not ThinWarmCenterCone(trialSlack, p, XC(i).dimn, blendWeight, centerStrength) Then GoTo Invalid
++        If Not ThinWarmCenterCone(trialDual, p, XC(i).dimn, blendWeight, centerStrength) Then GoTo Invalid
++    Next i
++    ' No live solver state is changed until all local vectors pass validation.
++    xx = trialX: xy = trialY: XSlack = trialSlack: XDual = trialDual
++    hTau = 1#: hKappa = 1#
++    cachedBudget = thinWarmBudgetProgress: cachedFs = thinWarmFs
++    ThinWarmApply = True
++    Exit Function
++Invalid:
++    RPX_ThinHsdWarmClear
++End Function
+ Private Sub ColdPrimalDual()
+     Dim i As Long, p As Long
+     For i = 0 To XN - 1: xx(i) = 0#: Next i
+@@ -640,6 +826,7 @@ Private Sub OptimizeCore(ByVal prepared As Boolean, ByVal auditMode As String)
+     Dim i As Long, p As Long, mu As Double, mua As Double, alpha As Double, sigma As Double, valueScale As Double, f As Integer
+     Dim usedWarm As Boolean
+     Dim affine As RPX_DirectionInfo, correctorInfo As RPX_DirectionInfo, replayed As Boolean, replayStart As Double
++    If RPX_ThinUpperProtectOn() Then Call RPX_ThinUpperProtectCheck("conic_entry")
+     Call ResetRefineStats
+     XStatus = "RUNNING"
+     If Not prepared Then
+@@ -683,6 +870,7 @@ Private Sub OptimizeCore(ByVal prepared As Boolean, ByVal auditMode As String)
+                 Exit Sub
+             End If
+         End If
++        If RPX_ThinUpperProtectOn() Then Call RPX_ThinUpperProtectCheck("conic_iteration")
+         Application.StatusBar = "RPFEM: conic iteration " & XIteration & " residual " & Format$(XResidual, "0.0E+00")
+         DoEvents: If XCancel Then err.Raise 18, , "ANALYSIS_CANCELLED"
+         RPX_DiagEvent "iteration", "i=" & XIteration & ";primal=" & XPrimalResidual & ";dual=" & XDualResidual & ";gap=" & XGap
+@@ -1777,9 +1965,48 @@ End Function
+ ' continue up to HSD_ENDGAME_GRACE (default 0.5) x the limit. Acceptance still
+ ' requires the unchanged OPTIMAL tolerances and candidate validation; P10A
+ ' (790 elements) lost an upper solve one iteration before convergence.
+-Private Sub BudgetCheck(ByVal solveStarted As Double, ByVal solveBudget As Double, ByVal gap As Double, ByVal objective As Double)
++Private Sub ThinHsdBudgetClamp(ByVal solveStarted As Double, ByRef solveBudget As Double, ByRef thinHardWallSeconds As Double)
++    Dim availableSeconds As Double, remainingSeconds As Double, remainingSource As String, wallElapsed As Double
++    If Not RPX_ThinChainBudgetActive Then Exit Sub
++    solveBudget = RPX_ThinSolveSeconds(solveBudget)
++    If solveBudget <= 0# Then
++        XStatus = "NUMERICAL_UNKNOWN"
++        err.Raise 5, "RPX_Solve", "HSD_SOLVE_BUDGET_EXCEEDED"
++    End If
++    remainingSeconds = RPX_ThinRemainingSeconds(remainingSource)
++    If remainingSeconds < 0# Then Exit Sub
++    ' The wall is elapsed from solveStarted; do not charge compilation twice.
++    wallElapsed = RPX_DiagClock() - solveStarted
++    availableSeconds = RPX_ThinSolveSeconds(remainingSeconds)
++    If availableSeconds <= 0# Then
++        XStatus = "NUMERICAL_UNKNOWN"
++        err.Raise 5, "RPX_Solve", "HSD_SOLVE_BUDGET_EXCEEDED"
++    End If
++    availableSeconds = wallElapsed + availableSeconds
++    If thinHardWallSeconds < 0# Or availableSeconds < thinHardWallSeconds Then thinHardWallSeconds = availableSeconds
++End Sub
++Private Sub ThinHsdWallCheck(ByVal solveStarted As Double, ByVal solveBudget As Double, ByVal thinHardWallSeconds As Double)
++    Dim elapsed As Double, thinWallExpired As Boolean
++    If Not RPX_ThinChainBudgetActive Then Exit Sub
++    If RPX_ThinUpperProtectOn() Then Call RPX_ThinUpperProtectCheck("hsd_iteration")
++    elapsed = RPX_DiagClock() - solveStarted
++    thinWallExpired = (RPX_ThinSolveSeconds(solveBudget) <= 0#)
++    If thinHardWallSeconds >= 0# Then
++        If elapsed > thinHardWallSeconds Then thinWallExpired = True
++    End If
++    If thinWallExpired Then
++        XStatus = "NUMERICAL_UNKNOWN"
++        RPX_DiagEvent "hsd_budget", "classification=NUMERICAL_UNKNOWN;reason=thin_wall_limit;seconds=" & elapsed & ";limit=" & thinHardWallSeconds & ";iteration=" & XIteration
++        err.Raise 5, "RPX_Solve", "HSD_SOLVE_BUDGET_EXCEEDED"
++    End If
++End Sub
++Private Sub BudgetCheck(ByVal solveStarted As Double, ByVal solveBudget As Double, ByVal gap As Double, ByVal objective As Double, Optional ByVal thinHardWallSeconds As Double = -1#)
+     Dim elapsed As Double, grace As Double, endgame As Boolean
++    If RPX_ThinUpperProtectOn() Then Call RPX_ThinUpperProtectCheck("hsd_iteration")
+     elapsed = RPX_DiagClock() - solveStarted
++    ' Thin case/protected time is a hard wall, including any endgame grace.
++    ' Keep the main floor usable; do not divide it by hypothetical grace.
++    If RPX_ThinChainBudgetActive Then Call ThinHsdWallCheck(solveStarted, solveBudget, thinHardWallSeconds)
+     If elapsed <= solveBudget Then Exit Sub
+     grace = CDbl(RPX_Setting("HSD_ENDGAME_GRACE", 0.5))
+     If Not RPX_SchurFinite(grace) Or grace < 0# Or grace > 2# Then err.Raise 5, "RPX_Solve", "HSD_SOLVE_BUDGET_INVALID"
+@@ -1807,9 +2034,41 @@ Public Function RPX_HsdOrdinaryLimit(ByVal elements As Long) As Double
+     grace = CDbl(RPX_Setting("HSD_ENDGAME_GRACE", 0.5))
+     RPX_HsdOrdinaryLimit = budget * (1# + grace)
+ End Function
++Private Sub ThinWarmMetrics(ByRef initialResidual As Double, ByRef initialGap As Double, ByRef initialMu As Double)
++    Dim warmIndex As Long, warmScalar As Double
++    initialResidual = Residuals(hTau): initialGap = 0#: warmScalar = hKappa
++    For warmIndex = 0 To XS - 1
++        initialGap = initialGap + XSlack(warmIndex) * XDual(warmIndex)
++        warmScalar = warmScalar + hOffset(warmIndex) * XDual(warmIndex)
++    Next warmIndex
++    For warmIndex = 0 To XN - 1: warmScalar = warmScalar + XQ(warmIndex) * xx(warmIndex): Next warmIndex
++    For warmIndex = 0 To XM - 1: warmScalar = warmScalar + XERhs(warmIndex) * xy(warmIndex): Next warmIndex
++    If Abs(warmScalar) > initialResidual Then initialResidual = Abs(warmScalar)
++    initialMu = (initialGap + hTau * hKappa) / (XB + 1)
++    If Not RPX_SchurFinite(initialResidual) Or Not RPX_SchurFinite(initialGap) Or Not RPX_SchurFinite(initialMu) Then err.Raise 5, , "THIN_HSD_WARM_NONFINITE"
++    If initialResidual < 0.000000000001 Then initialResidual = 0.000000000001
++    initialGap = Abs(initialGap): If initialGap < 0.000000000001 Then initialGap = 0.000000000001
++End Sub
++Private Sub ThinWarmEvent(ByVal warmSource As String, ByVal blendWeight As Double, ByVal coldResidual As Double, ByVal coldGap As Double, ByVal initResidual As Double, ByVal initGap As Double, ByVal warmOutcome As String, ByVal usedIterations As Long, ByVal detail As String)
++    RPX_DiagEvent "thin_hsd_warm", "source=" & warmSource & ";mode=" & RPX_OrderMode & ";Fs=" & RStrengthFactor & ";blend=" & blendWeight & ";cold_residual=" & coldResidual & ";cold_gap=" & coldGap & ";init_residual=" & initResidual & ";init_gap=" & initGap & ";outcome=" & warmOutcome & ";iterations=" & usedIterations & ";" & detail
++End Sub
+ Private Sub OptimizeHSDCore(ByVal prepared As Boolean, ByVal auditMode As String, Optional ByVal recoverySeconds As Double = 0#)
+     Dim i As Long, p As Long, j As Long, mu As Double, gap As Double, objective As Double, alpha As Double, mua As Double, sigma As Double, target As Double, correction As Double
+     Dim solveStarted As Double, solveBudget As Double, thinFloor As Double, ordinaryBudget As Double
++    Dim thinRemaining As Double, thinTimeFloor As Double
++    Dim thinRemainingSource As String
++    Dim iterationLimit As Long, upperSizeFloor As Double, upperAvailable As Double, upperGrace As Double
++    Dim protectedWallSeconds As Double, lowerSizeFloor As Double, lowerAvailable As Double, lowerGrace As Double
++    Dim thinHardWallSeconds As Double
++    Dim thinWarmOn As Boolean, thinWarmUsed As Boolean, thinWarmRetried As Boolean, thinWarmNumerical As Boolean
++    Dim thinWarmIdentity As String, thinWarmSource As String, thinWarmFs As String, thinWarmBudget As Boolean
++    Dim thinWarmBlend As Double, thinWarmReject As Double, thinWarmProbe As Long, thinWarmSmall As Long
++    Dim thinWarmColdResidual As Double, thinWarmColdGap As Double, thinWarmInitResidual As Double, thinWarmInitGap As Double
++    Dim thinWarmInitialMu As Double, thinWarmBest As Double, thinWarmScore As Double, thinWarmMeasure As Double
++    Dim thinWarmRetryAt As Long, thinWarmIterations As Long, thinWarmReason As String, thinWarmXmesh As Double
++    Dim thinWarmErrNumber As Long, thinWarmErrSource As String, thinWarmErrText As String
++    thinHardWallSeconds = -1#
++    If RPX_ThinUpperProtectOn() Then Call RPX_ThinUpperProtectCheck("hsd_entry")
+     solveBudget = CDbl(RPX_Setting("HSD_SOLVE_SECONDS", 120))
+     If Not RPX_SchurFinite(recoverySeconds) Then err.Raise 5, "RPX_Solve", "HSD_RECOVERY_BUDGET_INVALID"
+     If recoverySeconds < 0# Or recoverySeconds > 600# Then err.Raise 5, "RPX_Solve", "HSD_RECOVERY_BUDGET_INVALID"
+@@ -1840,6 +2099,8 @@ Private Sub OptimizeHSDCore(ByVal prepared As Boolean, ByVal auditMode As String
+     If (representation <> 0# And representation <> 1#) Or (operatorSetting <> 0# And operatorSetting <> 1#) Then err.Raise 5, "RPX_Solve", "HSD_REPRESENTATION_INVALID"
+     hProjective = (representation = 1#): hUnshifted = (operatorSetting = 1#)
+     solveStarted = RPX_DiagClock()
++    ' Reject an unfunded thin solve before compile or cold initialization.
++    If RPX_ThinChainBudgetActive Then Call ThinHsdBudgetClamp(solveStarted, solveBudget, thinHardWallSeconds)
+     Call ResetRefineStats
+     XStatus = "RUNNING": XObjective = 0#: If Not prepared Then RPX_Compile: originalKReady = False: warmValid = False
+     ' Compile first: XB belongs to this solve, including a newly refined mesh.
+@@ -1849,8 +2110,74 @@ Private Sub OptimizeHSDCore(ByVal prepared As Boolean, ByVal auditMode As String
+         thinFloor = RPX_ThinHsdFactor * (RPX_ThinHsdBase + RPX_ThinHsdPerCone * CDbl(XB))
+         If thinFloor > RPX_ThinHsdCap Then thinFloor = RPX_ThinHsdCap
+         If thinFloor > solveBudget Then solveBudget = thinFloor
+-        RPX_DiagEvent "thin_layer_budget", "solver=hsd;mode=" & RPX_OrderMode & ";cones=" & XB & ";ordinary=" & ordinaryBudget & ";floor=" & thinFloor & ";applied=" & solveBudget
++        ' Both chain sides prefer the deadline, then the nominal thin clock.
++        ' With neither clock available (-1), use the original cone floor alone.
++        thinRemaining = RPX_ThinRemainingSeconds(thinRemainingSource)
++        If thinRemaining >= 0# Then
++            thinTimeFloor = RPX_ThinHsdTimeFraction * thinRemaining
++            If thinTimeFloor > RPX_ThinHsdTimeCap Then thinTimeFloor = RPX_ThinHsdTimeCap
++            If thinTimeFloor > solveBudget Then solveBudget = thinTimeFloor
++        End If
++        RPX_DiagEvent "thin_layer_budget", "solver=hsd;mode=" & RPX_OrderMode & ";cones=" & XB & ";ordinary=" & ordinaryBudget & ";floor=" & thinFloor & ";applied=" & solveBudget & ";cone_floor=" & thinFloor & ";remaining_seconds=" & thinRemaining & ";time_fraction=" & RPX_ThinHsdTimeFraction & ";time_cap=" & RPX_ThinHsdTimeCap & ";time_floor=" & thinTimeFloor & ";remaining_source=" & thinRemainingSource
++    End If
++    iterationLimit = 150
++    If RPX_ThinChainBudgetActive And RPX_ThinChainUpperActive And recoverySeconds = 0# Then
++        If RFsActive And auditMode = "upper" And RSubdivisions = 8 And re >= RPX_ThinUpperHsdMinElements Then
++            ' rc7: a 3000-element solve needs about 390 iterations / 1400 s.
++            ' The flat 1800 s floor replaces the old scaled 900/1200 floor.
++            upperSizeFloor = RPX_ThinUpperHsdFloorSeconds
++            If upperSizeFloor > solveBudget Then solveBudget = upperSizeFloor
++            upperAvailable = -1#
++            If thinRemaining >= 0# Then
++                upperAvailable = thinRemaining - RPX_ThinUpperHsdReserveSeconds
++                If upperAvailable <= 0# Then
++                    XStatus = "NUMERICAL_UNKNOWN"
++                    RPX_DiagEvent "thin_layer_upper_hsd", "elements=" & re & ";attempts=0;reason=remaining_time;remaining_seconds=" & thinRemaining & ";remaining_source=" & thinRemainingSource & ";reserve_seconds=" & RPX_ThinUpperHsdReserveSeconds & ";bound=0"
++                    err.Raise 5, "RPX_Solve", "HSD_SOLVE_BUDGET_EXCEEDED"
++                End If
++                upperGrace = CDbl(RPX_Setting("HSD_ENDGAME_GRACE", 0.5))
++                If Not RPX_SchurFinite(upperGrace) Or upperGrace < 0# Or upperGrace > 2# Then err.Raise 5, "RPX_Solve", "HSD_SOLVE_BUDGET_INVALID"
++                ' The base solve and optional grace share a hard wall. Reserving
++                ' a full hypothetical grace here would squeeze a completable solve.
++                thinHardWallSeconds = RPX_DiagClock() - solveStarted + upperAvailable
++                If solveBudget > upperAvailable Then solveBudget = upperAvailable
++            End If
++            If RPX_ThinUpperHsdIterations > iterationLimit Then iterationLimit = RPX_ThinUpperHsdIterations
++            RPX_DiagEvent "thin_layer_upper_hsd", "elements=" & re & ";size_floor=" & upperSizeFloor & ";flat_floor=1;applied=" & solveBudget & ";iteration_limit=" & iterationLimit & ";remaining_seconds=" & thinRemaining & ";remaining_source=" & thinRemainingSource & ";reserve_seconds=" & RPX_ThinUpperHsdReserveSeconds & ";available_seconds=" & upperAvailable & ";initialization=checked_after_budget;unchanged_acceptance=1"
++        End If
++    End If
++    ' Lower chain rounds get their own floor, independent of .15*remaining.
++    ' Include grace in the remaining-minus-reserve clamp on every lower HSD.
++    If RPX_ThinChainBudgetActive And Not RPX_ThinChainUpperActive And recoverySeconds = 0# Then
++        If RFsActive And auditMode = "lower" And RSubdivisions = 8 Then
++            lowerSizeFloor = 0#
++            If re >= RPX_ThinLowerHsdMinElements Or RPX_ThinLowerExtraActive Then lowerSizeFloor = RPX_ThinLowerHsdFloorSeconds
++            If lowerSizeFloor > solveBudget Then solveBudget = lowerSizeFloor
++            lowerAvailable = -1#
++            If thinRemaining >= 0# Then
++                lowerAvailable = thinRemaining - RPX_ThinLowerHsdReserveSeconds
++                If lowerAvailable <= 0# Then
++                    XStatus = "NUMERICAL_UNKNOWN"
++                    err.Raise 5, "RPX_Solve", "HSD_SOLVE_BUDGET_EXCEEDED"
++                End If
++                lowerGrace = CDbl(RPX_Setting("HSD_ENDGAME_GRACE", 0.5))
++                If Not RPX_SchurFinite(lowerGrace) Or lowerGrace < 0# Or lowerGrace > 2# Then err.Raise 5, "RPX_Solve", "HSD_SOLVE_BUDGET_INVALID"
++                thinHardWallSeconds = RPX_DiagClock() - solveStarted + lowerAvailable
++                If solveBudget > lowerAvailable Then solveBudget = lowerAvailable
++            End If
++            RPX_DiagEvent "thin_layer_lower_hsd", "elements=" & re & ";size_floor=" & lowerSizeFloor & ";extra=" & Abs(CLng(RPX_ThinLowerExtraActive)) & ";applied=" & solveBudget & ";remaining_seconds=" & thinRemaining & ";remaining_source=" & thinRemainingSource & ";reserve_seconds=" & RPX_ThinLowerHsdReserveSeconds & ";available_seconds=" & lowerAvailable & ";initialization=checked_after_budget;unchanged_acceptance=1"
++        End If
+     End If
++    If RPX_ThinUpperProtectOn() Then
++        upperGrace = CDbl(RPX_Setting("HSD_ENDGAME_GRACE", 0.5))
++        If Not RPX_SchurFinite(upperGrace) Or upperGrace < 0# Or upperGrace > 2# Then err.Raise 5, "RPX_Solve", "HSD_SOLVE_BUDGET_INVALID"
++        protectedWallSeconds = RPX_ThinUpperProtectLimit(solveBudget * (1# + upperGrace), "hsd_with_grace")
++        If solveBudget > protectedWallSeconds Then solveBudget = protectedWallSeconds
++        protectedWallSeconds = RPX_DiagClock() - solveStarted + protectedWallSeconds
++        If thinHardWallSeconds < 0# Or protectedWallSeconds < thinHardWallSeconds Then thinHardWallSeconds = protectedWallSeconds
++    End If
++    ' Floors and recovery share the current side reserve and the same grace wall.
++    If RPX_ThinChainBudgetActive Then Call ThinHsdBudgetClamp(solveStarted, solveBudget, thinHardWallSeconds)
+     hStructGen = hStructGen + 1
+     ReDim xx(0 To XN - 1): ReDim xy(0 To XM): ReDim XSlack(0 To XS - 1): ReDim XDual(0 To XS - 1)
+     ReDim rc(0 To XS - 1): ReDim sinvAll(0 To XS - 1): ReDim vvAll(0 To XS - 1): ReDim hOffset(0 To XS - 1)
+@@ -1881,10 +2208,47 @@ Private Sub OptimizeHSDCore(ByVal prepared As Boolean, ByVal auditMode As String
+     Dim attempt As Long, directionOK As Boolean, factorPass As Long, preferPrecise As Boolean
+     RPX_HSDObservationBegin auditMode
+     hTau = 1#: hKappa = 1#
+-    For XIteration = 0 To 149
++    thinWarmOn = ThinWarmEligible(auditMode, recoverySeconds)
++    If thinWarmOn Then
++        thinWarmBlend = CDbl(RPX_Setting("ADAPT_THIN_HSD_WARM_BLEND", 0.2))
++        thinWarmReject = CDbl(RPX_Setting("ADAPT_THIN_HSD_WARM_REJECT", 10))
++        thinWarmMeasure = CDbl(RPX_Setting("ADAPT_THIN_HSD_WARM_PROBE", 15))
++        thinWarmXmesh = CDbl(RPX_Setting("ADAPT_THIN_HSD_WARM_XMESH", 0))
++        If Not RPX_SchurFinite(thinWarmBlend) Or Not RPX_SchurFinite(thinWarmReject) Or Not RPX_SchurFinite(thinWarmMeasure) Then err.Raise 5, , "THIN_HSD_WARM_SETTING_INVALID"
++        If thinWarmBlend < 0.1 Or thinWarmBlend > 0.9 Or thinWarmReject < 1# Or thinWarmReject > 100# Then err.Raise 5, , "THIN_HSD_WARM_SETTING_INVALID"
++        If thinWarmMeasure <> Fix(thinWarmMeasure) Or thinWarmMeasure < 1# Or thinWarmMeasure > 100# Then err.Raise 5, , "THIN_HSD_WARM_SETTING_INVALID"
++        If thinWarmXmesh <> 0# And thinWarmXmesh <> 1# Then err.Raise 5, , "THIN_HSD_WARM_SETTING_INVALID"
++        thinWarmProbe = CLng(thinWarmMeasure): thinWarmBest = 1E+300
++        thinWarmIdentity = ThinWarmKey(auditMode): thinWarmSource = "none"
++        Call ThinWarmMetrics(thinWarmColdResidual, thinWarmColdGap, thinWarmInitialMu)
++        thinWarmInitResidual = thinWarmColdResidual: thinWarmInitGap = thinWarmColdGap
++        On Error GoTo ThinWarmFailed
++        thinWarmUsed = ThinWarmApply(thinWarmIdentity, thinWarmBlend, thinWarmBudget, thinWarmFs)
++        If thinWarmUsed Then
++            thinWarmSource = "same_mesh": thinWarmNumerical = True
++            Call ThinWarmMetrics(thinWarmInitResidual, thinWarmInitGap, thinWarmInitialMu)
++            thinWarmNumerical = False
++            If thinWarmInitResidual > thinWarmReject * thinWarmColdResidual Or thinWarmInitGap > thinWarmReject * thinWarmColdGap Then
++                Call ThinWarmEvent(thinWarmSource, thinWarmBlend, thinWarmColdResidual, thinWarmColdGap, thinWarmInitResidual, thinWarmInitGap, "reject_initial", 0, "from_budget=" & thinWarmBudget & ";from_fs=" & thinWarmFs)
++                thinWarmUsed = False: thinWarmSource = "none"
++                Call ColdPrimalDual: hTau = 1#: hKappa = 1#
++                thinWarmInitResidual = thinWarmColdResidual: thinWarmInitGap = thinWarmColdGap
++            End If
++        Else
++            Call ColdPrimalDual: hTau = 1#: hKappa = 1#
++        End If
++        Call RPX_ThinHsdWarmClear
++        Call ThinWarmEvent(thinWarmSource, thinWarmBlend, thinWarmColdResidual, thinWarmColdGap, thinWarmInitResidual, thinWarmInitGap, "start", 0, "from_budget=" & thinWarmBudget & ";from_fs=" & thinWarmFs & ";xmesh_implemented=0;requested_xmesh=" & thinWarmXmesh)
++    End If
++ThinWarmIterate:
++    For XIteration = thinWarmRetryAt To iterationLimit - 1
+         ' G1R20 Fix6 (#29, P10A): the time limit is checked only AFTER the current
+         ' iterate has been tested for OPTIMAL/certificate (Fix5 discarded a
+         ' finished iterate whenever the clock ran out first). See BudgetCheck.
++        ' The thin hard wall also applies before residuals and candidate audits.
++        If RPX_ThinChainBudgetActive Then Call ThinHsdWallCheck(solveStarted, solveBudget, thinHardWallSeconds)
++        If thinWarmUsed Then thinWarmIterations = XIteration
++        If thinWarmOn Then thinWarmNumerical = True
+         XResidual = Residuals(hTau): gap = 0#: objective = 0#: hScalarResidual = hKappa
+         For i = 0 To XS - 1
+             gap = gap + XSlack(i) * XDual(i): hScalarResidual = hScalarResidual + hOffset(i) * XDual(i)
+@@ -1893,20 +2257,60 @@ Private Sub OptimizeHSDCore(ByVal prepared As Boolean, ByVal auditMode As String
+         hScalarResidual = hScalarResidual + objective
+         For i = 0 To XM - 1: hScalarResidual = hScalarResidual + XERhs(i) * xy(i): Next i
+         mu = (gap + hTau * hKappa) / (XB + 1): hMu = mu
++        If thinWarmOn Then thinWarmNumerical = False
+         If hTau > 0.0000000001 Then
+             If XPrimalResidual / hTau < 0.00000001 And XDualResidual / hTau < 0.0000001 And gap / hTau ^ 2 < 0.00000001 * (1# + Abs(objective / hTau)) Then
++                ' Keep the homogeneous point before candidate commit normalizes it.
++                If thinWarmOn Then Call ThinWarmCapture(thinWarmIdentity, True)
++                If RPX_ThinChainBudgetActive Then Call ThinHsdWallCheck(solveStarted, solveBudget, thinHardWallSeconds)
+                 If TryHsdCandidate("OPTIMAL_POINT", hTau, 0#, objective, 0#, objective / hTau * XQScale, gap / hTau ^ 2 * XQScale) Then
++                    If thinWarmOn Then
++                        Call ThinWarmAccepted
++                        Call ThinWarmEvent(thinWarmSource, thinWarmBlend, thinWarmColdResidual, thinWarmColdGap, thinWarmInitResidual, thinWarmInitGap, "optimal", XIteration, "cold_retry=" & thinWarmRetried & ";warm_iterations=" & thinWarmIterations)
++                    End If
+                     XResidual = Residuals(): EmitRefineSummary: StoreWarm "hsd": Exit Sub
+                 End If
+             End If
+         End If
+-        If HCertificate() Then Exit Sub
+-        Call BudgetCheck(solveStarted, solveBudget, gap, objective)
++        If RPX_ThinChainBudgetActive Then Call ThinHsdWallCheck(solveStarted, solveBudget, thinHardWallSeconds)
++        If HCertificate() Then
++            If thinWarmOn Then
++                Call RPX_ThinHsdWarmClear
++                Call ThinWarmEvent(thinWarmSource, thinWarmBlend, thinWarmColdResidual, thinWarmColdGap, thinWarmInitResidual, thinWarmInitGap, "certificate", XIteration, "cold_retry=" & thinWarmRetried)
++            End If
++            Exit Sub
++        End If
++        If thinWarmOn Then
++            ' Save only improving raw iterates; these are progress, never witnesses.
++            thinWarmNumerical = True
++            thinWarmMeasure = hTau: If thinWarmMeasure < 0.0000000001 Then thinWarmMeasure = 0.0000000001
++            thinWarmScore = XResidual / thinWarmMeasure
++            If Abs(hScalarResidual) / thinWarmMeasure > thinWarmScore Then thinWarmScore = Abs(hScalarResidual) / thinWarmMeasure
++            thinWarmScore = thinWarmScore / thinWarmColdResidual
++            thinWarmMeasure = Abs(gap) / thinWarmMeasure / thinWarmMeasure / thinWarmColdGap
++            If thinWarmMeasure > thinWarmScore Then thinWarmScore = thinWarmMeasure
++            If RPX_SchurFinite(thinWarmScore) And thinWarmScore < thinWarmBest Then
++                Call ThinWarmCapture(thinWarmIdentity, True): thinWarmBest = thinWarmScore
++            End If
++            thinWarmNumerical = False
++        End If
++        Call BudgetCheck(solveStarted, solveBudget, gap, objective, thinHardWallSeconds)
++        If thinWarmUsed And XIteration = thinWarmProbe Then
++            ' Homogeneous rescaling alone must not pass the progress probe.
++            thinWarmNumerical = True
++            thinWarmMeasure = hTau: If thinWarmMeasure < 0.0000000001 Then thinWarmMeasure = 0.0000000001
++            thinWarmMeasure = mu / thinWarmMeasure / thinWarmMeasure
++            If thinWarmMeasure > 0.5 * thinWarmInitialMu Then
++                thinWarmReason = "probe_mu": GoTo ThinWarmColdRetry
++            End If
++            thinWarmNumerical = False
++        End If
+         If hTau > 0.0000000001 Then
+             RPX_Stage "HSD " & XIteration & " residual=" & Format$(XResidual / hTau, "0.0E+00") & " gap=" & Format$(gap / hTau ^ 2, "0.0E+00")
+         Else
+             RPX_Stage "HSD " & XIteration & " tau=" & Format$(hTau, "0.0E+00") & " certificate=" & Format$(hCertificateError, "0.0E+00")
+         End If
++        If thinWarmOn Then thinWarmNumerical = True
+         hSavedX = xx: hSavedY = xy: hSavedSlack = XSlack: hSavedDual = XDual
+         hSavedTau = hTau: hSavedKappa = hKappa: hLiveSaved = True
+         RPX_DiagBegin dpScaling: Call Scaling(True): RPX_DiagEnd dpScaling: FactorSystem 0.0000000001, True
+@@ -1951,9 +2355,42 @@ HRetry:
+         HContext
+         If alpha < 0.000000000001 Then err.Raise 5, , "HSD_STEP_STALLED"
+         HCommit alpha
++        If thinWarmUsed And XIteration < thinWarmProbe Then
++            If hLastAlpha < 0.001 Then thinWarmSmall = thinWarmSmall + 1
++            If thinWarmSmall >= 2 Then
++                thinWarmReason = "probe_alpha": GoTo ThinWarmColdRetry
++            End If
++        End If
+         Call RPX_HLUPark
+     Next XIteration
+     err.Raise 5, , "HSD_NOT_CONVERGED"
++    Exit Sub
++ThinWarmColdRetry:
++    ' Same P4 solve, compilation, iteration allowance, start clock and hard wall.
++    thinWarmIterations = XIteration + 1: thinWarmRetryAt = XIteration + 1
++    thinWarmUsed = False: thinWarmRetried = True: thinWarmNumerical = False
++    Call ThinWarmEvent(thinWarmSource, thinWarmBlend, thinWarmColdResidual, thinWarmColdGap, thinWarmInitResidual, thinWarmInitGap, "cold_retry", thinWarmIterations, "reason=" & thinWarmReason)
++    Call RPX_ThinHsdWarmClear
++    Call RPX_HLUPark: Call RPX_NativeHLinearRelease
++    Call ColdPrimalDual: xy(XM) = 0#: hTau = 1#: hKappa = 1#
++    preferPrecise = False: hLiveSaved = False: hFactorEpoch = 0: hArrowEpoch = 0
++    hDirectionPresent = False: hConeDirectionPresent = False
++    Erase dx: Erase dy: Erase ds: Erase dz: Erase hColumnSolved
++    thinWarmBest = 1E+300: XStatus = "RUNNING"
++    GoTo ThinWarmIterate
++ThinWarmFailed:
++    thinWarmErrNumber = err.number: thinWarmErrSource = err.source: thinWarmErrText = err.description
++    If thinWarmErrText = "HSD_SOLVE_BUDGET_EXCEEDED" Then
++        Call ThinWarmEvent(thinWarmSource, thinWarmBlend, thinWarmColdResidual, thinWarmColdGap, thinWarmInitResidual, thinWarmInitGap, "budget_progress", XIteration, "cold_retry=" & thinWarmRetried & ";best_score=" & thinWarmBest)
++    ElseIf thinWarmUsed And Not thinWarmRetried And Not XCancel And ((thinWarmNumerical And thinWarmErrNumber = 5) Or thinWarmErrNumber = 6 Or thinWarmErrNumber = 11) And InStr(1, thinWarmErrText, "MISMATCH", vbTextCompare) = 0 And InStr(1, thinWarmErrText, "INPUT", vbTextCompare) = 0 And InStr(1, thinWarmErrText, "PROTECT", vbTextCompare) = 0 And InStr(1, thinWarmErrText, "MEMORY", vbTextCompare) = 0 And InStr(1, thinWarmErrText, "UNAVAILABLE", vbTextCompare) = 0 Then
++        thinWarmReason = "numerical:" & thinWarmErrText
++        Resume ThinWarmColdRetry
++    Else
++        Call RPX_ThinHsdWarmClear
++        Call ThinWarmEvent(thinWarmSource, thinWarmBlend, thinWarmColdResidual, thinWarmColdGap, thinWarmInitResidual, thinWarmInitGap, "failed", XIteration, "cold_retry=" & thinWarmRetried & ";reason=" & thinWarmErrText)
++    End If
++    On Error GoTo 0
++    err.Raise thinWarmErrNumber, thinWarmErrSource, thinWarmErrText
+ End Sub
+ Public Function RPX_TestHSD(ByVal inputPath As String) As String
+     On Error GoTo Failed
+diff --git a/versions/G1R20_Fix9rc4b/src/vba/RPX_UI.bas b/versions/G1R20_Fix9rc9b/src/vba/RPX_UI.bas
+index bc83415..400dc72 100644
+--- a/versions/G1R20_Fix9rc4b/src/vba/RPX_UI.bas
++++ b/versions/G1R20_Fix9rc9b/src/vba/RPX_UI.bas
+@@ -450,6 +450,7 @@ Public Sub RPX_EnsureG1R18Settings()
+     EnsureSettingRow ws, "ACCURACY_DLL_ALPHA", "候補の変更量係数", 0.01, "元の場からの変更を抑える正の係数。", ""
+     EnsureSettingRow ws, "ACCURACY_DLL_EQUILIBRATE", "候補の自動平衡化", 0, "通常0。候補の監査条件は変わりません。", "0,1"
+     EnsureSettingRow ws, "ACCURACY_DLL_DUAL_EQUILIBRATE", "反対側の自動平衡化", 1, "通常1。反対側の監査条件は変わりません。", "0,1"
++    EnsureSettingRow ws, "ACCURACY_DLL_UPPER_EQUILIBRATE", "Upper original LP equilibrate", 1, "Upper original primal LP only; audits are unchanged.", "0,1"
+     EnsureSettingRow ws, "ACCURACY_DLL_CONE_SCALING", "候補の円錐正規化", 0, "0=通常、1=円錐全体を共通の正係数で正規化。元の場で再検証します。", "0,1"
+     EnsureSettingRow ws, "ACCURACY_DLL_EQUALITY_RECOVERY", "下界の平衡回復", 1, "精度回復時に100/500/1000回までの原式補正候補を試します。", "0,1"
+     EnsureSettingRow ws, "LOWER_FIXED_RECOVERY", "下界の固定荷重回復", 0, "0=通常、1=同じFsで独立の固定荷重候補を試します。", "0,1"
+@@ -494,6 +495,7 @@ Public Sub RPX_AccuracyPreset()
+     AccuracySet "ADAPT_LOWER_TARGET", 4000: AccuracySet "ADAPT_LOWER_FAN_ROUNDS", 1: AccuracySet "ADAPT_CERT_QUADRATURE", 8
+     AccuracySet "ACCURACY_DLL_RECOVERY", 1: AccuracySet "ACCURACY_DLL_SECONDS", 120: AccuracySet "ACCURACY_DLL_DUAL_SECONDS", 20
+     AccuracySet "ACCURACY_DLL_CONE_SCALING", 1: AccuracySet "HSD_SOLVE_SECONDS", 300
++    AccuracySet "ACCURACY_DLL_UPPER_EQUILIBRATE", 1
+     RPX_InternalWrite = oldWrite
+     If Not oldWrite Then Call RPX_Invalidate
+     Exit Sub
+@@ -551,6 +553,7 @@ Public Sub RPX_G20ImprovementPreset()
+     AccuracySet "ACCURACY_DLL_DUAL_LINEAR_REPAIR", 1
+     AccuracySet "ACCURACY_DLL_UPPER_LP_SECONDS", 30: AccuracySet "ACCURACY_DLL_SECONDS", 90
+     AccuracySet "ACCURACY_DLL_ALPHA", 0.01: AccuracySet "ACCURACY_DLL_EQUILIBRATE", 0
++    AccuracySet "ACCURACY_DLL_UPPER_EQUILIBRATE", 1
+     AccuracySet "DIRECT_DLL_SECONDS", 30: AccuracySet "ACCURACY_DLL_DUAL_SECONDS", 60
+     AccuracySet "ACCURACY_DLL_DUAL_REGULARIZATION", 0.00000001: AccuracySet "ACCURACY_DLL_DUAL_EQUILIBRATE", 1
+     RPX_InternalWrite = oldWrite
