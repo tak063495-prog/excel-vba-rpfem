@@ -1,0 +1,517 @@
+rc9b static source checks
+Command: powershell -NoProfile -File .\verify_rc9b.ps1
+Scope: reference vba/ versus candidate vba_rc9b/. Reference source files are read only.
+Byte checks use a reversible 1-byte-to-character view, not a source encoding conversion.
+Result: 361 checks, 0 failures; 63 BAS modules; 3 changed files; 61 untouched byte-identical files.
+Longest candidate source line: 838 bytes (<1023 required). Preserved non-ASCII lines: 731.
+
+LIMITATIONS: static/source review only; no VBA compiler, Excel/VBA execution, native solve, DLL build, network, or runtime certification performed.
+repro_rc9b.py was manually reviewed, including an independent review, but was not executed. Python is unavailable for AST validation; lexical/CRLF and embedded JSON checks were performed.
+The reserved/builtin scan covers declaration names on added lines, including typed variables, arguments, members, procedures, types and enums.
+It is a conservative lexical check; explicit new-variable declaration and control-flow reviews are documented separately below, not claimed as compiler proof.
+
+PASS File inventories identical (all BAS modules and ThisWorkbook.code.txt).
+PASS RPX_AccuracyMesh.bas: Option Explicit present.
+PASS RPX_AccuracyMesh.bas: CRLF only.
+PASS RPX_AccuracyMesh.bas: final CRLF retained.
+PASS RPX_AccuracyMesh.bas: lines < 1023 bytes; longest 225.
+PASS RPX_AccuracyMesh.bas: every non-ASCII line byte-identical in original order; none removed/added (0).
+PASS RPX_AccuracyNative.bas: Option Explicit present.
+PASS RPX_AccuracyNative.bas: CRLF only.
+PASS RPX_AccuracyNative.bas: final CRLF retained.
+PASS RPX_AccuracyNative.bas: lines < 1023 bytes; longest 569.
+PASS RPX_AccuracyNative.bas: every non-ASCII line byte-identical in original order; none removed/added (0).
+PASS RPX_AccuracyNative.bas: emitted unified patch reconstructs candidate byte-for-byte.
+PASS RPX_AccuracyNative.bas: all 145 added lines ASCII only.
+PASS RPX_AccuracyNative.bas: no new E-form numeric literals outside strings/comments.
+PASS RPX_AccuracyNative.bas: declaration names on added lines do not collide with reserved words/VBA builtins.
+PASS RPX_AccuracyNative.bas: every added Dim/Static/module variable declaration explicitly types each identifier.
+PASS RPX_Adapt.bas: Option Explicit present.
+PASS RPX_Adapt.bas: CRLF only.
+PASS RPX_Adapt.bas: final CRLF retained.
+PASS RPX_Adapt.bas: lines < 1023 bytes; longest 533.
+PASS RPX_Adapt.bas: every non-ASCII line byte-identical in original order; none removed/added (0).
+PASS RPX_Affine.bas: Option Explicit present.
+PASS RPX_Affine.bas: CRLF only.
+PASS RPX_Affine.bas: final CRLF retained.
+PASS RPX_Affine.bas: lines < 1023 bytes; longest 179.
+PASS RPX_Affine.bas: every non-ASCII line byte-identical in original order; none removed/added (0).
+PASS RPX_AHO3.bas: Option Explicit present.
+PASS RPX_AHO3.bas: CRLF only.
+PASS RPX_AHO3.bas: final CRLF retained.
+PASS RPX_AHO3.bas: lines < 1023 bytes; longest 233.
+PASS RPX_AHO3.bas: every non-ASCII line byte-identical in original order; none removed/added (0).
+PASS RPX_Audit.bas: Option Explicit present.
+PASS RPX_Audit.bas: CRLF only.
+PASS RPX_Audit.bas: final CRLF retained.
+PASS RPX_Audit.bas: lines < 1023 bytes; longest 256.
+PASS RPX_Audit.bas: every non-ASCII line byte-identical in original order; none removed/added (0).
+PASS RPX_Bearing.bas: Option Explicit present.
+PASS RPX_Bearing.bas: CRLF only.
+PASS RPX_Bearing.bas: final CRLF retained.
+PASS RPX_Bearing.bas: lines < 1023 bytes; longest 195.
+PASS RPX_Bearing.bas: every non-ASCII line byte-identical in original order; none removed/added (16).
+PASS RPX_C0Guides.bas: Option Explicit present.
+PASS RPX_C0Guides.bas: CRLF only.
+PASS RPX_C0Guides.bas: final CRLF retained.
+PASS RPX_C0Guides.bas: lines < 1023 bytes; longest 183.
+PASS RPX_C0Guides.bas: every non-ASCII line byte-identical in original order; none removed/added (0).
+PASS RPX_C0Select.bas: Option Explicit present.
+PASS RPX_C0Select.bas: CRLF only.
+PASS RPX_C0Select.bas: final CRLF retained.
+PASS RPX_C0Select.bas: lines < 1023 bytes; longest 266.
+PASS RPX_C0Select.bas: every non-ASCII line byte-identical in original order; none removed/added (4).
+PASS RPX_Certificate.bas: Option Explicit present.
+PASS RPX_Certificate.bas: CRLF only.
+PASS RPX_Certificate.bas: final CRLF retained.
+PASS RPX_Certificate.bas: lines < 1023 bytes; longest 179.
+PASS RPX_Certificate.bas: every non-ASCII line byte-identical in original order; none removed/added (5).
+PASS RPX_ColumnOrder.bas: Option Explicit present.
+PASS RPX_ColumnOrder.bas: CRLF only.
+PASS RPX_ColumnOrder.bas: final CRLF retained.
+PASS RPX_ColumnOrder.bas: lines < 1023 bytes; longest 127.
+PASS RPX_ColumnOrder.bas: every non-ASCII line byte-identical in original order; none removed/added (2).
+PASS RPX_Conic.bas: Option Explicit present.
+PASS RPX_Conic.bas: CRLF only.
+PASS RPX_Conic.bas: final CRLF retained.
+PASS RPX_Conic.bas: lines < 1023 bytes; longest 250.
+PASS RPX_Conic.bas: every non-ASCII line byte-identical in original order; none removed/added (0).
+PASS RPX_Control.bas: Option Explicit present.
+PASS RPX_Control.bas: CRLF only.
+PASS RPX_Control.bas: final CRLF retained.
+PASS RPX_Control.bas: lines < 1023 bytes; longest 838.
+PASS RPX_Control.bas: every non-ASCII line byte-identical in original order; none removed/added (77).
+PASS RPX_Definition.bas: Option Explicit present.
+PASS RPX_Definition.bas: CRLF only.
+PASS RPX_Definition.bas: final CRLF retained.
+PASS RPX_Definition.bas: lines < 1023 bytes; longest 237.
+PASS RPX_Definition.bas: every non-ASCII line byte-identical in original order; none removed/added (6).
+PASS RPX_Diagnostics.bas: Option Explicit present.
+PASS RPX_Diagnostics.bas: CRLF only.
+PASS RPX_Diagnostics.bas: final CRLF retained.
+PASS RPX_Diagnostics.bas: lines < 1023 bytes; longest 373.
+PASS RPX_Diagnostics.bas: every non-ASCII line byte-identical in original order; none removed/added (7).
+PASS RPX_Exchange.bas: Option Explicit present.
+PASS RPX_Exchange.bas: CRLF only.
+PASS RPX_Exchange.bas: final CRLF retained.
+PASS RPX_Exchange.bas: lines < 1023 bytes; longest 142.
+PASS RPX_Exchange.bas: every non-ASCII line byte-identical in original order; none removed/added (0).
+PASS RPX_FactorFree.bas: Option Explicit present.
+PASS RPX_FactorFree.bas: CRLF only.
+PASS RPX_FactorFree.bas: final CRLF retained.
+PASS RPX_FactorFree.bas: lines < 1023 bytes; longest 203.
+PASS RPX_FactorFree.bas: every non-ASCII line byte-identical in original order; none removed/added (0).
+PASS RPX_FixedLowerRecovery.bas: Option Explicit present.
+PASS RPX_FixedLowerRecovery.bas: CRLF only.
+PASS RPX_FixedLowerRecovery.bas: final CRLF retained.
+PASS RPX_FixedLowerRecovery.bas: lines < 1023 bytes; longest 357.
+PASS RPX_FixedLowerRecovery.bas: every non-ASCII line byte-identical in original order; none removed/added (0).
+PASS RPX_FixedWitness.bas: Option Explicit present.
+PASS RPX_FixedWitness.bas: CRLF only.
+PASS RPX_FixedWitness.bas: final CRLF retained.
+PASS RPX_FixedWitness.bas: lines < 1023 bytes; longest 134.
+PASS RPX_FixedWitness.bas: every non-ASCII line byte-identical in original order; none removed/added (0).
+PASS RPX_FlowMesh.bas: Option Explicit present.
+PASS RPX_FlowMesh.bas: CRLF only.
+PASS RPX_FlowMesh.bas: final CRLF retained.
+PASS RPX_FlowMesh.bas: lines < 1023 bytes; longest 286.
+PASS RPX_FlowMesh.bas: every non-ASCII line byte-identical in original order; none removed/added (0).
+PASS RPX_FreeFaceSplit.bas: Option Explicit present.
+PASS RPX_FreeFaceSplit.bas: CRLF only.
+PASS RPX_FreeFaceSplit.bas: final CRLF retained.
+PASS RPX_FreeFaceSplit.bas: lines < 1023 bytes; longest 179.
+PASS RPX_FreeFaceSplit.bas: every non-ASCII line byte-identical in original order; none removed/added (0).
+PASS RPX_Fs.bas: Option Explicit present.
+PASS RPX_Fs.bas: CRLF only.
+PASS RPX_Fs.bas: final CRLF retained.
+PASS RPX_Fs.bas: lines < 1023 bytes; longest 330.
+PASS RPX_Fs.bas: every non-ASCII line byte-identical in original order; none removed/added (0).
+PASS RPX_Guard.bas: Option Explicit present.
+PASS RPX_Guard.bas: CRLF only.
+PASS RPX_Guard.bas: final CRLF retained.
+PASS RPX_Guard.bas: lines < 1023 bytes; longest 264.
+PASS RPX_Guard.bas: every non-ASCII line byte-identical in original order; none removed/added (24).
+PASS RPX_HSDCandidate.bas: Option Explicit present.
+PASS RPX_HSDCandidate.bas: CRLF only.
+PASS RPX_HSDCandidate.bas: final CRLF retained.
+PASS RPX_HSDCandidate.bas: lines < 1023 bytes; longest 332.
+PASS RPX_HSDCandidate.bas: every non-ASCII line byte-identical in original order; none removed/added (0).
+PASS RPX_HSDLu.bas: Option Explicit present.
+PASS RPX_HSDLu.bas: CRLF only.
+PASS RPX_HSDLu.bas: final CRLF retained.
+PASS RPX_HSDLu.bas: lines < 1023 bytes; longest 475.
+PASS RPX_HSDLu.bas: every non-ASCII line byte-identical in original order; none removed/added (0).
+PASS RPX_HSDPrecision.bas: Option Explicit present.
+PASS RPX_HSDPrecision.bas: CRLF only.
+PASS RPX_HSDPrecision.bas: final CRLF retained.
+PASS RPX_HSDPrecision.bas: lines < 1023 bytes; longest 262.
+PASS RPX_HSDPrecision.bas: every non-ASCII line byte-identical in original order; none removed/added (0).
+PASS RPX_HSDQuality.bas: Option Explicit present.
+PASS RPX_HSDQuality.bas: CRLF only.
+PASS RPX_HSDQuality.bas: final CRLF retained.
+PASS RPX_HSDQuality.bas: lines < 1023 bytes; longest 75.
+PASS RPX_HSDQuality.bas: every non-ASCII line byte-identical in original order; none removed/added (0).
+PASS RPX_Indicator.bas: Option Explicit present.
+PASS RPX_Indicator.bas: CRLF only.
+PASS RPX_Indicator.bas: final CRLF retained.
+PASS RPX_Indicator.bas: lines < 1023 bytes; longest 145.
+PASS RPX_Indicator.bas: every non-ASCII line byte-identical in original order; none removed/added (0).
+PASS RPX_KktCapture.bas: Option Explicit present.
+PASS RPX_KktCapture.bas: CRLF only.
+PASS RPX_KktCapture.bas: final CRLF retained.
+PASS RPX_KktCapture.bas: lines < 1023 bytes; longest 199.
+PASS RPX_KktCapture.bas: every non-ASCII line byte-identical in original order; none removed/added (0).
+PASS RPX_LDL.bas: Option Explicit present.
+PASS RPX_LDL.bas: CRLF only.
+PASS RPX_LDL.bas: final CRLF retained.
+PASS RPX_LDL.bas: lines < 1023 bytes; longest 270.
+PASS RPX_LDL.bas: every non-ASCII line byte-identical in original order; none removed/added (0).
+PASS RPX_LoadStepMesh.bas: Option Explicit present.
+PASS RPX_LoadStepMesh.bas: CRLF only.
+PASS RPX_LoadStepMesh.bas: final CRLF retained.
+PASS RPX_LoadStepMesh.bas: lines < 1023 bytes; longest 200.
+PASS RPX_LoadStepMesh.bas: every non-ASCII line byte-identical in original order; none removed/added (0).
+PASS RPX_Lower.bas: Option Explicit present.
+PASS RPX_Lower.bas: CRLF only.
+PASS RPX_Lower.bas: final CRLF retained.
+PASS RPX_Lower.bas: lines < 1023 bytes; longest 214.
+PASS RPX_Lower.bas: every non-ASCII line byte-identical in original order; none removed/added (0).
+PASS RPX_LowerCache.bas: Option Explicit present.
+PASS RPX_LowerCache.bas: CRLF only.
+PASS RPX_LowerCache.bas: final CRLF retained.
+PASS RPX_LowerCache.bas: lines < 1023 bytes; longest 191.
+PASS RPX_LowerCache.bas: every non-ASCII line byte-identical in original order; none removed/added (0).
+PASS RPX_Mesh.bas: Option Explicit present.
+PASS RPX_Mesh.bas: CRLF only.
+PASS RPX_Mesh.bas: final CRLF retained.
+PASS RPX_Mesh.bas: lines < 1023 bytes; longest 388.
+PASS RPX_Mesh.bas: every non-ASCII line byte-identical in original order; none removed/added (0).
+PASS RPX_MeshGuard.bas: Option Explicit present.
+PASS RPX_MeshGuard.bas: CRLF only.
+PASS RPX_MeshGuard.bas: final CRLF retained.
+PASS RPX_MeshGuard.bas: lines < 1023 bytes; longest 148.
+PASS RPX_MeshGuard.bas: every non-ASCII line byte-identical in original order; none removed/added (0).
+PASS RPX_MeshTests.bas: Option Explicit present.
+PASS RPX_MeshTests.bas: CRLF only.
+PASS RPX_MeshTests.bas: final CRLF retained.
+PASS RPX_MeshTests.bas: lines < 1023 bytes; longest 148.
+PASS RPX_MeshTests.bas: every non-ASCII line byte-identical in original order; none removed/added (0).
+PASS RPX_Model.bas: Option Explicit present.
+PASS RPX_Model.bas: CRLF only.
+PASS RPX_Model.bas: final CRLF retained.
+PASS RPX_Model.bas: lines < 1023 bytes; longest 189.
+PASS RPX_Model.bas: every non-ASCII line byte-identical in original order; none removed/added (0).
+PASS RPX_Native.bas: Option Explicit present.
+PASS RPX_Native.bas: CRLF only.
+PASS RPX_Native.bas: final CRLF retained.
+PASS RPX_Native.bas: lines < 1023 bytes; longest 557.
+PASS RPX_Native.bas: every non-ASCII line byte-identical in original order; none removed/added (0).
+PASS RPX_NativeBulk.bas: Option Explicit present.
+PASS RPX_NativeBulk.bas: CRLF only.
+PASS RPX_NativeBulk.bas: final CRLF retained.
+PASS RPX_NativeBulk.bas: lines < 1023 bytes; longest 470.
+PASS RPX_NativeBulk.bas: every non-ASCII line byte-identical in original order; none removed/added (0).
+PASS RPX_NativeGuard.bas: Option Explicit present.
+PASS RPX_NativeGuard.bas: CRLF only.
+PASS RPX_NativeGuard.bas: final CRLF retained.
+PASS RPX_NativeGuard.bas: lines < 1023 bytes; longest 290.
+PASS RPX_NativeGuard.bas: every non-ASCII line byte-identical in original order; none removed/added (0).
+PASS RPX_NativeLU.bas: Option Explicit present.
+PASS RPX_NativeLU.bas: CRLF only.
+PASS RPX_NativeLU.bas: final CRLF retained.
+PASS RPX_NativeLU.bas: lines < 1023 bytes; longest 704.
+PASS RPX_NativeLU.bas: every non-ASCII line byte-identical in original order; none removed/added (0).
+PASS RPX_NativeMesh.bas: Option Explicit present.
+PASS RPX_NativeMesh.bas: CRLF only.
+PASS RPX_NativeMesh.bas: final CRLF retained.
+PASS RPX_NativeMesh.bas: lines < 1023 bytes; longest 299.
+PASS RPX_NativeMesh.bas: every non-ASCII line byte-identical in original order; none removed/added (0).
+PASS RPX_NativeSolver.bas: Option Explicit present.
+PASS RPX_NativeSolver.bas: CRLF only.
+PASS RPX_NativeSolver.bas: final CRLF retained.
+PASS RPX_NativeSolver.bas: lines < 1023 bytes; longest 295.
+PASS RPX_NativeSolver.bas: every non-ASCII line byte-identical in original order; none removed/added (0).
+PASS RPX_NT.bas: Option Explicit present.
+PASS RPX_NT.bas: CRLF only.
+PASS RPX_NT.bas: final CRLF retained.
+PASS RPX_NT.bas: lines < 1023 bytes; longest 178.
+PASS RPX_NT.bas: every non-ASCII line byte-identical in original order; none removed/added (0).
+PASS RPX_NTPrecision.bas: Option Explicit present.
+PASS RPX_NTPrecision.bas: CRLF only.
+PASS RPX_NTPrecision.bas: final CRLF retained.
+PASS RPX_NTPrecision.bas: lines < 1023 bytes; longest 185.
+PASS RPX_NTPrecision.bas: every non-ASCII line byte-identical in original order; none removed/added (0).
+PASS RPX_Order.bas: Option Explicit present.
+PASS RPX_Order.bas: CRLF only.
+PASS RPX_Order.bas: final CRLF retained.
+PASS RPX_Order.bas: lines < 1023 bytes; longest 121.
+PASS RPX_Order.bas: every non-ASCII line byte-identical in original order; none removed/added (2).
+PASS RPX_Output.bas: Option Explicit present.
+PASS RPX_Output.bas: CRLF only.
+PASS RPX_Output.bas: final CRLF retained.
+PASS RPX_Output.bas: lines < 1023 bytes; longest 186.
+PASS RPX_Output.bas: every non-ASCII line byte-identical in original order; none removed/added (10).
+PASS RPX_P4.bas: Option Explicit present.
+PASS RPX_P4.bas: CRLF only.
+PASS RPX_P4.bas: final CRLF retained.
+PASS RPX_P4.bas: lines < 1023 bytes; longest 431.
+PASS RPX_P4.bas: every non-ASCII line byte-identical in original order; none removed/added (5).
+PASS RPX_P4.bas: emitted unified patch reconstructs candidate byte-for-byte.
+PASS RPX_P4.bas: all 2 added lines ASCII only.
+PASS RPX_P4.bas: no new E-form numeric literals outside strings/comments.
+PASS RPX_P4.bas: declaration names on added lines do not collide with reserved words/VBA builtins.
+PASS RPX_P4.bas: every added Dim/Static/module variable declaration explicitly types each identifier.
+PASS RPX_Profile.bas: Option Explicit present.
+PASS RPX_Profile.bas: CRLF only.
+PASS RPX_Profile.bas: final CRLF retained.
+PASS RPX_Profile.bas: lines < 1023 bytes; longest 164.
+PASS RPX_Profile.bas: every non-ASCII line byte-identical in original order; none removed/added (0).
+PASS RPX_Refine.bas: Option Explicit present.
+PASS RPX_Refine.bas: CRLF only.
+PASS RPX_Refine.bas: final CRLF retained.
+PASS RPX_Refine.bas: lines < 1023 bytes; longest 171.
+PASS RPX_Refine.bas: every non-ASCII line byte-identical in original order; none removed/added (0).
+PASS RPX_Robust.bas: Option Explicit present.
+PASS RPX_Robust.bas: CRLF only.
+PASS RPX_Robust.bas: final CRLF retained.
+PASS RPX_Robust.bas: lines < 1023 bytes; longest 200.
+PASS RPX_Robust.bas: every non-ASCII line byte-identical in original order; none removed/added (0).
+PASS RPX_Schur.bas: Option Explicit present.
+PASS RPX_Schur.bas: CRLF only.
+PASS RPX_Schur.bas: final CRLF retained.
+PASS RPX_Schur.bas: lines < 1023 bytes; longest 312.
+PASS RPX_Schur.bas: every non-ASCII line byte-identical in original order; none removed/added (0).
+PASS RPX_SchurCache.bas: Option Explicit present.
+PASS RPX_SchurCache.bas: CRLF only.
+PASS RPX_SchurCache.bas: final CRLF retained.
+PASS RPX_SchurCache.bas: lines < 1023 bytes; longest 149.
+PASS RPX_SchurCache.bas: every non-ASCII line byte-identical in original order; none removed/added (0).
+PASS RPX_SchurLDL.bas: Option Explicit present.
+PASS RPX_SchurLDL.bas: CRLF only.
+PASS RPX_SchurLDL.bas: final CRLF retained.
+PASS RPX_SchurLDL.bas: lines < 1023 bytes; longest 179.
+PASS RPX_SchurLDL.bas: every non-ASCII line byte-identical in original order; none removed/added (0).
+PASS RPX_Seep.bas: Option Explicit present.
+PASS RPX_Seep.bas: CRLF only.
+PASS RPX_Seep.bas: final CRLF retained.
+PASS RPX_Seep.bas: lines < 1023 bytes; longest 160.
+PASS RPX_Seep.bas: every non-ASCII line byte-identical in original order; none removed/added (21).
+PASS RPX_SeepUI.bas: Option Explicit present.
+PASS RPX_SeepUI.bas: CRLF only.
+PASS RPX_SeepUI.bas: final CRLF retained.
+PASS RPX_SeepUI.bas: lines < 1023 bytes; longest 365.
+PASS RPX_SeepUI.bas: every non-ASCII line byte-identical in original order; none removed/added (223).
+PASS RPX_SeepWT.bas: Option Explicit present.
+PASS RPX_SeepWT.bas: CRLF only.
+PASS RPX_SeepWT.bas: final CRLF retained.
+PASS RPX_SeepWT.bas: lines < 1023 bytes; longest 220.
+PASS RPX_SeepWT.bas: every non-ASCII line byte-identical in original order; none removed/added (50).
+PASS RPX_Seismic.bas: Option Explicit present.
+PASS RPX_Seismic.bas: CRLF only.
+PASS RPX_Seismic.bas: final CRLF retained.
+PASS RPX_Seismic.bas: lines < 1023 bytes; longest 211.
+PASS RPX_Seismic.bas: every non-ASCII line byte-identical in original order; none removed/added (44).
+PASS RPX_Solve.bas: Option Explicit present.
+PASS RPX_Solve.bas: CRLF only.
+PASS RPX_Solve.bas: final CRLF retained.
+PASS RPX_Solve.bas: lines < 1023 bytes; longest 473.
+PASS RPX_Solve.bas: every non-ASCII line byte-identical in original order; none removed/added (0).
+PASS RPX_UI.bas: Option Explicit present.
+PASS RPX_UI.bas: CRLF only.
+PASS RPX_UI.bas: final CRLF retained.
+PASS RPX_UI.bas: lines < 1023 bytes; longest 208.
+PASS RPX_UI.bas: every non-ASCII line byte-identical in original order; none removed/added (183).
+PASS RPX_UI.bas: emitted unified patch reconstructs candidate byte-for-byte.
+PASS RPX_UI.bas: all 3 added lines ASCII only.
+PASS RPX_UI.bas: no new E-form numeric literals outside strings/comments.
+PASS RPX_UI.bas: declaration names on added lines do not collide with reserved words/VBA builtins.
+PASS RPX_UI.bas: every added Dim/Static/module variable declaration explicitly types each identifier.
+PASS RPX_Upper.bas: Option Explicit present.
+PASS RPX_Upper.bas: CRLF only.
+PASS RPX_Upper.bas: final CRLF retained.
+PASS RPX_Upper.bas: lines < 1023 bytes; longest 181.
+PASS RPX_Upper.bas: every non-ASCII line byte-identical in original order; none removed/added (0).
+PASS RPX_Water.bas: Option Explicit present.
+PASS RPX_Water.bas: CRLF only.
+PASS RPX_Water.bas: final CRLF retained.
+PASS RPX_Water.bas: lines < 1023 bytes; longest 184.
+PASS RPX_Water.bas: every non-ASCII line byte-identical in original order; none removed/added (52).
+PASS RPX_WorkPrecision.bas: Option Explicit present.
+PASS RPX_WorkPrecision.bas: CRLF only.
+PASS RPX_WorkPrecision.bas: final CRLF retained.
+PASS RPX_WorkPrecision.bas: lines < 1023 bytes; longest 149.
+PASS RPX_WorkPrecision.bas: every non-ASCII line byte-identical in original order; none removed/added (0).
+PASS ThisWorkbook.code.txt: CRLF only.
+PASS ThisWorkbook.code.txt: final CRLF retained.
+PASS ThisWorkbook.code.txt: lines < 1023 bytes; longest 75.
+PASS ThisWorkbook.code.txt: every non-ASCII line byte-identical in original order; none removed/added (0).
+PASS Only intended Native/settings modules differ; Fs has no changes.
+PASS RPX_Fs.bas: protected acceptance/search/caller/workbook source byte-identical.
+PASS RPX_Lower.bas: protected acceptance/search/caller/workbook source byte-identical.
+PASS RPX_Audit.bas: protected acceptance/search/caller/workbook source byte-identical.
+PASS RPX_Upper.bas: protected acceptance/search/caller/workbook source byte-identical.
+PASS RPX_Certificate.bas: protected acceptance/search/caller/workbook source byte-identical.
+PASS RPX_Adapt.bas: protected acceptance/search/caller/workbook source byte-identical.
+PASS RPX_Solve.bas: protected acceptance/search/caller/workbook source byte-identical.
+PASS ThisWorkbook.code.txt: protected acceptance/search/caller/workbook source byte-identical.
+PASS Existing primal algebraic audit, finiteness/shape checks and tolerances text-identical.
+PASS Dual-audit acceptance expression/tolerances unchanged; diagnostics only.
+PASS Superseded early-rejection status, settings, helpers and events absent throughout candidate source.
+PASS Literal original-primal predicate checks original context, zero quadratic diagonal and original cost.
+PASS Native call logs expose call ID, program role, applied setting and actual ABI equilibration.
+PASS Reset clears stale dual audit marker, call ID and all residual/objective values.
+PASS Dual vector event records fresh original audit, role and producing call ID.
+PASS Direct end diagnostics separate primal and dual-audit phases and candidate origin; entry resets dual state.
+PASS All existing original-primal gates, helper/recenter scheduling, commit re-audit and Boolean return retained.
+PASS Every direct acceptance/ok assignment and its inline condition remains text-identical and in original order.
+PASS Upper override is default-on, restricted to literal upper primal, and zero leaves prior selector unchanged.
+PASS Failed retry restores both native call ID and applied equilibration of the original candidate.
+PASS All native DLL/ABI declarations byte-identical to rc9a.
+PASS RPX_AccuracyNative.bas: module-level variable declarations precede first procedure.
+PASS RPX_P4.bas: module-level variable declarations precede first procedure.
+PASS RPX_UI.bas: module-level variable declarations precede first procedure.
+PASS On-disk rc9b.diff bytes match the independently reconstructed unified patch.
+
+STATIC DECLARATION/CONTROL-FLOW REVIEW (not compilation):
+New Native diagnostic globals are typed and declared before the first procedure.
+The upper switch defaults to 1 and only forces ABI equilibrate=1 for current literal original upper LPs.
+Switch 0 keeps the original rc9a selection, including thin-chain and retry overrides; it does not force a packed zero.
+The original helper retains ACCURACY_DLL_DUAL_EQUILIBRATE; lower/cap/QP paths retain rc9a settings.
+Per-call logs and direct trial snapshots distinguish primal, helper, last candidate and audited dual phases.
+Dual diagnostics are reset at direct/helper/audit entry; zero residuals require dual_audited=True to be evidence.
+Existing numerical audit and field-gate comparisons, acceptance branches and fallback budgets remain unchanged.
+Fs, Adapt, physical audits, lower logic and all other unedited modules remain byte-for-byte rc9a.
+Only one switch is added to the settings registration, validation and improvement preset.
+Source-sign finding: audited upper objective below 0.999999 is the certified b side; see DESIGN_rc9b.md.
+Python driver was not run. Excel, VBA, build, native replay, git and network were not used.
+
+DECLARATION NAMES ON ADDED LINES (unique per module; existing declarations moved/replaced may be included)
+RPX_AccuracyNative.bas: a
+RPX_AccuracyNative.bas: accuracyCallSequence
+RPX_AccuracyNative.bas: AccuracyNativeCallId
+RPX_AccuracyNative.bas: AccuracyNativeDualAuditCallId
+RPX_AccuracyNative.bas: AccuracyNativeDualAudited
+RPX_AccuracyNative.bas: AccuracyNativeDualAuditRole
+RPX_AccuracyNative.bas: AccuracyNativeDualAuditStatus
+RPX_AccuracyNative.bas: AccuracyNativeEquilibrate
+RPX_AccuracyNative.bas: atyComplete
+RPX_AccuracyNative.bas: atyInf
+RPX_AccuracyNative.bas: b
+RPX_AccuracyNative.bas: callDetail
+RPX_AccuracyNative.bas: callId
+RPX_AccuracyNative.bas: candidate
+RPX_AccuracyNative.bas: candidateCallId
+RPX_AccuracyNative.bas: candidateRole
+RPX_AccuracyNative.bas: complete
+RPX_AccuracyNative.bas: corr
+RPX_AccuracyNative.bas: correction
+RPX_AccuracyNative.bas: costIndex
+RPX_AccuracyNative.bas: costInf
+RPX_AccuracyNative.bas: detail
+RPX_AccuracyNative.bas: DiagnosticAbsDifference
+RPX_AccuracyNative.bas: dualConeLog
+RPX_AccuracyNative.bas: dualInf
+RPX_AccuracyNative.bas: dualObjectiveLog
+RPX_AccuracyNative.bas: dualStatLog
+RPX_AccuracyNative.bas: endDetail
+RPX_AccuracyNative.bas: i
+RPX_AccuracyNative.bas: initialCallId
+RPX_AccuracyNative.bas: initialEquilibrate
+RPX_AccuracyNative.bas: j
+RPX_AccuracyNative.bas: k
+RPX_AccuracyNative.bas: literalOriginal
+RPX_AccuracyNative.bas: original
+RPX_AccuracyNative.bas: OriginalDllScope
+RPX_AccuracyNative.bas: packedSeconds
+RPX_AccuracyNative.bas: pr
+RPX_AccuracyNative.bas: primalAudited
+RPX_AccuracyNative.bas: primalAuditPass
+RPX_AccuracyNative.bas: primalCallId
+RPX_AccuracyNative.bas: primalCone
+RPX_AccuracyNative.bas: primalEquality
+RPX_AccuracyNative.bas: primalEquilibrate
+RPX_AccuracyNative.bas: primalObjective
+RPX_AccuracyNative.bas: primalRole
+RPX_AccuracyNative.bas: primalStatus
+RPX_AccuracyNative.bas: programRole
+RPX_AccuracyNative.bas: recenterFirstCall
+RPX_AccuracyNative.bas: requestedSeconds
+RPX_AccuracyNative.bas: ResetDualDiagnostics
+RPX_AccuracyNative.bas: resultStatus
+RPX_AccuracyNative.bas: row
+RPX_AccuracyNative.bas: RPX_AccuracyDualAudit
+RPX_AccuracyNative.bas: stat
+RPX_AccuracyNative.bas: statIndex
+RPX_AccuracyNative.bas: ThinDllOriginalScope
+RPX_AccuracyNative.bas: thinOriginal
+RPX_AccuracyNative.bas: threshold
+RPX_AccuracyNative.bas: total
+RPX_AccuracyNative.bas: upperEqu
+RPX_AccuracyNative.bas: upperEquilibrateSetting
+RPX_AccuracyNative.bas: violation
+
+SHA256 INVENTORY: name | reference | candidate | disposition
+RPX_AccuracyMesh.bas | ec54485fb54a8ad6568a5b138c3db8f46ec7f397c3197d76117ba8c1d8c7d08f | ec54485fb54a8ad6568a5b138c3db8f46ec7f397c3197d76117ba8c1d8c7d08f | byte-identical
+RPX_AccuracyNative.bas | 767f7670daf796af2d332357c05e294157ad72e30a6e6e74f5ecc4ec77542702 | 5df0b308f43f8077e05ad73399719b0037fab1046d349d7ee53bd1668f7ab0f0 | changed
+RPX_Adapt.bas | c88201290d09198ef37fa5074610609acfea8c08237f1b37116e357cfca1ced1 | c88201290d09198ef37fa5074610609acfea8c08237f1b37116e357cfca1ced1 | byte-identical
+RPX_Affine.bas | 1db43674855d97522da6c1ee68cbaad7f60bc197ae7980e7d4d16b57547e5d8c | 1db43674855d97522da6c1ee68cbaad7f60bc197ae7980e7d4d16b57547e5d8c | byte-identical
+RPX_AHO3.bas | 26514eb2aa91485f5f194f2ae8d52f43ff3d0c3207618a8fe78340441bd299ca | 26514eb2aa91485f5f194f2ae8d52f43ff3d0c3207618a8fe78340441bd299ca | byte-identical
+RPX_Audit.bas | e3383fc5e8370227c6971185b1245b45fa43f629164072b74d05202edb96bd73 | e3383fc5e8370227c6971185b1245b45fa43f629164072b74d05202edb96bd73 | byte-identical
+RPX_Bearing.bas | cbc73398a91103eaa8064369c91fc953f4a388f553d6e1008f2b40520176225d | cbc73398a91103eaa8064369c91fc953f4a388f553d6e1008f2b40520176225d | byte-identical
+RPX_C0Guides.bas | 2525c8d5c5f0dc43b6eb686d9afd012d9f110d203b74e1a9188d239405085edd | 2525c8d5c5f0dc43b6eb686d9afd012d9f110d203b74e1a9188d239405085edd | byte-identical
+RPX_C0Select.bas | 148f52d956957ae7b56c05f571ceef32540e3fb3b83554e537ae66e09c1a7ccf | 148f52d956957ae7b56c05f571ceef32540e3fb3b83554e537ae66e09c1a7ccf | byte-identical
+RPX_Certificate.bas | e41016e9db36050ee10ec454d968523fe60fba7e963af40a0b0e1f7e2fecd6e5 | e41016e9db36050ee10ec454d968523fe60fba7e963af40a0b0e1f7e2fecd6e5 | byte-identical
+RPX_ColumnOrder.bas | 560cf3fa14b8eb2c38ec522e87f3e333ae874e8468384bf855f42712c2f1a5eb | 560cf3fa14b8eb2c38ec522e87f3e333ae874e8468384bf855f42712c2f1a5eb | byte-identical
+RPX_Conic.bas | 79b8b4152638fd9c7aa29eed34324c195b8c8f74041ee1440dbb06dcd3c37840 | 79b8b4152638fd9c7aa29eed34324c195b8c8f74041ee1440dbb06dcd3c37840 | byte-identical
+RPX_Control.bas | f39473d3c5cf97b323dbb8d5296f2b5a75f9ae994ec4aecbc2a5c507331b0992 | f39473d3c5cf97b323dbb8d5296f2b5a75f9ae994ec4aecbc2a5c507331b0992 | byte-identical
+RPX_Definition.bas | add1b63fcabaa3f8f6d934a9a87e5d50b80ac3a9e578924ec7a4c27e87b6d91f | add1b63fcabaa3f8f6d934a9a87e5d50b80ac3a9e578924ec7a4c27e87b6d91f | byte-identical
+RPX_Diagnostics.bas | 4dac71ae5a2820728b4692004819a46491e40b0cab37391b8317555b494bf1d6 | 4dac71ae5a2820728b4692004819a46491e40b0cab37391b8317555b494bf1d6 | byte-identical
+RPX_Exchange.bas | bcb9da802fc928c18cc802682d1e01bf00f6a0a39bb01a03055b1310b1f61f81 | bcb9da802fc928c18cc802682d1e01bf00f6a0a39bb01a03055b1310b1f61f81 | byte-identical
+RPX_FactorFree.bas | 7aa6255e58ec85af8e170f4f91b80b689ad347c0b3230857a334aad9ff8e4864 | 7aa6255e58ec85af8e170f4f91b80b689ad347c0b3230857a334aad9ff8e4864 | byte-identical
+RPX_FixedLowerRecovery.bas | 601f59a7446d95775586200b8323afd245835f4dd944ce189fbc5c783c86c1e1 | 601f59a7446d95775586200b8323afd245835f4dd944ce189fbc5c783c86c1e1 | byte-identical
+RPX_FixedWitness.bas | b11b940743c32ad253d0d2c9a53c0057762a4b8d98db61c487ee4eeb3794e88b | b11b940743c32ad253d0d2c9a53c0057762a4b8d98db61c487ee4eeb3794e88b | byte-identical
+RPX_FlowMesh.bas | 1016edee32d4527f27db395c7b3082df5f84cb9df1ca6003363e1aa4b165db69 | 1016edee32d4527f27db395c7b3082df5f84cb9df1ca6003363e1aa4b165db69 | byte-identical
+RPX_FreeFaceSplit.bas | df4f932f1e1b7b7390d062057f219c310643b7ce659231b1c3d4abdb7174466c | df4f932f1e1b7b7390d062057f219c310643b7ce659231b1c3d4abdb7174466c | byte-identical
+RPX_Fs.bas | 4ccf1a5e8c56c6b9f156d896d05b555c6b4b6bdf9ae772a1b113645191281b68 | 4ccf1a5e8c56c6b9f156d896d05b555c6b4b6bdf9ae772a1b113645191281b68 | byte-identical
+RPX_Guard.bas | e326fe7fbc74b7ad30946f1a65e0e6c8bac5eb19bc1cd4801c310e3cf93f2a1b | e326fe7fbc74b7ad30946f1a65e0e6c8bac5eb19bc1cd4801c310e3cf93f2a1b | byte-identical
+RPX_HSDCandidate.bas | db4aba8cf8c0f2f45ef21230aff5b757c57487cc8724e0bd0f6319a0711dc689 | db4aba8cf8c0f2f45ef21230aff5b757c57487cc8724e0bd0f6319a0711dc689 | byte-identical
+RPX_HSDLu.bas | 4259698082c53d1fd72afc00693baa381d4965acfb4cbea379ae1b33c6b3e4a2 | 4259698082c53d1fd72afc00693baa381d4965acfb4cbea379ae1b33c6b3e4a2 | byte-identical
+RPX_HSDPrecision.bas | 1ced0a3645007e6fc6235aea7ff9832a4e14ebad33536be12e3af845a35559f2 | 1ced0a3645007e6fc6235aea7ff9832a4e14ebad33536be12e3af845a35559f2 | byte-identical
+RPX_HSDQuality.bas | 40259e63df092f06dcbb5513526af91191416ec3b53435eab68baa4345a95e5e | 40259e63df092f06dcbb5513526af91191416ec3b53435eab68baa4345a95e5e | byte-identical
+RPX_Indicator.bas | 723de6a651889c63e67bcb029ba77738f90f74fda9e8444cb59046fe5a2002b8 | 723de6a651889c63e67bcb029ba77738f90f74fda9e8444cb59046fe5a2002b8 | byte-identical
+RPX_KktCapture.bas | 1f486164023bcc248875fbee33d98a663d343f1b4099d76b1b12993380a8cd9a | 1f486164023bcc248875fbee33d98a663d343f1b4099d76b1b12993380a8cd9a | byte-identical
+RPX_LDL.bas | 03ef3d4cd0c11149d38711cd00821a38b9016f69f3029e940bb34090df042ab3 | 03ef3d4cd0c11149d38711cd00821a38b9016f69f3029e940bb34090df042ab3 | byte-identical
+RPX_LoadStepMesh.bas | 47c050c4b94e34521f4023992d9b9e108cfde9fff3fc876e4eb7a7562075fffa | 47c050c4b94e34521f4023992d9b9e108cfde9fff3fc876e4eb7a7562075fffa | byte-identical
+RPX_Lower.bas | ee575b799d8f043c3803dc5e335342585368148dbe40c231c9f9a935eaea071e | ee575b799d8f043c3803dc5e335342585368148dbe40c231c9f9a935eaea071e | byte-identical
+RPX_LowerCache.bas | 640ca2b9a4b0245fdf921102e7b9356fe0b2d29f36ed4ec930d3c27c6ffac663 | 640ca2b9a4b0245fdf921102e7b9356fe0b2d29f36ed4ec930d3c27c6ffac663 | byte-identical
+RPX_Mesh.bas | 4326bef7e5dcc56a6ce5994576ae8183406b6209358def449871b94025e398b5 | 4326bef7e5dcc56a6ce5994576ae8183406b6209358def449871b94025e398b5 | byte-identical
+RPX_MeshGuard.bas | f5d7fb45ac05a42c6698833b35095bc0dfe182937055710d632e6835f4d4b313 | f5d7fb45ac05a42c6698833b35095bc0dfe182937055710d632e6835f4d4b313 | byte-identical
+RPX_MeshTests.bas | 7adab7d50d147c115100a040c7b5e66bd78915425354aa7c1e453f5bce445e99 | 7adab7d50d147c115100a040c7b5e66bd78915425354aa7c1e453f5bce445e99 | byte-identical
+RPX_Model.bas | 94588c42f7d653ffd46754cd3067f808caf4d1eeb4ddc58c381cf92970549aad | 94588c42f7d653ffd46754cd3067f808caf4d1eeb4ddc58c381cf92970549aad | byte-identical
+RPX_Native.bas | 8820c2c6e2af78f59f6c16b0d01281019c5173d6dcc2c1c0cba1a82fc95e82ec | 8820c2c6e2af78f59f6c16b0d01281019c5173d6dcc2c1c0cba1a82fc95e82ec | byte-identical
+RPX_NativeBulk.bas | ee860f6ddf72c9f15edabf7ca8158a6126d546bc4ac50b1192d43f816e1be949 | ee860f6ddf72c9f15edabf7ca8158a6126d546bc4ac50b1192d43f816e1be949 | byte-identical
+RPX_NativeGuard.bas | f396f22f327aee6335d5c3e7d045d2eca4d891b1ab0d06d31e723759d5bb7900 | f396f22f327aee6335d5c3e7d045d2eca4d891b1ab0d06d31e723759d5bb7900 | byte-identical
+RPX_NativeLU.bas | ccf566350ab78eb2e6f117a504d3aa3c4c0247eaf638b6cd997b7eb204e4d6c0 | ccf566350ab78eb2e6f117a504d3aa3c4c0247eaf638b6cd997b7eb204e4d6c0 | byte-identical
+RPX_NativeMesh.bas | 4c7a829d4dceb811d57609913c57ee4436b0db838f962de5b805f751112a81ee | 4c7a829d4dceb811d57609913c57ee4436b0db838f962de5b805f751112a81ee | byte-identical
+RPX_NativeSolver.bas | a98b27d492eea27129e9445438270924036f0504a7564504a4b70e0f8c8ea033 | a98b27d492eea27129e9445438270924036f0504a7564504a4b70e0f8c8ea033 | byte-identical
+RPX_NT.bas | e986114e4b19d2c4939874460168ef46ca77c47b8bce851735d21385f351e818 | e986114e4b19d2c4939874460168ef46ca77c47b8bce851735d21385f351e818 | byte-identical
+RPX_NTPrecision.bas | 677f9c58d1ba328343349c56787641bc4d27a7a9d8391df7a44661b6c4d7cb6e | 677f9c58d1ba328343349c56787641bc4d27a7a9d8391df7a44661b6c4d7cb6e | byte-identical
+RPX_Order.bas | 1c4a81b49f57c79d000b52eac777bb6c6624056cb8f40abf65f2ffb4f8d5006a | 1c4a81b49f57c79d000b52eac777bb6c6624056cb8f40abf65f2ffb4f8d5006a | byte-identical
+RPX_Output.bas | 0d861a357e31a0116f6accec6762f9321264f444d5a8723e1bc0ff37f98a2777 | 0d861a357e31a0116f6accec6762f9321264f444d5a8723e1bc0ff37f98a2777 | byte-identical
+RPX_P4.bas | e2fcf331665d6e90d55e11ba3469b169ada34dd9d2f9fc7e02ac8cbd5ca14306 | f6f7933de848173b807c31c5eb66cfa0dcff50ee51b415e74bd12265de127ec7 | changed
+RPX_Profile.bas | c7a85c4485bf18c14264c2645a0106a315ae2263fdc099b94c583dab9e926b41 | c7a85c4485bf18c14264c2645a0106a315ae2263fdc099b94c583dab9e926b41 | byte-identical
+RPX_Refine.bas | 4c7635708a42d1a6134b49622830621a5b0832c2d1cb285c1fb7e22800c00fd9 | 4c7635708a42d1a6134b49622830621a5b0832c2d1cb285c1fb7e22800c00fd9 | byte-identical
+RPX_Robust.bas | c94b8ceaac282201b9f8e031f91510a2afb26448b65d32cf916d0823ae1b17be | c94b8ceaac282201b9f8e031f91510a2afb26448b65d32cf916d0823ae1b17be | byte-identical
+RPX_Schur.bas | 18c7814f8036e3287ebd5d8cad3b004fd45139880c0ba528905fe60aefe03370 | 18c7814f8036e3287ebd5d8cad3b004fd45139880c0ba528905fe60aefe03370 | byte-identical
+RPX_SchurCache.bas | 71b9810fa0164b931929dce5a4238c1e3a6f975dc968b3ababca62bc08b5baae | 71b9810fa0164b931929dce5a4238c1e3a6f975dc968b3ababca62bc08b5baae | byte-identical
+RPX_SchurLDL.bas | 5de3e755f95c6167354f72a28ccb51afce74bcb173cfeb0a61a2f3402237bc5c | 5de3e755f95c6167354f72a28ccb51afce74bcb173cfeb0a61a2f3402237bc5c | byte-identical
+RPX_Seep.bas | bb1b55669086dd321d13bf601bced412fbf6f2ae323360968a8b8810a49d92b0 | bb1b55669086dd321d13bf601bced412fbf6f2ae323360968a8b8810a49d92b0 | byte-identical
+RPX_SeepUI.bas | 2a444be97f68bf87c42770cad8e59ecdc98747844ecfa1ee3ff294509796dcb0 | 2a444be97f68bf87c42770cad8e59ecdc98747844ecfa1ee3ff294509796dcb0 | byte-identical
+RPX_SeepWT.bas | 9d96376f4e1c30f7263789c4d5f64f50da0fd8ae272ec95d88d3f9371d176beb | 9d96376f4e1c30f7263789c4d5f64f50da0fd8ae272ec95d88d3f9371d176beb | byte-identical
+RPX_Seismic.bas | 71e1ad803a0a8ff9c6d099d3560bfd6305de310926eebd170938842cd89adb41 | 71e1ad803a0a8ff9c6d099d3560bfd6305de310926eebd170938842cd89adb41 | byte-identical
+RPX_Solve.bas | 24986d44485c0906e1922bf047014646da616780ff7c44f1fda90c67ccca9b22 | 24986d44485c0906e1922bf047014646da616780ff7c44f1fda90c67ccca9b22 | byte-identical
+RPX_UI.bas | b9eebdda29c8f5aa7d24bc3bc695f4504ff63ffd01de733246231eb62fc81e61 | 11be38ca23604cdd61a77807642a20393f577790add5c0667b1690d8e8ed27fc | changed
+RPX_Upper.bas | 97b097e62a025dbf3db07c1c124b8e4bfb7037b3892e63f424e54db82c5defd1 | 97b097e62a025dbf3db07c1c124b8e4bfb7037b3892e63f424e54db82c5defd1 | byte-identical
+RPX_Water.bas | 7293f11a114e6f69b894cb4debe1b3c31fe780c7a6341496fc81be0ed70a2232 | 7293f11a114e6f69b894cb4debe1b3c31fe780c7a6341496fc81be0ed70a2232 | byte-identical
+RPX_WorkPrecision.bas | 253afaec8d8ddc9c5d19398bc956f42af254d082f19aa75a0235fa6f89d178bd | 253afaec8d8ddc9c5d19398bc956f42af254d082f19aa75a0235fa6f89d178bd | byte-identical
+ThisWorkbook.code.txt | 28d100a977206b77c9564804a442c844de3dfc86dfaa1257ebe7018ee97cc5dc | 28d100a977206b77c9564804a442c844de3dfc86dfaa1257ebe7018ee97cc5dc | byte-identical

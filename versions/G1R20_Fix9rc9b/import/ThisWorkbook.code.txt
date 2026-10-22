@@ -1,0 +1,13 @@
+Option Explicit
+
+Private Sub Workbook_Open()
+    Call RPX_WorkbookOpened
+End Sub
+
+Private Sub Workbook_SheetChange(ByVal sh As Object, ByVal target As Range)
+    Call RPX_WorkbookSheetChanged(sh, target)
+End Sub
+
+Private Sub Workbook_SheetCalculate(ByVal sh As Object)
+    Call RPX_WorkbookSheetCalculated(sh)
+End Sub

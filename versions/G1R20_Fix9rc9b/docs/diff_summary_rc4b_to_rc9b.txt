@@ -1,0 +1,10 @@
+ versions/{G1R20_Fix9rc4b => G1R20_Fix9rc9b}/src/vba/RPX_AccuracyNative.bas | 338 ++++++++++++++++--
+ versions/{G1R20_Fix9rc4b => G1R20_Fix9rc9b}/src/vba/RPX_Adapt.bas          | 703 ++++++++++++++++++++++++++++++++++---
+ versions/{G1R20_Fix9rc4b => G1R20_Fix9rc9b}/src/vba/RPX_Audit.bas          |  20 +-
+ versions/{G1R20_Fix9rc4b => G1R20_Fix9rc9b}/src/vba/RPX_Control.bas        |  12 +
+ versions/{G1R20_Fix9rc4b => G1R20_Fix9rc9b}/src/vba/RPX_Diagnostics.bas    |   8 +
+ versions/{G1R20_Fix9rc4b => G1R20_Fix9rc9b}/src/vba/RPX_Fs.bas             | 315 +++++++++++++++--
+ versions/{G1R20_Fix9rc4b => G1R20_Fix9rc9b}/src/vba/RPX_P4.bas             |   4 +-
+ versions/{G1R20_Fix9rc4b => G1R20_Fix9rc9b}/src/vba/RPX_Solve.bas          | 447 ++++++++++++++++++++++-
+ versions/{G1R20_Fix9rc4b => G1R20_Fix9rc9b}/src/vba/RPX_UI.bas             |   3 +
+ 9 files changed, 1748 insertions(+), 102 deletions(-)

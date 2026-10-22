@@ -1,0 +1,1243 @@
+Attribute VB_Name = "RPX_Fs"
+
+' version=20260926_0945 engine=20260926_p2s_f01_f07
+Option Explicit
+' 20260913 speed: secant on recent points plus periodic bisection. Tolerance and endpoint audit unchanged.
+Public RLowerFs As Double, RUpperFs As Double, RUpperField() As Double, RLowerField() As Double
+Public RFsCalls As Long, RFsTolerance As Double
+Public RFsActive As Boolean
+Public RFsSearchIncomplete As Boolean, RFsLargestRootBracket As Double, RFsSearchNote As String
+Private Type FsBracketState
+    valid As Boolean
+    analytical As Boolean
+    mode As String
+    meshKey As String
+    subdivisions As Long
+    target As Double
+    a As Double
+    b As Double
+    fa As Double
+    fb As Double
+    objectiveA As Double
+    objectiveB As Double
+    statusA As String
+    statusB As String
+    originalGuideA As Boolean
+    originalGuideB As Boolean
+    recoveredWitnessA As Boolean
+    thinSignA As Boolean
+    physicalKey As String
+    inputEpoch As Long
+    loadPhase As String
+    policy As String
+End Type
+Private Type FsTrialPoint
+    attempted As Boolean
+    valid As Boolean
+    factor As Double
+    residual As Double
+    objective As Double
+    status As String
+    errorNumber As Long
+    errorSource As String
+    errorText As String
+End Type
+Private upperBracket As FsBracketState, lowerBracket As FsBracketState
+Private upperFieldA() As Double, upperFieldB() As Double
+Private lowerFieldA() As Double, lowerFieldB() As Double
+' Fix9 rc5: owned by one evaluated thin-chain mesh; no guide supplies a field.
+Private thinFsActive As Boolean, thinFsSide As String, thinFsMesh As String, thinFsModel As String
+Private thinFsPolicy As String, thinFsPhase As String, thinFsEpoch As Long
+Private thinWitnessReady As Boolean, thinWitnessFactor As Double, thinWitnessObjective As Double, thinWitnessStatus As String
+Private thinWitnessField() As Double
+Private thinOppReady As Boolean, thinOppFactor As Double, thinOppResidual As Double, thinOppObjective As Double, thinOppStatus As String
+Private thinOppField() As Double, thinDualReady As Boolean, thinDualFactor As Double
+Private Function TryFsValue(ByVal factor As Double, ByVal mode As String, ByVal target As Double, ByRef value As Double, Optional ByVal preferUpperDual As Boolean = False) As Boolean
+    Dim message As String, source As String, number As Long, errorLine As Long
+    On Error GoTo Failed
+    Call RPX_AccuracyUpperDualFirstReset
+    If preferUpperDual And mode = "upper" Then Call RPX_AccuracyUpperDualFirstArm(factor)
+    RPX_TestHook "fs_value"
+    value = FsValue(factor, mode, target)
+    Call RPX_AccuracyUpperDualFirstReset
+    TryFsValue = True: Exit Function
+Failed:
+    number = err.number: message = err.description: source = err.source: errorLine = Erl
+    Call RPX_AccuracyUpperDualFirstReset
+    RPX_ErrorEvidence number, source, message, errorLine, "fs_trial"
+    On Error GoTo 0
+    If number = 18 Then err.Raise 18, , "ANALYSIS_CANCELLED"
+    If Not FsNumericRecoverable(number, message) Then err.Raise number, source, message
+    RFsSearchNote = mode & " F=" & factor & " " & message
+End Function
+Private Function FsNumericRecoverable(ByVal number As Long, ByVal message As String) As Boolean
+    If Not XCancel And number = 5 And message = "HSD_DD_PRODUCT_UNDERFLOW" Then
+        ' A failed point is UNKNOWN, never a sign/field/mesh proof. Retry only inside Fs search.
+        XStatus = "NUMERICAL_UNKNOWN": RProgramKind = ""
+        RPX_DiagEvent "fs_numerical_unknown", "reason=" & message & ";endpoints_unchanged=True;phase=fs_trial"
+        FsNumericRecoverable = True
+    Else
+        FsNumericRecoverable = RPX_Recoverable(number, message, "fs_trial", False)
+    End If
+End Function
+Private Function TryFsTrialPoint(ByVal factor As Double, ByVal mode As String, ByVal target As Double, ByRef point As FsTrialPoint) As Boolean
+    Dim number As Long, message As String, source As String, errorLine As Long
+    point.attempted = True
+    point.valid = False
+    point.factor = factor
+    point.residual = 0#
+    point.objective = 0#
+    point.status = ""
+    point.errorNumber = 0
+    point.errorSource = ""
+    point.errorText = ""
+    On Error GoTo trialFailed
+    point.residual = FsValue(factor, mode, target)
+    RPX_TestHook "fs_trial"
+    RPX_TestTrialResult point.residual
+    point.objective = XObjective
+    point.status = XStatus
+    If XStatus <> "OPTIMAL" Then
+        If mode = "lower" And RSubdivisions = 8 And FixedLowerFsEnabled() Then
+            If XStatus = "ORIGINAL_FIXED_LOWER_WITNESS" Then
+                If point.residual < 0# Or RPX_AuditRejected Or Not RPhysicalGateAccepted Then RProgramKind = "": Exit Function
+            ElseIf XStatus = "ORIGINAL_LOWER_DUAL_GUIDE" Then
+                If point.residual >= 0# Then RProgramKind = "": Exit Function
+            Else
+                RProgramKind = "": Exit Function
+            End If
+        ElseIf mode = "upper" And XStatus = "THIN_UPPER_BELOW_ROOT" Then
+            If point.residual < 0# Or Not RPX_ThinFsStatus5Allowed(factor) Then RProgramKind = "": Exit Function
+        ElseIf XStatus = "ORIGINAL_ACCURACY_UPPER_WITNESS" And mode = "upper" Then
+            If point.residual > 0# Or RPX_AuditRejected Or Not RPhysicalGateAccepted Then RProgramKind = "": Exit Function
+        ElseIf mode <> "upper" Or point.residual < 0# Or Not (RPX_OriginalGuideCurrent(factor) Or RPX_AccuracyGuideCurrent(factor, mode)) Then
+            RProgramKind = "": Exit Function
+        End If
+    End If
+    point.valid = True
+    TryFsTrialPoint = True
+    Exit Function
+trialFailed:
+    number = err.number: message = err.description: source = err.source: errorLine = Erl
+    RPX_ErrorEvidence number, source, message, errorLine, "fs_trial"
+    On Error GoTo 0
+    point.errorNumber = number: point.errorSource = source: point.errorText = message: point.status = XStatus
+    If number = 18 Then err.Raise 18, , "ANALYSIS_CANCELLED"
+    If Not FsNumericRecoverable(number, message) Then err.Raise number, source, message
+    RProgramKind = ""
+    RFsSearchNote = mode & " trial F=" & factor & " " & message
+End Function
+
+Public Sub RPX_TotalReferenceLoads()
+    Dim e As Long, j As Long, id As Long, rid As Long
+    RPX_AssertInputs "reference_load_transform"
+    RProgramKind = ""
+    For e = 0 To re - 1
+        For j = 0 To 1: RBody1(e, j) = RBody1(e, j) + RBody0(e, j): RBody0(e, j) = 0#: Next j
+    Next e
+    For rid = 0 To RR - 1
+        For j = 0 To 2: RRigids(rid).load1(j) = RRigids(rid).load1(j) + RRigids(rid).load0(j): RRigids(rid).load0(j) = 0#: Next j
+    Next rid
+    For id = 0 To RNEdge - 1
+        With REdges(id)
+            For j = 0 To 1: .load1(j) = .load1(j) + .load0(j): .load0(j) = 0#: Next j
+            If .element(1) < 0 Then RBoundary(RPX_EdgeKey(.a, .b)) = Array(.kind, .rigidId, 0#, 0#, .load1(0), .load1(1))
+        End With
+    Next id
+    RPX_LoadPhase = "reference_total"
+End Sub
+
+Public Function RPX_UpperObjectiveAcceptable() As Boolean
+    ' Same gate as RPX_FsEndpoint upper: collapse work, not mere OPTIMAL.
+    Const UPPER_TARGET As Double = 0.999999
+    Const UPPER_OBJ_EPS As Double = 0.00000001
+    If XStatus <> "OPTIMAL" And XStatus <> "ORIGINAL_ACCURACY_UPPER_WITNESS" Then Exit Function
+    If RPX_AuditRejected Then Exit Function
+    If RValue <> RValue Then Exit Function
+    If Abs(RValue) > 1E+300 Then Exit Function
+    If RValue > UPPER_TARGET + UPPER_OBJ_EPS Then Exit Function
+    RPX_UpperObjectiveAcceptable = True
+End Function
+
+Public Function RPX_Bound(ByVal mode As String, Optional ByVal strengthFactor As Double = 1#, Optional ByVal allowDirect As Boolean = True) As Double
+    Dim errorSource As String, errorLine As Long
+    Dim cacheHit As Boolean
+    Dim prepared As Boolean, errorNumber As Long, errorText As String, useHSD As Boolean, e As Long, i As Long, loadScale As Double
+    On Error GoTo Failed
+    RPX_SchurDeactivate
+    prepared = (RProgramKind = mode)
+    If prepared And mode = "lower" And XOriginalCompiled.ready Then
+        ' Issue #12: never reuse original-program evidence compiled at another quadrature.
+        If XOriginalCompiled.subdivisions <> RSubdivisions Or XOriginalCompiled.inputEpoch <> RPX_InputEpoch Then
+            RPX_DiagEvent "lower_prepared_drop", "reason=original_evidence;cached_q=" & XOriginalCompiled.subdivisions & ";q=" & RSubdivisions
+            prepared = False: RProgramKind = ""
+        End If
+    End If
+    RStrengthFactor = strengthFactor
+    If mode = "lower" And Not prepared Then
+        cacheHit = RPX_LowerCacheMatch()
+        If cacheHit Then prepared = True
+    End If
+    XStatus = "RUNNING": XIteration = 0: XObjective = 0#: XPrimalResidual = 0#: XDualResidual = 0#: XGap = 0#: RPX_AuditRejected = False
+    RPX_DiagSolveStart mode, strengthFactor, prepared
+    If cacheHit Then Call RPX_LowerCacheRestore
+    If Not prepared Then
+        Call RPX_LDLRelease
+        RPX_CapacityAssembly mode
+    End If
+    RPX_DiagBegin dpAssembly
+    RPX_Stage mode & " F=" & CStr(strengthFactor)
+    If prepared Then
+        If mode = "upper" Then RPX_RefreshUpper RProgramFs Else Call RPX_RefreshLower
+    Else
+        If mode = "upper" Then Call RPX_AssembleUpper Else Call RPX_AssembleLower
+    End If
+    RPX_DiagEnd dpAssembly
+    For e = 0 To re - 1
+        If RRigidId(e) < 0 Then
+            If RMaterials(RMatId(e)).cohesion = 0# Then useHSD = True: Exit For
+        End If
+    Next e
+    RPX_OrderMode = mode
+    If RPX_ThinChainBudgetActive And RPX_ThinChainUpperActive And mode = "upper" Then Call TestThinNoIterate
+    If allowDirect And RPX_DirectEnabled() Then
+        If Not prepared Then
+            Call RPX_ResetPreparedState: RPX_Compile: prepared = True
+        End If
+        If RPX_AccuracyDirectBound(strengthFactor, mode) Then
+            RProgramKind = mode: RProgramFs = strengthFactor: RPX_Bound = RValue
+            RPX_DiagSolveEnd XStatus: Exit Function
+        End If
+    End If
+    RPX_OptimizeBound prepared, mode, useHSD
+    If XStatus <> "OPTIMAL" Then
+        If RFsActive And mode = "upper" And (XStatus = "INFEASIBLE" Or RPX_OriginalGuideCurrent(strengthFactor)) Then
+            RValue = 1E+30
+        ElseIf RFsActive And mode = "lower" And XStatus = "UNBOUNDED" Then
+            RPX_DiagEvent "hsd_outer_audit", "kind=" & RPX_HSDKind & ";id=" & RPX_HSDCandidateId & ";status=" & XStatus & ";load_before=" & xx(RLoadVariable) & ";normalization=lambda_one"
+            loadScale = xx(RLoadVariable)
+            If loadScale <= 0# Then err.Raise 5, , "INVALID_LOAD_RECESSION_CERTIFICATE"
+            For i = 0 To XN - 1: xx(i) = xx(i) / loadScale: Next i
+            RPX_TestHook "hsd_outer_audit"
+            Call RPX_AuditLower: RValue = 1E+30
+        Else
+            If RFsActive And RSubdivisions = 8 And (FixedLowerFsEnabled() Or RPX_AccuracyEnabled()) Then
+                If XStatus = "NUMERICAL_UNKNOWN" Or XStatus = "NUMERICAL_FAILURE" Then err.Raise 5, "RPX_Fs", "HSD_NOT_CONVERGED"
+            End If
+            err.Raise 5, , " L   ??  ?d     ?  ?   F" & XStatus
+        End If
+        RProgramKind = mode: RProgramFs = strengthFactor: RPX_Bound = RValue
+        RPX_DiagSolveEnd XStatus: Exit Function
+    End If
+    If useHSD Then RPX_DiagEvent "hsd_outer_audit", "kind=" & RPX_HSDKind & ";id=" & RPX_HSDCandidateId & ";status=" & XStatus & ";normalization=tau"
+    If useHSD Then RPX_TestHook "hsd_outer_audit"
+    If mode = "upper" Then Call RPX_AuditUpper Else Call RPX_AuditLower
+    RProgramKind = mode: RProgramFs = strengthFactor
+    RPX_Bound = RValue
+    If mode = "lower" Then Call RPX_LowerCacheStore
+    RPX_DiagSolveEnd XStatus
+    Exit Function
+Failed:
+    errorNumber = err.number: errorText = err.description: errorSource = err.source: errorLine = Erl
+    If useHSD And InStr(errorText, "PHYSICAL_AUDIT_FAILED") > 0 Then RPX_HSDCaptureFailure errorText
+    RPX_SchurRelease
+    Call RPX_LowerCacheReset
+    RPX_ErrorEvidence errorNumber, errorSource, errorText, errorLine, "bound"
+    RProgramKind = ""
+    XStatus = RPX_DiagFailure(errorNumber, errorText)
+    RPX_DiagSolveEnd XStatus, errorText
+    err.Raise errorNumber, errorSource, errorText
+End Function
+
+' Explicit arming is required; default-off injection bypasses the solver only in tests.
+Private Sub TestThinNoIterate()
+    Dim injectedNumber As Long, injectedSource As String, injectedText As String
+    On Error GoTo Injected
+    RPX_TestHook "thin_upper_no_iterate"
+    Exit Sub
+Injected:
+    injectedNumber = err.number: injectedSource = err.source: injectedText = err.description
+    On Error GoTo 0
+    If injectedNumber = 5 And injectedSource = "RPX_TestInjection" And injectedText = "HSD_SOLVE_BUDGET_EXCEEDED" Then
+        Erase xx: Erase xy: Erase XSlack: Erase XDual
+        XIteration = 0
+        RPX_DiagEvent "test_no_iterate", "simulation=solver_bypassed;simulated_dll_status=0;dll_result_absent=1;hsd_allocated=0"
+    End If
+    err.Raise injectedNumber, injectedSource, injectedText
+End Sub
+Private Function FixedLowerFsEnabled() As Boolean
+    Dim enabled As Double
+    enabled = CDbl(RPX_Setting("LOWER_FIXED_RECOVERY", 0))
+    If Not RPX_SchurFinite(enabled) Then err.Raise 5, "RPX_Fs", "INVALID_LOWER_FIXED_RECOVERY"
+    If enabled <> 0 And enabled <> 1 Then err.Raise 5, "RPX_Fs", "INVALID_LOWER_FIXED_RECOVERY"
+    FixedLowerFsEnabled = (enabled = 1 Or RPX_AccuracyEnabled())
+End Function
+Private Function FsValue(ByVal factor As Double, ByVal mode As String, ByVal target As Double, Optional ByVal allowRecovery As Boolean = True) As Double
+    FsValue = FsValueCore(factor, mode, target, allowRecovery)
+    If RPX_ThinChainBudgetActive Then ThinFsObserve factor, mode, FsValue
+End Function
+Private Function FsValueCore(ByVal factor As Double, ByVal mode As String, ByVal target As Double, Optional ByVal allowRecovery As Boolean = True) As Double
+    Dim enabled As Boolean, nativeEnabled As Boolean, recovered() As Double, seconds As Double, number As Long, source As String, message As String
+    Dim hsdFallback As Boolean, hsdResidual As Double, hsdObjective As Double, hsdValue As Double, hsdField() As Double, hsdSlack() As Double
+    enabled = (allowRecovery And mode = "lower" And RSubdivisions = 8 And FixedLowerFsEnabled())
+    nativeEnabled = (allowRecovery And RSubdivisions = 8 And RPX_AccuracyEnabled())
+    Call RPX_AccuracyGuideReset
+    On Error GoTo Failed
+    RFsCalls = RFsCalls + 1: FsValueCore = RPX_Bound(mode, factor, allowRecovery) - target
+    If nativeEnabled And mode = "lower" And XStatus = "UNBOUNDED" Then
+        If RPX_AccuracyLowerRayWitness(factor, recovered) Then
+            xx = recovered: XObjective = -AccuracyNativeValue
+            RStrengthFactor = factor: Call RPX_AuditLower
+            If RPX_AuditRejected Or Not RPhysicalGateAccepted Or RValue < target Then err.Raise 5, "RPX_Fs", "HSD_RAY_PRIMAL_GATE_REJECTED"
+            XStatus = "ORIGINAL_FIXED_LOWER_WITNESS"
+            FsValueCore = RValue - target
+            Exit Function
+        End If
+    End If
+    If nativeEnabled And mode = "upper" And XStatus = "THIN_UPPER_BELOW_ROOT" Then
+        If RPX_ThinFsStatus5Allowed(factor) Then
+            Erase xx: Erase XSlack: RProgramKind = "": RProgramFs = factor
+            Exit Function
+        End If
+    End If
+    If nativeEnabled And RPX_AccuracyGuideCurrent(factor, mode) Then
+        Erase xx: Erase XSlack: RProgramKind = "": RProgramFs = factor
+        Exit Function
+    End If
+    If XStatus = "ORIGINAL_ACCURACY_UPPER_WITNESS" Or XStatus = "ORIGINAL_FIXED_LOWER_WITNESS" Then Exit Function
+    If nativeEnabled Then RPX_TestHook "fs_accuracy_original"
+    If nativeEnabled And mode = "upper" And (XStatus = "OPTIMAL" Or XStatus = "INFEASIBLE") And FsValueCore >= 0# Then
+        ' G1R20 Fix5 (#28): the original-dual recovery is an ADDITIONAL check after
+        ' an HSD solve. Its rejection is not an HSD convergence failure. Keep the
+        ' HSD point that already passed the original physical audit in RPX_Bound
+        ' as a last fallback (same evidence as ACCURACY_DLL_RECOVERY=0); the other
+        ' recovery paths are still tried first in Failed.
+        If XStatus = "OPTIMAL" And Not RPX_AuditRejected And RPhysicalGateAccepted Then
+            hsdFallback = True: hsdResidual = FsValueCore: hsdObjective = XObjective: hsdValue = RValue
+            hsdField = xx: hsdSlack = XSlack
+        End If
+        If Not RPX_AccuracyRecoverDual(factor, mode) Then err.Raise 5, "RPX_Fs", "ACCURACY_DUAL_RECOVERY_REJECTED"
+        hsdFallback = False
+        XStatus = "ORIGINAL_ACCURACY_DUAL_GUIDE": XObjective = AccuracyNativeDualObjective
+        If Not RPX_AccuracyGuideCurrent(factor, mode) Then err.Raise 5, "RPX_Fs", "ACCURACY_DUAL_CONTEXT_REJECTED"
+        FsValueCore = AccuracyNativeDualObjective - target
+        Erase xx: Erase XSlack: RProgramKind = "": RProgramFs = factor
+        Exit Function
+    End If
+    If enabled Then
+        RPX_TestHook "fs_lower_original"
+        If FsValueCore < 0# Then
+            ' G1R20 Fix5 (#28): same rule for the lower original-dual gate. The
+            ' fallback is used only when the gate exists because of the accuracy
+            ' DLL (LOWER_FIXED_RECOVERY<>1 keeps its explicit fixed-recovery path).
+            If nativeEnabled And XStatus = "OPTIMAL" And Not RPX_AuditRejected And RPhysicalGateAccepted And CDbl(RPX_Setting("LOWER_FIXED_RECOVERY", 0)) <> 1# Then
+                hsdFallback = True: hsdResidual = FsValueCore: hsdObjective = XObjective: hsdValue = RValue
+                hsdField = xx: hsdSlack = XSlack
+            End If
+            If Not RPX_OriginalLowerDualGate(factor, target, True) Then err.Raise 5, "RPX_Fs", "ACCURACY_LOWER_DUAL_GATE_REJECTED"
+            hsdFallback = False
+            FsValueCore = OriginalLowerDualCap - target: XStatus = "ORIGINAL_LOWER_DUAL_GUIDE"
+        End If
+    End If
+    If XStatus = "ORIGINAL_FARKAS_GUIDE" Then
+        If mode = "upper" And RPX_OriginalGuideCurrent(factor) Then
+            FsValueCore = 1#
+        Else
+            XStatus = "NUMERICAL_UNKNOWN"
+        End If
+    ElseIf XStatus = "INFEASIBLE" Or XStatus = "UNBOUNDED" Then
+        FsValueCore = 1#
+    End If
+    Exit Function
+Failed:
+    number = err.number: source = err.source: message = err.description
+    On Error GoTo 0
+    If number = 18 Then err.Raise number, source, message
+    If Not enabled And Not nativeEnabled Then err.Raise number, source, message
+    If Not FsNumericRecoverable(number, message) Then err.Raise number, source, message
+    XStatus = "NUMERICAL_UNKNOWN": RProgramKind = ""
+    ' rc9a: a pre-state thin budget failure is UNKNOWN, with no recovery center.
+    If RPX_ThinChainBudgetActive And number = 5 And message = "HSD_SOLVE_BUDGET_EXCEEDED" And XIteration = 0 Then
+        If Not FsCurrentIterateReady() Then
+            RPX_DiagEvent "fs_numerical_unknown", "reason=thin_budget_no_iterate;endpoints_unchanged=True;phase=fs_trial;original=" & message
+            err.Raise number, source, message
+        End If
+    End If
+    If hsdFallback Then
+        ' Fix5 (#28): an audited HSD OPTIMAL point whose extra recovery was rejected.
+        ' Try the existing recovery paths; if all reject, continue with the HSD point.
+        If TryAccuracyFsRecover(factor, mode, target, FsValueCore) Then Exit Function
+        xx = hsdField: XSlack = hsdSlack: XObjective = hsdObjective: RValue = hsdValue
+        XStatus = "OPTIMAL": RStrengthFactor = factor: RProgramKind = "": RProgramFs = factor
+        RPX_AuditRejected = False: RPhysicalGateAccepted = True: RPhysicalGateReason = ""
+        FsValueCore = hsdResidual
+        RPX_DiagEvent "accuracy_recovery_fallback", "code=" & message & ";mode=" & mode & ";Fs=" & factor & ";residual=" & hsdResidual & ";used=audited_hsd_optimal;original_physical_audit=PASS;equivalent_setting=ACCURACY_DLL_RECOVERY_0"
+        Exit Function
+    End If
+    If nativeEnabled Then
+        If AccuracyFsRecover(factor, mode, target, FsValueCore) Then Exit Function
+    End If
+    If Not enabled Then err.Raise number, source, message
+    RPX_DiagEvent "fs_fixed_lower_origin", "Fs=" & factor & ";reason=" & message & ";positive_primal_or_independent_original_dual_only=1"
+    If RPX_OriginalLowerDualGate(factor, target, True) Then
+        FsValueCore = OriginalLowerDualCap - target: XStatus = "ORIGINAL_LOWER_DUAL_GUIDE"
+        RProgramKind = "lower": RProgramFs = factor
+        Exit Function
+    End If
+    If CDbl(RPX_Setting("LOWER_FIXED_RECOVERY", 0)) <> 1# Then err.Raise number, source, message
+    seconds = CDbl(RPX_Setting("LOWER_FIXED_RECOVERY_SECONDS", 120))
+    If Not RPX_SchurFinite(seconds) Then err.Raise 5, "RPX_Fs", "INVALID_LOWER_FIXED_RECOVERY_SECONDS"
+    If seconds <= 0# Or seconds > 600# Then err.Raise 5, "RPX_Fs", "INVALID_LOWER_FIXED_RECOVERY_SECONDS"
+    If RPX_TryFixedLowerRecovery(factor, recovered, seconds, True) Then
+        xx = recovered: XObjective = -FixedLowerRecoveryValue
+        RStrengthFactor = factor: Call RPX_AuditLower
+        If RPX_AuditRejected Or Not RPhysicalGateAccepted Or RValue < target Then err.Raise 5, "RPX_Fs", "FIXED_RECOVERY_ENDPOINT_GATE_REJECTED"
+        XStatus = "ORIGINAL_FIXED_LOWER_WITNESS": RProgramKind = "lower": RProgramFs = factor
+        FsValueCore = RValue - target
+        RPX_DiagEvent "fs_fixed_lower_witness", "Fs=" & factor & ";lambda=" & RValue & ";q=8;fixed_dual_used=0;optimum_claimed=0;root_requires_separate_original_negative_dual=1"
+        Exit Function
+    End If
+    err.Raise number, source, message
+End Function
+Public Sub RPX_FsBracketReset()
+    Call RPX_AccuracyUpperDualFirstReset
+    upperBracket.valid = False
+    lowerBracket.valid = False
+End Sub
+Private Function FsArrayReady(ByRef values() As Double) As Boolean
+    Dim n As Long
+    On Error GoTo Missing
+    n = UBound(values)
+    If n >= LBound(values) Then FsArrayReady = True
+    Exit Function
+Missing:
+    If err.number <> 9 Then err.Raise err.number, err.source, err.description
+End Function
+' Check shape without eager evaluation of bounds on an unallocated iterate.
+Private Function FsCurrentIterateReady() As Boolean
+    Dim firstIndex As Long, lastIndex As Long
+    If XN <= 0 Then Exit Function
+    On Error GoTo Missing
+    firstIndex = LBound(xx)
+    lastIndex = UBound(xx)
+    If firstIndex <> 0 Then Exit Function
+    If lastIndex <> XN - 1 Then Exit Function
+    FsCurrentIterateReady = True
+    Exit Function
+Missing:
+    If err.number <> 9 Then err.Raise err.number, err.source, err.description
+    err.Clear
+End Function
+Private Function FsMeshKey() As String
+    FsMeshKey = CStr(RPX_ModelVersion())
+End Function
+Public Function RPX_ActualRootBracket(ByVal side As String, ByRef a As Double, ByRef b As Double, Optional ByVal expectedFs As Double = 0#) As Boolean
+    Dim stored As FsBracketState
+    a = 0#: b = 0#
+    If side = "lower" Then
+        stored = lowerBracket
+    ElseIf side = "upper" Then
+        stored = upperBracket
+    Else
+        err.Raise 5, "RPX_Fs", "ROOT_BRACKET_SIDE"
+    End If
+    If Not stored.valid Or stored.meshKey <> FsMeshKey() Or stored.subdivisions <> RSubdivisions Then Exit Function
+    If stored.mode <> side Or Not RPX_SchurFinite(stored.target) Then Exit Function
+    If side = "lower" Then
+        If stored.target <> 1.000001 Then Exit Function
+    Else
+        If stored.target <> 0.999999 Then Exit Function
+    End If
+    If stored.thinSignA Then
+        If side <> "upper" Or stored.statusA <> "THIN_UPPER_BELOW_ROOT" Then Exit Function
+        If Not ThinFsContext(side) Then Exit Function
+        If stored.inputEpoch <> RPX_InputEpoch Or stored.physicalKey <> RPX_ExactModel() Then Exit Function
+        If stored.loadPhase <> RPX_LoadPhase Or stored.policy <> RPX_AnalysisPolicy() Then Exit Function
+        If stored.statusB <> "OPTIMAL" And stored.statusB <> "ORIGINAL_ACCURACY_UPPER_WITNESS" Then Exit Function
+        If Not RPX_SchurFinite(stored.a) Or Not RPX_SchurFinite(stored.b) Or Not RPX_SchurFinite(stored.fa) Or Not RPX_SchurFinite(stored.fb) Then Exit Function
+        If stored.analytical Or stored.b - stored.a > 0.0001 * WorksheetFunction.Max(1#, (stored.a + stored.b) / 2#) Then Exit Function
+    ElseIf stored.recoveredWitnessA Or stored.originalGuideB Then
+        If side <> "lower" Or stored.subdivisions <> 8 Then Exit Function
+        If Not stored.originalGuideB Or stored.statusB <> "ORIGINAL_LOWER_DUAL_GUIDE" Then Exit Function
+        If stored.statusA <> "OPTIMAL" And Not (stored.recoveredWitnessA And stored.statusA = "ORIGINAL_FIXED_LOWER_WITNESS") Then Exit Function
+        If stored.inputEpoch <> RPX_InputEpoch Or stored.physicalKey <> RPX_ExactModel() Then Exit Function
+        If stored.loadPhase <> RPX_LoadPhase Or stored.policy <> RPX_AnalysisPolicy() Then Exit Function
+        If Not RPX_SchurFinite(stored.a) Or Not RPX_SchurFinite(stored.b) Or Not RPX_SchurFinite(stored.fa) Or Not RPX_SchurFinite(stored.fb) Then Exit Function
+        If stored.analytical Or stored.b - stored.a > 0.0001 * WorksheetFunction.Max(1#, (stored.a + stored.b) / 2#) Then Exit Function
+    Else
+        If stored.statusB <> "OPTIMAL" And stored.statusB <> "ORIGINAL_ACCURACY_UPPER_WITNESS" Then Exit Function
+        If stored.statusB = "ORIGINAL_ACCURACY_UPPER_WITNESS" Or stored.statusA = "ORIGINAL_ACCURACY_DUAL_GUIDE" Then
+            If stored.subdivisions <> 8 Or stored.inputEpoch <> RPX_InputEpoch Or stored.physicalKey <> RPX_ExactModel() Then Exit Function
+            If stored.loadPhase <> RPX_LoadPhase Or stored.policy <> RPX_AnalysisPolicy() Then Exit Function
+            If Not RPX_SchurFinite(stored.a) Or Not RPX_SchurFinite(stored.b) Or Not RPX_SchurFinite(stored.fa) Or Not RPX_SchurFinite(stored.fb) Then Exit Function
+            If stored.analytical Or stored.b - stored.a > 0.0001 * WorksheetFunction.Max(1#, (stored.a + stored.b) / 2#) Then Exit Function
+        End If
+        If stored.statusA <> "OPTIMAL" Then
+            If side <> "upper" Or Not stored.originalGuideA Or (stored.statusA <> "ORIGINAL_FARKAS_GUIDE" And stored.statusA <> "ORIGINAL_ACCURACY_DUAL_GUIDE") Or stored.subdivisions <> 8 Then Exit Function
+        End If
+    End If
+    If stored.analytical Then
+        If stored.a <= 0# Or stored.b <> stored.a Then Exit Function
+    Else
+        If stored.fa < 0# Or stored.fb > 0# Or stored.b <= stored.a Then Exit Function
+    End If
+    If expectedFs > 0# Then
+        If side = "lower" And expectedFs <> stored.a Then Exit Function
+        If side = "upper" And expectedFs <> stored.b Then Exit Function
+    End If
+    a = stored.a: b = stored.b: RPX_ActualRootBracket = True
+End Function
+Private Sub SaveAnalyticalRoot(ByVal side As String, ByVal factor As Double, ByVal target As Double)
+    Dim stored As FsBracketState
+    If XStatus <> "OPTIMAL" Or factor <= 0# Or RPX_AuditRejected Or RFsSearchIncomplete Then Exit Sub
+    stored.valid = True: stored.analytical = True: stored.mode = side
+    stored.meshKey = FsMeshKey(): stored.subdivisions = RSubdivisions: stored.target = target
+    stored.a = factor: stored.b = factor: stored.statusA = "OPTIMAL": stored.statusB = "OPTIMAL"
+    If side = "lower" Then lowerBracket = stored Else upperBracket = stored
+End Sub
+Private Function BracketUsable(ByRef stored As FsBracketState, ByVal mode As String, ByVal target As Double, ByVal meshKey As String, ByVal requireSubdivisions As Boolean, ByRef reason As String) As Boolean
+    reason = "empty"
+    If Not stored.valid Then Exit Function
+    If stored.mode <> mode Then reason = "mode": Exit Function
+    If stored.thinSignA Then
+        If Not ThinFsContext(mode) Then reason = "thin_scope": Exit Function
+    End If
+    If stored.meshKey <> meshKey Then reason = "mesh": Exit Function
+    If Abs(stored.target - target) > 0.000000000001 Then reason = "target": Exit Function
+    If requireSubdivisions Then
+        If stored.subdivisions <> RSubdivisions Then reason = "quadrature": Exit Function
+    End If
+    If stored.fa < 0# Or stored.fb > 0# Then reason = "signs": Exit Function
+    If Not (stored.b > stored.a) Then reason = "order": Exit Function
+    reason = ""
+    BracketUsable = True
+End Function
+Private Sub SaveBracket(ByVal mode As String, ByVal meshKey As String, ByVal target As Double, ByVal a As Double, ByVal b As Double, ByVal fa As Double, ByVal fb As Double, ByRef fieldA() As Double, ByRef fieldB() As Double, ByVal objectiveA As Double, ByVal objectiveB As Double, ByVal statusA As String, ByVal statusB As String)
+    If fa < 0# Or fb > 0# Or Not (b > a) Then Exit Sub
+    If Not FsArrayReady(fieldB) Then
+        If mode <> "lower" Or statusB <> "ORIGINAL_LOWER_DUAL_GUIDE" Or RSubdivisions <> 8 Then Exit Sub
+    End If
+    If Not FsArrayReady(fieldA) Then
+        If mode <> "upper" Or RSubdivisions <> 8 Then Exit Sub
+        If statusA = "THIN_UPPER_BELOW_ROOT" Then
+            If Not ThinFsContext(mode) Or Not RPX_ThinFsStatus5Allowed(a) Then Exit Sub
+        ElseIf statusA <> "ORIGINAL_FARKAS_GUIDE" And statusA <> "ORIGINAL_ACCURACY_DUAL_GUIDE" Then
+            Exit Sub
+        End If
+    End If
+    If mode = "lower" Then
+        lowerBracket.valid = True: lowerBracket.analytical = False
+        lowerBracket.mode = mode
+        lowerBracket.meshKey = meshKey
+        lowerBracket.subdivisions = RSubdivisions
+        lowerBracket.target = target
+        lowerBracket.a = a: lowerBracket.b = b: lowerBracket.fa = fa: lowerBracket.fb = fb
+        lowerBracket.objectiveA = objectiveA: lowerBracket.objectiveB = objectiveB
+        lowerBracket.statusA = statusA: lowerBracket.statusB = statusB
+        lowerBracket.recoveredWitnessA = (statusA = "ORIGINAL_FIXED_LOWER_WITNESS" And RSubdivisions = 8)
+        lowerBracket.originalGuideB = (statusB = "ORIGINAL_LOWER_DUAL_GUIDE" And RSubdivisions = 8)
+        lowerBracket.physicalKey = RPX_ExactModel(): lowerBracket.inputEpoch = RPX_InputEpoch
+        lowerBracket.loadPhase = RPX_LoadPhase: lowerBracket.policy = RPX_AnalysisPolicy()
+        lowerFieldA = fieldA: lowerFieldB = fieldB
+    ElseIf mode = "upper" Then
+        upperBracket.valid = True: upperBracket.analytical = False
+        upperBracket.mode = mode
+        upperBracket.meshKey = meshKey
+        upperBracket.subdivisions = RSubdivisions
+        upperBracket.target = target
+        upperBracket.a = a: upperBracket.b = b: upperBracket.fa = fa: upperBracket.fb = fb
+        upperBracket.objectiveA = objectiveA: upperBracket.objectiveB = objectiveB
+        upperBracket.statusA = statusA: upperBracket.statusB = statusB
+        upperBracket.originalGuideA = ((statusA = "ORIGINAL_FARKAS_GUIDE" Or statusA = "ORIGINAL_ACCURACY_DUAL_GUIDE") And RSubdivisions = 8)
+        upperBracket.thinSignA = (statusA = "THIN_UPPER_BELOW_ROOT" And ThinFsContext(mode))
+        upperBracket.physicalKey = RPX_ExactModel(): upperBracket.inputEpoch = RPX_InputEpoch
+        upperBracket.loadPhase = RPX_LoadPhase: upperBracket.policy = RPX_AnalysisPolicy()
+        upperFieldA = fieldA: upperFieldB = fieldB
+    End If
+End Sub
+Private Function UpperSeedUsable(ByVal upperSeed As Double, ByVal meshKey As String, ByRef reason As String) As Boolean
+    Dim profile As RPX_ProblemProfile
+    RPX_BuildModelProfile profile
+    If Not RPX_CanUseFeature("LOWER_FS_SEED", profile, reason) Then Exit Function
+    If upperSeed <= 0# Then reason = "no_current_upper": Exit Function
+    If Not BracketUsable(upperBracket, "upper", 0.999999, meshKey, True, reason) Then Exit Function
+    If upperBracket.b <> upperSeed Then reason = "upper_endpoint": Exit Function
+    If upperBracket.statusB <> "OPTIMAL" Or RPX_AuditRejected Or RFsSearchIncomplete Then reason = "upper_uncertified": Exit Function
+    UpperSeedUsable = True
+End Function
+Private Function UpperLimitUsable(ByVal upperLimit As Double, ByVal meshKey As String) As Boolean
+    Dim policy As String, reason As String, usedMaterials As Object, e As Long
+    policy = UCase$(Trim$(CStr(RPX_Setting("FS_BRACKET_POLICY", "LEGACY"))))
+    If policy = "LEGACY" Then Exit Function
+    If policy <> "AUDITED_UPPER_LIMIT" Then err.Raise 5, "RPX_Fs", "INVALID_FS_BRACKET_POLICY"
+    If RR > 0 Or Not RFsActive Or upperLimit <= 0# Or upperLimit > 10000# Then Exit Function
+    If Not RPX_SchurFinite(upperLimit) Then Exit Function
+    ' Preserve the legacy stages (including their exact fields used for remeshing).
+    If UCase$(Trim$(CStr(RPX_Setting("ADAPT_MESH_POLICY", "LEGACY")))) = "LEGACY_THEN_REFINE" And re <= 800 Then Exit Function
+    Set usedMaterials = RPX_Row()
+    For e = 0 To re - 1
+        If RRigidId(e) < 0 Then usedMaterials(CStr(RMatId(e))) = True
+    Next e
+    If usedMaterials.count < 2 Then Exit Function
+    If Not BracketUsable(upperBracket, "upper", 0.999999, meshKey, True, reason) Then Exit Function
+    If upperBracket.b <> upperLimit Or upperBracket.statusA <> "OPTIMAL" Or upperBracket.statusB <> "OPTIMAL" Then Exit Function
+    If RPX_AuditRejected Or RFsSearchIncomplete Or Not FsArrayReady(upperFieldB) Then Exit Function
+    UpperLimitUsable = True
+End Function
+Public Function RPX_FsEndpoint(ByVal mode As String, Optional ByVal hint As Double = 0#, Optional ByVal hintRatio As Double = 0.1, Optional ByVal upperSeed As Double = 0#) As Double
+    Dim a As Double, b As Double, fa As Double, fb As Double, x As Double, fx As Double, target As Double, i As Long
+    Dim width As Double, factor As Double, valueScale As Double
+    Dim fieldA() As Double, fieldB() As Double, objectiveA As Double, objectiveB As Double, statusA As String, statusB As String
+    Dim allZeroPhi As Boolean, smooth As Boolean, e As Long, j As Long, probe As Boolean, lastProbe As Boolean, lambdaA As Double, lambdaB As Double
+    Dim meshKey As String, reason As String, reused As Boolean
+    Dim fp As Double, tau As Double, ratio As Double, adopted As Long, fallbackUsed As Long
+    Dim trialA As FsTrialPoint, trialB As FsTrialPoint
+    Dim trialAFactor As Double, trialBFactor As Double
+    Dim rejection As String, trialFaText As String, trialFbText As String, errText As String
+    Dim fallbackA As Double, fallbackB As Double, detail As String
+    Dim aAtt As String, bAtt As String, aVal As String, bVal As String
+    Dim seedSource As String, seedReason As String, seedWidth As Double, seedAttempted As Boolean
+    Dim seedA As Double, seedB As Double, seedFa As String, seedFb As String
+    Dim seedCalls As Long, expansionCount As Long, callsBefore As Long
+    Dim limitActive As Boolean, upperLimit As Double, legacyB As Double, nextB As Double
+    Dim limitTrial As FsTrialPoint
+    Dim terminalEnabled As Boolean, terminalActive As Boolean, terminalProgress As Boolean
+    Dim terminalA As Double, terminalB As Double
+    Dim thinNarrow As Boolean, thinSpan As Double, thinSeedScale As Double
+    RPX_AssertInputs "fs_endpoint"
+    If XCancel Then err.Raise 18, , "ANALYSIS_CANCELLED"
+    If RFsTolerance <= 0# Then RFsTolerance = 0.0001
+    terminalEnabled = TerminalScheduleEnabled()
+    If mode = "upper" Then target = 0.999999 Else target = 1.000001
+    allZeroPhi = True: smooth = True
+    For e = 0 To re - 1
+        If RRigidId(e) < 0 Then
+            If RMaterials(RMatId(e)).friction <> 0# Then allZeroPhi = False
+            If RMaterials(RMatId(e)).cohesion = 0# Then smooth = False
+        End If
+    Next e
+    If allZeroPhi Then
+        fa = FsValue(1#, mode, target, False)
+        If XStatus <> "OPTIMAL" Or RValue <= 0# Then err.Raise 5, , "NO_FINITE_POSITIVE_FS"
+        factor = RValue / target: RStrengthFactor = factor
+        If mode = "upper" Then
+            XObjective = XObjective / factor: Call RPX_AuditUpper
+        Else
+            For j = 0 To XN - 1: xx(j) = xx(j) / factor: Next j
+            XObjective = XObjective / factor: Call RPX_AuditLower
+        End If
+        Call SaveAnalyticalRoot(mode, factor, target)
+        If RPX_ThinChainBudgetActive Then
+            If RPX_ActualRootBracket(mode, terminalA, terminalB, factor) Then
+                If terminalA = factor And terminalB = factor Then ThinFsObserve factor, mode, 0#
+            End If
+        End If
+        RPX_FsEndpoint = factor: Exit Function
+    End If
+    meshKey = FsMeshKey()
+    thinNarrow = (hint > 0# And ThinFsContext(mode))
+    If mode = "lower" Then
+        limitActive = UpperLimitUsable(upperSeed, meshKey)
+        If limitActive Then upperLimit = upperSeed
+    End If
+    seedSource = "legacy"
+    reused = False: reason = ""
+    If mode = "lower" Then
+        reused = BracketUsable(lowerBracket, mode, target, meshKey, FixedLowerFsEnabled(), reason) And FsArrayReady(lowerFieldA) And (FsArrayReady(lowerFieldB) Or lowerBracket.originalGuideB)
+        If reused And FixedLowerFsEnabled() Then
+            reused = lowerBracket.originalGuideB And lowerBracket.inputEpoch = RPX_InputEpoch And lowerBracket.physicalKey = RPX_ExactModel() And lowerBracket.loadPhase = RPX_LoadPhase And lowerBracket.policy = RPX_AnalysisPolicy()
+        End If
+    Else
+        reused = BracketUsable(upperBracket, mode, target, meshKey, True, reason) And FsArrayReady(upperFieldA) And FsArrayReady(upperFieldB)
+    End If
+    If reused Then
+        seedSource = "lower_bracket"
+        RPX_TestHook "cache_hit"
+        If XCancel Then err.Raise 18, , "ANALYSIS_CANCELLED"
+        If mode = "lower" Then
+            a = lowerBracket.a: b = lowerBracket.b: fa = lowerBracket.fa: fb = lowerBracket.fb
+            objectiveA = lowerBracket.objectiveA: objectiveB = lowerBracket.objectiveB
+            statusA = lowerBracket.statusA: statusB = lowerBracket.statusB
+            fieldA = lowerFieldA: fieldB = lowerFieldB
+        Else
+            a = upperBracket.a: b = upperBracket.b: fa = upperBracket.fa: fb = upperBracket.fb
+            objectiveA = upperBracket.objectiveA: objectiveB = upperBracket.objectiveB
+            statusA = upperBracket.statusA: statusB = upperBracket.statusB
+            fieldA = upperFieldA: fieldB = upperFieldB
+        End If
+        RPX_DiagEvent "fs_bracket_reuse", "engine=20260926_fs_hint;ver=20260926_0630;mode=" & mode & ";a=" & a & ";b=" & b & ";fa=" & fa & ";fb=" & fb & ";quadrature=" & RSubdivisions & ";tol=" & RFsTolerance
+    ElseIf mode = "upper" And reason = "quadrature" And upperBracket.valid And upperBracket.b > upperBracket.a Then
+        adopted = 0: fp = 0#: fallbackUsed = 0: rejection = "not_attempted"
+        trialAFactor = 0#: trialBFactor = 0#: fallbackA = upperBracket.a: fallbackB = upperBracket.b
+        trialFaText = "": trialFbText = "": errText = ""
+        trialA.attempted = False: trialA.valid = False: trialB.attempted = False: trialB.valid = False
+        If smooth And upperBracket.a > 0# Then
+            lambdaA = upperBracket.fa + target: lambdaB = upperBracket.fb + target
+            If lambdaA > 0# And lambdaB > 0# And lambdaA <> lambdaB Then
+                ratio = Log(target / lambdaA) * Log(upperBracket.b / upperBracket.a) / Log(lambdaB / lambdaA)
+                If ratio > -40# And ratio < 40# Then
+                    fp = Exp(Log(upperBracket.a) + ratio)
+                    tau = RFsTolerance * fp: If fp < 1# Then tau = RFsTolerance
+                    trialAFactor = fp - 0.4 * tau: trialBFactor = fp + 0.4 * tau
+                    If trialAFactor > 0.000001 And trialBFactor > trialAFactor Then
+                        If TryFsTrialPoint(trialAFactor, mode, target, trialA) Then
+                            If trialA.valid Then
+                                a = trialAFactor: fa = trialA.residual: fieldA = xx: objectiveA = trialA.objective: statusA = trialA.status
+                                If TryFsTrialPoint(trialBFactor, mode, target, trialB) Then
+                                    If trialB.valid Then
+                                        b = trialBFactor: fb = trialB.residual: fieldB = xx: objectiveB = trialB.objective: statusB = trialB.status
+                                        If fa >= 0# And fb <= 0# Then
+                                            valueScale = (a + b) / 2#: If valueScale < 1# Then valueScale = 1#
+                                            If (b - a) <= RFsTolerance * valueScale Then
+                                                adopted = 1: rejection = "adopted"
+                                            Else
+                                                rejection = "width"
+                                            End If
+                                        Else
+                                            rejection = "sign"
+                                        End If
+                                    End If
+                                End If
+                            End If
+                        End If
+                    End If
+                End If
+            End If
+        End If
+        If trialA.valid Then trialFaText = CStr(trialA.residual)
+        If trialB.valid Then trialFbText = CStr(trialB.residual)
+        If trialA.attempted And Not trialA.valid Then
+            If Len(trialA.errorText) > 0 Then rejection = "trial_a_error" Else rejection = "trial_a_status"
+        ElseIf trialA.valid And trialB.attempted And Not trialB.valid Then
+            If Len(trialB.errorText) > 0 Then rejection = "trial_b_error" Else rejection = "trial_b_status"
+        End If
+        If adopted = 0 Then
+            fallbackUsed = 1
+            If rejection = "not_attempted" Then rejection = "fallback"
+            RProgramKind = ""
+            a = fallbackA: b = fallbackB
+            If a < 0.000001 Then a = 0.000001
+            If b <= a Then b = a * 2#
+            fa = FsValue(a, mode, target): fieldA = xx: objectiveA = XObjective: statusA = XStatus
+            fb = FsValue(b, mode, target): fieldB = xx: objectiveB = XObjective: statusB = XStatus
+        End If
+        If trialA.attempted Then aAtt = "1" Else aAtt = "0"
+        If trialB.attempted Then bAtt = "1" Else bAtt = "0"
+        If trialA.valid Then aVal = "1" Else aVal = "0"
+        If trialB.valid Then bVal = "1" Else bVal = "0"
+        errText = trialA.errorText
+        If Len(trialB.errorText) > 0 Then
+            If Len(errText) > 0 Then errText = errText & "|" Else errText = ""
+            errText = errText & trialB.errorText
+        End If
+        errText = Replace(Replace(errText, ";", ","), vbCr, " ")
+        detail = "engine=20260926_fs_trial_guard;ver=20260926_0731;mode=upper;fp=" & fp
+        detail = detail & ";adopted=" & adopted & ";fallback_used=" & fallbackUsed & ";rejection_reason=" & rejection
+        detail = detail & ";a=" & a & ";b=" & b & ";fa=" & fa & ";fb=" & fb
+        detail = detail & ";trial_a=" & trialAFactor & ";trial_b=" & trialBFactor
+        detail = detail & ";trial_fa=" & trialFaText & ";trial_fb=" & trialFbText
+        detail = detail & ";trial_a_attempted=" & aAtt & ";trial_b_attempted=" & bAtt
+        detail = detail & ";trial_a_valid=" & aVal & ";trial_b_valid=" & bVal
+        detail = detail & ";trial_a_status=" & trialA.status & ";trial_b_status=" & trialB.status
+        detail = detail & ";trial_error_number=" & trialA.errorNumber & "," & trialB.errorNumber
+        detail = detail & ";trial_error_source=" & Replace(trialA.errorSource & "," & trialB.errorSource, ";", ",")
+        detail = detail & ";trial_error_message=" & errText
+        detail = detail & ";fallback_a=" & fallbackA & ";fallback_b=" & fallbackB
+        detail = detail & ";quadrature=" & RSubdivisions & ";tol=" & RFsTolerance
+        RPX_DiagEvent "fs_trial_predict", detail
+    Else
+        If (mode = "lower" And lowerBracket.valid) Or (mode = "upper" And upperBracket.valid) Then
+            RPX_DiagEvent "fs_bracket_miss", "engine=20260926_fs_hint;ver=20260926_0630;mode=" & mode & ";reason=" & reason & ";quadrature=" & RSubdivisions
+        End If
+        If mode = "lower" And hint <= 0# Then
+            If UpperSeedUsable(upperSeed, meshKey, seedReason) Then
+                seedWidth = CDbl(RPX_Setting("LOWER_SEED_WIDTH", 0.02))
+                If seedWidth <= 0# Or seedWidth >= 1# Then err.Raise 5, , "INVALID_LOWER_SEED_WIDTH"
+                seedA = upperSeed * (1# - seedWidth): seedB = upperSeed
+                If seedA >= 0.000001 And seedB > seedA And seedB <= 10000# Then
+                    seedAttempted = True: seedSource = "same_mesh_upper"
+                    RPX_DiagEvent "lower_seed_begin", "engine=20260927_p3a;lower_hint_source=" & seedSource & ";trial_a=" & seedA & ";trial_b=" & seedB
+                    callsBefore = RFsCalls
+                    If TryFsTrialPoint(seedA, mode, target, trialA) Then
+                        a = seedA: fa = trialA.residual: fieldA = xx: objectiveA = trialA.objective: statusA = trialA.status
+                        seedFa = CStr(fa)
+                        If TryFsTrialPoint(seedB, mode, target, trialB) Then
+                            b = seedB: fb = trialB.residual: fieldB = xx: objectiveB = trialB.objective: statusB = trialB.status
+                            seedFb = CStr(fb)
+                        Else
+                            seedReason = "trial_b_invalid"
+                        End If
+                    Else
+                        seedReason = "trial_a_invalid"
+                    End If
+                    seedCalls = RFsCalls - callsBefore
+                    If trialA.valid And trialB.valid Then
+                        If fa < 0# Or fb > 0# Then seedReason = "sign_expand"
+                    Else
+                        RProgramKind = ""
+                    End If
+                Else
+                    seedReason = "trial_range"
+                End If
+            End If
+        End If
+        If seedAttempted And trialA.valid And trialB.valid Then
+            ' Both fields/residuals are LOWER solves; existing expansion handles either sign miss.
+        Else
+            If hint > 0# Then
+                seedSource = "lower_history"
+                If hintRatio <= 0# Then hintRatio = 0.1
+                If thinNarrow Then
+                    ' The lineage Fs is a location hint only; both signs/fields are
+                    ' freshly evaluated on this mesh. A default span of 120 FS_TOL
+                    ' units needs seven bisections, hence nine solves if contained.
+                    thinSeedScale = WorksheetFunction.Max(1#, hint)
+                    thinSpan = 0.012 * thinSeedScale
+                    If thinSpan > 2# * hint * hintRatio Then thinSpan = 2# * hint * hintRatio
+                    If mode = "upper" Then
+                        a = hint - thinSpan: b = hint
+                    Else
+                        a = hint: b = hint + thinSpan
+                    End If
+                Else
+                    a = hint * (1# - hintRatio)
+                    b = hint * (1# + hintRatio)
+                End If
+                If a < 0.000001 Then a = 0.000001
+                If b <= a Then b = a * 2#
+            Else
+                a = 1#: b = 2#
+            End If
+            legacyB = b
+            If limitActive Then
+                If b > upperLimit Then b = upperLimit
+                If a >= b Then a = b / 2#
+            End If
+            If thinNarrow Then RPX_DiagEvent "thin_fs_seed", "mode=" & mode & ";hint=" & hint & ";a=" & a & ";b=" & b & ";span=" & b - a & ";fresh_own_mesh_signs=1;local_expansion=2"
+            fa = FsValue(a, mode, target): fieldA = xx: objectiveA = XObjective: statusA = XStatus
+            If limitActive And b = upperLimit Then
+                If TryFsTrialPoint(b, mode, target, limitTrial) Then
+                    fb = limitTrial.residual
+                Else
+                    If InStr(1, limitTrial.errorText, "HSD_STABLE_UNAVAILABLE_MEMORY", vbBinaryCompare) = 1 Then err.Raise limitTrial.errorNumber, limitTrial.errorSource, limitTrial.errorText
+                    limitActive = False: b = legacyB
+                    RPX_DiagEvent "fs_upper_limit_fallback", "reason=numerical_unknown;mode=lower;legacy_b=" & b
+                    fb = FsValue(b, mode, target)
+                End If
+            Else
+                fb = FsValue(b, mode, target)
+            End If
+            fieldB = xx: objectiveB = XObjective: statusB = XStatus
+        End If
+    End If
+    Do While fa < 0#
+        expansionCount = expansionCount + 1
+        If thinNarrow Then thinSpan = 2# * (b - a)
+        b = a: fb = fa: fieldB = fieldA: objectiveB = objectiveA: statusB = statusA
+        If thinNarrow Then
+            ' Grow around an observed own-mesh sign, never around a historical field.
+            a = a - thinSpan
+            If a < 0.000001 Then a = 0.000001
+            If a >= b Then err.Raise 5, , "FS_LOWER_BRACKET_NOT_FOUND"
+        Else
+            a = a / 2#
+        End If
+        If a < 0.000001 Then err.Raise 5, , "FS_LOWER_BRACKET_NOT_FOUND"
+        ' G1R15: stop runaway halving below 15% of the previous lower (or upper); lowest successful ratio in 457 logged searches was 22.5%. Caller keeps the previous verified pair.
+        If hint > 0# And a < 0.15 * hint Then err.Raise 5, , "FS_LOWER_BRACKET_NOT_FOUND floor=hint*0.15;a=" & a
+        If hint <= 0# And upperSeed > 0# And a < 0.15 * upperSeed Then err.Raise 5, , "FS_LOWER_BRACKET_NOT_FOUND floor=upper*0.15;a=" & a
+        fa = FsValue(a, mode, target): fieldA = xx: objectiveA = XObjective: statusA = XStatus
+    Loop
+    Do While fb > 0#
+        expansionCount = expansionCount + 1
+        If thinNarrow Then thinSpan = 2# * (b - a)
+        a = b: fa = fb: fieldA = fieldB: objectiveA = objectiveB: statusA = statusB
+        If thinNarrow Then nextB = b + thinSpan Else nextB = b * 2#
+        If limitActive Then
+            If b >= upperLimit Then
+                limitActive = False
+                RPX_DiagEvent "fs_upper_limit_fallback", "reason=actual_lower_sign_positive;mode=lower;at=" & b
+            ElseIf nextB > upperLimit Then
+                nextB = upperLimit
+            End If
+        End If
+        If nextB > 10000# Then err.Raise 5, , "FS_UPPER_BRACKET_NOT_FOUND"
+        If limitActive And nextB = upperLimit Then
+            If TryFsTrialPoint(nextB, mode, target, limitTrial) Then
+                fb = limitTrial.residual
+            Else
+                If InStr(1, limitTrial.errorText, "HSD_STABLE_UNAVAILABLE_MEMORY", vbBinaryCompare) = 1 Then err.Raise limitTrial.errorNumber, limitTrial.errorSource, limitTrial.errorText
+                limitActive = False: nextB = b * 2#
+                If nextB > 10000# Then err.Raise 5, , "FS_UPPER_BRACKET_NOT_FOUND"
+                RPX_DiagEvent "fs_upper_limit_fallback", "reason=numerical_unknown;mode=lower;legacy_b=" & nextB
+                fb = FsValue(nextB, mode, target)
+            End If
+        Else
+            fb = FsValue(nextB, mode, target)
+        End If
+        b = nextB: fieldB = xx: objectiveB = XObjective: statusB = XStatus
+    Loop
+    If mode = "lower" Then
+        RPX_DiagEvent "fs_upper_limit", "active=" & limitActive & ";hint=" & upperLimit & ";actual_lower_sign_checks=1"
+        detail = "lower_hint_source=" & seedSource & ";trial_a=" & seedA & ";trial_b=" & seedB
+        detail = detail & ";fa=" & seedFa & ";fb=" & seedFb & ";trial_solve_count=" & seedCalls
+        detail = detail & ";expansion_count=" & expansionCount & ";fallback_reason=" & seedReason
+        detail = detail & ";a=" & a & ";b=" & b & ";target=" & target
+        RPX_DiagEvent "lower_seed", detail
+    End If
+    For i = 1 To 40
+        width = b - a: valueScale = (a + b) / 2#: If valueScale < 1# Then valueScale = 1#
+        If width <= RFsTolerance * valueScale Then Exit For
+        terminalActive = (terminalEnabled And width <= 2.5 * RFsTolerance * valueScale)
+        If terminalActive And mode = "lower" Then
+            ' Fixed original-span fractions, at most two full-gated trials.
+            ' UNKNOWN never changes a signed endpoint or supplies a field.
+            terminalA = a: terminalB = b: terminalProgress = False
+            x = terminalA + 0.3 * (terminalB - terminalA)
+            If x > a And x < b Then
+                If TryFsTrialPoint(x, mode, target, trialA) Then
+                    If trialA.valid Then
+                        If trialA.residual >= 0# Then
+                            a = x: fa = trialA.residual: fieldA = xx: objectiveA = trialA.objective: statusA = trialA.status
+                        Else
+                            b = x: fb = trialA.residual: fieldB = xx: objectiveB = trialA.objective: statusB = trialA.status
+                        End If
+                        terminalProgress = True
+                    End If
+                End If
+            End If
+            valueScale = (a + b) / 2#: If valueScale < 1# Then valueScale = 1#
+            If b - a > RFsTolerance * valueScale Then
+                x = terminalA + 0.7 * (terminalB - terminalA)
+                If x > a And x < b Then
+                    If TryFsTrialPoint(x, mode, target, trialB) Then
+                        If trialB.valid Then
+                            If trialB.residual >= 0# Then
+                                a = x: fa = trialB.residual: fieldA = xx: objectiveA = trialB.objective: statusA = trialB.status
+                            Else
+                                b = x: fb = trialB.residual: fieldB = xx: objectiveB = trialB.objective: statusB = trialB.status
+                            End If
+                            terminalProgress = True
+                        End If
+                    End If
+                End If
+            End If
+            RPX_DiagEvent "fs_terminal_lower", "a=" & a & ";b=" & b & ";progress=" & terminalProgress & ";source_a=" & terminalA & ";source_b=" & terminalB & ";max_trials=2;unknown_is_not_a_sign=1"
+            If Not terminalProgress Then
+                RFsSearchIncomplete = True: RFsSearchNote = "FS_TERMINAL_BOTH_UNKNOWN": Exit For
+            End If
+            GoTo TerminalIterationComplete
+        End If
+        probe = False
+        ' Feasibility witnesses and dual rays establish signs, not objective
+        ' samples of one scalar function. Their arbitrary margins cannot steer
+        ' a secant step; retain the same signed bracket and bisect it instead.
+        If statusA = "ORIGINAL_FIXED_LOWER_WITNESS" Or statusB = "ORIGINAL_LOWER_DUAL_GUIDE" Or statusA = "ORIGINAL_FARKAS_GUIDE" Or statusA = "ORIGINAL_ACCURACY_DUAL_GUIDE" Or statusB = "ORIGINAL_ACCURACY_UPPER_WITNESS" Or statusA = "THIN_UPPER_BELOW_ROOT" Then
+            x = (a + b) / 2#
+        Else
+            x = (a * fb - b * fa) / (fb - fa)
+            lambdaA = fa + target: lambdaB = fb + target
+            If smooth And lambdaA > 0# And lambdaB > 0# And lambdaA <> lambdaB Then
+                x = Exp(Log(a) + Log(target / lambdaA) * Log(b / a) / Log(lambdaB / lambdaA))
+            End If
+            If RFsTolerance >= 0.001 And smooth And Not lastProbe Then
+                If Abs(x - a) <= 0.5 * RFsTolerance * valueScale And Abs(x - a) <= Abs(x - b) Then
+                    probe = True: x = a + 0.8 * RFsTolerance * valueScale
+                ElseIf Abs(x - b) <= 0.5 * RFsTolerance * valueScale Then
+                    probe = True: x = b - 0.8 * RFsTolerance * valueScale
+                End If
+            ElseIf smooth And i > 1 And Abs(fx) < 0.00001 And Not lastProbe Then
+                probe = True
+                If fx >= 0# Then x = a + 0.8 * RFsTolerance * valueScale Else x = b - 0.8 * RFsTolerance * valueScale
+            End If
+        End If
+        lastProbe = probe
+        If smooth Then
+            If x < a + 0.000001 * width Then x = a + 0.000001 * width
+            If x > b - 0.000001 * width Then x = b - 0.000001 * width
+        Else
+            If x < a + 0.2 * width Then x = a + 0.2 * width
+            If x > b - 0.2 * width Then x = b - 0.2 * width
+        End If
+        If Not TryFsValue(x, mode, target, fx, terminalActive) Then
+            x = (a + x) / 2#
+            If Not TryFsValue(x, mode, target, fx, terminalActive) Then
+                x = (b + x) / 2#
+                If Not TryFsValue(x, mode, target, fx, terminalActive) Then Exit For
+            End If
+        End If
+        If fx >= 0# Then
+            a = x: fa = fx: fieldA = xx: objectiveA = XObjective: statusA = XStatus
+        Else
+            b = x: fb = fx: fieldB = xx: objectiveB = XObjective: statusB = XStatus
+        End If
+TerminalIterationComplete:
+    Next i
+    If i > 40 Then RFsSearchIncomplete = True: RFsSearchNote = "FS_ROOT_ITERATION_LIMIT"
+    valueScale = (a + b) / 2#: If valueScale < 1# Then valueScale = 1#
+    If b - a > RFsTolerance * valueScale Then RFsSearchIncomplete = True
+    If b - a > RFsLargestRootBracket Then RFsLargestRootBracket = b - a
+    If mode = "upper" Then
+        factor = b: xx = fieldB: XObjective = objectiveB: XStatus = statusB
+        RStrengthFactor = factor: Call RPX_AuditUpper
+        If RValue > target + 0.00000001 Then err.Raise 5, , "FS_UPPER_ENDPOINT_INVALID"
+    Else
+        factor = a: xx = fieldA: XObjective = objectiveA: XStatus = statusA
+        RStrengthFactor = factor: Call RPX_AuditLower
+        If RValue < 1# - 0.00000001 Then err.Raise 5, , "FS_LOWER_ENDPOINT_INVALID"
+    End If
+    RPX_DiagEvent "p4_final_bracket", "mode=" & mode & ";a=" & a & ";b=" & b & ";fa=" & fa & ";fb=" & fb & ";target=" & target & ";quadrature=" & RSubdivisions & ";root_width=" & b - a
+    SaveBracket mode, meshKey, target, a, b, fa, fb, fieldA, fieldB, objectiveA, objectiveB, statusA, statusB
+    RPX_FsEndpoint = factor
+End Function
+Public Sub RPX_FsPair()
+    Dim i As Long, errorNumber As Long, message As String, errorSource As String, errorLine As Long
+    On Error GoTo Failed
+    RFsActive = True: RFsCalls = 0: RFsSearchIncomplete = False: RFsLargestRootBracket = 0#: RFsSearchNote = "": Call RPX_TotalReferenceLoads
+    RUpperFs = RPX_FsEndpoint("upper"): ReDim RUpperField(0 To 12 * re + 3 * RR - 1)
+    For i = 0 To UBound(RUpperField): RUpperField(i) = xx(i): Next i
+    If UpperLimitUsable(RUpperFs, FsMeshKey()) Then
+        RLowerFs = RPX_FsEndpoint("lower", 0#, 0.1, RUpperFs)
+    Else
+        RLowerFs = RPX_FsEndpoint("lower")
+    End If
+    ReDim RLowerField(0 To UBound(xx))
+    For i = 0 To UBound(RLowerField): RLowerField(i) = xx(i): Next i
+    If RLowerFs > RUpperFs Then err.Raise 5, , "FS_BOUNDS_REVERSED"
+    RFsActive = False: Exit Sub
+Failed:
+    errorNumber = err.number: message = err.description: errorSource = err.source: errorLine = Erl
+    RPX_ErrorEvidence errorNumber, errorSource, message, errorLine, "fs_pair"
+    RFsActive = False
+    err.Raise errorNumber, errorSource, message
+End Sub
+Public Function RPX_TestFs(ByVal inputPath As String, ByVal outputPath As String) As String
+    Dim f As Integer, started As Double
+    On Error GoTo Failed
+    started = Timer: XLogPath = outputPath & ".log": RPX_ReadModel inputPath
+    Call RPX_FsPair
+    f = FreeFile: Open outputPath For Output As #f
+    Print #f, RLowerFs; ","; RUpperFs; ","; RFsCalls; ","; Timer - started
+    Close #f: Application.StatusBar = False
+    RPX_TestFs = "PASS lower=" & CStr(RLowerFs) & " upper=" & CStr(RUpperFs): Exit Function
+Failed:
+    RPX_TestFs = "FAIL " & err.number & " " & err.description: Application.StatusBar = False
+End Function
+
+Private Function AccuracyFsRecover(ByVal factor As Double, ByVal mode As String, ByVal target As Double, ByRef residual As Double) As Boolean
+    Dim recovered() As Double
+    ' A separate original-dual feasibility primal is an original program dual.
+    ' No auxiliary QP dual enters a root; no dual guide enters a physical field.
+    If RPX_AccuracyRecoverDual(factor, mode) Then
+        XObjective = AccuracyNativeDualObjective
+        If mode = "upper" Then
+            XStatus = "ORIGINAL_ACCURACY_DUAL_GUIDE": residual = AccuracyNativeDualObjective - target
+        Else
+            XStatus = "ORIGINAL_LOWER_DUAL_GUIDE": residual = -AccuracyNativeDualObjective - target
+        End If
+        If Not RPX_AccuracyGuideCurrent(factor, mode) Then err.Raise 5, "RPX_Fs", "ACCURACY_DUAL_CONTEXT_REJECTED"
+        Erase xx: Erase XSlack
+        RProgramKind = "": RProgramFs = factor
+        AccuracyFsRecover = True: Exit Function
+    End If
+    If RPX_AccuracyRecoverPrimal(factor, mode, recovered) Then
+        xx = recovered
+        If mode = "lower" Then
+            XObjective = -AccuracyNativeValue: Call RPX_AuditLower
+            XStatus = "ORIGINAL_FIXED_LOWER_WITNESS"
+        Else
+            XObjective = AccuracyNativeValue: Call RPX_AuditUpper
+            XStatus = "ORIGINAL_ACCURACY_UPPER_WITNESS"
+        End If
+        If RPX_AuditRejected Or Not RPhysicalGateAccepted Then err.Raise 5, "RPX_Fs", "ACCURACY_RECOVERY_ENDPOINT_GATE_REJECTED"
+        RProgramKind = mode: RProgramFs = factor: residual = RValue - target
+        AccuracyFsRecover = True
+    End If
+End Function
+
+' G1R20 Fix5 (#28): the same recovery attempt as AccuracyFsRecover, but a rejected
+' candidate returns False (an audited HSD fallback exists). Cancellation and
+' memory errors still propagate.
+Private Function TryAccuracyFsRecover(ByVal factor As Double, ByVal mode As String, ByVal target As Double, ByRef residual As Double) As Boolean
+    Dim number As Long, message As String, source As String
+    On Error GoTo Failed
+    TryAccuracyFsRecover = AccuracyFsRecover(factor, mode, target, residual)
+    Exit Function
+Failed:
+    number = err.number: message = err.description: source = err.source
+    On Error GoTo 0
+    If number = 18 Or XCancel Then err.Raise 18, source, "ANALYSIS_CANCELLED"
+    If number = 7 Or number = 28 Then err.Raise number, source, message
+    RPX_DiagEvent "accuracy_recovery_rejected", "mode=" & mode & ";Fs=" & factor & ";number=" & number & ";message=" & Replace(message, ";", ",")
+    TryAccuracyFsRecover = False
+End Function
+
+Private Function TerminalScheduleEnabled() As Boolean
+    Dim enabled As Double
+    enabled = CDbl(RPX_Setting("FS_TERMINAL_SCHEDULE", 0))
+    If Not RPX_SchurFinite(enabled) Or (enabled <> 0# And enabled <> 1#) Then err.Raise 5, "RPX_Fs", "INVALID_FS_TERMINAL_SCHEDULE"
+    TerminalScheduleEnabled = (enabled = 1# And RSubdivisions = 8 And RPX_AccuracyEnabled())
+End Function
+
+' The capture lifetime starts after geometry construction, so auxiliary indicator
+' solves cannot enter the round's accepted-witness or status-5 guide history.
+Public Sub RPX_ThinFsBegin(ByVal side As String)
+    Call RPX_ThinFsEnd
+    If Not RPX_ThinChainBudgetActive Or RSubdivisions <> 8 Then Exit Sub
+    If side <> "upper" And side <> "lower" Then Exit Sub
+    thinFsActive = True: thinFsSide = side: thinFsMesh = FsMeshKey()
+    thinFsModel = RPX_ExactModel(): thinFsPolicy = RPX_AnalysisPolicy()
+    thinFsPhase = RPX_LoadPhase: thinFsEpoch = RPX_InputEpoch
+End Sub
+Public Sub RPX_ThinFsEnd()
+    thinFsActive = False: thinWitnessReady = False: thinOppReady = False: thinDualReady = False
+    thinFsSide = "": thinFsMesh = "": thinFsModel = "": thinFsPolicy = "": thinFsPhase = "": thinFsEpoch = 0
+    thinWitnessFactor = 0#: thinWitnessObjective = 0#: thinWitnessStatus = ""
+    thinOppFactor = 0#: thinOppResidual = 0#: thinOppObjective = 0#: thinOppStatus = "": thinDualFactor = 0#
+    Erase thinWitnessField: Erase thinOppField
+End Sub
+Private Function ThinFsContext(ByVal side As String) As Boolean
+    If Not RPX_ThinChainBudgetActive Or Not thinFsActive Or RSubdivisions <> 8 Then Exit Function
+    If side <> thinFsSide Or thinFsMesh <> FsMeshKey() Or thinFsEpoch <> RPX_InputEpoch Then Exit Function
+    If thinFsModel <> RPX_ExactModel() Or thinFsPolicy <> RPX_AnalysisPolicy() Or thinFsPhase <> RPX_LoadPhase Then Exit Function
+    ThinFsContext = True
+End Function
+Public Function RPX_ThinFsStatus5Allowed(ByVal factor As Double) As Boolean
+    If Not RPX_ThinChainUpperActive Or Not RFsActive Then Exit Function
+    If Not ThinFsContext("upper") Or Not thinDualReady Then Exit Function
+    If Not RPX_SchurFinite(factor) Or factor <= 0# Or factor < thinDualFactor Then Exit Function
+    ' A separately audited original dual, returned with native status 1 at a
+    ' lower/equal Fs in this exact step, permits a search sign only.
+    RPX_ThinFsStatus5Allowed = True
+End Function
+Private Function ThinFsCompleteField(ByVal side As String, ByRef field() As Double) As Boolean
+    Dim i As Long, last As Long
+    On Error GoTo Missing
+    If side = "upper" Then last = 12 * re + 3 * RR - 1 Else last = XN - 1
+    If last < 0 Or LBound(field) <> 0 Or UBound(field) < last Then Exit Function
+    For i = 0 To last
+        If Not RPX_SchurFinite(field(i)) Then Exit Function
+    Next i
+    ThinFsCompleteField = True
+    Exit Function
+Missing:
+    If err.number <> 9 Then err.Raise err.number, err.source, err.description
+End Function
+Private Sub ThinFsObserve(ByVal factor As Double, ByVal side As String, ByVal residual As Double)
+    Dim witness As Boolean, opposite As Boolean, keep As Boolean, i As Long
+    If Not ThinFsContext(side) Then Exit Sub
+    If Not RPX_SchurFinite(factor) Or factor <= 0# Or Not RPX_SchurFinite(residual) Then Exit Sub
+    If side = "upper" And XStatus = "ORIGINAL_ACCURACY_DUAL_GUIDE" Then
+        If AccuracyNativeSolverStatus = 1 And RPX_AccuracyGuideCurrent(factor, side) Then
+            If Not thinDualReady Or factor < thinDualFactor Then thinDualFactor = factor
+            thinDualReady = True
+        End If
+    End If
+    If XStatus = "OPTIMAL" Or (side = "upper" And XStatus = "ORIGINAL_ACCURACY_UPPER_WITNESS") Or (side = "lower" And XStatus = "ORIGINAL_FIXED_LOWER_WITNESS") Then
+        If Not RPX_AuditRejected And RPhysicalGateAccepted And RPX_SchurFinite(XObjective) Then
+            witness = ((side = "upper" And residual <= 0#) Or (side = "lower" And residual >= 0#))
+            If witness Then witness = ThinFsCompleteField(side, xx)
+        End If
+    End If
+    If witness Then
+        keep = Not thinWitnessReady
+        If thinWitnessReady Then keep = ((side = "upper" And factor < thinWitnessFactor) Or (side = "lower" And factor > thinWitnessFactor))
+        If keep Then
+            thinWitnessReady = True: thinWitnessFactor = factor: thinWitnessObjective = XObjective: thinWitnessStatus = XStatus
+            If side = "upper" Then
+                ReDim thinWitnessField(0 To 12 * re + 3 * RR - 1)
+                For i = 0 To UBound(thinWitnessField): thinWitnessField(i) = xx(i): Next i
+            Else
+                thinWitnessField = xx
+            End If
+            If thinOppReady Then
+                If (side = "upper" And thinOppFactor >= factor) Or (side = "lower" And thinOppFactor <= factor) Then thinOppReady = False: Erase thinOppField
+            End If
+        End If
+    End If
+    If side = "upper" And residual >= 0# Then
+        If XStatus = "THIN_UPPER_BELOW_ROOT" Then
+            opposite = RPX_ThinFsStatus5Allowed(factor)
+        ElseIf XStatus = "ORIGINAL_ACCURACY_DUAL_GUIDE" Then
+            opposite = RPX_AccuracyGuideCurrent(factor, side)
+        ElseIf XStatus = "ORIGINAL_FARKAS_GUIDE" Then
+            opposite = RPX_OriginalGuideCurrent(factor)
+        ElseIf XStatus = "OPTIMAL" Then
+            opposite = (Not RPX_AuditRejected And RPhysicalGateAccepted And ThinFsCompleteField(side, xx))
+        End If
+    ElseIf side = "lower" And residual < 0# Then
+        If XStatus = "ORIGINAL_LOWER_DUAL_GUIDE" Then
+            opposite = RPX_AccuracyGuideCurrent(factor, side)
+            If Not opposite Then opposite = RPX_OriginalLowerDualGate(factor, 1.000001, False)
+        ElseIf XStatus = "OPTIMAL" Then
+            opposite = (Not RPX_AuditRejected And RPhysicalGateAccepted And ThinFsCompleteField(side, xx))
+        End If
+    End If
+    If Not opposite Then Exit Sub
+    If thinWitnessReady Then
+        If (side = "upper" And factor >= thinWitnessFactor) Or (side = "lower" And factor <= thinWitnessFactor) Then Exit Sub
+    End If
+    keep = Not thinOppReady
+    If thinOppReady Then keep = ((side = "upper" And factor > thinOppFactor) Or (side = "lower" And factor < thinOppFactor))
+    If Not keep Then Exit Sub
+    thinOppReady = True: thinOppFactor = factor: thinOppResidual = residual: thinOppObjective = XObjective: thinOppStatus = XStatus
+    If XStatus = "OPTIMAL" Then thinOppField = xx Else Erase thinOppField
+End Sub
+Public Function RPX_ThinFsWitness(ByVal side As String, ByRef factor As Double, ByRef field() As Double, ByRef objective As Double) As Boolean
+    If Not ThinFsContext(side) Or Not thinWitnessReady Then Exit Function
+    If Not ThinFsCompleteField(side, thinWitnessField) Then Exit Function
+    factor = thinWitnessFactor: field = thinWitnessField: objective = thinWitnessObjective
+    RPX_ThinFsWitness = True
+End Function
+Public Function RPX_ThinFsRestoreWitnessRoot(ByVal side As String, ByRef factor As Double, ByRef field() As Double, ByRef objective As Double) As Boolean
+    Dim a As Double, b As Double, fa As Double, fb As Double, rootScale As Double, tolerance As Double
+    Dim fieldA() As Double, fieldB() As Double, objectiveA As Double, objectiveB As Double, statusA As String, statusB As String
+    Dim target As Double, rootA As Double, rootB As Double, analytical As Boolean
+    If Not RPX_ThinFsWitness(side, factor, field, objective) Then Exit Function
+    analytical = RPX_ActualRootBracket(side, rootA, rootB, factor)
+    If analytical Then analytical = (rootA = factor And rootB = factor)
+    If Not analytical And Not thinOppReady Then Exit Function
+    tolerance = RFsTolerance: If tolerance > 0.0001 Then tolerance = 0.0001
+    If tolerance <= 0# Then Exit Function
+    If side = "upper" Then
+        a = thinOppFactor: b = factor: target = 0.999999
+    Else
+        a = factor: b = thinOppFactor: target = 1.000001
+    End If
+    If analytical Then a = factor: b = factor
+    rootScale = WorksheetFunction.Max(1#, (a + b) / 2#)
+    If Not analytical Then
+        If b <= a Or b - a > tolerance * rootScale Then Exit Function
+    End If
+    ' Reuse only observed signs and a fully re-audited original primal field.
+    ' A wide failed search is never relabeled as a completed root.
+    xx = field: XObjective = objective: XStatus = thinWitnessStatus: RStrengthFactor = factor
+    If side = "upper" Then Call RPX_AuditUpper Else Call RPX_AuditLower
+    If RPX_AuditRejected Or Not RPhysicalGateAccepted Or Not RPX_SchurFinite(RValue) Then Exit Function
+    If analytical Then
+        If side = "upper" Then
+            If RValue > target + 0.00000001 Then Exit Function
+        Else
+            If RValue < target Then Exit Function
+        End If
+        ' This exact same-context analytical root already exists; preserve it.
+        ' The zero residual observed above follows that proof, not a new sign.
+        If Not RPX_ActualRootBracket(side, rootA, rootB, factor) Then Exit Function
+        RFsSearchIncomplete = False: RFsLargestRootBracket = 0#: RFsSearchNote = "thin_accepted_analytical_witness_recovered"
+        RPX_ThinFsRestoreWitnessRoot = True
+        Exit Function
+    End If
+    If side = "upper" Then
+        If RValue > target Then Exit Function
+        fa = thinOppResidual: fb = RValue - target: fieldA = thinOppField: fieldB = field
+        objectiveA = thinOppObjective: objectiveB = objective: statusA = thinOppStatus: statusB = thinWitnessStatus
+    Else
+        If RValue < target Then Exit Function
+        fa = RValue - target: fb = thinOppResidual: fieldA = field: fieldB = thinOppField
+        objectiveA = objective: objectiveB = thinOppObjective: statusA = thinWitnessStatus: statusB = thinOppStatus
+    End If
+    SaveBracket side, FsMeshKey(), target, a, b, fa, fb, fieldA, fieldB, objectiveA, objectiveB, statusA, statusB
+    If Not RPX_ActualRootBracket(side, rootA, rootB, factor) Then Exit Function
+    RFsSearchIncomplete = False: RFsLargestRootBracket = b - a: RFsSearchNote = "thin_accepted_witness_recovered"
+    RPX_ThinFsRestoreWitnessRoot = True
+End Function

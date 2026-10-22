@@ -1,0 +1,433 @@
+--- a/vba/RPX_AccuracyNative.bas
++++ b/vba_rc9b/RPX_AccuracyNative.bas
+@@ -40,6 +40,11 @@
+ Public AccuracyNativeReason As String, AccuracyNativeSolverStatus As Long, AccuracyNativeIterations As Long
+ Public AccuracyNativeEquality As Double, AccuracyNativeCone As Double, AccuracyNativeValue As Double, AccuracyNativeAudit As Double
+ Public AccuracyNativeDualStat As Double, AccuracyNativeDualCone As Double, AccuracyNativeDualObjective As Double
++Public AccuracyNativeDualAudited As Boolean, AccuracyNativeDualAuditCallId As Long
++Public AccuracyNativeCallId As Long
++Private accuracyCallSequence As Long
++Public AccuracyNativeEquilibrate As Long
++Public AccuracyNativeDualAuditRole As String, AccuracyNativeDualAuditStatus As Long
+ Private guideReady As Boolean, guideModel As String, guidePolicy As String, guideMode As String, guidePhase As String
+ Private guideEpoch As Long, guideQ As Long, guideFactor As Double
+ Private guideN As Long, guideM As Long, guideS As Long, guideB As Long, guideSolve As Long, guideCandidate As Long
+@@ -58,6 +63,12 @@
+ Private upperFirstReady As Boolean, upperFirstModel As String, upperFirstPolicy As String, upperFirstPhase As String
+ Private upperFirstFactor As Double, upperFirstEpoch As Long, upperFirstQ As Long
+ Private upperFirstSolve As Long, upperFirstCandidate As Long
++' Diagnostics are per direct trial; zero values require dual_audited=True.
++Private Sub ResetDualDiagnostics()
++    AccuracyNativeDualAudited = False: AccuracyNativeDualAuditCallId = 0
++    AccuracyNativeDualAuditRole = "": AccuracyNativeDualAuditStatus = 0
++    AccuracyNativeDualStat = 0#: AccuracyNativeDualCone = 0#: AccuracyNativeDualObjective = 0#
++End Sub
+ Public Function RPX_AccuracyEnabled() As Boolean
+     Dim value As Double
+     value = CDbl(RPX_Setting("ACCURACY_DLL_RECOVERY", 0))
+@@ -115,6 +126,15 @@
+     If Not RPX_SchurFinite(nextValue) Then err.Raise 5, "RPX_AccuracyNative", "ACCURACY_NONFINITE_SUM"
+     correction = (nextValue - total) - adjusted: total = nextValue
+ End Sub
++' Diagnostic subtraction must never change an audit decision on overflow.
++Private Function DiagnosticAbsDifference(ByVal a As Double, ByVal b As Double, ByRef complete As Boolean) As Double
++    On Error GoTo Missing
++    DiagnosticAbsDifference = Abs(a - b)
++    Exit Function
++Missing:
++    If err.number <> 6 Then err.Raise err.number, err.source, err.description
++    err.Clear: complete = False
++End Function
+ Private Function Norm2(ByVal a As Double, ByVal b As Double) As Double
+     Dim positiveScale As Double
+     positiveScale = WorksheetFunction.Max(Abs(a), Abs(b))
+@@ -220,17 +240,21 @@
+     Dim value As Long
+     CopyBytes VarPtr(value), VarPtr(bytes(offset)), 4: ReadLong = value
+ End Function
+-' Only the literal original LP receives the thin-chain equilibration override.
+-' Cap/QP, equality-repair and dual helpers keep their existing settings.
+-Private Function ThinDllOriginalScope(ByRef pr As RPX_AccuracyProgram) As Boolean
+-    Dim i As Long
+-    If Not RPX_ThinChainBudgetActive Or Not RFsActive Or RSubdivisions <> 8 Then Exit Function
++' Literal original LP identity; inherited mode alone does not identify a primal.
++Private Function OriginalDllScope(ByRef pr As RPX_AccuracyProgram) As Boolean
++    Dim i As Long
+     If pr.mode <> "lower" And pr.mode <> "upper" Then Exit Function
+     If Not CurrentProgram(pr) Then Exit Function
+     For i = 0 To pr.n - 1
+         If pr.pdiag(i) <> 0# Or pr.cost(i) <> pr.originalCost(i) Then Exit Function
+     Next i
+-    ThinDllOriginalScope = True
++    OriginalDllScope = True
++End Function
++' Only the literal original LP receives the thin-chain equilibration override.
++' Cap/QP, equality-repair and dual helpers keep their existing settings.
++Private Function ThinDllOriginalScope(ByRef pr As RPX_AccuracyProgram) As Boolean
++    If Not RPX_ThinChainBudgetActive Or Not RFsActive Or RSubdivisions <> 8 Then Exit Function
++    ThinDllOriginalScope = OriginalDllScope(pr)
+ End Function
+ Private Function ThinDllEquilibrate() As Long
+     Dim equ As Double
+@@ -246,7 +270,13 @@
+     Dim descriptor(0 To 87) As Byte, settings(0 To 127) As Byte, progress(0 To 79) As Byte
+     Dim handle As LongLong, rc As Long, state As Long, number As Long, message As String, source As String
+     Dim cancelled As Boolean, valid As Boolean, i As Long, begin As Double, elapsed As Double, equ As Double
+-    Dim thinOriginal As Boolean
++    Dim thinOriginal As Boolean, callDetail As String, requestedSeconds As Double, packedSeconds As Double
++    Dim literalOriginal As Boolean, programRole As String, upperEquilibrateSetting As Long, upperEqu As Double
++    Dim callId As Long, resultStatus As Long
++    accuracyCallSequence = accuracyCallSequence + 1: callId = accuracyCallSequence
++    AccuracyNativeCallId = callId: AccuracyNativeSolverStatus = 0: AccuracyNativeIterations = 0
++    AccuracyNativeEquilibrate = -1: upperEquilibrateSetting = -1: programRole = "unclassified"
++    requestedSeconds = seconds: packedSeconds = -1#: resultStatus = -1
+     packedEquilibrate = -1
+     Erase answer: Erase modifiedDual: AccuracyNativeReason = "DLL_NOT_AVAILABLE"
+     If Not RPX_SchurFinite(seconds) Or seconds <= 0# Or seconds > 600# Then Exit Function
+@@ -268,7 +298,14 @@
+     PackPointer descriptor, 48, VarPtr(pr.rhs(0)): PackPointer descriptor, 56, VarPtr(pr.pdiag(0)): PackPointer descriptor, 64, VarPtr(pr.cost(0))
+     PackPointer descriptor, 72, VarPtr(pr.coneKind(0)): PackPointer descriptor, 80, VarPtr(pr.coneDim(0))
+     PackLong settings, 8, 350: PackLong settings, 12, 1
+-    thinOriginal = ThinDllOriginalScope(pr)
++    thinOriginal = ThinDllOriginalScope(pr): literalOriginal = OriginalDllScope(pr)
++    If literalOriginal Then
++        programRole = "original_primal"
++    ElseIf pr.mode = "original_dual_helper" Then
++        programRole = "original_dual_helper"
++    Else
++        programRole = "auxiliary"
++    End If
+     If RPX_ThinChainBudgetActive Then
+         If thinOriginal Then
+             seconds = RPX_ThinSolveSeconds(seconds)
+@@ -277,7 +314,7 @@
+         End If
+         If seconds <= 0# Then GoTo Cleanup
+     End If
+-    PackDouble settings, 16, seconds
++    PackDouble settings, 16, seconds: packedSeconds = seconds
+     PackDouble settings, 24, 0.0000000000001: PackDouble settings, 32, 0.0000000000001: PackDouble settings, 40, 0.0000000000001
+     PackDouble settings, 64, 0.000000000000001: PackDouble settings, 72, 0.000000000000001: PackLong settings, 80, 30
+     If thinOriginal Then
+@@ -297,7 +334,14 @@
+         PackLong settings, 8, RPX_ThinUpperDllRetryIterations
+         If Not thinOriginal Then equ = RPX_ThinUpperDllRetryEquilibrate
+     End If
+-    PackLong settings, 84, CLng(equ): packedEquilibrate = CLng(equ)
++    ' One enables the scoped override; zero preserves the complete rc9a selector.
++    If literalOriginal And pr.mode = "upper" Then
++        upperEqu = CDbl(RPX_Setting("ACCURACY_DLL_UPPER_EQUILIBRATE", 1))
++        If Not RPX_SchurFinite(upperEqu) Or (upperEqu <> 0# And upperEqu <> 1#) Then err.Raise 5, "RPX_AccuracyNative", "INVALID_ACCURACY_DLL_UPPER_EQUILIBRATE"
++        upperEquilibrateSetting = CLng(upperEqu)
++        If upperEquilibrateSetting = 1 Then equ = 1#
++    End If
++    PackLong settings, 84, CLng(equ): packedEquilibrate = CLng(equ): AccuracyNativeEquilibrate = packedEquilibrate
+     If thinOriginal Then RPX_DiagEvent "thin_dll_equilibrate", "mode=" & pr.mode & ";Fs=" & pr.factor & ";equilibrate=" & packedEquilibrate & ";status5_retry=" & thinUpperRetry
+     PackLong progress, 0, 80: PackLong progress, 4, 1
+     rc = NCreate(VarPtr(descriptor(0)), VarPtr(settings(0)), handle)
+@@ -332,6 +376,7 @@
+     ReDim answer(0 To pr.n - 1): ReDim modifiedDual(0 To pr.m - 1)
+     rc = NResult(handle, VarPtr(answer(0)), pr.n, VarPtr(modifiedDual(0)), pr.m, VarPtr(progress(0)))
+     If rc <> 0 Then GoTo Cleanup
++    resultStatus = ReadLong(progress, 12)
+     For i = 0 To pr.n - 1: If Not RPX_SchurFinite(answer(i)) Then GoTo Cleanup
+     Next i
+     For i = 0 To pr.m - 1: If Not RPX_SchurFinite(modifiedDual(i)) Then GoTo Cleanup
+@@ -348,6 +393,14 @@
+         handle = 0
+     End If
+     If Not valid Then Erase answer: Erase modifiedDual
++    callDetail = "call_id=" & callId & ";program_mode=" & pr.mode & ";program_role=" & programRole & ";n=" & pr.n & ";m=" & pr.m
++    callDetail = callDetail & ";original_primal=" & literalOriginal & ";upper_equilibrate_setting=" & upperEquilibrateSetting
++    callDetail = callDetail & ";thin_original=" & thinOriginal & ";thin_upper_retry=" & thinUpperRetry
++    callDetail = callDetail & ";requested_seconds=" & requestedSeconds & ";packed_seconds=" & packedSeconds
++    callDetail = callDetail & ";iteration_limit=" & ReadLong(settings, 8) & ";equilibrate=" & packedEquilibrate
++    callDetail = callDetail & ";state=" & state & ";poll_status=" & AccuracyNativeSolverStatus & ";result_status=" & resultStatus
++    callDetail = callDetail & ";iterations=" & AccuracyNativeIterations & ";cancelled=" & cancelled & ";finite_candidate=" & valid
++    RPX_DiagEvent "accuracy_dll_call", callDetail & ";status_is_not_certificate=1"
+     If valid Then AccuracyNativeReason = "CANDIDATE_REQUIRES_ORIGINAL_AUDIT" Else AccuracyNativeReason = "ACCURACY_DLL_NO_FINITE_CANDIDATE"
+     If number = 5 And message = "THIN_UPPER_LOWER_PROTECT" Then
+         ' Resume Cleanup re-enables the handler: disable it before propagating.
+@@ -374,6 +427,7 @@
+     Dim retrySeconds As Double, remainingSeconds As Double, remainingSource As String, initialIterations As Long
+     Dim firstCandidate() As Double, firstDual() As Double, initialReason As String, retryFinite As Boolean
+     Dim retryStatus As Long, retryIterations As Long, retryStarted As Double, retryEquilibratePacked As Long
++    Dim initialCallId As Long, initialEquilibrate As Long
+     ThinUpperStatus5Retry = hadCandidate
+     If AccuracyNativeSolverStatus <> 5 Or Not ThinUpperRetryScope(pr) Then Exit Function
+     retrySeconds = WorksheetFunction.Max(ordinarySeconds, RPX_ThinUpperDllRetrySeconds)
+@@ -389,6 +443,7 @@
+     End If
+     If hadCandidate Then firstCandidate = candidate: firstDual = originalDual
+     initialIterations = AccuracyNativeIterations: initialReason = AccuracyNativeReason
++    initialCallId = AccuracyNativeCallId: initialEquilibrate = AccuracyNativeEquilibrate
+     RPX_AssertInputs "thin_upper_dll_retry"
+     retryStarted = RPX_DiagClock()
+     retryFinite = AccuracySolveCore(pr, retrySeconds, candidate, originalDual, True, retryEquilibratePacked)
+@@ -399,6 +454,7 @@
+     If Not retryFinite Then
+         If hadCandidate Then candidate = firstCandidate: originalDual = firstDual
+         AccuracyNativeSolverStatus = 5: AccuracyNativeIterations = initialIterations: AccuracyNativeReason = initialReason
++        AccuracyNativeCallId = initialCallId: AccuracyNativeEquilibrate = initialEquilibrate ' Restored candidate belongs to the first call.
+     Else
+         ThinUpperStatus5Retry = True
+     End If
+@@ -716,6 +772,7 @@
+ Public Sub RPX_AccuracyDualProblem(ByRef original As RPX_AccuracyProgram, ByRef dualProgram As RPX_AccuracyProgram)
+     Dim pr As RPX_AccuracyProgram, counts() As Long, cursor() As Long, i As Long, j As Long, row As Long, col As Long, p As Long, threshold As Double
+     pr.n = original.m: pr.m = original.n + original.m - original.equalityCount + 1
++    pr.mode = "original_dual_helper" ' Keeps the existing dual equilibration branch.
+     pr.coneCount = original.coneCount + 1
+     ReDim counts(0 To pr.m - 1): ReDim cursor(0 To pr.m - 1)
+     For i = 0 To original.m - 1
+@@ -751,9 +808,10 @@
+     pr.coneKind(pr.coneCount - 1) = 1: pr.coneDim(pr.coneCount - 1) = 1
+     dualProgram = pr
+ End Sub
+-Public Function RPX_AccuracyDualAudit(ByRef original As RPX_AccuracyProgram, ByRef candidate() As Double) As Boolean
+-    Dim stat() As Double, corr() As Double, i As Long, j As Long, k As Long, row As Long, total As Double, correction As Double, violation As Double, threshold As Double
+-    AccuracyNativeDualStat = 0#: AccuracyNativeDualCone = 0#: AccuracyNativeDualObjective = 0#
++Public Function RPX_AccuracyDualAudit(ByRef original As RPX_AccuracyProgram, ByRef candidate() As Double, Optional ByVal candidateRole As String = "original_dual") As Boolean
++    Dim stat() As Double, corr() As Double, i As Long, j As Long, k As Long, row As Long, total As Double, correction As Double, violation As Double, threshold As Double
++    Dim costInf As Double, dualInf As Double, atyInf As Double, costIndex As Long, statIndex As Long, detail As String, atyComplete As Boolean
++    ResetDualDiagnostics
+     On Error GoTo Rejected
+     If Not CurrentProgram(original) Or LBound(candidate) <> 0 Or UBound(candidate) <> original.m - 1 Then Exit Function
+     ReDim stat(0 To original.n - 1): ReDim corr(0 To original.n - 1): stat = original.originalCost
+@@ -762,7 +820,14 @@
+         AddTerm AccuracyNativeDualObjective, correction, -original.rhs(i) * candidate(i)
+         For j = original.rowPtr(i) To original.rowPtr(i + 1) - 1: AddTerm stat(original.colId(j)), corr(original.colId(j)), original.values(j) * candidate(i): Next j
+     Next i
+-    For i = 0 To original.n - 1: AccuracyNativeDualStat = WorksheetFunction.Max(AccuracyNativeDualStat, Abs(stat(i))): Next i
++    atyComplete = True
++    For i = 0 To original.n - 1
++        If Abs(original.originalCost(i)) > costInf Then costInf = Abs(original.originalCost(i)): costIndex = i
++        If Abs(stat(i)) > AccuracyNativeDualStat Then AccuracyNativeDualStat = Abs(stat(i)): statIndex = i
++        total = DiagnosticAbsDifference(stat(i), original.originalCost(i), atyComplete)
++        atyInf = WorksheetFunction.Max(atyInf, total)
++    Next i
++    For i = 0 To original.m - 1: dualInf = WorksheetFunction.Max(dualInf, Abs(candidate(i))): Next i
+     row = original.equalityCount
+     For k = 1 To original.coneCount - 1
+         violation = -candidate(row)
+@@ -771,6 +836,14 @@
+     Next k
+     If original.mode = "upper" Then threshold = 1.000003 Else threshold = -0.999998
+     RPX_AccuracyDualAudit = AccuracyNativeDualStat <= 0.0000001 And AccuracyNativeDualCone <= 0.00000001 And AccuracyNativeDualObjective >= threshold
++    AccuracyNativeDualAudited = True: AccuracyNativeDualAuditCallId = AccuracyNativeCallId
++    AccuracyNativeDualAuditRole = candidateRole: AccuracyNativeDualAuditStatus = AccuracyNativeSolverStatus
++    detail = "call_id=" & AccuracyNativeDualAuditCallId & ";candidate_role=" & candidateRole & ";mode=" & original.mode & ";solver_status=" & AccuracyNativeDualAuditStatus
++    detail = detail & ";cost_inf=" & costInf & ";cost_index=" & costIndex & ";dual_inf=" & dualInf & ";aty_inf_derived=" & atyInf
++    detail = detail & ";aty_inf_derived_valid=" & atyComplete
++    detail = detail & ";stat_index=" & statIndex & ";stat_at_cost_index=" & stat(costIndex) & ";cost_at_cost_index=" & original.originalCost(costIndex)
++    detail = detail & ";raw_stat=" & AccuracyNativeDualStat & ";raw_cone=" & AccuracyNativeDualCone & ";original_objective=" & AccuracyNativeDualObjective
++    RPX_DiagEvent "accuracy_dual_vector", detail & ";accepted=" & RPX_AccuracyDualAudit & ";physical_bound=0"
+     Exit Function
+ Rejected:
+     If err.number <> 6 And err.number <> 9 And Left$(err.description, 18) <> "ACCURACY_NONFINITE" Then err.Raise err.number, err.source, err.description
+@@ -779,7 +852,9 @@
+ Public Function RPX_AccuracyRecoverDual(ByVal factor As Double, ByVal mode As String, Optional ByVal budgetOverride As Double = 0#) As Boolean
+     Dim original As RPX_AccuracyProgram, dp As RPX_AccuracyProgram, candidate() As Double, helperDual() As Double, seconds As Double, accepted As Boolean
+     Dim useDualRepair As Boolean, finiteHelperCandidate As Boolean, repairSolveId As Long, repairCandidateId As Long
+-    RPX_AccuracyGuideReset
++    Dim dualStatLog As Double, dualConeLog As Double, dualObjectiveLog As Double
++    RPX_AccuracyGuideReset
++    ResetDualDiagnostics
+     If Not RPX_AccuracyExport(factor, mode, original) Then Exit Function
+     If mode = "upper" Then useDualRepair = DualLinearRepairEnabled()
+     repairSolveId = P4Solve: repairCandidateId = RPX_HSDCandidateId
+@@ -793,7 +868,8 @@
+     If useDualRepair Then DualRepairAssert original, repairSolveId, repairCandidateId, "original_dual_helper_after"
+     If Not finiteHelperCandidate Then Exit Function
+     Erase helperDual ' The auxiliary problem's dual is not an original program dual.
+-    accepted = RPX_AccuracyDualAudit(original, candidate)
++    accepted = RPX_AccuracyDualAudit(original, candidate, "helper_primal")
++    If AccuracyNativeDualAudited Then CaptureDualRepairStage original, candidate, "raw_helper", accepted
+     If Not accepted And mode = "upper" Then accepted = TryOriginalDualLinearRepair(original, candidate)
+     If accepted Then
+         guideReady = True: guideFactor = factor: guideMode = mode: guideModel = original.model: guidePolicy = original.policy
+@@ -802,7 +878,10 @@
+         guideCost = original.originalCost: guideNormalizedCost = XQ
+         CaptureAccuracyProof original, candidate, True
+     End If
+-    RPX_DiagEvent "accuracy_dll_original_dual", "accepted=" & accepted & ";mode=" & mode & ";Fs=" & factor & ";q=8;raw_stat=" & AccuracyNativeDualStat & ";raw_cone=" & AccuracyNativeDualCone & ";original_objective=" & AccuracyNativeDualObjective & ";physical_bound=0"
++    If AccuracyNativeDualAudited Then
++        dualStatLog = AccuracyNativeDualStat: dualConeLog = AccuracyNativeDualCone: dualObjectiveLog = AccuracyNativeDualObjective
++    End If
++    RPX_DiagEvent "accuracy_dll_original_dual", "accepted=" & accepted & ";mode=" & mode & ";Fs=" & factor & ";q=8;raw_stat=" & dualStatLog & ";raw_cone=" & dualConeLog & ";original_objective=" & dualObjectiveLog & ";physical_bound=0" & ";call_id=" & AccuracyNativeCallId & ";helper_status=" & AccuracyNativeSolverStatus & ";dual_audited=" & AccuracyNativeDualAudited
+     RPX_AccuracyRecoverDual = accepted
+ End Function
+ Public Sub RPX_AccuracyWriteProof(ByVal path As String, ByRef pr As RPX_AccuracyProgram, ByRef field() As Double)
+@@ -925,9 +1004,16 @@
+     Dim recenterSolveId As Long, recenterCandidateId As Long, useDualRepairDirect As Boolean
+     Dim oldRaw(1 To 4) As Double, oldDissipation As Double, oldReference As Double, oldFixed As Double, i As Long
+     Dim iterateFirst As Long, iterateLast As Long
+-    If RPX_ThinUpperProtectOn() Then Call RPX_ThinUpperProtectCheck("root_trial")
+-    useDualFirst = ConsumeUpperDualFirst(factor, mode)
+-    AccuracyDirectLastKind = "": AccuracyDirectLastAccepted = False
++    Dim primalCallId As Long, primalStatus As Long, primalEquilibrate As Long, primalRole As String
++    Dim primalAudited As Boolean, primalAuditPass As Boolean, primalEquality As Double, primalCone As Double, primalObjective As Double
++    Dim recenterFirstCall As Long, candidateCallId As Long, endDetail As String
++    Dim dualStatLog As Double, dualConeLog As Double, dualObjectiveLog As Double
++    AccuracyDirectLastKind = "": AccuracyDirectLastAccepted = False
++    ResetDualDiagnostics
++    AccuracyNativeCallId = 0: AccuracyNativeSolverStatus = 0: AccuracyNativeIterations = 0: AccuracyNativeEquilibrate = -1
++    AccuracyNativeEquality = 0#: AccuracyNativeCone = 0#: primalEquilibrate = -1: primalRole = "none"
++    If RPX_ThinUpperProtectOn() Then Call RPX_ThinUpperProtectCheck("root_trial")
++    useDualFirst = ConsumeUpperDualFirst(factor, mode)
+     If Not RPX_DirectEnabled() Then Exit Function
+     seconds = CDbl(RPX_Setting("DIRECT_DLL_SECONDS", 5))
+     If Not RPX_SchurFinite(seconds) Or seconds <= 0# Or seconds > 600# Then err.Raise 5, "RPX_AccuracyNative", "INVALID_DIRECT_DLL_SECONDS"
+@@ -971,6 +1057,8 @@
+         If Not CurrentProgram(original) Then err.Raise 5, "RPX_AccuracyNative", "UPPER_DUAL_FIRST_CONTEXT_CHANGED"
+         RPX_DiagEvent "direct_upper_dual_first", "accepted=False;fallback=original_lp;helper_seconds=" & dualFirstSeconds & ";lp_seconds=" & seconds & ";guide_is_not_field=1"
+     End If
++    ' A rejected dual-first helper cannot supply diagnostics for this LP candidate.
++    ResetDualDiagnostics
+     started = RPX_DiagClock()
+     RPX_TestHook "direct_dll_begin"
+     If RPX_ThinFsStatus5Allowed(factor) Then AccuracyNativeSolverStatus = 0
+@@ -979,6 +1067,8 @@
+     If mode = "upper" Then
+         If AccuracyNativeSolverStatus = 5 Then hasOriginalCenter = ThinUpperStatus5Retry(original, seconds, candidate, originalDual, hasOriginalCenter)
+     End If
++    primalCallId = AccuracyNativeCallId: primalStatus = AccuracyNativeSolverStatus: primalEquilibrate = AccuracyNativeEquilibrate
++    primalRole = "original_primal"
+     If Not hasOriginalCenter Then
+         If mode = "upper" And AccuracyNativeSolverStatus = 5 Then
+             If RPX_ThinFsStatus5Allowed(factor) Then
+@@ -990,6 +1080,8 @@
+     End If
+     RPX_TestHook "direct_dll_candidate"
+     ok = RPX_AccuracyPrimalAudit(original, candidate, objective)
++    primalAudited = True: primalAuditPass = ok
++    primalEquality = AccuracyNativeEquality: primalCone = AccuracyNativeCone: primalObjective = objective
+     If RPX_ThinChainBudgetActive And RPX_ThinChainUpperActive And mode = "upper" Then
+         If AccuracyNativeSolverStatus <> 1 And AccuracyNativeSolverStatus <> 4 Then ok = False
+     End If
+@@ -1000,6 +1092,8 @@
+     If Not ok And mode = "lower" Then
+         If HomogeneousLowerWitness(original, candidate, normalized, normalizedObjective, normalizedValue) Then
+             candidate = normalized: objective = normalizedObjective: measured = normalizedValue: ok = True
++            primalAudited = True: primalAuditPass = True
++            primalEquality = AccuracyNativeEquality: primalCone = AccuracyNativeCone: primalObjective = objective
+             RPX_DiagEvent "direct_dll_homogeneous_primal", "mode=lower;Fs=" & factor & ";q=8;lambda=" & measured & ";same_fs_original_gate=1;solver_status_used_as_evidence=0;auxiliary_dual_used=0"
+         End If
+     End If
+@@ -1008,6 +1102,7 @@
+         GoTo Restore
+     End If
+     If RPX_AccuracyDualAudit(original, originalDual) Then kind = "original_dual": accepted = True
++    If AccuracyNativeDualAudited Then CaptureDualRepairStage original, originalDual, "raw_original", accepted
+     If Not accepted And mode = "upper" And AccuracyNativeSolverStatus = 5 Then
+         If RPX_ThinFsStatus5Allowed(factor) Then
+             ' AlmostPrimalInfeasible is only a below-root search sign. It has
+@@ -1032,9 +1127,17 @@
+     If Not accepted And useUpperRecenter Then
+         recenterInvoked = True: recenterSolveId = P4Solve: recenterCandidateId = RPX_HSDCandidateId
+         Call RPX_AccuracyGuideReset
+-        If RecoverUpperRecenterProgram(original, candidate, hasOriginalCenter, recentered) Then
+-            candidate = recentered
+-            ok = RPX_AccuracyPrimalAudit(original, candidate, objective)
++        recenterFirstCall = accuracyCallSequence
++        If RecoverUpperRecenterProgram(original, candidate, hasOriginalCenter, recentered) Then
++            candidate = recentered
++            ' Reusing the original center keeps its native origin, even after a helper.
++            If accuracyCallSequence <> recenterFirstCall Then
++                primalCallId = AccuracyNativeCallId: primalStatus = AccuracyNativeSolverStatus: primalEquilibrate = AccuracyNativeEquilibrate
++            End If
++            primalRole = "recovered_primal"
++            ok = RPX_AccuracyPrimalAudit(original, candidate, objective)
++            primalAudited = True: primalAuditPass = ok
++            primalEquality = AccuracyNativeEquality: primalCone = AccuracyNativeCone: primalObjective = objective
+             If RPX_ThinChainBudgetActive And RPX_ThinChainUpperActive Then
+                 If AccuracyNativeSolverStatus <> 1 And AccuracyNativeSolverStatus <> 4 Then ok = False
+             End If
+@@ -1098,7 +1201,22 @@
+     If number = 5 And message = "THIN_UPPER_LOWER_PROTECT" Then err.Raise number, "RPX_AccuracyNative", message
+     If recenterInvoked And number <> 0 Then err.Raise number, "RPX_AccuracyNative", message
+     If useDualRepairDirect And number <> 0 Then err.Raise number, "RPX_AccuracyNative", message
+-    RPX_DiagEvent "direct_dll_end", "accepted=" & accepted & ";kind=" & kind & ";mode=" & mode & ";Fs=" & factor & ";solver_status=" & AccuracyNativeSolverStatus & ";raw_eq=" & AccuracyNativeEquality & ";raw_cone=" & AccuracyNativeCone & ";dual_stat=" & AccuracyNativeDualStat & ";dual_cone=" & AccuracyNativeDualCone & ";fallback=" & CStr(Not accepted) & ";message=" & message
++    candidateCallId = AccuracyNativeCallId
++    If kind = "original_primal" Then candidateCallId = primalCallId
++    ' Invalid partial audit values remain operationally unchanged and are not logged as residuals.
++    If AccuracyNativeDualAudited Then
++        dualStatLog = AccuracyNativeDualStat: dualConeLog = AccuracyNativeDualCone: dualObjectiveLog = AccuracyNativeDualObjective
++    End If
++    endDetail = "accepted=" & accepted & ";kind=" & kind & ";mode=" & mode & ";Fs=" & factor
++    endDetail = endDetail & ";solver_status=" & primalStatus & ";raw_eq=" & primalEquality & ";raw_cone=" & primalCone
++    endDetail = endDetail & ";primal_call_id=" & primalCallId & ";primal_status=" & primalStatus & ";primal_equilibrate=" & primalEquilibrate & ";primal_role=" & primalRole
++    endDetail = endDetail & ";primal_audited=" & primalAudited & ";primal_audit_pass=" & primalAuditPass
++    endDetail = endDetail & ";primal_raw_eq=" & primalEquality & ";primal_raw_cone=" & primalCone & ";primal_objective=" & primalObjective
++    endDetail = endDetail & ";dual_audited=" & AccuracyNativeDualAudited & ";dual_call_id=" & AccuracyNativeDualAuditCallId
++    endDetail = endDetail & ";dual_status=" & AccuracyNativeDualAuditStatus & ";dual_role=" & AccuracyNativeDualAuditRole
++    endDetail = endDetail & ";dual_stat=" & dualStatLog & ";dual_cone=" & dualConeLog & ";dual_objective=" & dualObjectiveLog
++    endDetail = endDetail & ";last_call_id=" & accuracyCallSequence & ";candidate_call_id=" & candidateCallId
++    RPX_DiagEvent "direct_dll_end", endDetail & ";fallback=" & CStr(Not accepted) & ";message=" & message
+     RPX_AccuracyDirectBound = accepted
+     Exit Function
+ Rejected:
+@@ -1363,7 +1481,7 @@
+     ' Distinct filename: rejected source/corrected candidates are NOT accepted accuracy proofs.
+     path = RPX_DiagPath & ".dual_repair_" & stage & "_solve_" & P4Solve & "_" & proofSequence & ".bin"
+     RPX_AccuracyWriteProof path, original, candidate
+-    RPX_DiagEvent "dual_repair_capture", "stage=" & stage & ";path=" & path & ";layout=AC18P001_original_dual;accepted=" & accepted & ";physical_bound=0;candidate_only=1"
++    RPX_DiagEvent "dual_repair_capture", "stage=" & stage & ";path=" & path & ";layout=AC18P001_original_dual;accepted=" & accepted & ";physical_bound=0;candidate_only=1" & ";call_id=" & AccuracyNativeCallId
+ End Sub
+ Private Function OriginalDualArrayValid(ByRef original As RPX_AccuracyProgram, ByRef candidate() As Double) As Boolean
+     Dim i As Long
+@@ -1392,7 +1510,7 @@
+     If Not OriginalDualArrayValid(original, candidate) Then Exit Function
+     On Error GoTo Failed
+     sourceDual = candidate
+-    alreadyAccepted = RPX_AccuracyDualAudit(original, sourceDual)
++    alreadyAccepted = RPX_AccuracyDualAudit(original, sourceDual, "repair_source")
+     beforeStat = AccuracyNativeDualStat: beforeCone = AccuracyNativeDualCone: beforeObjective = AccuracyNativeDualObjective
+     If alreadyAccepted Then Exit Function
+     If Not RPX_SchurFinite(beforeStat) Or Not RPX_SchurFinite(beforeCone) Or Not RPX_SchurFinite(beforeObjective) Then Exit Function
+@@ -1428,7 +1546,7 @@
+     Next i
+     unchangedCone = DualConeBitsUnchanged(sourceDual, updated, original.equalityCount, original.m)
+     If Not unchangedCone Then err.Raise 5, "RPX_AccuracyNative", "DUAL_REPAIR_CHANGED_CONE_BITS"
+-    accepted = RPX_AccuracyDualAudit(original, updated)
++    accepted = RPX_AccuracyDualAudit(original, updated, "repair_corrected")
+     If Not RPX_SchurFinite(seconds) Or seconds < 0# Or seconds > 10# Then accepted = False
+     DualRepairAssert original, solveId, candidateId, "dual_repair_after_original_audit"
+     CaptureDualRepairStage original, updated, "after", accepted
+--- a/vba/RPX_P4.bas
++++ b/vba_rc9b/RPX_P4.bas
+@@ -86,6 +86,8 @@
+             RPX_ValidateSettingValue = SettingSwitch(key, value)
+         Case "HSD_PROJECTIVE_NORMALIZATION", "HSD_ORIGINAL_OPERATOR", "HSD_LINEAR_CAPTURE", "ACCURACY_DLL_CAPTURE", "ORIGINAL_FARKAS_CAPTURE", "ACCURACY_DLL_DUAL_LINEAR_REPAIR", "ACCURACY_DLL_UPPER_RECENTER", "FS_TERMINAL_SCHEDULE", "SCHUR_STRUCTURE_CACHE"
+             RPX_ValidateSettingValue = SettingSwitch(key, value)
++        Case "ACCURACY_DLL_UPPER_EQUILIBRATE"
++            RPX_ValidateSettingValue = SettingSwitch(key, value)
+         Case "TARGET"
+             RPX_ValidateSettingValue = SettingInteger(key, value, 16, 50000)
+         Case "QUADRATURE"
+--- a/vba/RPX_UI.bas
++++ b/vba_rc9b/RPX_UI.bas
+@@ -450,6 +450,7 @@
+     EnsureSettingRow ws, "ACCURACY_DLL_ALPHA", "åÛï‚ÇÃïœçXó åWêî", 0.01, "å≥ÇÃèÍÇ©ÇÁÇÃïœçXÇó}Ç¶ÇÈê≥ÇÃåWêîÅB", ""
+     EnsureSettingRow ws, "ACCURACY_DLL_EQUILIBRATE", "åÛï‚ÇÃé©ìÆïΩçtâª", 0, "í èÌ0ÅBåÛï‚ÇÃäƒç∏èåèÇÕïœÇÌÇËÇ‹ÇπÇÒÅB", "0,1"
+     EnsureSettingRow ws, "ACCURACY_DLL_DUAL_EQUILIBRATE", "îΩëŒë§ÇÃé©ìÆïΩçtâª", 1, "í èÌ1ÅBîΩëŒë§ÇÃäƒç∏èåèÇÕïœÇÌÇËÇ‹ÇπÇÒÅB", "0,1"
++    EnsureSettingRow ws, "ACCURACY_DLL_UPPER_EQUILIBRATE", "Upper original LP equilibrate", 1, "Upper original primal LP only; audits are unchanged.", "0,1"
+     EnsureSettingRow ws, "ACCURACY_DLL_CONE_SCALING", "åÛï‚ÇÃâ~êçê≥ãKâª", 0, "0=í èÌÅA1=â~êçëSëÃÇã§í ÇÃê≥åWêîÇ≈ê≥ãKâªÅBå≥ÇÃèÍÇ≈çƒåüèÿÇµÇ‹Ç∑ÅB", "0,1"
+     EnsureSettingRow ws, "ACCURACY_DLL_EQUALITY_RECOVERY", "â∫äEÇÃïΩçtâÒïú", 1, "ê∏ìxâÒïúéûÇ…100/500/1000âÒÇ‹Ç≈ÇÃå¥éÆï‚ê≥åÛï‚ÇééÇµÇ‹Ç∑ÅB", "0,1"
+     EnsureSettingRow ws, "LOWER_FIXED_RECOVERY", "â∫äEÇÃå≈íËâ◊èdâÒïú", 0, "0=í èÌÅA1=ìØÇ∂FsÇ≈ì∆óßÇÃå≈íËâ◊èdåÛï‚ÇééÇµÇ‹Ç∑ÅB", "0,1"
+@@ -494,6 +495,7 @@
+     AccuracySet "ADAPT_LOWER_TARGET", 4000: AccuracySet "ADAPT_LOWER_FAN_ROUNDS", 1: AccuracySet "ADAPT_CERT_QUADRATURE", 8
+     AccuracySet "ACCURACY_DLL_RECOVERY", 1: AccuracySet "ACCURACY_DLL_SECONDS", 120: AccuracySet "ACCURACY_DLL_DUAL_SECONDS", 20
+     AccuracySet "ACCURACY_DLL_CONE_SCALING", 1: AccuracySet "HSD_SOLVE_SECONDS", 300
++    AccuracySet "ACCURACY_DLL_UPPER_EQUILIBRATE", 1
+     RPX_InternalWrite = oldWrite
+     If Not oldWrite Then Call RPX_Invalidate
+     Exit Sub
+@@ -551,6 +553,7 @@
+     AccuracySet "ACCURACY_DLL_DUAL_LINEAR_REPAIR", 1
+     AccuracySet "ACCURACY_DLL_UPPER_LP_SECONDS", 30: AccuracySet "ACCURACY_DLL_SECONDS", 90
+     AccuracySet "ACCURACY_DLL_ALPHA", 0.01: AccuracySet "ACCURACY_DLL_EQUILIBRATE", 0
++    AccuracySet "ACCURACY_DLL_UPPER_EQUILIBRATE", 1
+     AccuracySet "DIRECT_DLL_SECONDS", 30: AccuracySet "ACCURACY_DLL_DUAL_SECONDS", 60
+     AccuracySet "ACCURACY_DLL_DUAL_REGULARIZATION", 0.00000001: AccuracySet "ACCURACY_DLL_DUAL_EQUILIBRATE", 1
+     RPX_InternalWrite = oldWrite

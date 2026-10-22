@@ -1,0 +1,582 @@
+--- vba/RPX_AccuracyNative.bas
++++ vba_rc9c/RPX_AccuracyNative.bas
+@@ -268,7 +268,11 @@
+ End Function
+ Private Function AccuracySolveCore(ByRef pr As RPX_AccuracyProgram, ByVal seconds As Double, ByRef answer() As Double, ByRef modifiedDual() As Double, ByVal thinUpperRetry As Boolean, ByRef packedEquilibrate As Long) As Boolean
+     Dim descriptor(0 To 87) As Byte, settings(0 To 127) As Byte, progress(0 To 79) As Byte
++#If Win64 Then
+     Dim handle As LongLong, rc As Long, state As Long, number As Long, message As String, source As String
++#Else
++    Dim handle As Currency, rc As Long, state As Long, number As Long, message As String, source As String
++#End If
+     Dim cancelled As Boolean, valid As Boolean, i As Long, begin As Double, elapsed As Double, equ As Double
+     Dim thinOriginal As Boolean, callDetail As String, requestedSeconds As Double, packedSeconds As Double
+     Dim literalOriginal As Boolean, programRole As String, upperEquilibrateSetting As Long, upperEqu As Double
+@@ -353,7 +357,7 @@
+         End If
+     End If
+     rc = NStart(handle): If rc <> 0 Then GoTo Cleanup
+-    begin = Timer
++    begin = RPX_Clock()
+     Do
+         rc = NPoll(handle, VarPtr(progress(0))): If rc <> 0 Then GoTo Cleanup
+         state = ReadLong(progress, 8)
+@@ -365,7 +369,7 @@
+         End If
+         If state <> 1 And state <> 0 Then Exit Do
+         If RPX_ThinUpperProtectOn() Then Call RPX_ThinUpperProtectCheck("dll_poll")
+-        elapsed = Timer - begin: If elapsed < 0# Then elapsed = elapsed + 86400#
++        elapsed = RPX_Clock() - begin
+         If XCancel Or elapsed > seconds + 5# Then
+             cancelled = True: rc = NCancel(handle)
+         End If
+@@ -705,7 +709,7 @@
+     If enabled = 0# Or original.mode <> "lower" Or Not CurrentProgram(original) Then Exit Function
+     loadId = RLoadVariable
+     If loadId < 0 Or loadId >= original.n Then Exit Function
+-    candidate = sourceField: began = Timer
++    candidate = sourceField: began = RPX_Clock()
+     For pass = 1 To 3
+         If XCancel Then err.Raise 18, "RPX_AccuracyNative", "ANALYSIS_CANCELLED"
+         ReDim residual(0 To original.equalityCount - 1): worst = 0#: rows = 0: nnz = 0
+@@ -764,7 +768,7 @@
+         If Not CurrentProgram(original) Then Exit Function
+         accepted = RPX_AccuracyPrimalAudit(original, candidate, objective)
+         If accepted Then accepted = RPX_FieldGate("lower", candidate, original.factor, 8, objective, AccuracyNativeValue, AccuracyNativeAudit, raw)
+-        RPX_DiagEvent "accuracy_dll_equality_direct", "pass=" & pass & ";solved=1;residual_before=" & worst & ";raw_eq_after=" & AccuracyNativeEquality & ";raw_cone_after=" & AccuracyNativeCone & ";accepted=" & accepted & ";value=" & AccuracyNativeValue & ";seconds=" & Format$(Timer - began, "0.0") & ";load_fixed=1;full_original_gate_required=1"
++        RPX_DiagEvent "accuracy_dll_equality_direct", "pass=" & pass & ";solved=1;residual_before=" & worst & ";raw_eq_after=" & AccuracyNativeEquality & ";raw_cone_after=" & AccuracyNativeCone & ";accepted=" & accepted & ";value=" & AccuracyNativeValue & ";seconds=" & Format$(RPX_Clock() - began, "0.0") & ";load_fixed=1;full_original_gate_required=1"
+         If accepted And AccuracyNativeValue >= 1.000001 Then sourceField = candidate: DirectEqualityRepair = True: Exit Function
+         If AccuracyNativeEquality <= 0.00000001 Then Exit Function
+     Next pass
+@@ -1459,7 +1463,11 @@
+     Next i
+ End Sub
+ Private Function DualConeBitsUnchanged(ByRef source() As Double, ByRef updated() As Double, ByVal first As Long, ByVal count As Long) As Boolean
++#If Win64 Then
+     Dim i As Long, sourceBits As LongLong, updatedBits As LongLong
++#Else
++    Dim i As Long, sourceBits As Currency, updatedBits As Currency
++#End If
+     For i = first To count - 1
+         If Not RPX_SchurFinite(source(i)) Or Not RPX_SchurFinite(updated(i)) Then Exit Function
+         If source(i) <> updated(i) Then Exit Function
+--- vba/RPX_Adapt.bas
++++ vba_rc9c/RPX_Adapt.bas
+@@ -185,7 +185,7 @@
+     limit = CDbl(RPX_Setting("ADAPT_OPTIONAL_DEADLINE_SECONDS", 0))
+     If Not RPX_SchurFinite(limit) Or limit < 0# Then err.Raise 5, "RPX_Adapt", "INVALID_ADAPT_OPTIONAL_DEADLINE_SECONDS"
+     If limit = 0# Or adaptStartedAt <= 0# Then Exit Function
+-    elapsed = CDbl(Now) * 86400# - adaptStartedAt
++    elapsed = RPX_Clock() - adaptStartedAt
+     If elapsed < limit Then Exit Function
+     RPX_DiagEvent "optional_stage_skipped", "stage=" & stage & ";elapsed=" & elapsed & ";deadline=" & limit & ";certified_pair_kept=1"
+     OptionalStageExpired = True
+@@ -1953,7 +1953,7 @@
+         If stagedCap < 16 Or stagedCap > 50000 Then err.Raise 5, "RPX_Adapt", "INVALID_ADAPT_REFINE_CAP"
+     End If
+     Set RAdaptHistory = New Collection
+-    adaptStartedAt = CDbl(Now) * 86400#
++    adaptStartedAt = RPX_Clock()
+     g20BalancedAttempted = False: g20FlowSource = ""
+     RBestUpper.value = 1E+300: RBestLower.value = -1E+300
+     RBestPair.pairGap = 1E+300
+@@ -2800,7 +2800,7 @@
+     If Not RPX_SchurFinite(limit) Or limit < 0# Then err.Raise 5, "RPX_Adapt", "INVALID_ADAPT_OPTIONAL_DEADLINE_SECONDS"
+     remaining = -1#: timeActive = (limit > 0# And adaptStartedAt > 0#)
+     If timeActive Then
+-        elapsed = CDbl(Now) * 86400# - adaptStartedAt
++        elapsed = RPX_Clock() - adaptStartedAt
+         remaining = limit - elapsed
+         If remaining < 0# Then remaining = 0#
+     End If
+@@ -2951,7 +2951,7 @@
+     caseLimitSeconds = Fix8Number("ADAPT_THIN_CASE_LIMIT_SECONDS", 0, 0, 1E+30)
+     If caseLimitSeconds > 0# Then
+         caseElapsedSeconds = RPX_ThinRunElapsedSeconds()
+-        If caseElapsedSeconds < 0# And adaptStartedAt > 0# Then caseElapsedSeconds = CDbl(Now) * 86400# - adaptStartedAt
++        If caseElapsedSeconds < 0# And adaptStartedAt > 0# Then caseElapsedSeconds = RPX_Clock() - adaptStartedAt
+         If caseElapsedSeconds >= 0# Then
+             remaining = caseLimitSeconds - caseElapsedSeconds
+             If remaining < 0# Then remaining = 0#
+@@ -2970,7 +2970,7 @@
+     Else
+         Exit Function
+     End If
+-    remaining = limit - (CDbl(Now) * 86400# - adaptStartedAt)
++    remaining = limit - (RPX_Clock() - adaptStartedAt)
+     If remaining < 0# Then remaining = 0#
+     Fix9DeadlineRemainingSeconds = remaining
+ End Function
+@@ -3410,7 +3410,7 @@
+     If Not lineage.complete Or lineage.q <> 8 Or lineage.searchIncomplete Then Exit Function
+     If side = "upper" And Not lineage.upperRootValid Then Exit Function
+     If side = "lower" And Not lineage.lowerRootValid Then Exit Function
+-    started = Timer
++    started = RPX_Clock()
+     CloneState baseline, RCurrent
+     savedQ = RSubdivisions: savedTol = RFsTolerance: savedTarget = DTarget: oldIncomplete = RFsSearchIncomplete
+     oldStatus = XStatus: oldValue = RValue: oldObjective = XObjective: oldRAudit = RAudit: oldFactor = RStrengthFactor
+@@ -3511,7 +3511,7 @@
+     End If
+     If result > 0 Then stopReason = "valid"
+     adaptFsCallsTotal = adaptFsCallsTotal + RFsCalls
+-    RPX_DiagEvent "thin_layer_step", "side=" & side & ";round=" & roundIndex & ";evaluated=1;result=" & result & ";reason=" & stopReason & ";mid_only=" & Abs(CLng(midOnly)) & ";theta=" & theta & ";Fs=" & factor & ";q=8;root_a=" & a & ";root_b=" & b & ";fs_calls=" & RFsCalls & ";seconds=" & Format$(Timer - started, "0.0") & ";" & detail & ";other_own_mesh_retained=1"
++    RPX_DiagEvent "thin_layer_step", "side=" & side & ";round=" & roundIndex & ";evaluated=1;result=" & result & ";reason=" & stopReason & ";mid_only=" & Abs(CLng(midOnly)) & ";theta=" & theta & ";Fs=" & factor & ";q=8;root_a=" & a & ";root_b=" & b & ";fs_calls=" & RFsCalls & ";seconds=" & Format$(RPX_Clock() - started, "0.0") & ";" & detail & ";other_own_mesh_retained=1"
+ CandidateDone:
+     If result = 0 And (stopReason = "root_failed" Or stopReason = "evaluate_failed" Or stopReason = "upper_protect") Then
+         Call Fix9KeepFailedBest(side, label, originalNumber, originalSource, originalMessage)
+--- vba/RPX_AHO3.bas
++++ vba_rc9c/RPX_AHO3.bas
+@@ -32,7 +32,7 @@
+ Public Sub RPX_AHOCheckBudget()
+     Dim elapsed As Double
+     If Not AHOActive Then Exit Sub
+-    elapsed = Timer - ahoStart: If elapsed < 0# Then elapsed = elapsed + 86400#
++    elapsed = RPX_Clock() - ahoStart
+     If elapsed > ahoSeconds Then err.Raise 5, "RPX_AHO3", "AHO_USER_BUDGET_LIMIT"
+ End Sub
+ Private Function Dot(ByRef a() As Double, ByRef b() As Double) As Double
+@@ -318,7 +318,7 @@
+     Dim number As Long, source As String, message As String, backtrack As Long
+     On Error GoTo Failed
+     AHOStatus = "NUMERICAL_UNKNOWN": AHOIterations = 0: AHORoundingBacktracks = 0
+-    ahoStart = Timer: ahoSeconds = seconds: AHOActive = True
++    ahoStart = RPX_Clock(): ahoSeconds = seconds: AHOActive = True
+     If Not AFActive Then err.Raise 5, "RPX_AHO3", "AHO_ORIGINAL_MAP_REQUIRED"
+     For k = 0 To XN - 1: If XQ(k) <> 0# Then err.Raise 5, "RPX_AHO3", "AHO_ZERO_OBJECTIVE_REQUIRED"
+     Next k
+@@ -336,7 +336,7 @@
+     ProductAT e, rx
+     For k = 0 To XN - 1: rx(k) = -rx(k): Next k
+     ReDim req(0 To XM - 1): For k = 0 To XM - 1: req(k) = -XERhs(k): Next k
+-    tau = 1#: kap = 1#: theta = 1#: rt = 1# + Dot(offsetH, e): nu = XB + 1#: start = Timer
++    tau = 1#: kap = 1#: theta = 1#: rt = 1# + Dot(offsetH, e): nu = XB + 1#: start = RPX_Clock()
+     For iteration = 0 To maxIterations - 1
+         AHOIterations = iteration: XIteration = iteration
+         RPX_Stage "AHO fixed witness " & iteration
+@@ -366,7 +366,7 @@
+                 RPX_AHOFixedWitness = True: Exit For
+             End If
+         End If
+-        elapsed = Timer - start: If elapsed < 0# Then elapsed = elapsed + 86400#
++        elapsed = RPX_Clock() - start
+         If elapsed > seconds Then AHOStatus = "NUMERICAL_UNKNOWN_TIME_BUDGET": Exit For
+         ahoPhase = "matrix": Matrix
+         ahoPhase = "border": Border
+--- /dev/null
++++ vba_rc9c/RPX_Clock.bas
+@@ -0,0 +1,88 @@
++Attribute VB_Name = "RPX_ClockModule"
++Option Explicit
++' One seconds clock for every elapsed measurement and deadline.
++' Timer fallback needs at least one observation per day to count every wrap.
++#If VBA7 Then
++#If Win64 Then
++Private Declare PtrSafe Function RPX_GetTickCount64 Lib "kernel32" Alias "GetTickCount64" () As LongLong
++#End If
++#End If
++Private clockShift As Double, clockTimerDays As Double, clockTimerLast As Double
++Private clockTimerReady As Boolean
++Private clockTestWrapAt As Double, clockTestRawShift As Double, clockTestStarted As Double
++Private clockTestWraps As Long, clockTestRawJump As Double, clockTestCorrectedStep As Double
++
++Public Function RPX_Clock() As Double
++    Dim rawSeconds As Double
++#If VBA7 Then
++#If Win64 Then
++    If clockTestWrapAt <= 0# Then
++        RPX_Clock = CDbl(RPX_GetTickCount64()) / 1000# + clockShift
++        Exit Function
++    End If
++#End If
++#End If
++    rawSeconds = CDbl(Timer)
++    If clockTestWrapAt > 0# Then
++        ' Rotate seconds-of-day so its next midnight is wrap_at seconds away.
++        ' This forces the same fallback correction used for a real midnight.
++        rawSeconds = rawSeconds + clockTestRawShift
++        rawSeconds = rawSeconds - 86400# * Int(rawSeconds / 86400#)
++    End If
++    If clockTimerReady Then
++        If rawSeconds < clockTimerLast Then
++            clockTimerDays = clockTimerDays + 86400#
++            If clockTestWrapAt > 0# Then
++                clockTestWraps = clockTestWraps + 1
++                clockTestRawJump = rawSeconds - clockTimerLast
++                clockTestCorrectedStep = rawSeconds + 86400# - clockTimerLast
++            End If
++        End If
++    Else
++        ' Keep zero available as the existing caller's uninitialized sentinel.
++        clockTimerDays = 86400#
++        clockTimerReady = True
++    End If
++    clockTimerLast = rawSeconds
++    RPX_Clock = clockShift + clockTimerDays + rawSeconds
++End Function
++
++' Operator test only: zero disables; otherwise force Timer fallback and wrap.
++' Reconfiguration is allowed only while idle, with TEST_INJECTION explicitly on.
++' Align both modes to the previous reading so existing captures keep their epoch.
++Public Sub RPX_TestClockWrap(ByVal wrapAtSeconds As Double)
++    Dim previousSeconds As Double, rawSeconds As Double
++    If RPX_Busy Then err.Raise 5, "RPX_Clock", "TEST_CLOCK_BUSY"
++    If CLng(RPX_Setting("TEST_INJECTION", 0)) <> 1 Then err.Raise 5, "RPX_Clock", "TEST_INJECTION_DISABLED"
++    If wrapAtSeconds < 0# Or wrapAtSeconds >= 86400# Then err.Raise 5, "RPX_Clock", "TEST_CLOCK_WRAP_RANGE"
++    previousSeconds = RPX_Clock()
++    clockTestWrapAt = wrapAtSeconds
++    clockTestStarted = previousSeconds
++    clockTestWraps = 0: clockTestRawJump = 0#: clockTestCorrectedStep = 0#
++    clockTimerDays = 0#: clockTimerReady = False
++    If wrapAtSeconds > 0# Then
++        rawSeconds = CDbl(Timer)
++        clockTestRawShift = 86400# - wrapAtSeconds - rawSeconds
++        clockTimerLast = 86400# - wrapAtSeconds
++        clockTimerReady = True
++        clockShift = previousSeconds - clockTimerLast
++    Else
++#If VBA7 Then
++#If Win64 Then
++        clockShift = previousSeconds - CDbl(RPX_GetTickCount64()) / 1000#
++        Exit Sub
++#End If
++#End If
++        rawSeconds = CDbl(Timer)
++        clockTimerLast = rawSeconds: clockTimerReady = True
++        clockShift = previousSeconds - rawSeconds
++    End If
++End Sub
++
++' Read-only evidence; deliberately retained after run_end for the operator runner.
++Public Function RPX_TestClockStatus() As String
++    Dim sampledSeconds As Double
++    sampledSeconds = RPX_Clock()
++    RPX_TestClockStatus = "active=" & Abs(CLng(clockTestWrapAt > 0#)) & ";wrap_at=" & CStr(clockTestWrapAt) & ";wraps=" & clockTestWraps
++    RPX_TestClockStatus = RPX_TestClockStatus & ";elapsed=" & CStr(sampledSeconds - clockTestStarted) & ";raw_jump=" & CStr(clockTestRawJump) & ";corrected_step=" & CStr(clockTestCorrectedStep)
++End Function
+--- vba/RPX_Conic.bas
++++ vba_rc9c/RPX_Conic.bas
+@@ -137,10 +137,9 @@
+         RPX_ContextGuardDue = True
+         Exit Function
+     End If
+-    nowClock = Timer
++    nowClock = RPX_Clock()
+     If contextGuardReady Then
+         elapsed = nowClock - contextGuardClock
+-        If elapsed < 0# Then elapsed = elapsed + 86400#
+         If elapsed < stageInterval Then Exit Function
+     End If
+     contextGuardClock = nowClock
+@@ -160,10 +159,9 @@
+     End If
+     If stageInterval > 0# Then
+         If Left$(message, 11) = "HSD sparse " Then
+-            nowClock = Timer
++            nowClock = RPX_Clock()
+             If stageHotReady Then
+                 elapsed = nowClock - stageHotClock
+-                If elapsed < 0# Then elapsed = elapsed + 86400#
+                 If elapsed < stageInterval Then Exit Sub
+             End If
+             stageHotClock = nowClock
+--- vba/RPX_Control.bas
++++ vba_rc9c/RPX_Control.bas
+@@ -177,7 +177,7 @@
+     Dim lateRecoveryTried As Boolean
+     If RPX_Busy Then Exit Sub
+     On Error GoTo Failed
+-    Call StartWork: RPX_DiagStart "analysis": RPX_BenchInputCompare: Call RPX_StageConfigure: started = Timer
++    Call StartWork: RPX_DiagStart "analysis": RPX_BenchInputCompare: Call RPX_StageConfigure: started = RPX_Clock()
+     RPX_C0SplitMesh = False: RPX_C0LowerElements = 0: RPX_C0UpperElements = 0
+     Set ws = RPX_Sheet("âêÕåãâ "): ws.cells.ClearContents: ws.Range("A1").Value2 = "âêÕíÜ"
+     Call DiagnosticLink
+@@ -264,7 +264,11 @@
+             ws.cells(row, 1).Resize(1, 10).Value2 = item: row = row + 1
+         Next item
+     End If
++#If False Then
+     ws.Range("A11:B11").Value2 = Array("åvéZéûä‘ [ïb]", (Timer - started + 86400#) Mod 86400#)
++#Else
++    ws.Range("A11:B11").Value2 = Array((ChrW$(-30200) & ChrW$(31639) & ChrW$(26178) & ChrW$(-27245) & " [" & ChrW$(31186) & "]"), RPX_Clock() - started)
++#End If
+     If mode = "Fs" Then
+         If Not (RPX_CertUpper.valid And RPX_CertUpper.proofKind = "TARGET_WITNESS") Then
+             ws.Range("A12:B12").Value2 = Array("FsíTçıÇÃç≈èIÉuÉâÉPÉbÉgïù", RFsLargestRootBracket)
+--- vba/RPX_Diagnostics.bas
++++ vba_rc9c/RPX_Diagnostics.bas
+@@ -10,7 +10,7 @@
+ ' Stage-1 telemetry only: no tolerances, model equations or solver iterates changed.
+ Public RPX_DiagPath As String, RPX_DiagWarning As String
+ Public RPX_AuditRejected As Boolean
+-Private active As Boolean, frequency As Currency, started As Double
++Private active As Boolean, started As Double
+ Private phaseStart(1 To PhaseCount) As Double, phaseDepth(1 To PhaseCount) As Long
+ Private seconds(1 To PhaseCount) As Double, calls(1 To PhaseCount) As Long
+ Private markSeconds(1 To PhaseCount) As Double, markCalls(1 To PhaseCount) As Long
+@@ -47,8 +47,6 @@
+ Private Declare PtrSafe Function RPX_GetPID Lib "kernel32" Alias "GetCurrentProcessId" () As Long
+ Private Declare PtrSafe Function RPX_GetMemory Lib "psapi.dll" Alias "GetProcessMemoryInfo" (ByVal process As LongPtr, ByRef counters As RPX_ProcessMemory, ByVal cb As Long) As Long
+ Private Declare PtrSafe Function RPX_GetSystemMemory Lib "kernel32" Alias "GlobalMemoryStatusEx" (ByRef status As RPX_SystemMemory) As Long
+-Private Declare PtrSafe Function RPX_QPC Lib "kernel32" Alias "QueryPerformanceCounter" (ByRef value As Currency) As Long
+-Private Declare PtrSafe Function RPX_QPF Lib "kernel32" Alias "QueryPerformanceFrequency" (ByRef value As Currency) As Long
+ Public Enum RPX_Phase
+     dpAssembly = 1
+     dpConvert = 2
+@@ -166,11 +164,7 @@
+     RPX_DiagClock = ClockSeconds()
+ End Function
+ Private Function ClockSeconds() As Double
+-    Dim count As Currency
++    ClockSeconds = RPX_Clock()
+-    If frequency <> 0 Then
+-        If RPX_QPC(count) <> 0 Then ClockSeconds = count / frequency: Exit Function
+-    End If
+-    ClockSeconds = CDbl(Date) * 86400# + Timer
+ End Function
+ Private Function Clean(ByVal value As String) As String
+     Clean = Replace(Replace(Replace(value, vbTab, " "), vbCr, " "), vbLf, " ")
+@@ -263,7 +257,7 @@
+     hoptRowScanNodes = 0#: hoptSolveRowScanNodes = 0#: hoptRowScanRows = 0#: hoptSolveRowScanRows = 0#
+     hoptIndexDirect = 0: hoptSolveIndexDirect = 0
+     hoptIteration = 0: hoptAttempt = 0: hoptMatrix = 0: hoptFactor = 0: hoptRhs = 0
+-    frequency = 0: On Error Resume Next: RPX_QPF frequency: On Error GoTo Failed
++    On Error GoTo Failed
+     started = ClockSeconds(): active = True
+     RPX_AllowDraw = True
+     drawPasses = 0
+--- vba/RPX_Fs.bas
++++ vba_rc9c/RPX_Fs.bas
+@@ -1014,10 +1014,10 @@
+ Public Function RPX_TestFs(ByVal inputPath As String, ByVal outputPath As String) As String
+     Dim f As Integer, started As Double
+     On Error GoTo Failed
+-    started = Timer: XLogPath = outputPath & ".log": RPX_ReadModel inputPath
++    started = RPX_Clock(): XLogPath = outputPath & ".log": RPX_ReadModel inputPath
+     Call RPX_FsPair
+     f = FreeFile: Open outputPath For Output As #f
+-    Print #f, RLowerFs; ","; RUpperFs; ","; RFsCalls; ","; Timer - started
++    Print #f, RLowerFs; ","; RUpperFs; ","; RFsCalls; ","; RPX_Clock() - started
+     Close #f: Application.StatusBar = False
+     RPX_TestFs = "PASS lower=" & CStr(RLowerFs) & " upper=" & CStr(RUpperFs): Exit Function
+ Failed:
+--- vba/RPX_Lower.bas
++++ vba_rc9c/RPX_Lower.bas
+@@ -254,13 +254,13 @@
+ Public Function RPX_TestModel(ByVal inputPath As String, ByVal mode As String, ByVal outputPath As String) As String
+     Dim f As Integer, i As Long, started As Double
+     On Error GoTo Failed
+-    started = Timer: XLogPath = outputPath & ".log"
++    started = RPX_Clock(): XLogPath = outputPath & ".log"
+     RPX_ReadModel inputPath
+     If mode = "upper" Then Call RPX_AssembleUpper Else Call RPX_AssembleLower
+     RPX_Optimize False, mode
+     If mode = "upper" Then Call RPX_AuditUpper Else Call RPX_AuditLower
+     f = FreeFile: Open outputPath For Output As #f
+-    Print #f, XObjective; ","; XResidual; ","; XGap; ","; XIteration; ","; Timer - started
++    Print #f, XObjective; ","; XResidual; ","; XGap; ","; XIteration; ","; RPX_Clock() - started
+     For i = 0 To XN - 1: Print #f, xx(i): Next i
+     Close #f: Application.StatusBar = False
+     RPX_TestModel = "PASS objective=" & CStr(XObjective): Exit Function
+@@ -270,11 +270,11 @@
+ Public Function RPX_TestOrderModel(ByVal inputPath As String, ByVal mode As String, ByVal outputPath As String) As String
+     Dim f As Integer, started As Double
+     On Error GoTo Failed
+-    started = Timer: XLogPath = outputPath & ".log": RPX_ReadModel inputPath
++    started = RPX_Clock(): XLogPath = outputPath & ".log": RPX_ReadModel inputPath
+     If mode = "upper" Then Call RPX_AssembleUpper Else Call RPX_AssembleLower
+     Call RPX_Compile
+     f = FreeFile: Open outputPath For Output As #f
+-    Print #f, XN; ","; XM; ","; RPX_FactorNNZ; ","; Timer - started
++    Print #f, XN; ","; XM; ","; RPX_FactorNNZ; ","; RPX_Clock() - started
+     Close #f: Application.StatusBar = False
+     RPX_TestOrderModel = "PASS factor nnz=" & RPX_FactorNNZ: Exit Function
+ Failed:
+--- vba/RPX_LowerCache.bas
++++ vba_rc9c/RPX_LowerCache.bas
+@@ -15,8 +15,7 @@
+ Private savedReactions As Collection, savedEqRoles As Collection
+ 
+ Private Function SecondsSince(ByVal started As Double) As Double
+-    SecondsSince = Timer - started
++    SecondsSince = RPX_Clock() - started
+-    If SecondsSince < 0# Then SecondsSince = SecondsSince + 86400#
+ End Function
+ Public Sub RPX_LowerCacheReset()
+     Dim blankOriginal As RPX_OriginalCompiledData
+@@ -90,7 +89,7 @@
+ End Function
+ Public Function RPX_LowerCacheMatch() As Boolean
+     Dim reason As String, started As Double
+-    started = Timer
++    started = RPX_Clock()
+     RPX_AssertInputs "lower_cache_match"
+     If Not Eligible(reason) Then
+         Call RPX_LowerCacheReset
+@@ -111,7 +110,7 @@
+     Dim reason As String, key As String, started As Double, bytes As Double, i As Long
+     RPX_AssertInputs "lower_cache_store"
+     If Not Eligible(reason) Then Exit Sub
+-    started = Timer: key = RPX_LowerExactIdentity()
++    started = RPX_Clock(): key = RPX_LowerExactIdentity()
+     If cacheValid Then
+         If cacheKey = key Then
+             ' Same matrices: refresh the retained evidence so it never stays at an older q/epoch.
+@@ -169,7 +168,7 @@
+ Public Sub RPX_LowerCacheRestore()
+     RPX_NativeBulkReset
+     Dim i As Long, started As Double
+-    started = Timer
++    started = RPX_Clock()
+     RPX_Stage "lower cache restore"
+     RPX_TestHook "lower_cache_restore"
+     If Not cacheValid Then err.Raise 5, "RPX_LowerCache", "LOWER_CACHE_NOT_VALID"
+--- vba/RPX_NativeBulk.bas
++++ vba_rc9c/RPX_NativeBulk.bas
+@@ -113,18 +113,18 @@
+ Public Sub RPX_NativePulse()
+     Dim nowClock As Double, elapsed As Double, interval As Double
+     If XCancel Then err.Raise 18, , "ANALYSIS_CANCELLED"
+-    interval = RPX_StageIntervalValue(): nowClock = Timer
++    interval = RPX_StageIntervalValue(): nowClock = RPX_Clock()
+     ' DLL4 work slices are <=50 ms targets. Service Excel at most every 50 ms;
+     ' interval=0 keeps the original per-chunk UI and input checks.
+     If uiReady And interval > 0# Then
+-        elapsed = nowClock - uiClock: If elapsed < 0# Then elapsed = elapsed + 86400#
++        elapsed = nowClock - uiClock
+         If elapsed < 0.05 Then Exit Sub
+     End If
+     uiReady = True: uiClock = nowClock
+     DoEvents
+     If XCancel Then err.Raise 18, , "ANALYSIS_CANCELLED"
+     If guardReady And interval > 0# Then
+-        elapsed = nowClock - guardClock: If elapsed < 0# Then elapsed = elapsed + 86400#
++        elapsed = nowClock - guardClock
+         If elapsed < interval Then Exit Sub
+     End If
+     guardReady = True: guardClock = nowClock
+--- vba/RPX_Schur.bas
++++ vba_rc9c/RPX_Schur.bas
+@@ -413,7 +413,7 @@
+     Dim x(0 To 2) As Double, started As Double, phaseStart As Double, invalid As Long
+     reg = regularization: directionNo = 0: autoDirection = 0: factored = False: RPX_SchurAutoFailed = False
+     If Not enabled Then Exit Sub
+-    started = RPX_DiagClock(): lastPulse = Timer
++    started = RPX_DiagClock(): lastPulse = RPX_Clock()
+     If P4Cache And Not contextChecked Then
+         phaseStart = RPX_DiagClock()
+         If ready Then
+@@ -606,7 +606,7 @@
+     directionNo = directionNo + 1
+     If Capture Then RPX_WriteKktCapture sequence, directionNo, reg, rhs, generic
+     If Not factored Or autoMode Then Exit Sub
+-    started = Timer: SolveReduced rhs, answer
++    started = RPX_Clock(): SolveReduced rhs, answer
+     For it = 1 To 3
+         For i = 0 To nf - 1
+             If Not RPX_SchurFinite(answer(i)) Then
+@@ -656,7 +656,7 @@
+     If denom > 0# Then backward = err / denom Else backward = err
+     RPX_DiagEvent "kkt_error_groups", "recovery=" & IIf(P4ReuseU, "REUSE_U", "RESOLVE") & ";backward_error=" & backward & ";generic_residual=" & genericError & ";stress=" & groupDiff(0) / groupNorm(0) & ";retained=" & groupDiff(1) / groupNorm(1) & ";multipliers=" & groupDiff(2) / groupNorm(2)
+     RPX_SchurComparisons = RPX_SchurComparisons + 1
+-    RPX_DiagEvent "kkt_comparison", "recovery=" & IIf(P4ReuseU, "REUSE_U", "RESOLVE") & ";iteration=" & XIteration & ";direction=" & directionNo & ";full_residual=" & err & ";relative_direction=" & diff / norm & ";seconds=" & Timer - started & ";adopted=GENERIC"
++    RPX_DiagEvent "kkt_comparison", "recovery=" & IIf(P4ReuseU, "REUSE_U", "RESOLVE") & ";iteration=" & XIteration & ";direction=" & directionNo & ";full_residual=" & err & ";relative_direction=" & diff / norm & ";seconds=" & RPX_Clock() - started & ";adopted=GENERIC"
+     If err > 0.00000000001 Or diff / norm > 0.00000001 Then
+         RPX_SchurRejected = RPX_SchurRejected + 1
+         RPX_DiagEvent "kkt_comparison_rejected", "reason=full_residual_or_direction;adopted=GENERIC"
+@@ -735,12 +735,12 @@
+ End Sub
+ 
+ Private Sub Pulse(ByVal message As String)
+-    Dim now As Double
++    Dim nowClock As Double
+     If XCancel Then err.Raise 18, , "ANALYSIS_CANCELLED"
+-    now = Timer
++    nowClock = RPX_Clock()
+-    If now < lastPulse Or now - lastPulse >= 0.2 Then
++    If nowClock - lastPulse >= 0.2 Then
+         RPX_Stage message
+-        lastPulse = Timer
++        lastPulse = RPX_Clock()
+     End If
+ End Sub
+ 
+--- vba/RPX_SeepUI.bas
++++ vba_rc9c/RPX_SeepUI.bas
+@@ -1132,7 +1132,7 @@
+     If RPX_WaterCouplingOn() Then coupledAtStart = True
+     previousScreen = Application.ScreenUpdating: previousCancelKey = Application.EnableCancelKey
+     applicationStateSaved = True
+-    RPX_Busy = True: RPX_InternalWrite = True: RPX_WaterSuspend = True: started = Timer
++    RPX_Busy = True: RPX_InternalWrite = True: RPX_WaterSuspend = True: started = RPX_Clock()
+     Application.EnableCancelKey = xlErrorHandler: Application.ScreenUpdating = False
+     Application.StatusBar = "êZìßâêÕÅFÉÅÉbÉVÉÖê∂ê¨íÜÅc"
+     ' A new producer revokes the previous seep result before any model work.
+@@ -1213,7 +1213,11 @@
+         If Not SConverged Then
+             SeepMsg "êZìßâêÕÇÕé˚ë©ÇµÇ‹ÇπÇÒÇ≈ÇµÇΩÅi" & SIterations & "âÒîΩïúÅAä…òaëOïœâªó  " & Format(SLastFixDelta, "0.0E+00") & " mÅAécç∑Å^ç¨çáãñóeílÅiËáíl1Åj " & Format(SLastResidual, "0.0E+00") & "ÅjÅBÇ±ÇÃåãâ ÇÕòAê¨Ç…égÇ¶Ç‹ÇπÇÒÅBÉ¿ÅEÉÅÉbÉVÉÖÅEã´äEèåèÇå©íºÇ∑Ç©ÅAç≈ëÂîΩïúâÒêîÇëùÇ‚ÇµÇƒÇ≠ÇæÇ≥Ç¢Åiä…òaåWêîÇè¨Ç≥Ç≠ÇµÇƒÇ‡é˚ë©îªíËÇÕä√Ç≠Ç»ÇËÇ‹ÇπÇÒÅjÅB", vbExclamation
+         Else
++#If False Then
+             Application.StatusBar = "êZìßâêÕäÆóπÅF" & SIterations & "âÒîΩïúÅA" & Format(Timer - started, "0.0") & "ïb"
++#Else
++            Application.StatusBar = (ChrW$(28024) & ChrW$(-28657) & ChrW$(-30237) & ChrW$(26512) & ChrW$(23436) & ChrW$(20102) & ChrW$(-230)) & SIterations & (ChrW$(22238) & ChrW$(21453) & ChrW$(24489) & ChrW$(12289)) & Format(RPX_Clock() - started, "0.0") & (ChrW$(31186))
++#End If
+         End If
+     End If
+ End Sub
+--- vba/RPX_SeepWT.bas
++++ vba_rc9c/RPX_SeepWT.bas
+@@ -428,7 +428,7 @@
+     Dim obsX(0 To 4) As Double, obsY(0 To 4) As Double, p(0 To 0) As Double, labels(0 To 0) As String, rms As Double, warnText As String
+     Dim seg() As Double, ns As Long, found As Boolean, started As Double
+     On Error GoTo Failed
+-    started = Timer
++    started = RPX_Clock()
+     ' 1) ñ≥å¿éŒñ ÅFu = É¡wÅ~hwÅ~cos2É∆
+     th = 30# * 3.14159265358979 / 180#
+     WTN = 2: ReDim WTX(0 To 1): ReDim WTY(0 To 1)
+@@ -463,7 +463,11 @@
+ Done:
+     On Error Resume Next
+     wtTest = False: SUnkReady = False
++#If False Then
+     msg = msg & "èäóv " & Format(Timer - started, "0.0") & " ïb"
++#Else
++    msg = msg & (ChrW$(25152) & ChrW$(-30335) & " ") & Format(RPX_Clock() - started, "0.0") & (" " & ChrW$(31186))
++#End If
+     Debug.Print msg
+     RPX_SeepWaterTableSelfTest = msg
+ End Function
+--- vba/RPX_Seismic.bas
++++ vba_rc9c/RPX_Seismic.bas
+@@ -168,10 +168,14 @@
+ Private Function OneCase(ByVal ws As Worksheet, ByVal rKh As Long, ByVal rDir As Long, ByVal kh As Double, ByVal dirText As String, ByVal tag As String) As String
+     Dim t As Double
+     ws.cells(rKh, 2).Value2 = kh: ws.cells(rDir, 2).Value2 = dirText
+-    t = Timer
++    t = RPX_Clock()
+     Call RPX_CreateMesh
+     If Len(RPX_LastError) > 0 Then OneCase = tag & " kh=" & kh & " " & dirText & " ÉÅÉbÉVÉÖé∏îsÅF" & RPX_LastError: Exit Function
+     Call RPX_Run
+     If Len(RPX_LastError) > 0 Then OneCase = tag & " kh=" & kh & " " & dirText & " âêÕé∏îsÅF" & RPX_LastError: Exit Function
++#If False Then
+     OneCase = tag & vbTab & "kh=" & Format(kh, "0.00") & vbTab & dirText & vbTab & "Fsâ∫äE=" & Format(RLowerFs, "0.0000") & vbTab & "Fsè„äE=" & Format(RUpperFs, "0.0000") & vbTab & Format(Timer - t, "0.0") & "s"
++#Else
++    OneCase = tag & vbTab & "kh=" & Format(kh, "0.00") & vbTab & dirText & vbTab & ("Fs" & ChrW$(19979) & ChrW$(30028) & "=") & Format(RLowerFs, "0.0000") & vbTab & ("Fs" & ChrW$(19978) & ChrW$(30028) & "=") & Format(RUpperFs, "0.0000") & vbTab & Format(RPX_Clock() - t, "0.0") & "s"
++#End If
+ End Function
+--- vba/RPX_Solve.bas
++++ vba_rc9c/RPX_Solve.bas
+@@ -2402,10 +2402,10 @@
+ Public Function RPX_TestConic(ByVal inputPath As String, ByVal outputPath As String) As String
+     Dim f As Integer, i As Long, started As Double
+     On Error GoTo Failed
+-    started = Timer: XLogPath = outputPath & ".log"
++    started = RPX_Clock(): XLogPath = outputPath & ".log"
+     RPX_ReadConic inputPath: RPX_Optimize
+     f = FreeFile: Open outputPath For Output As #f
+-    Print #f, XObjective; ","; XResidual; ","; XGap; ","; XIteration; ","; Timer - started
++    Print #f, XObjective; ","; XResidual; ","; XGap; ","; XIteration; ","; RPX_Clock() - started
+     For i = 0 To XN - 1: Print #f, xx(i): Next i
+     Close #f: Application.StatusBar = False
+     RPX_TestConic = "PASS objective=" & CStr(XObjective): Exit Function

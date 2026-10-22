@@ -1,0 +1,28 @@
+G1R20 Fix9 rc9c: rc9b + monotonic elapsed seconds only.
+Diff encoding: CP932; source and diff line endings: CRLF.
+All vba/ files copied first. Only listed modules differ; ThisWorkbook.code.txt is unchanged.
+
+RPX_AccuracyNative.bas: +12 -4
+RPX_Adapt.bas: +7 -7
+RPX_AHO3.bas: +4 -4
+RPX_Clock.bas: +88 -0
+RPX_Conic.bas: +2 -4
+RPX_Control.bas: +5 -1
+RPX_Diagnostics.bas: +3 -9
+RPX_Fs.bas: +2 -2
+RPX_Lower.bas: +4 -4
+RPX_LowerCache.bas: +4 -5
+RPX_NativeBulk.bas: +3 -3
+RPX_Schur.bas: +7 -7
+RPX_SeepUI.bas: +5 -1
+RPX_SeepWT.bas: +5 -1
+RPX_Seismic.bas: +5 -1
+RPX_Solve.bas: +2 -2
+
+Total: 15 changed existing modules + 1 new clock module; +158 -55 lines.
+Elapsed Timer and Now captures/readers share RPX_Clock. Diagnostic wrappers also delegate to it.
+Existing one-day corrections removed where obsolete. Raw Conic stage time-of-day Timer logging retained.
+Four non-ASCII elapsed lines retained unchanged under #If False; active equivalents use ASCII ChrW$ literals.
+Two inherited LongLong local declarations now explicitly guarded by Win64; x64 declarations unchanged, other branches use 8-byte Currency storage.
+Default-off, TEST_INJECTION-gated clock hook forces the Timer fallback to wrap at the requested interval.
+No solver equations, tolerances, certificate gates, budgets, presets, DLLs, or workbook modules changed.

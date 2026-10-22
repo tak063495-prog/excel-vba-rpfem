@@ -1,0 +1,417 @@
+G1R20 Fix9 rc9c - source/static validation only
+No Excel/VBA, build, git, network, or reproduction driver executed.
+Checks run with powershell -NoProfile -File .\check_rc9c.ps1.
+A lexical/source audit is not an Excel VBA compile or runtime certification.
+
+PASS: Complete vba copy plus exactly one added clock module.
+PASS: Every non-ASCII line byte-identical, in order: RPX_AccuracyMesh.bas
+PASS: Every non-ASCII line byte-identical, in order: RPX_AccuracyNative.bas
+PASS: Every non-ASCII line byte-identical, in order: RPX_Adapt.bas
+PASS: Every non-ASCII line byte-identical, in order: RPX_Affine.bas
+PASS: Every non-ASCII line byte-identical, in order: RPX_AHO3.bas
+PASS: Every non-ASCII line byte-identical, in order: RPX_Audit.bas
+PASS: Every non-ASCII line byte-identical, in order: RPX_Bearing.bas
+PASS: Every non-ASCII line byte-identical, in order: RPX_C0Guides.bas
+PASS: Every non-ASCII line byte-identical, in order: RPX_C0Select.bas
+PASS: Every non-ASCII line byte-identical, in order: RPX_Certificate.bas
+PASS: Every non-ASCII line byte-identical, in order: RPX_ColumnOrder.bas
+PASS: Every non-ASCII line byte-identical, in order: RPX_Conic.bas
+PASS: Every non-ASCII line byte-identical, in order: RPX_Control.bas
+PASS: Every non-ASCII line byte-identical, in order: RPX_Definition.bas
+PASS: Every non-ASCII line byte-identical, in order: RPX_Diagnostics.bas
+PASS: Every non-ASCII line byte-identical, in order: RPX_Exchange.bas
+PASS: Every non-ASCII line byte-identical, in order: RPX_FactorFree.bas
+PASS: Every non-ASCII line byte-identical, in order: RPX_FixedLowerRecovery.bas
+PASS: Every non-ASCII line byte-identical, in order: RPX_FixedWitness.bas
+PASS: Every non-ASCII line byte-identical, in order: RPX_FlowMesh.bas
+PASS: Every non-ASCII line byte-identical, in order: RPX_FreeFaceSplit.bas
+PASS: Every non-ASCII line byte-identical, in order: RPX_Fs.bas
+PASS: Every non-ASCII line byte-identical, in order: RPX_Guard.bas
+PASS: Every non-ASCII line byte-identical, in order: RPX_HSDCandidate.bas
+PASS: Every non-ASCII line byte-identical, in order: RPX_HSDLu.bas
+PASS: Every non-ASCII line byte-identical, in order: RPX_HSDPrecision.bas
+PASS: Every non-ASCII line byte-identical, in order: RPX_HSDQuality.bas
+PASS: Every non-ASCII line byte-identical, in order: RPX_Indicator.bas
+PASS: Every non-ASCII line byte-identical, in order: RPX_KktCapture.bas
+PASS: Every non-ASCII line byte-identical, in order: RPX_LDL.bas
+PASS: Every non-ASCII line byte-identical, in order: RPX_LoadStepMesh.bas
+PASS: Every non-ASCII line byte-identical, in order: RPX_Lower.bas
+PASS: Every non-ASCII line byte-identical, in order: RPX_LowerCache.bas
+PASS: Every non-ASCII line byte-identical, in order: RPX_Mesh.bas
+PASS: Every non-ASCII line byte-identical, in order: RPX_MeshGuard.bas
+PASS: Every non-ASCII line byte-identical, in order: RPX_MeshTests.bas
+PASS: Every non-ASCII line byte-identical, in order: RPX_Model.bas
+PASS: Every non-ASCII line byte-identical, in order: RPX_Native.bas
+PASS: Every non-ASCII line byte-identical, in order: RPX_NativeBulk.bas
+PASS: Every non-ASCII line byte-identical, in order: RPX_NativeGuard.bas
+PASS: Every non-ASCII line byte-identical, in order: RPX_NativeLU.bas
+PASS: Every non-ASCII line byte-identical, in order: RPX_NativeMesh.bas
+PASS: Every non-ASCII line byte-identical, in order: RPX_NativeSolver.bas
+PASS: Every non-ASCII line byte-identical, in order: RPX_NT.bas
+PASS: Every non-ASCII line byte-identical, in order: RPX_NTPrecision.bas
+PASS: Every non-ASCII line byte-identical, in order: RPX_Order.bas
+PASS: Every non-ASCII line byte-identical, in order: RPX_Output.bas
+PASS: Every non-ASCII line byte-identical, in order: RPX_P4.bas
+PASS: Every non-ASCII line byte-identical, in order: RPX_Profile.bas
+PASS: Every non-ASCII line byte-identical, in order: RPX_Refine.bas
+PASS: Every non-ASCII line byte-identical, in order: RPX_Robust.bas
+PASS: Every non-ASCII line byte-identical, in order: RPX_Schur.bas
+PASS: Every non-ASCII line byte-identical, in order: RPX_SchurCache.bas
+PASS: Every non-ASCII line byte-identical, in order: RPX_SchurLDL.bas
+PASS: Every non-ASCII line byte-identical, in order: RPX_Seep.bas
+PASS: Every non-ASCII line byte-identical, in order: RPX_SeepUI.bas
+PASS: Every non-ASCII line byte-identical, in order: RPX_SeepWT.bas
+PASS: Every non-ASCII line byte-identical, in order: RPX_Seismic.bas
+PASS: Every non-ASCII line byte-identical, in order: RPX_Solve.bas
+PASS: Every non-ASCII line byte-identical, in order: RPX_UI.bas
+PASS: Every non-ASCII line byte-identical, in order: RPX_Upper.bas
+PASS: Every non-ASCII line byte-identical, in order: RPX_Water.bas
+PASS: Every non-ASCII line byte-identical, in order: RPX_WorkPrecision.bas
+PASS: Every non-ASCII line byte-identical, in order: ThisWorkbook.code.txt
+PASS: Exactly the 15 audited existing timing modules changed.
+PASS: ThisWorkbook.code.txt byte-identical.
+PASS: Strict CP932 round trip: RPX_AccuracyMesh.bas
+PASS: CRLF only: RPX_AccuracyMesh.bas
+PASS: Option Explicit: RPX_AccuracyMesh.bas
+PASS: Strict CP932 round trip: RPX_AccuracyNative.bas
+PASS: CRLF only: RPX_AccuracyNative.bas
+PASS: Option Explicit: RPX_AccuracyNative.bas
+PASS: Strict CP932 round trip: RPX_Adapt.bas
+PASS: CRLF only: RPX_Adapt.bas
+PASS: Option Explicit: RPX_Adapt.bas
+PASS: Strict CP932 round trip: RPX_Affine.bas
+PASS: CRLF only: RPX_Affine.bas
+PASS: Option Explicit: RPX_Affine.bas
+PASS: Strict CP932 round trip: RPX_AHO3.bas
+PASS: CRLF only: RPX_AHO3.bas
+PASS: Option Explicit: RPX_AHO3.bas
+PASS: Strict CP932 round trip: RPX_Audit.bas
+PASS: CRLF only: RPX_Audit.bas
+PASS: Option Explicit: RPX_Audit.bas
+PASS: Strict CP932 round trip: RPX_Bearing.bas
+PASS: CRLF only: RPX_Bearing.bas
+PASS: Option Explicit: RPX_Bearing.bas
+PASS: Strict CP932 round trip: RPX_C0Guides.bas
+PASS: CRLF only: RPX_C0Guides.bas
+PASS: Option Explicit: RPX_C0Guides.bas
+PASS: Strict CP932 round trip: RPX_C0Select.bas
+PASS: CRLF only: RPX_C0Select.bas
+PASS: Option Explicit: RPX_C0Select.bas
+PASS: Strict CP932 round trip: RPX_Certificate.bas
+PASS: CRLF only: RPX_Certificate.bas
+PASS: Option Explicit: RPX_Certificate.bas
+PASS: Strict CP932 round trip: RPX_Clock.bas
+PASS: CRLF only: RPX_Clock.bas
+PASS: Option Explicit: RPX_Clock.bas
+PASS: Strict CP932 round trip: RPX_ColumnOrder.bas
+PASS: CRLF only: RPX_ColumnOrder.bas
+PASS: Option Explicit: RPX_ColumnOrder.bas
+PASS: Strict CP932 round trip: RPX_Conic.bas
+PASS: CRLF only: RPX_Conic.bas
+PASS: Option Explicit: RPX_Conic.bas
+PASS: Strict CP932 round trip: RPX_Control.bas
+PASS: CRLF only: RPX_Control.bas
+PASS: Option Explicit: RPX_Control.bas
+PASS: Strict CP932 round trip: RPX_Definition.bas
+PASS: CRLF only: RPX_Definition.bas
+PASS: Option Explicit: RPX_Definition.bas
+PASS: Strict CP932 round trip: RPX_Diagnostics.bas
+PASS: CRLF only: RPX_Diagnostics.bas
+PASS: Option Explicit: RPX_Diagnostics.bas
+PASS: Strict CP932 round trip: RPX_Exchange.bas
+PASS: CRLF only: RPX_Exchange.bas
+PASS: Option Explicit: RPX_Exchange.bas
+PASS: Strict CP932 round trip: RPX_FactorFree.bas
+PASS: CRLF only: RPX_FactorFree.bas
+PASS: Option Explicit: RPX_FactorFree.bas
+PASS: Strict CP932 round trip: RPX_FixedLowerRecovery.bas
+PASS: CRLF only: RPX_FixedLowerRecovery.bas
+PASS: Option Explicit: RPX_FixedLowerRecovery.bas
+PASS: Strict CP932 round trip: RPX_FixedWitness.bas
+PASS: CRLF only: RPX_FixedWitness.bas
+PASS: Option Explicit: RPX_FixedWitness.bas
+PASS: Strict CP932 round trip: RPX_FlowMesh.bas
+PASS: CRLF only: RPX_FlowMesh.bas
+PASS: Option Explicit: RPX_FlowMesh.bas
+PASS: Strict CP932 round trip: RPX_FreeFaceSplit.bas
+PASS: CRLF only: RPX_FreeFaceSplit.bas
+PASS: Option Explicit: RPX_FreeFaceSplit.bas
+PASS: Strict CP932 round trip: RPX_Fs.bas
+PASS: CRLF only: RPX_Fs.bas
+PASS: Option Explicit: RPX_Fs.bas
+PASS: Strict CP932 round trip: RPX_Guard.bas
+PASS: CRLF only: RPX_Guard.bas
+PASS: Option Explicit: RPX_Guard.bas
+PASS: Strict CP932 round trip: RPX_HSDCandidate.bas
+PASS: CRLF only: RPX_HSDCandidate.bas
+PASS: Option Explicit: RPX_HSDCandidate.bas
+PASS: Strict CP932 round trip: RPX_HSDLu.bas
+PASS: CRLF only: RPX_HSDLu.bas
+PASS: Option Explicit: RPX_HSDLu.bas
+PASS: Strict CP932 round trip: RPX_HSDPrecision.bas
+PASS: CRLF only: RPX_HSDPrecision.bas
+PASS: Option Explicit: RPX_HSDPrecision.bas
+PASS: Strict CP932 round trip: RPX_HSDQuality.bas
+PASS: CRLF only: RPX_HSDQuality.bas
+PASS: Option Explicit: RPX_HSDQuality.bas
+PASS: Strict CP932 round trip: RPX_Indicator.bas
+PASS: CRLF only: RPX_Indicator.bas
+PASS: Option Explicit: RPX_Indicator.bas
+PASS: Strict CP932 round trip: RPX_KktCapture.bas
+PASS: CRLF only: RPX_KktCapture.bas
+PASS: Option Explicit: RPX_KktCapture.bas
+PASS: Strict CP932 round trip: RPX_LDL.bas
+PASS: CRLF only: RPX_LDL.bas
+PASS: Option Explicit: RPX_LDL.bas
+PASS: Strict CP932 round trip: RPX_LoadStepMesh.bas
+PASS: CRLF only: RPX_LoadStepMesh.bas
+PASS: Option Explicit: RPX_LoadStepMesh.bas
+PASS: Strict CP932 round trip: RPX_Lower.bas
+PASS: CRLF only: RPX_Lower.bas
+PASS: Option Explicit: RPX_Lower.bas
+PASS: Strict CP932 round trip: RPX_LowerCache.bas
+PASS: CRLF only: RPX_LowerCache.bas
+PASS: Option Explicit: RPX_LowerCache.bas
+PASS: Strict CP932 round trip: RPX_Mesh.bas
+PASS: CRLF only: RPX_Mesh.bas
+PASS: Option Explicit: RPX_Mesh.bas
+PASS: Strict CP932 round trip: RPX_MeshGuard.bas
+PASS: CRLF only: RPX_MeshGuard.bas
+PASS: Option Explicit: RPX_MeshGuard.bas
+PASS: Strict CP932 round trip: RPX_MeshTests.bas
+PASS: CRLF only: RPX_MeshTests.bas
+PASS: Option Explicit: RPX_MeshTests.bas
+PASS: Strict CP932 round trip: RPX_Model.bas
+PASS: CRLF only: RPX_Model.bas
+PASS: Option Explicit: RPX_Model.bas
+PASS: Strict CP932 round trip: RPX_Native.bas
+PASS: CRLF only: RPX_Native.bas
+PASS: Option Explicit: RPX_Native.bas
+PASS: Strict CP932 round trip: RPX_NativeBulk.bas
+PASS: CRLF only: RPX_NativeBulk.bas
+PASS: Option Explicit: RPX_NativeBulk.bas
+PASS: Strict CP932 round trip: RPX_NativeGuard.bas
+PASS: CRLF only: RPX_NativeGuard.bas
+PASS: Option Explicit: RPX_NativeGuard.bas
+PASS: Strict CP932 round trip: RPX_NativeLU.bas
+PASS: CRLF only: RPX_NativeLU.bas
+PASS: Option Explicit: RPX_NativeLU.bas
+PASS: Strict CP932 round trip: RPX_NativeMesh.bas
+PASS: CRLF only: RPX_NativeMesh.bas
+PASS: Option Explicit: RPX_NativeMesh.bas
+PASS: Strict CP932 round trip: RPX_NativeSolver.bas
+PASS: CRLF only: RPX_NativeSolver.bas
+PASS: Option Explicit: RPX_NativeSolver.bas
+PASS: Strict CP932 round trip: RPX_NT.bas
+PASS: CRLF only: RPX_NT.bas
+PASS: Option Explicit: RPX_NT.bas
+PASS: Strict CP932 round trip: RPX_NTPrecision.bas
+PASS: CRLF only: RPX_NTPrecision.bas
+PASS: Option Explicit: RPX_NTPrecision.bas
+PASS: Strict CP932 round trip: RPX_Order.bas
+PASS: CRLF only: RPX_Order.bas
+PASS: Option Explicit: RPX_Order.bas
+PASS: Strict CP932 round trip: RPX_Output.bas
+PASS: CRLF only: RPX_Output.bas
+PASS: Option Explicit: RPX_Output.bas
+PASS: Strict CP932 round trip: RPX_P4.bas
+PASS: CRLF only: RPX_P4.bas
+PASS: Option Explicit: RPX_P4.bas
+PASS: Strict CP932 round trip: RPX_Profile.bas
+PASS: CRLF only: RPX_Profile.bas
+PASS: Option Explicit: RPX_Profile.bas
+PASS: Strict CP932 round trip: RPX_Refine.bas
+PASS: CRLF only: RPX_Refine.bas
+PASS: Option Explicit: RPX_Refine.bas
+PASS: Strict CP932 round trip: RPX_Robust.bas
+PASS: CRLF only: RPX_Robust.bas
+PASS: Option Explicit: RPX_Robust.bas
+PASS: Strict CP932 round trip: RPX_Schur.bas
+PASS: CRLF only: RPX_Schur.bas
+PASS: Option Explicit: RPX_Schur.bas
+PASS: Strict CP932 round trip: RPX_SchurCache.bas
+PASS: CRLF only: RPX_SchurCache.bas
+PASS: Option Explicit: RPX_SchurCache.bas
+PASS: Strict CP932 round trip: RPX_SchurLDL.bas
+PASS: CRLF only: RPX_SchurLDL.bas
+PASS: Option Explicit: RPX_SchurLDL.bas
+PASS: Strict CP932 round trip: RPX_Seep.bas
+PASS: CRLF only: RPX_Seep.bas
+PASS: Option Explicit: RPX_Seep.bas
+PASS: Strict CP932 round trip: RPX_SeepUI.bas
+PASS: CRLF only: RPX_SeepUI.bas
+PASS: Option Explicit: RPX_SeepUI.bas
+PASS: Strict CP932 round trip: RPX_SeepWT.bas
+PASS: CRLF only: RPX_SeepWT.bas
+PASS: Option Explicit: RPX_SeepWT.bas
+PASS: Strict CP932 round trip: RPX_Seismic.bas
+PASS: CRLF only: RPX_Seismic.bas
+PASS: Option Explicit: RPX_Seismic.bas
+PASS: Strict CP932 round trip: RPX_Solve.bas
+PASS: CRLF only: RPX_Solve.bas
+PASS: Option Explicit: RPX_Solve.bas
+PASS: Strict CP932 round trip: RPX_UI.bas
+PASS: CRLF only: RPX_UI.bas
+PASS: Option Explicit: RPX_UI.bas
+PASS: Strict CP932 round trip: RPX_Upper.bas
+PASS: CRLF only: RPX_Upper.bas
+PASS: Option Explicit: RPX_Upper.bas
+PASS: Strict CP932 round trip: RPX_Water.bas
+PASS: CRLF only: RPX_Water.bas
+PASS: Option Explicit: RPX_Water.bas
+PASS: Strict CP932 round trip: RPX_WorkPrecision.bas
+PASS: CRLF only: RPX_WorkPrecision.bas
+PASS: Option Explicit: RPX_WorkPrecision.bas
+PASS: Strict CP932 round trip: ThisWorkbook.code.txt
+PASS: CRLF only: ThisWorkbook.code.txt
+PASS: Option Explicit: ThisWorkbook.code.txt
+PASS: All source lines <1023 characters; maximum=838 at RPX_Control.bas:189
+PASS: New RPX_Clock.bas is entirely ASCII (module name RPX_ClockModule avoids function/module collision).
+PASS: Unified diff reproduces exact target bytes: vba_rc9c/RPX_AccuracyNative.bas
+PASS: Unified diff reproduces exact target bytes: vba_rc9c/RPX_Adapt.bas
+PASS: Unified diff reproduces exact target bytes: vba_rc9c/RPX_AHO3.bas
+PASS: Unified diff reproduces exact target bytes: vba_rc9c/RPX_Clock.bas
+PASS: Unified diff reproduces exact target bytes: vba_rc9c/RPX_Conic.bas
+PASS: Unified diff reproduces exact target bytes: vba_rc9c/RPX_Control.bas
+PASS: Unified diff reproduces exact target bytes: vba_rc9c/RPX_Diagnostics.bas
+PASS: Unified diff reproduces exact target bytes: vba_rc9c/RPX_Fs.bas
+PASS: Unified diff reproduces exact target bytes: vba_rc9c/RPX_Lower.bas
+PASS: Unified diff reproduces exact target bytes: vba_rc9c/RPX_LowerCache.bas
+PASS: Unified diff reproduces exact target bytes: vba_rc9c/RPX_NativeBulk.bas
+PASS: Unified diff reproduces exact target bytes: vba_rc9c/RPX_Schur.bas
+PASS: Unified diff reproduces exact target bytes: vba_rc9c/RPX_SeepUI.bas
+PASS: Unified diff reproduces exact target bytes: vba_rc9c/RPX_SeepWT.bas
+PASS: Unified diff reproduces exact target bytes: vba_rc9c/RPX_Seismic.bas
+PASS: Unified diff reproduces exact target bytes: vba_rc9c/RPX_Solve.bas
+PASS: Diff contains 15 modified modules and the new clock module.
+PASS: Every added diff/source line ASCII; additions=158, removals=55
+PASS: No new E-form numeric literals in executable code.
+PASS: No added declarations named Time, Timer, Now, Date, or Second.
+PASS: Every LongLong occurrence is guarded by Win64; the new declaration also requires VBA7 and is PtrSafe.
+PASS: Procedure boundaries, conditional boundaries and unique module names pass lexical checks.
+PASS: Exactly four original Japanese Timer lines retained in #If False reference branches.
+PASS: No remaining elapsed Timer use in any active source path: 3 helper raw reads + 1 nonelapsed Conic stage time-of-day read.
+PASS: No elapsed Now/Time/Date arithmetic remains.
+PASS: Diagnostic clock wrappers, HSD budgets, round/protected-wall/case budgets share RPX_Clock.
+PASS: Diagnostic initialization retains its existing error handler after removing QPF setup.
+PASS: Test hook is explicitly idle-only and TEST_INJECTION=1 gated; module state defaults off.
+PASS: Fallback initial epoch is positive even for a first read at midnight (zero remains uninitialized sentinel).
+
+Remaining active Timer reads:
+  RPX_Clock.bas:25 rawSeconds = CDbl(Timer)
+  RPX_Clock.bas:64 rawSeconds = CDbl(Timer)
+  RPX_Clock.bas:76 rawSeconds = CDbl(Timer)
+  RPX_Conic.bas:190 f = FreeFile: Open XLogPath For Append As #f: Print #f, "# " & message & " " & CStr(Timer): Close #f
+Inactive original Timer lines: RPX_Control.bas:268, RPX_SeepUI.bas:1217, RPX_SeepWT.bas:467, RPX_Seismic.bas:177
+All timer-derived capture/elapsed variables reviewed as Double; existing caller signatures retained.
+New declarations (reviewed for explicit types, no builtin-name collisions):
+  Dim handle As Currency, rc As Long, state As Long, number As Long, message As String, source As String
+  Dim i As Long, sourceBits As Currency, updatedBits As Currency
+  Private Declare PtrSafe Function RPX_GetTickCount64 Lib "kernel32" Alias "GetTickCount64" () As LongLong
+  Private clockShift As Double, clockTimerDays As Double, clockTimerLast As Double
+  Private clockTimerReady As Boolean
+  Private clockTestWrapAt As Double, clockTestRawShift As Double, clockTestStarted As Double
+  Private clockTestWraps As Long, clockTestRawJump As Double, clockTestCorrectedStep As Double
+  Public Function RPX_Clock() As Double
+  Dim rawSeconds As Double
+  Public Sub RPX_TestClockWrap(ByVal wrapAtSeconds As Double)
+  Dim previousSeconds As Double, rawSeconds As Double
+  Public Function RPX_TestClockStatus() As String
+  Dim sampledSeconds As Double
+  Private active As Boolean, started As Double
+  Dim nowClock As Double
+
+Deterministic fallback arithmetic model (seconds, not a VBA execution):
+PASS: Fallback delta 86399.75 -> 0.25 = 0.5
+PASS: Fallback delta 86399.5 -> 0.5 = 1
+PASS: Fallback delta 100 -> 100.5 = 0.5
+PASS: Forced wrap at 120s stays continuous, and a second observed day wrap accumulates correctly.
+Timer-only fallback cannot reconstruct whole unobserved days and treats backward wall-clock changes as wraps; Win64 normal mode uses GetTickCount64.
+GetTickCount64 has coarser resolution than prior diagnostic QPC; telemetry may quantize to zero, all values remain Double seconds.
+
+Operator driver text/input review only (not imported or executed):
+PASS: Standalone reproduction embeds the case JSON without a parent-directory runtime dependency.
+PASS: Embedded reproduction input is P02A_THIN and its JSON parses.
+PASS: W0/W1 configure the explicit default-off/120s forced-wrap hook.
+PASS: Driver contains no module import/injection, macro-security mutation, shell launch, or build invocation.
+PASS: Reviewed driver includes certified completion, endpoint tolerance comparison and nonvacuous wrap coverage checks.
+PASS: Required deliverable exists: TEST_PLAN_rc9c.md
+PASS: Required deliverable exists: ROOT_CAUSE_timer.md
+PASS: Required deliverable exists: repro_rc9c.py
+PASS: Required deliverable exists: rc9c.diff
+PASS: Required deliverable exists: diff_summary_rc9c.txt
+Python syntax/runtime validation was not executed; the driver was reviewed as text. Numerical acceptance is pending operator execution.
+PASS: Inventory completeness: 40 original Timer lines, 5 elapsed Now occurrences (one capture + four reads).
+
+Reference/target SHA256 manifest (reference files were only read):
+RPX_AccuracyMesh.bas source=EC54485FB54A8AD6568A5B138C3DB8F46EC7F397C3197D76117BA8C1D8C7D08F target=EC54485FB54A8AD6568A5B138C3DB8F46EC7F397C3197D76117BA8C1D8C7D08F
+RPX_AccuracyNative.bas source=5DF0B308F43F8077E05AD73399719B0037FAB1046D349D7EE53BD1668F7AB0F0 target=CBF286459854724581B6A604501A50106D80AB6C11EBD0DF71521D482CCDA22D
+RPX_Adapt.bas source=C88201290D09198EF37FA5074610609ACFEA8C08237F1B37116E357CFCA1CED1 target=948A9B5DDDAE109CE4D8E884D81BA38BF737BD44D2A85326F4C1B9CB9C0CA294
+RPX_Affine.bas source=1DB43674855D97522DA6C1EE68CBAAD7F60BC197AE7980E7D4D16B57547E5D8C target=1DB43674855D97522DA6C1EE68CBAAD7F60BC197AE7980E7D4D16B57547E5D8C
+RPX_AHO3.bas source=26514EB2AA91485F5F194F2AE8D52F43FF3D0C3207618A8FE78340441BD299CA target=F504BE414506E29C285958650123B71307517907CA55A4D9C43CFFB3E1658261
+RPX_Audit.bas source=E3383FC5E8370227C6971185B1245B45FA43F629164072B74D05202EDB96BD73 target=E3383FC5E8370227C6971185B1245B45FA43F629164072B74D05202EDB96BD73
+RPX_Bearing.bas source=CBC73398A91103EAA8064369C91FC953F4A388F553D6E1008F2B40520176225D target=CBC73398A91103EAA8064369C91FC953F4A388F553D6E1008F2B40520176225D
+RPX_C0Guides.bas source=2525C8D5C5F0DC43B6EB686D9AFD012D9F110D203B74E1A9188D239405085EDD target=2525C8D5C5F0DC43B6EB686D9AFD012D9F110D203B74E1A9188D239405085EDD
+RPX_C0Select.bas source=148F52D956957AE7B56C05F571CEEF32540E3FB3B83554E537AE66E09C1A7CCF target=148F52D956957AE7B56C05F571CEEF32540E3FB3B83554E537AE66E09C1A7CCF
+RPX_Certificate.bas source=E41016E9DB36050EE10EC454D968523FE60FBA7E963AF40A0B0E1F7E2FECD6E5 target=E41016E9DB36050EE10EC454D968523FE60FBA7E963AF40A0B0E1F7E2FECD6E5
+RPX_ColumnOrder.bas source=560CF3FA14B8EB2C38EC522E87F3E333AE874E8468384BF855F42712C2F1A5EB target=560CF3FA14B8EB2C38EC522E87F3E333AE874E8468384BF855F42712C2F1A5EB
+RPX_Conic.bas source=79B8B4152638FD9C7AA29EED34324C195B8C8F74041EE1440DBB06DCD3C37840 target=73D81C0104AC25655F68220D4A730CFA2F3E563FA51530E60632A7E175BB9B69
+RPX_Control.bas source=F39473D3C5CF97B323DBB8D5296F2B5A75F9AE994EC4AECBC2A5C507331B0992 target=553EDE2F0D27710164554D2A8C81D746AD0193D29D7DF2EB637E4AEF6EA189F4
+RPX_Definition.bas source=ADD1B63FCABAA3F8F6D934A9A87E5D50B80AC3A9E578924EC7A4C27E87B6D91F target=ADD1B63FCABAA3F8F6D934A9A87E5D50B80AC3A9E578924EC7A4C27E87B6D91F
+RPX_Diagnostics.bas source=4DAC71AE5A2820728B4692004819A46491E40B0CAB37391B8317555B494BF1D6 target=34765EFC4117AC83A2FE9196444A39A027E1C5AC2FE130E3CBEA7B46F9FA5D7F
+RPX_Exchange.bas source=BCB9DA802FC928C18CC802682D1E01BF00F6A0A39BB01A03055B1310B1F61F81 target=BCB9DA802FC928C18CC802682D1E01BF00F6A0A39BB01A03055B1310B1F61F81
+RPX_FactorFree.bas source=7AA6255E58EC85AF8E170F4F91B80B689AD347C0B3230857A334AAD9FF8E4864 target=7AA6255E58EC85AF8E170F4F91B80B689AD347C0B3230857A334AAD9FF8E4864
+RPX_FixedLowerRecovery.bas source=601F59A7446D95775586200B8323AFD245835F4DD944CE189FBC5C783C86C1E1 target=601F59A7446D95775586200B8323AFD245835F4DD944CE189FBC5C783C86C1E1
+RPX_FixedWitness.bas source=B11B940743C32AD253D0D2C9A53C0057762A4B8D98DB61C487EE4EEB3794E88B target=B11B940743C32AD253D0D2C9A53C0057762A4B8D98DB61C487EE4EEB3794E88B
+RPX_FlowMesh.bas source=1016EDEE32D4527F27DB395C7B3082DF5F84CB9DF1CA6003363E1AA4B165DB69 target=1016EDEE32D4527F27DB395C7B3082DF5F84CB9DF1CA6003363E1AA4B165DB69
+RPX_FreeFaceSplit.bas source=DF4F932F1E1B7B7390D062057F219C310643B7CE659231B1C3D4ABDB7174466C target=DF4F932F1E1B7B7390D062057F219C310643B7CE659231B1C3D4ABDB7174466C
+RPX_Fs.bas source=4CCF1A5E8C56C6B9F156D896D05B555C6B4B6BDF9AE772A1B113645191281B68 target=0F44C4EEED034E47A05F77083F5CE5137C584D2BF8DDA67B89C8FE7C8C77F89A
+RPX_Guard.bas source=E326FE7FBC74B7AD30946F1A65E0E6C8BAC5EB19BC1CD4801C310E3CF93F2A1B target=E326FE7FBC74B7AD30946F1A65E0E6C8BAC5EB19BC1CD4801C310E3CF93F2A1B
+RPX_HSDCandidate.bas source=DB4ABA8CF8C0F2F45EF21230AFF5B757C57487CC8724E0BD0F6319A0711DC689 target=DB4ABA8CF8C0F2F45EF21230AFF5B757C57487CC8724E0BD0F6319A0711DC689
+RPX_HSDLu.bas source=4259698082C53D1FD72AFC00693BAA381D4965ACFB4CBEA379AE1B33C6B3E4A2 target=4259698082C53D1FD72AFC00693BAA381D4965ACFB4CBEA379AE1B33C6B3E4A2
+RPX_HSDPrecision.bas source=1CED0A3645007E6FC6235AEA7FF9832A4E14EBAD33536BE12E3AF845A35559F2 target=1CED0A3645007E6FC6235AEA7FF9832A4E14EBAD33536BE12E3AF845A35559F2
+RPX_HSDQuality.bas source=40259E63DF092F06DCBB5513526AF91191416EC3B53435EAB68BAA4345A95E5E target=40259E63DF092F06DCBB5513526AF91191416EC3B53435EAB68BAA4345A95E5E
+RPX_Indicator.bas source=723DE6A651889C63E67BCB029BA77738F90F74FDA9E8444CB59046FE5A2002B8 target=723DE6A651889C63E67BCB029BA77738F90F74FDA9E8444CB59046FE5A2002B8
+RPX_KktCapture.bas source=1F486164023BCC248875FBEE33D98A663D343F1B4099D76B1B12993380A8CD9A target=1F486164023BCC248875FBEE33D98A663D343F1B4099D76B1B12993380A8CD9A
+RPX_LDL.bas source=03EF3D4CD0C11149D38711CD00821A38B9016F69F3029E940BB34090DF042AB3 target=03EF3D4CD0C11149D38711CD00821A38B9016F69F3029E940BB34090DF042AB3
+RPX_LoadStepMesh.bas source=47C050C4B94E34521F4023992D9B9E108CFDE9FFF3FC876E4EB7A7562075FFFA target=47C050C4B94E34521F4023992D9B9E108CFDE9FFF3FC876E4EB7A7562075FFFA
+RPX_Lower.bas source=EE575B799D8F043C3803DC5E335342585368148DBE40C231C9F9A935EAEA071E target=6E2A810DFA4DB1CCE9892F511383A17FE88A10F44868AF8C52341A7C3F83C0DB
+RPX_LowerCache.bas source=640CA2B9A4B0245FDF921102E7B9356FE0B2D29F36ED4EC930D3C27C6FFAC663 target=AC7E72D05086984A1D7D20AE1A7ECA4C02136E0C8A8B9453E5DAE695FFE49CF4
+RPX_Mesh.bas source=4326BEF7E5DCC56A6CE5994576AE8183406B6209358DEF449871B94025E398B5 target=4326BEF7E5DCC56A6CE5994576AE8183406B6209358DEF449871B94025E398B5
+RPX_MeshGuard.bas source=F5D7FB45AC05A42C6698833B35095BC0DFE182937055710D632E6835F4D4B313 target=F5D7FB45AC05A42C6698833B35095BC0DFE182937055710D632E6835F4D4B313
+RPX_MeshTests.bas source=7ADAB7D50D147C115100A040C7B5E66BD78915425354AA7C1E453F5BCE445E99 target=7ADAB7D50D147C115100A040C7B5E66BD78915425354AA7C1E453F5BCE445E99
+RPX_Model.bas source=94588C42F7D653FFD46754CD3067F808CAF4D1EEB4DDC58C381CF92970549AAD target=94588C42F7D653FFD46754CD3067F808CAF4D1EEB4DDC58C381CF92970549AAD
+RPX_Native.bas source=8820C2C6E2AF78F59F6C16B0D01281019C5173D6DCC2C1C0CBA1A82FC95E82EC target=8820C2C6E2AF78F59F6C16B0D01281019C5173D6DCC2C1C0CBA1A82FC95E82EC
+RPX_NativeBulk.bas source=EE860F6DDF72C9F15EDABF7CA8158A6126D546BC4AC50B1192D43F816E1BE949 target=D891199E8A30175C6A8A280551207648C6B220DE84B8CE5EB056D84C3C270BEA
+RPX_NativeGuard.bas source=F396F22F327AEE6335D5C3E7D045D2ECA4D891B1AB0D06D31E723759D5BB7900 target=F396F22F327AEE6335D5C3E7D045D2ECA4D891B1AB0D06D31E723759D5BB7900
+RPX_NativeLU.bas source=CCF566350AB78EB2E6F117A504D3AA3C4C0247EAF638B6CD997B7EB204E4D6C0 target=CCF566350AB78EB2E6F117A504D3AA3C4C0247EAF638B6CD997B7EB204E4D6C0
+RPX_NativeMesh.bas source=4C7A829D4DCEB811D57609913C57EE4436B0DB838F962DE5B805F751112A81EE target=4C7A829D4DCEB811D57609913C57EE4436B0DB838F962DE5B805F751112A81EE
+RPX_NativeSolver.bas source=A98B27D492EEA27129E9445438270924036F0504A7564504A4B70E0F8C8EA033 target=A98B27D492EEA27129E9445438270924036F0504A7564504A4B70E0F8C8EA033
+RPX_NT.bas source=E986114E4B19D2C4939874460168EF46CA77C47B8BCE851735D21385F351E818 target=E986114E4B19D2C4939874460168EF46CA77C47B8BCE851735D21385F351E818
+RPX_NTPrecision.bas source=677F9C58D1BA328343349C56787641BC4D27A7A9D8391DF7A44661B6C4D7CB6E target=677F9C58D1BA328343349C56787641BC4D27A7A9D8391DF7A44661B6C4D7CB6E
+RPX_Order.bas source=1C4A81B49F57C79D000B52EAC777BB6C6624056CB8F40ABF65F2FFB4F8D5006A target=1C4A81B49F57C79D000B52EAC777BB6C6624056CB8F40ABF65F2FFB4F8D5006A
+RPX_Output.bas source=0D861A357E31A0116F6ACCEC6762F9321264F444D5A8723E1BC0FF37F98A2777 target=0D861A357E31A0116F6ACCEC6762F9321264F444D5A8723E1BC0FF37F98A2777
+RPX_P4.bas source=F6F7933DE848173B807C31C5EB66CFA0DCFF50EE51B415E74BD12265DE127EC7 target=F6F7933DE848173B807C31C5EB66CFA0DCFF50EE51B415E74BD12265DE127EC7
+RPX_Profile.bas source=C7A85C4485BF18C14264C2645A0106A315AE2263FDC099B94C583DAB9E926B41 target=C7A85C4485BF18C14264C2645A0106A315AE2263FDC099B94C583DAB9E926B41
+RPX_Refine.bas source=4C7635708A42D1A6134B49622830621A5B0832C2D1CB285C1FB7E22800C00FD9 target=4C7635708A42D1A6134B49622830621A5B0832C2D1CB285C1FB7E22800C00FD9
+RPX_Robust.bas source=C94B8CEAAC282201B9F8E031F91510A2AFB26448B65D32CF916D0823AE1B17BE target=C94B8CEAAC282201B9F8E031F91510A2AFB26448B65D32CF916D0823AE1B17BE
+RPX_Schur.bas source=18C7814F8036E3287EBD5D8CAD3B004FD45139880C0BA528905FE60AEFE03370 target=35F819850A6AC81B24379113EACA4EB0D2FF2FB82DFC113D3920F6475D044C5A
+RPX_SchurCache.bas source=71B9810FA0164B931929DCE5A4238C1E3A6F975DC968B3ABABCA62BC08B5BAAE target=71B9810FA0164B931929DCE5A4238C1E3A6F975DC968B3ABABCA62BC08B5BAAE
+RPX_SchurLDL.bas source=5DE3E755F95C6167354F72A28CCB51AFCE74BCB173CFEB0A61A2F3402237BC5C target=5DE3E755F95C6167354F72A28CCB51AFCE74BCB173CFEB0A61A2F3402237BC5C
+RPX_Seep.bas source=BB1B55669086DD321D13BF601BCED412FBF6F2AE323360968A8B8810A49D92B0 target=BB1B55669086DD321D13BF601BCED412FBF6F2AE323360968A8B8810A49D92B0
+RPX_SeepUI.bas source=2A444BE97F68BF87C42770CAD8E59ECDC98747844ECFA1EE3FF294509796DCB0 target=EE29799DD7BA2CE4DADF0C8E2D374E3AAB83F27BBF793FBAA50F31CAD8CAAB04
+RPX_SeepWT.bas source=9D96376F4E1C30F7263789C4D5F64F50DA0FD8AE272EC95D88D3F9371D176BEB target=C7E0103AB3811A690D98FE4BCB0605B7A68281E5273F003E5E0683A0C94E02BE
+RPX_Seismic.bas source=71E1AD803A0A8FF9C6D099D3560BFD6305DE310926EEBD170938842CD89ADB41 target=B8FA04EBAE5006F776A8471F732CD9A8C5299BEA93248D1DC0AFE4A5B2273EB0
+RPX_Solve.bas source=24986D44485C0906E1922BF047014646DA616780FF7C44F1FDA90C67CCCA9B22 target=C3739871D4E6E10582905BAF5F39FAE84419ACE55384E5B4341EDB119C79AE53
+RPX_UI.bas source=11BE38CA23604CDD61A77807642A20393F577790ADD5C0667B1690D8E8ED27FC target=11BE38CA23604CDD61A77807642A20393F577790ADD5C0667B1690D8E8ED27FC
+RPX_Upper.bas source=97B097E62A025DBF3DB07C1C124B8E4BFB7037B3892E63F424E54DB82C5DEFD1 target=97B097E62A025DBF3DB07C1C124B8E4BFB7037B3892E63F424E54DB82C5DEFD1
+RPX_Water.bas source=7293F11A114E6F69B894CB4DEBE1B3C31FE780C7A6341496FC81BE0ED70A2232 target=7293F11A114E6F69B894CB4DEBE1B3C31FE780C7A6341496FC81BE0ED70A2232
+RPX_WorkPrecision.bas source=253AFAEC8D8DDC9C5D19398BC956F42AF254D082F19AA75A0235FA6F89D178BD target=253AFAEC8D8DDC9C5D19398BC956F42AF254D082F19AA75A0235FA6F89D178BD
+ThisWorkbook.code.txt source=28D100A977206B77C9564804A442C844DE3DFC86DFAA1257EBE7018EE97CC5DC target=28D100A977206B77C9564804A442C844DE3DFC86DFAA1257EBE7018EE97CC5DC
+RPX_Clock.bas target=B6E905D4EA2A32AA4CEBC98DBE4E8CABABC88BA5AF8942973829F6ABAA6E2109
+repro_rc9c.py SHA256=5017B4FDD0B0037019E7F9F4CB1A29D82604C4EC2BFAF652B359C50F2D27A84F
+
+Manual static review: each new helper identifier explicitly declared; Public clock/test signatures return Double/String and declare every argument. Four ChrW$ literal expressions were decoded independently and match their original Japanese strings. No inactive non-ASCII source line was edited.
+Runtime work intentionally pending: Excel import/compile, real/forced-midnight solver run, W0/W1 numerical certification, DLL/clock API execution. See TEST_PLAN_rc9c.md. repro_rc9c.py was not run.
+
+STATIC RESULT: PASS; failures=0

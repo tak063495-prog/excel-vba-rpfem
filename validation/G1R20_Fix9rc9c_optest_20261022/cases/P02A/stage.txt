@@ -1,0 +1,297 @@
+# triangulation 0/207 19737.7
+# zero stress fan eligibility 0 19737.87
+# zero stress fan eligibility 256 19737.9
+# zero stress fan eligibility 0 19738.16
+# zero stress fan eligibility 256 19738.21
+# upper F=1 19738.37
+# upper elements 0/355 19738.4
+# upper elements 256/355 19739.67
+# upper edges 0/561 19740.21
+# upper edges 512/561 19741.66
+# compile arrays 19741.83
+# ordering 4423 19741.95
+# ordering complete 19742.1
+# symbolic factorization 19742.15
+# symbolic complete 149309 19742.24
+# upper F=2 19743.3
+# upper elements 0/355 19743.35
+# upper elements 256/355 19744.59
+# upper edges 0/561 19745.11
+# upper edges 512/561 19746.56
+# compile arrays 19746.75
+# ordering complete 19746.85
+# symbolic factorization 19746.95
+# symbolic complete 149309 19747.01
+# upper F=1.5 19748.07
+# upper F=1.25 19749.04
+# upper F=1.375 19750.15
+# upper elements 0/355 19750.19
+# upper elements 256/355 19751.47
+# upper edges 0/561 19751.98
+# upper edges 512/561 19753.43
+# compile arrays 19753.6
+# ordering complete 19753.72
+# symbolic factorization 19753.81
+# symbolic complete 149309 19753.88
+# upper F=1.4375 19754.95
+# upper elements 0/355 19755
+# upper elements 256/355 19756.28
+# upper edges 0/561 19756.81
+# upper edges 512/561 19758.28
+# compile arrays 19758.45
+# ordering complete 19758.56
+# symbolic factorization 19758.66
+# symbolic complete 149309 19758.73
+# upper F=1.40625 19759.61
+# upper F=1.390625 19760.46
+# upper F=1.3984375 19761.49
+# upper elements 0/355 19761.53
+# upper elements 256/355 19762.81
+# upper edges 0/561 19763.34
+# upper edges 512/561 19764.75
+# compile arrays 19764.93
+# ordering complete 19765.04
+# symbolic factorization 19765.13
+# symbolic complete 149309 19765.2
+# upper F=1.39453125 19766.18
+# upper F=1.392578125 19767.14
+# upper F=1.3916015625 19768.01
+# upper F=1.39111328125 19768.93
+# upper F=1.390869140625 19769.79
+# upper F=1.3909912109375 19770.86
+# upper elements 0/355 19770.91
+# upper elements 256/355 19772.17
+# upper edges 0/561 19772.66
+# upper edges 512/561 19774.09
+# compile arrays 19774.28
+# ordering complete 19774.39
+# symbolic factorization 19774.49
+# symbolic complete 149309 19774.56
+# lower F=1 19775.78
+# compile arrays 19780.44
+# ordering 11725 19780.57
+# ordering complete 19780.84
+# symbolic factorization 19780.91
+# symbolic complete 228226 19780.99
+# lower F=2 19781.47
+# lower F=1.5 19782.13
+# compile arrays 19786.76
+# ordering complete 19786.89
+# symbolic factorization 19786.96
+# symbolic complete 228226 19787.04
+# lower F=1.25 19787.71
+# compile arrays 19792.33
+# ordering complete 19792.47
+# symbolic factorization 19792.52
+# symbolic complete 228226 19792.62
+# lower F=1.375 19793.11
+# lower F=1.3125 19793.77
+# compile arrays 19798.47
+# ordering complete 19798.61
+# symbolic factorization 19798.67
+# symbolic complete 228226 19798.76
+# lower F=1.28125 19799.41
+# compile arrays 19804.1
+# ordering complete 19804.24
+# symbolic factorization 19804.3
+# symbolic complete 228226 19804.39
+# lower F=1.265625 19805.57
+# compile arrays 19810.25
+# ordering complete 19810.4
+# symbolic factorization 19810.45
+# symbolic complete 228226 19810.54
+# lower F=1.2734375 19811.01
+# lower F=1.27734375 19811.45
+# lower F=1.275390625 19812.09
+# compile arrays 19816.77
+# ordering complete 19816.92
+# symbolic factorization 19816.97
+# symbolic complete 228226 19817.06
+# lower F=1.2744140625 19818.22
+# compile arrays 19822.88
+# ordering complete 19823.03
+# symbolic factorization 19823.09
+# symbolic complete 228226 19823.17
+# lower F=1.27392578125 19824.42
+# compile arrays 19829.12
+# ordering complete 19829.25
+# symbolic factorization 19829.32
+# symbolic complete 228226 19829.4
+# lower F=1.273681640625 19830.67
+# compile arrays 19835.32
+# ordering complete 19835.45
+# symbolic factorization 19835.53
+# symbolic complete 228226 19835.62
+# lower F=1.2738037109375 19836.08
+# zero stress fan eligibility 0 19838.81
+# zero stress fan eligibility 256 19838.87
+# triangulation 0/207 19839.81
+# zero stress fan eligibility 0 19839.99
+# zero stress fan eligibility 256 19840.03
+# zero stress fan eligibility 0 19840.19
+# zero stress fan eligibility 256 19840.23
+# zero stress fan eligibility 0 19840.39
+# zero stress fan eligibility 256 19840.43
+# zero stress fan eligibility 0 19840.6
+# zero stress fan eligibility 256 19840.63
+# zero stress fan eligibility 0 19840.8
+# zero stress fan eligibility 256 19840.83
+# zero stress fan eligibility 0 19841
+# zero stress fan eligibility 256 19841.05
+# zero stress fan eligibility 0 19841.2
+# zero stress fan eligibility 256 19841.24
+# zero stress fan eligibility 0 19841.38
+# zero stress fan eligibility 256 19841.43
+# zero stress fan eligibility 0 19841.61
+# zero stress fan eligibility 256 19841.63
+# zero stress fan eligibility 0 19841.92
+# zero stress fan eligibility 256 19841.96
+# upper F=1.252001953125 19842.15
+# upper elements 0/355 19842.19
+# upper elements 256/355 19843.47
+# upper edges 0/561 19843.99
+# upper edges 512/561 19845.46
+# compile arrays 19845.67
+# ordering 4423 19845.78
+# ordering complete 19845.97
+# symbolic factorization 19846.03
+# symbolic complete 143163 19846.09
+# upper F=1.530224609375 19847.26
+# upper elements 0/355 19847.32
+# upper elements 256/355 19848.61
+# upper edges 0/561 19849.13
+# upper edges 512/561 19850.58
+# compile arrays 19850.76
+# ordering complete 19850.86
+# symbolic factorization 19850.93
+# symbolic complete 143163 19851
+# upper F=1.39111328125 19851.96
+# upper F=1.3215576171875 19853.03
+# upper F=1.28677978515625 19854
+# upper F=1.30416870117188 19855.18
+# upper elements 0/355 19855.21
+# upper elements 256/355 19856.53
+# upper edges 0/561 19857.03
+# upper edges 512/561 19858.46
+# compile arrays 19858.64
+# ordering complete 19858.74
+# symbolic factorization 19858.82
+# symbolic complete 143163 19858.88
+# upper F=1.31286315917969 19860.05
+# upper elements 0/355 19860.1
+# upper elements 256/355 19861.38
+# upper edges 0/561 19861.91
+# upper edges 512/561 19863.36
+# compile arrays 19863.54
+# ordering complete 19863.66
+# symbolic factorization 19863.71
+# symbolic complete 143163 19863.79
+# upper F=1.31721038818359 19864.86
+# upper elements 0/355 19864.91
+# upper elements 256/355 19866.21
+# upper edges 0/561 19866.73
+# upper edges 512/561 19868.19
+# compile arrays 19868.36
+# ordering complete 19868.48
+# symbolic factorization 19868.55
+# symbolic complete 143163 19868.61
+# upper F=1.31938400268555 19869.73
+# upper elements 0/355 19869.78
+# upper elements 256/355 19871.06
+# upper edges 0/561 19871.59
+# upper edges 512/561 19873.06
+# compile arrays 19873.24
+# ordering complete 19873.35
+# symbolic factorization 19873.41
+# symbolic complete 143163 19873.48
+# upper F=1.32047080993652 19875.31
+# upper elements 0/355 19875.35
+# upper elements 256/355 19876.66
+# upper edges 0/561 19877.18
+# upper edges 512/561 19878.64
+# compile arrays 19878.81
+# ordering complete 19878.93
+# symbolic factorization 19878.97
+# symbolic complete 143163 19879.06
+# upper F=1.31992740631104 19880.13
+# upper F=1.31965570449829 19881.09
+# upper F=1.31951985359192 19882.05
+# upper F=1.31958777904511 19884.02
+# upper elements 0/355 19884.07
+# upper elements 256/355 19885.36
+# upper edges 0/561 19885.87
+# upper edges 512/561 19887.34
+# compile arrays 19887.51
+# ordering complete 19887.62
+# symbolic factorization 19887.69
+# symbolic complete 143163 19887.76
+# lower F=1.1463134765625 19888.89
+# compile arrays 19893.59
+# ordering 11725 19893.74
+# ordering complete 19893.98
+# symbolic factorization 19894.04
+# symbolic complete 270846 19894.12
+# lower F=1.4010498046875 19894.66
+# lower F=1.273681640625 19895.37
+# compile arrays 19900.07
+# ordering complete 19900.21
+# symbolic factorization 19900.27
+# symbolic complete 270846 19900.36
+# lower F=1.33736572265625 19900.95
+# lower F=1.30552368164063 19901.67
+# compile arrays 19906.37
+# ordering complete 19906.52
+# symbolic factorization 19906.6
+# symbolic complete 270846 19906.69
+# lower F=1.28960266113281 19907.44
+# compile arrays 19912.11
+# ordering complete 19912.25
+# symbolic factorization 19912.32
+# symbolic complete 270846 19912.42
+# lower F=1.29756317138672 19912.97
+# lower F=1.30154342651367 19913.5
+ 0 , 0 , 1 , 2130 , 270846 
+ 1 , 3.98582956485046E-02 , 6.26328797676574E-02 , 590.977247878289 , 270846 
+ 2 , 4.16708021002353E-02 , 1.56333469571569E-03 , 15.1599577878328 , 270846 
+ 3 , 2.45496466184176E-02 , 3.39235710637878E-04 , 3.32300892194046 , 270846 
+ 4 ,-0.135377517367231 , 1.46537429200398E-04 , 1.72937894403132 , 270846 
+ 5 ,-0.66802915472796 , 4.92652993394485E-05 , 0.709360504297516 , 270846 
+ 6 ,-0.893081450845644 , 2.42128450820032E-05 , 0.430773579363716 , 270846 
+ 7 ,-0.941164500669733 , 9.6511344777731E-06 , 0.314553190621804 , 270846 
+ 8 ,-0.982874386151109 , 3.50318711642386E-06 , 0.128201016968934 , 270846 
+ 9 ,-0.994856680113011 , 1.04376962052108E-06 , 4.51042773601027E-02 , 270846 
+ 10 ,-0.997028158082753 , 6.5433653714882E-07 , 2.74244510549117E-02 , 270846 
+ 11 ,-0.998961372451798 , 2.97729966172389E-07 , 1.04651673158023E-02 , 270846 
+ 12 ,-0.999650318493635 , 1.75666141874773E-07 , 4.10267606295085E-03 , 270846 
+ 13 ,-0.99989234518084 , 1.50169359125367E-07 , 1.76989354099702E-03 , 270846 
+ 14 ,-0.999980137624082 , 8.84062613031751E-08 , 8.08937587274319E-04 , 270846 
+ 15 ,-1.00001671799001 , 7.4183829340969E-08 , 4.12160386583112E-04 , 270846 
+ 16 ,-1.00003954879677 , 4.70132096582765E-08 , 1.52249553462845E-04 , 270846 
+ 17 ,-1.00004664182239 , 3.26726152832102E-08 , 5.75648935318108E-05 , 270846 
+ 18 ,-1.00004915371065 , 3.92019368608767E-08 , 2.69000956898998E-05 , 270846 
+ 19 ,-1.00005040736708 , 3.29902016427443E-08 , 9.39481852863204E-06 , 270846 
+ 20 ,-1.00005073212879 , 3.03911531175994E-08 , 4.79410577771163E-06 , 270846 
+ 21 ,-1.00005089576306 , 2.15346501644839E-08 , 2.44694511150551E-06 , 270846 
+ 22 ,-1.00005097859556 , 1.57256164269116E-08 , 1.26162865499815E-06 , 270846 
+ 23 ,-1.00005102049033 , 1.16086095753355E-08 , 6.59465669529907E-07 , 270846 
+# lower F=1.30353355407715 19915.59
+# lower F=1.30253849029541 19916.93
+# compile arrays 19921.56
+# ordering complete 19921.7
+# symbolic factorization 19921.77
+# symbolic complete 270846 19921.85
+# lower F=1.30204095840454 19923.23
+# compile arrays 19927.85
+# ordering complete 19927.98
+# symbolic factorization 19928.05
+# symbolic complete 270846 19928.15
+# lower F=1.30179219245911 19929.55
+# compile arrays 19934.19
+# ordering complete 19934.32
+# symbolic factorization 19934.38
+# symbolic complete 270846 19934.47
+# lower F=1.30166780948639 19935.85
+# compile arrays 19940.5
+# ordering complete 19940.65
+# symbolic factorization 19940.72
+# symbolic complete 270846 19940.81
