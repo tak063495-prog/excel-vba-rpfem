@@ -1,0 +1,2 @@
+﻿case,status,analysis_seconds,timeout_seconds,lower_fs,upper_fs,relative_gap,fs_obtained,target_met,error
+P02A_THIN,PASS_TARGET,1100.438,5400,1.3030635485367956,1.3090296130552934,0.004568033488408534,True,True,

@@ -1,0 +1,368 @@
+{
+  "schema": "rpfem.g1r20.fix9rc7b.sources.v1",
+  "version": "G1R20_Fix9rc9d_candidate",
+  "base_version": "G1R20_Fix9rc2",
+  "base_manifest_sha256": "0d256cb5d7298311fe48b4c6951021ab031be1d12af68730db5be5f9b506a32e",
+  "changed_modules": [
+    "RPX_AHO3.bas",
+    "RPX_AccuracyNative.bas",
+    "RPX_Adapt.bas",
+    "RPX_Audit.bas",
+    "RPX_ClockModule.bas",
+    "RPX_Conic.bas",
+    "RPX_Control.bas",
+    "RPX_Diagnostics.bas",
+    "RPX_Fs.bas",
+    "RPX_Lower.bas",
+    "RPX_LowerCache.bas",
+    "RPX_NativeBulk.bas",
+    "RPX_P4.bas",
+    "RPX_Schur.bas",
+    "RPX_SeepUI.bas",
+    "RPX_SeepWT.bas",
+    "RPX_Seismic.bas",
+    "RPX_Solve.bas",
+    "RPX_UI.bas"
+  ],
+  "base_module_sha256": {
+    "RPX_AccuracyMesh.bas": "ec54485fb54a8ad6568a5b138c3db8f46ec7f397c3197d76117ba8c1d8c7d08f",
+    "RPX_AccuracyNative.bas": "0252adfc898b7f6eaa9a951cc47d7658220ac12998dfa8ab2f277fc040233ba6",
+    "RPX_Adapt.bas": "f506bb6b4e5f9fd6122dba84c843e7eadb758b7068a24665b6e7a7be051002ab",
+    "RPX_Affine.bas": "1db43674855d97522da6c1ee68cbaad7f60bc197ae7980e7d4d16b57547e5d8c",
+    "RPX_AHO3.bas": "26514eb2aa91485f5f194f2ae8d52f43ff3d0c3207618a8fe78340441bd299ca",
+    "RPX_Audit.bas": "6bd8c4adcd3ed0dc4feace1b0fecc26817c99cc415a0e6900b4708b2170c57d5",
+    "RPX_Bearing.bas": "e03ebda3e1ae5a942af9e12c6143e25328e7bd9dd636fa4b95f5723061468ed4",
+    "RPX_C0Guides.bas": "2525c8d5c5f0dc43b6eb686d9afd012d9f110d203b74e1a9188d239405085edd",
+    "RPX_C0Select.bas": "f2063706bdbf728306ead963f0fb303bb535bdfa9848c72755056adab8a0cd92",
+    "RPX_Certificate.bas": "e1f0c694cee61f9931799070600ab267a1e05ce344657ae40f2f1acc563fb7ab",
+    "RPX_ColumnOrder.bas": "c38a62a5bfa9d439f3742b5345414d833a265774ad56336679fe7a595d41f2e3",
+    "RPX_Conic.bas": "79b8b4152638fd9c7aa29eed34324c195b8c8f74041ee1440dbb06dcd3c37840",
+    "RPX_Control.bas": "5cdbf58ca76c6dc0b8d468d94b18857f93190a0fbeceb2bce82e57745d00158e",
+    "RPX_Definition.bas": "90c76882aabde56f67b318863d6efc0e819e5b863bfee0e78d60095eed4d1acb",
+    "RPX_Diagnostics.bas": "7cda9b7801ebb058af3440160ec59c006a9781e0992110fcc2b85b637cdb3bca",
+    "RPX_Exchange.bas": "bcb9da802fc928c18cc802682d1e01bf00f6a0a39bb01a03055b1310b1f61f81",
+    "RPX_FactorFree.bas": "7aa6255e58ec85af8e170f4f91b80b689ad347c0b3230857a334aad9ff8e4864",
+    "RPX_FixedLowerRecovery.bas": "601f59a7446d95775586200b8323afd245835f4dd944ce189fbc5c783c86c1e1",
+    "RPX_FixedWitness.bas": "b11b940743c32ad253d0d2c9a53c0057762a4b8d98db61c487ee4eeb3794e88b",
+    "RPX_FlowMesh.bas": "1016edee32d4527f27db395c7b3082df5f84cb9df1ca6003363e1aa4b165db69",
+    "RPX_FreeFaceSplit.bas": "df4f932f1e1b7b7390d062057f219c310643b7ce659231b1c3d4abdb7174466c",
+    "RPX_Fs.bas": "2321ed0d24002479e7a32fd4cee39fff275843da7e4241f243441d99cebfe066",
+    "RPX_Guard.bas": "1728b78297c326f6da3f0ff74d6071121209b93d07c594aecb9e4aac509ed7aa",
+    "RPX_HSDCandidate.bas": "db4aba8cf8c0f2f45ef21230aff5b757c57487cc8724e0bd0f6319a0711dc689",
+    "RPX_HSDLu.bas": "4259698082c53d1fd72afc00693baa381d4965acfb4cbea379ae1b33c6b3e4a2",
+    "RPX_HSDPrecision.bas": "1ced0a3645007e6fc6235aea7ff9832a4e14ebad33536be12e3af845a35559f2",
+    "RPX_HSDQuality.bas": "40259e63df092f06dcbb5513526af91191416ec3b53435eab68baa4345a95e5e",
+    "RPX_Indicator.bas": "723de6a651889c63e67bcb029ba77738f90f74fda9e8444cb59046fe5a2002b8",
+    "RPX_KktCapture.bas": "1f486164023bcc248875fbee33d98a663d343f1b4099d76b1b12993380a8cd9a",
+    "RPX_LDL.bas": "03ef3d4cd0c11149d38711cd00821a38b9016f69f3029e940bb34090df042ab3",
+    "RPX_LoadStepMesh.bas": "47c050c4b94e34521f4023992d9b9e108cfde9fff3fc876e4eb7a7562075fffa",
+    "RPX_Lower.bas": "ee575b799d8f043c3803dc5e335342585368148dbe40c231c9f9a935eaea071e",
+    "RPX_LowerCache.bas": "640ca2b9a4b0245fdf921102e7b9356fe0b2d29f36ed4ec930d3c27c6ffac663",
+    "RPX_Mesh.bas": "4326bef7e5dcc56a6ce5994576ae8183406b6209358def449871b94025e398b5",
+    "RPX_MeshGuard.bas": "f5d7fb45ac05a42c6698833b35095bc0dfe182937055710d632e6835f4d4b313",
+    "RPX_MeshTests.bas": "7adab7d50d147c115100a040c7b5e66bd78915425354aa7c1e453f5bce445e99",
+    "RPX_Model.bas": "94588c42f7d653ffd46754cd3067f808caf4d1eeb4ddc58c381cf92970549aad",
+    "RPX_Native.bas": "8820c2c6e2af78f59f6c16b0d01281019c5173d6dcc2c1c0cba1a82fc95e82ec",
+    "RPX_NativeBulk.bas": "ee860f6ddf72c9f15edabf7ca8158a6126d546bc4ac50b1192d43f816e1be949",
+    "RPX_NativeGuard.bas": "f396f22f327aee6335d5c3e7d045d2eca4d891b1ab0d06d31e723759d5bb7900",
+    "RPX_NativeLU.bas": "ccf566350ab78eb2e6f117a504d3aa3c4c0247eaf638b6cd997b7eb204e4d6c0",
+    "RPX_NativeMesh.bas": "4c7a829d4dceb811d57609913c57ee4436b0db838f962de5b805f751112a81ee",
+    "RPX_NativeSolver.bas": "a98b27d492eea27129e9445438270924036f0504a7564504a4b70e0f8c8ea033",
+    "RPX_NT.bas": "e986114e4b19d2c4939874460168ef46ca77c47b8bce851735d21385f351e818",
+    "RPX_NTPrecision.bas": "677f9c58d1ba328343349c56787641bc4d27a7a9d8391df7a44661b6c4d7cb6e",
+    "RPX_Order.bas": "2a3c50063e96fb4d287c8c0c2ad9ca7d0cc12285f62dcf657b9b21a3a343b90d",
+    "RPX_Output.bas": "5d225faf8c610084d6a449e7db296e1b8af59602d2e276e837ee21460f66028f",
+    "RPX_P4.bas": "7bce8213fcae4ccc7621a5424974756d468804fcaa5092c59b24bd05fd6012d2",
+    "RPX_Profile.bas": "c7a85c4485bf18c14264c2645a0106a315ae2263fdc099b94c583dab9e926b41",
+    "RPX_Refine.bas": "4c7635708a42d1a6134b49622830621a5b0832c2d1cb285c1fb7e22800c00fd9",
+    "RPX_Robust.bas": "c94b8ceaac282201b9f8e031f91510a2afb26448b65d32cf916d0823ae1b17be",
+    "RPX_Schur.bas": "18c7814f8036e3287ebd5d8cad3b004fd45139880c0ba528905fe60aefe03370",
+    "RPX_SchurCache.bas": "71b9810fa0164b931929dce5a4238c1e3a6f975dc968b3ababca62bc08b5baae",
+    "RPX_SchurLDL.bas": "5de3e755f95c6167354f72a28ccb51afce74bcb173cfeb0a61a2f3402237bc5c",
+    "RPX_Seep.bas": "b8f087e399e5b216ea49c3c908ff971a2677d2503b7ed5b875d96e2cbe5923f7",
+    "RPX_SeepUI.bas": "275010f58388f6c13a4f494819da28c187913560d9f6a66174544bdb59c155ac",
+    "RPX_SeepWT.bas": "64c6bdb969aa106dcac37700edec24ec1733bc29e615ef4ab7c22f5a2c39d7d0",
+    "RPX_Seismic.bas": "371681c08cf7f1dfb4dcf719295f387a1c6add347e53f64605895818b6a36945",
+    "RPX_Solve.bas": "ebffd880d69dbf3888fb986a95422ac7c1b1dd9b647a1b6e975becdd78e671ec",
+    "RPX_UI.bas": "ef9a2b9667050e46887294b8d95d0b73365a26915b806203faf67d48bee88ea9",
+    "RPX_Upper.bas": "97b097e62a025dbf3db07c1c124b8e4bfb7037b3892e63f424e54db82c5defd1",
+    "RPX_Water.bas": "e5d57267999167b12f41d2bb9df21c2893c0ce783cad055fd1a55275453344c1",
+    "RPX_WorkPrecision.bas": "253afaec8d8ddc9c5d19398bc956f42af254d082f19aa75a0235fa6f89d178bd"
+  },
+  "modules": {
+    "RPX_AccuracyMesh.bas": {
+      "utf8_sha256": "ec54485fb54a8ad6568a5b138c3db8f46ec7f397c3197d76117ba8c1d8c7d08f",
+      "cp932_sha256": "ec54485fb54a8ad6568a5b138c3db8f46ec7f397c3197d76117ba8c1d8c7d08f"
+    },
+    "RPX_AccuracyNative.bas": {
+      "utf8_sha256": "8a9799cd16654eebdb0fb642c7061d5534eb5abc28d68fe15fbde3bece018a17",
+      "cp932_sha256": "8a9799cd16654eebdb0fb642c7061d5534eb5abc28d68fe15fbde3bece018a17"
+    },
+    "RPX_Adapt.bas": {
+      "utf8_sha256": "948a9b5dddae109ce4d8e884d81ba38bf737bd44d2a85326f4c1b9cb9c0ca294",
+      "cp932_sha256": "948a9b5dddae109ce4d8e884d81ba38bf737bd44d2a85326f4c1b9cb9c0ca294"
+    },
+    "RPX_Affine.bas": {
+      "utf8_sha256": "1db43674855d97522da6c1ee68cbaad7f60bc197ae7980e7d4d16b57547e5d8c",
+      "cp932_sha256": "1db43674855d97522da6c1ee68cbaad7f60bc197ae7980e7d4d16b57547e5d8c"
+    },
+    "RPX_AHO3.bas": {
+      "utf8_sha256": "f504be414506e29c285958650123b71307517907ca55a4d9c43cffb3e1658261",
+      "cp932_sha256": "f504be414506e29c285958650123b71307517907ca55a4d9c43cffb3e1658261"
+    },
+    "RPX_Audit.bas": {
+      "utf8_sha256": "e3383fc5e8370227c6971185b1245b45fa43f629164072b74d05202edb96bd73",
+      "cp932_sha256": "e3383fc5e8370227c6971185b1245b45fa43f629164072b74d05202edb96bd73"
+    },
+    "RPX_Bearing.bas": {
+      "utf8_sha256": "e03ebda3e1ae5a942af9e12c6143e25328e7bd9dd636fa4b95f5723061468ed4",
+      "cp932_sha256": "cbc73398a91103eaa8064369c91fc953f4a388f553d6e1008f2b40520176225d"
+    },
+    "RPX_C0Guides.bas": {
+      "utf8_sha256": "2525c8d5c5f0dc43b6eb686d9afd012d9f110d203b74e1a9188d239405085edd",
+      "cp932_sha256": "2525c8d5c5f0dc43b6eb686d9afd012d9f110d203b74e1a9188d239405085edd"
+    },
+    "RPX_C0Select.bas": {
+      "utf8_sha256": "f2063706bdbf728306ead963f0fb303bb535bdfa9848c72755056adab8a0cd92",
+      "cp932_sha256": "148f52d956957ae7b56c05f571ceef32540e3fb3b83554e537ae66e09c1a7ccf"
+    },
+    "RPX_Certificate.bas": {
+      "utf8_sha256": "e1f0c694cee61f9931799070600ab267a1e05ce344657ae40f2f1acc563fb7ab",
+      "cp932_sha256": "e41016e9db36050ee10ec454d968523fe60fba7e963af40a0b0e1f7e2fecd6e5"
+    },
+    "RPX_ColumnOrder.bas": {
+      "utf8_sha256": "c38a62a5bfa9d439f3742b5345414d833a265774ad56336679fe7a595d41f2e3",
+      "cp932_sha256": "560cf3fa14b8eb2c38ec522e87f3e333ae874e8468384bf855f42712c2f1a5eb"
+    },
+    "RPX_Conic.bas": {
+      "utf8_sha256": "73d81c0104ac25655f68220d4a730cfa2f3e563fa51530e60632a7e175bb9b69",
+      "cp932_sha256": "73d81c0104ac25655f68220d4a730cfa2f3e563fa51530e60632a7e175bb9b69"
+    },
+    "RPX_Control.bas": {
+      "utf8_sha256": "baa6c92596ff2a41d4258d27e1cb0fde5575149a7abd83919ad2218f42079814",
+      "cp932_sha256": "553ede2f0d27710164554d2a8c81d746ad0193d29d7df2eb637e4aef6ea189f4"
+    },
+    "RPX_Definition.bas": {
+      "utf8_sha256": "90c76882aabde56f67b318863d6efc0e819e5b863bfee0e78d60095eed4d1acb",
+      "cp932_sha256": "add1b63fcabaa3f8f6d934a9a87e5d50b80ac3a9e578924ec7a4c27e87b6d91f"
+    },
+    "RPX_Diagnostics.bas": {
+      "utf8_sha256": "fe14c14846cae981787cda8d0ede483f8b52fe42bd353fe7cb8c39a21ba8ec5f",
+      "cp932_sha256": "34765efc4117ac83a2fe9196444a39a027e1c5ac2fe130e3cbea7b46f9fa5d7f"
+    },
+    "RPX_Exchange.bas": {
+      "utf8_sha256": "bcb9da802fc928c18cc802682d1e01bf00f6a0a39bb01a03055b1310b1f61f81",
+      "cp932_sha256": "bcb9da802fc928c18cc802682d1e01bf00f6a0a39bb01a03055b1310b1f61f81"
+    },
+    "RPX_FactorFree.bas": {
+      "utf8_sha256": "7aa6255e58ec85af8e170f4f91b80b689ad347c0b3230857a334aad9ff8e4864",
+      "cp932_sha256": "7aa6255e58ec85af8e170f4f91b80b689ad347c0b3230857a334aad9ff8e4864"
+    },
+    "RPX_FixedLowerRecovery.bas": {
+      "utf8_sha256": "601f59a7446d95775586200b8323afd245835f4dd944ce189fbc5c783c86c1e1",
+      "cp932_sha256": "601f59a7446d95775586200b8323afd245835f4dd944ce189fbc5c783c86c1e1"
+    },
+    "RPX_FixedWitness.bas": {
+      "utf8_sha256": "b11b940743c32ad253d0d2c9a53c0057762a4b8d98db61c487ee4eeb3794e88b",
+      "cp932_sha256": "b11b940743c32ad253d0d2c9a53c0057762a4b8d98db61c487ee4eeb3794e88b"
+    },
+    "RPX_FlowMesh.bas": {
+      "utf8_sha256": "1016edee32d4527f27db395c7b3082df5f84cb9df1ca6003363e1aa4b165db69",
+      "cp932_sha256": "1016edee32d4527f27db395c7b3082df5f84cb9df1ca6003363e1aa4b165db69"
+    },
+    "RPX_FreeFaceSplit.bas": {
+      "utf8_sha256": "df4f932f1e1b7b7390d062057f219c310643b7ce659231b1c3d4abdb7174466c",
+      "cp932_sha256": "df4f932f1e1b7b7390d062057f219c310643b7ce659231b1c3d4abdb7174466c"
+    },
+    "RPX_Fs.bas": {
+      "utf8_sha256": "0f44c4eeed034e47a05f77083f5ce5137c584d2bf8dda67b89c8fe7c8c77f89a",
+      "cp932_sha256": "0f44c4eeed034e47a05f77083f5ce5137c584d2bf8dda67b89c8fe7c8c77f89a"
+    },
+    "RPX_Guard.bas": {
+      "utf8_sha256": "1728b78297c326f6da3f0ff74d6071121209b93d07c594aecb9e4aac509ed7aa",
+      "cp932_sha256": "e326fe7fbc74b7ad30946f1a65e0e6c8bac5eb19bc1cd4801c310e3cf93f2a1b"
+    },
+    "RPX_HSDCandidate.bas": {
+      "utf8_sha256": "db4aba8cf8c0f2f45ef21230aff5b757c57487cc8724e0bd0f6319a0711dc689",
+      "cp932_sha256": "db4aba8cf8c0f2f45ef21230aff5b757c57487cc8724e0bd0f6319a0711dc689"
+    },
+    "RPX_HSDLu.bas": {
+      "utf8_sha256": "4259698082c53d1fd72afc00693baa381d4965acfb4cbea379ae1b33c6b3e4a2",
+      "cp932_sha256": "4259698082c53d1fd72afc00693baa381d4965acfb4cbea379ae1b33c6b3e4a2"
+    },
+    "RPX_HSDPrecision.bas": {
+      "utf8_sha256": "1ced0a3645007e6fc6235aea7ff9832a4e14ebad33536be12e3af845a35559f2",
+      "cp932_sha256": "1ced0a3645007e6fc6235aea7ff9832a4e14ebad33536be12e3af845a35559f2"
+    },
+    "RPX_HSDQuality.bas": {
+      "utf8_sha256": "40259e63df092f06dcbb5513526af91191416ec3b53435eab68baa4345a95e5e",
+      "cp932_sha256": "40259e63df092f06dcbb5513526af91191416ec3b53435eab68baa4345a95e5e"
+    },
+    "RPX_Indicator.bas": {
+      "utf8_sha256": "723de6a651889c63e67bcb029ba77738f90f74fda9e8444cb59046fe5a2002b8",
+      "cp932_sha256": "723de6a651889c63e67bcb029ba77738f90f74fda9e8444cb59046fe5a2002b8"
+    },
+    "RPX_KktCapture.bas": {
+      "utf8_sha256": "1f486164023bcc248875fbee33d98a663d343f1b4099d76b1b12993380a8cd9a",
+      "cp932_sha256": "1f486164023bcc248875fbee33d98a663d343f1b4099d76b1b12993380a8cd9a"
+    },
+    "RPX_LDL.bas": {
+      "utf8_sha256": "03ef3d4cd0c11149d38711cd00821a38b9016f69f3029e940bb34090df042ab3",
+      "cp932_sha256": "03ef3d4cd0c11149d38711cd00821a38b9016f69f3029e940bb34090df042ab3"
+    },
+    "RPX_LoadStepMesh.bas": {
+      "utf8_sha256": "47c050c4b94e34521f4023992d9b9e108cfde9fff3fc876e4eb7a7562075fffa",
+      "cp932_sha256": "47c050c4b94e34521f4023992d9b9e108cfde9fff3fc876e4eb7a7562075fffa"
+    },
+    "RPX_Lower.bas": {
+      "utf8_sha256": "6e2a810dfa4db1cce9892f511383a17fe88a10f44868af8c52341a7c3f83c0db",
+      "cp932_sha256": "6e2a810dfa4db1cce9892f511383a17fe88a10f44868af8c52341a7c3f83c0db"
+    },
+    "RPX_LowerCache.bas": {
+      "utf8_sha256": "ac7e72d05086984a1d7d20ae1a7eca4c02136e0c8a8b9453e5dae695ffe49cf4",
+      "cp932_sha256": "ac7e72d05086984a1d7d20ae1a7eca4c02136e0c8a8b9453e5dae695ffe49cf4"
+    },
+    "RPX_Mesh.bas": {
+      "utf8_sha256": "4326bef7e5dcc56a6ce5994576ae8183406b6209358def449871b94025e398b5",
+      "cp932_sha256": "4326bef7e5dcc56a6ce5994576ae8183406b6209358def449871b94025e398b5"
+    },
+    "RPX_MeshGuard.bas": {
+      "utf8_sha256": "f5d7fb45ac05a42c6698833b35095bc0dfe182937055710d632e6835f4d4b313",
+      "cp932_sha256": "f5d7fb45ac05a42c6698833b35095bc0dfe182937055710d632e6835f4d4b313"
+    },
+    "RPX_MeshTests.bas": {
+      "utf8_sha256": "7adab7d50d147c115100a040c7b5e66bd78915425354aa7c1e453f5bce445e99",
+      "cp932_sha256": "7adab7d50d147c115100a040c7b5e66bd78915425354aa7c1e453f5bce445e99"
+    },
+    "RPX_Model.bas": {
+      "utf8_sha256": "94588c42f7d653ffd46754cd3067f808caf4d1eeb4ddc58c381cf92970549aad",
+      "cp932_sha256": "94588c42f7d653ffd46754cd3067f808caf4d1eeb4ddc58c381cf92970549aad"
+    },
+    "RPX_Native.bas": {
+      "utf8_sha256": "8820c2c6e2af78f59f6c16b0d01281019c5173d6dcc2c1c0cba1a82fc95e82ec",
+      "cp932_sha256": "8820c2c6e2af78f59f6c16b0d01281019c5173d6dcc2c1c0cba1a82fc95e82ec"
+    },
+    "RPX_NativeBulk.bas": {
+      "utf8_sha256": "d891199e8a30175c6a8a280551207648c6b220de84b8ce5eb056d84c3c270bea",
+      "cp932_sha256": "d891199e8a30175c6a8a280551207648c6b220de84b8ce5eb056d84c3c270bea"
+    },
+    "RPX_NativeGuard.bas": {
+      "utf8_sha256": "f396f22f327aee6335d5c3e7d045d2eca4d891b1ab0d06d31e723759d5bb7900",
+      "cp932_sha256": "f396f22f327aee6335d5c3e7d045d2eca4d891b1ab0d06d31e723759d5bb7900"
+    },
+    "RPX_NativeLU.bas": {
+      "utf8_sha256": "ccf566350ab78eb2e6f117a504d3aa3c4c0247eaf638b6cd997b7eb204e4d6c0",
+      "cp932_sha256": "ccf566350ab78eb2e6f117a504d3aa3c4c0247eaf638b6cd997b7eb204e4d6c0"
+    },
+    "RPX_NativeMesh.bas": {
+      "utf8_sha256": "4c7a829d4dceb811d57609913c57ee4436b0db838f962de5b805f751112a81ee",
+      "cp932_sha256": "4c7a829d4dceb811d57609913c57ee4436b0db838f962de5b805f751112a81ee"
+    },
+    "RPX_NativeSolver.bas": {
+      "utf8_sha256": "a98b27d492eea27129e9445438270924036f0504a7564504a4b70e0f8c8ea033",
+      "cp932_sha256": "a98b27d492eea27129e9445438270924036f0504a7564504a4b70e0f8c8ea033"
+    },
+    "RPX_NT.bas": {
+      "utf8_sha256": "e986114e4b19d2c4939874460168ef46ca77c47b8bce851735d21385f351e818",
+      "cp932_sha256": "e986114e4b19d2c4939874460168ef46ca77c47b8bce851735d21385f351e818"
+    },
+    "RPX_NTPrecision.bas": {
+      "utf8_sha256": "677f9c58d1ba328343349c56787641bc4d27a7a9d8391df7a44661b6c4d7cb6e",
+      "cp932_sha256": "677f9c58d1ba328343349c56787641bc4d27a7a9d8391df7a44661b6c4d7cb6e"
+    },
+    "RPX_Order.bas": {
+      "utf8_sha256": "2a3c50063e96fb4d287c8c0c2ad9ca7d0cc12285f62dcf657b9b21a3a343b90d",
+      "cp932_sha256": "1c4a81b49f57c79d000b52eac777bb6c6624056cb8f40abf65f2ffb4f8d5006a"
+    },
+    "RPX_Output.bas": {
+      "utf8_sha256": "5d225faf8c610084d6a449e7db296e1b8af59602d2e276e837ee21460f66028f",
+      "cp932_sha256": "0d861a357e31a0116f6accec6762f9321264f444d5a8723e1bc0ff37f98a2777"
+    },
+    "RPX_P4.bas": {
+      "utf8_sha256": "21f2ca8e0cf58e85dfc4ffae68723843c53f6cd9d0acc19df1225b8f76f565a5",
+      "cp932_sha256": "f6f7933de848173b807c31c5eb66cfa0dcff50ee51b415e74bd12265de127ec7"
+    },
+    "RPX_Profile.bas": {
+      "utf8_sha256": "c7a85c4485bf18c14264c2645a0106a315ae2263fdc099b94c583dab9e926b41",
+      "cp932_sha256": "c7a85c4485bf18c14264c2645a0106a315ae2263fdc099b94c583dab9e926b41"
+    },
+    "RPX_Refine.bas": {
+      "utf8_sha256": "4c7635708a42d1a6134b49622830621a5b0832c2d1cb285c1fb7e22800c00fd9",
+      "cp932_sha256": "4c7635708a42d1a6134b49622830621a5b0832c2d1cb285c1fb7e22800c00fd9"
+    },
+    "RPX_Robust.bas": {
+      "utf8_sha256": "c94b8ceaac282201b9f8e031f91510a2afb26448b65d32cf916d0823ae1b17be",
+      "cp932_sha256": "c94b8ceaac282201b9f8e031f91510a2afb26448b65d32cf916d0823ae1b17be"
+    },
+    "RPX_Schur.bas": {
+      "utf8_sha256": "35f819850a6ac81b24379113eaca4eb0d2ff2fb82dfc113d3920f6475d044c5a",
+      "cp932_sha256": "35f819850a6ac81b24379113eaca4eb0d2ff2fb82dfc113d3920f6475d044c5a"
+    },
+    "RPX_SchurCache.bas": {
+      "utf8_sha256": "71b9810fa0164b931929dce5a4238c1e3a6f975dc968b3ababca62bc08b5baae",
+      "cp932_sha256": "71b9810fa0164b931929dce5a4238c1e3a6f975dc968b3ababca62bc08b5baae"
+    },
+    "RPX_SchurLDL.bas": {
+      "utf8_sha256": "5de3e755f95c6167354f72a28ccb51afce74bcb173cfeb0a61a2f3402237bc5c",
+      "cp932_sha256": "5de3e755f95c6167354f72a28ccb51afce74bcb173cfeb0a61a2f3402237bc5c"
+    },
+    "RPX_Seep.bas": {
+      "utf8_sha256": "b8f087e399e5b216ea49c3c908ff971a2677d2503b7ed5b875d96e2cbe5923f7",
+      "cp932_sha256": "bb1b55669086dd321d13bf601bced412fbf6f2ae323360968a8b8810a49d92b0"
+    },
+    "RPX_SeepUI.bas": {
+      "utf8_sha256": "a25141fc7a562d0631f27c975bd58ac9e88fb1cf917ad87103d3cc3c62f52a4f",
+      "cp932_sha256": "ee29799dd7ba2ce4dadf0c8e2d374e3aab83f27bbf793fbaa50f31cad8caab04"
+    },
+    "RPX_SeepWT.bas": {
+      "utf8_sha256": "58bc18b08245b0f1cf11370e6ddf81f4b0f0dee0ce5524422f27c6fca251fbab",
+      "cp932_sha256": "c7e0103ab3811a690d98fe4bcb0605b7a68281e5273f003e5e0683a0c94e02be"
+    },
+    "RPX_Seismic.bas": {
+      "utf8_sha256": "45966649c63a3f7537c51c795c2efe5025ef28e39be7b3da12df2a276801a6a8",
+      "cp932_sha256": "b8fa04ebae5006f776a8471f732cd9a8c5299bea93248d1dc0afe4a5b2273eb0"
+    },
+    "RPX_Solve.bas": {
+      "utf8_sha256": "c3739871d4e6e10582905baf5f39fae84419ace55384e5b4341edb119c79ae53",
+      "cp932_sha256": "c3739871d4e6e10582905baf5f39fae84419ace55384e5b4341edb119c79ae53"
+    },
+    "RPX_UI.bas": {
+      "utf8_sha256": "58dc51d31d9e9ddfc8d15bc88d7593eef872eb122fcecd2e2b73e81630898f85",
+      "cp932_sha256": "b6c0c4208de6e4fdfba5cc4e32b571797698afc59070f05d574e4fabe7747c98"
+    },
+    "RPX_Upper.bas": {
+      "utf8_sha256": "97b097e62a025dbf3db07c1c124b8e4bfb7037b3892e63f424e54db82c5defd1",
+      "cp932_sha256": "97b097e62a025dbf3db07c1c124b8e4bfb7037b3892e63f424e54db82c5defd1"
+    },
+    "RPX_Water.bas": {
+      "utf8_sha256": "e5d57267999167b12f41d2bb9df21c2893c0ce783cad055fd1a55275453344c1",
+      "cp932_sha256": "7293f11a114e6f69b894cb4debe1b3c31fe780c7a6341496fc81be0ed70a2232"
+    },
+    "RPX_WorkPrecision.bas": {
+      "utf8_sha256": "253afaec8d8ddc9c5d19398bc956f42af254d082f19aa75a0235fa6f89d178bd",
+      "cp932_sha256": "253afaec8d8ddc9c5d19398bc956f42af254d082f19aa75a0235fa6f89d178bd"
+    },
+    "RPX_ClockModule.bas": {
+      "utf8_sha256": "b6e905d4ea2a32aa4cebc98dbe4e8cababc88ba5af8942973829f6abaa6e2109",
+      "cp932_sha256": "b6e905d4ea2a32aa4cebc98dbe4e8cababc88ba5af8942973829f6abaa6e2109"
+    }
+  },
+  "standard_module_count": 63,
+  "workbook_modules": {
+    "ThisWorkbook": {
+      "utf8_path": "src/workbook/ThisWorkbook.code.txt",
+      "cp932_path": "import/ThisWorkbook.code.txt",
+      "utf8_sha256": "28d100a977206b77c9564804a442c844de3dfc86dfaa1257ebe7018ee97cc5dc",
+      "cp932_sha256": "28d100a977206b77c9564804a442c844de3dfc86dfaa1257ebe7018ee97cc5dc"
+    }
+  },
+  "workbook_module_count": 1,
+  "runtime_dll": "rpfem_native_x64.dll",
+  "runtime_dll_sha256": "66da1a21be43cd2b3a3bfbaa9d13aad5fb1fd1960e1bf2507cc4e1cfa9ebe70b",
+  "assets": {},
+  "p06_native_complete_claimed": false,
+  "scope": "G1R20 Fix9 rc9d candidate = rc9c + ACCURACY_DLL_UPPER_EQUILIBRATE default 0 (code default, settings row, both presets; P02A_THIN eq0 PASS 0.457% vs eq1 0.531%). rc9c = rc9b + midnight-safe monotonic elapsed clock (new RPX_Clock; all elapsed Timer uses; default-off TEST_CLOCK wrap hook). rc9b = rc9a + upper original primal DLL equilibrate (ACCURACY_DLL_UPPER_EQUILIBRATE default 1, 0 = rc9a) + phase-specific dual/call-id diagnostic logging (no stale dual fields); no acceptance/audit/tolerance change. rc9a = rc8 + bug fix: thin-budget failure with no iterate treated as numerical UNKNOWN (no recovery on missing iterate, guarded array probes) and confirmed best lower/upper preserved and written on late fatal errors (adapt_fatal_preserved), default-off test hooks. rc8 = rc7 + thin-only same-mesh HSD warm start (raw x/y/s/z/tau/kappa cache keyed by exact layout/model, recentred blend .2, iteration-0 reject x10, probe 15 its, one cold retry within same budget/wall; cross-mesh not implemented). rc7 = rc6c + thin-only: large-upper HSD floor 1800 s/600 it with hard wall incl. grace, lower HSD floor 1200 s (>=1400 el or extra), narrow directional Fs seed bracket from lineage hint (~9 evals), cost-ranked upper marks when cap binds, 1 targeted extra lower, protection reserves planned extra lower. rc6c = rc6 with ADAPT_THIN_NOMINAL_SECONDS default 18171 (user decision). rc6 (Codex-written, reviewed) = rc5 (+#38) + thin-chain-only: upper round element cap 3000/growth 1.6 with fitted marks, large thin upper DLL status-5 retry (700 it, equilibration) and larger HSD budget/iterations, real case clock via ADAPT_THIN_CASE_LIMIT_SECONDS, up to 3 time-funded extra lower rounds with upper-protect. rc5 = rc4b + thin-chain-only robustness: DLL status 5 as upper below-root sign (prior dual guide gate), keep fully valid best of failed round, thin HSD floor from remaining time (optional deadline or ADAPT_THIN_NOMINAL_SECONDS 14400), lower large-mesh theta factor 0.5, one extra retry per side. rc4b: rc4 with ADAPT_THIN_EARLY_UPPER_THETA default 0.95 on top of rc3b (Codex-written, reviewed): after an early start is taken, upper chain uses ADAPT_THIN_EARLY_UPPER_THETA=0.95 and ADAPT_THIN_EARLY_UPPER_CAP=7000 (budget check uses them too); otherwise identical to rc3b. rc3b: conditional early start ADAPT_THIN_EARLY_START=1 (Fix9ThinEarlyBudget: min upper rounds 10, min lower rounds 3, lower end <= upper rounds, theta >= 0.8/0.9, cap/coarse >= 2, remaining optional deadline >= 3600 s if active; 2 = always as rc2, 0 = off); ADAPT_THIN_AUX_ALMOST=1; lower cap 6000",
+  "validation_warning": "Candidate; build/compile only; no VBA case run yet; not published",
+  "source_is_authoritative": "src/vba and src/workbook; UTF8 and CP932 decoded text exactly equal; all release bytes preserved by .gitattributes",
+  "source_bundle_sha256": "4c9d16ca60c745897d456e4533909438ed33999d9b3c30dffe8c3e3cb358d026"
+}

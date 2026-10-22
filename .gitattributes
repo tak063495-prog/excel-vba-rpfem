@@ -72,3 +72,7 @@ validation/G1R20_Fix9_*/** -text
 versions/G1R20_Fix9rc4b/** -text
 versions/G1R20_Fix9rc9b/** -text
 validation/G1R20_Fix9rc9b_*/** -text
+versions/G1R20_Fix9rc9c/** -text
+versions/G1R20_Fix9rc9d/** -text
+validation/G1R20_Fix9rc9c_*/** -text
+validation/G1R20_Fix9rc9d_*/** -text

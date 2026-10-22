@@ -1,0 +1,5 @@
+Added two ASCII lines so `same(None, None)` returns `True`. All other comparisons and acceptance checks remain unchanged.
+
+`py_compile` and regression checks passed. Excel was not run.
+
+Diff summary saved to [codex_last_fixdrv.txt](C:/Users/link_/rpfem_bench/codex_fix9rc9c/codex_last_fixdrv.txt).
